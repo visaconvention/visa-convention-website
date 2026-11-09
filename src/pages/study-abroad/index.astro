@@ -3,50 +3,280 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeading from '../../components/common/SectionHeading.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import CountryCard from '../../components/countries/CountryCard.astro';
+import FAQAccordion from '../../components/common/FAQAccordion.astro';
 import ConsultationCTA from '../../components/common/ConsultationCTA.astro';
-import { getAllCountries } from '../../data/countries';
+import EmptyState from '../../components/common/EmptyState.astro';
+import { getPublishedCountries, getContinents } from '../../data/countries';
+import { getFaqSchema } from '../../utils/seo';
 
-const countries = getAllCountries();
-const continents = Array.from(new Set(countries.map((c) => c.continent)));
+const countries = getPublishedCountries();
+const continents = getContinents();
+
+const studyAbroadFaqs = [
+  {
+    question: 'How do I choose the right study abroad destination for my academic profile?',
+    answer: 'Selecting an optimal study abroad destination depends on your past academic performance (GPA/percentage), budget for tuition and living expenses, desired post-study stay-back work duration, and language proficiency. Our Hanumangarh counselors evaluate your transcripts against admission requirements across 35+ countries to curate a realistic shortlist.',
+  },
+  {
+    question: 'Are tuition fees paid directly to the foreign university?',
+    answer: 'Yes. Students pay their tuition fees directly to the accredited foreign university through official international wire transfer or authorized educational banking channels. Visa Convention operates transparently and never collects university tuition fees into agency accounts.',
+  },
+  {
+    question: 'Which standardized English test is most widely accepted (IELTS vs PTE vs TOEFL)?',
+    answer: 'IELTS Academic and PTE Academic are accepted almost universally across Canada, the UK, Australia, Ireland, and New Zealand. TOEFL iBT is widely accepted in the United States and Europe. In select destinations such as France or specific UK universities, medium of instruction (MOI) waivers may be eligible for applicants with high Class XII English marks.',
+  },
+  {
+    question: 'When should I begin my study abroad application process?',
+    answer: 'We strongly advise starting 8 to 12 months before your targeted intake semester. This allows sufficient time for standardized language testing, academic credential evaluations, conditional and unconditional offer processing, financial documentation setup, and embassy visa queues.',
+  },
+  {
+    question: 'Does Visa Convention guarantee visa approval?',
+    answer: 'No. Sovereign host-nation embassies and immigration authorities make all visa decisions independently. Visa Convention facilitates meticulous, honest file compilation and interview briefings, but strictly does not guarantee visa grants.',
+  },
+];
+
+const faqSchema = getFaqSchema(studyAbroadFaqs);
 ---
 
 <BaseLayout
-  title="Study Abroad Destinations — Visa Convention"
-  description="Explore over 35 leading destination countries for international study, degree programs, tuition guidance, and visa requirements."
+  title="Explore Study Abroad Destinations — Visa Convention"
+  description="Discover higher education opportunities across 35+ destination countries. Compare admission requirements, estimated tuition fees, work rights, and visa procedures."
+  schema={faqSchema}
 >
+  <!-- Breadcrumbs -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-    <Breadcrumbs items={[{ label: 'Study Abroad', href: '/study-abroad/', current: true }]} />
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Study Abroad', href: '/study-abroad/', current: true }]} />
   </div>
 
-  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <SectionHeading
-      badge="Global Education"
-      title="35+ Worldwide Study Destinations"
-      description="Compare admission intakes, estimated tuition fees, work rights, and visa procedures across premier international education hubs."
-    />
-
-    <!-- Continent quick jump tabs -->
-    <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
-      <span class="text-xs font-bold uppercase tracking-wider text-brand-muted mr-2">Regions:</span>
-      {continents.map((continent) => (
-        <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-white border border-brand-border text-brand-navy shadow-2xs">
-          {continent}
+  <!-- Hero Header Section -->
+  <section class="py-12 sm:py-16 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block px-3.5 py-1 mb-4 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
+          Global Educational Advisory
         </span>
-      ))}
+        <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4">
+          Explore Study Destinations
+        </h1>
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed mb-8">
+          Discover universities and education opportunities across our supported destinations. Compare verified admission prerequisites, tuition guidelines, post-study work permits, and official embassy procedures.
+        </p>
+
+        <!-- Search & Filter Controls -->
+        <div class="space-y-4">
+          <!-- Live Search Bar -->
+          <div class="relative max-w-xl">
+            <label for="country-search-input" class="sr-only">Search countries by name</label>
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-brand-muted">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="country-search-input"
+              placeholder="Search destination country by name (e.g. Canada, Germany, Australia)..."
+              class="w-full pl-11 pr-4 py-3 rounded-xl border border-brand-border bg-white text-sm text-brand-navy placeholder:text-brand-muted focus:outline-none focus:ring-2 focus:ring-brand-blue shadow-2xs transition-all"
+            />
+          </div>
+
+          <!-- Continent / Region Filter Pills -->
+          <div class="flex flex-wrap items-center gap-2 pt-1" id="continent-filters">
+            <button
+              type="button"
+              data-continent="all"
+              class="continent-btn active-pill px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-navy text-white shadow-2xs"
+            >
+              All Destinations
+            </button>
+            {continents.map((continent) => (
+              <button
+                type="button"
+                data-continent={continent.toLowerCase()}
+                class="continent-btn px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white border border-brand-border text-brand-navy hover:border-brand-navy shadow-2xs"
+              >
+                {continent}
+              </button>
+            ))}
+            <button
+              type="button"
+              data-featured="true"
+              class="featured-btn px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white border border-brand-red/40 text-brand-red hover:bg-brand-red/10 shadow-2xs"
+            >
+              ★ Featured Only
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destination Grid & Results Area -->
+  <section class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Results Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-brand-border gap-2">
+      <div>
+        <h2 class="text-xl font-bold text-brand-navy">Available Destinations</h2>
+        <p class="text-xs text-brand-muted">
+          Showing <span id="visible-count" class="font-bold text-brand-navy">{countries.length}</span> destinations matching criteria
+        </p>
+      </div>
+      <div class="text-xs text-brand-muted">
+        Total database coverage: <strong class="text-brand-navy">{countries.length} Countries</strong>
+      </div>
     </div>
 
-    <!-- Dynamic Countries Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Empty State Container (Hidden by default) -->
+    <div id="no-results-state" class="hidden my-8">
+      <EmptyState
+        title="No Destinations Found"
+        description="No study abroad destinations match your current filter criteria. Our Hanumangarh counseling team guides students for 35+ countries globally — speak directly with our counselors to explore options for unlisted pathways."
+        actionLabel="Reset Destination Filters"
+        actionHref="javascript:void(0)"
+      />
+    </div>
+
+    <!-- Country Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="countries-grid">
       {countries.map((country) => (
         <CountryCard country={country} />
       ))}
     </div>
 
+    <!-- Study Abroad FAQs Section -->
+    <div class="mt-20 pt-16 border-t border-brand-border">
+      <SectionHeading
+        badge="Clarity & Preparation"
+        title="Study Abroad Frequently Asked Questions"
+        description="Key information regarding international admissions, intake calendars, and immigration compliance."
+      />
+      <div class="max-w-4xl mx-auto mt-8">
+        <FAQAccordion faqs={studyAbroadFaqs} />
+      </div>
+    </div>
+
+    <!-- Final Call to Action -->
     <div class="mt-16">
       <ConsultationCTA
-        title="Need Advice on the Best Country for Your Budget?"
-        subtitle="Our Hanumangarh counseling team evaluates your academic profile, backlogs, and financial plan to recommend optimal destination choices."
+        title="Need Advice on the Best Country for Your Career & Budget?"
+        subtitle="Our experienced advisors evaluate your transcripts, backlog history, and financial goals to recommend the right destination and course."
       />
     </div>
   </section>
+
+  <!-- Interactive Search & Filter Client Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('country-search-input');
+      const continentButtons = document.querySelectorAll('.continent-btn');
+      const featuredBtn = document.querySelector('.featured-btn');
+      const cards = document.querySelectorAll('[data-country-card]');
+      const visibleCountEl = document.getElementById('visible-count');
+      const noResultsState = document.getElementById('no-results-state');
+      const countriesGrid = document.getElementById('countries-grid');
+
+      let currentContinent = 'all';
+      let currentQuery = '';
+      let filterFeaturedOnly = false;
+
+      function updateGrid() {
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+          const countryName = card.getAttribute('data-country-name') || '';
+          const continent = card.getAttribute('data-continent') || '';
+          const isFeatured = card.getAttribute('data-featured') === 'true';
+
+          const matchesQuery = !currentQuery || countryName.includes(currentQuery);
+          const matchesContinent = currentContinent === 'all' || continent === currentContinent;
+          const matchesFeatured = !filterFeaturedOnly || isFeatured;
+
+          if (matchesQuery && matchesContinent && matchesFeatured) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (visibleCountEl) {
+          visibleCountEl.textContent = visibleCount;
+        }
+
+        if (visibleCount === 0) {
+          noResultsState.classList.remove('hidden');
+          countriesGrid.classList.add('hidden');
+        } else {
+          noResultsState.classList.add('hidden');
+          countriesGrid.classList.remove('hidden');
+        }
+      }
+
+      // Search input listener
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          currentQuery = e.target.value.trim().toLowerCase();
+          updateGrid();
+        });
+      }
+
+      // Continent filter buttons
+      continentButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          continentButtons.forEach((b) => {
+            b.classList.remove('bg-brand-navy', 'text-white');
+            b.classList.add('bg-white', 'text-brand-navy');
+          });
+
+          btn.classList.remove('bg-white', 'text-brand-navy');
+          btn.classList.add('bg-brand-navy', 'text-white');
+
+          currentContinent = btn.getAttribute('data-continent') || 'all';
+          updateGrid();
+        });
+      });
+
+      // Featured button toggle
+      if (featuredBtn) {
+        featuredBtn.addEventListener('click', () => {
+          filterFeaturedOnly = !filterFeaturedOnly;
+          if (filterFeaturedOnly) {
+            featuredBtn.classList.add('bg-brand-red', 'text-white');
+            featuredBtn.classList.remove('bg-white', 'text-brand-red');
+          } else {
+            featuredBtn.classList.remove('bg-brand-red', 'text-white');
+            featuredBtn.classList.add('bg-white', 'text-brand-red');
+          }
+          updateGrid();
+        });
+      }
+
+      // Reset action on empty state
+      noResultsState.addEventListener('click', (e) => {
+        if (e.target && e.target.tagName === 'A') {
+          if (searchInput) searchInput.value = '';
+          currentQuery = '';
+          currentContinent = 'all';
+          filterFeaturedOnly = false;
+
+          continentButtons.forEach((b, idx) => {
+            if (idx === 0) {
+              b.classList.add('bg-brand-navy', 'text-white');
+              b.classList.remove('bg-white', 'text-brand-navy');
+            } else {
+              b.classList.remove('bg-brand-navy', 'text-white');
+              b.classList.add('bg-white', 'text-brand-navy');
+            }
+          });
+
+          if (featuredBtn) {
+            featuredBtn.classList.remove('bg-brand-red', 'text-white');
+            featuredBtn.classList.add('bg-white', 'text-brand-red');
+          }
+
+          updateGrid();
+        }
+      });
+    });
+  </script>
 </BaseLayout>

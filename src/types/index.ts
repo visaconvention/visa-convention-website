@@ -31,36 +31,93 @@ export interface BreadcrumbItem {
   current?: boolean;
 }
 
+export interface CountryCostInformation {
+  tuitionRange?: string;
+  livingCostRange?: string;
+  currency?: string;
+  notes?: string;
+}
+
+export interface CountryScholarshipInformation {
+  available: boolean;
+  overview?: string;
+  opportunities?: string[];
+  notes?: string;
+}
+
+export interface CountryAdmissionGuidance {
+  overview: string;
+  generalRequirements?: string[];
+  intakePeriods?: string[];
+  languageRequirements?: string;
+}
+
+export interface CountryVisaGuidance {
+  visaType?: string;
+  overview: string;
+  keyRequirements?: string[];
+  processingTime?: string;
+  workRights?: string;
+  disclaimer?: string;
+}
+
+export interface CountryEducationSystem {
+  overview: string;
+  keyPoints?: string[];
+  structure?: string;
+}
+
+export interface CountrySourceLink {
+  label: string;
+  url: string;
+}
+
 /**
  * Country Data Model
- * Scalable schema supporting 35+ countries without template duplication.
+ * Scalable schema supporting 35+ countries dynamically without template duplication.
  */
 export interface Country {
-  id: string;                      // Unique identifier, e.g., "country-canada"
-  slug: string;                    // URL slug, e.g., "canada"
-  name: string;                    // Formal display name, e.g., "Canada"
-  isoCode: string;                 // Two-letter ISO country code, e.g., "CA"
-  continent: Continent;
+  // Master fields required by specification:
+  id: string;                                          // e.g., "country-canada"
+  name: string;                                        // Formal display name, e.g., "Canada"
+  slug: string;                                        // URL slug, e.g., "canada"
+  flagCode: string;                                    // Two-letter ISO country code, e.g., "CA"
+  continent: Continent;                                // Region
+  heroImage: string;                                   // Curated landscape photograph path
+  shortDescription: string;                            // 1-2 sentence overview
+  introduction: string;                                // Full introduction narrative
+  whyStudyHere: string[];                              // Core reasons/benefits to consider
+  educationSystem: CountryEducationSystem | string;   // Higher education framework
+  studyLevels: StudyLevel[];                          // Available levels of study
+  admissionGuidance: CountryAdmissionGuidance | string;// Entry requirements & intakes
+  visaGuidance: CountryVisaGuidance | string;          // Official embassy permit procedures
+  costInformation?: CountryCostInformation | string;   // Tuition and living expense indicators
+  scholarshipInformation?: CountryScholarshipInformation | string; // Verified awards
+  servicesAvailable: string[];                         // Consultancy scope for this country
+  faqs: FAQItem[];                                     // Country-specific questions
+  relatedUniversityIds: string[];                      // Foreign keys to universities
+  featured: boolean;                                   // Featured on homepage
+  active: boolean;                                     // Active counseling destination
+  publicationStatus: PublicationStatus;                // "published" | "draft" | "archived"
+  sourceLinks: CountrySourceLink[] | string[];         // Official government references
+  lastReviewed: string;                                // ISO date (YYYY-MM-DD)
+
+  // Backward-compatibility aliases for existing components:
+  isoCode: string;
+  shortSummary: string;
+  overview: string;
+  keyHighlights: string[];
+  popularCourses: string[];
+  intakes: string[];
+  estimatedTuitionRange: string;
+  estimatedLivingCost: string;
+  workRights: string;
+  visaGuidanceSummary: string;
+  sourceDisclaimer: string;
   capital?: string;
   currency?: string;
-  featured: boolean;               // Appears in featured destinations on homepage
-  active: boolean;                 // Whether the country is open for intake/guidance
-  heroImage: string;               // Curated landscape image path
-  flagEmoji?: string;              // Unicode flag
-  flagSvg?: string;                // Vector flag path
-  shortSummary: string;            // 1-2 sentence overview
-  overview: string;                // Full markdown/text introduction
-  keyHighlights: string[];         // 3-5 core benefits for international students
-  popularCourses: string[];        // Popular academic fields
-  intakes: string[];               // Major intakes, e.g., ["Fall (Sept)", "Winter (Jan)"]
-  estimatedTuitionRange: string;   // Advisory tuition range
-  estimatedLivingCost: string;     // Advisory cost of living
-  workRights: string;              // Work while studying and post-study work summary
-  visaGuidanceSummary: string;     // Overview of embassy requirements
-  faqs: FAQItem[];
-  sourceDisclaimer: string;        // Mandatory disclaimer regarding consular discretion
-  lastReviewed: string;            // ISO date
-  publicationStatus: PublicationStatus;
+  flagEmoji?: string;
+  flagSvg?: string;
 }
 
 /**

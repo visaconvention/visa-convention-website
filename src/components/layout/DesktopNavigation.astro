@@ -1,11 +1,13 @@
 ---
 import { siteConfig } from '../../data/site-config';
+import { getFeaturedCountries } from '../../data/countries';
 
 interface Props {
   currentPath?: string;
 }
 
 const { currentPath = '/' } = Astro.props;
+const featuredCountries = getFeaturedCountries();
 
 function isActive(href: string) {
   if (href === '/') return currentPath === '/';
@@ -16,8 +18,10 @@ function isActive(href: string) {
 <nav aria-label="Main Navigation" class="hidden lg:flex items-center gap-1 xl:gap-2">
   {siteConfig.nav.map((item) => {
     const hasChildren = item.children && item.children.length > 0;
+    const isStudyAbroad = item.href === '/study-abroad/';
     const active = isActive(item.href);
 
+    // 1. Services Mega-Menu Dropdown
     if (hasChildren) {
       return (
         <div class="relative group">
@@ -88,6 +92,73 @@ function isActive(href: string) {
       );
     }
 
+    // 2. Study Abroad Compact Destinations Dropdown
+    if (isStudyAbroad) {
+      return (
+        <div class="relative group">
+          <button
+            type="button"
+            class={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 ${
+              active
+                ? 'text-brand-navy bg-brand-bg font-bold shadow-2xs'
+                : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/60'
+            }`}
+            aria-expanded="false"
+          >
+            <span>{item.label}</span>
+            <svg class="w-4 h-4 text-brand-subtle group-hover:rotate-180 group-hover:text-brand-blue transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Compact Destinations Dropdown (Organized by Featured + All Countries Link) -->
+          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[480px] opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+            <div class="bg-white rounded-2xl shadow-2xl border border-brand-border p-6 ring-1 ring-black/5">
+              <div class="pb-3 mb-3 border-b border-brand-border flex items-center justify-between">
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-brand-navy">
+                    Study Destinations
+                  </span>
+                  <p class="text-xs text-brand-muted">
+                    Explore 35+ countries with full admissions guidance
+                  </p>
+                </div>
+                <a href="/study-abroad/" class="text-xs font-bold text-brand-red hover:underline">
+                  All 35+ Countries →
+                </a>
+              </div>
+
+              <!-- Top Featured Destinations Grid -->
+              <div class="grid grid-cols-2 gap-2 mb-4">
+                {featuredCountries.slice(0, 6).map((country) => (
+                  <a
+                    href={`/study-abroad/${country.slug}/`}
+                    class="flex items-center gap-2.5 p-2.5 rounded-xl hover:bg-brand-bg hover:border-brand-blue/30 border border-transparent transition-all group/item"
+                  >
+                    <span class="w-7 h-7 rounded-lg bg-brand-bg text-brand-navy font-extrabold text-2xs flex items-center justify-center flex-shrink-0 group-hover/item:bg-brand-navy group-hover/item:text-white transition-colors">
+                      {country.flagCode}
+                    </span>
+                    <span class="text-xs font-bold text-brand-navy group-hover/item:text-brand-blue truncate">
+                      {country.name}
+                    </span>
+                  </a>
+                ))}
+              </div>
+
+              <!-- Bottom Directory Link -->
+              <div class="pt-3 border-t border-brand-border bg-brand-bg/50 -mx-6 -mb-6 p-4 rounded-b-2xl flex items-center justify-between text-xs text-brand-muted">
+                <span>Looking for Europe, Asia, or MBBS routes?</span>
+                <a href="/study-abroad/" class="font-bold text-brand-red hover:underline">
+                  Search Complete Directory →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // 3. Regular Links
     return (
       <a
         href={item.href}

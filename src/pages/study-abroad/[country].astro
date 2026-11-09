@@ -4,13 +4,14 @@ import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import FAQAccordion from '../../components/common/FAQAccordion.astro';
 import EnquiryForm from '../../components/forms/EnquiryForm.astro';
 import UniversityCard from '../../components/universities/UniversityCard.astro';
-import { getAllCountries } from '../../data/countries';
+import ConsultationCTA from '../../components/common/ConsultationCTA.astro';
+import { getPublishedCountries, getRelatedCountries } from '../../data/countries';
 import { getUniversitiesByCountrySlug } from '../../data/universities';
 import { getFaqSchema } from '../../utils/seo';
 import type { Country } from '../../types';
 
 export async function getStaticPaths() {
-  const countries = getAllCountries();
+  const countries = getPublishedCountries();
   return countries.map((country) => ({
     params: { country: country.slug },
     props: { country },
@@ -22,217 +23,631 @@ interface Props {
 }
 
 const { country } = Astro.props;
+
+// Associated universities for this destination
 const universities = getUniversitiesByCountrySlug(country.slug);
+
+// Related destination countries in the same region
+const relatedCountries = getRelatedCountries(country, 3);
+
+// Generate Schema.org FAQPage JSON-LD if FAQs exist
 const faqSchema = country.faqs.length > 0 ? getFaqSchema(country.faqs) : undefined;
+
+// Friendly flag representation
+const flagCode = country.flagCode || country.isoCode || 'GL';
+
+// Education system helper
+const educationOverview = typeof country.educationSystem === 'object' && country.educationSystem !== null
+  ? country.educationSystem.overview
+  : typeof country.educationSystem === 'string'
+    ? country.educationSystem
+    : '';
+
+const educationKeyPoints = typeof country.educationSystem === 'object' && country.educationSystem !== null && Array.isArray(country.educationSystem.keyPoints)
+  ? country.educationSystem.keyPoints
+  : [];
+
+const educationStructure = typeof country.educationSystem === 'object' && country.educationSystem !== null && country.educationSystem.structure
+  ? country.educationSystem.structure
+  : '';
+
+// Admission guidance helper
+const admissionOverview = typeof country.admissionGuidance === 'object' && country.admissionGuidance !== null
+  ? country.admissionGuidance.overview
+  : typeof country.admissionGuidance === 'string'
+    ? country.admissionGuidance
+    : '';
+
+const generalRequirements = typeof country.admissionGuidance === 'object' && country.admissionGuidance !== null && Array.isArray(country.admissionGuidance.generalRequirements)
+  ? country.admissionGuidance.generalRequirements
+  : [];
+
+const intakePeriods = typeof country.admissionGuidance === 'object' && country.admissionGuidance !== null && Array.isArray(country.admissionGuidance.intakePeriods)
+  ? country.admissionGuidance.intakePeriods
+  : country.intakes || [];
+
+const languageRequirements = typeof country.admissionGuidance === 'object' && country.admissionGuidance !== null && country.admissionGuidance.languageRequirements
+  ? country.admissionGuidance.languageRequirements
+  : '';
+
+// Visa guidance helper
+const visaType = typeof country.visaGuidance === 'object' && country.visaGuidance !== null && country.visaGuidance.visaType
+  ? country.visaGuidance.visaType
+  : 'National Student Visa';
+
+const visaOverview = typeof country.visaGuidance === 'object' && country.visaGuidance !== null
+  ? country.visaGuidance.overview
+  : typeof country.visaGuidance === 'string'
+    ? country.visaGuidance
+    : country.visaGuidanceSummary;
+
+const visaKeyRequirements = typeof country.visaGuidance === 'object' && country.visaGuidance !== null && Array.isArray(country.visaGuidance.keyRequirements)
+  ? country.visaGuidance.keyRequirements
+  : [];
+
+const visaProcessingTime = typeof country.visaGuidance === 'object' && country.visaGuidance !== null && country.visaGuidance.processingTime
+  ? country.visaGuidance.processingTime
+  : '';
+
+const visaWorkRights = typeof country.visaGuidance === 'object' && country.visaGuidance !== null && country.visaGuidance.workRights
+  ? country.visaGuidance.workRights
+  : country.workRights;
+
+// Cost & scholarship helper
+const costNotes = typeof country.costInformation === 'object' && country.costInformation !== null && country.costInformation.notes
+  ? country.costInformation.notes
+  : '';
+
+const scholarshipOverview = typeof country.scholarshipInformation === 'object' && country.scholarshipInformation !== null && country.scholarshipInformation.overview
+  ? country.scholarshipInformation.overview
+  : '';
+
+const scholarshipOpportunities = typeof country.scholarshipInformation === 'object' && country.scholarshipInformation !== null && Array.isArray(country.scholarshipInformation.opportunities)
+  ? country.scholarshipInformation.opportunities
+  : [];
+
+const hasScholarshipInfo = Boolean(
+  (typeof country.scholarshipInformation === 'object' && country.scholarshipInformation !== null && country.scholarshipInformation.available) ||
+  scholarshipOverview.length > 0
+);
 ---
 
 <BaseLayout
   title={`Study in ${country.name} — Admissions, Universities & Visa Guidance | Visa Convention`}
-  description={country.shortSummary}
+  description={country.shortDescription || country.shortSummary}
   schema={faqSchema}
 >
-  <!-- Breadcrumbs -->
+  <!-- 1. Breadcrumbs -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
     <Breadcrumbs
       items={[
+        { label: 'Home', href: '/' },
         { label: 'Study Abroad', href: '/study-abroad/' },
         { label: `Study in ${country.name}`, href: `/study-abroad/${country.slug}/`, current: true },
       ]}
     />
   </div>
 
-  <!-- Country Hero Section -->
-  <section class="py-14 sm:py-20 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+  <!-- 2. Hero Section -->
+  <section class="py-12 sm:py-16 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="px-3.5 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
-            {country.continent} Destination
+      <div class="max-w-4xl">
+        <!-- Badges Bar -->
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-navy text-white shadow-2xs">
+            <span>{flagCode}</span>
+            <span>•</span>
+            <span>{country.continent}</span>
           </span>
-          <span class="text-xs font-semibold text-brand-muted">
-            ISO: {country.isoCode}
+          {country.featured && (
+            <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-brand-red/10 text-brand-red border border-brand-red/20">
+              Featured Destination
+            </span>
+          )}
+          <span class="text-xs text-brand-muted font-medium">
+            Last Reviewed: {country.lastReviewed}
           </span>
         </div>
 
         <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4">
           Study in {country.name}
         </h1>
-        <p class="text-base sm:text-lg text-brand-muted leading-relaxed">
-          {country.overview}
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed mb-6 font-normal">
+          {country.shortDescription || country.shortSummary}
         </p>
 
-        <!-- Fast Fact Bar -->
-        <div class="mt-8 pt-6 border-t border-brand-border grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+        <!-- Fast Facts Bar -->
+        <div class="pt-5 border-t border-brand-border grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs mb-8">
           <div>
-            <span class="block uppercase font-bold text-brand-muted">Capital</span>
-            <span class="font-bold text-brand-navy text-sm">{country.capital || 'N/A'}</span>
+            <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Capital City</span>
+            <span class="font-bold text-brand-navy text-sm">{country.capital || 'Major Metros'}</span>
           </div>
           <div>
-            <span class="block uppercase font-bold text-brand-muted">Currency</span>
-            <span class="font-bold text-brand-navy text-sm">{country.currency || 'N/A'}</span>
+            <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Currency</span>
+            <span class="font-bold text-brand-navy text-sm">{country.currency || 'National Currency'}</span>
           </div>
           <div>
-            <span class="block uppercase font-bold text-brand-muted">Tuition Est.</span>
+            <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Tuition Est.</span>
             <span class="font-bold text-brand-navy text-sm truncate block">{country.estimatedTuitionRange.split('–')[0]}</span>
           </div>
           <div>
-            <span class="block uppercase font-bold text-brand-muted">Primary Intake</span>
-            <span class="font-bold text-brand-navy text-sm truncate block">{country.intakes[0] || 'Flexible'}</span>
+            <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Primary Intake</span>
+            <span class="font-bold text-brand-navy text-sm truncate block">{intakePeriods[0] || 'Flexible'}</span>
           </div>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#enquiry" class="btn-primary inline-flex items-center gap-2">
+            <span>Book Free Assessment for {country.name}</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+          <a href="#universities" class="btn-secondary inline-flex items-center gap-2">
+            <span>Explore Guided Universities</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Content & Consultation Grid -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <!-- Left Column: Country Deep Dive -->
+  <!-- Main Content & Form Grid -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+      <!-- Left Column: Country Deep Dive Sections -->
       <div class="lg:col-span-7 space-y-14">
-        <!-- Why Study Here -->
-        <div>
-          <h2 class="text-2xl font-bold text-brand-navy mb-6">
-            Why Choose {country.name}?
+        
+        <!-- 3. Country Introduction -->
+        <section>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-red"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Overview</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-4">
+            Introduction to Higher Education in {country.name}
           </h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {country.keyHighlights.map((highlight) => (
-              <div class="p-4 rounded-xl bg-white border border-brand-border flex items-start gap-2.5 shadow-2xs">
-                <span class="text-brand-red font-bold text-lg leading-none mt-0.5">•</span>
-                <span class="text-sm font-medium text-brand-navy leading-relaxed">{highlight}</span>
+          <p class="text-sm sm:text-base text-brand-text leading-relaxed font-normal">
+            {country.introduction || country.overview}
+          </p>
+        </section>
+
+        <!-- 4. Reasons to Consider Studying There -->
+        {country.whyStudyHere && country.whyStudyHere.length > 0 && (
+          <section>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-blue"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">The Advantage</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6">
+              Why Choose {country.name}?
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {country.whyStudyHere.map((reason) => (
+                <div class="p-5 rounded-xl bg-white border border-brand-border shadow-2xs hover:border-brand-blue/30 transition-colors">
+                  <div class="flex items-start gap-2.5">
+                    <span class="w-2 h-2 rounded-full bg-brand-red flex-shrink-0 mt-1.5"></span>
+                    <span class="text-xs sm:text-sm font-medium text-brand-navy leading-relaxed">{reason}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <!-- 5. Education System Overview -->
+        {educationOverview && (
+          <section class="p-6 sm:p-7 rounded-2xl bg-white border border-brand-border shadow-2xs space-y-4">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Academic Framework</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-bold text-brand-navy">
+              Education System Overview
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+              {educationOverview}
+            </p>
+
+            {educationStructure && (
+              <div class="p-3.5 rounded-xl bg-brand-bg text-xs border border-brand-border">
+                <strong class="font-bold text-brand-navy block mb-1">Standard Academic Structure:</strong>
+                <span class="text-brand-text">{educationStructure}</span>
               </div>
-            ))}
-          </div>
-        </div>
+            )}
 
-        <!-- Academic Opportunities & Intakes -->
-        <div class="p-6 rounded-2xl bg-white border border-brand-border space-y-6">
-          <h3 class="text-xl font-bold text-brand-navy">
-            Academic Intakes & Popular Courses
-          </h3>
-          <div>
-            <span class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-2">
-              Popular Study Fields:
-            </span>
-            <div class="flex flex-wrap gap-2">
-              {country.popularCourses.map((course) => (
-                <span class="px-3 py-1 rounded-lg text-xs font-semibold bg-brand-bg text-brand-navy border border-brand-border">
-                  {course}
-                </span>
+            {educationKeyPoints.length > 0 && (
+              <ul class="space-y-2 pt-2 text-xs text-brand-text">
+                {educationKeyPoints.map((pt) => (
+                  <li class="flex items-start gap-2">
+                    <span class="text-brand-blue font-bold">•</span>
+                    <span class="leading-relaxed">{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        )}
+
+        <!-- 6. Available Study Pathways -->
+        {country.studyLevels && country.studyLevels.length > 0 && (
+          <section>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-navy"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Degree Levels</span>
+            </div>
+            <h2 class="text-2xl font-bold text-brand-navy mb-4">
+              Available Study Pathways in {country.name}
+            </h2>
+            <div class="flex flex-wrap gap-2.5">
+              {country.studyLevels.map((level) => (
+                <div class="px-4 py-2 rounded-xl bg-white border border-brand-border text-xs font-bold text-brand-navy shadow-2xs flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+                  <span>{level}</span>
+                </div>
               ))}
             </div>
+          </section>
+        )}
+
+        <!-- 7. Universities for That Country -->
+        <section id="universities">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-2.5 h-2.5 rounded-full bg-brand-red"></span>
+                <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Higher Education</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy">
+                Universities Guided in {country.name}
+              </h2>
+            </div>
+            <a href="/universities/" class="text-xs font-bold text-brand-red hover:underline hidden sm:inline-block">
+              Browse Directory →
+            </a>
           </div>
-          <div>
-            <span class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-2">
-              Major Admission Intakes:
-            </span>
-            <div class="flex flex-wrap gap-2">
-              {country.intakes.map((intake) => (
-                <span class="px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                  {intake}
-                </span>
+
+          <p class="text-xs text-brand-muted mb-6 leading-relaxed">
+            <strong>Advisory Notice:</strong> The institutions listed below represent accredited universities for which Visa Convention provides academic admissions guidance, documentation evaluation, and student visa advisory. Inclusion does not imply formal exclusive representation unless formally verified.
+          </p>
+
+          {universities.length > 0 ? (
+            <div class="grid grid-cols-1 gap-4">
+              {universities.map((uni) => (
+                <UniversityCard university={uni} />
               ))}
             </div>
-          </div>
-        </div>
+          ) : (
+            <div class="p-6 rounded-2xl bg-white border border-brand-border text-xs sm:text-sm text-brand-muted space-y-2">
+              <p class="font-medium text-brand-navy">
+                Broad Institutional Access:
+              </p>
+              <p class="leading-relaxed">
+                Visa Convention counsels and processes applications for recognized public universities, technical institutes, and accredited colleges across {country.name}. Our advisors evaluate your exact budget, grades, and career goals to select optimal institutions from the complete national university roster.
+              </p>
+              <div class="pt-2">
+                <a href="#enquiry" class="font-bold text-brand-red hover:underline">
+                  Request custom university shortlist for {country.name} →
+                </a>
+              </div>
+            </div>
+          )}
+        </section>
 
-        <!-- Cost of Study & Living -->
-        <div>
-          <h2 class="text-2xl font-bold text-brand-navy mb-6">
-            Estimated Costs & Financial Planning
+        <!-- 8. Admission Guidance -->
+        {admissionOverview && (
+          <section>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-blue"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Admissions</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6">
+              Admission Requirements & Intake Deadlines
+            </h2>
+
+            <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-2xs space-y-5">
+              <p class="text-xs sm:text-sm text-brand-text leading-relaxed">
+                {admissionOverview}
+              </p>
+
+              {generalRequirements.length > 0 && (
+                <div>
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-2.5">
+                    General Entry Checklist:
+                  </h3>
+                  <ul class="space-y-2 text-xs text-brand-muted">
+                    {generalRequirements.map((req) => (
+                      <li class="flex items-start gap-2">
+                        <svg class="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{req}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {intakePeriods.length > 0 && (
+                <div class="pt-3 border-t border-brand-border">
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-2">
+                    Major Intake Periods:
+                  </h3>
+                  <div class="flex flex-wrap gap-2">
+                    {intakePeriods.map((intake) => (
+                      <span class="px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        {intake}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {languageRequirements && (
+                <div class="pt-3 border-t border-brand-border text-xs text-brand-muted">
+                  <strong class="font-bold text-brand-navy block mb-1">Language Benchmark:</strong>
+                  <span>{languageRequirements}</span>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        <!-- 9. Cost and Scholarship Information -->
+        <section>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Financial Planning</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6">
+            Estimated Tuition & Living Expenses
           </h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="p-5 rounded-2xl bg-white border border-brand-border">
-              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted block mb-1">
-                Annual Tuition Indicator
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div class="p-5 rounded-2xl bg-white border border-brand-border shadow-2xs">
+              <span class="text-3xs font-bold uppercase tracking-wider text-brand-subtle block mb-1">
+                Tuition Fee Indicator
               </span>
               <span class="text-lg font-black text-brand-navy block mb-2">
                 {country.estimatedTuitionRange}
               </span>
               <p class="text-xs text-brand-muted leading-relaxed">
-                Varies widely by institution ranking, program level (Undergraduate vs. Postgraduate), and discipline.
+                Varies by institution tier, faculty, and degree level. STEM and Medical programs typically sit in the upper band.
               </p>
             </div>
-            <div class="p-5 rounded-2xl bg-white border border-brand-border">
-              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted block mb-1">
+
+            <div class="p-5 rounded-2xl bg-white border border-brand-border shadow-2xs">
+              <span class="text-3xs font-bold uppercase tracking-wider text-brand-subtle block mb-1">
                 Estimated Living Costs
               </span>
               <span class="text-lg font-black text-brand-navy block mb-2">
                 {country.estimatedLivingCost}
               </span>
               <p class="text-xs text-brand-muted leading-relaxed">
-                Includes housing, food, transport, and personal expenses subject to regional differences.
+                Covers student housing, meals, transport, and personal expenses subject to regional differences.
               </p>
             </div>
           </div>
-        </div>
 
-        <!-- Post Study Work Rights -->
-        <div>
-          <h2 class="text-2xl font-bold text-brand-navy mb-4">
-            Work Rights & Post-Study Visas
-          </h2>
-          <div class="p-6 rounded-2xl bg-white border border-brand-border text-sm text-brand-text leading-relaxed">
-            {country.workRights}
-          </div>
-        </div>
+          {costNotes && (
+            <p class="text-xs text-brand-muted italic mb-4">
+              Note: {costNotes}
+            </p>
+          )}
 
-        <!-- Visa Guidance Summary -->
-        <div>
-          <h2 class="text-2xl font-bold text-brand-navy mb-4">
-            Visa Guidance & Embassy Procedures
-          </h2>
-          <div class="p-6 rounded-2xl bg-white border border-brand-border text-sm text-brand-text leading-relaxed">
-            {country.visaGuidanceSummary}
-          </div>
-        </div>
-
-        <!-- Associated Universities in this Country -->
-        {universities.length > 0 && (
-          <div>
-            <div class="flex items-center justify-between mb-6">
-              <h2 class="text-2xl font-bold text-brand-navy">
-                Universities Guided in {country.name}
-              </h2>
-              <a href="/universities/" class="text-xs font-bold text-brand-red hover:underline">
-                View All Universities →
-              </a>
+          {hasScholarshipInfo && (
+            <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-2xs space-y-3">
+              <h3 class="text-sm font-bold text-brand-navy">
+                Scholarship Opportunities in {country.name}
+              </h3>
+              <p class="text-xs text-brand-muted leading-relaxed">
+                {scholarshipOverview}
+              </p>
+              {scholarshipOpportunities.length > 0 && (
+                <ul class="space-y-1.5 text-xs text-brand-navy font-medium">
+                  {scholarshipOpportunities.map((opp) => (
+                    <li class="flex items-center gap-2">
+                      <span class="text-brand-red font-bold">•</span>
+                      <span>{opp}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
-            <div class="grid grid-cols-1 gap-4">
-              {universities.map((uni) => (
-                <UniversityCard university={uni} />
+          )}
+        </section>
+
+        <!-- 10. Visa Guidance with Official Source References -->
+        <section>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-red"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Immigration</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6">
+            Visa Procedures & Regulatory Guidance
+          </h2>
+
+          <div class="p-6 sm:p-7 rounded-2xl bg-white border border-brand-border shadow-2xs space-y-5">
+            <div>
+              <span class="px-2.5 py-1 text-3xs font-bold uppercase tracking-wider rounded-md bg-brand-bg text-brand-blue border border-brand-blue/20 mb-2 inline-block">
+                {visaType}
+              </span>
+              <p class="text-xs sm:text-sm text-brand-text leading-relaxed">
+                {visaOverview}
+              </p>
+            </div>
+
+            {visaKeyRequirements.length > 0 && (
+              <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-2.5">
+                  Core Visa Documentation Requirements:
+                </h3>
+                <ul class="space-y-2 text-xs text-brand-muted">
+                  {visaKeyRequirements.map((req) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-brand-blue font-bold">•</span>
+                      <span>{req}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {visaWorkRights && (
+              <div class="pt-3 border-t border-brand-border text-xs text-brand-muted">
+                <strong class="font-bold text-brand-navy block mb-1">Work Rights During & After Study:</strong>
+                <p class="leading-relaxed">{visaWorkRights}</p>
+              </div>
+            )}
+
+            {visaProcessingTime && (
+              <div class="pt-3 border-t border-brand-border text-xs text-brand-muted">
+                <strong class="font-bold text-brand-navy block mb-1">Estimated Processing Timeline:</strong>
+                <span>{visaProcessingTime}</span>
+              </div>
+            )}
+
+            {country.sourceLinks && country.sourceLinks.length > 0 && (
+              <div class="pt-3 border-t border-brand-border">
+                <strong class="font-bold text-brand-navy text-xs block mb-2">Official Government References:</strong>
+                <div class="flex flex-wrap gap-2">
+                  {country.sourceLinks.map((link) => {
+                    const label = typeof link === 'object' ? link.label : 'Official Government Portal';
+                    const url = typeof link === 'object' ? link.url : link;
+                    return (
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-bg text-brand-blue hover:text-brand-red border border-brand-border transition-colors"
+                      >
+                        <span>{label}</span>
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <!-- Mandatory Consular Disclaimer -->
+          <div class="mt-4 p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-amber-900 text-xs sm:text-sm leading-relaxed">
+            <strong class="font-bold block mb-1">Official Consular Disclaimer:</strong>
+            {country.sourceDisclaimer}
+          </div>
+        </section>
+
+        <!-- 11. How Visa Convention Assists -->
+        {country.servicesAvailable && country.servicesAvailable.length > 0 && (
+          <section>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-navy"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Counseling Scope</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6">
+              How Visa Convention Assists Your {country.name} Application
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {country.servicesAvailable.map((srv, idx) => (
+                <div class="p-4 rounded-xl bg-white border border-brand-border shadow-2xs flex items-center gap-3">
+                  <div class="w-7 h-7 rounded-lg bg-brand-bg text-brand-blue flex items-center justify-center font-bold text-xs flex-shrink-0">
+                    0{idx + 1}
+                  </div>
+                  <span class="text-xs sm:text-sm font-semibold text-brand-navy">{srv}</span>
+                </div>
               ))}
             </div>
-          </div>
+          </section>
         )}
 
-        <!-- Mandatory Disclaimer -->
-        <div class="p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-amber-900 text-xs sm:text-sm leading-relaxed">
-          <strong class="font-bold block mb-1">Official Disclaimer:</strong>
-          {country.sourceDisclaimer}
-        </div>
-
-        <!-- FAQs -->
-        {country.faqs.length > 0 && (
-          <div>
-            <h2 class="text-2xl font-bold text-brand-navy mb-6">
+        <!-- 12. Country-Specific FAQs -->
+        {country.faqs && country.faqs.length > 0 && (
+          <section>
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-brand-blue"></span>
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Clarity</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6">
               Frequently Asked Questions: {country.name}
             </h2>
             <FAQAccordion faqs={country.faqs} />
-          </div>
+          </section>
         )}
+
+        <!-- 13. Related Study Destinations -->
+        {relatedCountries.length > 0 && (
+          <section class="pt-8 border-t border-brand-border">
+            <h2 class="text-xl font-bold text-brand-navy mb-6">
+              Compare Alternative Study Destinations
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {relatedCountries.map((rel) => (
+                <div class="p-4 rounded-xl bg-white border border-brand-border shadow-2xs flex flex-col justify-between">
+                  <div>
+                    <span class="text-3xs font-bold uppercase text-brand-subtle block mb-1">{rel.continent}</span>
+                    <h3 class="font-bold text-brand-navy text-sm mb-1">{rel.name}</h3>
+                    <p class="text-xs text-brand-muted line-clamp-2 leading-relaxed mb-3">
+                      {rel.shortDescription || rel.shortSummary}
+                    </p>
+                  </div>
+                  <a
+                    href={`/study-abroad/${rel.slug}/`}
+                    class="text-xs font-bold text-brand-blue hover:text-brand-red flex items-center gap-1 transition-colors"
+                  >
+                    <span>View Guide</span>
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
       </div>
 
-      <!-- Right Column: Sticky Form pre-selected with this country -->
-      <div class="lg:col-span-5">
-        <div class="sticky top-28">
+      <!-- 14. Right Column: Sticky Consultation Form & Office Info -->
+      <div class="lg:col-span-5" id="enquiry">
+        <div class="sticky top-28 space-y-6">
           <EnquiryForm
             selectedCountry={country.slug}
             selectedService="study-visa"
             title={`Apply for ${country.name}`}
-            subtitle="Get an authentic eligibility assessment from our counselors."
+            subtitle="Submit your details for a factual eligibility evaluation by our counselors."
           />
+
+          <!-- Fast Regional Support Box -->
+          <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-2xs text-xs text-brand-muted space-y-3">
+            <h4 class="font-bold text-brand-navy text-sm">
+              In-Person Counseling in Hanumangarh
+            </h4>
+            <p class="leading-relaxed">
+              Visit our office for a personalized profile assessment. Bring your academic transcripts, IELTS/PTE scorecards (if completed), and passport for immediate evaluation.
+            </p>
+            <div class="pt-2 border-t border-brand-border flex items-center justify-between">
+              <span class="font-semibold text-brand-navy">Mon – Sat: 9:30 AM – 6:30 PM</span>
+              <a href="/contact/" class="font-bold text-brand-red hover:underline">
+                Directions →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Sitewide Consultation Banner -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <ConsultationCTA
+      title={`Plan Your Education in ${country.name} with Confidence`}
+      subtitle="Speak with experienced education advisors who understand foreign university admissions, visa compliance, and financial planning."
+    />
+  </section>
 </BaseLayout>

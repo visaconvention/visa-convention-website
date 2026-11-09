@@ -1,0 +1,1719 @@
+{
+  "fixtures": [
+    {
+      "id": "country-fixture-01",
+      "name": "Fixture Country 01",
+      "slug": "fixture-country-01",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 01 with simulated academic data.",
+      "introduction": "Fixture Country 01 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": true,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-02",
+      "name": "Fixture Country 02",
+      "slug": "fixture-country-02",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 02 with simulated academic data.",
+      "introduction": "Fixture Country 02 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": true,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-03",
+      "name": "Fixture Country 03",
+      "slug": "fixture-country-03",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 03 with simulated academic data.",
+      "introduction": "Fixture Country 03 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": true,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-04",
+      "name": "Fixture Country 04",
+      "slug": "fixture-country-04",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 04 with simulated academic data.",
+      "introduction": "Fixture Country 04 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-05",
+      "name": "Fixture Country 05",
+      "slug": "fixture-country-05",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 05 with simulated academic data.",
+      "introduction": "Fixture Country 05 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-06",
+      "name": "Fixture Country 06",
+      "slug": "fixture-country-06",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 06 with simulated academic data.",
+      "introduction": "Fixture Country 06 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-07",
+      "name": "Fixture Country 07",
+      "slug": "fixture-country-07",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 07 with simulated academic data.",
+      "introduction": "Fixture Country 07 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-08",
+      "name": "Fixture Country 08",
+      "slug": "fixture-country-08",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 08 with simulated academic data.",
+      "introduction": "Fixture Country 08 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-09",
+      "name": "Fixture Country 09",
+      "slug": "fixture-country-09",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 09 with simulated academic data.",
+      "introduction": "Fixture Country 09 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-10",
+      "name": "Fixture Country 10",
+      "slug": "fixture-country-10",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 10 with simulated academic data.",
+      "introduction": "Fixture Country 10 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-11",
+      "name": "Fixture Country 11",
+      "slug": "fixture-country-11",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 11 with simulated academic data.",
+      "introduction": "Fixture Country 11 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-12",
+      "name": "Fixture Country 12",
+      "slug": "fixture-country-12",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 12 with simulated academic data.",
+      "introduction": "Fixture Country 12 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-13",
+      "name": "Fixture Country 13",
+      "slug": "fixture-country-13",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 13 with simulated academic data.",
+      "introduction": "Fixture Country 13 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-14",
+      "name": "Fixture Country 14",
+      "slug": "fixture-country-14",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 14 with simulated academic data.",
+      "introduction": "Fixture Country 14 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-15",
+      "name": "Fixture Country 15",
+      "slug": "fixture-country-15",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 15 with simulated academic data.",
+      "introduction": "Fixture Country 15 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-16",
+      "name": "Fixture Country 16",
+      "slug": "fixture-country-16",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 16 with simulated academic data.",
+      "introduction": "Fixture Country 16 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-17",
+      "name": "Fixture Country 17",
+      "slug": "fixture-country-17",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 17 with simulated academic data.",
+      "introduction": "Fixture Country 17 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-18",
+      "name": "Fixture Country 18",
+      "slug": "fixture-country-18",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 18 with simulated academic data.",
+      "introduction": "Fixture Country 18 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-19",
+      "name": "Fixture Country 19",
+      "slug": "fixture-country-19",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 19 with simulated academic data.",
+      "introduction": "Fixture Country 19 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-20",
+      "name": "Fixture Country 20",
+      "slug": "fixture-country-20",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 20 with simulated academic data.",
+      "introduction": "Fixture Country 20 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-21",
+      "name": "Fixture Country 21",
+      "slug": "fixture-country-21",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 21 with simulated academic data.",
+      "introduction": "Fixture Country 21 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-22",
+      "name": "Fixture Country 22",
+      "slug": "fixture-country-22",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 22 with simulated academic data.",
+      "introduction": "Fixture Country 22 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-23",
+      "name": "Fixture Country 23",
+      "slug": "fixture-country-23",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 23 with simulated academic data.",
+      "introduction": "Fixture Country 23 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-24",
+      "name": "Fixture Country 24",
+      "slug": "fixture-country-24",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 24 with simulated academic data.",
+      "introduction": "Fixture Country 24 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-25",
+      "name": "Fixture Country 25",
+      "slug": "fixture-country-25",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 25 with simulated academic data.",
+      "introduction": "Fixture Country 25 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-26",
+      "name": "Fixture Country 26",
+      "slug": "fixture-country-26",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 26 with simulated academic data.",
+      "introduction": "Fixture Country 26 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-27",
+      "name": "Fixture Country 27",
+      "slug": "fixture-country-27",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 27 with simulated academic data.",
+      "introduction": "Fixture Country 27 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-28",
+      "name": "Fixture Country 28",
+      "slug": "fixture-country-28",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 28 with simulated academic data.",
+      "introduction": "Fixture Country 28 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-29",
+      "name": "Fixture Country 29",
+      "slug": "fixture-country-29",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 29 with simulated academic data.",
+      "introduction": "Fixture Country 29 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-30",
+      "name": "Fixture Country 30",
+      "slug": "fixture-country-30",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 30 with simulated academic data.",
+      "introduction": "Fixture Country 30 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-31",
+      "name": "Fixture Country 31",
+      "slug": "fixture-country-31",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 31 with simulated academic data.",
+      "introduction": "Fixture Country 31 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-32",
+      "name": "Fixture Country 32",
+      "slug": "fixture-country-32",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 32 with simulated academic data.",
+      "introduction": "Fixture Country 32 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-33",
+      "name": "Fixture Country 33",
+      "slug": "fixture-country-33",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 33 with simulated academic data.",
+      "introduction": "Fixture Country 33 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-34",
+      "name": "Fixture Country 34",
+      "slug": "fixture-country-34",
+      "flagCode": "FX",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 34 with simulated academic data.",
+      "introduction": "Fixture Country 34 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "published",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-fixture-35",
+      "name": "Fixture Country 35",
+      "slug": "fixture-country-35",
+      "flagCode": "FX",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/fixture-hero.webp",
+      "shortDescription": "Fixture testing description for Country 35 with simulated academic data.",
+      "introduction": "Fixture Country 35 is a simulated test destination for dynamic route lifecycle testing.",
+      "whyStudyHere": [
+        "Benefit A",
+        "Benefit B"
+      ],
+      "educationSystem": {
+        "overview": "Simulated education framework."
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate"
+      ],
+      "admissionGuidance": {
+        "overview": "Simulated admission criteria."
+      },
+      "visaGuidance": {
+        "visaType": "Test Visa",
+        "overview": "Simulated visa rules."
+      },
+      "servicesAvailable": [
+        "Counseling",
+        "Filing"
+      ],
+      "faqs": [
+        {
+          "question": "Is this a fixture?",
+          "answer": "Yes, this is an isolated test fixture."
+        }
+      ],
+      "relatedUniversityIds": [],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "draft",
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://example.com"
+        }
+      ],
+      "lastReviewed": "2026-11-09"
+    }
+  ]
+}

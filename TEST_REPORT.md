@@ -114,6 +114,33 @@ All code, schemas, and assets developed for Visa Convention pass through a stric
 
 ---
 
+### Stage 06: Scalable Dynamic Country Engine (35+ Countries)
+- **Execution Date:** November 9, 2026
+- **Test Objective:** Verify data-driven dynamic country engine, single intelligent template architecture, zero manual code duplication, JSON schema adherence, fixture isolation, and live directory search/filtering.
+
+| Test ID | Test Description | Expected Result | Actual Result | Status |
+| :---: | :--- | :--- | :--- | :---: |
+| **T06-01** | Database Capacity & Scale | Master JSON contains $\ge$ 35 destinations | 36 validated country records in `countries.json` | **PASS** |
+| **T06-02** | Schema Adherence & Non-Fabrication | Zero bracketed placeholders / unapproved text | `validate-countries-schema.js` validated 36/36 clean | **PASS** |
+| **T06-03** | Official Source Integrity | All countries reference official government portals | IRCC, UKVI, Home Affairs, DAAD, Campus France, etc. | **PASS** |
+| **T06-04** | Last Reviewed Dates | Valid YYYY-MM-DD date on every record | Verified on all 36 records (2026-11-09) | **PASS** |
+| **T06-05** | Fixture Isolation Test | 35 mock fixtures generated in `tests/fixtures/` | Fixtures stored in `tests/fixtures/`; not in prod | **PASS** |
+| **T06-06** | Dynamic Add Lifecycle | Adding country record generates route | Verified in `country-engine.test.js` (35 $\to$ 36) | **PASS** |
+| **T06-07** | Dynamic Remove Lifecycle | Removing record removes route | Verified in `country-engine.test.js` (36 $\to$ 35) | **PASS** |
+| **T06-08** | Draft Status Isolation | Draft status excludes country from published routes | Verified in `country-engine.test.js` (34/35 published) | **PASS** |
+| **T06-09** | Directory Route Existence | `/study-abroad/index.html` static file built | Built successfully in `dist/study-abroad/` | **PASS** |
+| **T06-10** | Static Country Route Generation | 36 dynamic country routes built from 1 template | All 36 static pages compiled in `dist/study-abroad/` | **PASS** |
+| **T06-11** | Directory Search & Filters | Live search input, continent pills, empty state | Present in `/study-abroad/` HTML & verified | **PASS** |
+| **T06-12** | Country-to-University Relations | Country page renders matching guided universities | Canada $\to$ U of T, UBC; UK $\to$ Manchester | **PASS** |
+| **T06-13** | Directory Link Integrity | 0 broken internal links in `/study-abroad/` | All internal links verified 100% reachable | **PASS** |
+| **T06-14** | Diagnostic Check (`astro check`) | 0 errors across 57 project files | `Result (57 files): 0 errors, 0 warnings, 0 hints` | **PASS** |
+| **T06-15** | Static Site Build (`astro build`) | Complete static compilation with zero errors | 62 static pages built in 2.72s | **PASS** |
+| **T06-16** | Responsive Visual Previews | Directory & Country captures (1440px & 390px) | Edge headless screenshots saved in artifact dir | **PASS** |
+
+**Stage 06 Verdict:** **PASSED ALL CHECKS (16/16)**
+
+---
+
 ## 3. Automated Test Execution Commands
 
 ```bash

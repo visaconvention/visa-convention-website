@@ -7,16 +7,25 @@ interface Props {
 }
 
 const { country, class: className = '' } = Astro.props;
+
+// Friendly flag representation using flagCode or fallback
+const flagCode = country.flagCode || country.isoCode || 'GL';
 ---
 
-<div class={`card-premium overflow-hidden flex flex-col justify-between group ${className}`}>
+<div
+  class={`card-premium overflow-hidden flex flex-col justify-between group country-card ${className}`}
+  data-country-card
+  data-country-name={country.name.toLowerCase()}
+  data-continent={country.continent.toLowerCase()}
+  data-featured={country.featured ? 'true' : 'false'}
+>
   <!-- Card Header Area -->
   <div class="p-6 sm:p-7">
     <div class="flex items-center justify-between mb-4">
       <div class="flex items-center gap-3">
-        <!-- Country ISO Badge -->
-        <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-extrabold text-xs border border-brand-border shadow-2xs">
-          {country.isoCode}
+        <!-- Country Flag / ISO Badge -->
+        <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-extrabold text-xs border border-brand-border shadow-2xs group-hover:bg-brand-navy group-hover:text-white transition-colors">
+          {flagCode}
         </div>
         <div>
           <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-none">
@@ -27,31 +36,31 @@ const { country, class: className = '' } = Astro.props;
       </div>
 
       {country.featured && (
-        <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-brand-red/10 text-brand-red border border-brand-red/20">
+        <span class="px-2.5 py-1 rounded-full text-3xs font-bold uppercase tracking-wider bg-brand-red/10 text-brand-red border border-brand-red/20">
           Featured
         </span>
       )}
     </div>
 
     <p class="text-xs sm:text-sm text-brand-muted line-clamp-2 mb-5 leading-relaxed font-normal">
-      {country.shortSummary}
+      {country.shortDescription || country.shortSummary}
     </p>
 
     <!-- Key Metrics Grid -->
     <div class="bg-brand-bg/80 rounded-xl p-3.5 grid grid-cols-2 gap-3 text-xs mb-5 border border-brand-border/60">
       <div>
-        <span class="block text-[10px] uppercase font-bold text-brand-subtle mb-0.5">Tuition Est.</span>
+        <span class="block text-3xs uppercase font-bold text-brand-subtle mb-0.5">Tuition Est.</span>
         <span class="font-bold text-brand-navy truncate block">{country.estimatedTuitionRange.split('–')[0]}</span>
       </div>
       <div>
-        <span class="block text-[10px] uppercase font-bold text-brand-subtle mb-0.5">Primary Intake</span>
+        <span class="block text-3xs uppercase font-bold text-brand-subtle mb-0.5">Primary Intake</span>
         <span class="font-bold text-brand-navy truncate block">{country.intakes[0] || 'Flexible'}</span>
       </div>
     </div>
 
     <!-- Highlights -->
     <ul class="space-y-2 text-xs text-brand-text mb-2">
-      {country.keyHighlights.slice(0, 2).map((highlight) => (
+      {country.whyStudyHere.slice(0, 2).map((highlight) => (
         <li class="flex items-start gap-2">
           <span class="text-brand-red font-black leading-none mt-0.5">•</span>
           <span class="line-clamp-1 leading-snug">{highlight}</span>
@@ -60,9 +69,15 @@ const { country, class: className = '' } = Astro.props;
     </ul>
   </div>
 
-  <!-- Bottom CTA -->
+  <!-- Bottom CTA Row -->
   <div class="p-4 sm:px-6 bg-slate-50/70 border-t border-brand-border flex items-center justify-between text-xs font-bold">
-    <span class="text-brand-muted">Admissions & Visa Guide</span>
+    <a
+      href={`/contact/?country=${country.slug}`}
+      class="text-3xs font-semibold text-brand-muted hover:text-brand-red transition-colors"
+      title={`Request consultation for ${country.name}`}
+    >
+      Enquire Direct
+    </a>
     <a
       href={`/study-abroad/${country.slug}/`}
       class="inline-flex items-center gap-1.5 text-brand-navy group-hover:text-brand-red transition-colors"

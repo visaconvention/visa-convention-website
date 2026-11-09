@@ -6,15 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - Planned Stages 06–12
+## [Unreleased] - Planned Stages 07–12
 ### Planned
-- **Stage 06:** Ingestion of all 31 client Excel workbooks into dynamic country engine.
 - **Stage 07:** University directory expanded database and detailed profiles.
 - **Stage 08:** About, verified trust, success stories, and partnership pages.
 - **Stage 09:** Contact forms and multi-step inquiry journeys.
 - **Stage 10:** Technical SEO, Schema.org JSON-LD structured data, and Web Vitals optimization.
 - **Stage 11:** Comprehensive accessibility (WCAG 2.1 AA), cross-browser, and responsiveness QA.
 - **Stage 12:** Production build verification and client handover documentation.
+
+---
+
+## [0.6.0] - 2026-11-09
+### Added
+- **Scalable Dynamic Country Engine:** Built single intelligent template `src/pages/study-abroad/[country].astro` dynamically generating 36 destination country pages from `client-content/countries/countries.json` with zero manual template duplication.
+- **Master JSON Schema (`countries-schema.json`):** Created validated schema enforcing all 21 core country properties (ID, name, slug, flagCode, continent, heroImage, shortDescription, introduction, whyStudyHere, educationSystem, studyLevels, admissionGuidance, visaGuidance, costInformation, scholarshipInformation, servicesAvailable, faqs, relatedUniversityIds, featured, active, publicationStatus, sourceLinks, lastReviewed).
+- **Interactive Destination Directory (`/study-abroad/`):**
+  - Instant live keyword search bar by country name.
+  - Continent / Region filter pills (*All*, *North America*, *Europe*, *Asia*, *Oceania*, *Africa*).
+  - Featured filter button for priority destinations.
+  - Dynamic result counter and graceful empty state (`EmptyState.astro`).
+  - Study abroad FAQs with Schema.org `FAQPage` JSON-LD.
+- **14 Conditional Country Sections:** Hero with fast facts bar, introduction narrative, reasons to study, education system overview, study pathways, guided universities, admission criteria, estimated costs & scholarships, visa procedures with official citations, consultancy services, country FAQs, related destinations, and pre-selected consultation form.
+- **Compact Sitewide Navigation:** Reorganized desktop mega-menu and mobile drawer to present featured destinations and "Explore All 35+ Countries" link rather than an overwhelming 35-item dropdown.
+- **QA Test Suite (`tests/country-engine.test.js`):** Comprehensive automated testing verifying 35 isolated fixtures, adding/removing records, draft status isolation, route generation, university relationships, and internal links (21/21 passing).
+- **Visual Previews:** Edge Chromium captures for `/study-abroad/`, `/study-abroad/canada/`, and `/study-abroad/germany/` across 1440px desktop, 390px mobile, and full-page layouts.
+- **Compilation:** `astro check` passed with 0 errors across 57 files; `astro build` compiled 62 static pages in 2.72s.
 
 ---
 

@@ -1,11 +1,13 @@
 ---
 import { siteConfig } from '../../data/site-config';
+import { getFeaturedCountries } from '../../data/countries';
 
 interface Props {
   currentPath?: string;
 }
 
 const { currentPath = '/' } = Astro.props;
+const featuredCountries = getFeaturedCountries();
 ---
 
 <!-- Mobile Menu Drawer Backdrop & Content -->
@@ -41,6 +43,7 @@ const { currentPath = '/' } = Astro.props;
     <div class="p-5 space-y-2 flex-1">
       {siteConfig.nav.map((item) => {
         const hasChildren = item.children && item.children.length > 0;
+        const isStudyAbroad = item.href === '/study-abroad/';
         const active = currentPath === item.href;
 
         if (hasChildren) {
@@ -58,6 +61,37 @@ const { currentPath = '/' } = Astro.props;
                     {child.label}
                   </a>
                 ))}
+              </div>
+            </div>
+          );
+        }
+
+        if (isStudyAbroad) {
+          return (
+            <div class="py-1">
+              <a
+                href="/study-abroad/"
+                class={`block px-3 py-2.5 text-base font-bold rounded-lg transition-colors ${
+                  active ? 'bg-brand-bg text-brand-blue' : 'text-brand-navy hover:bg-brand-bg hover:text-brand-blue'
+                }`}
+              >
+                Study Abroad (35+ Countries)
+              </a>
+              <div class="space-y-1 pl-3 mt-1">
+                {featuredCountries.slice(0, 4).map((country) => (
+                  <a
+                    href={`/study-abroad/${country.slug}/`}
+                    class="block px-3 py-1.5 text-xs font-semibold rounded-md text-brand-muted hover:text-brand-navy hover:bg-brand-bg transition-colors"
+                  >
+                    {country.name}
+                  </a>
+                ))}
+                <a
+                  href="/study-abroad/"
+                  class="block px-3 py-1.5 text-xs font-bold text-brand-red hover:underline"
+                >
+                  Explore All 35+ Destinations →
+                </a>
               </div>
             </div>
           );
@@ -100,21 +134,31 @@ const { currentPath = '/' } = Astro.props;
     const drawer = document.getElementById('mobile-menu-drawer');
 
     if (!openBtn || !closeBtn || !drawer) return;
+    const menuDrawer = drawer;
 
-    function open() {
-      drawer?.classList.remove('hidden');
+    function openMenu() {
+      menuDrawer.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }
 
-    function close() {
-      drawer?.classList.add('hidden');
+    function closeMenu() {
+      menuDrawer.classList.add('hidden');
       document.body.style.overflow = '';
     }
 
-    openBtn.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
+    openBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+
     drawer.addEventListener('click', (e) => {
-      if (e.target === drawer) close();
+      if (e.target === drawer) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !drawer.classList.contains('hidden')) {
+        closeMenu();
+      }
     });
   }
 
