@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/common/SectionHeading.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+import ConsultationCTA from '../components/common/ConsultationCTA.astro';
+import TrustStatistics from '../components/common/TrustStatistics.astro';
+---
+
+<BaseLayout
+  title="Success Stories & Student Journeys — Visa Convention"
+  description="Verified student journeys, visa outcomes, and authentic international education case studies from Visa Convention."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs items={[{ label: 'Success Stories', href: '/success-stories/', current: true }]} />
+  </div>
+
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      badge="Student Outcomes"
+      title="Authentic Journeys & Real Outcomes"
+      description="We believe in complete transparency. Every testimonial and case study published on this platform is verified with documented consent from genuine candidates."
+    />
+
+    <!-- Verification Charter Box -->
+    <div class="max-w-3xl mx-auto mb-16 p-8 rounded-3xl bg-white border border-brand-border shadow-xs text-center space-y-4">
+      <div class="w-12 h-12 mx-auto rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold text-brand-navy">
+        Our Zero-Fabrication Testimonial Policy
+      </h3>
+      <p class="text-sm text-brand-muted leading-relaxed max-w-xl mx-auto">
+        Unlike generic agencies that display fabricated 99% success rates or fictional stock reviews, Visa Convention only publishes authenticated student experiences with full privacy redaction.
+      </p>
+      <div class="pt-2">
+        <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-bg text-brand-navy border border-brand-border">
+          Content Status: Client Testimonial Verification Under Review
+        </span>
+      </div>
+    </div>
+
+    <!-- Trust Stats -->
+    <TrustStatistics />
+
+    <div class="mt-16">
+      <ConsultationCTA
+        title="Start Your Own Success Story With Honest Guidance"
+        subtitle="Book a consultation with our Hanumangarh advisory team to explore your study abroad eligibility."
+      />
+    </div>
+  </section>
+</BaseLayout>

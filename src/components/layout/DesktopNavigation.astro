@@ -1,0 +1,76 @@
+---
+import { siteConfig } from '../../data/site-config';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
+---
+
+<nav aria-label="Desktop Navigation" class="hidden lg:flex items-center gap-1 xl:gap-2">
+  {siteConfig.nav.map((item) => {
+    const hasChildren = item.children && item.children.length > 0;
+    const active = isActive(item.href);
+
+    if (hasChildren) {
+      return (
+        <div class="relative group">
+          <button
+            type="button"
+            class={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
+              active
+                ? 'text-brand-navy bg-brand-bg font-bold'
+                : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/50'
+            }`}
+            aria-expanded="false"
+          >
+            <span>{item.label}</span>
+            <svg class="w-4 h-4 text-brand-muted group-hover:rotate-180 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div class="absolute left-0 top-full pt-2 w-72 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+            <div class="bg-white rounded-2xl shadow-xl border border-brand-border p-3 grid gap-1">
+              {item.children?.map((child) => (
+                <a
+                  href={child.href}
+                  class="flex flex-col p-2.5 rounded-xl hover:bg-brand-bg transition-colors group/item"
+                >
+                  <span class="text-sm font-semibold text-brand-navy group-hover/item:text-brand-blue">
+                    {child.label}
+                  </span>
+                  {child.description && (
+                    <span class="text-xs text-brand-muted mt-0.5 line-clamp-1">
+                      {child.description}
+                    </span>
+                  )}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <a
+        href={item.href}
+        class={`px-3 py-2 rounded-lg text-sm font-semibold transition-colors ${
+          active
+            ? 'text-brand-navy bg-brand-bg font-bold'
+            : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/50'
+        }`}
+      >
+        {item.label}
+      </a>
+    );
+  })}
+</nav>

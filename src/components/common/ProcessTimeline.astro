@@ -1,0 +1,33 @@
+---
+interface ProcessStep {
+  stepNumber: number;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  steps: ProcessStep[];
+  class?: string;
+}
+
+const { steps, class: className = '' } = Astro.props;
+---
+
+<div class={`relative max-w-4xl mx-auto ${className}`}>
+  <!-- Desktop timeline line -->
+  <div class="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-brand-border -translate-y-1/2 z-0" aria-hidden="true"></div>
+
+  <div class="grid grid-cols-1 md:grid-cols-5 gap-6 relative z-10">
+    {steps.map((step) => (
+      <div class="flex md:flex-col items-start md:items-center text-left md:text-center group bg-white md:bg-transparent p-5 md:p-0 rounded-xl border md:border-0 border-brand-border">
+        <div class="w-12 h-12 flex-shrink-0 rounded-full bg-brand-navy text-white flex items-center justify-center font-bold text-lg shadow-sm ring-4 ring-white mb-0 md:mb-4 mr-4 md:mr-0 group-hover:bg-brand-red transition-colors">
+          {step.stepNumber}
+        </div>
+        <div>
+          <h4 class="font-bold text-brand-navy text-base mb-1.5">{step.title}</h4>
+          <p class="text-xs text-brand-muted leading-relaxed">{step.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>

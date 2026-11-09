@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/common/SectionHeading.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+import ConsultationCTA from '../components/common/ConsultationCTA.astro';
+---
+
+<BaseLayout
+  title="Institutional & Regional Partnerships — Visa Convention"
+  description="Collaborate with Visa Convention. Transparent institutional representation, sub-agent referral guidelines, and ethical student placement."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs items={[{ label: 'Partnerships', href: '/partnerships/', current: true }]} />
+  </div>
+
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      badge="Collaboration"
+      title="Institutional & Educational Partnerships"
+      description="We collaborate with international colleges, language centers, and regional referral associates on a foundation of strict compliance and verified documentation."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <!-- For Universities & Colleges -->
+      <div class="p-8 rounded-3xl bg-white border border-brand-border shadow-xs space-y-4">
+        <div class="w-12 h-12 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-brand-navy">
+          For International Education Providers
+        </h3>
+        <p class="text-sm text-brand-muted leading-relaxed">
+          Visa Convention provides international institutions with thoroughly screened, academically prepared applicants from Hanumangarh and Northern India. We conduct preliminary credential authentication, English assessment, and financial verification prior to submission.
+        </p>
+        <ul class="space-y-2 text-xs text-brand-text pt-2">
+          <li>• Strict compliance with ESOS, IRCC, and UKVI standards</li>
+          <li>• Transparent application pipelines with zero falsified records</li>
+          <li>• Comprehensive pre-departure orientation</li>
+        </ul>
+      </div>
+
+      <!-- For Sub-Agents & Regional Associates -->
+      <div class="p-8 rounded-3xl bg-white border border-brand-border shadow-xs space-y-4">
+        <div class="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center font-bold">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-brand-navy">
+          For Regional Counselors & Associates
+        </h3>
+        <p class="text-sm text-brand-muted leading-relaxed">
+          We invite regional coaching institutes, education centers, and consultants to partner with us under transparent, ethical referral terms. Protect your students with our rigorous documentation auditing and direct visa filing workflows.
+        </p>
+        <ul class="space-y-2 text-xs text-brand-text pt-2">
+          <li>• Dedicated partner communication and tracking</li>
+          <li>• Direct access to university admission systems</li>
+          <li>• Ethical revenue-sharing models</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Partnership Inquiry Box -->
+    <div class="p-8 rounded-3xl bg-brand-bg border border-brand-border max-w-2xl mx-auto text-center space-y-4 mb-16">
+      <h3 class="text-xl font-bold text-brand-navy">
+        Discuss an Institutional Collaboration
+      </h3>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+        To request formal agency representation agreements or explore joint counseling programs, reach out directly to our leadership desk.
+      </p>
+      <a
+        href="/contact/"
+        class="inline-flex items-center px-6 py-3 rounded-xl bg-brand-navy text-white text-sm font-bold hover:bg-brand-navy-light transition-colors shadow-xs"
+      >
+        Inquire for Partnership
+      </a>
+    </div>
+
+    <ConsultationCTA
+      title="Partner With Us for Ethical Global Admissions"
+      subtitle="Connect with our Hanumangarh leadership team to establish transparent student recruitment pathways."
+    />
+  </section>
+</BaseLayout>

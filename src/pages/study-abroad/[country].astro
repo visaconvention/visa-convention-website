@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import FAQAccordion from '../../components/common/FAQAccordion.astro';
+import EnquiryForm from '../../components/forms/EnquiryForm.astro';
+import UniversityCard from '../../components/universities/UniversityCard.astro';
+import { getAllCountries } from '../../data/countries';
+import { getUniversitiesByCountrySlug } from '../../data/universities';
+import { getFaqSchema } from '../../utils/seo';
+import type { Country } from '../../types';
+
+export async function getStaticPaths() {
+  const countries = getAllCountries();
+  return countries.map((country) => ({
+    params: { country: country.slug },
+    props: { country },
+  }));
+}
+
+interface Props {
+  country: Country;
+}
+
+const { country } = Astro.props;
+const universities = getUniversitiesByCountrySlug(country.slug);
+const faqSchema = country.faqs.length > 0 ? getFaqSchema(country.faqs) : undefined;
+---
+
+<BaseLayout
+  title={`Study in ${country.name} — Admissions, Universities & Visa Guidance | Visa Convention`}
+  description={country.shortSummary}
+  schema={faqSchema}
+>
+  <!-- Breadcrumbs -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs
+      items={[
+        { label: 'Study Abroad', href: '/study-abroad/' },
+        { label: `Study in ${country.name}`, href: `/study-abroad/${country.slug}/`, current: true },
+      ]}
+    />
+  </div>
+
+  <!-- Country Hero Section -->
+  <section class="py-14 sm:py-20 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="px-3.5 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
+            {country.continent} Destination
+          </span>
+          <span class="text-xs font-semibold text-brand-muted">
+            ISO: {country.isoCode}
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4">
+          Study in {country.name}
+        </h1>
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed">
+          {country.overview}
+        </p>
+
+        <!-- Fast Fact Bar -->
+        <div class="mt-8 pt-6 border-t border-brand-border grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
+          <div>
+            <span class="block uppercase font-bold text-brand-muted">Capital</span>
+            <span class="font-bold text-brand-navy text-sm">{country.capital || 'N/A'}</span>
+          </div>
+          <div>
+            <span class="block uppercase font-bold text-brand-muted">Currency</span>
+            <span class="font-bold text-brand-navy text-sm">{country.currency || 'N/A'}</span>
+          </div>
+          <div>
+            <span class="block uppercase font-bold text-brand-muted">Tuition Est.</span>
+            <span class="font-bold text-brand-navy text-sm truncate block">{country.estimatedTuitionRange.split('–')[0]}</span>
+          </div>
+          <div>
+            <span class="block uppercase font-bold text-brand-muted">Primary Intake</span>
+            <span class="font-bold text-brand-navy text-sm truncate block">{country.intakes[0] || 'Flexible'}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content & Consultation Grid -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Left Column: Country Deep Dive -->
+      <div class="lg:col-span-7 space-y-14">
+        <!-- Why Study Here -->
+        <div>
+          <h2 class="text-2xl font-bold text-brand-navy mb-6">
+            Why Choose {country.name}?
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {country.keyHighlights.map((highlight) => (
+              <div class="p-4 rounded-xl bg-white border border-brand-border flex items-start gap-2.5 shadow-2xs">
+                <span class="text-brand-red font-bold text-lg leading-none mt-0.5">•</span>
+                <span class="text-sm font-medium text-brand-navy leading-relaxed">{highlight}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Academic Opportunities & Intakes -->
+        <div class="p-6 rounded-2xl bg-white border border-brand-border space-y-6">
+          <h3 class="text-xl font-bold text-brand-navy">
+            Academic Intakes & Popular Courses
+          </h3>
+          <div>
+            <span class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-2">
+              Popular Study Fields:
+            </span>
+            <div class="flex flex-wrap gap-2">
+              {country.popularCourses.map((course) => (
+                <span class="px-3 py-1 rounded-lg text-xs font-semibold bg-brand-bg text-brand-navy border border-brand-border">
+                  {course}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div>
+            <span class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-2">
+              Major Admission Intakes:
+            </span>
+            <div class="flex flex-wrap gap-2">
+              {country.intakes.map((intake) => (
+                <span class="px-3 py-1 rounded-lg text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  {intake}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Cost of Study & Living -->
+        <div>
+          <h2 class="text-2xl font-bold text-brand-navy mb-6">
+            Estimated Costs & Financial Planning
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-5 rounded-2xl bg-white border border-brand-border">
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted block mb-1">
+                Annual Tuition Indicator
+              </span>
+              <span class="text-lg font-black text-brand-navy block mb-2">
+                {country.estimatedTuitionRange}
+              </span>
+              <p class="text-xs text-brand-muted leading-relaxed">
+                Varies widely by institution ranking, program level (Undergraduate vs. Postgraduate), and discipline.
+              </p>
+            </div>
+            <div class="p-5 rounded-2xl bg-white border border-brand-border">
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted block mb-1">
+                Estimated Living Costs
+              </span>
+              <span class="text-lg font-black text-brand-navy block mb-2">
+                {country.estimatedLivingCost}
+              </span>
+              <p class="text-xs text-brand-muted leading-relaxed">
+                Includes housing, food, transport, and personal expenses subject to regional differences.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post Study Work Rights -->
+        <div>
+          <h2 class="text-2xl font-bold text-brand-navy mb-4">
+            Work Rights & Post-Study Visas
+          </h2>
+          <div class="p-6 rounded-2xl bg-white border border-brand-border text-sm text-brand-text leading-relaxed">
+            {country.workRights}
+          </div>
+        </div>
+
+        <!-- Visa Guidance Summary -->
+        <div>
+          <h2 class="text-2xl font-bold text-brand-navy mb-4">
+            Visa Guidance & Embassy Procedures
+          </h2>
+          <div class="p-6 rounded-2xl bg-white border border-brand-border text-sm text-brand-text leading-relaxed">
+            {country.visaGuidanceSummary}
+          </div>
+        </div>
+
+        <!-- Associated Universities in this Country -->
+        {universities.length > 0 && (
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <h2 class="text-2xl font-bold text-brand-navy">
+                Universities Guided in {country.name}
+              </h2>
+              <a href="/universities/" class="text-xs font-bold text-brand-red hover:underline">
+                View All Universities →
+              </a>
+            </div>
+            <div class="grid grid-cols-1 gap-4">
+              {universities.map((uni) => (
+                <UniversityCard university={uni} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Mandatory Disclaimer -->
+        <div class="p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-amber-900 text-xs sm:text-sm leading-relaxed">
+          <strong class="font-bold block mb-1">Official Disclaimer:</strong>
+          {country.sourceDisclaimer}
+        </div>
+
+        <!-- FAQs -->
+        {country.faqs.length > 0 && (
+          <div>
+            <h2 class="text-2xl font-bold text-brand-navy mb-6">
+              Frequently Asked Questions: {country.name}
+            </h2>
+            <FAQAccordion faqs={country.faqs} />
+          </div>
+        )}
+      </div>
+
+      <!-- Right Column: Sticky Form pre-selected with this country -->
+      <div class="lg:col-span-5">
+        <div class="sticky top-28">
+          <EnquiryForm
+            selectedCountry={country.slug}
+            selectedService="study-visa"
+            title={`Apply for ${country.name}`}
+            subtitle="Get an authentic eligibility assessment from our counselors."
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

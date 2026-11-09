@@ -1,0 +1,146 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+import ProcessTimeline from '../components/common/ProcessTimeline.astro';
+import FAQAccordion from '../components/common/FAQAccordion.astro';
+import EnquiryForm from '../components/forms/EnquiryForm.astro';
+import type { Service } from '../types';
+import { getFaqSchema } from '../utils/seo';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const faqSchema = service.faqs.length > 0 ? getFaqSchema(service.faqs) : undefined;
+---
+
+<BaseLayout
+  title={`${service.title} — Visa Convention`}
+  description={service.shortDescription}
+  schema={faqSchema}
+>
+  <!-- Breadcrumbs -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs
+      items={[
+        { label: 'Services', href: '/services/' },
+        { label: service.title, href: `/services/${service.slug}/`, current: true },
+      ]}
+    />
+  </div>
+
+  <!-- Service Hero Section -->
+  <section class="py-14 sm:py-20 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block px-3.5 py-1 mb-4 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
+          Professional Service Guidance
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4">
+          {service.title}
+        </h1>
+        <p class="text-xl font-semibold text-brand-blue mb-4">
+          {service.subtitle}
+        </p>
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed">
+          {service.shortDescription}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content & Form Grid -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Left Column: Details & Process -->
+      <div class="lg:col-span-7 space-y-16">
+        <!-- Target Audience & Offerings -->
+        <div>
+          <h2 class="text-2xl font-bold text-brand-navy mb-6">
+            Who This Service is Designed For
+          </h2>
+          <div class="space-y-3">
+            {service.targetAudience.map((item) => (
+              <div class="flex items-start gap-3 p-4 rounded-xl bg-white border border-brand-border shadow-2xs">
+                <div class="w-6 h-6 rounded-full bg-brand-bg text-brand-blue flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <span class="text-sm font-medium text-brand-text leading-relaxed">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Comprehensive Guidance Inclusions -->
+        <div>
+          <h2 class="text-2xl font-bold text-brand-navy mb-6">
+            What Our Counseling Includes
+          </h2>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {service.keyOfferings.map((offering) => (
+              <li class="p-4 rounded-xl bg-white border border-brand-border text-sm text-brand-navy font-semibold flex items-start gap-2 shadow-2xs">
+                <span class="text-brand-red font-bold text-base leading-none">•</span>
+                <span>{offering}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Step-by-Step Application Process -->
+        <div>
+          <h2 class="text-2xl font-bold text-brand-navy mb-8">
+            Step-by-Step Roadmap
+          </h2>
+          <ProcessTimeline steps={service.stepByStepProcess} />
+        </div>
+
+        <!-- Eligibility Checklist -->
+        <div>
+          <h2 class="text-2xl font-bold text-brand-navy mb-6">
+            General Eligibility & Document Checklist
+          </h2>
+          <div class="p-6 rounded-2xl bg-white border border-brand-border space-y-3">
+            {service.eligibilityChecklist.map((check) => (
+              <div class="flex items-start gap-3 text-sm text-brand-text">
+                <svg class="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{check}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Mandatory Disclaimer Box -->
+        <div class="p-6 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-amber-900 text-xs sm:text-sm leading-relaxed">
+          <strong class="font-bold block mb-1">Official Regulatory Disclaimer:</strong>
+          {service.disclaimer}
+        </div>
+
+        <!-- FAQs -->
+        {service.faqs.length > 0 && (
+          <div>
+            <h2 class="text-2xl font-bold text-brand-navy mb-6">
+              Frequently Asked Questions
+            </h2>
+            <FAQAccordion faqs={service.faqs} />
+          </div>
+        )}
+      </div>
+
+      <!-- Right Column: Sticky Consultation Form -->
+      <div class="lg:col-span-5">
+        <div class="sticky top-28">
+          <EnquiryForm
+            selectedService={service.slug}
+            title={`Enquire: ${service.title}`}
+            subtitle="Submit your details for a confidential preliminary evaluation."
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

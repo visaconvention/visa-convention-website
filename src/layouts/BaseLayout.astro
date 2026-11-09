@@ -1,0 +1,83 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { siteConfig } from '../data/site-config';
+import { getLocalBusinessSchema } from '../utils/seo';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  schema?: object;
+}
+
+const {
+  title = `${siteConfig.name} — Official Global Visa & Study Abroad Consultancy`,
+  description = siteConfig.shortDescription,
+  canonicalUrl = Astro.url.href,
+  ogImage = '/assets/brand/og-image.jpg',
+  schema,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const localBusinessSchema = getLocalBusinessSchema();
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={siteConfig.name} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+  </head>
+  <body class="bg-brand-bg text-brand-text min-h-screen flex flex-col font-sans selection:bg-brand-red selection:text-white">
+    <!-- Skip to Main Content for Accessibility (WCAG 2.1 AA) -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-navy focus:text-white focus:rounded-lg focus:shadow-lg focus:ring-2 focus:ring-brand-red"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Header Navigation -->
+    <Header currentPath={currentPath} />
+
+    <!-- Main Content Landmark -->
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Sitewide Footer -->
+    <Footer />
+  </body>
+</html>

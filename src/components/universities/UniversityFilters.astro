@@ -1,0 +1,63 @@
+---
+interface Props {
+  countries: Array<{ id: string; name: string }>;
+  studyLevels?: string[];
+  class?: string;
+}
+
+const {
+  countries,
+  studyLevels = ['Bachelors', 'Masters', 'Doctorate', 'Diploma', 'MBBS'],
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={`bg-white rounded-2xl p-5 border border-brand-border shadow-xs space-y-4 ${className}`}>
+  <div class="flex items-center justify-between pb-3 border-b border-brand-border">
+    <h3 class="font-bold text-brand-navy text-sm flex items-center gap-2">
+      <svg class="w-4 h-4 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+      </svg>
+      <span>Filter Directory</span>
+    </h3>
+    <button
+      id="reset-filters-btn"
+      type="button"
+      class="text-xs text-brand-red font-semibold hover:underline"
+    >
+      Reset All
+    </button>
+  </div>
+
+  <!-- Country Filter -->
+  <div>
+    <label for="filter-country" class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-1.5">
+      Destination Country
+    </label>
+    <select
+      id="filter-country"
+      class="w-full bg-brand-bg rounded-lg border border-brand-border px-3 py-2 text-xs font-medium text-brand-navy focus:outline-hidden focus:ring-2 focus:ring-brand-blue"
+    >
+      <option value="all">All Countries ({countries.length})</option>
+      {countries.map((c) => (
+        <option value={c.name.toLowerCase()}>{c.name}</option>
+      ))}
+    </select>
+  </div>
+
+  <!-- Degree Level Filter -->
+  <div>
+    <label for="filter-degree" class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-1.5">
+      Study Level
+    </label>
+    <select
+      id="filter-degree"
+      class="w-full bg-brand-bg rounded-lg border border-brand-border px-3 py-2 text-xs font-medium text-brand-navy focus:outline-hidden focus:ring-2 focus:ring-brand-blue"
+    >
+      <option value="all">All Study Levels</option>
+      {studyLevels.map((lvl) => (
+        <option value={lvl.toLowerCase()}>{lvl}</option>
+      ))}
+    </select>
+  </div>
+</div>

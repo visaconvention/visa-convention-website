@@ -58,8 +58,8 @@ These requirements have been explicitly approved and agreed upon as the foundati
 
 These technical and architectural enhancements are recommended by the engineering team and await client/stakeholder confirmation.
 
-- **REQ-P-01 (Technology Stack):** Use **Astro 5.x** with **TypeScript** and **Tailwind CSS** as the primary framework for static-first performance, content collections validation, and minimal client JS.
-- **REQ-P-02 (Client-Side Search):** Implement a lightweight client-side indexing engine (e.g. Pagefind or Fuse.js) for instant university directory searching and filtering without backend database dependencies.
+- **REQ-P-01 (Technology Stack):** Use **Astro 5.x** with **TypeScript** and **Tailwind CSS v4** as the primary framework for static-first performance, content collections validation, and minimal client JS. *(IMPLEMENTED & VERIFIED IN STAGE 02)*
+- **REQ-P-02 (Client-Side Search):** Implement a lightweight client-side indexing engine for instant university directory searching and filtering without backend database dependencies. *(IMPLEMENTED & VERIFIED IN STAGE 02)*
 - **REQ-P-03 (Lead Handling Mechanism):** Recommend **Web3Forms** or **Formspree** (or cloud serverless function) with honeypot spam protection for inquiry forms, eliminating database management and ongoing server costs.
 - **REQ-P-04 (Quick Connect Widget):** Add a floating, accessible WhatsApp CTA with pre-filled consultation message targeting the official Hanumangarh office line.
 - **REQ-P-05 (Structured Data SEO):** Implement rich Schema.org JSON-LD snippets (`LocalBusiness`, `EducationalOrganization`, `FAQPage`, `BreadcrumbList`) across all service, country, and university routes.

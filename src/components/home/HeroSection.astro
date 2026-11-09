@@ -1,0 +1,74 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = 'Your Bridge to Global Universities & Seamless Visa Approvals',
+  subtitle = 'Visa Convention delivers ethical, expert counseling for study abroad, MBBS/PhD admissions, tourist & work visas, and international flight assistance from Hanumangarh, Rajasthan.',
+} = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-gradient-to-b from-white to-brand-bg pt-12 pb-20 sm:pt-16 sm:pb-24 border-b border-brand-border">
+  <!-- Subtle decorative grid background -->
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#102A53 1px, transparent 1px); background-size: 24px 24px;" aria-hidden="true"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center max-w-4xl mx-auto">
+      <!-- Trust Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-bg text-brand-navy border border-brand-border mb-6 shadow-xs">
+        <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+        <span class="text-xs font-bold tracking-wide uppercase">
+          Hanumangarh, Rajasthan • International Advisory
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-navy tracking-tight leading-tight sm:leading-tight mb-6">
+        {title}
+      </h1>
+
+      <!-- Subtitle Description -->
+      <p class="text-lg sm:text-xl text-brand-muted max-w-3xl mx-auto leading-relaxed mb-10">
+        {subtitle}
+      </p>
+
+      <!-- Primary Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/contact/"
+          class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-red text-white font-bold text-base hover:bg-brand-red-hover shadow-md transition-all duration-150 transform hover:-translate-y-0.5"
+        >
+          Book Free Profile Assessment
+        </a>
+        <a
+          href="/study-abroad/"
+          class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-brand-navy font-bold text-base hover:bg-brand-bg border border-brand-border shadow-xs transition-all duration-150"
+        >
+          Explore 35+ Countries
+        </a>
+      </div>
+
+      <!-- Quick Trust Indicators -->
+      <div class="mt-12 pt-8 border-t border-brand-border/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left sm:text-center text-xs text-brand-muted">
+        <div>
+          <strong class="block text-brand-navy font-bold text-sm">35+ Countries</strong>
+          <span>Extensive Global Network</span>
+        </div>
+        <div>
+          <strong class="block text-brand-navy font-bold text-sm">Honest Counseling</strong>
+          <span>Zero Fabricated Promises</span>
+        </div>
+        <div>
+          <strong class="block text-brand-navy font-bold text-sm">Direct Guidance</strong>
+          <span>One-on-One File Preparation</span>
+        </div>
+        <div>
+          <strong class="block text-brand-navy font-bold text-sm">Flight Coordination</strong>
+          <span>Genuine Student Itineraries</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

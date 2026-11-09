@@ -1,0 +1,181 @@
+---
+import { servicesData } from '../../data/services';
+import { countriesData } from '../../data/countries';
+
+interface Props {
+  selectedService?: string;
+  selectedCountry?: string;
+  title?: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const {
+  selectedService = '',
+  selectedCountry = '',
+  title = 'Request a Confidential Assessment',
+  subtitle = 'Fill in your details and an advisor will evaluate your profile and contact you directly.',
+  class: className = '',
+} = Astro.props;
+---
+
+<div class={`bg-white rounded-3xl p-6 sm:p-10 border border-brand-border shadow-sm ${className}`}>
+  <div class="mb-8">
+    <h3 class="text-2xl font-extrabold text-brand-navy tracking-tight mb-2">
+      {title}
+    </h3>
+    <p class="text-sm text-brand-muted leading-relaxed">
+      {subtitle}
+    </p>
+  </div>
+
+  <form id="visa-enquiry-form" class="space-y-5" method="POST" action="/api/enquiry" novalidate>
+    <!-- Invisible Honeypot Field for Bot Spam Mitigation -->
+    <div class="hidden" aria-hidden="true">
+      <label for="form-bot-trap">Do not fill this field if human</label>
+      <input type="text" id="form-bot-trap" name="website_url_check" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <!-- Hidden timestamp field -->
+    <input type="hidden" id="form-render-timestamp" name="render_timestamp" value="" />
+
+    <!-- Full Name -->
+    <div>
+      <label for="form-full-name" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+        Full Name <span class="text-brand-red">*</span>
+      </label>
+      <input
+        type="text"
+        id="form-full-name"
+        name="full_name"
+        required
+        placeholder="e.g. Rahul Sharma"
+        class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-sm text-brand-navy focus:outline-hidden focus:ring-2 focus:ring-brand-blue focus:bg-white transition-all"
+      />
+    </div>
+
+    <!-- Phone & Email Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="form-phone" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Phone / WhatsApp <span class="text-brand-red">*</span>
+        </label>
+        <input
+          type="tel"
+          id="form-phone"
+          name="phone"
+          required
+          placeholder="e.g. +91 98765 43210"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-sm text-brand-navy focus:outline-hidden focus:ring-2 focus:ring-brand-blue focus:bg-white transition-all"
+        />
+      </div>
+
+      <div>
+        <label for="form-email" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Email Address <span class="text-brand-red">*</span>
+        </label>
+        <input
+          type="email"
+          id="form-email"
+          name="email"
+          required
+          placeholder="e.g. rahul@example.com"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-sm text-brand-navy focus:outline-hidden focus:ring-2 focus:ring-brand-blue focus:bg-white transition-all"
+        />
+      </div>
+    </div>
+
+    <!-- Service Category & Target Destination -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="form-service" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Service Category <span class="text-brand-red">*</span>
+        </label>
+        <select
+          id="form-service"
+          name="service_category"
+          required
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-sm text-brand-navy focus:outline-hidden focus:ring-2 focus:ring-brand-blue focus:bg-white transition-all"
+        >
+          <option value="">Select a Service</option>
+          {servicesData.map((s) => (
+            <option value={s.slug} selected={s.slug === selectedService}>
+              {s.title}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label for="form-country" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Target Country
+        </label>
+        <select
+          id="form-country"
+          name="target_country"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-sm text-brand-navy focus:outline-hidden focus:ring-2 focus:ring-brand-blue focus:bg-white transition-all"
+        >
+          <option value="">Select Country (Optional)</option>
+          {countriesData.map((c) => (
+            <option value={c.slug} selected={c.slug === selectedCountry}>
+              {c.name}
+            </option>
+          ))}
+          <option value="other">Other Global Destination</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Academic Qualification or Specific Requirements -->
+    <div>
+      <label for="form-message" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+        Academic Background / Details (Optional)
+      </label>
+      <textarea
+        id="form-message"
+        name="notes"
+        rows="3"
+        placeholder="Briefly mention your highest qualification, percentage, or specific travel plans..."
+        class="w-full px-4 py-3 rounded-xl bg-brand-bg border border-brand-border text-sm text-brand-navy focus:outline-hidden focus:ring-2 focus:ring-brand-blue focus:bg-white transition-all resize-none"
+      ></textarea>
+    </div>
+
+    <!-- DPDP & Privacy Consent -->
+    <div class="flex items-start gap-3 pt-2">
+      <input
+        type="checkbox"
+        id="form-consent"
+        name="privacy_consent"
+        required
+        class="mt-1 w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-gray-300"
+      />
+      <label for="form-consent" class="text-xs text-brand-muted leading-relaxed">
+        I agree to be contacted by Visa Convention regarding my inquiry. My details will be handled confidentially under the Privacy Policy.
+      </label>
+    </div>
+
+    <!-- Submit Button & Disclaimer -->
+    <div class="pt-2">
+      <button
+        type="submit"
+        class="w-full py-4 px-6 rounded-xl bg-brand-red text-white font-bold text-base hover:bg-brand-red-hover shadow-md transition-all duration-150 transform hover:-translate-y-0.5"
+      >
+        Submit Assessment Request
+      </button>
+      <p class="text-center text-[11px] text-gray-400 mt-3">
+        Zero spam. Strict client privacy. No automated robocalls.
+      </p>
+    </div>
+  </form>
+</div>
+
+<script>
+  function setupFormTimestamp() {
+    const timestampField = document.getElementById('form-render-timestamp') as HTMLInputElement | null;
+    if (timestampField) {
+      timestampField.value = Date.now().toString();
+    }
+  }
+  setupFormTimestamp();
+  document.addEventListener('astro:page-load', setupFormTimestamp);
+</script>

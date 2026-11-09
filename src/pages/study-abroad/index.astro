@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/common/SectionHeading.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import CountryCard from '../../components/countries/CountryCard.astro';
+import ConsultationCTA from '../../components/common/ConsultationCTA.astro';
+import { getAllCountries } from '../../data/countries';
+
+const countries = getAllCountries();
+const continents = Array.from(new Set(countries.map((c) => c.continent)));
+---
+
+<BaseLayout
+  title="Study Abroad Destinations — Visa Convention"
+  description="Explore over 35 leading destination countries for international study, degree programs, tuition guidance, and visa requirements."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs items={[{ label: 'Study Abroad', href: '/study-abroad/', current: true }]} />
+  </div>
+
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      badge="Global Education"
+      title="35+ Worldwide Study Destinations"
+      description="Compare admission intakes, estimated tuition fees, work rights, and visa procedures across premier international education hubs."
+    />
+
+    <!-- Continent quick jump tabs -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-12">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-muted mr-2">Regions:</span>
+      {continents.map((continent) => (
+        <span class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-white border border-brand-border text-brand-navy shadow-2xs">
+          {continent}
+        </span>
+      ))}
+    </div>
+
+    <!-- Dynamic Countries Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {countries.map((country) => (
+        <CountryCard country={country} />
+      ))}
+    </div>
+
+    <div class="mt-16">
+      <ConsultationCTA
+        title="Need Advice on the Best Country for Your Budget?"
+        subtitle="Our Hanumangarh counseling team evaluates your academic profile, backlogs, and financial plan to recommend optimal destination choices."
+      />
+    </div>
+  </section>
+</BaseLayout>

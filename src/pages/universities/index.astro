@@ -1,0 +1,150 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/common/SectionHeading.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import UniversityCard from '../../components/universities/UniversityCard.astro';
+import UniversitySearch from '../../components/universities/UniversitySearch.astro';
+import UniversityFilters from '../../components/universities/UniversityFilters.astro';
+import EmptyState from '../../components/common/EmptyState.astro';
+import ConsultationCTA from '../../components/common/ConsultationCTA.astro';
+import { getAllUniversities } from '../../data/universities';
+import { getAllCountries } from '../../data/countries';
+
+const universities = getAllUniversities();
+const countries = getAllCountries();
+---
+
+<BaseLayout
+  title="Global University Directory — Visa Convention"
+  description="Search and explore hundreds of verified international universities and faculties across 35+ destination countries guided by Visa Convention."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs items={[{ label: 'Universities', href: '/universities/', current: true }]} />
+  </div>
+
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      badge="Academic Directory"
+      title="Global University Directory"
+      description="Browse institutions where our Hanumangarh counseling team guides student admissions, profile evaluation, and visa paperwork."
+    />
+
+    <!-- Search Bar Top Area -->
+    <div class="max-w-3xl mx-auto mb-10">
+      <UniversitySearch />
+    </div>
+
+    <!-- Layout Grid: Filters on Left (Desktop), Directory on Right -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <!-- Filters Sidebar -->
+      <div class="lg:col-span-1">
+        <div class="sticky top-28">
+          <UniversityFilters countries={countries} />
+        </div>
+      </div>
+
+      <!-- University Cards Grid -->
+      <div class="lg:col-span-3">
+        <div class="flex items-center justify-between mb-4">
+          <span id="university-count-label" class="text-xs font-bold text-brand-navy">
+            Showing {universities.length} institutions
+          </span>
+          <span class="text-xs text-brand-muted">
+            All profiles maintained for admission guidance
+          </span>
+        </div>
+
+        <div id="university-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {universities.map((uni) => (
+            <div
+              class="university-item"
+              data-name={uni.name.toLowerCase()}
+              data-country={uni.countryName.toLowerCase()}
+              data-city={uni.city.toLowerCase()}
+              data-levels={uni.studyLevels.map(l => l.toLowerCase()).join(' ')}
+              data-disciplines={uni.popularDisciplines.map(d => d.toLowerCase()).join(' ')}
+            >
+              <UniversityCard university={uni} />
+            </div>
+          ))}
+        </div>
+
+        <!-- No Results Fallback -->
+        <div id="no-results-view" class="hidden">
+          <EmptyState
+            title="No matching institutions found"
+            description="Try adjusting your keyword search, selecting 'All Countries', or resetting your filter criteria."
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16">
+      <ConsultationCTA
+        title="Don’t See Your Preferred University?"
+        subtitle="We guide applications for hundreds of accredited universities and colleges across 35+ countries. Contact our counselors to check eligibility."
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  function setupUniversityDirectoryFilter() {
+    const searchInput = document.getElementById('university-search-input') as HTMLInputElement | null;
+    const countryFilter = document.getElementById('filter-country') as HTMLSelectElement | null;
+    const degreeFilter = document.getElementById('filter-degree') as HTMLSelectElement | null;
+    const resetBtn = document.getElementById('reset-filters-btn');
+    const items = document.querySelectorAll<HTMLElement>('.university-item');
+    const countLabel = document.getElementById('university-count-label');
+    const noResults = document.getElementById('no-results-view');
+
+    function applyFilter() {
+      const query = (searchInput?.value || '').trim().toLowerCase();
+      const selectedCountry = (countryFilter?.value || 'all').toLowerCase();
+      const selectedDegree = (degreeFilter?.value || 'all').toLowerCase();
+
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        const name = item.dataset.name || '';
+        const country = item.dataset.country || '';
+        const city = item.dataset.city || '';
+        const levels = item.dataset.levels || '';
+        const disciplines = item.dataset.disciplines || '';
+
+        const matchesQuery = !query || name.includes(query) || city.includes(query) || disciplines.includes(query) || country.includes(query);
+        const matchesCountry = selectedCountry === 'all' || country.includes(selectedCountry);
+        const matchesDegree = selectedDegree === 'all' || levels.includes(selectedDegree);
+
+        if (matchesQuery && matchesCountry && matchesDegree) {
+          item.style.display = '';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (countLabel) {
+        countLabel.textContent = `Showing ${visibleCount} institution${visibleCount === 1 ? '' : 's'}`;
+      }
+
+      if (noResults) {
+        noResults.classList.toggle('hidden', visibleCount > 0);
+      }
+    }
+
+    searchInput?.addEventListener('input', applyFilter);
+    countryFilter?.addEventListener('change', applyFilter);
+    degreeFilter?.addEventListener('change', applyFilter);
+
+    resetBtn?.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      if (countryFilter) countryFilter.value = 'all';
+      if (degreeFilter) degreeFilter.value = 'all';
+      applyFilter();
+    });
+  }
+
+  setupUniversityDirectoryFilter();
+  document.addEventListener('astro:page-load', setupUniversityDirectoryFilter);
+</script>

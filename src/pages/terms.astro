@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/common/SectionHeading.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+import { siteConfig } from '../data/site-config';
+---
+
+<BaseLayout
+  title={`Terms of Service & Advisory Conditions — ${siteConfig.name}`}
+  description="Terms of service, statutory immigration disclosures, and service conditions for Visa Convention clients."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs items={[{ label: 'Terms of Service', href: '/terms/', current: true }]} />
+  </div>
+
+  <section class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      badge="Legal Disclosures"
+      title="Terms of Service & Advisory Agreement"
+      description="Last updated: November 2026. Please review these contractual terms governing all advisory services provided by Visa Convention."
+      align="left"
+    />
+
+    <div class="bg-white rounded-3xl p-8 sm:p-12 border border-brand-border shadow-xs prose prose-slate max-w-none space-y-8 text-sm sm:text-base text-brand-text leading-relaxed">
+      <div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">1. Scope of Professional Advisory Services</h3>
+        <p class="text-brand-muted">
+          Visa Convention operates as an independent educational consultancy, documentation assistance, and travel reservation facilitator based in Hanumangarh, Rajasthan, India. Our services encompass academic profile evaluation, university course selection, application review, SOP/LOR drafting guidance, and embassy visa dossier compilation.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-amber-50/70 border border-amber-200/80 text-amber-900">
+        <h3 class="text-lg font-bold text-amber-950 mb-2">2. Absolute Disclaimer of Visa Guarantees</h3>
+        <p class="text-xs sm:text-sm leading-relaxed">
+          <strong>NO VISA APPROVAL IS OR CAN BE GUARANTEED.</strong> The legal authority to approve, defer, or reject any visa, study permit, work authorization, or entry clearance belongs exclusively to the respective sovereign government embassies, high commissions, consulates, and border control authorities. Visa Convention does not possess official influence over consular adjudications.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">3. Client Authenticity Obligation</h3>
+        <p class="text-brand-muted">
+          Clients warrant that all documents, certificates, financial statements, and personal records provided to Visa Convention are genuine, truthful, and unaltered. The provision of fraudulent or counterfeit documentation is strictly illegal and will result in immediate termination of services without refund, in addition to potential statutory reporting.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">4. Government & Embassy Fees</h3>
+        <p class="text-brand-muted">
+          All statutory visa application charges, biometrics fees, medical examination costs, translation fees, and university application charges are payable directly to the respective authorities or authorized partners (e.g., VFS Global, TLScontact). These statutory payments are non-refundable under all circumstances, regardless of the visa outcome.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">5. Flight Reservation Compliance</h3>
+        <p class="text-brand-muted">
+          Flight reservation assistance provides legitimate travel holds and ticket bookings issued through accredited travel systems. Visa Convention strictly refuses to create or distribute fake airline tickets, fabricated PNR numbers, or altered boarding passes.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">6. Governing Law and Legal Jurisdiction</h3>
+        <p class="text-brand-muted">
+          These terms and any disputes arising out of consultancy engagements with Visa Convention shall be governed exclusively by the laws of India, and subject to the exclusive jurisdiction of the competent courts in Hanumangarh, Rajasthan, India.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,63 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  baseUrl: string;
+}
+
+const { currentPage, totalPages, baseUrl } = Astro.props;
+
+function getPageUrl(page: number) {
+  if (page <= 1) return baseUrl;
+  return `${baseUrl}?page=${page}`;
+}
+---
+
+{totalPages > 1 && (
+  <nav aria-label="Pagination" class="flex items-center justify-center gap-2 mt-12">
+    {currentPage > 1 ? (
+      <a
+        href={getPageUrl(currentPage - 1)}
+        class="px-4 py-2 text-sm font-medium rounded-lg bg-white border border-brand-border text-brand-navy hover:bg-brand-bg transition-colors"
+      >
+        Previous
+      </a>
+    ) : (
+      <span class="px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 text-gray-400 cursor-not-allowed">
+        Previous
+      </span>
+    )}
+
+    <div class="flex items-center gap-1">
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+        const isCurrent = page === currentPage;
+        return (
+          <a
+            href={getPageUrl(page)}
+            aria-current={isCurrent ? 'page' : undefined}
+            class={`w-10 h-10 flex items-center justify-center text-sm font-semibold rounded-lg transition-colors ${
+              isCurrent
+                ? 'bg-brand-navy text-white'
+                : 'bg-white border border-brand-border text-brand-navy hover:bg-brand-bg'
+            }`}
+          >
+            {page}
+          </a>
+        );
+      })}
+    </div>
+
+    {currentPage < totalPages ? (
+      <a
+        href={getPageUrl(currentPage + 1)}
+        class="px-4 py-2 text-sm font-medium rounded-lg bg-white border border-brand-border text-brand-navy hover:bg-brand-bg transition-colors"
+      >
+        Next
+      </a>
+    ) : (
+      <span class="px-4 py-2 text-sm font-medium rounded-lg bg-gray-100 text-gray-400 cursor-not-allowed">
+        Next
+      </span>
+    )}
+  </nav>
+)}

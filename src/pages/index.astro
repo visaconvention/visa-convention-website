@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/home/HeroSection.astro';
+import TrustStatistics from '../components/common/TrustStatistics.astro';
+import SectionHeading from '../components/common/SectionHeading.astro';
+import ServiceCard from '../components/services/ServiceCard.astro';
+import CountryCard from '../components/countries/CountryCard.astro';
+import ConsultationCTA from '../components/common/ConsultationCTA.astro';
+import { servicesData } from '../data/services';
+import { getFeaturedCountries } from '../data/countries';
+
+const featuredCountries = getFeaturedCountries();
+---
+
+<BaseLayout
+  title="Visa Convention — Official Visa & Global Education Advisory"
+  description="Authorized visa assistance, study abroad counseling for 35+ destination countries, MBBS/PhD admissions, and flight reservations based in Hanumangarh, Rajasthan."
+>
+  <!-- Hero Section -->
+  <HeroSection />
+
+  <!-- Trust Stats Section -->
+  <TrustStatistics />
+
+  <!-- Core Services Section -->
+  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      badge="Comprehensive Solutions"
+      title="Our Core Advisory Verticals"
+      description="From global higher education admissions to tourist documentation and flight coordination, we provide end-to-end guidance with total transparency."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {servicesData.map((service) => (
+        <ServiceCard service={service} />
+      ))}
+    </div>
+  </section>
+
+  <!-- Featured Destinations Section -->
+  <section class="py-20 bg-white border-y border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+        <div>
+          <span class="inline-block px-3.5 py-1 mb-3 text-xs font-semibold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
+            Global Study Destinations
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+            Explore Leading Study Countries
+          </h2>
+        </div>
+        <a
+          href="/study-abroad/"
+          class="mt-4 sm:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-brand-red hover:underline"
+        >
+          <span>View All 35+ Countries</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredCountries.map((country) => (
+          <CountryCard country={country} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action Banner -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <ConsultationCTA />
+  </div>
+</BaseLayout>

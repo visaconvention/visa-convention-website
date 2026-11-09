@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/common/SectionHeading.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+import EnquiryForm from '../components/forms/EnquiryForm.astro';
+import { siteConfig } from '../data/site-config';
+---
+
+<BaseLayout
+  title={`Contact Our Office — ${siteConfig.name}`}
+  description="Contact Visa Convention in Hanumangarh, Rajasthan for professional study visa, medical admissions, tourist visa, and flight booking consultations."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs items={[{ label: 'Contact Us', href: '/contact/', current: true }]} />
+  </div>
+
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      badge="Get in Touch"
+      title="Contact Our Advisory Office"
+      description="Visit our office in Hanumangarh, Rajasthan, or send us an assessment request. Our counseling team will evaluate your case promptly."
+    />
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Left Column: Office Details & Direct Channels -->
+      <div class="lg:col-span-5 space-y-8">
+        <div class="bg-white rounded-3xl p-8 border border-brand-border shadow-xs space-y-6">
+          <h3 class="text-xl font-bold text-brand-navy border-b border-brand-border pb-4">
+            Office Information
+          </h3>
+
+          <!-- Address -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <strong class="block text-xs font-bold uppercase tracking-wider text-brand-muted">Office Location</strong>
+              <span class="text-sm text-brand-navy font-semibold">{siteConfig.officeAddress}</span>
+              <span class="block text-xs text-brand-muted mt-0.5">Hanumangarh, Rajasthan, India</span>
+            </div>
+          </div>
+
+          <!-- Working Hours -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <strong class="block text-xs font-bold uppercase tracking-wider text-brand-muted">Working Hours</strong>
+              <span class="text-sm text-brand-navy font-semibold">{siteConfig.businessHours}</span>
+              <span class="block text-xs text-brand-muted mt-0.5">Sundays: By prior appointment only</span>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-brand-navy" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <strong class="block text-xs font-bold uppercase tracking-wider text-brand-muted">Electronic Mail</strong>
+              <a href={`mailto:${siteConfig.email}`} class="text-sm text-brand-navy font-semibold hover:text-brand-blue">
+                {siteConfig.email}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consultation Promise -->
+        <div class="p-6 rounded-3xl bg-brand-navy text-white space-y-3">
+          <h4 class="font-bold text-base flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-brand-red"></span>
+            Direct Counselor Access
+          </h4>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            When you contact Visa Convention, your inquiry is reviewed by seasoned education and visa counselors, not outsourced call centers. We evaluate documentation against genuine regulatory benchmarks.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Enquiry Form -->
+      <div class="lg:col-span-7">
+        <EnquiryForm
+          title="Send an Enquiry or Book an Appointment"
+          subtitle="Complete the form below to receive a direct call or email from our counseling team."
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

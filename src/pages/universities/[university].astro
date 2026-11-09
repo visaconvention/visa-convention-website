@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import EnquiryForm from '../../components/forms/EnquiryForm.astro';
+import { getAllUniversities } from '../../data/universities';
+import { getCountryBySlug } from '../../data/countries';
+import type { University } from '../../types';
+
+export async function getStaticPaths() {
+  const universities = getAllUniversities();
+  return universities.map((university) => ({
+    params: { university: university.slug },
+    props: { university },
+  }));
+}
+
+interface Props {
+  university: University;
+}
+
+const { university } = Astro.props;
+const country = getCountryBySlug(university.countrySlug);
+---
+
+<BaseLayout
+  title={`${university.name} — Admission & Visa Guidance | Visa Convention`}
+  description={`Profile, entry levels, and admission counseling for ${university.name} in ${university.city}, ${university.countryName}.`}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs
+      items={[
+        { label: 'Universities', href: '/universities/' },
+        { label: university.name, href: `/universities/${university.slug}/`, current: true },
+      ]}
+    />
+  </div>
+
+  <section class="py-14 sm:py-20 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <span class="px-3.5 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
+            {university.countryName} • {university.city}
+          </span>
+          {university.worldRanking && (
+            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+              {university.worldRanking}
+            </span>
+          )}
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4">
+          {university.name}
+        </h1>
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed">
+          {university.description || `Comprehensive student counseling and admission file preparation for studies at ${university.name}.`}
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a
+            href={university.officialWebsite}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-brand-navy border border-brand-border text-xs font-bold hover:bg-brand-bg shadow-2xs transition-colors"
+          >
+            <span>Visit Official University Website</span>
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+          {country && (
+            <a
+              href={`/study-abroad/${country.slug}/`}
+              class="text-xs font-bold text-brand-red hover:underline"
+            >
+              Learn about Studying in {country.name} →
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- University Details & Counseling Form -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Left Column: Academic Breakdown -->
+      <div class="lg:col-span-7 space-y-10">
+        <!-- Study Levels -->
+        <div class="p-6 rounded-2xl bg-white border border-brand-border space-y-4">
+          <h3 class="text-xl font-bold text-brand-navy">
+            Available Program Levels
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            {university.studyLevels.map((level) => (
+              <span class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-brand-bg text-brand-navy border border-brand-border">
+                {level} Programs
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Popular Disciplines -->
+        <div class="p-6 rounded-2xl bg-white border border-brand-border space-y-4">
+          <h3 class="text-xl font-bold text-brand-navy">
+            Key Academic Disciplines
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {university.popularDisciplines.map((discipline) => (
+              <div class="p-3 rounded-xl bg-brand-bg/50 border border-brand-border text-xs font-bold text-brand-navy flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+                <span>{discipline}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Guidance Scope & Relationship Integrity -->
+        <div class="p-6 rounded-2xl bg-brand-bg border border-brand-border space-y-3 text-xs sm:text-sm text-brand-text leading-relaxed">
+          <h4 class="font-bold text-brand-navy text-base">
+            Advisory Scope for {university.name}
+          </h4>
+          <p>
+            Visa Convention assists prospective students with profile assessment, eligibility screening against official university admission requirements, statement of purpose reviews, academic transcript coordination, and post-acceptance visa filing.
+          </p>
+          <p class="text-brand-muted italic">
+            Note: Unless explicitly stated as a verified contract partner, this profile represents an educational institution for which independent admission counseling and application assistance are offered.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Sticky Form -->
+      <div class="lg:col-span-5">
+        <div class="sticky top-28">
+          <EnquiryForm
+            selectedCountry={university.countrySlug}
+            selectedService="study-visa"
+            title={`Apply to ${university.name}`}
+            subtitle="Let our team evaluate your eligibility and guide your submission."
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

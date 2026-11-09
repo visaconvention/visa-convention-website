@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/common/SectionHeading.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+import { siteConfig } from '../data/site-config';
+---
+
+<BaseLayout
+  title={`Privacy Policy — ${siteConfig.name}`}
+  description="Privacy Policy and client data protection practices for Visa Convention in Hanumangarh, Rajasthan."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs items={[{ label: 'Privacy Policy', href: '/privacy-policy/', current: true }]} />
+  </div>
+
+  <section class="py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      badge="Compliance"
+      title="Privacy & Data Protection Policy"
+      description="Last updated: November 2026. How Visa Convention collects, utilizes, and protects your personal and academic information."
+      align="left"
+    />
+
+    <div class="bg-white rounded-3xl p-8 sm:p-12 border border-brand-border shadow-xs prose prose-slate max-w-none space-y-8 text-sm sm:text-base text-brand-text leading-relaxed">
+      <div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">1. Scope and Commitment</h3>
+        <p class="text-brand-muted">
+          Visa Convention ("we", "us", "our"), operating in Hanumangarh, Rajasthan, India, respects your personal privacy. This policy describes our protocols regarding the collection, storage, and processing of personal data gathered via our website (<a href={siteConfig.domain} class="text-brand-blue">{siteConfig.domain}</a>), digital consultation forms, and in-person consultations.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">2. Information We Collect</h3>
+        <p class="text-brand-muted mb-2">
+          To provide accurate visa counseling and university admission services, we may collect:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-brand-muted">
+          <li><strong>Identity Information:</strong> Full legal name, date of birth, passport copy, and nationality.</li>
+          <li><strong>Contact Details:</strong> Phone/WhatsApp number, residential address, and email address.</li>
+          <li><strong>Academic Credentials:</strong> Educational transcripts, graduation degrees, standardized test scores (IELTS/PTE/TOEFL/GRE/GMAT), and CV/resumes.</li>
+          <li><strong>Financial Evidence:</strong> Proof of financial capability required strictly for visa eligibility audits.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">3. Purpose of Processing</h3>
+        <p class="text-brand-muted">
+          Your information is utilized solely to assess admission eligibility, coordinate with educational institutions, prepare immigration files, verify flight reservations, and contact you regarding updates on your application. We do not sell, rent, or monetize your information to third-party marketing companies.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">4. Compliance with Indian DPDP Act & Global Standards</h3>
+        <p class="text-brand-muted">
+          We handle personal data in alignment with the Digital Personal Data Protection Act (DPDP Act, 2023) of India. Processing is conducted on the basis of explicit consent provided when you submit consultation requests or sign engagement agreements with our office.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">5. Document Security and Storage</h3>
+        <p class="text-brand-muted">
+          Physical and digital records are protected with restricted access controls. Only authorized counselors handling your specific file are granted access to your dossier.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">6. Contact Our Privacy Desk</h3>
+        <p class="text-brand-muted">
+          If you wish to review, update, or request the deletion of your personal contact records, contact us at <a href={`mailto:${siteConfig.email}`} class="text-brand-blue font-semibold">{siteConfig.email}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

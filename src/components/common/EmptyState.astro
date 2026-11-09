@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  actionHref?: string;
+  actionLabel?: string;
+}
+
+const {
+  title,
+  description,
+  actionHref,
+  actionLabel = 'Explore Alternatives',
+} = Astro.props;
+---
+
+<div class="text-center py-16 px-6 bg-white rounded-2xl border border-brand-border shadow-xs max-w-xl mx-auto my-8">
+  <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-brand-bg flex items-center justify-center text-brand-navy">
+    <svg class="w-8 h-8 text-brand-navy/60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+  </div>
+  <h3 class="text-xl font-bold text-brand-navy mb-2">{title}</h3>
+  <p class="text-brand-muted text-sm leading-relaxed mb-6">{description}</p>
+  {actionHref && (
+    <a
+      href={actionHref}
+      class="inline-flex items-center px-5 py-2.5 rounded-lg bg-brand-navy text-white text-sm font-semibold hover:bg-brand-navy-light transition-colors"
+    >
+      {actionLabel}
+    </a>
+  )}
+</div>

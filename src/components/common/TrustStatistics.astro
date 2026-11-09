@@ -1,0 +1,50 @@
+---
+interface StatItem {
+  value: string;
+  label: string;
+  sublabel: string;
+}
+
+const stats: StatItem[] = [
+  {
+    value: '35+',
+    label: 'Global Destinations',
+    sublabel: 'Eligible study & visa programs across 4 continents',
+  },
+  {
+    value: '6',
+    label: 'Core Services',
+    sublabel: 'Study, MBBS, PhD, Tourist, Work, and Flight Assistance',
+  },
+  {
+    value: '1-on-1',
+    label: 'Personalized Advisory',
+    sublabel: 'Dedicated document evaluation & career profiling',
+  },
+  {
+    value: '100%',
+    label: 'Transparent Policy',
+    sublabel: 'Zero hidden agent fees, zero fake promises',
+  },
+];
+---
+
+<section class="py-12 bg-white border-y border-brand-border">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+      {stats.map((stat) => (
+        <div class="p-4">
+          <div class="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-navy tracking-tight mb-2">
+            {stat.value}
+          </div>
+          <div class="text-base font-bold text-brand-navy mb-1">
+            {stat.label}
+          </div>
+          <div class="text-xs text-brand-muted max-w-xs mx-auto">
+            {stat.sublabel}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

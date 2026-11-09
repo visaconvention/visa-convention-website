@@ -1,0 +1,128 @@
+---
+import { siteConfig } from '../../data/site-config';
+import { servicesData } from '../../data/services';
+import { countriesData } from '../../data/countries';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-brand-navy text-white pt-16 pb-12 border-t border-brand-navy-light">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
+      <!-- Col 1: Brand & Office -->
+      <div class="lg:col-span-2 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-brand-red text-white flex items-center justify-center font-black text-base shadow-sm">
+            VC
+          </div>
+          <div>
+            <span class="block text-xl font-black tracking-tight text-white leading-none">
+              VISA CONVENTION
+            </span>
+            <span class="block text-xs font-semibold text-gray-300 tracking-wider uppercase mt-1">
+              Hanumangarh, Rajasthan • Global
+            </span>
+          </div>
+        </div>
+
+        <p class="text-sm text-gray-300 leading-relaxed max-w-sm">
+          A dedicated visa, higher education abroad, and international travel consultancy committed to ethical admissions, authentic documentation, and transparent student guidance.
+        </p>
+
+        <div class="space-y-2 text-xs text-gray-300 pt-2">
+          <div class="flex items-start gap-2">
+            <svg class="w-4 h-4 text-brand-red flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span>{siteConfig.officeAddress}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-brand-red flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span>{siteConfig.email}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div>
+        <h4 class="text-sm font-bold uppercase tracking-wider text-gray-200 mb-4">
+          Our Services
+        </h4>
+        <ul class="space-y-2.5 text-sm text-gray-300">
+          {servicesData.map((service) => (
+            <li>
+              <a href={`/services/${service.slug}/`} class="hover:text-white transition-colors">
+                {service.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Col 3: Study Destinations -->
+      <div>
+        <h4 class="text-sm font-bold uppercase tracking-wider text-gray-200 mb-4">
+          Destinations
+        </h4>
+        <ul class="space-y-2.5 text-sm text-gray-300">
+          {countriesData.slice(0, 6).map((country) => (
+            <li>
+              <a href={`/study-abroad/${country.slug}/`} class="hover:text-white transition-colors">
+                Study in {country.name}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/study-abroad/" class="text-brand-red font-semibold hover:underline">
+              View All 35+ Countries →
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Quick Links & Legal -->
+      <div>
+        <h4 class="text-sm font-bold uppercase tracking-wider text-gray-200 mb-4">
+          Company & Trust
+        </h4>
+        <ul class="space-y-2.5 text-sm text-gray-300">
+          <li><a href="/about/" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="/universities/" class="hover:text-white transition-colors">University Directory</a></li>
+          <li><a href="/success-stories/" class="hover:text-white transition-colors">Success Stories</a></li>
+          <li><a href="/partnerships/" class="hover:text-white transition-colors">Institutional Partners</a></li>
+          <li><a href="/contact/" class="hover:text-white transition-colors">Contact Office</a></li>
+          <li><a href="/privacy-policy/" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms/" class="hover:text-white transition-colors">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Statutory Disclaimer Section -->
+    <div class="py-8 border-b border-white/10 text-xs text-gray-400 space-y-3 leading-relaxed">
+      <p>
+        <strong class="text-gray-300">Statutory Notice:</strong> {siteConfig.disclaimers.statutory}
+      </p>
+      <p>
+        <strong class="text-gray-300">University Affiliation Disclosure:</strong> {siteConfig.disclaimers.universities}
+      </p>
+      <p>
+        <strong class="text-gray-300">Travel Compliance:</strong> {siteConfig.disclaimers.flights}
+      </p>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+      <div>
+        © {currentYear} Visa Convention. All rights reserved. Registered Consultancy, Hanumangarh, Rajasthan, India.
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="/privacy-policy/" class="hover:text-white transition-colors">Privacy</a>
+        <a href="/terms/" class="hover:text-white transition-colors">Terms</a>
+        <a href="/contact/" class="hover:text-white transition-colors">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
