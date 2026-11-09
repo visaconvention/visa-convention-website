@@ -6,9 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - Planned Stages 05–12
+## [Unreleased] - Planned Stages 06–12
 ### Planned
-- **Stage 05:** Dedicated deep-content service pages for all 6 verticals.
 - **Stage 06:** Ingestion of all 31 client Excel workbooks into dynamic country engine.
 - **Stage 07:** University directory expanded database and detailed profiles.
 - **Stage 08:** About, verified trust, success stories, and partnership pages.
@@ -16,6 +15,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **Stage 10:** Technical SEO, Schema.org JSON-LD structured data, and Web Vitals optimization.
 - **Stage 11:** Comprehensive accessibility (WCAG 2.1 AA), cross-browser, and responsiveness QA.
 - **Stage 12:** Production build verification and client handover documentation.
+
+---
+
+## [0.5.0] - 2026-11-09
+### Added
+- **Complete 7-Vertical Service Architecture:** Built dedicated landing pages and a unified Service Overview Hub:
+  - `/services/`: Service overview directory featuring category navigation, full Comparative Navigation Matrix, and prominent consumer transparency standards.
+  - `/services/study-visa/`: Detailed study abroad admissions guidance, 8 supported country pathways, university guidance lists, academic criteria, and step-by-step roadmap.
+  - `/services/mbbs/`: Integrated actual client medical faculty data from Hanumangarh files (Tashkent State Medical University, Samarkand, KazNMU, Osh State, Kazan Federal), Indian mess verification, and mandatory National Medical Commission (NMC) Foreign Medical Graduate Licentiate (FMGL) 2021 & NExT screening compliance.
+  - `/services/phd/`: Research proposal review, academic supervisor matching, funded assistantships (GTA/GRA), and academic independence notices.
+  - `/services/tourist-visa/`: Detailed travel itinerary planning, ties-to-India audits (ITR, bank records, land holdings), and non-immigrant conditions.
+  - `/services/work-visa/`: Regulatory documentation assistance with **MANDATORY STATUTORY RECRUITMENT DISCLOSURE** prominently stating that Visa Convention is not an overseas manpower agency and does not sell or arrange foreign jobs.
+  - `/services/flight-booking/`: Genuine airline hold reservation services, 40kg+ student baggage fare assistance, and **STRICT TRAVEL DOCUMENT INTEGRITY** refusing fake tickets or bogus PNRs.
+  - `/services/additional-services/`: Forex card facilitation, overseas student health cover (OSHC), and student accommodation guidance.
+- **Decoupled Data Architecture:** Created `DetailedService` type in `src/types/index.ts` and comprehensive content repository in `src/data/detailed-services.ts`, isolating all service copy from Astro component markup.
+- **Dynamic Country Route Guard:** Implemented safety checks in `ServiceLayout.astro` preventing broken links to unpublished country routes while preserving full destination advice.
+- **Automated Link Verification:** Implemented `scripts/verify-service-links.js` checking 532 internal links across all 8 service pages with 0 errors.
+- **Visual Capture Previews:** Edge Chromium headless screenshots for `/services/`, `/services/study-visa/`, and `/services/mbbs/` across desktop, mobile, and full-page layouts.
+- **Verification:** Verified with 0 errors in `astro check` (52 files) and 100% successful static build of all 32 pages.
 
 ---
 

@@ -1,9 +1,9 @@
 ---
 import ServiceLayout from '../../layouts/ServiceLayout.astro';
-import { servicesData } from '../../data/services';
+import { detailedServicesData } from '../../data/detailed-services';
 
-const service = servicesData.find((s) => s.id === 'flight-booking');
-if (!service) throw new Error('Service data not found');
+const service = detailedServicesData['flight-booking'];
+if (!service) throw new Error('Detailed service data not found for flight-booking');
 ---
 
 <ServiceLayout service={service} />

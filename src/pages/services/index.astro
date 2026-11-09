@@ -2,37 +2,400 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeading from '../../components/common/SectionHeading.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
-import ServiceCard from '../../components/services/ServiceCard.astro';
 import ConsultationCTA from '../../components/common/ConsultationCTA.astro';
-import { servicesData } from '../../data/services';
+import { detailedServicesData } from '../../data/detailed-services';
+
+const servicesList = Object.values(detailedServicesData);
+
+// Category breakdown for structured navigation
+const educationServices = servicesList.filter(s => ['study-visa', 'mbbs', 'phd'].includes(s.id));
+const travelServices = servicesList.filter(s => ['tourist-visa', 'flight-booking'].includes(s.id));
+const professionalServices = servicesList.filter(s => ['work-visa', 'additional-services'].includes(s.id));
+
+const comparisonMatrix = [
+  {
+    service: 'Study Visa Guidance',
+    category: 'Higher Education',
+    slug: 'study-visa',
+    audience: 'UG, Master’s & PG Diploma seekers',
+    keyDestinations: 'Canada, UK, Australia, USA, Germany, Ireland',
+    primaryDeliverable: 'Course selection, SOP audit, funds verification, visa petition',
+    regulatoryStandard: 'Host country immigration student permit rules',
+  },
+  {
+    service: 'MBBS Abroad Admissions',
+    category: 'Higher Education',
+    slug: 'mbbs',
+    audience: 'NEET-qualified 10+2 PCB students',
+    keyDestinations: 'Uzbekistan, Kazakhstan, Russia, Kyrgyzstan',
+    primaryDeliverable: 'Direct university admission, apostille, Indian mess, NExT orientation',
+    regulatoryStandard: 'NMC Foreign Medical Graduate Licentiate (FMGL) 2021',
+  },
+  {
+    service: 'PhD Abroad Guidance',
+    category: 'Higher Education',
+    slug: 'phd',
+    audience: 'Master’s degree holders & researchers',
+    keyDestinations: 'USA, Germany, UK, Ireland, Australia',
+    primaryDeliverable: 'Research proposal review, supervisor outreach, funded assistantships',
+    regulatoryStandard: 'Departmental peer review & university research committee',
+  },
+  {
+    service: 'Tourist & Visitor Visas',
+    category: 'Travel & Visitor',
+    slug: 'tourist-visa',
+    audience: 'Tourists, family visitors, conference delegates',
+    keyDestinations: 'Schengen (29 states), USA (B1/B2), UK, Canada, Australia',
+    primaryDeliverable: 'Day-wise itinerary, ties to India audit, portal filing, biometrics',
+    regulatoryStandard: 'Consular genuine visitor & temporary stay criteria',
+  },
+  {
+    service: 'Work Visa Documentation',
+    category: 'Professional',
+    slug: 'work-visa',
+    audience: 'Skilled professionals holding verified foreign job offers',
+    keyDestinations: 'UK (Skilled Worker), Canada (LMIA/PGWP), Australia (TSS), Germany',
+    primaryDeliverable: 'Sponsorship audit, ECA guidance, police clearance, work permit filing',
+    regulatoryStandard: 'Documentation assistance only — ZERO recruitment brokering',
+  },
+  {
+    service: 'Air Ticket & Reservation',
+    category: 'Travel & Aviation',
+    slug: 'flight-booking',
+    audience: 'International students & travelers',
+    keyDestinations: 'Global routes (North America, UK, Europe, CIS, Oceania)',
+    primaryDeliverable: 'Student 40kg+ baggage fares, genuine airline hold itineraries',
+    regulatoryStandard: 'Licensed GDS reservations — strictly NO fake PNRs or dummy tickets',
+  },
+  {
+    service: 'Additional Services',
+    category: 'Value-Added Support',
+    slug: 'additional-services',
+    audience: 'Departing scholars & foreign travelers',
+    keyDestinations: 'Global (all 35+ countries)',
+    primaryDeliverable: 'Forex multi-currency cards, OSHC health cover, accommodation guidance',
+    regulatoryStandard: 'Licensed banking & underwriting partner compliance',
+  },
+];
 ---
 
 <BaseLayout
-  title="Our Services — Visa Convention"
-  description="Comprehensive advisory for Study Visas, MBBS/PhD Abroad, Tourist Visas, Work Visa documentation, and Flight Reservation Assistance."
+  title="Our Services — Visa Convention | Official Consultancy"
+  description="Explore our 7 specialized verticals: Study Visas, MBBS Abroad, PhD Programs, Tourist Visas, Work Visa documentation, Flight Reservations, and Student Support."
 >
+  <!-- Breadcrumbs -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-    <Breadcrumbs items={[{ label: 'Services', href: '/services/', current: true }]} />
+    <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services/', current: true }]} />
   </div>
 
-  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <SectionHeading
-      badge="Expert Consultancy"
-      title="Comprehensive Visa & Education Verticals"
-      description="Select from our specialized service streams. Each is managed with personalized documentation audits, regulatory compliance, and complete procedural clarity."
-    />
+  <!-- Hero Header -->
+  <section class="py-12 sm:py-16 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="inline-block px-3.5 py-1 mb-4 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
+          Complete Advisory Spectrum
+        </span>
+        <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4">
+          Professional Visa, Education & Travel Services
+        </h1>
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed mb-8">
+          Visa Convention operates across 7 dedicated practice areas. Each service is built on rigorous factual assessment, strict legal compliance, zero false promises, and transparent counseling.
+        </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {servicesData.map((service) => (
-        <ServiceCard service={service} />
-      ))}
+        <!-- Quick Jump Filter Badges -->
+        <div class="flex flex-wrap items-center gap-2">
+          <a href="#all-services" class="px-4 py-2 text-xs font-bold rounded-lg bg-brand-navy text-white hover:bg-brand-blue transition-colors">
+            All 7 Verticals
+          </a>
+          <a href="#education" class="px-4 py-2 text-xs font-bold rounded-lg bg-white border border-brand-border text-brand-navy hover:border-brand-navy transition-colors">
+            Study & Medical (3)
+          </a>
+          <a href="#travel" class="px-4 py-2 text-xs font-bold rounded-lg bg-white border border-brand-border text-brand-navy hover:border-brand-navy transition-colors">
+            Travel & Ticketing (2)
+          </a>
+          <a href="#professional" class="px-4 py-2 text-xs font-bold rounded-lg bg-white border border-brand-border text-brand-navy hover:border-brand-navy transition-colors">
+            Work & Pre-Departure (2)
+          </a>
+          <a href="#comparison" class="px-4 py-2 text-xs font-bold rounded-lg bg-white border border-brand-border text-brand-red hover:border-brand-red transition-colors">
+            Comparative Matrix
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Cards Section -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="all-services">
+    
+    <!-- Group 1: International Higher Education -->
+    <div class="mb-16" id="education">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="w-3 h-3 rounded-full bg-brand-blue"></span>
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Vertical 01: International Education</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-8">
+        Academic & Medical Study Abroad
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {educationServices.map((service) => (
+          <div class="card-premium p-7 sm:p-8 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-2.5 py-1 text-3xs font-bold uppercase tracking-wider rounded-md bg-brand-bg text-brand-blue border border-brand-blue/20">
+                  {service.badge}
+                </span>
+                <span class="text-xs font-bold text-brand-muted">Practice Area</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-red transition-colors mb-2 leading-snug">
+                {service.title}
+              </h3>
+              <p class="text-xs font-semibold text-brand-blue mb-3">
+                {service.subtitle}
+              </p>
+              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-6">
+                {service.shortDescription}
+              </p>
+
+              <!-- Highlights -->
+              <div class="space-y-2 mb-6 pt-4 border-t border-brand-border/60">
+                <h4 class="text-2xs font-bold uppercase text-brand-navy tracking-wider">Key Guidance Inclusions:</h4>
+                {service.assistanceIncludes.slice(0, 3).map((item) => (
+                  <div class="flex items-start gap-2 text-xs text-brand-text">
+                    <span class="text-brand-red font-bold">•</span>
+                    <span class="font-medium">{item.title}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div class="pt-5 border-t border-brand-border">
+              <a
+                href={`/services/${service.slug}/`}
+                class="inline-flex items-center justify-between w-full text-xs font-bold text-brand-navy group-hover:text-brand-red transition-colors"
+              >
+                <span>View Full Service Details</span>
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
 
-    <div class="mt-16">
-      <ConsultationCTA
-        title="Unsure Which Visa Category Fits Your Profile?"
-        subtitle="Schedule a consultation with our experienced advisors to evaluate your academic and immigration options."
+    <!-- Group 2: Travel & Ticketing -->
+    <div class="mb-16" id="travel">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="w-3 h-3 rounded-full bg-brand-red"></span>
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Vertical 02: Travel & Aviation</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-8">
+        Tourist Visas & Flight Reservations
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {travelServices.map((service) => (
+          <div class="card-premium p-7 sm:p-8 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-2.5 py-1 text-3xs font-bold uppercase tracking-wider rounded-md bg-brand-bg text-brand-red border border-brand-red/20">
+                  {service.badge}
+                </span>
+                <span class="text-xs font-bold text-brand-muted">Practice Area</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-red transition-colors mb-2 leading-snug">
+                {service.title}
+              </h3>
+              <p class="text-xs font-semibold text-brand-blue mb-3">
+                {service.subtitle}
+              </p>
+              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-6">
+                {service.shortDescription}
+              </p>
+
+              <!-- Highlights -->
+              <div class="space-y-2 mb-6 pt-4 border-t border-brand-border/60">
+                <h4 class="text-2xs font-bold uppercase text-brand-navy tracking-wider">Key Guidance Inclusions:</h4>
+                {service.assistanceIncludes.slice(0, 3).map((item) => (
+                  <div class="flex items-start gap-2 text-xs text-brand-text">
+                    <span class="text-brand-red font-bold">•</span>
+                    <span class="font-medium">{item.title}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div class="pt-5 border-t border-brand-border">
+              <a
+                href={`/services/${service.slug}/`}
+                class="inline-flex items-center justify-between w-full text-xs font-bold text-brand-navy group-hover:text-brand-red transition-colors"
+              >
+                <span>View Full Service Details</span>
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Group 3: Professional & Pre-Departure -->
+    <div class="mb-16" id="professional">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Vertical 03: Professional & Auxiliary</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-8">
+        Work Permits & Auxiliary Student Support
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {professionalServices.map((service) => (
+          <div class="card-premium p-7 sm:p-8 flex flex-col justify-between group">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-2.5 py-1 text-3xs font-bold uppercase tracking-wider rounded-md bg-brand-bg text-emerald-700 border border-emerald-300">
+                  {service.badge}
+                </span>
+                <span class="text-xs font-bold text-brand-muted">Practice Area</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-red transition-colors mb-2 leading-snug">
+                {service.title}
+              </h3>
+              <p class="text-xs font-semibold text-brand-blue mb-3">
+                {service.subtitle}
+              </p>
+              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-6">
+                {service.shortDescription}
+              </p>
+
+              <!-- Highlights -->
+              <div class="space-y-2 mb-6 pt-4 border-t border-brand-border/60">
+                <h4 class="text-2xs font-bold uppercase text-brand-navy tracking-wider">Key Guidance Inclusions:</h4>
+                {service.assistanceIncludes.slice(0, 3).map((item) => (
+                  <div class="flex items-start gap-2 text-xs text-brand-text">
+                    <span class="text-brand-red font-bold">•</span>
+                    <span class="font-medium">{item.title}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div class="pt-5 border-t border-brand-border">
+              <a
+                href={`/services/${service.slug}/`}
+                class="inline-flex items-center justify-between w-full text-xs font-bold text-brand-navy group-hover:text-brand-red transition-colors"
+              >
+                <span>View Full Service Details</span>
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Comparative Matrix Table -->
+    <div class="mb-16 pt-8 border-t border-brand-border" id="comparison">
+      <SectionHeading
+        badge="Direct Navigation"
+        title="Comparative Service Matrix"
+        description="Review our distinct service streams to select the exact consultation matching your profile, qualifications, and intended destination."
       />
+
+      <div class="overflow-x-auto rounded-2xl border border-brand-border bg-white shadow-2xs">
+        <table class="w-full text-left text-xs sm:text-sm">
+          <thead class="bg-brand-navy text-white text-xs uppercase tracking-wider font-semibold">
+            <tr>
+              <th scope="col" class="px-5 py-4">Service Stream</th>
+              <th scope="col" class="px-5 py-4">Target Applicant</th>
+              <th scope="col" class="px-5 py-4 hidden md:table-cell">Key Destinations</th>
+              <th scope="col" class="px-5 py-4">Core Deliverable</th>
+              <th scope="col" class="px-5 py-4 text-right">Details</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-brand-border">
+            {comparisonMatrix.map((row) => (
+              <tr class="hover:bg-brand-bg/50 transition-colors">
+                <td class="px-5 py-4 font-bold text-brand-navy">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+                    <a href={`/services/${row.slug}/`} class="hover:text-brand-blue transition-colors">
+                      {row.service}
+                    </a>
+                  </div>
+                  <span class="text-3xs font-medium text-brand-muted block mt-0.5">{row.category}</span>
+                </td>
+                <td class="px-5 py-4 text-brand-text">
+                  {row.audience}
+                </td>
+                <td class="px-5 py-4 text-brand-muted hidden md:table-cell">
+                  {row.keyDestinations}
+                </td>
+                <td class="px-5 py-4 text-brand-text text-xs">
+                  {row.primaryDeliverable}
+                </td>
+                <td class="px-5 py-4 text-right">
+                  <a
+                    href={`/services/${row.slug}/`}
+                    class="inline-block px-3 py-1.5 rounded-lg bg-brand-bg text-brand-navy font-bold text-xs hover:bg-brand-navy hover:text-white transition-colors"
+                  >
+                    Explore
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
+
+    <!-- Mandatory Legal Disclaimers Banner -->
+    <div class="p-7 sm:p-8 rounded-2xl bg-brand-navy text-white shadow-lg border-l-4 border-brand-red mb-16">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-xl bg-white/10 text-amber-400 flex items-center justify-center flex-shrink-0">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white mb-2">
+            Important Institutional & Regulatory Transparency Standards
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+            Visa Convention adheres strictly to ethical counseling practices, fair representation, and statutory transparency:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-slate-200">
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+              <strong class="text-amber-400 block mb-1">Consular Sovereignty:</strong>
+              All visa decisions are the sole and exclusive prerogative of respective sovereign government embassies and immigration departments. Visa Convention never guarantees visa approvals under any circumstance.
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+              <strong class="text-amber-400 block mb-1">Institutional Authority:</strong>
+              Admissions offers and academic scholarships are granted solely by universities based on merit. Listed universities represent institutions for which application guidance is provided, not exclusive contractual representation unless formally verified.
+            </div>
+            <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+              <strong class="text-amber-400 block mb-1">Zero False Documents:</strong>
+              We do not broker or arrange foreign jobs, and we strictly refuse to create or issue fake flight tickets or fabricated PNR reservations.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Call to Action -->
+    <ConsultationCTA
+      title="Unsure Which Visa Pathway Matches Your Goals?"
+      subtitle="Schedule an in-person session at our Hanumangarh office or request a comprehensive remote profile assessment with our senior counselors."
+    />
   </section>
 </BaseLayout>

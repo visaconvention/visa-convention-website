@@ -91,6 +91,57 @@ export interface University {
  * Service Data Model
  * Model for the 6 core business verticals.
  */
+export interface DetailedService {
+  id: ServiceCategory;
+  slug: string;
+  title: string;
+  heroHeadline: string;
+  subtitle: string;
+  shortDescription: string;
+  badge: string;
+  metaTitle: string;
+  metaDescription: string;
+  heroCtaText: string;
+  heroCtaHref: string;
+  assistanceIncludes: Array<{
+    title: string;
+    description: string;
+  }>;
+  supportedCountries: Array<{
+    name: string;
+    slug?: string;
+    highlight: string;
+  }>;
+  featuredInstitutions?: Array<{
+    name: string;
+    country: string;
+    city?: string;
+    website?: string;
+    notes?: string;
+  }>;
+  eligibilityAndCriteria: Array<{
+    title: string;
+    detail: string;
+  }>;
+  regulatoryCompliance?: {
+    title: string;
+    notice: string;
+    points: string[];
+  };
+  stepByStepProcess: Array<{
+    stepNumber: number;
+    title: string;
+    description: string;
+  }>;
+  whyConsultUs: Array<{
+    title: string;
+    description: string;
+  }>;
+  conditionsAndDisclaimers: string[];
+  faqs: FAQItem[];
+  publicationStatus: PublicationStatus;
+}
+
 export interface Service {
   id: ServiceCategory;
   slug: string;

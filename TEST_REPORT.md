@@ -89,6 +89,31 @@ All code, schemas, and assets developed for Visa Convention pass through a stric
 
 ---
 
+### Stage 05: Core Service Architecture & Dedicated Pages
+- **Execution Date:** November 9, 2026
+- **Test Objective:** Verify complete implementation of all 7 dedicated service pages and the Service Overview Hub with distinct content identities, strict regulatory compliance disclosures, decoupled data models, dynamic country route safeguards, and 100% reachable internal navigation.
+
+| Test ID | Test Description | Expected Result | Actual Result | Status |
+| :---: | :--- | :--- | :--- | :---: |
+| **T05-01** | Service Overview Hub (`/services/`) | Overview of 7 verticals + Comparative Matrix | Rendered with category pills, comparative table, & disclaimers | **PASS** |
+| **T05-02** | Study Visa Guidance (`/services/study-visa/`) | 6-step assistance, universities, criteria checklist | Rendered with 8 supported countries, 6 universities, and sticky form | **PASS** |
+| **T05-03** | MBBS Abroad Admissions (`/services/mbbs/`) | Uzbekistan, Kazakhstan data & NMC FMGL notice | Integrated client Excel data (TSMU, SSMU, KazNMU) + NMC 54-mo notice | **PASS** |
+| **T05-04** | PhD Abroad Guidance (`/services/phd/`) | Research proposals, funded assistantships (GRA/GTA) | Rendered with supervisor outreach & academic independence notices | **PASS** |
+| **T05-05** | Tourist Visa Page (`/services/tourist-visa/`) | Itinerary planning, ties to India audit | Rendered with genuine visitor disclaimers & non-immigrant conditions | **PASS** |
+| **T05-06** | Work Visa Page (`/services/work-visa/`) | MANDATORY STATUTORY RECRUITMENT DISCLOSURE | Explicit disclosure: NO job brokering; visa documentation ONLY | **PASS** |
+| **T05-07** | Flight Booking Page (`/services/flight-booking/`) | 40kg student baggage & STRICT DOCUMENT INTEGRITY | Explicit disclosure: licensed GDS holds only, ZERO dummy/fake tickets | **PASS** |
+| **T05-08** | Additional Services (`/services/additional-services/`) | Forex card, OSHC insurance, student housing | Rendered with RBI guidelines & licensed underwriting notices | **PASS** |
+| **T05-09** | Decoupled Data Model | Content isolated in `detailed-services.ts` | Strongly typed `DetailedService` interface in `src/types/index.ts` | **PASS** |
+| **T05-10** | Dynamic Country Link Guard | No 404s to unpublished country routes | Links to published countries only; others display "Advisory Stream" | **PASS** |
+| **T05-11** | Internal Link Audit (`verify-service-links.js`) | 0 broken links across all service routes | 532 internal links checked across 8 service pages $\to$ 0 errors | **PASS** |
+| **T05-12** | TypeScript & Diagnostic Verification | 0 errors in `astro check` across 52 files | `Result (52 files): 0 errors, 0 warnings, 0 hints` | **PASS** |
+| **T05-13** | Static Production Build | All 32 static pages generated | `astro build` complete in 2.80s with 0 errors | **PASS** |
+| **T05-14** | Multi-Viewport Visual Captures | Desktop (1440px), Mobile (390px), Full-page | Edge headless captures saved in artifact directory | **PASS** |
+
+**Stage 05 Verdict:** **PASSED ALL CHECKS (14/14)**
+
+---
+
 ## 3. Automated Test Execution Commands
 
 ```bash

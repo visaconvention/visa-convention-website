@@ -57,16 +57,18 @@ flowchart TD
 - **Deliverables:** `pages/index.astro`, `HeroSection.astro`, `ServiceCard.astro`, `CountryCard.astro`, `ProcessTimeline.astro`, `ConsultationCTA.astro`, 14-section architecture, responsive viewport captures (1440px, 768px, 390px).
 - **Status:** **COMPLETE / PRESENTED FOR REVIEW**
 
-### Stage 05: Core Service Pages (6 Service Categories)
-- **Objectives:** Implement dedicated, informative landing pages for the 6 core business verticals:
-  1. `/services/study-visa/`
-  2. `/services/mbbs/`
-  3. `/services/phd/`
-  4. `/services/tourist-visa/`
-  5. `/services/work-visa/`
-  6. `/services/flight-booking/`
-- **Deliverables:** Reusable service layout, step-by-step application guidance, eligibility criteria checklists, disclaimer banners.
-- **Status:** **PLANNED**
+### Stage 05: Core Service Pages (7 Service Categories & Hub)
+- **Objectives:** Implement dedicated, informative landing pages for the core business verticals, plus an authoritative Service Overview Hub:
+  1. `/services/` (Service Overview Hub & Comparative Matrix)
+  2. `/services/study-visa/`
+  3. `/services/mbbs/`
+  4. `/services/phd/`
+  5. `/services/tourist-visa/`
+  6. `/services/work-visa/`
+  7. `/services/flight-booking/`
+  8. `/services/additional-services/`
+- **Deliverables:** `ServiceLayout.astro`, `detailed-services.ts`, `detailed-services` schema, real MBBS data integration from client files, mandatory regulatory disclosures (NMC FMGL, no job-brokering, genuine GDS ticketing, consular discretion), 532 internal links verified with 0 errors, visual preview captures for desktop and mobile.
+- **Status:** **COMPLETE**
 
 ### Stage 06: Scalable Dynamic Country Engine (35+ Countries)
 - **Objectives:** Implement data-driven dynamic country route generator `/study-abroad/[country]/` capable of rendering 35+ countries from structured data without manual template duplication.
@@ -116,7 +118,7 @@ flowchart TD
 | **02** | Architecture & Project Initialization | Astro + TS + Tailwind setup, data schemas, 30 routes | **COMPLETE** |
 | **03** | Visual Design System & Sitewide Layout | Design tokens, Plus Jakarta Sans, Mega-Menu, preview | **COMPLETE** |
 | **04** | Homepage Implementation | 14 sections, 6 services, destinations, unis, responsive | **REVIEW READY** |
-| **05** | Service Pages (6 Core Services) | 6 dedicated service routes & structured guidance | **QUEUED** |
+| **05** | Service Pages (7 Categories & Hub) | 8 dedicated service routes, rich data, matrix, disclaimers | **COMPLETE** |
 | **06** | Scalable Country Engine (35+ Countries) | Data-driven dynamic country routing & templates | **QUEUED** |
 | **07** | University Directory & Profiles | Searchable university database & dynamic profile pages | **QUEUED** |
 | **08** | About, Trust, Stories & Partnerships | Corporate credibility and verified background pages | **QUEUED** |
