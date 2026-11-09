@@ -9,27 +9,27 @@ interface Props {
 const { university, class: className = '' } = Astro.props;
 ---
 
-<div class={`bg-white rounded-2xl p-6 border border-brand-border shadow-xs hover:shadow-md hover:border-brand-blue/40 transition-all duration-200 flex flex-col justify-between group ${className}`}>
+<div class={`card-premium p-6 sm:p-7 flex flex-col justify-between group ${className}`}>
   <div>
-    <!-- Top Meta -->
+    <!-- Top Metadata -->
     <div class="flex items-start justify-between gap-3 mb-3">
       <div>
-        <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-brand-blue bg-brand-bg px-2.5 py-0.5 rounded-md border border-brand-blue/20 mb-2">
+        <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-brand-blue bg-brand-bg px-2.5 py-1 rounded-lg border border-brand-blue/20 mb-2.5">
           {university.countryName} • {university.city}
         </span>
-        <h3 class="text-lg font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-snug">
+        <h3 class="text-lg sm:text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-snug">
           {university.name}
         </h3>
       </div>
       {university.worldRanking && (
-        <span class="flex-shrink-0 px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+        <span class="flex-shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
           {university.worldRanking}
         </span>
       )}
     </div>
 
     {university.description && (
-      <p class="text-xs sm:text-sm text-brand-muted line-clamp-2 mb-4 leading-relaxed">
+      <p class="text-xs sm:text-sm text-brand-muted line-clamp-2 mb-4 leading-relaxed font-normal">
         {university.description}
       </p>
     )}
@@ -37,21 +37,21 @@ const { university, class: className = '' } = Astro.props;
     <!-- Study Levels Badges -->
     <div class="flex flex-wrap gap-1.5 mb-4">
       {university.studyLevels.map((level) => (
-        <span class="text-[11px] font-medium bg-gray-100 text-brand-navy px-2 py-0.5 rounded-md">
+        <span class="text-[11px] font-semibold bg-gray-100 text-brand-navy px-2.5 py-0.5 rounded-md">
           {level}
         </span>
       ))}
     </div>
 
     <!-- Popular Disciplines -->
-    <div class="text-xs text-brand-muted mb-4">
+    <div class="text-xs text-brand-muted mb-4 leading-relaxed">
       <strong class="text-brand-navy">Programs:</strong> {university.popularDisciplines.join(', ')}
     </div>
   </div>
 
-  <!-- Bottom Action & Relationship Status -->
+  <!-- Bottom Action & Relationship Integrity -->
   <div class="pt-4 border-t border-brand-border flex items-center justify-between text-xs">
-    <span class="text-brand-muted italic">
+    <span class="text-brand-subtle italic">
       {university.relationshipStatus === 'verified_partner' ? 'Verified Partner' : 'Guided for Admission'}
     </span>
     <div class="flex items-center gap-3">
@@ -59,7 +59,7 @@ const { university, class: className = '' } = Astro.props;
         href={university.officialWebsite}
         target="_blank"
         rel="noopener noreferrer"
-        class="text-gray-400 hover:text-brand-navy transition-colors"
+        class="text-gray-400 hover:text-brand-navy transition-colors p-1"
         title="Official Website"
       >
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -71,7 +71,7 @@ const { university, class: className = '' } = Astro.props;
         class="font-bold text-brand-navy group-hover:text-brand-red transition-colors inline-flex items-center gap-1"
       >
         <span>View Profile</span>
-        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
       </a>

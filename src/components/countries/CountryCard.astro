@@ -9,67 +9,67 @@ interface Props {
 const { country, class: className = '' } = Astro.props;
 ---
 
-<div class={`bg-white rounded-2xl overflow-hidden border border-brand-border shadow-xs hover:shadow-md hover:border-brand-blue/40 transition-all duration-200 flex flex-col justify-between group ${className}`}>
+<div class={`card-premium overflow-hidden flex flex-col justify-between group ${className}`}>
   <!-- Card Header Area -->
-  <div class="p-6">
+  <div class="p-6 sm:p-7">
     <div class="flex items-center justify-between mb-4">
       <div class="flex items-center gap-3">
-        <!-- Country ISO Badge / Flag placeholder -->
-        <div class="w-9 h-9 rounded-lg bg-brand-bg text-brand-navy flex items-center justify-center font-black text-xs border border-brand-border">
+        <!-- Country ISO Badge -->
+        <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-extrabold text-xs border border-brand-border shadow-2xs">
           {country.isoCode}
         </div>
         <div>
           <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-none">
             {country.name}
           </h3>
-          <span class="text-xs text-brand-muted">{country.continent}</span>
+          <span class="text-xs text-brand-subtle mt-1 block">{country.continent}</span>
         </div>
       </div>
 
       {country.featured && (
-        <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-brand-red/10 text-brand-red border border-brand-red/20">
-          Top Choice
+        <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-brand-red/10 text-brand-red border border-brand-red/20">
+          Featured
         </span>
       )}
     </div>
 
-    <p class="text-xs sm:text-sm text-brand-muted line-clamp-2 mb-4 leading-relaxed">
+    <p class="text-xs sm:text-sm text-brand-muted line-clamp-2 mb-5 leading-relaxed font-normal">
       {country.shortSummary}
     </p>
 
     <!-- Key Metrics Grid -->
-    <div class="bg-brand-bg rounded-xl p-3 grid grid-cols-2 gap-2 text-xs mb-4">
+    <div class="bg-brand-bg/80 rounded-xl p-3.5 grid grid-cols-2 gap-3 text-xs mb-5 border border-brand-border/60">
       <div>
-        <span class="block text-[10px] uppercase font-bold text-brand-muted">Tuition Range</span>
-        <span class="font-semibold text-brand-navy truncate block">{country.estimatedTuitionRange.split('–')[0]}</span>
+        <span class="block text-[10px] uppercase font-bold text-brand-subtle mb-0.5">Tuition Est.</span>
+        <span class="font-bold text-brand-navy truncate block">{country.estimatedTuitionRange.split('–')[0]}</span>
       </div>
       <div>
-        <span class="block text-[10px] uppercase font-bold text-brand-muted">Major Intakes</span>
-        <span class="font-semibold text-brand-navy truncate block">{country.intakes[0] || 'Flexible'}</span>
+        <span class="block text-[10px] uppercase font-bold text-brand-subtle mb-0.5">Primary Intake</span>
+        <span class="font-bold text-brand-navy truncate block">{country.intakes[0] || 'Flexible'}</span>
       </div>
     </div>
 
     <!-- Highlights -->
-    <ul class="space-y-1.5 text-xs text-brand-text mb-2">
+    <ul class="space-y-2 text-xs text-brand-text mb-2">
       {country.keyHighlights.slice(0, 2).map((highlight) => (
-        <li class="flex items-start gap-1.5">
-          <span class="text-brand-red font-bold">•</span>
-          <span class="line-clamp-1">{highlight}</span>
+        <li class="flex items-start gap-2">
+          <span class="text-brand-red font-black leading-none mt-0.5">•</span>
+          <span class="line-clamp-1 leading-snug">{highlight}</span>
         </li>
       ))}
     </ul>
   </div>
 
   <!-- Bottom CTA -->
-  <div class="p-4 bg-gray-50 border-t border-brand-border flex items-center justify-between text-xs font-bold">
+  <div class="p-4 sm:px-6 bg-slate-50/70 border-t border-brand-border flex items-center justify-between text-xs font-bold">
     <span class="text-brand-muted">Admissions & Visa Guide</span>
     <a
       href={`/study-abroad/${country.slug}/`}
-      class="inline-flex items-center gap-1 text-brand-navy group-hover:text-brand-red transition-colors"
+      class="inline-flex items-center gap-1.5 text-brand-navy group-hover:text-brand-red transition-colors"
     >
       <span>Explore Guide</span>
-      <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
       </svg>
     </a>
   </div>

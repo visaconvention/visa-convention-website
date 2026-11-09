@@ -10,27 +10,27 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-gradient-to-b from-white to-brand-bg pt-12 pb-20 sm:pt-16 sm:pb-24 border-b border-brand-border">
-  <!-- Subtle decorative grid background -->
-  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#102A53 1px, transparent 1px); background-size: 24px 24px;" aria-hidden="true"></div>
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-brand-bg/40 to-brand-bg pt-14 pb-20 sm:pt-20 sm:pb-28 border-b border-brand-border">
+  <!-- Subtle decorative radial background -->
+  <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: radial-gradient(#102A53 1px, transparent 1px); background-size: 28px 28px;" aria-hidden="true"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center max-w-4xl mx-auto">
-      <!-- Trust Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-bg text-brand-navy border border-brand-border mb-6 shadow-xs">
-        <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
-        <span class="text-xs font-bold tracking-wide uppercase">
-          Hanumangarh, Rajasthan • International Advisory
+      <!-- Eyebrow Badge -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white text-brand-navy border border-brand-border mb-6 shadow-subtle">
+        <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse" aria-hidden="true"></span>
+        <span class="text-xs font-bold tracking-wider uppercase">
+          Hanumangarh, Rajasthan • Premier International Advisory
         </span>
       </div>
 
       <!-- Main Headline -->
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-navy tracking-tight leading-tight sm:leading-tight mb-6">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-navy tracking-tight leading-[1.12] mb-6">
         {title}
       </h1>
 
       <!-- Subtitle Description -->
-      <p class="text-lg sm:text-xl text-brand-muted max-w-3xl mx-auto leading-relaxed mb-10">
+      <p class="text-lg sm:text-xl text-brand-muted max-w-3xl mx-auto leading-relaxed mb-10 font-normal">
         {subtitle}
       </p>
 
@@ -38,35 +38,38 @@ const {
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a
           href="/contact/"
-          class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-red text-white font-bold text-base hover:bg-brand-red-hover shadow-md transition-all duration-150 transform hover:-translate-y-0.5"
+          class="btn-primary w-full sm:w-auto"
         >
-          Book Free Profile Assessment
+          <span>Book Free Profile Assessment</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
         </a>
         <a
           href="/study-abroad/"
-          class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-brand-navy font-bold text-base hover:bg-brand-bg border border-brand-border shadow-xs transition-all duration-150"
+          class="btn-outline w-full sm:w-auto"
         >
-          Explore 35+ Countries
+          <span>Explore 35+ Countries</span>
         </a>
       </div>
 
       <!-- Quick Trust Indicators -->
-      <div class="mt-12 pt-8 border-t border-brand-border/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-left sm:text-center text-xs text-brand-muted">
-        <div>
-          <strong class="block text-brand-navy font-bold text-sm">35+ Countries</strong>
-          <span>Extensive Global Network</span>
+      <div class="mt-14 pt-8 border-t border-brand-border/80 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left sm:text-center">
+        <div class="p-2">
+          <strong class="block text-brand-navy font-extrabold text-base sm:text-lg">35+ Countries</strong>
+          <span class="text-xs text-brand-subtle">Global Study Network</span>
         </div>
-        <div>
-          <strong class="block text-brand-navy font-bold text-sm">Honest Counseling</strong>
-          <span>Zero Fabricated Promises</span>
+        <div class="p-2">
+          <strong class="block text-brand-navy font-extrabold text-base sm:text-lg">Honest Advisory</strong>
+          <span class="text-xs text-brand-subtle">Zero Inflated Claims</span>
         </div>
-        <div>
-          <strong class="block text-brand-navy font-bold text-sm">Direct Guidance</strong>
-          <span>One-on-One File Preparation</span>
+        <div class="p-2">
+          <strong class="block text-brand-navy font-extrabold text-base sm:text-lg">Direct Counseling</strong>
+          <span class="text-xs text-brand-subtle">Personalized Dossier Prep</span>
         </div>
-        <div>
-          <strong class="block text-brand-navy font-bold text-sm">Flight Coordination</strong>
-          <span>Genuine Student Itineraries</span>
+        <div class="p-2">
+          <strong class="block text-brand-navy font-extrabold text-base sm:text-lg">Flight Assistance</strong>
+          <span class="text-xs text-brand-subtle">Verified Student Routes</span>
         </div>
       </div>
     </div>

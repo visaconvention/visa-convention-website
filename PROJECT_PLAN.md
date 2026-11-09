@@ -49,8 +49,8 @@ flowchart TD
 
 ### Stage 03: Premium Visual Design System & Sitewide Layout
 - **Objectives:** Implement global CSS tokens (Navy `#102A53`, Red `#C91D32`, Blue `#2367A4`), typography scale, accessible responsive Header with navigation, mobile drawer, and comprehensive corporate Footer.
-- **Deliverables:** `BaseLayout.astro`, `Header.astro`, `DesktopNavigation.astro`, `MobileNavigation.astro`, `Footer.astro`, theme variables, responsive testing.
-- **Status:** **PROPOSED / READY FOR EXECUTION**
+- **Deliverables:** `BaseLayout.astro`, `Header.astro`, `DesktopNavigation.astro` (mega-menu), `MobileNavigation.astro`, `Footer.astro`, theme variables, responsive testing, `/design-system/` showcase route, high-res preview captures.
+- **Status:** **COMPLETE / PRESENTED FOR REVIEW**
 
 ### Stage 04: Homepage Implementation
 - **Objectives:** Build the high-converting corporate homepage featuring hero section, trust indicators, 6 core service cards, featured study destinations carousel/grid, consultation CTA banner, and verified FAQs.
@@ -114,7 +114,7 @@ flowchart TD
 | :---: | :--- | :--- | :---: |
 | **01** | Master Instructions & Project Plan | Governance docs, `AGENTS.md`, plan, content scaffold | **COMPLETE** |
 | **02** | Architecture & Project Initialization | Astro + TS + Tailwind setup, data schemas, 30 routes | **COMPLETE** |
-| **03** | Visual Design System & Sitewide Layout | Design tokens, Header, Footer, Nav components | **READY FOR EXECUTION** |
+| **03** | Visual Design System & Sitewide Layout | Design tokens, Plus Jakarta Sans, Mega-Menu, preview | **REVIEW READY** |
 | **04** | Homepage Implementation | High-conversion corporate homepage | **QUEUED** |
 | **05** | Service Pages (6 Core Services) | 6 dedicated service routes & structured guidance | **QUEUED** |
 | **06** | Scalable Country Engine (35+ Countries) | Data-driven dynamic country routing & templates | **QUEUED** |

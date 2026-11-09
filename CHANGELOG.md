@@ -6,9 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - Planned Stages 03–12
+## [Unreleased] - Planned Stages 04–12
 ### Planned
-- **Stage 03:** Premium visual design system, refined typography scales, component styling, and sitewide aesthetic polish.
 - **Stage 04:** High-converting corporate homepage implementation.
 - **Stage 05:** Service pages deep-content enhancement.
 - **Stage 06:** Ingestion of all 31 client Excel workbooks into dynamic country engine.
@@ -18,6 +17,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **Stage 10:** Technical SEO, Schema.org JSON-LD structured data, and Web Vitals optimization.
 - **Stage 11:** Comprehensive accessibility (WCAG 2.1 AA), cross-browser, and responsiveness QA.
 - **Stage 12:** Production build verification and client handover documentation.
+
+---
+
+## [0.3.0] - 2026-11-09
+### Added
+- **Typography Engine:** Integrated Google Font preconnects for Plus Jakarta Sans and JetBrains Mono with system fallbacks.
+- **Design Tokens & System Architecture:** Defined brand CSS custom properties in `src/styles/global.css` for typography scales, contrast-verified color tokens, spacing scales, micro-shadows, and border radiuses.
+- **Interactive Component Classes:** Implemented `.btn-primary` (Signature Red with subtle hover lift), `.btn-secondary` (Navy), `.btn-outline`, `.card-premium`, and `.badge-pill`.
+- **Mega-Menu Navigation:** Upgraded `DesktopNavigation.astro` with a 2-column service mega-menu, contextual icons, and consultation quick links.
+- **Accessible Form Controls:** Refined `EnquiryForm.astro` with 48px min touch targets, active focus rings (`ring-2 ring-brand-blue`), and distinct error states.
+- **Showcase Route:** Built `/design-system/` presenting live color tokens with WCAG contrast metrics, typography scale, buttons, form controls, and card variations.
+- **Visual Capture Previews:** Captured high-resolution 1440px desktop and 390px mobile screenshots rendered with Edge Chromium.
+- **Verification:** Verified `astro check` with 0 errors across 50 files; all 31 static pages build cleanly in 3.2s.
 
 ---
 

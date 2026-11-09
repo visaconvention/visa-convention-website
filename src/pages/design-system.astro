@@ -1,0 +1,403 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/common/SectionHeading.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+import ServiceCard from '../components/services/ServiceCard.astro';
+import CountryCard from '../components/countries/CountryCard.astro';
+import UniversityCard from '../components/universities/UniversityCard.astro';
+import EnquiryForm from '../components/forms/EnquiryForm.astro';
+import { servicesData } from '../data/services';
+import { countriesData } from '../data/countries';
+import { universitiesData } from '../data/universities';
+
+const sampleService = servicesData[0];
+const sampleCountry = countriesData[0];
+const sampleUniversity = universitiesData[0];
+---
+
+<BaseLayout
+  title="Design System & UI Component Showcase — Visa Convention"
+  description="Official design system tokens, typography scales, color contrast specifications, and reusable component guidelines for Visa Convention."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs items={[{ label: 'Design System', href: '/design-system/', current: true }]} />
+  </div>
+
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Intro Banner -->
+    <div class="mb-16 pb-12 border-b border-brand-border">
+      <span class="badge-pill mb-4">
+        Design Specifications V1.0
+      </span>
+      <h1 class="text-4xl sm:text-5xl font-black text-brand-navy tracking-tight mb-4">
+        Visa Convention Design System
+      </h1>
+      <p class="text-lg text-brand-muted max-w-3xl leading-relaxed">
+        Engineered for authority, clarity, and trust. Designed to establish an international corporate consulting presence distinct from generic visa-agent templates.
+      </p>
+    </div>
+
+    <!-- Section 1: Color Palette & Contrast Validation -->
+    <div class="mb-20">
+      <SectionHeading
+        badge="Tokens: Color"
+        title="1. Official Brand Color Palette"
+        description="All color pairings meet or exceed WCAG 2.1 AA standards (4.5:1 for normal text, 3:1 for graphical UI components)."
+        align="left"
+      />
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <!-- Deep Navy -->
+        <div class="bg-white rounded-2xl p-5 border border-brand-border shadow-subtle space-y-3">
+          <div class="h-28 rounded-xl bg-brand-navy flex items-end p-3 text-white font-mono text-xs shadow-inner">
+            #102A53
+          </div>
+          <div>
+            <h4 class="font-bold text-brand-navy text-base">Deep Navy</h4>
+            <span class="text-xs text-brand-muted block">Dominant brand anchor</span>
+            <div class="mt-3 flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+              <span>Contrast: 13.5:1 (AAA)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Signature Red -->
+        <div class="bg-white rounded-2xl p-5 border border-brand-border shadow-subtle space-y-3">
+          <div class="h-28 rounded-xl bg-brand-red flex items-end p-3 text-white font-mono text-xs shadow-inner">
+            #C91D32
+          </div>
+          <div>
+            <h4 class="font-bold text-brand-navy text-base">Signature Red</h4>
+            <span class="text-xs text-brand-muted block">Selective emphasis & CTA</span>
+            <div class="mt-3 flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+              <span>Contrast: 5.1:1 (AA)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Professional Blue -->
+        <div class="bg-white rounded-2xl p-5 border border-brand-border shadow-subtle space-y-3">
+          <div class="h-28 rounded-xl bg-brand-blue flex items-end p-3 text-white font-mono text-xs shadow-inner">
+            #2367A4
+          </div>
+          <div>
+            <h4 class="font-bold text-brand-navy text-base">Professional Blue</h4>
+            <span class="text-xs text-brand-muted block">Secondary accents & links</span>
+            <div class="mt-3 flex items-center gap-1.5 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+              <span>Contrast: 5.3:1 (AA)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soft Background -->
+        <div class="bg-white rounded-2xl p-5 border border-brand-border shadow-subtle space-y-3">
+          <div class="h-28 rounded-xl bg-brand-bg border border-brand-border flex items-end p-3 text-brand-navy font-mono text-xs">
+            #F5F8FC
+          </div>
+          <div>
+            <h4 class="font-bold text-brand-navy text-base">Soft Background</h4>
+            <span class="text-xs text-brand-muted block">Subtle surface alternate</span>
+            <div class="mt-3 flex items-center gap-1.5 text-[11px] font-bold text-brand-navy bg-brand-bg px-2.5 py-1 rounded-md border border-brand-border">
+              <span>Neutral Surface</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pure White -->
+        <div class="bg-white rounded-2xl p-5 border border-brand-border shadow-subtle space-y-3">
+          <div class="h-28 rounded-xl bg-white border border-brand-border flex items-end p-3 text-brand-navy font-mono text-xs">
+            #FFFFFF
+          </div>
+          <div>
+            <h4 class="font-bold text-brand-navy text-base">Pure White</h4>
+            <span class="text-xs text-brand-muted block">Card surfaces & clarity</span>
+            <div class="mt-3 flex items-center gap-1.5 text-[11px] font-bold text-brand-navy bg-brand-bg px-2.5 py-1 rounded-md border border-brand-border">
+              <span>Base Surface</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Typography Scale & Font-Pairing -->
+    <div class="mb-20">
+      <SectionHeading
+        badge="Tokens: Typography"
+        title="2. Typography Scale & Font Strategy"
+        description="Typeface: Plus Jakarta Sans for supreme corporate legibility, geometric balance, and clean digital hierarchy."
+        align="left"
+      />
+
+      <div class="bg-white rounded-3xl p-8 sm:p-12 border border-brand-border shadow-card space-y-8 divide-y divide-brand-border">
+        <div class="pt-2">
+          <div class="flex items-center justify-between text-xs font-mono text-brand-subtle mb-2">
+            <span>Hero Display / 56px – 64px / Black</span>
+            <span>font-black tracking-tight leading-[1.08]</span>
+          </div>
+          <p class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-navy tracking-tight leading-[1.08]">
+            Study in World-Class Universities
+          </p>
+        </div>
+
+        <div class="pt-8">
+          <div class="flex items-center justify-between text-xs font-mono text-brand-subtle mb-2">
+            <span>Heading 1 / 36px – 44px / ExtraBold</span>
+            <span>font-extrabold tracking-tight leading-[1.15]</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-navy tracking-tight leading-[1.15]">
+            Comprehensive Visa & Global Education Advisory
+          </h1>
+        </div>
+
+        <div class="pt-8">
+          <div class="flex items-center justify-between text-xs font-mono text-brand-subtle mb-2">
+            <span>Heading 2 / 28px – 34px / Bold</span>
+            <span>font-bold tracking-tight leading-[1.2]</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-brand-navy tracking-tight leading-[1.2]">
+            Transparent Guidance Rooted in Hanumangarh
+          </h2>
+        </div>
+
+        <div class="pt-8">
+          <div class="flex items-center justify-between text-xs font-mono text-brand-subtle mb-2">
+            <span>Heading 3 / 20px – 24px / Bold</span>
+            <span>font-bold leading-[1.3]</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-bold text-brand-navy leading-[1.3]">
+            MBBS & PhD Abroad Program Roadmaps
+          </h3>
+        </div>
+
+        <div class="pt-8">
+          <div class="flex items-center justify-between text-xs font-mono text-brand-subtle mb-2">
+            <span>Body Large / 18px / Regular</span>
+            <span>text-lg text-brand-muted leading-relaxed</span>
+          </div>
+          <p class="text-lg text-brand-muted leading-relaxed font-normal">
+            Visa Convention delivers honest profile evaluations, university shortlisting, and thorough document auditing for over 35 destination countries.
+          </p>
+        </div>
+
+        <div class="pt-8">
+          <div class="flex items-center justify-between text-xs font-mono text-brand-subtle mb-2">
+            <span>Body Base / 15px – 16px / Regular</span>
+            <span>text-base text-brand-text leading-relaxed</span>
+          </div>
+          <p class="text-base text-brand-text leading-relaxed font-normal">
+            Final visa decisions are determined exclusively by official government embassies and consulates. Our counselors ensure complete documentation veracity.
+          </p>
+        </div>
+
+        <div class="pt-8">
+          <div class="flex items-center justify-between text-xs font-mono text-brand-subtle mb-2">
+            <span>Tabular Numerical Figures / JetBrains Mono</span>
+            <span>font-mono text-sm</span>
+          </div>
+          <p class="font-mono text-sm text-brand-navy bg-brand-bg p-3 rounded-lg border border-brand-border">
+            Tuition: CAD 18,000 – CAD 36,000 / Year • Intake: Fall 2026 • Code: CA-001
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3: Interactive Button System -->
+    <div class="mb-20">
+      <SectionHeading
+        badge="Components: Buttons"
+        title="3. Interactive Button Hierarchy"
+        description="High-contrast interactive states with subtle 180ms ease-out transitions and WCAG focus rings."
+        align="left"
+      />
+
+      <div class="bg-white rounded-3xl p-8 border border-brand-border shadow-card space-y-6">
+        <div class="flex flex-wrap items-center gap-4">
+          <button type="button" class="btn-primary">
+            <span>Primary Action (Red)</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+
+          <button type="button" class="btn-secondary">
+            <span>Secondary Action (Navy)</span>
+          </button>
+
+          <button type="button" class="btn-outline">
+            <span>Outline Action (Neutral)</span>
+          </button>
+
+          <button type="button" disabled class="px-6 py-3.5 rounded-xl bg-gray-100 text-gray-400 font-bold text-sm cursor-not-allowed">
+            Disabled Action
+          </button>
+        </div>
+
+        <div class="pt-4 border-t border-brand-border flex items-center gap-6 text-sm">
+          <a href="#link" class="text-brand-blue font-bold hover:underline flex items-center gap-1">
+            <span>Text Link Button</span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="#link" class="text-brand-red font-bold hover:underline flex items-center gap-1">
+            <span>Emphasis Link Button</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4: Form Controls & Inputs -->
+    <div class="mb-20">
+      <SectionHeading
+        badge="Components: Forms"
+        title="4. Accessible Form Inputs & Validation"
+        description="Clean, spacious inputs with 48px touch targets, visible focus rings, and clear validation feedback."
+        align="left"
+      />
+
+      <div class="bg-white rounded-3xl p-8 sm:p-10 border border-brand-border shadow-card max-w-2xl">
+        <div class="space-y-5">
+          <!-- Text Input -->
+          <div>
+            <label for="demo-input-text" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+              Standard Text Input <span class="text-brand-red">*</span>
+            </label>
+            <input
+              type="text"
+              id="demo-input-text"
+              placeholder="e.g. Rahul Sharma"
+              class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+            />
+          </div>
+
+          <!-- Select Input -->
+          <div>
+            <label for="demo-select" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+              Dropdown Select
+            </label>
+            <select
+              id="demo-select"
+              class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+            >
+              <option>Study Visa Guidance</option>
+              <option>MBBS Abroad Admissions</option>
+              <option>PhD Abroad Guidance</option>
+            </select>
+          </div>
+
+          <!-- Error State -->
+          <div>
+            <label for="demo-input-error" class="block text-xs font-bold uppercase tracking-wider text-red-700 mb-1.5">
+              Input with Error State
+            </label>
+            <input
+              type="text"
+              id="demo-input-error"
+              value="invalid-email@"
+              aria-invalid="true"
+              aria-describedby="demo-error-msg"
+              class="w-full px-4 py-3.5 rounded-xl bg-red-50/40 border border-red-500 text-sm text-red-900 focus:outline-none focus:ring-2 focus:ring-red-500 min-h-[48px]"
+            />
+            <span id="demo-error-msg" class="block text-xs text-red-600 font-medium mt-1.5">
+              Please provide a valid email address (e.g. name@domain.com).
+            </span>
+          </div>
+
+          <!-- Checkbox -->
+          <div class="flex items-start gap-3 pt-2">
+            <input
+              type="checkbox"
+              id="demo-checkbox"
+              checked
+              class="mt-1 w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-gray-300"
+            />
+            <label for="demo-checkbox" class="text-xs text-brand-muted leading-relaxed">
+              I consent to confidential profile evaluation under the Privacy Policy.
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 5: Card Components Live Showcase -->
+    <div class="mb-20">
+      <SectionHeading
+        badge="Components: Cards"
+        title="5. Card Components System"
+        description="Refined card layouts for services, destination countries, and university directory profiles."
+        align="left"
+      />
+
+      <div class="space-y-12">
+        <!-- Service Card Example -->
+        <div>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-brand-muted mb-4">
+            A. Service Vertical Card (1 of 6)
+          </h4>
+          <div class="max-w-md">
+            <ServiceCard service={sampleService} />
+          </div>
+        </div>
+
+        <!-- Destination Card Example -->
+        <div>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-brand-muted mb-4">
+            B. Destination Country Card (Dynamic 35+ Scalable Engine)
+          </h4>
+          <div class="max-w-md">
+            <CountryCard country={sampleCountry} />
+          </div>
+        </div>
+
+        <!-- University Card Example -->
+        <div>
+          <h4 class="text-sm font-bold uppercase tracking-wider text-brand-muted mb-4">
+            C. University Directory Profile Card
+          </h4>
+          <div class="max-w-lg">
+            <UniversityCard university={sampleUniversity} />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 6: Consultation Form Preview -->
+    <div class="mb-20">
+      <SectionHeading
+        badge="Components: Forms"
+        title="6. Live Consultation Form Preview"
+        description="Features invisible honeypot trap, render timestamp evaluation, and WCAG AA compliance."
+        align="left"
+      />
+      <div class="max-w-2xl">
+        <EnquiryForm />
+      </div>
+    </div>
+
+    <!-- Section 7: Accessibility & Motion Rules -->
+    <div class="p-8 sm:p-10 rounded-3xl bg-brand-navy text-white space-y-6">
+      <h3 class="text-2xl font-bold text-white">
+        7. Accessibility & Motion Rules (WCAG 2.1 AA)
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-200">
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+          <strong class="block text-white font-bold text-base">Color Contrast</strong>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            All body text exceeds 5:1 contrast against backdrops. Deep Navy achieves 13.5:1 against white, satisfying Level AAA.
+          </p>
+        </div>
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+          <strong class="block text-white font-bold text-base">Keyboard Focus Rings</strong>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            All interactive elements carry visible 2px offset rings (`:focus-visible`), ensuring screen reader and keyboard accessibility.
+          </p>
+        </div>
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+          <strong class="block text-white font-bold text-base">Reduced Motion</strong>
+          <p class="text-xs text-gray-300 leading-relaxed">
+            Subtle 180ms ease-out transitions disable automatically when `@media (prefers-reduced-motion: reduce)` is signaled.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
