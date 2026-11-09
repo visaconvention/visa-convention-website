@@ -17,7 +17,8 @@ export type ServiceCategory =
   | 'phd'
   | 'tourist-visa'
   | 'work-visa'
-  | 'flight-booking';
+  | 'flight-booking'
+  | 'additional-services';
 
 export interface FAQItem {
   question: string;

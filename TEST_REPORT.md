@@ -66,6 +66,29 @@ All code, schemas, and assets developed for Visa Convention pass through a stric
 
 ---
 
+### Stage 04: Homepage Implementation & Exact Section Architecture
+- **Execution Date:** November 9, 2026
+- **Test Objective:** Verify complete implementation of all 14 homepage sections in exact specified order, verified metrics integrity, hidden unverified testimonials, and multi-viewport responsive testing.
+
+| Test ID | Test Description | Expected Result | Actual Result | Status |
+| :---: | :--- | :--- | :--- | :---: |
+| **T04-01** | Section Order Compliance | Sections 1 through 14 match prompt order exactly | Verified exact match from Header to Footer | **PASS** |
+| **T04-02** | Hero Section Copy & CTAs | Approved headline & primary/secondary CTAs | "Your Global Journey Begins with Confidence." | **PASS** |
+| **T04-03** | Verified Trust Metrics Only | Hide unverified approval rates | Displaying 35+ countries, 6 services, 1-on-1 counseling | **PASS** |
+| **T04-04** | Six Service Categories | All 6 services displayed on homepage | Study, MBBS/PhD, Tourist, Work, Flights, Additional | **PASS** |
+| **T04-05** | Destination Countries Limit | Max 6 featured destinations + "Explore All" | 6 countries rendered + link to `/study-abroad/` | **PASS** |
+| **T04-06** | Featured Universities Disclosure | 8 verified institutions with guidance disclosure | 8 universities rendered with explicit disclaimer label | **PASS** |
+| **T04-07** | Why Visa Convention Differentiators | 4 core pillars without unsupported claims | Expert, Transparent, Timely, End-to-End | **PASS** |
+| **T04-08** | Study Abroad 3 Steps | Clean 3-step numbered roadmap | Shortlisting $\to$ Dossier $\to$ Visa Filing | **PASS** |
+| **T04-09** | Testimonials Isolation Check | Hide testimonials if unverified | Section 10 hidden (`hasVerifiedTestimonials = false`) | **PASS** |
+| **T04-10** | Business Partnerships Portal | Dedicated module for institutional partners | Rendered with direct `/partnerships/` link | **PASS** |
+| **T04-11** | SEO Schema Structured Data | FAQPage Schema for 6 realistic questions | `src/utils/seo.ts` injects JSON-LD script | **PASS** |
+| **T04-12** | Multi-Viewport Visual Verification | 1440px desktop, 768px tablet, 390px mobile | High-res Edge captures verified without overflow | **PASS** |
+
+**Stage 04 Verdict:** **PASSED ALL CHECKS (12/12)**
+
+---
+
 ## 3. Automated Test Execution Commands
 
 ```bash

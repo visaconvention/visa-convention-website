@@ -241,4 +241,62 @@ export const servicesData: Service[] = [
     ],
     publicationStatus: 'published',
   },
+  {
+    id: 'additional-services',
+    slug: 'additional-services',
+    title: 'Additional Travel & Student Services',
+    subtitle: 'Forex Cards, Travel Insurance, Student Housing & Pre-Departure Briefings',
+    shortDescription: 'Essential auxiliary support ensuring comfortable travel, foreign currency cards, comprehensive student health coverage, and campus transition.',
+    iconName: 'ShieldCheck',
+    targetAudience: [
+      'Students preparing for departure to international universities',
+      'Families and leisure travelers requiring travel insurance and currency cards',
+      'First-time international travelers needing transit and baggage guidance',
+    ],
+    keyOfferings: [
+      'Student Forex card issuance with zero markup and multi-currency loading',
+      'Overseas student health cover (OSHC) & mandatory travel insurance',
+      'Vetted on-campus dorm and off-campus student accommodation guidance',
+      'Pre-departure orientation on customs, immigration clearance, and local transit',
+    ],
+    stepByStepProcess: [
+      { stepNumber: 1, title: 'Requirement Audit', description: 'Review host nation insurance mandates, luggage limits, and foreign exchange needs.' },
+      { stepNumber: 2, title: 'Partner Option Matching', description: 'Compare licensed forex providers, institutional insurance, and verified student housing.' },
+      { stepNumber: 3, title: 'Activation & Dossier', description: 'Issue policy documents, card delivery, and accommodation confirmation vouchers.' },
+      { stepNumber: 4, title: 'Pre-Departure Briefing', description: 'Attend personalized briefing covering airport transit, customs rules, and arrival steps.' },
+    ],
+    eligibilityChecklist: [
+      'Valid passport and issued foreign visa',
+      'University offer letter / admission confirmation (for student rates)',
+      'Basic KYC documents for foreign exchange card issuance',
+    ],
+    disclaimer: 'Auxiliary financial and insurance products are facilitated through licensed third-party banking and insurance entities in compliance with RBI regulations.',
+    faqs: [
+      {
+        question: 'Is student health insurance mandatory for studying abroad?',
+        answer: 'Yes, destination countries like Australia (OSHC), Germany (Statutory Health Insurance), and the UK (Immigration Health Surcharge) legally require valid medical coverage.'
+      }
+    ],
+    publicationStatus: 'published',
+  },
 ];
+
+export function getHomepageServices(): Service[] {
+  // Returns the exact 6 business categories for the homepage:
+  // 1. Study Visa, 2. MBBS / PhD, 3. Tourist Visa, 4. Work Visa, 5. Flight Ticket / Reservation Assistance, 6. Additional Services
+  const study = servicesData.find(s => s.id === 'study-visa')!;
+  const mbbs = servicesData.find(s => s.id === 'mbbs')!;
+  const tourist = servicesData.find(s => s.id === 'tourist-visa')!;
+  const work = servicesData.find(s => s.id === 'work-visa')!;
+  const flight = servicesData.find(s => s.id === 'flight-booking')!;
+  const additional = servicesData.find(s => s.id === 'additional-services')!;
+
+  const mbbsPhd: Service = {
+    ...mbbs,
+    title: 'MBBS / PhD Abroad',
+    subtitle: 'NMC Recognized Medical Faculties & Doctoral Research Roadmaps',
+    shortDescription: 'Guidance for medical aspirants pursuing WHO/NMC recognized MBBS degrees, alongside research proposals and funded PhD assistantships abroad.',
+  };
+
+  return [study, mbbsPhd, tourist, work, flight, additional];
+}

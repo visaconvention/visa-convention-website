@@ -1,22 +1,30 @@
 ---
 interface Props {
-  title?: string;
-  subtitle?: string;
+  headline?: string;
+  subheadline?: string;
+  primaryCtaText?: string;
+  primaryCtaHref?: string;
+  secondaryCtaText?: string;
+  secondaryCtaHref?: string;
 }
 
 const {
-  title = 'Your Bridge to Global Universities & Seamless Visa Approvals',
-  subtitle = 'Visa Convention delivers ethical, expert counseling for study abroad, MBBS/PhD admissions, tourist & work visas, and international flight assistance from Hanumangarh, Rajasthan.',
+  headline = 'Your Global Journey Begins with Confidence.',
+  subheadline = 'Visa Convention delivers ethical, expert counseling for study abroad, MBBS & PhD admissions, tourist & work visas, and international flight assistance from Hanumangarh, Rajasthan.',
+  primaryCtaText = 'Get Expert Guidance',
+  primaryCtaHref = '/contact/',
+  secondaryCtaText = 'Explore Services',
+  secondaryCtaHref = '#services',
 } = Astro.props;
 ---
 
 <section class="relative overflow-hidden bg-gradient-to-b from-white via-brand-bg/40 to-brand-bg pt-14 pb-20 sm:pt-20 sm:pb-28 border-b border-brand-border">
-  <!-- Subtle decorative radial background -->
+  <!-- Subtle decorative radial background pattern -->
   <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: radial-gradient(#102A53 1px, transparent 1px); background-size: 28px 28px;" aria-hidden="true"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center max-w-4xl mx-auto">
-      <!-- Eyebrow Badge -->
+      <!-- Eyebrow Pill Badge -->
       <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white text-brand-navy border border-brand-border mb-6 shadow-subtle">
         <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse" aria-hidden="true"></span>
         <span class="text-xs font-bold tracking-wider uppercase">
@@ -26,30 +34,30 @@ const {
 
       <!-- Main Headline -->
       <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-navy tracking-tight leading-[1.12] mb-6">
-        {title}
+        {headline}
       </h1>
 
-      <!-- Subtitle Description -->
+      <!-- Subheadline Description -->
       <p class="text-lg sm:text-xl text-brand-muted max-w-3xl mx-auto leading-relaxed mb-10 font-normal">
-        {subtitle}
+        {subheadline}
       </p>
 
       <!-- Primary Action Buttons -->
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <a
-          href="/contact/"
+          href={primaryCtaHref}
           class="btn-primary w-full sm:w-auto"
         >
-          <span>Book Free Profile Assessment</span>
+          <span>{primaryCtaText}</span>
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </a>
         <a
-          href="/study-abroad/"
+          href={secondaryCtaHref}
           class="btn-outline w-full sm:w-auto"
         >
-          <span>Explore 35+ Countries</span>
+          <span>{secondaryCtaText}</span>
         </a>
       </div>
 

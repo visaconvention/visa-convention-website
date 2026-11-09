@@ -6,10 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - Planned Stages 04–12
+## [Unreleased] - Planned Stages 05–12
 ### Planned
-- **Stage 04:** High-converting corporate homepage implementation.
-- **Stage 05:** Service pages deep-content enhancement.
+- **Stage 05:** Dedicated deep-content service pages for all 6 verticals.
 - **Stage 06:** Ingestion of all 31 client Excel workbooks into dynamic country engine.
 - **Stage 07:** University directory expanded database and detailed profiles.
 - **Stage 08:** About, verified trust, success stories, and partnership pages.
@@ -17,6 +16,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 - **Stage 10:** Technical SEO, Schema.org JSON-LD structured data, and Web Vitals optimization.
 - **Stage 11:** Comprehensive accessibility (WCAG 2.1 AA), cross-browser, and responsiveness QA.
 - **Stage 12:** Production build verification and client handover documentation.
+
+---
+
+## [0.4.0] - 2026-11-09
+### Added
+- **Exact 14-Section Homepage Architecture:** Implemented `src/pages/index.astro` adhering strictly to the user-specified sequential section order:
+  1. Header with Hotline & Consultation CTA
+  2. Hero with *"Your Global Journey Begins with Confidence."*
+  3. Verified Trust Metrics (unverified claims strictly excluded)
+  4. Six Service Categories (*Study Visa*, *MBBS / PhD*, *Tourist Visa*, *Work Visa*, *Flight Reservation*, *Additional Services*)
+  5. Featured Study Abroad Destinations (Max 6 featured countries + *"Explore All 35+ Destinations"*)
+  6. Featured World Universities (8 verified institutions with explicit *"Universities Guided"* disclosure)
+  7. Why Visa Convention (4 core differentiators: Expert, Transparent, Timely, End-to-End)
+  8. Study Abroad in 3 Steps (Evaluation $\to$ Dossier $\to$ Visa Petition)
+  9. About the Company (Hanumangarh regional roots & operating standards)
+  10. Success Stories (Safely hidden via `hasVerifiedTestimonials = false` until client releases are confirmed)
+  11. Business Partnerships (Institutional collaboration module & partner inquiry CTA)
+  12. Frequently Asked Questions (6 practical questions with Schema.org JSON-LD)
+  13. Final Consultation CTA banner
+  14. Corporate Footer with statutory disclaimers
+- **Responsive Viewport Previews:** Edge Chromium rendered high-resolution captures across 1440px desktop, 768px tablet, and 390px mobile viewports.
+- **Verification:** Verified `npm run check` with 0 errors across 51 files; static build compiled 32 pages in 2.47s.
 
 ---
 

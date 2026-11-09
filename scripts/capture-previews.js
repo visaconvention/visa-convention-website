@@ -14,47 +14,47 @@ async function capture() {
 
   const page = await browser.newPage();
 
-  // 1. Desktop Design System (1440x900)
-  console.log('Capturing Desktop Design System...');
-  await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 2 });
-  await page.goto('http://localhost:4321/design-system/', { waitUntil: 'networkidle0' });
-  await page.screenshot({
-    path: path.join(ARTIFACTS_DIR, 'design-system-desktop.png'),
-    fullPage: false,
-  });
-
-  // 2. Mobile Design System (390x844 - iPhone 14 / modern smartphone)
-  console.log('Capturing Mobile Design System...');
-  await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
-  await page.goto('http://localhost:4321/design-system/', { waitUntil: 'networkidle0' });
-  await page.screenshot({
-    path: path.join(ARTIFACTS_DIR, 'design-system-mobile.png'),
-    fullPage: false,
-  });
-
-  // 3. Desktop Homepage (1440x900)
-  console.log('Capturing Desktop Homepage...');
+  // 1. Desktop Homepage (1440x900)
+  console.log('Capturing Desktop Homepage (1440x900)...');
   await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 2 });
   await page.goto('http://localhost:4321/', { waitUntil: 'networkidle0' });
   await page.screenshot({
-    path: path.join(ARTIFACTS_DIR, 'homepage-desktop.png'),
+    path: path.join(ARTIFACTS_DIR, 'homepage-desktop-1440.png'),
     fullPage: false,
   });
 
-  // 4. Mobile Homepage (390x844)
-  console.log('Capturing Mobile Homepage...');
+  // 2. Tablet Homepage (768x1024 - iPad / Medium Tablet)
+  console.log('Capturing Tablet Homepage (768x1024)...');
+  await page.setViewport({ width: 768, height: 1024, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
+  await page.goto('http://localhost:4321/', { waitUntil: 'networkidle0' });
+  await page.screenshot({
+    path: path.join(ARTIFACTS_DIR, 'homepage-tablet-768.png'),
+    fullPage: false,
+  });
+
+  // 3. Mobile Homepage (390x844 - iPhone / Modern Smartphone)
+  console.log('Capturing Mobile Homepage (390x844)...');
   await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 2 });
   await page.goto('http://localhost:4321/', { waitUntil: 'networkidle0' });
   await page.screenshot({
-    path: path.join(ARTIFACTS_DIR, 'homepage-mobile.png'),
+    path: path.join(ARTIFACTS_DIR, 'homepage-mobile-390.png'),
     fullPage: false,
+  });
+
+  // 4. Full Page Desktop Homepage
+  console.log('Capturing Full-Page Desktop Homepage...');
+  await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
+  await page.goto('http://localhost:4321/', { waitUntil: 'networkidle0' });
+  await page.screenshot({
+    path: path.join(ARTIFACTS_DIR, 'homepage-fullpage.png'),
+    fullPage: true,
   });
 
   await browser.close();
-  console.log('All screenshots captured successfully in artifact directory!');
+  console.log('All responsive viewport screenshots captured successfully!');
 }
 
 capture().catch((err) => {
-  console.error('Error capturing preview:', err);
+  console.error('Error capturing previews:', err);
   process.exit(1);
 });

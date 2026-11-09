@@ -5,57 +5,130 @@ import TrustStatistics from '../components/common/TrustStatistics.astro';
 import SectionHeading from '../components/common/SectionHeading.astro';
 import ServiceCard from '../components/services/ServiceCard.astro';
 import CountryCard from '../components/countries/CountryCard.astro';
+import UniversityCard from '../components/universities/UniversityCard.astro';
+import FAQAccordion from '../components/common/FAQAccordion.astro';
 import ConsultationCTA from '../components/common/ConsultationCTA.astro';
-import { servicesData } from '../data/services';
+import { getHomepageServices } from '../data/services';
 import { getFeaturedCountries } from '../data/countries';
+import { getFeaturedUniversities } from '../data/universities';
+import { getFaqSchema } from '../utils/seo';
 
-const featuredCountries = getFeaturedCountries();
+// 1. Featured Data
+const homepageServices = getHomepageServices();
+const featuredCountries = getFeaturedCountries().slice(0, 6);
+const featuredUniversities = getFeaturedUniversities().slice(0, 8);
+
+// 2. Strict Content Rule: Testimonials hidden unless verified client content is supplied
+const hasVerifiedTestimonials = false;
+
+// 3. Homepage FAQs (Realistic, practical advisory questions)
+const homepageFaqs = [
+  {
+    question: 'How does Visa Convention differ from generic visa agents?',
+    answer: 'Visa Convention operates as a professional education advisory and visa facilitation consultancy. We do not use aggressive sales pressure, inflated success claims, or unverified promises. We conduct rigorous document audits, provide direct institution matching across 35+ countries, and ensure complete transparency regarding consular discretion.',
+  },
+  {
+    question: 'Can visa approval ever be guaranteed by any agency?',
+    answer: 'No. The legal authority to grant, defer, or refuse any visa or study permit belongs solely and exclusively to sovereign government embassies, consulates, and border authorities. Any agency claiming "guaranteed approval" is violating statutory immigration standards.',
+  },
+  {
+    question: 'How do counselors shortlist universities for international applicants?',
+    answer: 'Our counselors evaluate your academic transcripts, previous backlogs, standardized language proficiency scores (IELTS/PTE/TOEFL), budget parameters, and post-study work aspirations to create a balanced portfolio of ambitious, target, and safe institutions.',
+  },
+  {
+    question: 'What are the NMC and WHO criteria for studying MBBS abroad?',
+    answer: 'For Indian citizens, eligibility requires qualifying in the NEET-UG examination and enrolling in foreign medical institutions that provide full English-medium clinical training, matching curricula, and recognition by the National Medical Commission (NMC) and WHO directories.',
+  },
+  {
+    question: 'Do you provide genuine flight reservation holds for embassy visa interviews?',
+    answer: 'Yes. We issue legitimate, verifiable flight itineraries through authorized global distribution systems (GDS). We strictly refuse to create or circulate fake PNRs or altered tickets.',
+  },
+  {
+    question: 'How do I begin the consultation process from Hanumangarh or remotely?',
+    answer: 'You can visit our main office in Hanumangarh, Rajasthan, or submit an assessment request through our online portal. An advisor will evaluate your profile and schedule an in-person or digital video counseling session.',
+  },
+];
+
+const faqSchema = getFaqSchema(homepageFaqs);
 ---
 
 <BaseLayout
-  title="Visa Convention — Official Visa & Global Education Advisory"
-  description="Authorized visa assistance, study abroad counseling for 35+ destination countries, MBBS/PhD admissions, and flight reservations based in Hanumangarh, Rajasthan."
+  title="Visa Convention — Official Visa & Global Education Advisory | Hanumangarh"
+  description="Authorized visa assistance, study abroad counseling for 35+ destination countries, MBBS & PhD admissions, tourist/work visas, and flight reservations based in Hanumangarh, Rajasthan."
+  schema={faqSchema}
 >
-  <!-- Hero Section -->
-  <HeroSection />
+  <!-- ========================================================================= -->
+  <!-- SECTION 2: HERO -->
+  <!-- ========================================================================= -->
+  <HeroSection
+    headline="Your Global Journey Begins with Confidence."
+    subheadline="Visa Convention delivers ethical, expert counseling for study abroad, MBBS & PhD admissions, tourist & work visas, and international flight assistance from Hanumangarh, Rajasthan."
+    primaryCtaText="Get Expert Guidance"
+    primaryCtaHref="/contact/"
+    secondaryCtaText="Explore Services"
+    secondaryCtaHref="#services"
+  />
 
-  <!-- Trust Stats Section -->
+  <!-- ========================================================================= -->
+  <!-- SECTION 3: VERIFIED TRUST METRICS -->
+  <!-- Only approved measurable facts displayed; unverified statistics hidden -->
+  <!-- ========================================================================= -->
   <TrustStatistics />
 
-  <!-- Core Services Section -->
-  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- ========================================================================= -->
+  <!-- SECTION 4: SIX SERVICES -->
+  <!-- 1. Study Visa, 2. MBBS / PhD, 3. Tourist Visa, 4. Work Visa, 5. Flight Ticket, 6. Additional Services -->
+  <!-- ========================================================================= -->
+  <section id="services" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeading
-      badge="Comprehensive Solutions"
-      title="Our Core Advisory Verticals"
-      description="From global higher education admissions to tourist documentation and flight coordination, we provide end-to-end guidance with total transparency."
+      badge="Comprehensive Spectrum"
+      title="Our Six Core Advisory Verticals"
+      description="Specialized guidance delivered with document verification, institutional integrity, and complete procedural clarity."
     />
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {servicesData.map((service) => (
+      {homepageServices.map((service) => (
         <ServiceCard service={service} />
       ))}
     </div>
+
+    <div class="mt-12 text-center">
+      <a
+        href="/services/"
+        class="inline-flex items-center gap-2 text-sm font-bold text-brand-navy hover:text-brand-red transition-colors"
+      >
+        <span>View Detailed Service Specifications</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
   </section>
 
-  <!-- Featured Destinations Section -->
+  <!-- ========================================================================= -->
+  <!-- SECTION 5: STUDY ABROAD DESTINATIONS (Max 6 Featured + Explore All) -->
+  <!-- ========================================================================= -->
   <section class="py-20 bg-white border-y border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
         <div>
-          <span class="inline-block px-3.5 py-1 mb-3 text-xs font-semibold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
-            Global Study Destinations
+          <span class="badge-pill mb-3">
+            Global Destinations
           </span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
-            Explore Leading Study Countries
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight">
+            Featured Study Destinations
           </h2>
+          <p class="mt-2 text-sm sm:text-base text-brand-muted max-w-2xl">
+            Compare admissions, post-study work rights, and living costs across 35+ countries guided by our advisory.
+          </p>
         </div>
         <a
           href="/study-abroad/"
-          class="mt-4 sm:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-brand-red hover:underline"
+          class="mt-4 sm:mt-0 btn-outline"
         >
-          <span>View All 35+ Countries</span>
+          <span>Explore All 35+ Destinations</span>
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </a>
       </div>
@@ -68,8 +141,326 @@ const featuredCountries = getFeaturedCountries();
     </div>
   </section>
 
-  <!-- Call to Action Banner -->
+  <!-- ========================================================================= -->
+  <!-- SECTION 6: FEATURED UNIVERSITIES (6–8 Verified Institutions) -->
+  <!-- Clearly labeled: "Universities Guided / Eligible for Application" -->
+  <!-- ========================================================================= -->
+  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+      <div>
+        <span class="badge-pill mb-3">
+          Academic Catalog
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight">
+          Featured World Universities
+        </h2>
+        <p class="mt-2 text-sm sm:text-base text-brand-muted max-w-2xl">
+          Leading international institutions where our counselors provide admission screening, SOP reviews, and file submissions.
+        </p>
+      </div>
+      <a
+        href="/universities/"
+        class="mt-4 sm:mt-0 btn-outline"
+      >
+        <span>Open University Directory</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {featuredUniversities.map((university) => (
+        <UniversityCard university={university} />
+      ))}
+    </div>
+
+    <div class="mt-8 p-4 rounded-xl bg-brand-bg/80 border border-brand-border text-center text-xs text-brand-muted">
+      <strong class="text-brand-navy font-bold">University Integrity Disclosure:</strong> Profiles listed above represent accredited universities for which student guidance and admissions assistance are provided. Inclusion does not imply official direct agency partnership unless verified by formal contract.
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 7: WHY VISA CONVENTION (Client-Approved Differentiators) -->
+  <!-- ========================================================================= -->
+  <section class="py-20 bg-white border-y border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        badge="The Visa Convention Standard"
+        title="Why Serious Aspirants Choose Our Advisory"
+        description="We replace ambiguous agent rhetoric with factual rigor, individualized roadmapping, and ethical advocacy."
+      />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Differentiator 1 -->
+        <div class="p-8 rounded-2xl bg-brand-bg/50 border border-brand-border shadow-2xs space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-lg shadow-subtle">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-navy leading-snug">Expert Guidance</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
+            Specialized profile evaluations matching your exact academic GPA, backlogs, and financial capability to verified international program requirements.
+          </p>
+        </div>
+
+        <!-- Differentiator 2 -->
+        <div class="p-8 rounded-2xl bg-brand-bg/50 border border-brand-border shadow-2xs space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-red text-white flex items-center justify-center font-bold text-lg shadow-subtle">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-navy leading-snug">Transparent Process</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
+            Zero hidden fees, zero fabricated documents, and honest counseling on visa refusal risks before you commit financial resources.
+          </p>
+        </div>
+
+        <!-- Differentiator 3 -->
+        <div class="p-8 rounded-2xl bg-brand-bg/50 border border-brand-border shadow-2xs space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center font-bold text-lg shadow-subtle">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-navy leading-snug">Timely Support</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
+            Structured milestone tracking for application deadlines, university deposit cutoffs, biometrics appointments, and visa filing windows.
+          </p>
+        </div>
+
+        <!-- Differentiator 4 -->
+        <div class="p-8 rounded-2xl bg-brand-bg/50 border border-brand-border shadow-2xs space-y-4">
+          <div class="w-12 h-12 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-lg shadow-subtle">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-brand-navy leading-snug">End-to-End Care</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
+            Continuous support spanning SOP review, scholarship applications, student visa filing, forex card setup, and student flight ticketing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 8: STUDY ABROAD IN 3 STEPS -->
+  <!-- ========================================================================= -->
+  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      badge="Simple, Disciplined Pathway"
+      title="Study Abroad in 3 Strategic Steps"
+      description="A structured methodology designed to minimize turnaround delays and protect visa compliance."
+    />
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+      <!-- Step 1 -->
+      <div class="card-premium p-8 text-center relative group">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-navy text-white flex items-center justify-center font-black text-xl mb-6 group-hover:bg-brand-red transition-colors shadow-subtle">
+          1
+        </div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">Profile Evaluation & Shortlisting</h3>
+        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
+          We assess your academic transcripts, IELTS/PTE/TOEFL scores, and financial feasibility, selecting 3–5 institutions across top destination countries.
+        </p>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="card-premium p-8 text-center relative group">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-navy text-white flex items-center justify-center font-black text-xl mb-6 group-hover:bg-brand-red transition-colors shadow-subtle">
+          2
+        </div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">Dossier Preparation & Offer Letter</h3>
+        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
+          We refine your Statement of Purpose (SOP) and Letters of Recommendation, submit official admissions files, and secure your unconditional acceptance.
+        </p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="card-premium p-8 text-center relative group">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-navy text-white flex items-center justify-center font-black text-xl mb-6 group-hover:bg-brand-red transition-colors shadow-subtle">
+          3
+        </div>
+        <h3 class="text-xl font-bold text-brand-navy mb-3">Visa Petition & Pre-Departure</h3>
+        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
+          We audit required financial proofs, complete official embassy visa forms, prepare mock interviews, and coordinate student flight reservations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 9: ABOUT THE COMPANY -->
+  <!-- ========================================================================= -->
+  <section class="py-20 bg-white border-y border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left: Text Summary -->
+        <div class="lg:col-span-7 space-y-6">
+          <span class="badge-pill">
+            Rooted in Hanumangarh
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-black text-brand-navy tracking-tight leading-tight">
+            About Visa Convention
+          </h2>
+          <p class="text-base sm:text-lg text-brand-muted leading-relaxed font-normal">
+            Based in Hanumangarh, Rajasthan, Visa Convention was established to bring international-standard higher education counseling and transparent visa documentation to students and families across Northern India and abroad.
+          </p>
+          <p class="text-sm text-brand-muted leading-relaxed font-normal">
+            Unlike commercial agents driven by undisclosed commissions, our counselors focus strictly on matching student capabilities with legitimate degree courses and credible institutions. Every visa dossier is audited against host-nation immigration requirements to eliminate clerical and evidentiary deficiencies.
+          </p>
+
+          <div class="pt-4 flex flex-wrap items-center gap-4">
+            <a href="/about/" class="btn-secondary">
+              <span>Read Our Full Story & Ethics</span>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+            <a href="/contact/" class="btn-outline">
+              <span>Visit Hanumangarh Office</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Office & Operational Credibility Box -->
+        <div class="lg:col-span-5">
+          <div class="bg-brand-navy text-white rounded-3xl p-8 sm:p-10 shadow-card space-y-6">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-red text-white flex items-center justify-center font-bold">
+                VC
+              </div>
+              <div>
+                <strong class="block text-base font-bold text-white">Hanumangarh Consultation Office</strong>
+                <span class="text-xs text-gray-300">Rajasthan, India</span>
+              </div>
+            </div>
+
+            <div class="space-y-3 text-xs sm:text-sm text-gray-300 border-t border-white/10 pt-4">
+              <div class="flex items-start gap-2.5">
+                <span class="text-brand-red font-bold text-base">•</span>
+                <span>In-person counseling rooms with private, confidential case reviews.</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="text-brand-red font-bold text-base">•</span>
+                <span>Dedicated document scanning, translation, and verification desk.</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="text-brand-red font-bold text-base">•</span>
+                <span>Pre-departure orientation and flight ticketing coordination.</span>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-gray-300">
+              <strong class="text-white block mb-1">Office Hours:</strong>
+              Monday through Saturday: 9:30 AM – 6:30 PM IST.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 10: SUCCESS STORIES -->
+  <!-- Strict Compliance: Only verified genuine testimonials displayed. -->
+  <!-- If none supplied, this section is completely hidden as instructed. -->
+  <!-- ========================================================================= -->
+  {hasVerifiedTestimonials && (
+    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <SectionHeading
+        badge="Verified Outcomes"
+        title="Student Success Stories"
+        description="Authentic feedback and placement outcomes from candidates guided by Visa Convention."
+      />
+      <!-- Testimonials rendered only when client provides verified releases -->
+    </section>
+  )}
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 11: BUSINESS PARTNERSHIPS -->
+  <!-- ========================================================================= -->
+  <section class="py-20 bg-brand-bg border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="card-premium p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-10">
+        <div class="max-w-2xl space-y-4">
+          <span class="badge-pill">
+            Institutional Collaboration
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight">
+            Institutional & Regional Partnerships
+          </h2>
+          <p class="text-sm sm:text-base text-brand-muted leading-relaxed font-normal">
+            Visa Convention partners with international colleges, universities, language institutes, and regional educational consultants on a foundation of strict document compliance, verified student pipelines, and ethical representation.
+          </p>
+          <ul class="space-y-2 text-xs sm:text-sm text-brand-text pt-2">
+            <li class="flex items-center gap-2">
+              <span class="text-brand-red font-bold">✓</span>
+              <span>Rigorous academic pre-screening to eliminate non-genuine applications.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-brand-red font-bold">✓</span>
+              <span>Transparent referral agreements for regional schools and coaching academies.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-4 w-full sm:w-auto flex-shrink-0">
+          <a
+            href="/partnerships/"
+            class="btn-secondary text-center"
+          >
+            <span>Partner Collaboration Guidelines</span>
+          </a>
+          <a
+            href="/contact/?inquiry=partnership"
+            class="btn-outline text-center"
+          >
+            <span>Submit Institutional Inquiry</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 12: FAQs -->
+  <!-- ========================================================================= -->
+  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <SectionHeading
+      badge="Clear Answers"
+      title="Frequently Asked Questions"
+      description="Factual, transparent answers to common inquiries regarding our study, visa, and travel services."
+    />
+
+    <FAQAccordion faqs={homepageFaqs} />
+
+    <div class="mt-12 text-center text-xs text-brand-muted">
+      Have a specific scenario not addressed here?
+      <a href="/contact/" class="text-brand-red font-bold hover:underline ml-1">
+        Speak directly with a counselor →
+      </a>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 13: FINAL CTA -->
+  <!-- ========================================================================= -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <ConsultationCTA />
+    <ConsultationCTA
+      title="Begin Your Global Journey with Confidence"
+      subtitle="Schedule a free preliminary profile assessment with our Hanumangarh advisory team today. Honest guidance, zero hidden costs, and comprehensive documentation care."
+      primaryBtnText="Book Your Assessment Now"
+      primaryBtnHref="/contact/"
+      secondaryBtnText="Explore 35+ Study Countries"
+      secondaryBtnHref="/study-abroad/"
+    />
   </div>
+
+  <!-- SECTION 14: FOOTER is automatically rendered by BaseLayout -->
 </BaseLayout>
