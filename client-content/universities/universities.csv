@@ -1,0 +1,4 @@
+id,name,countryId,city,officialWebsite,studyLevels,subjectAreas,relationshipStatus,featured,publicationStatus
+uni-toronto,"University of Toronto",country-canada,"Toronto","https://www.utoronto.ca","[""Bachelors"",""Masters"",""Doctorate""]","[""Engineering"",""Computer Science"",""Business"",""Humanities""]",listed,true,draft
+uni-ubc,"University of British Columbia",country-canada,"Vancouver","https://www.ubc.ca","[""Bachelors"",""Masters"",""Doctorate""]","[""Forestry"",""Medicine"",""Commerce"",""Applied Science""]",listed,true,draft
+uni-mcgill,"McGill University",country-canada,"Montreal","https://www.mcgill.ca","[""Bachelors"",""Masters"",""Doctorate""]","[""Medicine"",""Law"",""Science"",""Arts""]",listed,false,draft

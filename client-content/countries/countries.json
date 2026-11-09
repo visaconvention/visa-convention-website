@@ -1,0 +1,43 @@
+{
+  "$schema": "./countries-schema.json",
+  "notice": "Draft development records. All data to be parsed from client Excel sheets in ../data/ and verified prior to production.",
+  "countries": [
+    {
+      "id": "country-canada",
+      "name": "Canada",
+      "slug": "canada",
+      "flagCode": "CA",
+      "continent": "North America",
+      "featured": true,
+      "active": true,
+      "heroImage": "/assets/images/destinations/canada-hero.webp",
+      "introduction": "Canada is one of the world's most sought-after study destinations, renowned for academic excellence, multicultural cities, and structured post-graduation work opportunities.",
+      "whyStudyHere": [
+        "Globally recognized universities and applied polytechnic institutions",
+        "Structured Post-Graduation Work Permit (PGWP) eligibility pathways",
+        "Safe, welcoming, and multicultural student communities",
+        "Comprehensive healthcare and student welfare frameworks"
+      ],
+      "educationSystem": "Canadian higher education consists of research universities offering undergraduate, graduate, and doctoral degrees, alongside community colleges and institutes of technology providing specialized diplomas and applied degrees.",
+      "admissionGuidance": "Standard entry requires recognized academic credentials, English/French language proficiency (IELTS, TOEFL, PTE), academic transcripts, and letters of recommendation.",
+      "visaGuidance": "Study Permit applications require an official Provincial Attestation Letter (PAL), Letter of Acceptance (LOA) from a Designated Learning Institution (DLI), proof of financial support, and medical examination clearance.",
+      "costInformation": "Average undergraduate tuition ranges between CAD 18,000 to CAD 36,000 per year, with living expense requirements pegged to current IRCC standards.",
+      "scholarshipInformation": "Merit-based institutional entrance scholarships and international awards available based on prior academic performance.",
+      "faqs": [
+        {
+          "question": "Can international students work while studying in Canada?",
+          "answer": "Eligible international students holding a valid study permit may work off-campus up to the government-stipulated hourly limits during academic semesters and full-time during scheduled breaks."
+        },
+        {
+          "question": "What is a Designated Learning Institution (DLI)?",
+          "answer": "A DLI is a post-secondary institution approved by a provincial or territorial government to host international students."
+        }
+      ],
+      "sourceLinks": [
+        "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada.html"
+      ],
+      "lastReviewed": "2026-11-09",
+      "publicationStatus": "draft"
+    }
+  ]
+}
