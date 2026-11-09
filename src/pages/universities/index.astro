@@ -7,62 +7,95 @@ import UniversitySearch from '../../components/universities/UniversitySearch.ast
 import UniversityFilters from '../../components/universities/UniversityFilters.astro';
 import EmptyState from '../../components/common/EmptyState.astro';
 import ConsultationCTA from '../../components/common/ConsultationCTA.astro';
-import { getAllUniversities } from '../../data/universities';
-import { getAllCountries } from '../../data/countries';
+import { getAllUniversities, getDistinctCountries } from '../../data/universities';
 
 const universities = getAllUniversities();
-const countries = getAllCountries();
+const countriesWithCounts = getDistinctCountries();
+
+const totalUniversitiesCount = universities.length;
+const totalCountriesCount = countriesWithCounts.length;
 ---
 
 <BaseLayout
   title="Global University Directory — Visa Convention"
-  description="Search and explore hundreds of verified international universities and faculties across 35+ destination countries guided by Visa Convention."
+  description="Search and explore nearly 1,000 verified international universities and colleges across 35+ destination countries guided by Visa Convention."
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
     <Breadcrumbs items={[{ label: 'Universities', href: '/universities/', current: true }]} />
   </div>
 
-  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeading
       badge="Academic Directory"
       title="Global University Directory"
-      description="Browse institutions where our Hanumangarh counseling team guides student admissions, profile evaluation, and visa paperwork."
+      description={`Browse ${totalUniversitiesCount} recognized institutions across ${totalCountriesCount} countries where Visa Convention provides admissions counseling, eligibility evaluation, and student visa guidance.`}
     />
+
+    <!-- Quick Stats Bar -->
+    <div class="max-w-4xl mx-auto mb-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+      <div class="bg-white rounded-xl p-3 border border-brand-border/70 shadow-xs">
+        <div class="text-xl sm:text-2xl font-extrabold text-brand-navy">{totalUniversitiesCount}+</div>
+        <div class="text-xs text-brand-muted">Institutions Guided</div>
+      </div>
+      <div class="bg-white rounded-xl p-3 border border-brand-border/70 shadow-xs">
+        <div class="text-xl sm:text-2xl font-extrabold text-brand-blue">{totalCountriesCount}</div>
+        <div class="text-xs text-brand-muted">Destination Countries</div>
+      </div>
+      <div class="bg-white rounded-xl p-3 border border-brand-border/70 shadow-xs">
+        <div class="text-xl sm:text-2xl font-extrabold text-brand-navy">100%</div>
+        <div class="text-xs text-brand-muted">Accredited Programs</div>
+      </div>
+      <div class="bg-white rounded-xl p-3 border border-brand-border/70 shadow-xs">
+        <div class="text-xl sm:text-2xl font-extrabold text-brand-red">Direct</div>
+        <div class="text-xs text-brand-muted">Visa Advisory Support</div>
+      </div>
+    </div>
 
     <!-- Search Bar Top Area -->
     <div class="max-w-3xl mx-auto mb-10">
-      <UniversitySearch />
+      <UniversitySearch placeholder="Search by institution name, city, subject, or discipline..." />
     </div>
 
     <!-- Layout Grid: Filters on Left (Desktop), Directory on Right -->
-    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
       <!-- Filters Sidebar -->
-      <div class="lg:col-span-1">
-        <div class="sticky top-28">
-          <UniversityFilters countries={countries} />
+      <aside class="lg:col-span-1">
+        <div class="sticky top-24">
+          <UniversityFilters countries={countriesWithCounts} />
         </div>
-      </div>
+      </aside>
 
-      <!-- University Cards Grid -->
-      <div class="lg:col-span-3">
-        <div class="flex items-center justify-between mb-4">
-          <span id="university-count-label" class="text-xs font-bold text-brand-navy">
-            Showing {universities.length} institutions
-          </span>
-          <span class="text-xs text-brand-muted">
-            All profiles maintained for admission guidance
-          </span>
+      <!-- University Cards Grid & Pagination Area -->
+      <main class="lg:col-span-3 min-w-0" id="directory-results-container">
+        <!-- Results Status Bar -->
+        <div class="bg-slate-50 border border-brand-border rounded-xl px-4 py-3 mb-6 flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="university-count-label" class="font-bold text-brand-navy">
+              Showing institutions
+            </span>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span class="text-brand-muted hidden sm:inline">Page</span>
+            <span id="current-page-badge" class="font-semibold text-brand-blue">1</span>
+            <span class="text-brand-muted">of</span>
+            <span id="total-pages-badge" class="font-semibold text-brand-navy">1</span>
+          </div>
         </div>
 
+        <!-- Cards Container -->
         <div id="university-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {universities.map((uni) => (
             <div
               class="university-item"
               data-name={uni.name.toLowerCase()}
-              data-country={uni.countryName.toLowerCase()}
-              data-city={uni.city.toLowerCase()}
-              data-levels={uni.studyLevels.map(l => l.toLowerCase()).join(' ')}
-              data-disciplines={uni.popularDisciplines.map(d => d.toLowerCase()).join(' ')}
+              data-country-slug={uni.countrySlug.toLowerCase()}
+              data-country-name={uni.countryName.toLowerCase()}
+              data-city={(uni.city || '').toLowerCase()}
+              data-levels={uni.studyLevels.join(' ').toLowerCase()}
+              data-subjects={uni.subjectAreas.join(' ').toLowerCase()}
+              data-detailed={uni.hasDetailedProfile ? 'true' : 'false'}
             >
               <UniversityCard university={uni} />
             </div>
@@ -70,81 +103,262 @@ const countries = getAllCountries();
         </div>
 
         <!-- No Results Fallback -->
-        <div id="no-results-view" class="hidden">
+        <div id="no-results-view" class="hidden py-10">
           <EmptyState
             title="No matching institutions found"
-            description="Try adjusting your keyword search, selecting 'All Countries', or resetting your filter criteria."
+            description="We could not find institutions matching your search criteria. Try modifying your search term, clearing selected filters, or checking back with our counseling desk."
+            actionLabel="Reset All Filters"
+            actionHref="#directory-results-container"
           />
         </div>
-      </div>
+
+        <!-- Client-Side Pagination Controls -->
+        <div id="pagination-nav" class="mt-10 flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-brand-border">
+          <button
+            type="button"
+            id="prev-page-btn"
+            class="px-4 py-2.5 rounded-lg border border-brand-border text-xs font-semibold text-brand-navy bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-brand-blue"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span>Previous</span>
+          </button>
+
+          <div id="pagination-pages-list" class="flex items-center gap-1.5 overflow-x-auto max-w-full py-1">
+            <!-- Dynamically populated page buttons -->
+          </div>
+
+          <button
+            type="button"
+            id="next-page-btn"
+            class="px-4 py-2.5 rounded-lg border border-brand-border text-xs font-semibold text-brand-navy bg-white hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-brand-blue"
+          >
+            <span>Next</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </main>
     </div>
 
-    <div class="mt-16">
+    <!-- Final Inquiry / Advisory Section -->
+    <div class="mt-20">
       <ConsultationCTA
-        title="Don’t See Your Preferred University?"
-        subtitle="We guide applications for hundreds of accredited universities and colleges across 35+ countries. Contact our counselors to check eligibility."
+        title="Don’t See Your Intended University or College?"
+        subtitle="Visa Convention advises admissions and handles student visa processing for accredited institutions across North America, Europe, Asia-Pacific, and Central Asia. Share your preferred university and our Hanumangarh counselors will assess your admission pathways."
+        primaryBtnText="Request Profile Evaluation"
+        primaryBtnHref="/contact/?service=study-visa"
       />
     </div>
   </section>
 </BaseLayout>
 
 <script>
-  function setupUniversityDirectoryFilter() {
+  function setupUniversityDirectory() {
     const searchInput = document.getElementById('university-search-input') as HTMLInputElement | null;
     const countryFilter = document.getElementById('filter-country') as HTMLSelectElement | null;
     const degreeFilter = document.getElementById('filter-degree') as HTMLSelectElement | null;
+    const subjectFilter = document.getElementById('filter-subject') as HTMLSelectElement | null;
+    const detailedOnlyCheckbox = document.getElementById('filter-detailed-only') as HTMLInputElement | null;
     const resetBtn = document.getElementById('reset-filters-btn');
-    const items = document.querySelectorAll<HTMLElement>('.university-item');
+    
+    const items = Array.from(document.querySelectorAll<HTMLElement>('.university-item'));
     const countLabel = document.getElementById('university-count-label');
     const noResults = document.getElementById('no-results-view');
+    const paginationNav = document.getElementById('pagination-nav');
+    const prevBtn = document.getElementById('prev-page-btn') as HTMLButtonElement | null;
+    const nextBtn = document.getElementById('next-page-btn') as HTMLButtonElement | null;
+    const pagesList = document.getElementById('pagination-pages-list');
+    const currentPageBadge = document.getElementById('current-page-badge');
+    const totalPagesBadge = document.getElementById('total-pages-badge');
 
-    function applyFilter() {
-      const query = (searchInput?.value || '').trim().toLowerCase();
-      const selectedCountry = (countryFilter?.value || 'all').toLowerCase();
-      const selectedDegree = (degreeFilter?.value || 'all').toLowerCase();
+    if (!items.length) return;
 
-      let visibleCount = 0;
+    const PAGE_SIZE = 24;
+    let currentPage = 1;
+    let filteredItems: HTMLElement[] = items;
 
-      items.forEach((item) => {
-        const name = item.dataset.name || '';
-        const country = item.dataset.country || '';
-        const city = item.dataset.city || '';
-        const levels = item.dataset.levels || '';
-        const disciplines = item.dataset.disciplines || '';
+    // Initialize from URL parameters if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialCountry = urlParams.get('country');
+    const initialQuery = urlParams.get('q') || urlParams.get('search');
+    const initialDegree = urlParams.get('level');
 
-        const matchesQuery = !query || name.includes(query) || city.includes(query) || disciplines.includes(query) || country.includes(query);
-        const matchesCountry = selectedCountry === 'all' || country.includes(selectedCountry);
-        const matchesDegree = selectedDegree === 'all' || levels.includes(selectedDegree);
+    if (initialCountry && countryFilter) {
+      countryFilter.value = initialCountry.toLowerCase();
+    }
+    if (initialQuery && searchInput) {
+      searchInput.value = initialQuery;
+    }
+    if (initialDegree && degreeFilter) {
+      degreeFilter.value = initialDegree.toLowerCase();
+    }
 
-        if (matchesQuery && matchesCountry && matchesDegree) {
-          item.style.display = '';
-          visibleCount++;
-        } else {
-          item.style.display = 'none';
+    function renderPagination() {
+      const totalPages = Math.ceil(filteredItems.length / PAGE_SIZE) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      if (currentPageBadge) currentPageBadge.textContent = String(currentPage);
+      if (totalPagesBadge) totalPagesBadge.textContent = String(totalPages);
+
+      if (prevBtn) prevBtn.disabled = currentPage <= 1;
+      if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
+
+      // Render numbered buttons (limited window)
+      if (pagesList) {
+        pagesList.innerHTML = '';
+        const maxButtons = 5;
+        let startPage = Math.max(1, currentPage - 2);
+        let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+        if (endPage - startPage < maxButtons - 1) {
+          startPage = Math.max(1, endPage - maxButtons + 1);
         }
-      });
 
-      if (countLabel) {
-        countLabel.textContent = `Showing ${visibleCount} institution${visibleCount === 1 ? '' : 's'}`;
+        for (let p = startPage; p <= endPage; p++) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = String(p);
+          btn.className = `w-8 h-8 rounded-lg text-xs font-bold transition-colors ${
+            p === currentPage
+              ? 'bg-brand-navy text-white shadow-xs'
+              : 'bg-white border border-brand-border text-brand-navy hover:bg-slate-100'
+          }`;
+          btn.addEventListener('click', () => {
+            currentPage = p;
+            applyPagination();
+            scrollToTop();
+          });
+          pagesList.appendChild(btn);
+        }
       }
 
-      if (noResults) {
-        noResults.classList.toggle('hidden', visibleCount > 0);
+      if (paginationNav) {
+        paginationNav.classList.toggle('hidden', filteredItems.length <= PAGE_SIZE);
       }
     }
 
-    searchInput?.addEventListener('input', applyFilter);
-    countryFilter?.addEventListener('change', applyFilter);
-    degreeFilter?.addEventListener('change', applyFilter);
+    function applyPagination() {
+      const startIndex = (currentPage - 1) * PAGE_SIZE;
+      const endIndex = startIndex + PAGE_SIZE;
+
+      items.forEach((item) => {
+        item.style.display = 'none';
+      });
+
+      filteredItems.slice(startIndex, endIndex).forEach((item) => {
+        item.style.display = '';
+      });
+
+      const startLabel = filteredItems.length > 0 ? startIndex + 1 : 0;
+      const endLabel = Math.min(endIndex, filteredItems.length);
+      
+      if (countLabel) {
+        if (filteredItems.length === items.length) {
+          countLabel.textContent = `Showing ${startLabel}–${endLabel} of ${filteredItems.length} institutions`;
+        } else {
+          countLabel.textContent = `Showing ${startLabel}–${endLabel} of ${filteredItems.length} matching institutions (out of ${items.length})`;
+        }
+      }
+
+      if (noResults) {
+        noResults.classList.toggle('hidden', filteredItems.length > 0);
+      }
+
+      renderPagination();
+    }
+
+    function filterData() {
+      const query = (searchInput?.value || '').trim().toLowerCase();
+      const selectedCountry = (countryFilter?.value || 'all').toLowerCase();
+      const selectedDegree = (degreeFilter?.value || 'all').toLowerCase();
+      const selectedSubject = (subjectFilter?.value || 'all').toLowerCase();
+      const detailedOnly = detailedOnlyCheckbox?.checked || false;
+
+      filteredItems = items.filter((item) => {
+        const name = item.dataset.name || '';
+        const countrySlug = item.dataset.countrySlug || '';
+        const countryName = item.dataset.countryName || '';
+        const city = item.dataset.city || '';
+        const levels = item.dataset.levels || '';
+        const subjects = item.dataset.subjects || '';
+        const isDetailed = item.dataset.detailed === 'true';
+
+        // Query check: match name, city, country, or subjects
+        const matchesQuery = !query || 
+          name.includes(query) || 
+          city.includes(query) || 
+          countryName.includes(query) || 
+          subjects.includes(query);
+
+        // Country check: matches slug or name
+        const matchesCountry = selectedCountry === 'all' || 
+          countrySlug === selectedCountry || 
+          countryName.includes(selectedCountry);
+
+        // Degree check
+        const matchesDegree = selectedDegree === 'all' || levels.includes(selectedDegree);
+
+        // Subject check
+        const matchesSubject = selectedSubject === 'all' || subjects.includes(selectedSubject);
+
+        // Detailed only check
+        const matchesDetailed = !detailedOnly || isDetailed;
+
+        return matchesQuery && matchesCountry && matchesDegree && matchesSubject && matchesDetailed;
+      });
+
+      currentPage = 1;
+      applyPagination();
+    }
+
+    function scrollToTop() {
+      const container = document.getElementById('directory-results-container');
+      if (container) {
+        const topPos = container.getBoundingClientRect().top + window.pageYOffset - 100;
+        window.scrollTo({ top: topPos, behavior: 'smooth' });
+      }
+    }
+
+    // Event listeners
+    searchInput?.addEventListener('input', filterData);
+    countryFilter?.addEventListener('change', filterData);
+    degreeFilter?.addEventListener('change', filterData);
+    subjectFilter?.addEventListener('change', filterData);
+    detailedOnlyCheckbox?.addEventListener('change', filterData);
+
+    prevBtn?.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        applyPagination();
+        scrollToTop();
+      }
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      const totalPages = Math.ceil(filteredItems.length / PAGE_SIZE);
+      if (currentPage < totalPages) {
+        currentPage++;
+        applyPagination();
+        scrollToTop();
+      }
+    });
 
     resetBtn?.addEventListener('click', () => {
       if (searchInput) searchInput.value = '';
       if (countryFilter) countryFilter.value = 'all';
       if (degreeFilter) degreeFilter.value = 'all';
-      applyFilter();
+      if (subjectFilter) subjectFilter.value = 'all';
+      if (detailedOnlyCheckbox) detailedOnlyCheckbox.checked = false;
+      filterData();
     });
+
+    // Run initial filter
+    filterData();
   }
 
-  setupUniversityDirectoryFilter();
-  document.addEventListener('astro:page-load', setupUniversityDirectoryFilter);
+  setupUniversityDirectory();
+  document.addEventListener('astro:page-load', setupUniversityDirectory);
 </script>

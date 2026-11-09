@@ -2,13 +2,19 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import EnquiryForm from '../../components/forms/EnquiryForm.astro';
-import { getAllUniversities } from '../../data/universities';
+import ConsultationCTA from '../../components/common/ConsultationCTA.astro';
+import UniversityCard from '../../components/universities/UniversityCard.astro';
+import { getDetailedProfileUniversities, getUniversitiesByCountrySlug } from '../../data/universities';
 import { getCountryBySlug } from '../../data/countries';
 import type { University } from '../../types';
 
 export async function getStaticPaths() {
-  const universities = getAllUniversities();
-  return universities.map((university) => ({
+  // CRITICAL THRESHOLD RULE:
+  // Strictly generate static profile pages ONLY for curated universities with rich profiles.
+  // Bare directory records (~975 institutions) are kept exclusively in /universities/ directory.
+  const detailedUniversities = getDetailedProfileUniversities();
+  
+  return detailedUniversities.map((university) => ({
     params: { university: university.slug },
     props: { university },
   }));
@@ -20,60 +26,115 @@ interface Props {
 
 const { university } = Astro.props;
 const country = getCountryBySlug(university.countrySlug);
+
+// Related institutions from the same country (excluding this one)
+const relatedInCountry = getUniversitiesByCountrySlug(university.countrySlug)
+  .filter((u) => u.id !== university.id)
+  .slice(0, 3);
+
+const relationshipLabel = university.relationshipStatus === 'verified_partner'
+  ? 'Verified Partner Institution'
+  : 'Listed for Admissions Guidance';
+
+// Schema.org Structured Data
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": university.name,
+  "url": university.officialWebsite || undefined,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": university.city,
+    "addressCountry": university.countryName
+  },
+  "description": university.description,
+};
 ---
 
 <BaseLayout
   title={`${university.name} — Admission & Visa Guidance | Visa Convention`}
-  description={`Profile, entry levels, and admission counseling for ${university.name} in ${university.city}, ${university.countryName}.`}
+  description={`Apply to ${university.name} in ${university.city}, ${university.countryName}. Admission requirements, tuition advisory, and student visa guidance from Visa Convention.`}
 >
+  <!-- Schema.org EducationalOrganization -->
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
     <Breadcrumbs
       items={[
         { label: 'Universities', href: '/universities/' },
+        { label: university.countryName, href: `/universities/?country=${university.countrySlug}` },
         { label: university.name, href: `/universities/${university.slug}/`, current: true },
       ]}
     />
   </div>
 
-  <section class="py-14 sm:py-20 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+  <!-- Hero Banner -->
+  <section class="py-12 sm:py-16 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
-        <div class="flex flex-wrap items-center gap-3 mb-4">
-          <span class="px-3.5 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
-            {university.countryName} • {university.city}
+      <div class="max-w-4xl">
+        <!-- Badges Row -->
+        <div class="flex flex-wrap items-center gap-2.5 mb-4">
+          <a 
+            href={`/study-abroad/${university.countrySlug}/`}
+            class="px-3.5 py-1 text-xs font-bold tracking-wider uppercase rounded-md bg-brand-bg text-brand-blue border border-brand-blue/20 hover:border-brand-blue transition-colors"
+          >
+            {university.countryName}
+            {university.city && <span class="text-brand-muted font-normal"> • {university.city}</span>}
+          </a>
+          
+          <span class="px-3 py-1 text-xs font-medium rounded-md bg-slate-100 text-slate-700 border border-slate-200">
+            {university.institutionType || 'Accredited University'}
           </span>
+
+          <span 
+            class={`px-3 py-1 text-xs font-bold rounded-md ${
+              university.relationshipStatus === 'verified_partner'
+                ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                : 'bg-blue-50 text-brand-blue border border-blue-200'
+            }`}
+          >
+            {relationshipLabel}
+          </span>
+
           {university.worldRanking && (
-            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+            <span class="px-3 py-1 text-xs font-bold rounded-md bg-amber-50 text-amber-900 border border-amber-200">
               {university.worldRanking}
             </span>
           )}
         </div>
 
-        <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4">
           {university.name}
         </h1>
-        <p class="text-base sm:text-lg text-brand-muted leading-relaxed">
-          {university.description || `Comprehensive student counseling and admission file preparation for studies at ${university.name}.`}
+
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed font-normal mb-8">
+          {university.description || `Comprehensive student admissions counseling, eligibility pre-screening, and visa paperwork preparation for ${university.name}.`}
         </p>
 
-        <div class="mt-8 flex flex-wrap items-center gap-4">
-          <a
-            href={university.officialWebsite}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-brand-navy border border-brand-border text-xs font-bold hover:bg-brand-bg shadow-2xs transition-colors"
-          >
-            <span>Visit Official University Website</span>
-            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
+        <!-- Action Links -->
+        <div class="flex flex-wrap items-center gap-4">
+          {university.officialWebsite && (
+            <a
+              href={university.officialWebsite}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white text-brand-navy border border-brand-border text-xs font-bold hover:bg-brand-bg shadow-xs transition-colors"
+            >
+              <span>Visit Official University Portal</span>
+              <svg class="w-3.5 h-3.5 text-brand-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          )}
           {country && (
             <a
               href={`/study-abroad/${country.slug}/`}
-              class="text-xs font-bold text-brand-red hover:underline"
+              class="text-xs font-bold text-brand-blue hover:text-brand-navy hover:underline inline-flex items-center gap-1"
             >
-              Learn about Studying in {country.name} →
+              <span>Explore Student Visa Guide for {country.name}</span>
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
             </a>
           )}
         </div>
@@ -82,64 +143,224 @@ const country = getCountryBySlug(university.countrySlug);
   </section>
 
   <!-- University Details & Counseling Form -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <!-- Left Column: Academic Breakdown -->
-      <div class="lg:col-span-7 space-y-10">
-        <!-- Study Levels -->
-        <div class="p-6 rounded-2xl bg-white border border-brand-border space-y-4">
-          <h3 class="text-xl font-bold text-brand-navy">
-            Available Program Levels
-          </h3>
-          <div class="flex flex-wrap gap-2">
-            {university.studyLevels.map((level) => (
-              <span class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-brand-bg text-brand-navy border border-brand-border">
-                {level} Programs
-              </span>
-            ))}
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Left Column: Academic & Admission Breakdown -->
+      <div class="lg:col-span-7 space-y-8">
+        <!-- Overview & Key Info Card -->
+        <div class="card-premium p-6 sm:p-7 border border-brand-border bg-white rounded-2xl shadow-xs">
+          <h2 class="text-xl font-bold text-brand-navy mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            <span>Institutional Overview</span>
+          </h2>
+          <p class="text-sm text-brand-text leading-relaxed mb-6 font-normal">
+            {university.description}
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-brand-border/70 text-xs">
+            <div>
+              <span class="block text-brand-muted uppercase font-bold text-[10px] tracking-wider mb-1">Campus Location</span>
+              <span class="font-semibold text-brand-navy">{university.city}, {university.countryName}</span>
+            </div>
+            <div>
+              <span class="block text-brand-muted uppercase font-bold text-[10px] tracking-wider mb-1">Institution Category</span>
+              <span class="font-semibold text-brand-navy">{university.institutionType || 'Higher Education'}</span>
+            </div>
+            <div>
+              <span class="block text-brand-muted uppercase font-bold text-[10px] tracking-wider mb-1">Estimated Tuition Range</span>
+              <span class="font-semibold text-emerald-700">{university.tuitionInformation || university.averageTuition || 'Contact for schedule'}</span>
+            </div>
+            <div>
+              <span class="block text-brand-muted uppercase font-bold text-[10px] tracking-wider mb-1">Scholarship Consideration</span>
+              <span class="font-semibold text-brand-navy">{university.scholarshipInformation ? 'Available (Merit/Need)' : 'Varies by Department'}</span>
+            </div>
           </div>
         </div>
 
-        <!-- Popular Disciplines -->
-        <div class="p-6 rounded-2xl bg-white border border-brand-border space-y-4">
-          <h3 class="text-xl font-bold text-brand-navy">
-            Key Academic Disciplines
-          </h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {university.popularDisciplines.map((discipline) => (
-              <div class="p-3 rounded-xl bg-brand-bg/50 border border-brand-border text-xs font-bold text-brand-navy flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-brand-red"></span>
-                <span>{discipline}</span>
+        <!-- Study Levels & Program Offerings -->
+        <div class="card-premium p-6 sm:p-7 border border-brand-border bg-white rounded-2xl shadow-xs">
+          <h2 class="text-xl font-bold text-brand-navy mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            </svg>
+            <span>Study Levels & Degree Programs</span>
+          </h2>
+          
+          <div class="mb-5">
+            <span class="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-2">Available Degree Levels:</span>
+            <div class="flex flex-wrap gap-2">
+              {university.studyLevels.map((level) => (
+                <span class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-brand-bg text-brand-navy border border-brand-border">
+                  {level} Programs
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {university.courses && university.courses.length > 0 && (
+            <div class="pt-4 border-t border-brand-border/70">
+              <span class="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-3">Popular Academic Courses:</span>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                {university.courses.map((course) => (
+                  <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs font-semibold text-brand-navy flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-blue"></span>
+                    <span>{course}</span>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+          )}
+
+          {university.subjectAreas && university.subjectAreas.length > 0 && (
+            <div class="pt-4 border-t border-brand-border/70 mt-4">
+              <span class="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-3">Subject Domains:</span>
+              <div class="flex flex-wrap gap-1.5">
+                {university.subjectAreas.map((subj) => (
+                  <span class="px-2.5 py-1 rounded bg-slate-100 text-slate-700 text-xs font-medium">
+                    {subj}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        <!-- Admission Guidance & Entry Standards -->
+        <div class="card-premium p-6 sm:p-7 border border-brand-border bg-white rounded-2xl shadow-xs">
+          <h2 class="text-xl font-bold text-brand-navy mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            <span>Admission Guidance & Eligibility</span>
+          </h2>
+          <p class="text-sm text-brand-text leading-relaxed mb-4">
+            {university.admissionInformation || 'Admission requirements depend on the chosen academic faculty, previous qualification credentials, and language test benchmarks.'}
+          </p>
+
+          <div class="bg-amber-50/60 rounded-xl p-4 border border-amber-200/60 text-xs text-amber-900 leading-relaxed">
+            <strong class="font-bold">Standard Counseling Note:</strong> Academic cutoffs, IELTS/TOEFL requirements, and portfolio prerequisites fluctuate based on applicant pool competitiveness. Visa Convention coordinates pre-screening directly with university requirements.
           </div>
         </div>
 
-        <!-- Guidance Scope & Relationship Integrity -->
-        <div class="p-6 rounded-2xl bg-brand-bg border border-brand-border space-y-3 text-xs sm:text-sm text-brand-text leading-relaxed">
-          <h4 class="font-bold text-brand-navy text-base">
-            Advisory Scope for {university.name}
-          </h4>
-          <p>
-            Visa Convention assists prospective students with profile assessment, eligibility screening against official university admission requirements, statement of purpose reviews, academic transcript coordination, and post-acceptance visa filing.
-          </p>
-          <p class="text-brand-muted italic">
-            Note: Unless explicitly stated as a verified contract partner, this profile represents an educational institution for which independent admission counseling and application assistance are offered.
-          </p>
+        <!-- Tuition & Scholarships Section -->
+        {(university.tuitionInformation || university.scholarshipInformation) && (
+          <div class="card-premium p-6 sm:p-7 border border-brand-border bg-white rounded-2xl shadow-xs">
+            <h2 class="text-xl font-bold text-brand-navy mb-4 flex items-center gap-2">
+              <svg class="w-5 h-5 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Tuition & Financial Aid Advisory</span>
+            </h2>
+
+            {university.tuitionInformation && (
+              <div class="mb-4">
+                <span class="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-1">Advisory Tuition Range</span>
+                <p class="text-sm font-semibold text-emerald-800 bg-emerald-50/60 border border-emerald-200 rounded-lg p-3">
+                  {university.tuitionInformation}
+                </p>
+              </div>
+            )}
+
+            {university.scholarshipInformation && (
+              <div>
+                <span class="block text-xs font-bold text-brand-navy uppercase tracking-wider mb-1">Scholarship & Grant Opportunities</span>
+                <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                  {university.scholarshipInformation}
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+
+        <!-- How Visa Convention Assists Applicants -->
+        <div class="card-premium p-6 sm:p-7 border border-brand-border bg-white rounded-2xl shadow-xs">
+          <h2 class="text-xl font-bold text-brand-navy mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5 text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <span>How Visa Convention Guides Your Application</span>
+          </h2>
+          <ul class="space-y-3 text-xs sm:text-sm text-brand-text">
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-brand-bg text-brand-blue flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">1</span>
+              <span><strong>Academic Profile Screening:</strong> Verification of your marks, backlog status, and eligibility against {university.name}'s specific faculty thresholds.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-brand-bg text-brand-blue flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">2</span>
+              <span><strong>SOP & Recommendation Review:</strong> Professional editing and alignment of your statement of purpose to meet host-university standards.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-brand-bg text-brand-blue flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">3</span>
+              <span><strong>Offer Acceptance & Fee Remittance:</strong> Guiding tuition deposit payments through verified authorized banking channels.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="w-5 h-5 rounded-full bg-brand-bg text-brand-blue flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5">4</span>
+              <span><strong>Student Visa Documentation:</strong> Comprehensive file preparation for the embassy/high commission, including financial justification and genuine student compliance.</span>
+            </li>
+          </ul>
+
+          <!-- Disclaimer Tag -->
+          <div class="mt-6 pt-4 border-t border-brand-border/70 text-[11px] text-brand-muted leading-relaxed">
+            <strong class="font-bold text-brand-navy">Integrity Disclaimer:</strong> {university.relationshipStatus === 'verified_partner' ? 'Visa Convention holds formal recruitment representation with this institution.' : 'Visa Convention provides independent advisory and application facilitation for this institution. Listing does not imply an exclusive contractual endorsement.'}
+          </div>
         </div>
       </div>
 
-      <!-- Right Column: Sticky Form -->
-      <div class="lg:col-span-5">
-        <div class="sticky top-28">
+      <!-- Right Column: Sticky Consultation Form -->
+      <aside class="lg:col-span-5">
+        <div class="sticky top-24">
           <EnquiryForm
             selectedCountry={university.countrySlug}
             selectedService="study-visa"
             title={`Apply to ${university.name}`}
-            subtitle="Let our team evaluate your eligibility and guide your submission."
+            subtitle={`Connect with our Hanumangarh counseling office for verified eligibility screening and admission steps for ${university.name}.`}
           />
         </div>
-      </div>
+      </aside>
     </div>
-  </div>
+  </section>
+
+  <!-- Related Universities Section -->
+  {relatedInCountry.length > 0 && (
+    <section class="py-16 bg-brand-bg border-t border-brand-border">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-blue">Alternative Options</span>
+            <h2 class="text-2xl font-bold text-brand-navy mt-1">
+              Other Institutions in {university.countryName}
+            </h2>
+          </div>
+          <a
+            href={`/universities/?country=${university.countrySlug}`}
+            class="text-xs font-bold text-brand-blue hover:text-brand-navy hover:underline hidden sm:inline-flex items-center gap-1"
+          >
+            <span>View all in {university.countryName}</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {relatedInCountry.map((relatedUni) => (
+            <UniversityCard university={relatedUni} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Final Consultation Call -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <ConsultationCTA
+      title={`Plan Your Application to ${university.name}`}
+      subtitle="Our counselors evaluate international applicant requirements, intake calendars, and student visa compliance. Schedule your personalized counseling session today."
+      primaryBtnText="Book Consultation Session"
+      primaryBtnHref={`/contact/?service=study-visa&country=${university.countrySlug}&institution=${encodeURIComponent(university.name)}`}
+    />
+  </section>
 </BaseLayout>

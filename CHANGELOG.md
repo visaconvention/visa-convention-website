@@ -6,14 +6,36 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - Planned Stages 07–12
+## [Unreleased] - Planned Stages 08–12
 ### Planned
-- **Stage 07:** University directory expanded database and detailed profiles.
 - **Stage 08:** About, verified trust, success stories, and partnership pages.
 - **Stage 09:** Contact forms and multi-step inquiry journeys.
 - **Stage 10:** Technical SEO, Schema.org JSON-LD structured data, and Web Vitals optimization.
 - **Stage 11:** Comprehensive accessibility (WCAG 2.1 AA), cross-browser, and responsiveness QA.
 - **Stage 12:** Production build verification and client handover documentation.
+
+---
+
+## [0.7.0] - 2026-11-10
+### Added
+- **Central University Discovery System (`/universities/`):** Built a scalable, instant client-side searchable university directory populated by 1,015 genuine client institutions across 35 countries without requiring individual hand-coded pages.
+- **Automated Client Workbook Pipeline (`scripts/build-universities-dataset.py`):**
+  - High-performance XML parser capable of reading all 33 client Excel workbooks in `..\data\` in <2 seconds.
+  - Extracted 1,015 unique, deduplicated institution records into `client-content/universities/universities.csv` and `client-content/universities/universities.json`.
+  - Parsed specialized workbooks including `MBBS_Abroad_Universities.xlsx` to enrich Central Asian and European medical universities with NEET requirements and clinical specializations.
+- **Validated 20-Field University Schema & Data Layer (`src/data/universities.ts`):**
+  - Fully typed `University` model (`id`, `name`, `slug`, `countryId`, `city`, `officialWebsite`, `institutionType`, `studyLevels`, `subjectAreas`, `courses`, `admissionInformation`, `tuitionInformation`, `scholarshipInformation`, `featured`, `relationshipStatus`, `logoAsset`, `coverImage`, `sourceLinks`, `lastReviewed`, `publicationStatus`, `hasDetailedProfile`).
+  - Helper functions for distinct countries, cities, study levels, and subject areas.
+- **Strict Relationship Integrity:** Formally enforced rule: *"Listed for Admissions Guidance"* is strictly distinguished from *"Verified Partner"*. 0 false partnership claims.
+- **Critical Threshold Rule Enforcement:**
+  - Bare records (containing minimal name and country metadata) are presented in the directory with "Admissions Guidance Available" and direct inquiry CTAs.
+  - Profile static pages are strictly generated only for institutions with rich curated profiles (`hasDetailedProfile: true`), preventing low-value, thin-content SEO penalties.
+- **Dynamic University Profiles (`/universities/[university]/`):** Reusable layout presenting official portal links with external security attributes (`rel="noopener noreferrer"`), institutional overview, available degree levels, popular courses, admission standards, tuition and financial aid indicators, Visa Convention's 4-step guidance breakdown, and pre-filled inquiry forms.
+- **Schema.org Structured Data:** Added `EducationalOrganization` JSON-LD schema with location and institutional metadata on profile pages.
+- **Client-Side Progressive Pagination:** Implemented fast, responsive pagination (24 institutions/page) with URL query parameter persistence (`?country=`, `?q=`, `?level=`) and animated empty-state recovery.
+- **Automated QA Test Suite (`tests/university-engine.test.js`):** 40/40 passing assertions verifying 500-institution synthetic fixture, 1,015-item production dataset integrity, zero duplicate IDs/slugs, foreign key validity, threshold rule enforcement, filtering accuracy, sub-millisecond filtering latency (0.97ms), and static HTML output.
+- **Visual Previews:** Edge Chromium headless captures for `/universities/`, `/universities/university-of-toronto/`, and `/universities/technical-university-of-munich/` across desktop, mobile, and full-page layouts.
+- **Compilation:** `astro check` passed with 0 errors across 59 files; `astro build` compiled 64 static pages in 2.99s.
 
 ---
 

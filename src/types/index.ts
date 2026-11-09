@@ -122,26 +122,41 @@ export interface Country {
 
 /**
  * University Data Model
- * Centralized schema populating both country pages and global directory.
+ * Centralized schema populating both country pages and the global searchable directory.
+ * Scalable to thousands of institution records.
  */
 export interface University {
-  id: string;                      // e.g., "uni-toronto"
-  slug: string;                    // e.g., "university-of-toronto"
-  name: string;                    // Official university name
-  countryId: string;               // Foreign key referencing Country.id
-  countrySlug: string;             // Slug for linking to country page
-  countryName: string;             // Display name of destination country
-  city: string;
+  // Core schema fields required by specification:
+  id: string;                                          // Unique identifier, e.g., "uni-toronto"
+  name: string;                                        // Official university or college name
+  slug: string;                                        // Stable kebab-case URL slug
+  countryId: string;                                   // References Country.id
+  city?: string;                                       // City or campus location
+  officialWebsite?: string;                            // Official verified institutional portal
+  institutionType?: string;                            // e.g., "Public Research University", "Technical Institute"
+  studyLevels: StudyLevel[];                          // Available study levels (Bachelors, Masters, etc.)
+  subjectAreas: string[];                              // Subject domains (Computer Science, Business, etc.)
+  courses: string[];                                   // Program offerings or course highlights
+  admissionInformation?: string;                       // Entry criteria, GPA, and test requirements
+  tuitionInformation?: string;                         // Advisory tuition range
+  scholarshipInformation?: string;                     // Institutional grants or awards
+  featured: boolean;                                   // Featured on homepage or top directory picks
+  relationshipStatus: UniversityRelationship;          // STRICT: "listed_for_guidance" (default) vs "verified_partner"
+  logoAsset?: string;                                  // University crest/logo asset path
+  coverImage?: string;                                 // Campus photograph path
+  sourceLinks?: Array<{ label: string; url: string }> | string[]; // Official reference sources
+  lastReviewed: string;                                // ISO date (YYYY-MM-DD)
+  publicationStatus: PublicationStatus;                // "published" | "draft"
+  hasDetailedProfile?: boolean;                        // True if record contains full profile content (prevents thin pages)
+
+  // Backward-compatibility properties:
+  countryName: string;                                 // Display name of destination country
+  countrySlug: string;                                 // Slug for linking to country page
+  worldRanking?: string;                               // Ranking indicator (e.g., "Top 25 Global")
+  averageTuition?: string;                             // Alias for tuitionInformation
+  description?: string;                                // Institution overview narrative
+  popularDisciplines: string[];                        // Alias for subjectAreas
   campusLocations?: string[];
-  officialWebsite: string;         // Verified official .edu / .ac website
-  studyLevels: StudyLevel[];
-  popularDisciplines: string[];    // e.g., ["Computer Science", "Business", "Medicine"]
-  relationshipStatus: UniversityRelationship;
-  featured: boolean;               // Highlighted in university directory
-  worldRanking?: string;           // QS/THE ranking bracket if verified (e.g., "Top 50")
-  averageTuition?: string;         // Advisory tuition indicator
-  description?: string;
-  publicationStatus: PublicationStatus;
 }
 
 /**

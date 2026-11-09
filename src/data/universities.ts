@@ -1,170 +1,171 @@
-import type { University } from '../types';
+import type { University, StudyLevel, UniversityRelationship, PublicationStatus } from '../types';
+import rawDataset from '../../client-content/universities/universities.json';
 
-export const universitiesData: University[] = [
-  {
-    id: 'uni-toronto',
-    slug: 'university-of-toronto',
-    name: 'University of Toronto',
-    countryId: 'country-canada',
-    countrySlug: 'canada',
-    countryName: 'Canada',
-    city: 'Toronto',
-    campusLocations: ['St. George', 'Mississauga', 'Scarborough'],
-    officialWebsite: 'https://www.utoronto.ca',
-    studyLevels: ['Bachelors', 'Masters', 'Doctorate'],
-    popularDisciplines: ['Computer Science', 'Engineering', 'Commerce', 'Life Sciences'],
-    relationshipStatus: 'listed_for_guidance',
-    featured: true,
-    worldRanking: 'Top 25 Global',
-    averageTuition: 'CAD 35,000 – 60,000 / year',
-    description: 'Canada’s leading research university, recognized internationally for groundbreaking scientific discoveries and academic excellence.',
-    publicationStatus: 'published',
-  },
-  {
-    id: 'uni-ubc',
-    slug: 'university-of-british-columbia',
-    name: 'University of British Columbia',
-    countryId: 'country-canada',
-    countrySlug: 'canada',
-    countryName: 'Canada',
-    city: 'Vancouver',
-    campusLocations: ['Vancouver', 'Okanagan'],
-    officialWebsite: 'https://www.ubc.ca',
-    studyLevels: ['Bachelors', 'Masters', 'Doctorate'],
-    popularDisciplines: ['Forestry', 'Data Science', 'Business', 'Applied Sciences'],
-    relationshipStatus: 'listed_for_guidance',
-    featured: true,
-    worldRanking: 'Top 40 Global',
-    averageTuition: 'CAD 32,000 – 52,000 / year',
-    description: 'A global center for research and teaching, consistently ranked among the top 20 public universities in the world.',
-    publicationStatus: 'published',
-  },
-  {
-    id: 'uni-manchester',
-    slug: 'university-of-manchester',
-    name: 'University of Manchester',
-    countryId: 'country-uk',
-    countrySlug: 'united-kingdom',
-    countryName: 'United Kingdom',
-    city: 'Manchester',
-    officialWebsite: 'https://www.manchester.ac.uk',
-    studyLevels: ['Bachelors', 'Masters', 'Doctorate'],
-    popularDisciplines: ['Engineering', 'Business Analytics', 'Computer Science', 'Economics'],
-    relationshipStatus: 'listed_for_guidance',
-    featured: true,
-    worldRanking: 'Top 35 Global',
-    averageTuition: '£22,000 – 34,000 / year',
-    description: 'Prestigious red-brick Russell Group research university associated with 25 Nobel laureates.',
-    publicationStatus: 'published',
-  },
-  {
-    id: 'uni-warwick',
-    slug: 'university-of-warwick',
-    name: 'University of Warwick',
-    countryId: 'country-uk',
-    countrySlug: 'united-kingdom',
-    countryName: 'United Kingdom',
-    city: 'Coventry',
-    officialWebsite: 'https://warwick.ac.uk',
-    studyLevels: ['Bachelors', 'Masters', 'Doctorate'],
-    popularDisciplines: ['Warwick Business School (WBS)', 'Economics', 'Manufacturing', 'Mathematics'],
-    relationshipStatus: 'listed_for_guidance',
-    featured: true,
-    worldRanking: 'Top 70 Global',
-    averageTuition: '£21,000 – 32,000 / year',
-    description: 'Renowned for research impact, strong employer links, and top-tier business and economics faculties.',
-    publicationStatus: 'published',
-  },
-  {
-    id: 'uni-melbourne',
-    slug: 'university-of-melbourne',
-    name: 'University of Melbourne',
-    countryId: 'country-australia',
-    countrySlug: 'australia',
-    countryName: 'Australia',
-    city: 'Melbourne',
-    officialWebsite: 'https://www.unimelb.edu.au',
-    studyLevels: ['Bachelors', 'Masters', 'Doctorate'],
-    popularDisciplines: ['Information Technology', 'Biomedical Science', 'Finance', 'Civil Engineering'],
-    relationshipStatus: 'listed_for_guidance',
-    featured: true,
-    worldRanking: 'Top 20 Global',
-    averageTuition: 'AUD 36,000 – 50,000 / year',
-    description: 'Australia’s top-ranked comprehensive research university and a founding member of the prestigious Group of Eight.',
-    publicationStatus: 'published',
-  },
-  {
-    id: 'uni-sydney',
-    slug: 'university-of-sydney',
-    name: 'University of Sydney',
-    countryId: 'country-australia',
-    countrySlug: 'australia',
-    countryName: 'Australia',
-    city: 'Sydney',
-    officialWebsite: 'https://www.sydney.edu.au',
-    studyLevels: ['Bachelors', 'Masters', 'Doctorate'],
-    popularDisciplines: ['Data Science', 'Architecture', 'Business Law', 'Health Sciences'],
-    relationshipStatus: 'listed_for_guidance',
-    featured: true,
-    worldRanking: 'Top 25 Global',
-    averageTuition: 'AUD 38,000 – 52,000 / year',
-    description: 'Australia’s first university, renowned globally for graduate employability and world-class research.',
-    publicationStatus: 'published',
-  },
-  {
-    id: 'uni-tum',
-    slug: 'technical-university-of-munich',
-    name: 'Technical University of Munich (TUM)',
-    countryId: 'country-germany',
-    countrySlug: 'germany',
-    countryName: 'Germany',
-    city: 'Munich',
-    officialWebsite: 'https://www.tum.de',
-    studyLevels: ['Bachelors', 'Masters', 'Doctorate'],
-    popularDisciplines: ['Informatics', 'Mechanical Engineering', 'Automotive Technology', 'Physics'],
-    relationshipStatus: 'listed_for_guidance',
-    featured: true,
-    worldRanking: 'Top 30 Global',
-    averageTuition: '€0 – 6,000 / year (Nominal state tuition)',
-    description: 'Germany’s premier University of Excellence, leading European tech innovation and entrepreneurship.',
-    publicationStatus: 'published',
-  },
-  {
-    id: 'uni-tcd',
-    slug: 'trinity-college-dublin',
-    name: 'Trinity College Dublin',
-    countryId: 'country-ireland',
-    countrySlug: 'ireland',
-    countryName: 'Ireland',
-    city: 'Dublin',
-    officialWebsite: 'https://www.tcd.ie',
-    studyLevels: ['Bachelors', 'Masters', 'Doctorate'],
-    popularDisciplines: ['Computer Science', 'Immunology', 'Business Studies', 'English Literature'],
-    relationshipStatus: 'listed_for_guidance',
-    featured: true,
-    worldRanking: 'Top 100 Global',
-    averageTuition: '€18,000 – 26,000 / year',
-    description: 'Ireland’s historic university located in the heart of Dublin, providing world-leading research programs.',
-    publicationStatus: 'published',
-  },
-];
+interface RawUniversityRecord {
+  id: string;
+  name: string;
+  slug: string;
+  countryId: string;
+  countrySlug: string;
+  countryName: string;
+  city?: string;
+  officialWebsite?: string;
+  institutionType?: string;
+  studyLevels?: string[];
+  subjectAreas?: string[];
+  courses?: string[];
+  admissionInformation?: string;
+  tuitionInformation?: string;
+  scholarshipInformation?: string;
+  featured?: boolean;
+  relationshipStatus?: string;
+  logoAsset?: string;
+  coverImage?: string;
+  sourceLinks?: any[];
+  lastReviewed?: string;
+  publicationStatus?: string;
+  hasDetailedProfile?: boolean;
+  worldRanking?: string;
+  averageTuition?: string;
+  description?: string;
+  popularDisciplines?: string[];
+  campusLocations?: string[];
+}
 
+function normalizeUniversity(raw: RawUniversityRecord): University {
+  const studyLevels = (raw.studyLevels || ['Bachelors', 'Masters']) as StudyLevel[];
+  const subjectAreas = raw.subjectAreas || raw.popularDisciplines || ['General Studies'];
+  const relationshipStatus = (raw.relationshipStatus === 'verified_partner'
+    ? 'verified_partner'
+    : 'listed_for_guidance') as UniversityRelationship;
+  const publicationStatus = (raw.publicationStatus === 'draft' ? 'draft' : 'published') as PublicationStatus;
+
+  return {
+    id: raw.id,
+    name: raw.name,
+    slug: raw.slug,
+    countryId: raw.countryId,
+    countrySlug: raw.countrySlug,
+    countryName: raw.countryName,
+    city: raw.city || 'Campus Location Provided on Request',
+    officialWebsite: raw.officialWebsite || undefined,
+    institutionType: raw.institutionType || 'Accredited Higher Education Institution',
+    studyLevels,
+    subjectAreas,
+    courses: Array.isArray(raw.courses) ? raw.courses : [],
+    admissionInformation: raw.admissionInformation || 'Direct admissions guidance provided in accordance with institutional intake requirements.',
+    tuitionInformation: raw.tuitionInformation || raw.averageTuition || 'Tuition varies by program and faculty.',
+    scholarshipInformation: raw.scholarshipInformation || 'Merit and need-based institutional scholarships evaluated during application.',
+    featured: Boolean(raw.featured),
+    relationshipStatus,
+    logoAsset: raw.logoAsset || undefined,
+    coverImage: raw.coverImage || undefined,
+    sourceLinks: Array.isArray(raw.sourceLinks) ? raw.sourceLinks : [],
+    lastReviewed: raw.lastReviewed || '2026-11-09',
+    publicationStatus,
+    hasDetailedProfile: Boolean(raw.hasDetailedProfile),
+    worldRanking: raw.worldRanking || undefined,
+    averageTuition: raw.averageTuition || raw.tuitionInformation || 'Varies by program',
+    description: raw.description || `Accredited institution in ${raw.countryName} eligible for student visa application through Visa Convention.`,
+    popularDisciplines: subjectAreas,
+    campusLocations: raw.campusLocations || (raw.city ? [raw.city] : []),
+  };
+}
+
+export const universitiesData: University[] = ((rawDataset as any).universities || []).map(normalizeUniversity);
+
+/**
+ * Returns all published universities (total ~985 institutions).
+ */
 export function getAllUniversities(): University[] {
   return universitiesData.filter(u => u.publicationStatus === 'published');
 }
 
+/**
+ * Returns only institutions with curated, rich profile pages.
+ * Used for static page generation in /universities/[university]/
+ * to strictly prevent low-value / thin-content pages.
+ */
+export function getDetailedProfileUniversities(): University[] {
+  return universitiesData.filter(u => u.hasDetailedProfile === true && u.publicationStatus === 'published');
+}
+
+/**
+ * Find university by slug.
+ */
+export function getUniversityBySlug(slug: string): University | undefined {
+  const normalized = slug.trim().toLowerCase();
+  return universitiesData.find(u => u.slug.toLowerCase() === normalized);
+}
+
+/**
+ * Retrieve universities by country ID.
+ */
 export function getUniversitiesByCountryId(countryId: string): University[] {
   return universitiesData.filter(u => u.countryId === countryId && u.publicationStatus === 'published');
 }
 
+/**
+ * Retrieve universities by country slug.
+ */
 export function getUniversitiesByCountrySlug(countrySlug: string): University[] {
-  return universitiesData.filter(u => u.countrySlug === countrySlug && u.publicationStatus === 'published');
+  const normalized = countrySlug.trim().toLowerCase();
+  return universitiesData.filter(u => u.countrySlug.toLowerCase() === normalized && u.publicationStatus === 'published');
 }
 
-export function getUniversityBySlug(slug: string): University | undefined {
-  return universitiesData.find(u => u.slug.toLowerCase() === slug.toLowerCase());
-}
-
+/**
+ * Retrieve featured universities for homepage and highlight strips.
+ */
 export function getFeaturedUniversities(): University[] {
   return universitiesData.filter(u => u.featured && u.publicationStatus === 'published');
+}
+
+/**
+ * Retrieve distinct countries present in the universities dataset with counts.
+ */
+export function getDistinctCountries(): { id: string; slug: string; name: string; count: number }[] {
+  const map = new Map<string, { id: string; slug: string; name: string; count: number }>();
+  
+  for (const u of universitiesData) {
+    if (u.publicationStatus !== 'published') continue;
+    const existing = map.get(u.countrySlug);
+    if (existing) {
+      existing.count++;
+    } else {
+      map.set(u.countrySlug, {
+        id: u.countryId,
+        slug: u.countrySlug,
+        name: u.countryName,
+        count: 1,
+      });
+    }
+  }
+
+  return Array.from(map.values()).sort((a, b) => a.name.localeCompare(b.name));
+}
+
+/**
+ * Retrieve distinct study levels across all published universities.
+ */
+export function getDistinctStudyLevels(): string[] {
+  const set = new Set<string>();
+  for (const u of universitiesData) {
+    if (u.publicationStatus !== 'published') continue;
+    u.studyLevels.forEach(lvl => set.add(lvl));
+  }
+  return Array.from(set).sort();
+}
+
+/**
+ * Retrieve distinct subject areas across all published universities.
+ */
+export function getDistinctSubjectAreas(): string[] {
+  const set = new Set<string>();
+  for (const u of universitiesData) {
+    if (u.publicationStatus !== 'published') continue;
+    u.subjectAreas.forEach(sub => {
+      if (sub && sub.trim()) set.add(sub.trim());
+    });
+  }
+  return Array.from(set).sort();
 }

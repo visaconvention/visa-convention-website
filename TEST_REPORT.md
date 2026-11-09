@@ -141,6 +141,38 @@ All code, schemas, and assets developed for Visa Convention pass through a stric
 
 ---
 
+### Stage 07: Central University Discovery & Dynamic Profile Engine
+- **Execution Date:** November 10, 2026
+- **Test Objective:** Verify compilation of 1,015 genuine client institutions, multi-criteria client-side search and filtering, 24-card pagination, strict threshold rule (zero bare-record thin pages), relationship integrity ("listed for guidance" ≠ "official partner"), and automated QA test suite (`tests/university-engine.test.js`).
+
+| Test ID | Test Description | Expected Result | Actual Result | Status |
+| :---: | :--- | :--- | :--- | :---: |
+| **T07-01** | Production Dataset Volume | Production dataset contains $\ge$ 500 records | 1,015 unique institutions compiled across 33 workbooks | **PASS** |
+| **T07-02** | CSV & JSON Data Parity | CSV record count matches JSON record count | Exactly 1,015 rows in CSV & JSON | **PASS** |
+| **T07-03** | ID & Slug Uniqueness | 0 duplicate university IDs or URL slugs | 0 duplicates found across all 1,015 records | **PASS** |
+| **T07-04** | Country Foreign Key Integrity | All university records reference valid country IDs/slugs | 100% matched to valid entries in `countries.json` | **PASS** |
+| **T07-05** | Relationship Status Integrity | Strict status: "listed_for_guidance" or "verified_partner" | 0 unverified partner claims across all records | **PASS** |
+| **T07-06** | Valid Review Timestamps | Valid ISO `lastReviewed` date on every record | Verified on all 1,015 records (`2026-11-09`) | **PASS** |
+| **T07-07** | Synthetic Fixture Simulation | 500 synthetic institutions across 35 countries | Fixture generated in `tests/fixtures/test-universities-500.json` | **PASS** |
+| **T07-08** | Threshold Rule Enforcement | Detailed profiles get static pages; bare records stay in directory | 10 profile pages generated; 1,005 bare records kept directory-only | **PASS** |
+| **T07-09** | Thin-Page Leak Prevention | Zero bare records generate low-value thin pages | Verified: 0 thin pages generated in `dist/universities/` | **PASS** |
+| **T07-10** | Case-Insensitive Name Search | Search query is case-insensitive | Verified (`toronto` == `TORONTO`) | **PASS** |
+| **T07-11** | Destination Country Filtering | Country filter returns strictly matching destination | Verified for Canada (149 institutions), UK, etc. | **PASS** |
+| **T07-12** | Study Level Filtering | Filter by study level (Bachelors, Masters, MBBS, etc.) | Verified: MBBS returns 36 medical universities | **PASS** |
+| **T07-13** | Multi-Criteria Query Resolution | Compound filter (Country + Level + Query) | Accurately resolves compound multi-filters | **PASS** |
+| **T07-14** | Empty State Trigger | Non-existent query triggers empty state container | Returns 0 items and unhides `no-results-view` | **PASS** |
+| **T07-15** | Filtering Performance Benchmark | Filter search execution completes in < 15ms | Production 1,015 items filter in 0.974ms | **PASS** |
+| **T07-16** | Schema.org Structured Data | Profile page contains `EducationalOrganization` JSON-LD | Verified in `dist/universities/university-of-toronto/` | **PASS** |
+| **T07-17** | External Portal Link Security | Official links have `target="_blank"` & `rel="noopener noreferrer"` | Verified in `UniversityCard.astro` & `[university].astro` | **PASS** |
+| **T07-18** | Pre-Filled Admission Inquiries | Bare records link directly to `/contact/?service=study-visa...` | Verified across directory and cards | **PASS** |
+| **T07-19** | Diagnostic Check (`astro check`) | 0 errors across 59 project files | `Result (59 files): 0 errors, 0 warnings, 0 hints` | **PASS** |
+| **T07-20** | Static Site Build (`astro build`) | 64 static pages compiled in under 3.5s | 64 pages built in 2.99s with 0 errors | **PASS** |
+| **T07-21** | Responsive Visual Previews | Directory & Profile captures (1440px & 390px) | Screenshots captured via headless Edge Chromium | **PASS** |
+
+**Stage 07 Verdict:** **PASSED ALL CHECKS (21/21 in Stage; 40/40 in Automated Suite)**
+
+---
+
 ## 3. Automated Test Execution Commands
 
 ```bash

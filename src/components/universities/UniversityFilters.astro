@@ -1,13 +1,23 @@
 ---
 interface Props {
-  countries: Array<{ id: string; name: string }>;
+  countries: Array<{ id: string; slug: string; name: string; count?: number }>;
   studyLevels?: string[];
+  subjectAreas?: string[];
   class?: string;
 }
 
 const {
   countries,
-  studyLevels = ['Bachelors', 'Masters', 'Doctorate', 'Diploma', 'MBBS'],
+  studyLevels = ['Bachelors', 'Masters', 'Doctorate', 'MBBS / Medicine', 'Diploma', 'Foundation'],
+  subjectAreas = [
+    'Computer Science & IT',
+    'Engineering & Technology',
+    'Business & Management',
+    'Medicine & Health Sciences',
+    'Arts & Humanities',
+    'Law & Social Sciences',
+    'Sciences & Mathematics',
+  ],
   class: className = '',
 } = Astro.props;
 ---
@@ -18,12 +28,12 @@ const {
       <svg class="w-4 h-4 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
       </svg>
-      <span>Filter Directory</span>
+      <span>Filter Institutions</span>
     </h3>
     <button
       id="reset-filters-btn"
       type="button"
-      class="text-xs text-brand-red font-semibold hover:underline"
+      class="text-xs text-brand-red font-semibold hover:underline cursor-pointer focus:outline-none focus:ring-1 focus:ring-brand-red rounded px-1"
     >
       Reset All
     </button>
@@ -36,28 +46,63 @@ const {
     </label>
     <select
       id="filter-country"
-      class="w-full bg-brand-bg rounded-lg border border-brand-border px-3 py-2 text-xs font-medium text-brand-navy focus:outline-hidden focus:ring-2 focus:ring-brand-blue"
+      class="w-full bg-brand-bg rounded-lg border border-brand-border px-3 py-2 text-xs font-medium text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue"
     >
       <option value="all">All Countries ({countries.length})</option>
       {countries.map((c) => (
-        <option value={c.name.toLowerCase()}>{c.name}</option>
+        <option value={c.slug}>
+          {c.name} {c.count ? `(${c.count})` : ''}
+        </option>
       ))}
     </select>
   </div>
 
-  <!-- Degree Level Filter -->
+  <!-- Study Level Filter -->
   <div>
     <label for="filter-degree" class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-1.5">
       Study Level
     </label>
     <select
       id="filter-degree"
-      class="w-full bg-brand-bg rounded-lg border border-brand-border px-3 py-2 text-xs font-medium text-brand-navy focus:outline-hidden focus:ring-2 focus:ring-brand-blue"
+      class="w-full bg-brand-bg rounded-lg border border-brand-border px-3 py-2 text-xs font-medium text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue"
     >
       <option value="all">All Study Levels</option>
       {studyLevels.map((lvl) => (
         <option value={lvl.toLowerCase()}>{lvl}</option>
       ))}
     </select>
+  </div>
+
+  <!-- Subject Area Filter -->
+  <div>
+    <label for="filter-subject" class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-1.5">
+      Subject Area
+    </label>
+    <select
+      id="filter-subject"
+      class="w-full bg-brand-bg rounded-lg border border-brand-border px-3 py-2 text-xs font-medium text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue"
+    >
+      <option value="all">All Disciplines</option>
+      {subjectAreas.map((subj) => (
+        <option value={subj.toLowerCase()}>{subj}</option>
+      ))}
+    </select>
+  </div>
+
+  <!-- Profile Depth Checkbox Filter -->
+  <div class="pt-2 border-t border-brand-border/60">
+    <label class="flex items-center gap-2 text-xs text-brand-navy cursor-pointer select-none">
+      <input
+        type="checkbox"
+        id="filter-detailed-only"
+        class="rounded border-brand-border text-brand-blue focus:ring-brand-blue/30 h-4 w-4"
+      />
+      <span class="font-medium">Curated Detailed Profiles only</span>
+    </label>
+  </div>
+
+  <!-- Counseling Trust Note -->
+  <div class="pt-3 border-t border-brand-border/60 text-[11px] text-brand-muted leading-relaxed">
+    <strong class="text-brand-navy font-semibold">Integrity Notice:</strong> Institutions listed represent recognized universities for which Visa Convention provides admissions guidance and visa support. Listing does not imply an exclusive agency contract.
   </div>
 </div>
