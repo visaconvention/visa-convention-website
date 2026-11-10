@@ -138,7 +138,7 @@ export const detailedServicesData: Record<string, DetailedService> = {
       },
       {
         title: 'Integrated FMGE / NExT Preparation',
-        description: 'Partnering with medical faculties offering integrated coaching and mock examinations for India’s National Exit Test (NExT) and global licensing screening.',
+        description: 'Guiding admissions to recognized medical faculties offering integrated coaching and mock examinations for India’s National Exit Test (NExT) and global licensing screening.',
       },
       {
         title: 'NMC & WHO Approval / Recognition Verification',
@@ -157,7 +157,7 @@ export const detailedServicesData: Record<string, DetailedService> = {
       { name: 'Georgia', slug: 'georgia', highlight: 'European medical curriculum (TSMU, SEU, GAU, Batumi Shota Rustaveli), modern diagnostic clinics, high bed ratios.' },
       { name: 'Poland', slug: 'poland', highlight: 'European Union medical universities (Warsaw, Poznan, Silesia, Wroclaw) with English-taught medicine complying with EU directives.' },
       { name: 'Latvia', slug: 'latvia', highlight: 'Prestigious Baltic medical faculty (Riga Stradiņš University) with modern clinical simulation hospitals.' },
-      { name: 'Portugal', slug: 'portugal', highlight: 'Western European medical training (NOVA Medical School, Católica Medical School) in collaboration with premier European faculties.' },
+      { name: 'Portugal', slug: 'portugal', highlight: 'Western European medical training (NOVA Medical School, Católica Medical School) with premier clinical facilities.' },
       { name: 'Moldova', slug: 'moldova', highlight: 'Recognized medical education (Nicolae Testemițanu State University, Technical University of Moldova) with affordable tuition.' },
       { name: 'Lithuania', slug: 'lithuania', highlight: 'EU-accredited medical and health science faculties (Lithuanian University of Health Sciences - LSMU) with modern clinics.' },
       { name: 'Azerbaijan', slug: 'azerbaijan', highlight: 'State medical education (AZERBAIJAN MEDICAL University) with English-taught medicine in Baku.' },

@@ -29,7 +29,7 @@ const serviceOptions = [
   { id: 'work-visa', label: 'Work Visa Documentation' },
   { id: 'flight-booking', label: 'Air Ticket / Flight Reservation' },
   { id: 'additional-services', label: 'Additional Services (Forex / Insurance)' },
-  { id: 'business-partnership', label: 'Business Partnership (B2B)' },
+  { id: 'business-partnership', label: 'Business & Institutional Inquiry (B2B)' },
 ];
 ---
 
@@ -262,7 +262,7 @@ const serviceOptions = [
     <!-- DYNAMIC SECTION 2: Business Partnership Fields (Visible when Business Partnership is selected) -->
     <div id="business-partnership-fields" class="hidden space-y-4 pt-1 border-t border-brand-border/60">
       <div class="p-3.5 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900 leading-relaxed">
-        <strong>B2B Inquiry Mode:</strong> Please provide your organization details. Our Hanumangarh leadership team will review your proposal under mutual non-disclosure.
+        <strong>B2B Inquiry Mode:</strong> Please provide your organization details. Our Hanumangarh leadership team will review your inquiry under mutual non-disclosure.
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -335,17 +335,17 @@ const serviceOptions = [
 
       <div>
         <label for="form-business-scope" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
-          Nature of Proposed Collaboration <span class="text-brand-red">*</span>
+          Nature of Proposed Inquiry / Collaboration <span class="text-brand-red">*</span>
         </label>
         <textarea
           id="form-business-scope"
           name="business_scope"
           rows="3"
-          placeholder="Describe your student volume, regional presence, and desired partnership terms..."
+          placeholder="Describe your organization, student volume, regional presence, and inquiry details..."
           class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all resize-y"
         ></textarea>
         <p id="form-business-scope-error" class="hidden text-xs text-brand-red font-medium mt-1">
-          Please describe proposed collaboration nature.
+          Please describe the nature of your inquiry.
         </p>
       </div>
     </div>

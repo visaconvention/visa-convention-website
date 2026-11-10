@@ -5389,7 +5389,7 @@
     },
     {
       "id": "uni-university-of-victoria-ug-only-all-new-applications-will-be-sent-through-kaplan",
-      "name": "UNIVERSITY OF VICTORIA (UG ONLY) All new applications will be sent through Kaplan",
+      "name": "UNIVERSITY OF VICTORIA (UG ONLY)",
       "slug": "university-of-victoria-ug-only-all-new-applications-will-be-sent-through-kaplan",
       "countryId": "country-canada",
       "countrySlug": "canada",
@@ -5950,7 +5950,7 @@
     },
     {
       "id": "uni-coast-mountain-college-formerly-known-as-northwest-community-college-msquare",
-      "name": "COAST MOUNTAIN COLLEGE (Formerly known as: NORTHWEST COMMUNITY COLLEGE) - MSQUARE",
+      "name": "COAST MOUNTAIN COLLEGE (Formerly known as: NORTHWEST COMMUNITY COLLEGE)",
       "slug": "coast-mountain-college-formerly-known-as-northwest-community-college-msquare",
       "countryId": "country-canada",
       "countrySlug": "canada",
@@ -7670,8 +7670,8 @@
     },
     {
       "id": "uni-university-of-prince-edward-island-direct-tie-up",
-      "name": "University Of Prince Edward Island - Direct Tie Up",
-      "slug": "university-of-prince-edward-island-direct-tie-up",
+      "name": "University Of Prince Edward Island",
+      "slug": "university-of-prince-edward-island-main",
       "countryId": "country-canada",
       "countrySlug": "canada",
       "countryName": "Canada",
@@ -7910,7 +7910,7 @@
     },
     {
       "id": "uni-northeastern-university-toronto-through-kaplan",
-      "name": "Northeastern University - Toronto - Through Kaplan",
+      "name": "Northeastern University - Toronto",
       "slug": "northeastern-university-toronto-through-kaplan",
       "countryId": "country-canada",
       "countrySlug": "canada",
@@ -8150,7 +8150,7 @@
     },
     {
       "id": "uni-algoma-university-students-from-india-geebee-branches-only-applications-sent-through-associate",
-      "name": "Algoma University - Students From India (Geebee Branches Only) - Applications Sent Through Associate",
+      "name": "Algoma University",
       "slug": "algoma-university-students-from-india-geebee-branches-only-applications-sent-through-associate",
       "countryId": "country-canada",
       "countrySlug": "canada",
@@ -8190,8 +8190,8 @@
     },
     {
       "id": "uni-algoma-university-direct-tie-up-for-rest-of-the-world-except-india",
-      "name": "Algoma University (Direct Tie-Up For Rest Of The World, Except India)",
-      "slug": "algoma-university-direct-tie-up-for-rest-of-the-world-except-india",
+      "name": "Algoma University",
+      "slug": "algoma-university-international",
       "countryId": "country-canada",
       "countrySlug": "canada",
       "countryName": "Canada",
@@ -8590,7 +8590,7 @@
     },
     {
       "id": "uni-city-university-in-canada-through-global-education-alliance-gea",
-      "name": "City University In Canada (Through Global Education Alliance - Gea)",
+      "name": "City University In Canada",
       "slug": "city-university-in-canada-through-global-education-alliance-gea",
       "countryId": "country-canada",
       "countrySlug": "canada",
@@ -15110,7 +15110,7 @@
     },
     {
       "id": "uni-institute-of-technology-carlow-through-educo-wef-15th-march-2023-all-applications-from-india-should-be-sent-directly-to-south-east-technological-university-carlow",
-      "name": "INSTITUTE OF TECHNOLOGY CARLOW (THROUGH EDUCO) - W.e.f. 15th March 2023, All applications from India should be sent Directly to South East Technological University - Carlow",
+      "name": "INSTITUTE OF TECHNOLOGY CARLOW",
       "slug": "institute-of-technology-carlow-through-educo-wef-15th-march-2023-all-applications-from-india-should-be-sent-directly-to-south-east-technological-university-carlow",
       "countryId": "country-ireland",
       "countrySlug": "ireland",
@@ -15270,8 +15270,8 @@
     },
     {
       "id": "uni-south-east-technological-university-ireland-it-carlow-and-wexford-campus-formerly-institute-of-technology-carlow-direct-tie-up",
-      "name": "SOUTH EAST TECHNOLOGICAL UNIVERSITY, IRELAND - I.T. CARLOW and WEXFORD CAMPUS (Formerly: Institute of Technology, Carlow) - DIRECT TIE UP",
-      "slug": "south-east-technological-university-ireland-it-carlow-and-wexford-campus-formerly-institute-of-technology-carlow-direct-tie-up",
+      "name": "SOUTH EAST TECHNOLOGICAL UNIVERSITY, IRELAND - I.T. CARLOW and WEXFORD CAMPUS (Formerly: Institute of Technology, Carlow)",
+      "slug": "south-east-technological-university-carlow-wexford",
       "countryId": "country-ireland",
       "countrySlug": "ireland",
       "countryName": "Ireland",
@@ -16792,7 +16792,7 @@
     },
     {
       "id": "uni-american-university-of-malta-through-applymalta",
-      "name": "American University of Malta (Through ApplyMalta)",
+      "name": "American University of Malta",
       "slug": "american-university-of-malta-through-applymalta",
       "countryId": "country-malta",
       "countrySlug": "malta",
@@ -16832,7 +16832,7 @@
     },
     {
       "id": "uni-idea-academy-through-applymalta-malta-lg",
-      "name": "IDEA Academy (Through ApplyMalta), Malta (LG)",
+      "name": "IDEA Academy, Malta (LG)",
       "slug": "idea-academy-through-applymalta-malta-lg",
       "countryId": "country-malta",
       "countrySlug": "malta",
@@ -16952,7 +16952,7 @@
     },
     {
       "id": "uni-international-european-university-through-applymalta",
-      "name": "International European University (Through ApplyMalta)",
+      "name": "International European University",
       "slug": "international-european-university-through-applymalta",
       "countryId": "country-malta",
       "countrySlug": "malta",
@@ -17312,7 +17312,7 @@
     },
     {
       "id": "uni-ic-university-of-applied-sciences-amsterdam-through-gus",
-      "name": "IC University of Applied Sciences – Amsterdam (THROUGH GUS)",
+      "name": "IC University of Applied Sciences – Amsterdam",
       "slug": "ic-university-of-applied-sciences-amsterdam-through-gus",
       "countryId": "country-netherlands",
       "countrySlug": "netherlands",
@@ -17672,7 +17672,7 @@
     },
     {
       "id": "uni-up-education-formerly-known-as-academic-colleges-group-acg-senior-college-parnell-college-sunderland-strathallan-tauranga-new-zealand-international-college-norton-college",
-      "name": "UP EDUCATION (Formerly known as ACADEMIC COLLEGES GROUP (ACG) - - SENIOR COLLEGE, PARNELL COLLEGE, SUNDERLAND, STRATHALLAN, TAURANGA, NEW ZEALAND INTERNATIONAL COLLEGE, NORTON COLLEGE,",
+      "name": "UP EDUCATION (Formerly known as ACADEMIC COLLEGES GROUP (ACG) - - SENIOR COLLEGE, PARNELL COLLEGE, SUNDERLAND, STRATHALLAN, TAURANGA, NEW ZEALAND INTERNATIONAL COLLEGE, NORTON COLLEGE",
       "slug": "up-education-formerly-known-as-academic-colleges-group-acg-senior-college-parnell-college-sunderland-strathallan-tauranga-new-zealand-international-college-norton-college",
       "countryId": "country-new-zealand",
       "countrySlug": "new-zealand",
@@ -28872,7 +28872,7 @@
     },
     {
       "id": "uni-pace-university-global-pathway-through-kaplan",
-      "name": "Pace University (Global Pathway) (Through Kaplan)",
+      "name": "Pace University (Global Pathway)",
       "slug": "pace-university-global-pathway-through-kaplan",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -28912,7 +28912,7 @@
     },
     {
       "id": "uni-arizona-state-university-through-kaplan",
-      "name": "Arizona State University (Through Kaplan)",
+      "name": "Arizona State University",
       "slug": "arizona-state-university-through-kaplan",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -28952,7 +28952,7 @@
     },
     {
       "id": "uni-university-of-connecticut-through-kaplan",
-      "name": "University Of Connecticut (Through Kaplan)",
+      "name": "University Of Connecticut",
       "slug": "university-of-connecticut-through-kaplan",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -28992,7 +28992,7 @@
     },
     {
       "id": "uni-simmons-university-through-kaplan",
-      "name": "Simmons University (Through Kaplan)",
+      "name": "Simmons University",
       "slug": "simmons-university-through-kaplan",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -29872,7 +29872,7 @@
     },
     {
       "id": "uni-university-of-kansas-ug-shorelight",
-      "name": "University Of Kansas - Ug (Shorelight)",
+      "name": "University Of Kansas - Ug",
       "slug": "university-of-kansas-ug-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -29912,7 +29912,7 @@
     },
     {
       "id": "uni-university-of-central-florida-ug-shorelight",
-      "name": "University Of Central Florida - Ug (Shorelight)",
+      "name": "University Of Central Florida - Ug",
       "slug": "university-of-central-florida-ug-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -29952,7 +29952,7 @@
     },
     {
       "id": "uni-lousiana-state-university-ug-shorelight",
-      "name": "Lousiana State University - Ug (Shorelight)",
+      "name": "Lousiana State University - Ug",
       "slug": "lousiana-state-university-ug-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -29992,7 +29992,7 @@
     },
     {
       "id": "uni-university-of-south-carolina-ug-pg-shorelight",
-      "name": "University Of South Carolina - Ug & Pg (Shorelight)",
+      "name": "University Of South Carolina - Ug & Pg",
       "slug": "university-of-south-carolina-ug-pg-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30032,7 +30032,7 @@
     },
     {
       "id": "uni-adelphi-university-ug-pg-mba-shorelight",
-      "name": "Adelphi University - Ug, Pg, MBA (Shorelight)",
+      "name": "Adelphi University - Ug, Pg, MBA",
       "slug": "adelphi-university-ug-pg-mba-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30072,7 +30072,7 @@
     },
     {
       "id": "uni-american-university-ug-pg-shorelight",
-      "name": "American University - Ug, Pg (Shorelight)",
+      "name": "American University - Ug, Pg",
       "slug": "american-university-ug-pg-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30112,7 +30112,7 @@
     },
     {
       "id": "uni-auburn-university-ug-pg-and-map-shorelight",
-      "name": "AUBURN UNIVERSITY - UG, PG and MAP (SHORELIGHT)",
+      "name": "AUBURN UNIVERSITY - UG, PG and MAP",
       "slug": "auburn-university-ug-pg-and-map-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30152,7 +30152,7 @@
     },
     {
       "id": "uni-university-of-the-pacific-ug-pathway-direct-entry-ug-pg-and-map-shorelight",
-      "name": "UNIVERSITY OF THE PACIFIC - UG Pathway, DIRECT ENTRY UG, PG, and MAP (SHORELIGHT)",
+      "name": "UNIVERSITY OF THE PACIFIC - UG Pathway, DIRECT ENTRY UG, PG, and MAP",
       "slug": "university-of-the-pacific-ug-pathway-direct-entry-ug-pg-and-map-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30192,7 +30192,7 @@
     },
     {
       "id": "uni-university-of-illinois-at-chicago-ug-and-pg-shorelight",
-      "name": "UNIVERSITY OF ILLINOIS AT CHICAGO (UG and PG) (SHORELIGHT)",
+      "name": "UNIVERSITY OF ILLINOIS AT CHICAGO (UG and PG)",
       "slug": "university-of-illinois-at-chicago-ug-and-pg-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30232,7 +30232,7 @@
     },
     {
       "id": "uni-university-of-dayton-pg-and-ug-direct-entry-shorelight",
-      "name": "UNIVERSITY OF DAYTON (PG and UG - Direct entry) (SHORELIGHT)",
+      "name": "UNIVERSITY OF DAYTON (PG and UG - Direct entry)",
       "slug": "university-of-dayton-pg-and-ug-direct-entry-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30272,7 +30272,7 @@
     },
     {
       "id": "uni-umass-boston-ug-and-pg-shorelight",
-      "name": "UMASS BOSTON (UG and PG) (SHORELIGHT)",
+      "name": "UMASS BOSTON (UG and PG)",
       "slug": "umass-boston-ug-and-pg-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30312,7 +30312,7 @@
     },
     {
       "id": "uni-university-of-utah-ug-shorelight",
-      "name": "University Of Utah (Ug) (Shorelight)",
+      "name": "University Of Utah (Ug)",
       "slug": "university-of-utah-ug-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30392,7 +30392,7 @@
     },
     {
       "id": "uni-cleveland-state-university-through-shorelight-pg-and-ug-shorelight",
-      "name": "CLEVELAND STATE UNIVERSITY (THROUGH SHORELIGHT) ( PG and UG) (SHORELIGHT)",
+      "name": "CLEVELAND STATE UNIVERSITY ( PG and UG)",
       "slug": "cleveland-state-university-through-shorelight-pg-and-ug-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30432,7 +30432,7 @@
     },
     {
       "id": "uni-southwestern-university-ug-shorelight",
-      "name": "Southwestern University - Ug (Shorelight)",
+      "name": "Southwestern University - Ug",
       "slug": "southwestern-university-ug-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30472,7 +30472,7 @@
     },
     {
       "id": "uni-gonzaga-university-ug-and-pg-shorelight",
-      "name": "GONZAGA UNIVERSITY - UG and PG (SHORELIGHT)",
+      "name": "GONZAGA UNIVERSITY - UG and PG",
       "slug": "gonzaga-university-ug-and-pg-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30512,7 +30512,7 @@
     },
     {
       "id": "uni-university-of-lynchburg-ug-and-pg-shorelight",
-      "name": "UNIVERSITY OF LYNCHBURG - UG and PG (SHORELIGHT)",
+      "name": "UNIVERSITY OF LYNCHBURG - UG and PG",
       "slug": "university-of-lynchburg-ug-and-pg-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30552,7 +30552,7 @@
     },
     {
       "id": "uni-western-oregon-university-ug-shorelight",
-      "name": "Western Oregon University (Ug) (Shorelight)",
+      "name": "Western Oregon University (Ug)",
       "slug": "western-oregon-university-ug-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30592,7 +30592,7 @@
     },
     {
       "id": "uni-university-of-illinois-springfield-graduate-only-shorelight",
-      "name": "UNIVERSITY OF ILLINOIS SPRINGFIELD - Graduate only - (SHORELIGHT)",
+      "name": "UNIVERSITY OF ILLINOIS SPRINGFIELD - Graduate only",
       "slug": "university-of-illinois-springfield-graduate-only-shorelight",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -30632,7 +30632,7 @@
     },
     {
       "id": "uni-central-methodist-university-shorelight-ug-pg",
-      "name": "Central Methodist University (Shorelight) - Ug & Pg",
+      "name": "Central Methodist University - Ug & Pg",
       "slug": "central-methodist-university-shorelight-ug-pg",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -31192,7 +31192,7 @@
     },
     {
       "id": "uni-university-of-southern-maine-direct",
-      "name": "UNIVERSITY OF SOUTHERN MAINE (Direct)",
+      "name": "UNIVERSITY OF SOUTHERN MAINE",
       "slug": "university-of-southern-maine-direct",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -31912,7 +31912,7 @@
     },
     {
       "id": "uni-duquesne-university-direct",
-      "name": "Duquesne University - Direct",
+      "name": "Duquesne University",
       "slug": "duquesne-university-direct",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -32672,7 +32672,7 @@
     },
     {
       "id": "uni-elmhurst-university-direct",
-      "name": "ELMHURST UNIVERSITY (Direct)",
+      "name": "ELMHURST UNIVERSITY",
       "slug": "elmhurst-university-direct",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -32992,7 +32992,7 @@
     },
     {
       "id": "uni-montana-state-university-billings-through-msquare",
-      "name": "Montana State University-Billings (Through Msquare)",
+      "name": "Montana State University-Billings",
       "slug": "montana-state-university-billings-through-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -33432,7 +33432,7 @@
     },
     {
       "id": "uni-university-of-charleston-msquare-no-commission-for-applications-sent-after-30th-may-2023",
-      "name": "UNIVERSITY OF CHARLESTON (MSQUARE) - No Commission for applications sent after 30th May 2023",
+      "name": "UNIVERSITY OF CHARLESTON",
       "slug": "university-of-charleston-msquare-no-commission-for-applications-sent-after-30th-may-2023",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -33512,7 +33512,7 @@
     },
     {
       "id": "uni-the-university-of-north-carolina-greensboro-no-commission-for-applications-sent-after-1st-february-2022",
-      "name": "THE UNIVERSITY OF NORTH CAROLINA, GREENSBORO - No Commission for applications sent after 1st February 2022",
+      "name": "THE UNIVERSITY OF NORTH CAROLINA, GREENSBORO",
       "slug": "the-university-of-north-carolina-greensboro-no-commission-for-applications-sent-after-1st-february-2022",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -33872,7 +33872,7 @@
     },
     {
       "id": "uni-university-of-missouri-st-louis-msquare",
-      "name": "University Of Missouri - St. Louis (Msquare)",
+      "name": "University Of Missouri - St. Louis",
       "slug": "university-of-missouri-st-louis-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -34192,8 +34192,8 @@
     },
     {
       "id": "uni-depaul-university-direct-tie-up",
-      "name": "Depaul University - Direct Tie-Up",
-      "slug": "depaul-university-direct-tie-up",
+      "name": "Depaul University",
+      "slug": "depaul-university-chicago",
       "countryId": "country-usa",
       "countrySlug": "usa",
       "countryName": "United States",
@@ -34232,7 +34232,7 @@
     },
     {
       "id": "uni-webster-university-through-gus",
-      "name": "Webster University (Through Gus)",
+      "name": "Webster University",
       "slug": "webster-university-through-gus",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -34272,7 +34272,7 @@
     },
     {
       "id": "uni-concordia-university-chicago-through-gus",
-      "name": "Concordia University Chicago (Through Gus)",
+      "name": "Concordia University Chicago",
       "slug": "concordia-university-chicago-through-gus",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -34312,7 +34312,7 @@
     },
     {
       "id": "uni-herzing-university-through-gus",
-      "name": "Herzing University (Through Gus)",
+      "name": "Herzing University",
       "slug": "herzing-university-through-gus",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -34472,7 +34472,7 @@
     },
     {
       "id": "uni-hawaii-pacific-university-through-msquare",
-      "name": "HAWAII PACIFIC UNIVERSITY (Through Msquare)",
+      "name": "HAWAII PACIFIC UNIVERSITY",
       "slug": "hawaii-pacific-university-through-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -34952,7 +34952,7 @@
     },
     {
       "id": "uni-concord-university-through-enrollment-advisory-group-eag",
-      "name": "Concord University - Through Enrollment Advisory Group (Eag)",
+      "name": "Concord University",
       "slug": "concord-university-through-enrollment-advisory-group-eag",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -34992,7 +34992,7 @@
     },
     {
       "id": "uni-nova-southeastern-university-through-enrollment-advisory-group-eag",
-      "name": "Nova Southeastern University - Through Enrollment Advisory Group (Eag)",
+      "name": "Nova Southeastern University",
       "slug": "nova-southeastern-university-through-enrollment-advisory-group-eag",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -35032,7 +35032,7 @@
     },
     {
       "id": "uni-university-of-bridgeport-through-enrollment-advisory-group-eag",
-      "name": "University Of Bridgeport Through Enrollment Advisory Group (Eag)",
+      "name": "University Of Bridgeport",
       "slug": "university-of-bridgeport-through-enrollment-advisory-group-eag",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -35072,7 +35072,7 @@
     },
     {
       "id": "uni-university-of-nebraska-at-kearney-through-enrollment-advisory-group-eag",
-      "name": "University Of Nebraska At Kearney - Through Enrollment Advisory Group (Eag)",
+      "name": "University Of Nebraska At Kearney",
       "slug": "university-of-nebraska-at-kearney-through-enrollment-advisory-group-eag",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -35472,7 +35472,7 @@
     },
     {
       "id": "uni-university-of-st-thomas-minnesota-through-els",
-      "name": "University Of St. Thomas, Minnesota (Through Els)",
+      "name": "University Of St. Thomas, Minnesota",
       "slug": "university-of-st-thomas-minnesota-through-els",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -35952,7 +35952,7 @@
     },
     {
       "id": "uni-edgewood-college-through-msquare",
-      "name": "Edgewood College (Through Msquare)",
+      "name": "Edgewood College",
       "slug": "edgewood-college-through-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36072,7 +36072,7 @@
     },
     {
       "id": "uni-bay-atlantic-university-msquare",
-      "name": "Bay Atlantic University (Msquare)",
+      "name": "Bay Atlantic University",
       "slug": "bay-atlantic-university-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36112,7 +36112,7 @@
     },
     {
       "id": "uni-university-of-oregon-msquare-ug-only",
-      "name": "University Of Oregon (Msquare) - Ug Only",
+      "name": "University Of Oregon - Ug Only",
       "slug": "university-of-oregon-msquare-ug-only",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36152,7 +36152,7 @@
     },
     {
       "id": "uni-community-college-of-philadelphia-msquare",
-      "name": "Community College Of Philadelphia (Msquare)",
+      "name": "Community College Of Philadelphia",
       "slug": "community-college-of-philadelphia-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36192,7 +36192,7 @@
     },
     {
       "id": "uni-keck-graduate-institute-msquare",
-      "name": "Keck Graduate Institute (Msquare)",
+      "name": "Keck Graduate Institute",
       "slug": "keck-graduate-institute-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36232,7 +36232,7 @@
     },
     {
       "id": "uni-los-angeles-mission-college-msquare",
-      "name": "Los Angeles Mission College (Msquare)",
+      "name": "Los Angeles Mission College",
       "slug": "los-angeles-mission-college-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36552,7 +36552,7 @@
     },
     {
       "id": "uni-community-college-of-spokane-msquare",
-      "name": "Community College Of Spokane (Msquare)",
+      "name": "Community College Of Spokane",
       "slug": "community-college-of-spokane-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36592,7 +36592,7 @@
     },
     {
       "id": "uni-fox-valley-technical-collegemsquare",
-      "name": "Fox Valley Technical College(Msquare)",
+      "name": "Fox Valley Technical College",
       "slug": "fox-valley-technical-collegemsquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36632,7 +36632,7 @@
     },
     {
       "id": "uni-glasgow-caledonian-new-york-collegegcnycmsquare",
-      "name": "Glasgow Caledonian New York College(Gcnyc)(Msquare)",
+      "name": "Glasgow Caledonian New York College(Gcnyc)",
       "slug": "glasgow-caledonian-new-york-collegegcnycmsquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36672,7 +36672,7 @@
     },
     {
       "id": "uni-hanover-collegemsquare",
-      "name": "Hanover College(Msquare)",
+      "name": "Hanover College",
       "slug": "hanover-collegemsquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36712,7 +36712,7 @@
     },
     {
       "id": "uni-notre-dame-de-namur-universityndnumsquare",
-      "name": "Notre Dame De Namur University(Ndnu)(Msquare)",
+      "name": "Notre Dame De Namur University(Ndnu)",
       "slug": "notre-dame-de-namur-universityndnumsquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36752,7 +36752,7 @@
     },
     {
       "id": "uni-paul-smiths-college-msquare",
-      "name": "Paul Smiths College (Msquare)",
+      "name": "Paul Smiths College",
       "slug": "paul-smiths-college-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36832,7 +36832,7 @@
     },
     {
       "id": "uni-san-mateo-colleges-of-silicon-valleymsquare",
-      "name": "San Mateo Colleges Of Silicon Valley(Msquare)",
+      "name": "San Mateo Colleges Of Silicon Valley",
       "slug": "san-mateo-colleges-of-silicon-valleymsquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36872,7 +36872,7 @@
     },
     {
       "id": "uni-shoreline-community-college-msquare",
-      "name": "Shoreline Community College (Msquare)",
+      "name": "Shoreline Community College",
       "slug": "shoreline-community-college-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36912,7 +36912,7 @@
     },
     {
       "id": "uni-whitworth-university-msquare",
-      "name": "Whitworth University (Msquare)",
+      "name": "Whitworth University",
       "slug": "whitworth-university-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -36952,7 +36952,7 @@
     },
     {
       "id": "uni-university-of-oregon-ug-only-msquare",
-      "name": "University Of Oregon (Ug Only) (Msquare)",
+      "name": "University Of Oregon (Ug Only)",
       "slug": "university-of-oregon-ug-only-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -37272,7 +37272,7 @@
     },
     {
       "id": "uni-bradley-university-through-market-entry",
-      "name": "Bradley University (Through Market Entry)",
+      "name": "Bradley University",
       "slug": "bradley-university-through-market-entry",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -37392,7 +37392,7 @@
     },
     {
       "id": "uni-bridgewater-state-university-massachusetts-through-market-entry",
-      "name": "Bridgewater State University, Massachusetts ((Through Market Entry) )",
+      "name": "Bridgewater State University, Massachusetts",
       "slug": "bridgewater-state-university-massachusetts-through-market-entry",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -37712,8 +37712,8 @@
     },
     {
       "id": "uni-bryant-university-direct-tie-up-for-graduate-programs-only",
-      "name": "Bryant University - Direct Tie Up (For Graduate Programs Only)",
-      "slug": "bryant-university-direct-tie-up-for-graduate-programs-only",
+      "name": "Bryant University",
+      "slug": "bryant-university-graduate",
       "countryId": "country-usa",
       "countrySlug": "usa",
       "countryName": "United States",
@@ -37832,7 +37832,7 @@
     },
     {
       "id": "uni-rider-university-msquare",
-      "name": "Rider University (Msquare)",
+      "name": "Rider University",
       "slug": "rider-university-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -37872,7 +37872,7 @@
     },
     {
       "id": "uni-monroe-college-msquare",
-      "name": "Monroe College (Msquare)",
+      "name": "Monroe College",
       "slug": "monroe-college-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -37912,7 +37912,7 @@
     },
     {
       "id": "uni-hartwick-college-msquare",
-      "name": "Hartwick College (Msquare)",
+      "name": "Hartwick College",
       "slug": "hartwick-college-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -38032,7 +38032,7 @@
     },
     {
       "id": "uni-bowling-green-state-university-through-market-entry",
-      "name": "Bowling Green State University (Through Market Entry)",
+      "name": "Bowling Green State University",
       "slug": "bowling-green-state-university-through-market-entry",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -38152,7 +38152,7 @@
     },
     {
       "id": "uni-mount-saint-marys-university-msquare",
-      "name": "Mount Saint Mary'S University (Msquare)",
+      "name": "Mount Saint Mary'S University",
       "slug": "mount-saint-marys-university-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -38192,7 +38192,7 @@
     },
     {
       "id": "uni-greensboro-college-msquare",
-      "name": "Greensboro College (Msquare)",
+      "name": "Greensboro College",
       "slug": "greensboro-college-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -38232,7 +38232,7 @@
     },
     {
       "id": "uni-pacific-lutheran-university-msquare",
-      "name": "Pacific Lutheran University (Msquare)",
+      "name": "Pacific Lutheran University",
       "slug": "pacific-lutheran-university-msquare",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -38752,7 +38752,7 @@
     },
     {
       "id": "uni-harrisburg-university-through-howell-management-services",
-      "name": "Harrisburg University (Through Howell Management Services)",
+      "name": "Harrisburg University",
       "slug": "harrisburg-university-through-howell-management-services",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -38792,7 +38792,7 @@
     },
     {
       "id": "uni-national-louis-university-through-howell-management-services",
-      "name": "National Louis University (Through Howell Management Services)",
+      "name": "National Louis University",
       "slug": "national-louis-university-through-howell-management-services",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -38832,7 +38832,7 @@
     },
     {
       "id": "uni-ottawa-university-through-howell-management-services",
-      "name": "Ottawa University (Through Howell Management Services)",
+      "name": "Ottawa University",
       "slug": "ottawa-university-through-howell-management-services",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -38872,7 +38872,7 @@
     },
     {
       "id": "uni-humphreys-university-through-howell-management-services",
-      "name": "Humphreys University (Through Howell Management Services)",
+      "name": "Humphreys University",
       "slug": "humphreys-university-through-howell-management-services",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -38912,7 +38912,7 @@
     },
     {
       "id": "uni-texas-am-university-san-antonio-tamusa-through-tcollegedayz",
-      "name": "TEXAS A&M UNIVERSITY - SAN ANTONIO (TAMUSA) (Through TCollegedayz)",
+      "name": "TEXAS A&M UNIVERSITY - SAN ANTONIO (TAMUSA)",
       "slug": "texas-am-university-san-antonio-tamusa-through-tcollegedayz",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -39072,7 +39072,7 @@
     },
     {
       "id": "uni-direct-admissions-to-queens-college-undergraduate",
-      "name": "Direct Admissions to Queens College UNDERGRADUATE",
+      "name": "Queens College, City University of New York (CUNY)",
       "slug": "direct-admissions-to-queens-college-undergraduate",
       "countryId": "country-usa",
       "countrySlug": "usa",
@@ -40710,7 +40710,7 @@
       "courses": [
         "Integrated Master in Medicine (MD/MBBS)"
       ],
-      "admissionInformation": "English-taught integrated medicine curriculum in partnership with Maastricht University.",
+      "admissionInformation": "English-taught integrated medicine curriculum developed in academic cooperation with Maastricht University.",
       "tuitionInformation": "Institutional fee schedule provided upon admissions eligibility review.",
       "scholarshipInformation": "Merit scholarships evaluated during admission review.",
       "featured": false,

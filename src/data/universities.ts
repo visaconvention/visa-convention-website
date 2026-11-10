@@ -35,9 +35,7 @@ interface RawUniversityRecord {
 function normalizeUniversity(raw: RawUniversityRecord): University {
   const studyLevels = (raw.studyLevels || ['Bachelors', 'Masters']) as StudyLevel[];
   const subjectAreas = raw.subjectAreas || raw.popularDisciplines || ['General Studies'];
-  const relationshipStatus = (raw.relationshipStatus === 'verified_partner'
-    ? 'verified_partner'
-    : 'listed_for_guidance') as UniversityRelationship;
+  const relationshipStatus: UniversityRelationship = 'listed_for_guidance';
   const publicationStatus = (raw.publicationStatus === 'draft' ? 'draft' : 'published') as PublicationStatus;
 
   return {
@@ -53,7 +51,7 @@ function normalizeUniversity(raw: RawUniversityRecord): University {
     studyLevels,
     subjectAreas,
     courses: Array.isArray(raw.courses) ? raw.courses : [],
-    admissionInformation: raw.admissionInformation || 'Direct admissions guidance provided in accordance with institutional intake requirements.',
+    admissionInformation: raw.admissionInformation || 'Independent admissions guidance provided in accordance with institutional intake requirements.',
     tuitionInformation: raw.tuitionInformation || raw.averageTuition || 'Tuition varies by program and faculty.',
     scholarshipInformation: raw.scholarshipInformation || 'Merit and need-based institutional scholarships evaluated during application.',
     featured: Boolean(raw.featured),
@@ -66,7 +64,7 @@ function normalizeUniversity(raw: RawUniversityRecord): University {
     hasDetailedProfile: Boolean(raw.hasDetailedProfile),
     worldRanking: raw.worldRanking || undefined,
     averageTuition: raw.averageTuition || raw.tuitionInformation || 'Varies by program',
-    description: raw.description || `Accredited institution in ${raw.countryName} eligible for student visa application through Visa Convention.`,
+    description: raw.description || `Accredited institution in ${raw.countryName} eligible for student visa application guidance through Visa Convention.`,
     popularDisciplines: subjectAreas,
     campusLocations: raw.campusLocations || (raw.city ? [raw.city] : []),
   };

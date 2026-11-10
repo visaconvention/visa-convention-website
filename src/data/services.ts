@@ -261,7 +261,7 @@ export const servicesData: Service[] = [
     ],
     stepByStepProcess: [
       { stepNumber: 1, title: 'Requirement Audit', description: 'Review host nation insurance mandates, luggage limits, and foreign exchange needs.' },
-      { stepNumber: 2, title: 'Partner Option Matching', description: 'Compare licensed forex providers, institutional insurance, and verified student housing.' },
+      { stepNumber: 2, title: 'Service Provider Comparison', description: 'Compare licensed forex providers, institutional insurance, and verified student housing.' },
       { stepNumber: 3, title: 'Activation & Dossier', description: 'Issue policy documents, card delivery, and accommodation confirmation vouchers.' },
       { stepNumber: 4, title: 'Pre-Departure Briefing', description: 'Attend personalized briefing covering airport transit, customs rules, and arrival steps.' },
     ],
