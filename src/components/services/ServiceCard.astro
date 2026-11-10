@@ -9,7 +9,7 @@ interface Props {
 const { service, class: className = '' } = Astro.props;
 ---
 
-<div class={`card-premium p-7 sm:p-8 flex flex-col justify-between group ${className}`}>
+<div class={`card-premium p-7 sm:p-8 flex flex-col justify-between group h-full min-w-0 ${className}`}>
   <div>
     <!-- Top Icon & Category Tag -->
     <div class="flex items-center justify-between mb-6">
@@ -24,15 +24,15 @@ const { service, class: className = '' } = Astro.props;
     </div>
 
     <!-- Title & Short Description -->
-    <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors mb-3 leading-snug">
+    <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors mb-3 leading-snug text-left">
       {service.title}
     </h3>
-    <p class="text-sm text-brand-muted leading-relaxed mb-6 font-normal">
+    <p class="text-sm text-brand-muted leading-relaxed mb-6 font-normal text-left">
       {service.shortDescription}
     </p>
 
     <!-- Key Offerings Checklist -->
-    <ul class="space-y-2.5 mb-6">
+    <ul class="space-y-2.5 mb-6 text-left">
       {service.keyOfferings.slice(0, 3).map((offering) => (
         <li class="flex items-start gap-2.5 text-xs sm:text-sm text-brand-text">
           <div class="w-4 h-4 rounded-full bg-brand-red/10 text-brand-red flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -46,8 +46,8 @@ const { service, class: className = '' } = Astro.props;
     </ul>
   </div>
 
-  <!-- Bottom Link -->
-  <div class="pt-5 border-t border-brand-border">
+  <!-- Bottom Link (Bottom-aligned across rows) -->
+  <div class="pt-5 border-t border-brand-border mt-auto">
     <a
       href={`/services/${service.slug}/`}
       class="inline-flex items-center gap-2 text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors"

@@ -44,21 +44,21 @@ const faqSchema = getFaqSchema(studyAbroadFaqs);
   schema={faqSchema}
 >
   <!-- Breadcrumbs -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Study Abroad', href: '/study-abroad/', current: true }]} />
   </div>
 
   <!-- Hero Header Section -->
   <section class="py-12 sm:py-16 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl text-left">
         <span class="inline-block px-3.5 py-1 mb-4 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
           Global Educational Advisory
         </span>
-        <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4">
+        <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4 text-balance">
           Explore Study Destinations
         </h1>
-        <p class="text-base sm:text-lg text-brand-muted leading-relaxed mb-8">
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed mb-8 max-w-[62ch]">
           Discover universities and education opportunities across our supported destinations. Compare verified admission prerequisites, tuition guidelines, post-study work permits, and official embassy procedures.
         </p>
 
@@ -112,16 +112,16 @@ const faqSchema = getFaqSchema(studyAbroadFaqs);
   </section>
 
   <!-- Destination Grid & Results Area -->
-  <section class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="py-12 sm:py-16 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Results Header -->
     <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-brand-border gap-2">
-      <div>
+      <div class="text-left">
         <h2 class="text-xl font-bold text-brand-navy">Available Destinations</h2>
         <p class="text-xs text-brand-muted">
           Showing <span id="visible-count" class="font-bold text-brand-navy">{countries.length}</span> destinations matching criteria
         </p>
       </div>
-      <div class="text-xs text-brand-muted">
+      <div class="text-xs text-brand-muted text-left sm:text-right">
         Total database coverage: <strong class="text-brand-navy">{countries.length} Countries</strong>
       </div>
     </div>
@@ -136,8 +136,8 @@ const faqSchema = getFaqSchema(studyAbroadFaqs);
       />
     </div>
 
-    <!-- Country Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="countries-grid">
+    <!-- Country Cards Grid (Equal Heights) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch" id="countries-grid">
       {countries.map((country) => (
         <CountryCard country={country} />
       ))}

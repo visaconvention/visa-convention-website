@@ -41,7 +41,7 @@ const faqSchema = service.faqs.length > 0 ? getFaqSchema(service.faqs) : undefin
   schema={faqSchema}
 >
   <!-- Breadcrumbs -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
     <Breadcrumbs
       items={[
         { label: 'Home', href: '/' },
@@ -53,8 +53,8 @@ const faqSchema = service.faqs.length > 0 ? getFaqSchema(service.faqs) : undefin
 
   <!-- Service Hero Section -->
   <section class="py-12 sm:py-16 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl text-left">
         <span class="inline-block px-3.5 py-1 mb-4 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
           {detailed?.badge ?? 'Professional Advisory'}
         </span>
@@ -94,7 +94,7 @@ const faqSchema = service.faqs.length > 0 ? getFaqSchema(service.faqs) : undefin
   </section>
 
   <!-- Main Content & Form Grid -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
       <!-- Left Column: Details, Destinations, Institutions, Eligibility, Compliance -->
       <div class="lg:col-span-7 space-y-14">

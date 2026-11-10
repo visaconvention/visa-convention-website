@@ -18,60 +18,120 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-gradient-to-b from-white via-brand-bg/40 to-brand-bg pt-12 pb-16 sm:pt-16 sm:pb-24 border-b border-brand-border">
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-brand-bg/40 to-brand-bg pt-10 pb-14 sm:pt-14 sm:pb-20 border-b border-brand-border">
   <!-- Subtle decorative radial background pattern -->
-  <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: radial-gradient(#102A53 1px, transparent 1px); background-size: 28px 28px;" aria-hidden="true"></div>
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#102A53 1px, transparent 1px); background-size: 28px 28px;" aria-hidden="true"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div class="text-center max-w-4xl mx-auto">
-      <!-- Eyebrow Pill Badge -->
-      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white text-brand-navy border border-brand-border mb-6 shadow-2xs">
-        <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse" aria-hidden="true"></span>
-        <span class="text-xs font-bold tracking-wider uppercase">
-          Based in Hanumangarh, Rajasthan • Transparent International Advisory
-        </span>
-      </div>
+  <div class="site-container relative z-10">
+    <!-- Desktop Two-Column Hero Grid -->
+    <div class="page-hero mb-12">
+      <!-- Left Hero Column: Narrative & Actions (~60%) -->
+      <div class="page-hero__content">
+        <!-- Eyebrow Pill Badge -->
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white text-brand-navy border border-brand-border mb-5 shadow-2xs">
+          <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse" aria-hidden="true"></span>
+          <span class="text-xs font-bold tracking-wider uppercase">
+            Based in Hanumangarh, Rajasthan • Transparent International Advisory
+          </span>
+        </div>
 
-      <!-- Main Headline -->
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-brand-navy tracking-tight leading-[1.15] mb-5">
-        {headline}
-      </h1>
+        <!-- Main Headline (Left-aligned, line-height 1.15, text-balance) -->
+        <h1 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-black text-brand-navy tracking-tight leading-[1.15] mb-5 text-left text-balance">
+          {headline}
+        </h1>
 
-      <!-- Subheadline Description -->
-      <p class="text-base sm:text-lg lg:text-xl text-brand-muted max-w-3xl mx-auto leading-relaxed mb-8 font-normal">
-        {subheadline}
-      </p>
+        <!-- Subheadline Description (Directly below H1, sharing exact left edge) -->
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed mb-8 max-w-[58ch] text-left font-normal">
+          {subheadline}
+        </p>
 
-      <!-- Primary Action Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-12">
-        <a
-          href={primaryCtaHref}
-          class="btn-primary w-full sm:w-auto text-center"
-        >
-          <span>{primaryCtaText}</span>
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </a>
-        <a
-          href={secondaryCtaHref}
-          class="btn-outline w-full sm:w-auto text-center"
-        >
-          <span>{secondaryCtaText}</span>
-        </a>
-      </div>
-
-      <!-- Immediate 3-Pathway Visitor Direction -->
-      <div class="pt-8 border-t border-brand-border/80">
-        <span class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-4">
-          What do you need help with today?
-        </span>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
-          <!-- Pathway 1: Study Abroad -->
+        <!-- Primary Action Buttons (Left-aligned, same left edge) -->
+        <div class="flex flex-wrap items-center gap-3.5">
           <a
-            href="/study-abroad/"
-            class="p-5 rounded-2xl bg-white border border-brand-border hover:border-brand-navy hover:shadow-md transition-all group"
+            href={primaryCtaHref}
+            class="btn-primary text-center"
           >
+            <span>{primaryCtaText}</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+          <a
+            href={secondaryCtaHref}
+            class="btn-outline text-center"
+          >
+            <span>{secondaryCtaText}</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Hero Column: Authentic Advisory Identity & Trust Card (~40%) -->
+      <div class="w-full">
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-brand-border/90 shadow-card relative overflow-hidden">
+          <div class="flex items-center justify-between pb-4 border-b border-brand-border">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-navy text-white flex items-center justify-center font-black text-sm">
+                VC
+              </div>
+              <div>
+                <span class="block font-bold text-brand-navy text-sm">Visa Convention</span>
+                <span class="block text-3xs text-brand-subtle uppercase tracking-wider">Official Hanumangarh Office</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-1 rounded-full text-3xs font-bold uppercase tracking-wider bg-emerald-50 text-emerald-800 border border-emerald-200">
+              Verified Office
+            </span>
+          </div>
+
+          <div class="py-4 space-y-3.5 text-xs">
+            <div class="flex items-start gap-2.5">
+              <span class="text-base leading-none">📍</span>
+              <div>
+                <strong class="text-brand-navy block">Physical Consultation Center</strong>
+                <span class="text-brand-muted text-3xs leading-relaxed">Shop No.115, Durga Market, behind Bus Stand, Hanumangarh Junction</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-2.5">
+              <span class="text-base leading-none">📞</span>
+              <div>
+                <strong class="text-brand-navy block">Direct Advisory Desk</strong>
+                <a href="tel:+919680395539" class="text-brand-blue font-bold text-xs hover:underline">+91 96803-95539</a>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 pt-2">
+              <div class="p-2.5 rounded-xl bg-brand-bg border border-brand-border/70">
+                <span class="block text-base font-extrabold text-brand-navy">35+</span>
+                <span class="block text-3xs text-brand-muted uppercase font-semibold">Countries Guided</span>
+              </div>
+              <div class="p-2.5 rounded-xl bg-brand-bg border border-brand-border/70">
+                <span class="block text-base font-extrabold text-brand-blue">1,000+</span>
+                <span class="block text-3xs text-brand-muted uppercase font-semibold">Listed Universities</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-brand-border text-3xs text-brand-muted flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-brand-red flex-shrink-0"></span>
+            <span>Zero false promises • Sovereign consular discretion</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Immediate 3-Pathway Visitor Direction -->
+    <div class="pt-8 border-t border-brand-border/80">
+      <span class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-4 text-left">
+        What do you need help with today?
+      </span>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+        <!-- Pathway 1: Study Abroad -->
+        <a
+          href="/study-abroad/"
+          class="p-5 rounded-2xl bg-white border border-brand-border hover:border-brand-navy hover:shadow-md transition-all group flex flex-col justify-between"
+        >
+          <div>
             <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-bold text-lg mb-3 group-hover:bg-brand-navy group-hover:text-white transition-colors">
               🎓
             </div>
@@ -82,13 +142,15 @@ const {
             <p class="text-xs text-brand-muted mt-1 leading-relaxed">
               Explore 35+ countries, MBBS, PhD & 1,000+ accredited universities.
             </p>
-          </a>
+          </div>
+        </a>
 
-          <!-- Pathway 2: Visa Services -->
-          <a
-            href="/services/"
-            class="p-5 rounded-2xl bg-white border border-brand-border hover:border-brand-navy hover:shadow-md transition-all group"
-          >
+        <!-- Pathway 2: Visa Services -->
+        <a
+          href="/services/"
+          class="p-5 rounded-2xl bg-white border border-brand-border hover:border-brand-navy hover:shadow-md transition-all group flex flex-col justify-between"
+        >
+          <div>
             <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-bold text-lg mb-3 group-hover:bg-brand-navy group-hover:text-white transition-colors">
               🛂
             </div>
@@ -99,13 +161,15 @@ const {
             <p class="text-xs text-brand-muted mt-1 leading-relaxed">
               Tourist visa itineraries, work permits & consular document audits.
             </p>
-          </a>
+          </div>
+        </a>
 
-          <!-- Pathway 3: Flight Booking -->
-          <a
-            href="/services/flight-booking/"
-            class="p-5 rounded-2xl bg-white border border-brand-border hover:border-brand-navy hover:shadow-md transition-all group"
-          >
+        <!-- Pathway 3: Flight Booking -->
+        <a
+          href="/services/flight-booking/"
+          class="p-5 rounded-2xl bg-white border border-brand-border hover:border-brand-navy hover:shadow-md transition-all group flex flex-col justify-between"
+        >
+          <div>
             <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-bold text-lg mb-3 group-hover:bg-brand-navy group-hover:text-white transition-colors">
               ✈️
             </div>
@@ -116,8 +180,8 @@ const {
             <p class="text-xs text-brand-muted mt-1 leading-relaxed">
               Genuine carrier reservations, GDS visa holds & student baggage savings.
             </p>
-          </a>
-        </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>

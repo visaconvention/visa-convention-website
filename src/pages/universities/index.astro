@@ -20,20 +20,26 @@ const totalCountriesCount = countriesWithCounts.length;
   title="Global University Directory — Visa Convention"
   description="Search and explore nearly 1,000 verified international universities and colleges across 35+ destination countries guided by Visa Convention."
 >
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
     <Breadcrumbs items={[{ label: 'Universities', href: '/universities/', current: true }]} />
   </div>
 
-  <section class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="py-10 sm:py-14 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeading
       as="h1"
       badge="Academic Directory"
       title="Global University Directory"
       description={`Browse ${totalUniversitiesCount} recognized institutions across ${totalCountriesCount} countries where Visa Convention provides admissions counseling, eligibility evaluation, and student visa guidance.`}
+      align="left"
     />
 
+    <!-- Search Field Immediately Below Heading -->
+    <div class="mb-8">
+      <UniversitySearch placeholder="Search by institution name, city, subject, or discipline..." />
+    </div>
+
     <!-- Quick Stats Bar -->
-    <div class="max-w-4xl mx-auto mb-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+    <div class="mb-10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
       <div class="bg-white rounded-xl p-3 border border-brand-border/70 shadow-xs">
         <div class="text-xl sm:text-2xl font-extrabold text-brand-navy">{totalUniversitiesCount}+</div>
         <div class="text-xs text-brand-muted">Institutions Guided</div>
@@ -50,11 +56,6 @@ const totalCountriesCount = countriesWithCounts.length;
         <div class="text-xl sm:text-2xl font-extrabold text-brand-red">Direct</div>
         <div class="text-xs text-brand-muted">Visa Advisory Support</div>
       </div>
-    </div>
-
-    <!-- Search Bar Top Area -->
-    <div class="max-w-3xl mx-auto mb-10">
-      <UniversitySearch placeholder="Search by institution name, city, subject, or discipline..." />
     </div>
 
     <!-- Layout Grid: Filters on Left (Desktop), Directory on Right -->

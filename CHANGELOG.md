@@ -6,6 +6,36 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.4.0] - 2026-11-10 — Unified Layout, Typography & Alignment System
+### Changed
+- **Unified Design Tokens & Container Dimensions (`src/styles/global.css`):**
+  - Standardized sitewide maximum content width to `1200px` (`.site-container` / `max-w-[1200px]`) across all 64 pages.
+  - Standardized reading-content width to `720px` (`.reading-container` / `max-w-[760px]`) for readability across legal pages, FAQs, and long-form service descriptions.
+  - Implemented responsive fluid type scale: H1 `clamp(2rem, 4.5vw, 3.5rem)`, H2 `clamp(1.5rem, 3vw, 2.25rem)`, H3 `clamp(1.125rem, 2vw, 1.375rem)`, body `1rem` with `line-height: 1.65`.
+  - Added shared layout utility classes: `.page-hero`, `.card-grid`, `.info-card`, `.info-card__action`, `.section-space`, `.section-space-sm`.
+- **Hero Alignment & Desktop Proportions:**
+  - Standardized `HeroSection.astro` into a disciplined two-column grid (`~60%` content, `~40%` trust card).
+  - Left-aligned headline, subheadline description, and CTA buttons sharing a single left edge.
+  - Integrated high-trust authentic Hanumangarh advisory showcase card on the right.
+- **Section Heading Predictable Alignment (`SectionHeading.astro`):**
+  - Supported `align="left"` for informational blocks (Study Abroad, Universities, Requirements, Legal pages) and `align="center"` for short section introductions.
+  - Added `text-balance` and constrained description width (`max-w-[62ch]`).
+- **Equal-Height Cards & Bottom Action Pinning:**
+  - Updated `ServiceCard.astro`, `CountryCard.astro`, and `UniversityCard.astro` with `h-full min-w-0` and bottom action rows pinned via `mt-auto`.
+  - Buttons and link bars now align consistently across grid rows regardless of title or description length differences.
+- **Layout Alignment Refinements Across All Page Templates:**
+  - `BaseLayout.astro`, `ServiceLayout.astro`: Standardized container widths to `1200px` with 65/35 reading container and sticky form sidebar.
+  - `src/pages/index.astro`: Aligned 8 sections with consistent `1200px` container, equal-height card grids, and left-aligned section headers.
+  - `src/pages/contact.astro`: Two-column grid with office details and assessment form starting at the exact same vertical alignment.
+  - `src/pages/universities/index.astro` & `[university].astro`: Top-left aligned heading, search field immediately below heading, left-aligned metadata, and bottom-aligned card actions.
+  - `src/pages/study-abroad/index.astro` & `[country].astro`: Standardized `1200px` containers, left-aligned two-column hero, fast facts grid, and equal-height destination cards.
+  - `privacy-policy.astro` & `terms.astro`: Restrained reading width `max-w-[760px]` with professional left-aligned document typography.
+- **Automated Verification:**
+  - 100% pass rate across all 6 test suites (**223 / 223 tests passed**).
+  - Clean static build: 64 static routes compiled in 4.38s.
+
+---
+
 ## [1.3.0] - 2026-11-10 — Comprehensive UX, IA & Conversion Optimization Redesign
 ### Changed
 - **Global Navigation Hierarchy (5 Intent-Driven Categories):**

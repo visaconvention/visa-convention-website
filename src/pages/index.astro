@@ -69,16 +69,16 @@ const faqSchema = getFaqSchema(homepageFaqs);
   <!-- SECTION 2: EVIDENCE-BASED TRUST SIGNALS (WHY VISA CONVENTION?) -->
   <!-- ========================================================================= -->
   <section class="py-12 bg-white border-b border-brand-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
         <!-- Trust Signal 1: Real Office -->
         <div class="p-5 rounded-2xl bg-brand-bg/60 border border-brand-border/70 flex items-start gap-4">
           <div class="w-10 h-10 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-base flex-shrink-0">
             📍
           </div>
-          <div>
+          <div class="text-left">
             <h3 class="font-bold text-brand-navy text-sm sm:text-base">Physical Hanumangarh Office</h3>
-            <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+            <p class="text-xs text-brand-muted mt-1 leading-relaxed font-normal">
               Permanent center at Shop No.115, Durga Market, welcoming in-person counseling.
             </p>
           </div>
@@ -89,9 +89,9 @@ const faqSchema = getFaqSchema(homepageFaqs);
           <div class="w-10 h-10 rounded-xl bg-brand-red text-white flex items-center justify-center font-bold text-base flex-shrink-0">
             ⚖️
           </div>
-          <div>
+          <div class="text-left">
             <h3 class="font-bold text-brand-navy text-sm sm:text-base">Zero False Promises</h3>
-            <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+            <p class="text-xs text-brand-muted mt-1 leading-relaxed font-normal">
               We never guarantee visas; consular authorities retain sole statutory discretion.
             </p>
           </div>
@@ -102,9 +102,9 @@ const faqSchema = getFaqSchema(homepageFaqs);
           <div class="w-10 h-10 rounded-xl bg-brand-blue text-white flex items-center justify-center font-bold text-base flex-shrink-0">
             🏛️
           </div>
-          <div>
+          <div class="text-left">
             <h3 class="font-bold text-brand-navy text-sm sm:text-base">1,000+ Listed Institutions</h3>
-            <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+            <p class="text-xs text-brand-muted mt-1 leading-relaxed font-normal">
               Guided applications across 35+ countries without ambiguous partner claims.
             </p>
           </div>
@@ -115,9 +115,9 @@ const faqSchema = getFaqSchema(homepageFaqs);
           <div class="w-10 h-10 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold text-base flex-shrink-0">
             🔍
           </div>
-          <div>
+          <div class="text-left">
             <h3 class="font-bold text-brand-navy text-sm sm:text-base">Transparent Process</h3>
-            <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+            <p class="text-xs text-brand-muted mt-1 leading-relaxed font-normal">
               Zero hidden fees, authentic airline GDS reservations, and upfront cost disclosures.
             </p>
           </div>
@@ -129,14 +129,14 @@ const faqSchema = getFaqSchema(homepageFaqs);
   <!-- ========================================================================= -->
   <!-- SECTION 3: DIRECT SERVICE SELECTION (6 CORE VERTICALS) -->
   <!-- ========================================================================= -->
-  <section id="services" class="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="services" class="py-16 sm:py-20 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeading
       badge="Comprehensive Spectrum"
       title="Our Six Core Advisory Verticals"
       description="Specialized guidance delivered with document verification, institutional integrity, and complete procedural clarity."
     />
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
       {homepageServices.map((service) => (
         <ServiceCard service={service} />
       ))}
@@ -159,22 +159,22 @@ const faqSchema = getFaqSchema(homepageFaqs);
   <!-- SECTION 4: FEATURED STUDY DESTINATIONS (6 Priority Countries + All Link) -->
   <!-- ========================================================================= -->
   <section class="py-16 sm:py-20 bg-white border-y border-brand-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
-        <div>
+        <div class="text-left">
           <span class="badge-pill mb-3">
             Global Destinations
           </span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight text-balance">
             Featured Study Destinations
           </h2>
-          <p class="mt-2 text-xs sm:text-base text-brand-muted max-w-2xl">
+          <p class="mt-3 text-sm sm:text-base text-brand-muted max-w-[62ch]">
             Compare admissions, post-study work rights, and living costs across 35+ countries guided by our advisory.
           </p>
         </div>
         <a
           href="/study-abroad/"
-          class="mt-4 sm:mt-0 btn-outline"
+          class="mt-4 sm:mt-0 btn-outline self-start sm:self-auto"
         >
           <span>Explore All 35+ Destinations</span>
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -183,7 +183,7 @@ const faqSchema = getFaqSchema(homepageFaqs);
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
         {featuredCountries.map((country) => (
           <CountryCard country={country} />
         ))}
@@ -194,45 +194,51 @@ const faqSchema = getFaqSchema(homepageFaqs);
   <!-- ========================================================================= -->
   <!-- SECTION 5: HOW WE HELP (3-STEP CLEAR PATHWAY) -->
   <!-- ========================================================================= -->
-  <section class="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="py-16 sm:py-20 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeading
       badge="Simple, Disciplined Pathway"
       title="Study Abroad in 3 Strategic Steps"
       description="A structured methodology designed to minimize turnaround delays and protect visa compliance."
     />
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
       <!-- Step 1 -->
-      <div class="card-premium p-8 text-center relative group">
-        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-navy text-white flex items-center justify-center font-black text-xl mb-6 group-hover:bg-brand-red transition-colors shadow-2xs">
-          1
+      <div class="card-premium p-8 text-left relative group flex flex-col justify-between h-full">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-brand-navy text-white flex items-center justify-center font-black text-lg mb-6 group-hover:bg-brand-red transition-colors shadow-2xs">
+            1
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-brand-navy mb-3 leading-snug">Profile Evaluation & Shortlisting</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
+            We assess your academic transcripts, IELTS/PTE/TOEFL scores, and financial feasibility, selecting 3–5 institutions across top destination countries.
+          </p>
         </div>
-        <h3 class="text-xl font-bold text-brand-navy mb-3">Profile Evaluation & Shortlisting</h3>
-        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
-          We assess your academic transcripts, IELTS/PTE/TOEFL scores, and financial feasibility, selecting 3–5 institutions across top destination countries.
-        </p>
       </div>
 
       <!-- Step 2 -->
-      <div class="card-premium p-8 text-center relative group">
-        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-navy text-white flex items-center justify-center font-black text-xl mb-6 group-hover:bg-brand-red transition-colors shadow-2xs">
-          2
+      <div class="card-premium p-8 text-left relative group flex flex-col justify-between h-full">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-brand-navy text-white flex items-center justify-center font-black text-lg mb-6 group-hover:bg-brand-red transition-colors shadow-2xs">
+            2
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-brand-navy mb-3 leading-snug">Dossier Preparation & Offer Letter</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
+            We refine your Statement of Purpose (SOP) and Letters of Recommendation, submit official admissions files, and secure your unconditional acceptance.
+          </p>
         </div>
-        <h3 class="text-xl font-bold text-brand-navy mb-3">Dossier Preparation & Offer Letter</h3>
-        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
-          We refine your Statement of Purpose (SOP) and Letters of Recommendation, submit official admissions files, and secure your unconditional acceptance.
-        </p>
       </div>
 
       <!-- Step 3 -->
-      <div class="card-premium p-8 text-center relative group">
-        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-navy text-white flex items-center justify-center font-black text-xl mb-6 group-hover:bg-brand-red transition-colors shadow-2xs">
-          3
+      <div class="card-premium p-8 text-left relative group flex flex-col justify-between h-full">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-brand-navy text-white flex items-center justify-center font-black text-lg mb-6 group-hover:bg-brand-red transition-colors shadow-2xs">
+            3
+          </div>
+          <h3 class="text-lg sm:text-xl font-bold text-brand-navy mb-3 leading-snug">Visa Petition & Pre-Departure</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
+            We audit required financial proofs, complete official embassy visa forms, prepare mock interviews, and coordinate student flight reservations.
+          </p>
         </div>
-        <h3 class="text-xl font-bold text-brand-navy mb-3">Visa Petition & Pre-Departure</h3>
-        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
-          We audit required financial proofs, complete official embassy visa forms, prepare mock interviews, and coordinate student flight reservations.
-        </p>
       </div>
     </div>
   </section>
@@ -241,22 +247,22 @@ const faqSchema = getFaqSchema(homepageFaqs);
   <!-- SECTION 6: UNIVERSITY DIRECTORY PREVIEW -->
   <!-- ========================================================================= -->
   <section class="py-16 sm:py-20 bg-white border-y border-brand-border">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
-        <div>
+        <div class="text-left">
           <span class="badge-pill mb-3">
             Academic Directory
           </span>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight text-balance">
             Explore 1,000+ World Universities
           </h2>
-          <p class="mt-2 text-xs sm:text-base text-brand-muted max-w-2xl">
+          <p class="mt-3 text-sm sm:text-base text-brand-muted max-w-[62ch]">
             Search recognized international institutions where our counselors provide admission screening, SOP reviews, and visa filing.
           </p>
         </div>
         <a
           href="/universities/"
-          class="mt-4 sm:mt-0 btn-primary"
+          class="mt-4 sm:mt-0 btn-primary self-start sm:self-auto"
         >
           <span>Open Full Directory (1,000+ Institutions)</span>
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -289,7 +295,7 @@ const faqSchema = getFaqSchema(homepageFaqs);
       </div>
 
       <!-- Preview Grid: 4 Top Curated Flagships -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
         {featuredUniversities.map((university) => (
           <UniversityCard university={university} />
         ))}
@@ -304,7 +310,7 @@ const faqSchema = getFaqSchema(homepageFaqs);
   <!-- ========================================================================= -->
   <!-- SECTION 7: FREQUENTLY ASKED QUESTIONS -->
   <!-- ========================================================================= -->
-  <section class="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="py-16 sm:py-20 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeading
       badge="Clear Answers"
       title="Frequently Asked Questions"
@@ -324,7 +330,7 @@ const faqSchema = getFaqSchema(homepageFaqs);
   <!-- ========================================================================= -->
   <!-- SECTION 8: FINAL CONSULTATION CTA & DIRECT CHANNELS -->
   <!-- ========================================================================= -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-16">
     <ConsultationCTA
       title="Ready to Plan Your Next Step?"
       subtitle="Visit our Hanumangarh consultation center or submit an initial assessment request. Clear advice, zero hidden fees, and complete confidentiality."
