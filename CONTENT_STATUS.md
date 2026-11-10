@@ -1,9 +1,9 @@
 # CONTENT_STATUS.md — Content Verification & Inventory Tracker
 
 **Project:** Visa Convention — Official Website  
-**Version:** 1.0.0  
-**Last Updated:** November 9, 2026  
-**Status:** Initial Audit Complete — Pending Client Review  
+**Version:** 1.2.0  
+**Last Updated:** November 10, 2026  
+**Status:** Client-Approved Content Ingested & Verified (1,022 Institutions / 39 Countries)  
 
 This document tracks the verification status of all textual copy, structured data records, media assets, and legal disclosures across the Visa Convention project.
 
@@ -110,3 +110,34 @@ The workspace audit identified **33 client data workbooks** located in `../data/
 | **Privacy Policy** | `DRAFT READY` | Comprehensive policy covering DPDP (India) and international data handling. |
 | **Terms of Service** | `DRAFT READY` | Clear limitation of liability regarding governmental visa rejections and fee non-refundability. |
 | **Disclaimer Policy** | `DRAFT READY` | Prominently displayed across all footer and form pages. |
+
+---
+
+## 7. Actual Client Content Ingestion & Verification Log (November 10, 2026)
+
+On November 10, 2026, actual client-approved content was ingested, normalized, and verified across all systems.
+
+### 7.1 Scope of Ingestion
+1. **Destination Countries:**
+   - 31 primary study destinations + 12 MBBS destinations + 3 PhD destinations normalized across 39 countries.
+   - 36 published country routes active in `/study-abroad/[country]/`.
+   - 3 new countries (Moldova, Lithuania, Azerbaijan) added as `publicationStatus: "draft"` to support their medical and doctoral institutions in search without creating thin unverified country guides.
+2. **University Directory & Profiles:**
+   - Total records in database: **1,022** (matched in JSON and CSV).
+   - Published higher education institutions: **1,004**.
+   - Standalone curated profile pages (`hasDetailedProfile: true`): **10**.
+   - Directory-only guidance records (`hasDetailedProfile: false`): **994**.
+   - Quarantined non-educational / financial records (`publicationStatus: "draft"`): **18** (Flywire, Cohort Solutions, Bajaj Allianz, HDFC Credila, etc.).
+   - MBBS-tagged medical faculties: **43 institutions**.
+   - Doctorate-tagged research institutions: **11 institutions**.
+3. **Deduplication:**
+   - 4 duplicate pairs identified and resolved (Riga Stradiņš University, Católica Medical School, Tashkent State Medical University, Kazakh National Medical University).
+4. **Service Verticals Content:**
+   - MBBS abroad service updated with client's 5 exact key benefits (affordable fees, scholarships, accommodation & Indian food, FMGE/NExT classes, NMC & WHO approval).
+   - PhD abroad service updated with research institutions in Latvia, Lithuania, and Portugal.
+5. **Quality Verification:**
+   - TypeScript `npm run check`: 0 errors, 0 warnings.
+   - Static build `npm run build`: 64 pages compiled in 3.37s.
+   - All 6 automated test suites: **217 / 217 assertions passing (100%)**.
+
+*For full ingestion metrics and logs, see [`CONTENT_INTEGRATION_REPORT.md`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/CONTENT_INTEGRATION_REPORT.md).*

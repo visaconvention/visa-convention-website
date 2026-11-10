@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "totalRecords": 1015,
+  "totalRecords": 1022,
   "detailedProfilesCount": 10,
   "universities": [
     {
@@ -5839,7 +5839,8 @@
       "institutionType": "College / Polytechnic",
       "studyLevels": [
         "Diploma",
-        "Bachelors"
+        "Bachelors",
+        "MBBS"
       ],
       "subjectAreas": [
         "Business",
@@ -16559,7 +16560,8 @@
       "institutionType": "Technical Institute",
       "studyLevels": [
         "Bachelors",
-        "Masters"
+        "Masters",
+        "Doctorate"
       ],
       "subjectAreas": [
         "Engineering",
@@ -16599,7 +16601,8 @@
       "institutionType": "Accredited University",
       "studyLevels": [
         "Bachelors",
-        "Masters"
+        "Masters",
+        "Doctorate"
       ],
       "subjectAreas": [
         "Business",
@@ -18536,7 +18539,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -18576,7 +18579,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -18736,7 +18739,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -18816,7 +18819,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -18856,7 +18859,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -18896,7 +18899,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -34456,7 +34459,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -34656,7 +34659,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -34936,7 +34939,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -35136,7 +35139,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -37096,7 +37099,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -38496,7 +38499,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -38656,7 +38659,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -38696,7 +38699,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -39056,7 +39059,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -39136,7 +39139,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -39176,7 +39179,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -39256,7 +39259,7 @@
       "coverImage": "",
       "sourceLinks": [],
       "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
+      "publicationStatus": "draft",
       "hasDetailedProfile": false,
       "worldRanking": "",
       "averageTuition": "Varies by program",
@@ -39428,50 +39431,6 @@
       ]
     },
     {
-      "id": "uni-tashkent-state-medical-university-tsmu-tashkent",
-      "name": "Tashkent State Medical University (TSMU) Tashkent",
-      "slug": "tashkent-state-medical-university-tsmu-tashkent",
-      "countryId": "country-uzbekistan",
-      "countrySlug": "uzbekistan",
-      "countryName": "Uzbekistan",
-      "city": "Uzbekistan",
-      "officialWebsite": "",
-      "institutionType": "Medical University",
-      "studyLevels": [
-        "MBBS",
-        "Doctorate"
-      ],
-      "subjectAreas": [
-        "Medicine",
-        "Surgery",
-        "Clinical Medicine"
-      ],
-      "courses": [
-        "MBBS / General Medicine (MD)",
-        "Pediatrics",
-        "Dentistry"
-      ],
-      "admissionInformation": "NEET eligibility required for Indian applicants in compliance with NMC/WHO criteria; 50%+ in PCB in 10+2.",
-      "tuitionInformation": "Advisory USD 3,500 – 6,000 / year",
-      "scholarshipInformation": "Merit bursaries and subsidized university hostel accommodation available.",
-      "featured": false,
-      "relationshipStatus": "listed_for_guidance",
-      "logoAsset": "",
-      "coverImage": "",
-      "sourceLinks": [],
-      "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
-      "hasDetailedProfile": false,
-      "worldRanking": "NMC & WHO Recognized Medical Faculty",
-      "averageTuition": "USD 3,500 – 6,000 / year",
-      "description": "Accredited medical university in Uzbekistan offering English-medium MBBS programs recognized for global practice eligibility.",
-      "popularDisciplines": [
-        "Medicine",
-        "Surgery",
-        "Clinical Medicine"
-      ]
-    },
-    {
       "id": "uni-samarkand-state-medical-university-ssmu-samarkand",
       "name": "Samarkand State Medical University (SSMU) Samarkand",
       "slug": "samarkand-state-medical-university-ssmu-samarkand",
@@ -39597,50 +39556,6 @@
       "worldRanking": "NMC & WHO Recognized Medical Faculty",
       "averageTuition": "USD 3,500 – 6,000 / year",
       "description": "Accredited medical university in Uzbekistan offering English-medium MBBS programs recognized for global practice eligibility.",
-      "popularDisciplines": [
-        "Medicine",
-        "Surgery",
-        "Clinical Medicine"
-      ]
-    },
-    {
-      "id": "uni-kazakh-national-medical-university-kaznmu",
-      "name": "Kazakh National Medical University (KazNMU)",
-      "slug": "kazakh-national-medical-university-kaznmu",
-      "countryId": "country-kazakhstan",
-      "countrySlug": "kazakhstan",
-      "countryName": "Kazakhstan",
-      "city": "Kazakhstan",
-      "officialWebsite": "",
-      "institutionType": "Medical University",
-      "studyLevels": [
-        "MBBS",
-        "Doctorate"
-      ],
-      "subjectAreas": [
-        "Medicine",
-        "Surgery",
-        "Clinical Medicine"
-      ],
-      "courses": [
-        "MBBS / General Medicine (MD)",
-        "Pediatrics",
-        "Dentistry"
-      ],
-      "admissionInformation": "NEET eligibility required for Indian applicants in compliance with NMC/WHO criteria; 50%+ in PCB in 10+2.",
-      "tuitionInformation": "Advisory USD 3,500 – 6,000 / year",
-      "scholarshipInformation": "Merit bursaries and subsidized university hostel accommodation available.",
-      "featured": false,
-      "relationshipStatus": "listed_for_guidance",
-      "logoAsset": "",
-      "coverImage": "",
-      "sourceLinks": [],
-      "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
-      "hasDetailedProfile": false,
-      "worldRanking": "NMC & WHO Recognized Medical Faculty",
-      "averageTuition": "USD 3,500 – 6,000 / year",
-      "description": "Accredited medical university in Kazakhstan offering English-medium MBBS programs recognized for global practice eligibility.",
       "popularDisciplines": [
         "Medicine",
         "Surgery",
@@ -40264,50 +40179,6 @@
       ]
     },
     {
-      "id": "uni-riga-stradi-university-rsu",
-      "name": "Riga Stradi University (RSU)",
-      "slug": "riga-stradi-university-rsu",
-      "countryId": "country-latvia",
-      "countrySlug": "latvia",
-      "countryName": "Latvia",
-      "city": "Latvia",
-      "officialWebsite": "",
-      "institutionType": "Medical University",
-      "studyLevels": [
-        "MBBS",
-        "Doctorate"
-      ],
-      "subjectAreas": [
-        "Medicine",
-        "Surgery",
-        "Clinical Medicine"
-      ],
-      "courses": [
-        "MBBS / General Medicine (MD)",
-        "Pediatrics",
-        "Dentistry"
-      ],
-      "admissionInformation": "NEET eligibility required for Indian applicants in compliance with NMC/WHO criteria; 50%+ in PCB in 10+2.",
-      "tuitionInformation": "Advisory USD 3,500 – 6,000 / year",
-      "scholarshipInformation": "Merit bursaries and subsidized university hostel accommodation available.",
-      "featured": false,
-      "relationshipStatus": "listed_for_guidance",
-      "logoAsset": "",
-      "coverImage": "",
-      "sourceLinks": [],
-      "lastReviewed": "2026-11-09",
-      "publicationStatus": "published",
-      "hasDetailedProfile": false,
-      "worldRanking": "NMC & WHO Recognized Medical Faculty",
-      "averageTuition": "USD 3,500 – 6,000 / year",
-      "description": "Accredited medical university in Latvia offering English-medium MBBS programs recognized for global practice eligibility.",
-      "popularDisciplines": [
-        "Medicine",
-        "Surgery",
-        "Clinical Medicine"
-      ]
-    },
-    {
       "id": "uni-medical-university-of-warsaw",
       "name": "Medical University of Warsaw",
       "slug": "medical-university-of-warsaw",
@@ -40704,48 +40575,440 @@
       ]
     },
     {
-      "id": "uni-cat-lica-medical-school",
-      "name": "Cat lica Medical School",
-      "slug": "cat-lica-medical-school",
-      "countryId": "country-portugal",
-      "countrySlug": "portugal",
-      "countryName": "Portugal",
-      "city": "Portugal",
-      "officialWebsite": "",
-      "institutionType": "Medical University",
+      "id": "uni-technical-university-of-moldova",
+      "name": "Technical University of Moldova",
+      "slug": "technical-university-of-moldova",
+      "countryId": "country-moldova",
+      "countrySlug": "moldova",
+      "countryName": "Moldova",
+      "city": "Chișinău",
+      "officialWebsite": "https://utm.md/en/",
+      "institutionType": "Public Technical & Medical University",
       "studyLevels": [
         "MBBS",
+        "Bachelors",
+        "Masters"
+      ],
+      "subjectAreas": [
+        "Medicine",
+        "Engineering",
+        "Biomedical Technology"
+      ],
+      "courses": [
+        "General Medicine (MD/MBBS)",
+        "Biomedical Engineering"
+      ],
+      "admissionInformation": "High school secondary completion with Biology and Chemistry prerequisites. Direct application review.",
+      "tuitionInformation": "Advisory medical tuition: €3,500 – €4,500 / year.",
+      "scholarshipInformation": "Subsidized government baseline fee structure.",
+      "featured": false,
+      "relationshipStatus": "listed_for_guidance",
+      "publicationStatus": "published",
+      "hasDetailedProfile": false,
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://utm.md/en/"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "uni-nicolae-testemitanu-state-medical-university",
+      "name": "Nicolae Testemițanu State University of Medicine and Pharmacy",
+      "slug": "nicolae-testemitanu-state-medical-university",
+      "countryId": "country-moldova",
+      "countrySlug": "moldova",
+      "countryName": "Moldova",
+      "city": "Chișinău",
+      "officialWebsite": "https://usmf.md/en",
+      "institutionType": "State Medical University",
+      "studyLevels": [
+        "MBBS"
+      ],
+      "subjectAreas": [
+        "Medicine",
+        "Pharmacy",
+        "Dentistry"
+      ],
+      "courses": [
+        "General Medicine (MD/MBBS)",
+        "Dentistry",
+        "Pharmacy"
+      ],
+      "admissionInformation": "10+2 with PCB, recognized NEET qualification for Indian nationals. 6-year English medium program.",
+      "tuitionInformation": "Advisory medical tuition: €4,000 – €5,000 / year.",
+      "scholarshipInformation": "Transparent state tuition fees.",
+      "featured": false,
+      "relationshipStatus": "listed_for_guidance",
+      "publicationStatus": "published",
+      "hasDetailedProfile": false,
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://usmf.md/en"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "uni-riga-stradins-university",
+      "name": "Riga Stradiņš University (RSU)",
+      "slug": "riga-stradins-university",
+      "countryId": "country-latvia",
+      "countrySlug": "latvia",
+      "countryName": "Latvia",
+      "city": "Riga",
+      "officialWebsite": "https://www.rsu.lv/en",
+      "institutionType": "Public Research Medical University",
+      "studyLevels": [
+        "MBBS",
+        "Masters",
         "Doctorate"
       ],
       "subjectAreas": [
         "Medicine",
-        "Surgery",
-        "Clinical Medicine"
-      ],
-      "courses": [
-        "MBBS / General Medicine (MD)",
-        "Pediatrics",
+        "Health Sciences",
         "Dentistry"
       ],
-      "admissionInformation": "NEET eligibility required for Indian applicants in compliance with NMC/WHO criteria; 50%+ in PCB in 10+2.",
-      "tuitionInformation": "Advisory USD 3,500 – 6,000 / year",
-      "scholarshipInformation": "Merit bursaries and subsidized university hostel accommodation available.",
+      "courses": [
+        "Doctor of Medicine (MD/MBBS)",
+        "Dental Medicine"
+      ],
+      "admissionInformation": "High school secondary completion with 2 semesters of Biology and Chemistry. English proficiency (IELTS 6.0+).",
+      "tuitionInformation": "Advisory medical tuition: €13,500 / year.",
+      "scholarshipInformation": "Institutional academic merit awards.",
       "featured": false,
       "relationshipStatus": "listed_for_guidance",
-      "logoAsset": "",
-      "coverImage": "",
-      "sourceLinks": [],
-      "lastReviewed": "2026-11-09",
       "publicationStatus": "published",
       "hasDetailedProfile": false,
-      "worldRanking": "NMC & WHO Recognized Medical Faculty",
-      "averageTuition": "USD 3,500 – 6,000 / year",
-      "description": "Accredited medical university in Portugal offering English-medium MBBS programs recognized for global practice eligibility.",
-      "popularDisciplines": [
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://www.rsu.lv/en"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "uni-catolica-medical-school",
+      "name": "Católica Medical School",
+      "slug": "catolica-medical-school",
+      "countryId": "country-portugal",
+      "countrySlug": "portugal",
+      "countryName": "Portugal",
+      "city": "Lisbon",
+      "officialWebsite": "https://medicina.ucp.pt/en",
+      "institutionType": "Private Medical Faculty",
+      "studyLevels": [
+        "MBBS"
+      ],
+      "subjectAreas": [
         "Medicine",
-        "Surgery",
-        "Clinical Medicine"
-      ]
+        "Biomedical Sciences"
+      ],
+      "courses": [
+        "Integrated Master in Medicine (MD/MBBS)"
+      ],
+      "admissionInformation": "English-taught integrated medicine curriculum in partnership with Maastricht University.",
+      "tuitionInformation": "Institutional fee schedule provided upon admissions eligibility review.",
+      "scholarshipInformation": "Merit scholarships evaluated during admission review.",
+      "featured": false,
+      "relationshipStatus": "listed_for_guidance",
+      "publicationStatus": "published",
+      "hasDetailedProfile": false,
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://medicina.ucp.pt/en"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "uni-lithuanian-university-of-health-sciences",
+      "name": "Lithuanian University of Health Sciences (LSMU)",
+      "slug": "lithuanian-university-of-health-sciences",
+      "countryId": "country-lithuania",
+      "countrySlug": "lithuania",
+      "countryName": "Lithuania",
+      "city": "Kaunas",
+      "officialWebsite": "https://lsmu.lt/en/",
+      "institutionType": "Public Medical & Health University",
+      "studyLevels": [
+        "MBBS",
+        "Masters",
+        "Doctorate"
+      ],
+      "subjectAreas": [
+        "Medicine",
+        "Veterinary Medicine",
+        "Pharmacy",
+        "Public Health"
+      ],
+      "courses": [
+        "General Medicine (MD/MBBS)",
+        "Odontology",
+        "Pharmacy"
+      ],
+      "admissionInformation": "Recognized secondary diploma with strong marks in Biology and Chemistry, institutional entrance examination.",
+      "tuitionInformation": "Advisory medical tuition: €12,500 – €13,500 / year.",
+      "scholarshipInformation": "Lithuanian state and university merit scholarships.",
+      "featured": false,
+      "relationshipStatus": "listed_for_guidance",
+      "publicationStatus": "published",
+      "hasDetailedProfile": false,
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://lsmu.lt/en/"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "uni-azerbaijan-medical-university",
+      "name": "AZERBAIJAN MEDICAL University",
+      "slug": "azerbaijan-medical-university",
+      "countryId": "country-azerbaijan",
+      "countrySlug": "azerbaijan",
+      "countryName": "Azerbaijan",
+      "city": "Baku",
+      "officialWebsite": "https://amu.edu.az/en",
+      "institutionType": "Public State Medical University",
+      "studyLevels": [
+        "MBBS"
+      ],
+      "subjectAreas": [
+        "Medicine",
+        "Dentistry",
+        "Pharmacy",
+        "Public Health"
+      ],
+      "courses": [
+        "General Medicine (MBBS/MD)",
+        "Dentistry",
+        "Pharmacy"
+      ],
+      "admissionInformation": "Secondary 10+2 with PCB, NEET qualification for Indian students. English-medium faculty.",
+      "tuitionInformation": "Advisory medical tuition: $4,000 – $5,000 / year.",
+      "scholarshipInformation": "Economical government tuition fee schedule.",
+      "featured": false,
+      "relationshipStatus": "listed_for_guidance",
+      "publicationStatus": "published",
+      "hasDetailedProfile": false,
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://amu.edu.az/en"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "uni-vilnius-university",
+      "name": "Vilnius University (VU)",
+      "slug": "vilnius-university",
+      "countryId": "country-lithuania",
+      "countrySlug": "lithuania",
+      "countryName": "Lithuania",
+      "city": "Vilnius",
+      "officialWebsite": "https://www.vu.lt/en/",
+      "institutionType": "Flagship Public Research University",
+      "studyLevels": [
+        "Doctorate",
+        "Masters",
+        "Bachelors"
+      ],
+      "subjectAreas": [
+        "Doctoral Research",
+        "Physical Sciences",
+        "Humanities",
+        "Medicine",
+        "Informatics"
+      ],
+      "courses": [
+        "PhD Physics",
+        "PhD Computer Science",
+        "PhD Medicine",
+        "Master Programs"
+      ],
+      "admissionInformation": "Master's degree or equivalent, research project proposal, publication record and supervisor alignment.",
+      "tuitionInformation": "State-funded doctoral assistantships available with monthly researcher scholarships.",
+      "scholarshipInformation": "Lithuanian state research scholarships and tuition remission.",
+      "featured": false,
+      "relationshipStatus": "listed_for_guidance",
+      "publicationStatus": "published",
+      "hasDetailedProfile": false,
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://www.vu.lt/en/"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "uni-kaunas-university-of-technology",
+      "name": "Kaunas University of Technology (KTU)",
+      "slug": "kaunas-university-of-technology",
+      "countryId": "country-lithuania",
+      "countrySlug": "lithuania",
+      "countryName": "Lithuania",
+      "city": "Kaunas",
+      "officialWebsite": "https://en.ktu.edu/",
+      "institutionType": "Public Research Technical University",
+      "studyLevels": [
+        "Doctorate",
+        "Masters"
+      ],
+      "subjectAreas": [
+        "Doctoral Research",
+        "Engineering",
+        "Technology",
+        "Informatics"
+      ],
+      "courses": [
+        "PhD Materials Engineering",
+        "PhD Informatics",
+        "PhD Chemical Engineering"
+      ],
+      "admissionInformation": "Master's degree in engineering/sciences, academic recommendation, research outline.",
+      "tuitionInformation": "Funded PhD positions offering tuition remission and research grant stipends.",
+      "scholarshipInformation": "Funded research assistantships.",
+      "featured": false,
+      "relationshipStatus": "listed_for_guidance",
+      "publicationStatus": "published",
+      "hasDetailedProfile": false,
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://en.ktu.edu/"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "uni-vilnius-gediminas-technical-university",
+      "name": "Vilnius Gediminas Technical University (Vilnius Tech)",
+      "slug": "vilnius-gediminas-technical-university",
+      "countryId": "country-lithuania",
+      "countrySlug": "lithuania",
+      "countryName": "Lithuania",
+      "city": "Vilnius",
+      "officialWebsite": "https://vilniustech.lt/index.php?lang=2",
+      "institutionType": "Public Technical Research University",
+      "studyLevels": [
+        "Doctorate",
+        "Masters"
+      ],
+      "subjectAreas": [
+        "Doctoral Research",
+        "Civil Engineering",
+        "Aviation",
+        "Environmental Engineering"
+      ],
+      "courses": [
+        "PhD Civil Engineering",
+        "PhD Transport Engineering",
+        "PhD Environmental Sciences"
+      ],
+      "admissionInformation": "Recognized Master's qualification, certified research proposal and academic advisor consent.",
+      "tuitionInformation": "Eligible for institutional doctoral fellowships and Erasmus+ mobility grants.",
+      "scholarshipInformation": "Doctoral research fellowships.",
+      "featured": false,
+      "relationshipStatus": "listed_for_guidance",
+      "publicationStatus": "published",
+      "hasDetailedProfile": false,
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://vilniustech.lt/"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "uni-university-of-lisbon",
+      "name": "University of Lisbon",
+      "slug": "university-of-lisbon",
+      "countryId": "country-portugal",
+      "countrySlug": "portugal",
+      "countryName": "Portugal",
+      "city": "Lisbon",
+      "officialWebsite": "https://www.ulisboa.pt/en",
+      "institutionType": "Major Public Research University",
+      "studyLevels": [
+        "Doctorate",
+        "Masters",
+        "Bachelors"
+      ],
+      "subjectAreas": [
+        "Doctoral Research",
+        "Science",
+        "Law",
+        "Medicine",
+        "Engineering"
+      ],
+      "courses": [
+        "PhD Computational Sciences",
+        "PhD Biomedical Engineering",
+        "PhD Climate Change"
+      ],
+      "admissionInformation": "Master's degree, academic supervisor sponsorship, comprehensive doctoral research proposal.",
+      "tuitionInformation": "Portuguese FCT (Fundação para a Ciência e a Tecnologia) doctoral research grants available.",
+      "scholarshipInformation": "FCT national doctoral research fellowships.",
+      "featured": false,
+      "relationshipStatus": "listed_for_guidance",
+      "publicationStatus": "published",
+      "hasDetailedProfile": false,
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://www.ulisboa.pt/en"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "uni-university-of-porto",
+      "name": "University of Porto",
+      "slug": "university-of-porto",
+      "countryId": "country-portugal",
+      "countrySlug": "portugal",
+      "countryName": "Portugal",
+      "city": "Porto",
+      "officialWebsite": "https://sigarra.up.pt/up/en/",
+      "institutionType": "Leading Public Research University",
+      "studyLevels": [
+        "Doctorate",
+        "Masters"
+      ],
+      "subjectAreas": [
+        "Doctoral Research",
+        "Engineering (FEUP)",
+        "Biomedical Sciences (ICBAS)",
+        "Economics"
+      ],
+      "courses": [
+        "PhD Informatics Engineering",
+        "PhD Biomedical Sciences",
+        "PhD Sustainable Chemistry"
+      ],
+      "admissionInformation": "Master's degree with high GPA, supervisor approval, research plan.",
+      "tuitionInformation": "Doctoral funding available via national FCT fellowships and European Horizon projects.",
+      "scholarshipInformation": "National FCT and institutional research stipends.",
+      "featured": false,
+      "relationshipStatus": "listed_for_guidance",
+      "publicationStatus": "published",
+      "hasDetailedProfile": false,
+      "sourceLinks": [
+        {
+          "label": "Official Portal",
+          "url": "https://sigarra.up.pt/up/en/"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
     }
   ]
 }

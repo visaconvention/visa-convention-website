@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.1.0] - 2026-11-10 — Actual Client Content Integration
+### Added
+- **Master Content Ingestion & Normalization (`CONTENT_INTEGRATION_REPORT.md`):**
+  - Integrated 31 primary destination countries, 12 MBBS countries, and 3 PhD countries across 39 database country models.
+  - Added 3 new countries (Moldova, Lithuania, Azerbaijan) quarantined as `publicationStatus: "draft"` to prevent thin pages while supporting their institutions in search.
+  - Ingested 11 new higher education institutions across Moldova, Latvia, Portugal, Lithuania, and Azerbaijan into `client-content/universities/universities.json` and `.csv`.
+  - Scaled university database to **1,022 total records** (**1,004 published educational institutions**).
+  - Tagged 43 medical faculties with `"MBBS"` studyLevel and research institutions with `"Doctorate"`.
+- **MBBS & PhD Service Content Enrichment (`src/data/detailed-services.ts`):**
+  - Updated MBBS Abroad service page with client's 5 exact key benefit pillars: Affordable Tuition Fees, Scholarship Programs, Accommodation & Indian Food, FMGE/NExT Classes, and NMC/WHO Recognition Verification.
+  - Expanded MBBS supported countries and institutions across 12 nations.
+  - Expanded PhD supported countries and institutions to highlight research faculties in Latvia, Lithuania, and Portugal.
+- **Data Deduplication & Non-Educational Records Quarantine:**
+  - Resolved 4 duplicate institution records (Riga Stradiņš University, Católica Medical School, Tashkent State Medical University, Kazakh National Medical University).
+  - Quarantined 18 non-educational / financial entries (Flywire, Cohort Solutions, Bajaj Allianz, HDFC Credila, etc.) as `publicationStatus: "draft"`.
+  - Flagged 9 operational records with internal commission / backlog notes for manual counseling review.
+
+---
+
 ## [1.0.0] - 2026-11-10 — Official Production Release
 ### Added
 - **Production Deployment Runbook (`DEPLOYMENT.md`):**

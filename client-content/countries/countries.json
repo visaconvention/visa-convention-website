@@ -3612,6 +3612,288 @@
         }
       ],
       "lastReviewed": "2026-11-09"
+    },
+    {
+      "id": "country-moldova",
+      "name": "Moldova",
+      "slug": "moldova",
+      "flagCode": "MD",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/moldova-hero.webp",
+      "shortDescription": "Eastern European hub for affordable medical and technical higher education recognized globally.",
+      "introduction": "Moldova offers recognized medical and technical degree programs with English-language instruction, established hospital clinical networks, and economical tuition structures for international students.",
+      "whyStudyHere": [
+        "Affordable government medical university tuition fees with recognized clinical degrees.",
+        "English-medium general medicine programs complying with international health directives.",
+        "Safe, welcoming European study environment with moderate living costs."
+      ],
+      "educationSystem": {
+        "overview": "Moldovan higher education adheres to the Bologna Process, offering European Credit Transfer System (ECTS) accredited qualifications across public state universities.",
+        "keyPoints": [
+          "Bologna ECTS modular qualification system.",
+          "English-medium medical faculties with hospital clinical rotations."
+        ],
+        "structure": "Bachelor (3–4 years), Integrated Medical MD/MBBS (6 years), Master (1–2 years), Doctorate (3–4 years)"
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate",
+        "MBBS",
+        "Doctoral / PhD"
+      ],
+      "admissionGuidance": {
+        "overview": "Admissions require certified high school 10+2 certificates with Physics, Chemistry, and Biology prerequisites.",
+        "generalRequirements": [
+          "10+2 with minimum 50% in PCB (40% for reserved categories).",
+          "Qualified NEET-UG scorecard for Indian medical applicants."
+        ],
+        "intakePeriods": [
+          "Autumn Intake (September / October)"
+        ],
+        "languageRequirements": "English-medium institutional interview or assessment."
+      },
+      "visaGuidance": {
+        "visaType": "Long-Stay Student Visa (Type D) & Temporary Residence Permit",
+        "overview": "Immigration clearance requires formal ministerial acceptance letter, certified medical fitness, living expense support, and consular interview.",
+        "keyRequirements": [
+          "Official university acceptance letter.",
+          "Valid passport with at least 18 months remaining validity.",
+          "Proof of tuition deposit and maintenance funds."
+        ],
+        "processingTime": "3 to 6 weeks.",
+        "workRights": "Subject to national student residence regulations.",
+        "disclaimer": "Visa issuance is the sole prerogative of the embassy and immigration authorities of the Republic of Moldova. Visa Convention facilitates diligent documentation without guaranteeing embassy outcomes."
+      },
+      "costInformation": {
+        "tuitionRange": "€3,500 – €5,000 / year (Medical Faculty)",
+        "livingCostRange": "€3,000 – €4,500 / year",
+        "currency": "EUR",
+        "notes": "Tuition figures are set by state university rectorates and subject to annual review."
+      },
+      "scholarshipInformation": {
+        "available": false,
+        "overview": "International medical programs offer subsidized baseline tuition fees in lieu of separate direct scholarships.",
+        "opportunities": [],
+        "notes": "Tuition structures are kept economical directly by government ministries."
+      },
+      "servicesAvailable": [
+        "Eligibility Assessment & Document Verification",
+        "Ministry Invitation Processing",
+        "Embassy Visa Dossier Compilation",
+        "Pre-Departure Briefing & Airport Welcoming"
+      ],
+      "faqs": [
+        {
+          "question": "Are Moldovan medical degrees recognized by NMC and WHO?",
+          "answer": "Yes, institutions like Nicolae Testemițanu State University of Medicine and Pharmacy are listed in the World Directory of Medical Schools (WDOMS) and comply with NMC FMGL regulations."
+        }
+      ],
+      "relatedUniversityIds": [
+        "uni-technical-university-of-moldova",
+        "uni-nicolae-testemitanu-state-medical-university"
+      ],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "draft",
+      "sourceLinks": [
+        {
+          "label": "Ministry of Education and Research of Moldova",
+          "url": "https://mec.gov.md/en"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "country-lithuania",
+      "name": "Lithuania",
+      "slug": "lithuania",
+      "flagCode": "LT",
+      "continent": "Europe",
+      "heroImage": "/assets/images/destinations/lithuania-hero.webp",
+      "shortDescription": "Baltic innovation center offering premier English-taught degrees, medical schools, and funded doctoral research positions.",
+      "introduction": "Lithuania is an advanced European Union and Schengen member state offering high-standard higher education across world-ranked research universities, medical academies, and technical institutions.",
+      "whyStudyHere": [
+        "European Union accredited degrees fully recognized worldwide under Bologna / ECTS standards.",
+        "English-medium medical and health science programs (LSMU) with modern university hospitals.",
+        "State-funded PhD positions offering tuition remission and research grant stipends.",
+        "Permitted to work up to 20 hours per week during studies and 15-month stay-back job search permit."
+      ],
+      "educationSystem": {
+        "overview": "Lithuania has an internationally renowned higher education system comprising state research universities and universities of applied sciences.",
+        "keyPoints": [
+          "Full European Union and Bologna Process compliance.",
+          "Strong emphasis on biotechnology, lasers, medical sciences, and ICT."
+        ],
+        "structure": "Bachelor (3–4 years), Master (1.5–2 years), Integrated Medicine (6 years), Doctorate (4 years)"
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate",
+        "MBBS",
+        "Doctoral / PhD"
+      ],
+      "admissionGuidance": {
+        "overview": "Admissions require certified secondary / bachelor's transcripts, recognized English proficiency (IELTS 6.0+), and motivation letter.",
+        "generalRequirements": [
+          "Undergraduate: Minimum 65%+ in 10+2 from recognized board.",
+          "MBBS: Biology and Chemistry prerequisites, entrance exam, NEET for Indian candidates.",
+          "PhD: Recognized Master's degree, research proposal, supervisor agreement."
+        ],
+        "intakePeriods": [
+          "Autumn (September) - Primary Intake",
+          "Spring (February) - Selected Programs"
+        ],
+        "languageRequirements": "IELTS Academic 6.0–6.5, TOEFL iBT 80+, or equivalent."
+      },
+      "visaGuidance": {
+        "visaType": "National Long-Stay Visa (Type D) & Temporary Residence Permit (TRP)",
+        "overview": "Applications are submitted through MIGRIS (Lithuanian Migration Department) and authorized VFS Global visa application centers.",
+        "keyRequirements": [
+          "Mediation letter from Lithuanian university via MIGRIS.",
+          "Proof of financial subsistence (approx. €450/month) and tuition payment.",
+          "Police clearance certificate apostilled by MEA."
+        ],
+        "processingTime": "4 to 8 weeks.",
+        "workRights": "International students are permitted to work up to 20 hours per week during term.",
+        "disclaimer": "Visa issuance is the sole prerogative of the Migration Department under the Ministry of the Interior of the Republic of Lithuania. Visa Convention facilitates honest, diligent file compilation without guaranteeing embassy outcomes."
+      },
+      "costInformation": {
+        "tuitionRange": "€3,000 – €7,500 / year (Engineering/Business); €12,500 – €13,500 / year (Medicine)",
+        "livingCostRange": "€5,000 – €7,000 / year",
+        "currency": "EUR",
+        "notes": "Living expenses in Vilnius and Kaunas are highly competitive compared to Western Europe."
+      },
+      "scholarshipInformation": {
+        "available": true,
+        "overview": "Lithuanian State Scholarships provide tuition waivers and monthly stipends for international Master's and PhD candidates.",
+        "opportunities": [
+          "Lithuanian State Scholarships for Master's Studies",
+          "Institutional Doctoral Fellowships with Monthly Stipend"
+        ],
+        "notes": "State scholarship applications open annually in February."
+      },
+      "servicesAvailable": [
+        "Academic Counseling & Institutional Shortlisting",
+        "Application & Motivation Letter Review",
+        "MIGRIS Mediation Letter Coordination",
+        "Embassy Visa Dossier Compilation",
+        "Pre-Departure Briefing & Student Ticketing"
+      ],
+      "faqs": [
+        {
+          "question": "Can international students work in Lithuania during their studies?",
+          "answer": "Yes, international students holding a valid Lithuanian Temporary Residence Permit (TRP) are legally permitted to work up to 20 hours per week during academic semesters."
+        }
+      ],
+      "relatedUniversityIds": [
+        "uni-lithuanian-university-of-health-sciences",
+        "uni-vilnius-university",
+        "uni-kaunas-university-of-technology",
+        "uni-vilnius-gediminas-technical-university"
+      ],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "draft",
+      "sourceLinks": [
+        {
+          "label": "Official Study in Lithuania Portal",
+          "url": "https://www.studyinlithuania.lt"
+        },
+        {
+          "label": "Lithuanian Migration Department (MIGRIS)",
+          "url": "https://www.migracija.lt"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
+    },
+    {
+      "id": "country-azerbaijan",
+      "name": "Azerbaijan",
+      "slug": "azerbaijan",
+      "flagCode": "AZ",
+      "continent": "Asia",
+      "heroImage": "/assets/images/destinations/azerbaijan-hero.webp",
+      "shortDescription": "Emerging destination for English-taught medical education, modern Caspian campus facilities, and economical living.",
+      "introduction": "Azerbaijan is an emerging center for international higher education, offering English-medium degree programs in medicine, petroleum engineering, and international business.",
+      "whyStudyHere": [
+        "Affordable government medical university tuition fees with recognized clinical degrees.",
+        "English-medium general medicine programs complying with international health directives.",
+        "Modern campus facilities in Baku with rich cultural heritage and safe urban living."
+      ],
+      "educationSystem": {
+        "overview": "Azerbaijan's higher education system operates under the Bologna Process across state universities and specialized academies.",
+        "keyPoints": [
+          "Credit-based modular system aligned with ECTS.",
+          "English-medium international medical and engineering faculties."
+        ],
+        "structure": "Bachelor (4 years), Master (2 years), Integrated Medical MD/MBBS (6 years), Doctorate (3–4 years)"
+      },
+      "studyLevels": [
+        "Undergraduate",
+        "Postgraduate",
+        "MBBS",
+        "Doctoral / PhD"
+      ],
+      "admissionGuidance": {
+        "overview": "Admissions require secondary school certification (10+2 with PCB for medical programs), NEET qualification for Indian students, and medical clearance.",
+        "generalRequirements": [
+          "Minimum 50% in 10+2 PCB subjects.",
+          "Valid NEET qualifying scorecard for Indian medical aspirants."
+        ],
+        "intakePeriods": [
+          "Autumn Intake (September / October)"
+        ],
+        "languageRequirements": "English-medium interview or institutional test."
+      },
+      "visaGuidance": {
+        "visaType": "Student Visa & State Migration Service Residence Permit",
+        "overview": "International students receive an official invitation letter registered with the State Migration Service, followed by student visa clearance.",
+        "keyRequirements": [
+          "Official invitation letter from the Ministry of Science and Education.",
+          "Passport with at least 12 months validity.",
+          "Medical fitness certificate including HIV and hepatitis clearance."
+        ],
+        "processingTime": "3 to 5 weeks.",
+        "workRights": "Subject to national student residence permits.",
+        "disclaimer": "Visa issuance is the sole prerogative of the State Migration Service and Embassy of the Republic of Azerbaijan. Visa Convention facilitates honest, diligent file compilation without guaranteeing embassy outcomes."
+      },
+      "costInformation": {
+        "tuitionRange": "$4,000 – $5,000 / year (Medical Faculty)",
+        "livingCostRange": "$3,000 – $4,500 / year",
+        "currency": "USD",
+        "notes": "Living expenses in Baku are economical with subsidized university dormitory accommodation."
+      },
+      "scholarshipInformation": {
+        "available": false,
+        "overview": "Tuition fees for international students are kept affordable directly through government state university structures.",
+        "opportunities": [],
+        "notes": "State university tuition rates are fixed and highly competitive."
+      },
+      "servicesAvailable": [
+        "Eligibility Assessment & Document Verification",
+        "State Migration Service Invitation Processing",
+        "Embassy Visa Dossier Compilation",
+        "Pre-Departure Briefing & Airport Welcoming"
+      ],
+      "faqs": [
+        {
+          "question": "Is Azerbaijan Medical University recognized internationally?",
+          "answer": "Yes, Azerbaijan Medical University is listed in the World Directory of Medical Schools (WDOMS) and recognized by the Ministry of Science and Education of Azerbaijan."
+        }
+      ],
+      "relatedUniversityIds": [
+        "uni-azerbaijan-medical-university"
+      ],
+      "featured": false,
+      "active": true,
+      "publicationStatus": "draft",
+      "sourceLinks": [
+        {
+          "label": "Ministry of Science and Education of the Republic of Azerbaijan",
+          "url": "https://edu.gov.az/en"
+        }
+      ],
+      "lastReviewed": "2026-11-10"
     }
   ]
 }
