@@ -13,33 +13,33 @@ interface Props {
 
 const {
   eyebrow = 'VISA CONVENTION · HANUMANGARH',
-  headline = 'Your Plans Abroad Start Here.',
-  subheadline = 'Explore study destinations, find universities, and get assistance with visas and travel.',
+  headline = 'Study Abroad, Visa & Travel Services',
+  subheadline = 'Explore study destinations, discover universities, and receive guidance from our team in Hanumangarh.',
   primaryCtaText = 'Explore Services',
   primaryCtaHref = '#services',
-  secondaryCtaText = 'Contact Our Team',
+  secondaryCtaText = 'Book Consultation',
   secondaryCtaHref = '/contact/',
   imageSrc = '/assets/images/hero-education.jpg',
   imageAlt = 'Students studying at an international university campus',
 } = Astro.props;
 ---
 
-<section class="bg-white border-b border-brand-border py-8 sm:py-12 lg:py-14">
+<section class="bg-white border-b border-brand-border py-8 sm:py-10 lg:py-12">
   <div class="site-container">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center text-left">
-      <!-- Left Column: Copy & Actions (~58% on desktop) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center text-left">
+      <!-- Left Column: Copy & Actions (58% on desktop) -->
       <div class="lg:col-span-7 space-y-5">
         <div>
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-bg text-brand-navy border border-brand-border mb-3.5">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-bg text-brand-navy border border-brand-border mb-3">
             <span class="w-2 h-2 rounded-full bg-brand-red"></span>
             {eyebrow}
           </span>
-          <h1 class="text-3xl sm:text-5xl lg:text-[3.15rem] font-black text-brand-navy tracking-tight leading-[1.15] text-balance">
+          <h1 class="text-3xl sm:text-4xl lg:text-[2.85rem] font-black text-brand-navy tracking-tight leading-[1.08] text-balance">
             {headline}
           </h1>
         </div>
 
-        <p class="text-base sm:text-lg text-brand-muted leading-relaxed max-w-[54ch] font-normal">
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed max-w-[52ch] font-normal">
           {subheadline}
         </p>
 
@@ -47,7 +47,7 @@ const {
         <div class="flex flex-wrap items-center gap-3.5 pt-1">
           <a
             href={primaryCtaHref}
-            class="btn-primary text-center px-6 py-3.5 text-sm"
+            class="btn-primary text-center px-6 py-3 text-sm min-h-[48px]"
           >
             <span>{primaryCtaText}</span>
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,22 +56,22 @@ const {
           </a>
           <a
             href={secondaryCtaHref}
-            class="btn-outline text-center px-6 py-3.5 text-sm"
+            class="btn-outline text-center px-6 py-3 text-sm min-h-[48px]"
           >
             <span>{secondaryCtaText}</span>
           </a>
         </div>
       </div>
 
-      <!-- Right Column: Authentic Educational Visual (~42% on desktop) -->
+      <!-- Right Column: Authentic Educational Visual (42% on desktop) -->
       <div class="lg:col-span-5 relative">
-        <div class="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-brand-border shadow-md bg-brand-bg">
+        <div class="relative overflow-hidden rounded-2xl border border-brand-border shadow-sm bg-brand-bg">
           <img
             src={imageSrc}
             alt={imageAlt}
             width="600"
             height="340"
-            class="w-full h-[240px] sm:h-[290px] lg:h-[330px] object-cover"
+            class="w-full h-[220px] sm:h-[270px] lg:h-[300px] object-cover"
             loading="eager"
             fetchpriority="high"
           />

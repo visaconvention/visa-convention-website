@@ -31,13 +31,16 @@
   color-scheme: light;
 
   /* Layout & Container Design Tokens */
-  --container-width: 1200px;
+  --site-width: 1160px;
+  --container-width: 1160px;
   --reading-width: 720px;
   --hero-content-width: 640px;
-  --section-space: clamp(3rem, 6vw, 5.5rem);
-  --section-space-sm: clamp(2rem, 4vw, 3.5rem);
+  --section-gap: clamp(3rem, 5vw, 4.5rem);
+  --section-space: clamp(3rem, 5vw, 4.5rem);
+  --section-space-sm: clamp(2rem, 3.5vw, 3rem);
   --grid-gap: 1.5rem;
-  --card-padding: 1.75rem;
+  --card-gap: 1.5rem;
+  --card-padding: 1.5rem;
 
   /* Standardized Typography Scale */
   --font-h1: clamp(2rem, 4.5vw, 3.5rem);
@@ -197,7 +200,7 @@ body {
 
 /* Master Layout Alignment & Sizing System */
 .site-container {
-  width: min(calc(100% - 2.5rem), var(--container-width, 1200px));
+  width: min(calc(100% - 2.5rem), var(--container-width, 1160px));
   margin-inline: auto;
 }
 

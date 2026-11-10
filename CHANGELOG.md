@@ -6,6 +6,36 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.10.0] - 2026-11-10 — Ruthless Homepage Design & Proportion Audit & Global 1160px Alignment
+### Changed
+- **Unified 1160px Design System Container (`global.css`):**
+  - Standardized `--site-width: 1160px` and `--container-width: 1160px` across the entire design system.
+  - Eliminated the 32px horizontal offset between the hero and subsequent sections. At 1366px viewport width, all main content containers (`Header`, `Hero`, `Services`, `Destinations`, `About`, `Process`, `CTA`, `Footer`) start at an exact, measured **103px** from the left border.
+  - Standardized mobile gutters to 20px on narrow viewports (320px–430px).
+- **Header Proportional Refinement (`Header.astro`):**
+  - Replaced manual `max-w-[1200px]` with `.site-container`.
+  - Calibrated header height to a crisp 76px (`h-[76px]`).
+  - Preserved compact logo (229px) and navigation alignment with zero text wrapping.
+- **Hero Spatial Balance & Content Density (`HeroSection.astro`):**
+  - Updated primary H1 headline to: `"Study Abroad, Visa & Travel Services"` (48px on desktop, line-height 1.08).
+  - Maintained 58% copy / 42% educational visual split with authentic campus photography (`hero-education.jpg`), bringing content-led height to ~406px.
+  - Primary button: `"Explore Services"` (`#services`), Secondary button: `"Book Consultation"` (`/contact/`).
+  - Service section now enters the viewport earlier (starting at 489px from top instead of 526px+).
+- **Service Cards Height Reduction (`src/pages/index.astro`):**
+  - Removed bulky checklist bullet points and oversized icon wrappers from preview cards.
+  - Reduced service card height from 436px down to ~260px (a 175px reduction in height).
+  - Maintained 3 equal pathways (*Study Abroad*, *Visa Services*, *Flight Booking*) with 26px icon boxes, 20px headings, 14px 2-line descriptions, and aligned single action links.
+- **Section Headings & Consultation CTA Tightening (`SectionHeading.astro`, `ConsultationCTA.astro`):**
+  - Reduced section heading bottom margins (`mb-7 sm:mb-9`) and typography scale (`2rem` desktop).
+  - Removed excessive `my-16` margin from `ConsultationCTA.astro`, reducing overall CTA section height to ~175px.
+- **Automated Verification & Measurement:**
+  - 100% pass rate across all 6 test suites (**216 / 216 tests passed**).
+  - Zero horizontal overflow across all 8 tested viewports (320px–1920px).
+  - Puppeteer measurement verification across 9 viewports (320px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px, 1920px).
+  - Saved full-page and fold screenshots to artifact directory.
+
+---
+
 ## [1.9.0] - 2026-11-10 — Evidence-Based Homepage Optimization & Streamlined Layout Hierarchy
 ### Changed
 - **Homepage Fold Optimization & Padding Reduction (`HeroSection.astro`):**
