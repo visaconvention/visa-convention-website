@@ -39,7 +39,7 @@ assert(aboutHtml.includes('Our Specialized Counseling Practice'), 'Includes func
 assert(aboutHtml.includes('Lead Education Counselor — North America &amp; UK') || aboutHtml.includes('Lead Education Counselor — North America & UK'), 'Includes North America specialized counselor role');
 assert(aboutHtml.includes('Medical Admissions Advisor — MBBS') || aboutHtml.includes('Medical Admissions Advisor — MBBS Central Asia'), 'Includes Medical Admissions counselor role');
 assert(aboutHtml.includes('Our Physical Advisory Center in Hanumangarh'), 'Includes verified physical office section in Hanumangarh');
-assert(aboutHtml.includes('Hanumangarh, Rajasthan 335512, India'), 'Includes official Hanumangarh physical address');
+assert(aboutHtml.includes('Shop No.115, Durga Market') && aboutHtml.includes('Hanumangarh, Rajasthan 335512'), 'Includes official Hanumangarh physical address');
 assert(aboutHtml.includes('Measurable Institutional Scale'), 'Includes verified business milestones & capability metrics');
 assert(aboutHtml.includes('35+') && aboutHtml.includes('1,015+'), 'Displays verified 35+ countries and 1,015+ institutions');
 assert(aboutHtml.includes('/services/study-visa/') && aboutHtml.includes('/services/mbbs/'), 'Links to core business services');

@@ -8,7 +8,7 @@
 
 - **Project:** Visa Convention Official Web Portal
 - **Client Organization:** Visa Convention Overseas Consultants
-- **Headquarters:** Main Commercial Market / Advisory Hub, Hanumangarh, Rajasthan 335512, India
+- **Headquarters:** Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512
 - **Primary Channels:** Telephone: `+91 96803-95539` | WhatsApp: `+91 96803-95539` | Email: `visaconvention064@gmail.com`
 - **Canonical Production Domain:** `https://visaconvention.com`
 
@@ -39,7 +39,7 @@ The codebase is organized into a disciplined 12-stage engineering lifecycle. The
 | **Quality Gate & Testing** | `Verified` | 6 automated test suites passing **217 / 217 assertions (100% pass rate)**. |
 | **Client Content Integration** | `Verified` | Actual client workbooks, MBBS lists, and PhD programs ingested into structured data. |
 | **DNS Cutover to Live Domain** | `Pending Approval` | Codebase built locally; awaiting explicit client registrar authorization before DNS deployment. |
-| **Client Suite / Building Number** | `Awaiting Confirmation` | Physical location anchored to Hanumangarh PIN `335512`; specific shop/unit pending client confirmation. |
+| **Official Office Address** | `Verified` | Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512. |
 | **Live Production CRM Webhook** | `Optional` | Server delivery writes to local storage; live Zapier/Make webhook ready upon client provision. |
 
 ---
@@ -393,7 +393,7 @@ Visa Convention management maintains 100% direct ownership of the domain registr
 - [x] 18-point Production Readiness Checklist verified with 217 passing automated checks.
 
 ### Pending Client Input
-- [ ] Confirm specific commercial shop/suite number for Hanumangarh physical address.
+- [x] Official physical office address confirmed and verified (Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512).
 - [ ] Provide authentic counselor team photographs for the About Us gallery.
 - [ ] Provide client-approved video testimonials for embed in Success Stories.
 - [ ] Provide full visa/tuition guidelines if standalone country pages are desired for draft destinations (Moldova, Lithuania, Azerbaijan).

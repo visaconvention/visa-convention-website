@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.2.0] - 2026-11-10 — Official Physical Office Address Integration
+### Changed
+- **Physical Headquarters & Office Address Updated Sitewide:**
+  - Updated verified physical office address to: `"Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512"`.
+  - Updated `src/data/site-config.ts` (`officeAddress`, `googleMapsUrl`, and `socialLinks.googleMaps`).
+  - Updated `src/data/about.ts` (`physicalOffice.address`).
+  - Streamlined `src/layouts/ServiceLayout.astro` address renderer.
+  - Updated Schema.org `LocalBusiness` / `PostalAddress` JSON-LD generation in `src/utils/seo.ts`.
+  - Updated test assertions in `tests/contact-engine.test.js` and `tests/credibility-engine.test.js`.
+  - Synchronized `README.md`, `MAINTENANCE.md`, `CONTENT_STATUS.md`, and `FINAL_TEST_REPORT.md`.
+
+---
+
 ## [1.1.0] - 2026-11-10 — Actual Client Content Integration
 ### Added
 - **Master Content Ingestion & Normalization (`CONTENT_INTEGRATION_REPORT.md`):**

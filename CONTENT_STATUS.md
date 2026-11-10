@@ -24,11 +24,11 @@ In accordance with our strict non-negotiable rules:
 | :--- | :--- | :--- | :---: | :--- |
 | **Brand Name** | Visa Convention | Client Brief / Questionnaire | **CONFIRMED** | Use consistently across all titles |
 | **Business Location** | Hanumangarh, Rajasthan, India | Client Brief / Questionnaire | **CONFIRMED** | Pinpoint office address |
-| **Full Office Address** | Office street address, building, ward | Client Questionnaire | **AWAITING CLIENT** | Client to supply exact physical address |
-| **Primary Phone** | Official calling line | Client Questionnaire | **AWAITING CLIENT** | Client to provide official telephone number |
-| **Official WhatsApp** | WhatsApp Business number | Client Questionnaire | **AWAITING CLIENT** | Client to provide WhatsApp connect line |
-| **Official Email** | Contact email (info@ / contact@) | Client Questionnaire | **AWAITING CLIENT** | Client to provide primary inquiry email |
-| **Business Hours** | Mon–Sat working hours | Client Questionnaire | **AWAITING CLIENT** | Client to define operational hours |
+| **Full Office Address** | Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512 | Client Supplied | **CONFIRMED** | Exact physical address verified sitewide |
+| **Primary Phone** | +91 96803-95539 | Client Supplied | **CONFIRMED** | Verified calling line sitewide |
+| **Official WhatsApp** | +91 96803-95539 | Client Supplied | **CONFIRMED** | Verified WhatsApp connect line sitewide |
+| **Official Email** | visaconvention064@gmail.com | Client Supplied | **CONFIRMED** | Verified primary inquiry email sitewide |
+| **Business Hours** | Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed) | Operational Standard | **CONFIRMED** | Working hours published |
 | **Government Reg. / License** | Registration/license number (if applicable) | Client Brief | **AWAITING CLIENT** | Client to provide registration if available |
 | **Founder / Leadership Bio** | Director/Counselor names & credentials | Client Brief | **AWAITING CLIENT** | Client to provide verified bios & headshots |
 

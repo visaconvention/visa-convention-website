@@ -85,7 +85,7 @@ Before configuring live DNS on the client's registrar, the following operational
 3. **Official Phone & WhatsApp Numbers:**  
    *Action:* Confirmed client phone and WhatsApp number (`+91 96803-95539`) integrated across sitewide components, schema, and click-to-chat links.
 4. **Official Office Address Specifics:**  
-   *Action:* Confirm whether *"Main Commercial Market / Advisory Hub, Hanumangarh, Rajasthan 335512"* should be updated to a specific shop/building number.
+   *Action:* Confirmed client office address (*"Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512"*) verified and integrated across all components, templates, and Schema.org JSON-LD.
 5. **CRM / Webhook Endpoint (Optional):**  
    *Action:* If instant email/SMS alerts are desired for new leads, provide the Zapier/Make/Zoho webhook URL for `LEAD_WEBHOOK_URL`.
 

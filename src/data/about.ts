@@ -111,7 +111,7 @@ export const aboutData = {
     state: 'Rajasthan',
     country: 'India',
     pincode: '335512',
-    address: 'Main Commercial Market / Advisory Hub, Hanumangarh, Rajasthan 335512, India',
+    address: 'Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512',
     businessHours: 'Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)',
     consultationMode: 'Walk-in appointments welcomed; scheduled consultations recommended',
     features: [

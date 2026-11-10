@@ -164,7 +164,7 @@ async function runTests() {
   assert(pageTitle.includes('Contact Our Office') && pageTitle.includes('Visa Convention'), 'Contact page title matches brand');
 
   const pageText = await page.evaluate(() => document.body.innerText);
-  assert(pageText.includes('Main Commercial Market') && pageText.includes('Hanumangarh, Rajasthan 335512'), 'Displays verified Hanumangarh physical address');
+  assert(pageText.includes('Shop No.115, Durga Market') && pageText.includes('Hanumangarh, Rajasthan 335512'), 'Displays verified Hanumangarh physical address');
   assert(pageText.includes('Monday – Saturday: 9:30 AM – 6:30 PM IST'), 'Displays office counseling hours');
   assert(pageText.includes('visaconvention064@gmail.com'), 'Displays official electronic mail');
   assert(pageText.includes('Initial Inquiry Privacy Guarantee'), 'Displays strict initial inquiry privacy guarantee');

@@ -16,15 +16,15 @@ export const siteConfig = {
   whatsappDisplay: '+91 96803-95539',
   email: 'visaconvention064@gmail.com',
   admissionsEmail: 'visaconvention064@gmail.com',
-  officeAddress: 'Main Commercial Market / Advisory Hub, Hanumangarh, Rajasthan 335512, India',
-  googleMapsUrl: 'https://maps.google.com/?q=Hanumangarh,+Rajasthan+335512',
+  officeAddress: 'Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512',
+  googleMapsUrl: 'https://maps.google.com/?q=Shop+No.115,+Durga+Market,+Street+No.04,+behind+Bus+Stand,+Durga+Colony,+Junction,+Hanumangarh,+Rajasthan+335512',
   businessHours: 'Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)',
   socialLinks: {
     facebook: 'https://facebook.com/visaconvention',
     instagram: 'https://instagram.com/visaconvention',
     linkedin: 'https://linkedin.com/company/visaconvention',
     youtube: 'https://youtube.com/@visaconvention',
-    googleMaps: 'https://maps.google.com/?q=Hanumangarh,+Rajasthan+335512',
+    googleMaps: 'https://maps.google.com/?q=Shop+No.115,+Durga+Market,+Street+No.04,+behind+Bus+Stand,+Durga+Colony,+Junction,+Hanumangarh,+Rajasthan+335512',
   },
   
   // Primary brand palette hex codes

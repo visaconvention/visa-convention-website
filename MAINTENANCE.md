@@ -207,7 +207,7 @@ export const SITE_CONFIG = {
   admissionsEmail: "visaconvention064@gmail.com",
   officeHours: "Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)",
   address: {
-    street: "Main Commercial Market / Advisory Hub",
+    street: "Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction",
     city: "Hanumangarh",
     state: "Rajasthan",
     postalCode: "335512",

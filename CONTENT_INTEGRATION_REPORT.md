@@ -190,7 +190,7 @@ Integrated the client's 5 exact key benefit pillars:
 The following specific items remain open for Visa Convention management to provide when ready:
 1. **Full Country Copy for Draft Destinations:** If Visa Convention desires dedicated standalone pages for Moldova, Lithuania, and Azerbaijan, provide certified visa requirements, tuition ranges, and living cost figures.
 2. **Additional Curated University Profiles:** If Visa Convention wishes to promote any of the 994 directory institutions to full profile pages with standalone URLs, provide the detailed program listings, faculty breakdowns, and tuition schedules.
-3. **Office Building & Suite Number:** Confirm whether *"Main Commercial Market / Advisory Hub"* requires a specific shop/building number.
+3. **Office Building & Suite Number:** Confirmed and verified as *"Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512"*.
 4. **CRM Lead Webhook:** Webhook URL (Zapier/Make/Zoho) if automatic lead forwarding to email/CRM is desired.
 
 ---
