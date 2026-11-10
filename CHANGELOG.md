@@ -6,9 +6,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - Planned Stage 12
-### Planned
-- **Stage 12:** Production build verification and client handover documentation.
+## [1.0.0] - 2026-11-10 — Official Production Release
+### Added
+- **Production Deployment Runbook (`DEPLOYMENT.md`):**
+  - Hosting provider recommendation (Cloudflare Pages as primary, Netlify Edge as secondary).
+  - Client ownership governance protocols ensuring zero agency lock-in.
+  - Step-by-step Git-connected deployment instructions and build settings.
+  - DNS configuration, custom domain mapping (`visaconvention.com`), SSL/TLS 1.3 full strict rules, and zero-downtime rollback runbook.
+- **Operations & Maintenance Manual (`MAINTENANCE.md`):**
+  - Comprehensive guide for non-developers and webmasters to manage destination countries, add/remove universities, modify service content, and manage customer inquiries.
+  - Explanation of the university threshold rule (bare directory listings vs. rich interactive profiles).
+  - Routine dependency and security audit workflows (`npm audit`, `npm outdated`, `npm update`).
+- **Executive Client Handover Manual (`CLIENT_HANDOVER.md`):**
+  - Non-technical operational guide for Visa Convention directors and management.
+  - Full digital asset inventory, lead retrieval pathways (WhatsApp pre-filled routing and local disk records), emergency rollback procedures, and the three statutory compliance rules (anti-guarantee, university relationship labeling, and client privacy).
+- **Master Quality Assurance & Production Verification Report (`FINAL_TEST_REPORT.md`):**
+  - Detailed evaluation of the 18-point Production Readiness Checklist.
+  - Cumulative test verification matrix verifying **217 / 217 passing automated assertions** across 6 test suites with 100% pass rate.
+  - Complete defect resolution history and pre-launch client authorization gate.
+- **Edge Security Headers Configuration (`public/_headers`):**
+  - Implemented automated HTTP security headers (`Strict-Transport-Security`, `X-Frame-Options`, `X-Content-Type-Options: nosniff`, `Referrer-Policy`, and `Permissions-Policy`).
+
+### Verified
+- Executed `npm run check` (0 errors, 0 warnings, 0 hints across all files).
+- Executed `npm run build` compiling 64 static HTML routes in `dist/`.
+- Verified all 6 automated test suites passing with zero failures.
 
 ---
 
