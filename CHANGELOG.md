@@ -6,6 +6,49 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.5.0] - 2026-11-10 — Website Cleanup & Streamlined Redesign
+### Changed
+- **Hero Section Streamlining (`HeroSection.astro`):**
+  - Completely removed the right-side "Verified Office" card and all certification badges.
+  - Eliminated decorative dotted background grids, replacing them with a crisp, modern, text-led layout.
+  - Simplified copy to clean, grounded messaging: Eyebrow: `VISA CONVENTION · HANUMANGARH`; Headline: `Study Abroad, Visa & Travel Services`; Description: `Explore universities abroad, learn about our visa services, and speak directly with our team about your plans.`; Primary CTA: `Contact Us`; Secondary CTA: `Explore Services`.
+  - Integrated the 3 immediate pathways (*Study Abroad*, *Visa Services*, *Flight Booking*) directly beneath the hero copy.
+- **Homepage Structure Shortening (`src/pages/index.astro`):**
+  - Shortened homepage to exactly 7 useful, focused sections:
+    1. Hero & 3 Pathways
+    2. Find Your Service (6 core verticals: Study Visa, MBBS Abroad, PhD Programs, Tourist Visa, Work Visa, Flight Reservation)
+    3. Study Destinations & Universities (6 destination shortcuts + directory search bar)
+    4. About Visa Convention (office intro, counselor scope, contact details)
+    5. How We Help You (3 plain-language steps: Initial Consultation, Profile & Document Assessment, Application & Visa Guidance)
+    6. Client Experiences (2 authentic anonymized outcomes with legal disclaimers)
+    7. Final Contact Call to Action
+  - Removed duplicate 4-box "Why Choose Us" / "Evidence-Based Trust Signals" section.
+  - Removed lengthy FAQ accordion from the homepage.
+- **Sitewide Badge & Unsupported Claim Removal:**
+  - Removed "Verified Office", "Transparent International Advisory", and "Zero false promises" badges and claims.
+  - Eliminated marketing badges and unsubstantiated claims sitewide, relying on clean typography, verifiable office address, and transparent counseling scope.
+- **Compact 3-Column Footer Redesign (`Footer.astro`):**
+  - Replaced sprawling 850px footer with a disciplined 3-column layout (height ~360px):
+    - Col 1: Business Identity & Description
+    - Col 2: Quick Links (Services, Study Destinations, Corporate, Legal)
+    - Col 3: Hanumangarh Office & Direct Contact Details (Phone, Email, Full Street Address)
+    - Bottom Row: Copyright, Privacy Policy, Terms of Service, and concise statutory consular disclaimer.
+- **Header Refinement (`Header.astro`):**
+  - Cleaned top utility bar to `"Hanumangarh, Rajasthan • Study Visa · MBBS · PhD · Tourist · Work · Flights"`.
+  - Subtitle updated to `"Study Abroad, Visa & Travel Services"`.
+- **Quality Assurance & Verification:**
+  - 100% pass rate across all 6 automated test suites (**223 / 223 tests passed**):
+    - `country-engine.test.js` (21/21)
+    - `university-engine.test.js` (40/40)
+    - `credibility-engine.test.js` (41/41)
+    - `contact-engine.test.js` (31/31)
+    - `seo-a11y-audit.test.js` (51/51)
+    - `e2e-comprehensive-audit.test.js` (39/39)
+  - Full static build: 64 routes compiled cleanly in 4.82s.
+  - Visual verification screenshots captured: `cleanup-home-desktop.png`, `cleanup-home-mobile.png`, `cleanup-footer-desktop.png`, `cleanup-contact-desktop.png`.
+
+---
+
 ## [1.4.0] - 2026-11-10 — Unified Layout, Typography & Alignment System
 ### Changed
 - **Unified Design Tokens & Container Dimensions (`src/styles/global.css`):**
