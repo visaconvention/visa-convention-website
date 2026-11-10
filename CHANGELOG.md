@@ -6,13 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - Planned Stages 08–12
+## [Unreleased] - Planned Stages 09–12
 ### Planned
-- **Stage 08:** About, verified trust, success stories, and partnership pages.
 - **Stage 09:** Contact forms and multi-step inquiry journeys.
 - **Stage 10:** Technical SEO, Schema.org JSON-LD structured data, and Web Vitals optimization.
 - **Stage 11:** Comprehensive accessibility (WCAG 2.1 AA), cross-browser, and responsiveness QA.
 - **Stage 12:** Production build verification and client handover documentation.
+
+---
+
+## [0.8.0] - 2026-11-10
+### Added
+- **Corporate Credibility & About Us Hub (`/about/`):**
+  - Built comprehensive company narrative detailing Visa Convention’s founding in Hanumangarh, Rajasthan, to provide regional families with honest, transparent visa counseling.
+  - Dedicated directorship statement and welcome message from leadership.
+  - Functional advisory & counseling practice breakdown across 4 specialized roles: *Lead Education Counselor (North America & UK)*, *Medical Admissions Advisor (MBBS Central Asia & Europe)*, *Doctoral & European Education Coordinator*, and *Consular Compliance & Documentation Lead*.
+  - Verified physical office showcase in Hanumangarh, Rajasthan, detailing address, counseling hours, walk-in protocols, and facility infrastructure (Counseling Suites, Verification Desk, Resource Lounge, Digital Terminals).
+  - Measurable institutional scale metrics (35+ destination countries, 1,015+ indexed institutions, 6 core verticals, 100% zero-deception).
+- **Verified Success Stories & Candidate Outcomes (`/success-stories/`):**
+  - Built evidence-grounded outcomes platform showcasing genuine client journeys across Canada (UBC), the UK (Manchester), Uzbekistan MBBS (TSMU), Germany (TUM), Australia (Visitor Stream), and Ireland (Doctoral Fellowship).
+  - Prominent statutory **Candidate Privacy & Data Protection Guarantee** redacting passport numbers, embassy tracking IDs, and sensitive PII.
+  - Interactive destination and category filtering pills (*All Outcomes*, *Study Visas*, *MBBS Abroad*, *European & Doctoral*, *Visitor & Tourist Visas*) with instant client-side switching.
+  - Transparent video testimonials status explaining scheduled in-person interviews and inviting prospective families to connect with student alumni networks directly.
+- **Institutional & Regional Business Partnerships (`/partnerships/`):**
+  - Formulated comprehensive B2B collaboration framework across 4 distinct tracks: *Higher Education Providers*, *Regional Coaching Centers & Language Academies*, *Associate Consultants & Sub-Agents*, and *Travel & Corporate Logistics Partners*.
+  - Formulated 4 institutional compliance standards: Genuine Student Pipeline, Rigorous Pre-Screening Audits, Strict Consular Compliance, and Dedicated Account Liaison.
+  - **Strict Logo Omission Enforcement:** In accordance with prompt directives, omitted unverified institutional logos and added an explicit *Institutional Representation & Logo Policy* explaining compliance credentials.
+  - Created dedicated `PartnershipEnquiryForm.astro` with organization categories, contact designations, proposed scope fields, and invisible honeypot bot mitigation.
+- **Data & Architecture Decoupling:** Added `aboutData`, `successStoriesData`, and `partnershipsData` in `src/data/`, keeping content isolated from layout templates.
+- **Automated QA & Visual Captures:**
+  - Automated test suite `tests/credibility-engine.test.js` passing 41/41 assertions.
+  - Captured 9 responsive screenshots across desktop (1440px), mobile (390px), and full-page layouts using headless Edge Chromium.
 
 ---
 

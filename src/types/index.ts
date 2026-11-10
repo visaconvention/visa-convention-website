@@ -277,6 +277,56 @@ export interface NavItem {
 }
 
 /**
+ * Team & Leadership Profile Model
+ */
+export interface TeamMember {
+  id: string;
+  roleTitle: string;
+  department: string;
+  specialization: string;
+  experienceYears?: string;
+  responsibilities: string[];
+  bio: string;
+  name?: string;
+  photoUrl?: string;
+  isLeadership?: boolean;
+}
+
+/**
+ * Verified Candidate Outcome & Case Study Model
+ */
+export interface SuccessStory {
+  id: string;
+  candidateIdentifier: string;         // Anonymized/redacted candidate label e.g., "M.S." or verified name
+  originCity: string;                  // e.g., "Hanumangarh, Rajasthan"
+  destinationCountry: string;          // e.g., "Canada"
+  destinationCountrySlug: string;      // e.g., "canada"
+  institutionName: string;             // e.g., "University of British Columbia"
+  programLevel: string;                // e.g., "Postgraduate Diploma" or "Bachelor of Engineering"
+  courseName: string;                  // e.g., "Data Analytics & Software Systems"
+  visaCategory: string;                // e.g., "Study Permit (SDS)" or "Tier 4 Student Visa"
+  yearGranted: string;                 // e.g., "2025"
+  quote: string;                       // Genuine client review/testimonial
+  keyMilestones: string[];             // e.g., ["IELTS 7.5", "SOP Refinement", "28-day Embassy Turnaround"]
+  verificationStatus: "verified" | "redacted_for_privacy" | "pending_consent";
+  category: "study" | "mbbs" | "phd" | "tourist" | "work";
+}
+
+/**
+ * Institutional & B2B Partnership Track Model
+ */
+export interface PartnershipTrack {
+  id: string;
+  title: string;
+  subtitle: string;
+  targetAudience: string;
+  description: string;
+  offerings: string[];
+  eligibilityCriteria: string[];
+  icon: string;
+}
+
+/**
  * Inquiry Submission Payload
  */
 export interface InquiryPayload {

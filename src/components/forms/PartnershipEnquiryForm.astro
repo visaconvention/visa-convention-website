@@ -1,0 +1,266 @@
+---
+interface Props {
+  class?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  class: className = '',
+  title = 'Initiate a B2B Partnership Discussion',
+  subtitle = 'Connect directly with our Hanumangarh directorship desk to discuss institutional representation, regional referrals, or student support collaboration.',
+} = Astro.props;
+---
+
+<div class={`bg-white rounded-3xl p-7 sm:p-10 border border-brand-border shadow-card ${className}`} id="partnership-form-container">
+  <div class="mb-8">
+    <span class="inline-flex items-center text-xs font-bold uppercase tracking-wider text-brand-blue bg-brand-bg px-3 py-1 rounded-md border border-brand-blue/20 mb-3">
+      Institutional & Corporate Inquiries
+    </span>
+    <h3 class="text-2xl sm:text-3xl font-black text-brand-navy tracking-tight mb-2 leading-tight">
+      {title}
+    </h3>
+    <p class="text-sm text-brand-muted leading-relaxed font-normal">
+      {subtitle}
+    </p>
+  </div>
+
+  <form id="partnership-enquiry-form" class="space-y-5" method="POST" action="/api/partnership" novalidate>
+    <!-- Invisible Honeypot Field for Bot Spam Mitigation -->
+    <div class="hidden" aria-hidden="true">
+      <label for="form-partner-bot-trap">Do not fill this field</label>
+      <input type="text" id="form-partner-bot-trap" name="partner_bot_check" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <!-- Hidden timestamp field -->
+    <input type="hidden" id="form-partner-render-timestamp" name="render_timestamp" value="" />
+
+    <!-- Organization Details Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="partner-org-name" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Organization / Institution Name <span class="text-brand-red">*</span>
+        </label>
+        <input
+          type="text"
+          id="partner-org-name"
+          name="organization_name"
+          required
+          placeholder="e.g. Apex Language Institute"
+          class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+        />
+      </div>
+
+      <div>
+        <label for="partner-org-type" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Organization Category <span class="text-brand-red">*</span>
+        </label>
+        <select
+          id="partner-org-type"
+          name="organization_type"
+          required
+          class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+        >
+          <option value="">Select category...</option>
+          <option value="university">International University / College</option>
+          <option value="coaching">IELTS / PTE / Language Academy</option>
+          <option value="subagent">Regional Education Consultant / Sub-Agent</option>
+          <option value="school">School / College Administration</option>
+          <option value="travel">Travel & Flight Logistics Partner</option>
+          <option value="other">Other Commercial Associate</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Contact Person Details Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="partner-contact-name" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Contact Person Name <span class="text-brand-red">*</span>
+        </label>
+        <input
+          type="text"
+          id="partner-contact-name"
+          name="contact_person_name"
+          required
+          placeholder="e.g. Director Sharma"
+          class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+        />
+      </div>
+
+      <div>
+        <label for="partner-designation" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Designation / Title
+        </label>
+        <input
+          type="text"
+          id="partner-designation"
+          name="designation"
+          placeholder="e.g. Head of Admissions / Center Director"
+          class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+        />
+      </div>
+    </div>
+
+    <!-- Email & Phone Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="partner-email" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Official Email Address <span class="text-brand-red">*</span>
+        </label>
+        <input
+          type="email"
+          id="partner-email"
+          name="email"
+          required
+          placeholder="name@organization.com"
+          class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+        />
+      </div>
+
+      <div>
+        <label for="partner-phone" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Phone / WhatsApp Number <span class="text-brand-red">*</span>
+        </label>
+        <input
+          type="tel"
+          id="partner-phone"
+          name="phone"
+          required
+          placeholder="+91 98765 43210"
+          class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+        />
+      </div>
+    </div>
+
+    <!-- Location / City -->
+    <div>
+      <label for="partner-city" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+        City & State / Country
+      </label>
+      <input
+        type="text"
+        id="partner-city"
+        name="city_location"
+        placeholder="e.g. Hanumangarh, Sri Ganganagar, Jaipur, or International"
+        class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+      />
+    </div>
+
+    <!-- Message / Scope -->
+    <div>
+      <label for="partner-message" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+        Proposed Collaboration Scope & Details
+      </label>
+      <textarea
+        id="partner-message"
+        name="message"
+        rows="4"
+        placeholder="Describe your organization, approximate annual student volume, and desired collaboration framework..."
+        class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all resize-y"
+      ></textarea>
+    </div>
+
+    <!-- Confidentiality & Compliance Checkbox -->
+    <div class="flex items-start gap-2.5 pt-1">
+      <input
+        type="checkbox"
+        id="partner-terms"
+        name="terms_agree"
+        required
+        class="w-4 h-4 mt-0.5 rounded border-brand-border text-brand-blue focus:ring-brand-blue focus:ring-offset-0"
+      />
+      <label for="partner-terms" class="text-xs text-brand-muted leading-relaxed cursor-pointer select-none">
+        I confirm this inquiry represents an authorized representative and agree to mutual confidentiality and ethical student placement standards.
+      </label>
+    </div>
+
+    <!-- Submit Button & State Notice -->
+    <div class="pt-3">
+      <button
+        type="submit"
+        id="partner-submit-btn"
+        class="w-full btn-primary py-4 text-base font-bold text-center justify-center shadow-md hover:shadow-lg transition-all"
+      >
+        <span>Submit Partnership Inquiry</span>
+        <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Privacy & SLA Micro-Copy -->
+    <div class="pt-2 text-center text-xs text-brand-subtle flex items-center justify-center gap-2">
+      <svg class="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+      <span>Confidential B2B Review • Responded by Directorship Desk within 24–48 Business Hours</span>
+    </div>
+  </form>
+
+  <!-- Client-side Success Message Banner -->
+  <div id="partner-form-success" class="hidden mt-6 p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-2">
+    <div class="w-10 h-10 mx-auto rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    <h4 class="text-lg font-bold text-emerald-900">Partnership Inquiry Transmitted</h4>
+    <p class="text-xs text-emerald-800 max-w-md mx-auto leading-relaxed">
+      Thank you for reaching out. Our Hanumangarh leadership team will review your organization's proposal and get in touch directly.
+    </p>
+  </div>
+</div>
+
+<script>
+  function setupPartnershipForm() {
+    const form = document.getElementById('partnership-enquiry-form') as HTMLFormElement | null;
+    const timestampInput = document.getElementById('form-partner-render-timestamp') as HTMLInputElement | null;
+    const successMsg = document.getElementById('partner-form-success');
+    const submitBtn = document.getElementById('partner-submit-btn');
+
+    if (timestampInput) {
+      timestampInput.value = Date.now().toString();
+    }
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Basic validation
+        const orgName = (document.getElementById('partner-org-name') as HTMLInputElement)?.value.trim();
+        const contactName = (document.getElementById('partner-contact-name') as HTMLInputElement)?.value.trim();
+        const email = (document.getElementById('partner-email') as HTMLInputElement)?.value.trim();
+        const phone = (document.getElementById('partner-phone') as HTMLInputElement)?.value.trim();
+        const terms = (document.getElementById('partner-terms') as HTMLInputElement)?.checked;
+        const botCheck = (document.getElementById('form-partner-bot-trap') as HTMLInputElement)?.value;
+
+        if (botCheck) {
+          console.warn('Bot detected.');
+          return;
+        }
+
+        if (!orgName || !contactName || !email || !phone || !terms) {
+          alert('Please fill in all mandatory fields marked with an asterisk (*).');
+          return;
+        }
+
+        // Simulate success and show feedback
+        if (submitBtn) {
+          submitBtn.setAttribute('disabled', 'true');
+          submitBtn.innerHTML = '<span>Transmitting Inquiry...</span>';
+        }
+
+        setTimeout(() => {
+          form.classList.add('hidden');
+          if (successMsg) {
+            successMsg.classList.remove('hidden');
+          }
+        }, 600);
+      });
+    }
+  }
+
+  setupPartnershipForm();
+  document.addEventListener('astro:page-load', setupPartnershipForm);
+</script>

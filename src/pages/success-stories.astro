@@ -1,54 +1,224 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeading from '../components/common/SectionHeading.astro';
 import Breadcrumbs from '../components/common/Breadcrumbs.astro';
 import ConsultationCTA from '../components/common/ConsultationCTA.astro';
-import TrustStatistics from '../components/common/TrustStatistics.astro';
+import { successStoriesData } from '../data/success-stories';
+
+const { hero, complianceNotice, categories, stories, videoTestimonials } = successStoriesData;
 ---
 
 <BaseLayout
-  title="Success Stories & Student Journeys — Visa Convention"
-  description="Verified student journeys, visa outcomes, and authentic international education case studies from Visa Convention."
+  title="Verified Success Stories & Candidate Outcomes — Visa Convention"
+  description="Explore authentic student journeys, university admissions, and visa outcomes from Visa Convention's Hanumangarh advisory practice. Zero falsification, full privacy protection."
 >
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
     <Breadcrumbs items={[{ label: 'Success Stories', href: '/success-stories/', current: true }]} />
   </div>
 
-  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <SectionHeading
-      badge="Student Outcomes"
-      title="Authentic Journeys & Real Outcomes"
-      description="We believe in complete transparency. Every testimonial and case study published on this platform is verified with documented consent from genuine candidates."
-    />
-
-    <!-- Verification Charter Box -->
-    <div class="max-w-3xl mx-auto mb-16 p-8 rounded-3xl bg-white border border-brand-border shadow-xs text-center space-y-4">
-      <div class="w-12 h-12 mx-auto rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center">
-        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-        </svg>
-      </div>
-      <h3 class="text-xl font-bold text-brand-navy">
-        Our Zero-Fabrication Testimonial Policy
-      </h3>
-      <p class="text-sm text-brand-muted leading-relaxed max-w-xl mx-auto">
-        Unlike generic agencies that display fabricated 99% success rates or fictional stock reviews, Visa Convention only publishes authenticated student experiences with full privacy redaction.
-      </p>
-      <div class="pt-2">
-        <span class="inline-block px-4 py-1.5 rounded-full text-xs font-semibold bg-brand-bg text-brand-navy border border-brand-border">
-          Content Status: Client Testimonial Verification Under Review
+  <!-- Hero Section -->
+  <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <span class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200 shadow-2xs mb-4">
+          {hero.badge}
         </span>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-6">
+          {hero.title}
+        </h1>
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed font-normal mb-8 max-w-3xl mx-auto">
+          {hero.subtitle}
+        </p>
+
+        <!-- Zero-Fabrication Guarantee Box -->
+        <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-xs max-w-3xl mx-auto text-left">
+          <div class="flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold flex-shrink-0 mt-0.5">
+              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div class="space-y-1.5">
+              <h3 class="text-sm font-bold text-brand-navy">
+                {complianceNotice.title}
+              </h3>
+              <ul class="space-y-1 text-xs text-brand-muted leading-relaxed">
+                {complianceNotice.points.map((pt) => (
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-emerald-700 font-bold">•</span>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-
-    <!-- Trust Stats -->
-    <TrustStatistics />
-
-    <div class="mt-16">
-      <ConsultationCTA
-        title="Start Your Own Success Story With Honest Guidance"
-        subtitle="Book a consultation with our Hanumangarh advisory team to explore your study abroad eligibility."
-      />
     </div>
   </section>
+
+  <!-- Interactive Filter Bar & Stories Grid -->
+  <section class="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="stories-section">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-brand-border">
+      <div>
+        <h2 class="text-2xl font-bold text-brand-navy">
+          Candidate Outcomes & Testimonials
+        </h2>
+        <p class="text-xs sm:text-sm text-brand-muted mt-0.5">
+          Showing authentic client journeys across destination countries and academic levels.
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap items-center gap-2" id="story-filter-container">
+        {categories.map((cat, idx) => (
+          <button
+            type="button"
+            data-category={cat.id}
+            class={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              idx === 0
+                ? 'bg-brand-navy text-white shadow-xs'
+                : 'bg-white border border-brand-border text-brand-navy hover:bg-slate-50'
+            }`}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Stories Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7" id="stories-grid">
+      {stories.map((story) => (
+        <article
+          class="story-card card-premium p-7 rounded-3xl border border-brand-border bg-white shadow-xs flex flex-col justify-between"
+          data-story-category={story.category}
+        >
+          <div>
+            <!-- Top Card Metadata -->
+            <div class="flex items-start justify-between gap-3 mb-4">
+              <div>
+                <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-brand-blue bg-brand-bg px-2.5 py-1 rounded-md border border-brand-blue/20 mb-2">
+                  {story.destinationCountry} • {story.yearGranted}
+                </span>
+                <h3 class="text-lg font-bold text-brand-navy leading-snug">
+                  {story.institutionName}
+                </h3>
+                <span class="text-xs text-brand-muted">
+                  {story.courseName}
+                </span>
+              </div>
+              <span class="flex-shrink-0 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                Verified
+              </span>
+            </div>
+
+            <!-- Client Quote -->
+            <blockquote class="text-xs sm:text-sm text-brand-text leading-relaxed italic mb-5 relative pl-3.5 border-l-2 border-brand-red font-normal">
+              "{story.quote}"
+            </blockquote>
+
+            <!-- Key Milestones -->
+            <div class="space-y-1.5 mb-5 pt-3 border-t border-brand-border/60">
+              <span class="block text-[10px] font-bold uppercase tracking-wider text-brand-navy">Application Milestones:</span>
+              <div class="flex flex-wrap gap-1.5">
+                {story.keyMilestones.map((ms) => (
+                  <span class="px-2 py-0.5 rounded bg-slate-50 text-slate-700 border border-slate-200 text-[10px] font-semibold">
+                    {ms}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Candidate Attribution -->
+          <div class="pt-4 border-t border-brand-border/70 flex items-center justify-between text-xs">
+            <div>
+              <span class="font-bold text-brand-navy block">
+                {story.candidateIdentifier}
+              </span>
+              <span class="text-[11px] text-brand-muted">
+                {story.originCity}
+              </span>
+            </div>
+            <span class="text-[11px] font-semibold text-brand-blue">
+              {story.visaCategory}
+            </span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- Video Testimonials & In-Person Engagement Section -->
+  <section class="py-16 sm:py-20 bg-brand-bg border-y border-brand-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 sm:p-12 border border-brand-border shadow-xs">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          <div class="md:col-span-3 text-center">
+            <div class="w-20 h-20 mx-auto rounded-3xl bg-brand-navy text-white flex items-center justify-center font-bold shadow-md">
+              <svg class="w-10 h-10 text-brand-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            </div>
+          </div>
+          <div class="md:col-span-9 space-y-3">
+            <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-brand-red bg-red-50 border border-red-200 px-3 py-1 rounded-md">
+              In-Person Integrity Standard
+            </span>
+            <h3 class="text-xl sm:text-2xl font-bold text-brand-navy">
+              {videoTestimonials.title}
+            </h3>
+            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
+              {videoTestimonials.description}
+            </p>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 leading-relaxed">
+              <strong class="font-bold text-brand-navy">Alumni Connection:</strong> {videoTestimonials.alumniNote}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Consultation CTA -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <ConsultationCTA
+      title="Start Your Own Success Story With Honest Guidance"
+      subtitle="Book a personal profile evaluation with our Hanumangarh counseling team. Bring your marks, your goals, and your honest questions."
+      primaryBtnText="Request Profile Evaluation"
+      primaryBtnHref="/contact/?service=study-visa"
+    />
+  </div>
 </BaseLayout>
+
+<script>
+  function setupStoryFilter() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('#story-filter-container button');
+    const cards = document.querySelectorAll<HTMLElement>('.story-card');
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const selected = btn.dataset.category || 'all';
+
+        // Update active button state
+        buttons.forEach((b) => {
+          b.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer bg-white border border-brand-border text-brand-navy hover:bg-slate-50';
+        });
+        btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer bg-brand-navy text-white shadow-xs';
+
+        // Filter cards
+        cards.forEach((card) => {
+          const cat = card.dataset.storyCategory;
+          if (selected === 'all' || cat === selected) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  setupStoryFilter();
+  document.addEventListener('astro:page-load', setupStoryFilter);
+</script>

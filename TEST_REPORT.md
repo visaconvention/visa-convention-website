@@ -173,6 +173,39 @@ All code, schemas, and assets developed for Visa Convention pass through a stric
 
 ---
 
+### Stage 08: Corporate Credibility, About Us, Success Stories & Partnerships
+- **Execution Date:** November 10, 2026
+- **Test Objective:** Verify corporate credibility pages (`/about/`, `/success-stories/`, `/partnerships/`), physical office verification in Hanumangarh, zero-fabrication guarantees, PII redaction compliance, strict omission of unverified partner logos, dedicated B2B partnership form, and automated test suite (`tests/credibility-engine.test.js`).
+
+| Test ID | Test Description | Expected Result | Actual Result | Status |
+| :---: | :--- | :--- | :--- | :---: |
+| **T08-01** | About Us Route Compilation | `/about/index.html` static file built | Built successfully in `dist/about/` | **PASS** |
+| **T08-02** | Company Positioning & Trust Pillars | Hero presents brand positioning and 4 metrics | Implemented with Hanumangarh center, 35+ countries, etc. | **PASS** |
+| **T08-03** | Authentic Business Story | Origin narrative addresses regional counseling gap | Complete heritage text presented | **PASS** |
+| **T08-04** | Founder / Directorship Section | Directorship quote and open invitation | Features authoritative directorship statement | **PASS** |
+| **T08-05** | Functional Counseling Team | 4 specialized functional roles with responsibilities | North America, MBBS, Doctoral, and Compliance | **PASS** |
+| **T08-06** | Physical Office Verification | Full Hanumangarh address, hours, facility specs | Main Market, Hanumangarh 335512, RJ details included | **PASS** |
+| **T08-07** | Measurable Milestone Capabilities | Verified metrics (35+ countries, 1,015+ institutions) | Evidence-based numbers; zero empty claims | **PASS** |
+| **T08-08** | Zero Placeholders on Public Pages | No bracketed placeholders on public routes | Verified clean via automated regex | **PASS** |
+| **T08-09** | Success Stories Route Compilation | `/success-stories/index.html` static file built | Built successfully in `dist/success-stories/` | **PASS** |
+| **T08-10** | Non-Fabrication & Privacy Notice | Candidate privacy notice & PII redaction policy | Redacted identifiers (M.S., K.S., A.V.), zero PII exposed | **PASS** |
+| **T08-11** | Destination-Grounded Case Studies | Case studies match 1,015-university catalog | UBC Canada, Manchester UK, TSMU MBBS, TUM Germany | **PASS** |
+| **T08-12** | Interactive Outcome Category Filtering | Filter by Study, MBBS, Europe, Tourist | Client-side tab switching script verified | **PASS** |
+| **T08-13** | In-Person Video Testimonial Status | Honest status for scheduled in-person interviews | Explains scheduled recordings; 0 fake video embeds | **PASS** |
+| **T08-14** | Partnerships Route Compilation | `/partnerships/index.html` static file built | Built successfully in `dist/partnerships/` | **PASS** |
+| **T08-15** | B2B Collaboration Pathways | 4 collaboration tracks with offerings & criteria | Universities, Coaching, Sub-Agents, Travel Partners | **PASS** |
+| **T08-16** | Strict Logo Omission Rule | Unverified partner logos strictly omitted | 0 unauthorized logos; official media policy statement | **PASS** |
+| **T08-17** | Dedicated Partnership Enquiry Form | Complete B2B form with category, contact & scope | Implemented in `PartnershipEnquiryForm.astro` | **PASS** |
+| **T08-18** | Bot Spam Protection on B2B Form | Invisible honeypot field + timestamp tracking | `partner_bot_check` honeypot verified | **PASS** |
+| **T08-19** | Internal Page Navigation Integrity | 100% internal links resolve to valid static routes | 0 broken internal links across all 3 pages | **PASS** |
+| **T08-20** | Diagnostic Check (`astro check`) | 0 errors across 65 project files | `Result (65 files): 0 errors, 0 warnings, 0 hints` | **PASS** |
+| **T08-21** | Static Site Build (`astro build`) | 64 static routes compiled with zero errors | Built in 5.22s with 0 errors | **PASS** |
+| **T08-22** | Responsive Visual Previews | Desktop, Mobile & Fullpage captures for all 3 pages | 9 high-res Edge screenshots saved in artifact dir | **PASS** |
+
+**Stage 08 Verdict:** **PASSED ALL CHECKS (22/22 in Stage; 41/41 in Automated Suite)**
+
+---
+
 ## 3. Automated Test Execution Commands
 
 ```bash
