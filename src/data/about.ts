@@ -143,7 +143,7 @@ export const aboutData = {
     {
       metric: '1,015+',
       label: 'Universities Cataloged',
-      detail: 'Accredited international universities actively indexed for admissions guidance.',
+      detail: 'Accredited international universities actively indexed for application guidance.',
     },
     {
       metric: '6',
