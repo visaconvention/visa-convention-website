@@ -328,7 +328,7 @@ async function runAudit() {
   assert(homeHtml.includes('"Rajasthan"'), 'Schema includes addressRegion: Rajasthan');
   assert(homeHtml.includes('"335512"'), 'Schema includes postalCode: 335512');
   assert(homeHtml.includes('"latitude":29.5816') && homeHtml.includes('"longitude":74.3218'), 'Schema includes verified GeoCoordinates (29.5816, 74.3218)');
-  assert(homeHtml.includes('+91 98765 43210'), 'Schema includes verified telephone +91 98765 43210');
+  assert(homeHtml.includes('+91 96803-95539'), 'Schema includes verified telephone +91 96803-95539');
 
   // =========================================================================
   // SECTION 8: INTERNAL LINK INTEGRITY AUDIT

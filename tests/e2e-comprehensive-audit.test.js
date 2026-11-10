@@ -505,13 +505,13 @@ async function runE2EAudit() {
       const phoneLink = document.querySelector('a[href^="tel:"]');
       return phoneLink ? phoneLink.getAttribute('href') : null;
     });
-    assert(phoneHref === 'tel:+919876543210', `Direct telephone link uses verified international format (Actual: ${phoneHref})`);
+    assert(phoneHref === 'tel:+919680395539', `Direct telephone link uses verified international format (Actual: ${phoneHref})`);
 
     const waHref = await page.evaluate(() => {
       const waLink = document.querySelector('a[href*="wa.me"]');
       return waLink ? waLink.getAttribute('href') : null;
     });
-    assert(waHref && waHref.includes('wa.me/919876543210'), 'Direct WhatsApp link references approved official business phone number');
+    assert(waHref && waHref.includes('wa.me/919680395539'), 'Direct WhatsApp link references approved official business phone number');
 
     // Floating WhatsApp widget check
     const floatingWaPresent = await page.evaluate(() => {

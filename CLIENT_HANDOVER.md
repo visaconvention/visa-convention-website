@@ -54,10 +54,10 @@ To maintain full governance, Visa Convention management must retain direct billi
    - The registered domain (e.g., `visaconvention.com`) must be registered in the name of Visa Convention.
    - Auto-renewal must be enabled with the company's credit card to prevent domain expiration.
 2. **Hosting Provider Account (Cloudflare Pages or Netlify):**
-   - Created using Visa Convention’s official administrative email (`info@visaconvention.com`).
+   - Created using Visa Convention’s official administrative email (`visaconvention064@gmail.com`).
    - The free hosting tier provides unmetered bandwidth and automated SSL encryption at **\$0/month**.
 3. **Official Business Email (Google Workspace or Microsoft 365):**
-   - Email accounts (`info@visaconvention.com`, `admissions@visaconvention.com`) must be managed directly by company directors.
+   - Email account (`visaconvention064@gmail.com`) must be managed directly by company directors.
 
 ---
 
@@ -70,7 +70,7 @@ flowchart TD
     User["Website Visitor"] --> Choice{"Selects Contact Channel"}
     Choice -->|"Clicks WhatsApp Widget / Link"| WA["Direct WhatsApp Message\n(Prefilled with country / service / university)"]
     Choice -->|"Submits Website Enquiry Form"| Web["Enquiry Form Engine\n(Validated & Spam Checked)"]
-    WA --> Phone["Visa Convention Office Phone\n(+91 98765 43210)"]
+    WA --> Phone["Visa Convention Office Phone\n(+91 96803-95539)"]
     Web --> Local["Local Backup File\n(client-content/leads/enquiries.json)"]
     Web --> CRM["Optional CRM / Zapier Webhook\n(Instant Email / SMS / CRM Entry)"]
 ```
@@ -78,7 +78,7 @@ flowchart TD
 ### 1. WhatsApp Direct Inquiries (Primary Channel)
 - When a user clicks any **Chat on WhatsApp** button, WhatsApp opens automatically on their mobile or desktop.
 - The inquiry text is pre-filled with context (e.g., *"Hello Visa Convention team, I am interested in Study Visa guidance for Germany. Please share admission details."*).
-- Messages arrive directly on your office phone (`+91 98765 43210`), enabling immediate one-on-one consultation.
+- Messages arrive directly on your office phone (`+91 96803-95539`), enabling immediate one-on-one consultation.
 
 ### 2. Website Form Inquiries
 - Users fill out the accessible form on `/contact/` or any service page.

@@ -32,8 +32,8 @@ The following 18-point pre-flight checklist has been systematically inspected an
 | **2** | **Test Fixtures Isolation** | Test fixtures (e.g., `tests/fixtures/`) and mock data must not appear on public routes or indexable pages. | Audited `dist/` directory. Zero test fixture records exposed; all public routes consume production JSON/CSV. | **CONFIRMED** |
 | **3** | **Draft Pages Excluded from Indexing** | Unverified or draft records quarantined from sitemaps and crawler indexing. | `dist/robots.txt` disallows `/api/` and `/design-system/`. `dist/sitemap.xml` strictly indexes 63 approved production URLs. | **CONFIRMED** |
 | **4** | **Form Functionality & Validation** | Dynamic B2B mode, required fields validation, honeypot protection, error states, and local/webhook submission. | Automated test suite `contact-engine.test.js` passed 31/31 assertions; E2E audit verified real lead delivery to `client-content/leads/enquiries.json`. | **CONFIRMED** |
-| **5** | **Business Phone & WhatsApp Numbers** | Consistent phone (`+91 98765 43210`) and WhatsApp numbers (`919876543210`) sitewide. | Verified in `site-config.ts`, `Header.astro`, `Footer.astro`, `WhatsAppButton.astro`, and Schema.org JSON-LD. | **CONFIRMED** |
-| **6** | **Business Email Delivery** | Official email addresses (`info@visaconvention.com`, `admissions@visaconvention.com`) displayed and active. | Configured across contact pages, footer, mailto links, and metadata. | **CONFIRMED** |
+| **5** | **Business Phone & WhatsApp Numbers** | Verified client phone (`+91 96803-95539`) and WhatsApp numbers (`919680395539`) sitewide. | Verified in `site-config.ts`, `Header.astro`, `Footer.astro`, `WhatsAppButton.astro`, and Schema.org JSON-LD. | **CONFIRMED** |
+| **6** | **Business Email Delivery** | Client official email (`visaconvention064@gmail.com`) displayed and active. | Configured across contact pages, footer, mailto links, and metadata. | **CONFIRMED** |
 | **7** | **Official Office Address** | Physical address in Hanumangarh, Rajasthan with verified PIN `335512` and coordinates `29.5816, 74.3218`. | Verified in `site-config.ts`, Contact page NAP block, and Schema.org `LocalBusiness` structured data. | **CONFIRMED** |
 | **8** | **Service Descriptions Integrity** | Accurate descriptions for all 7 service verticals with required regulatory disclaimers. | Verified in `detailed-services.ts`: NMC FMGL disclaimers on MBBS, no job-brokering on Work, GDS compliance on Flights. | **CONFIRMED** |
 | **9** | **Country & University Information** | 36 destination countries and 1,015 universities with zero false affiliation claims. | Audited `countries.json` and `universities.json`. All 1,015 records categorized as `"eligible_guidance"`. | **CONFIRMED** |
@@ -83,7 +83,7 @@ Before configuring live DNS on the client's registrar, the following operational
 2. **Hosting Provider Provisioning:**  
    *Action:* Client must create their free Cloudflare Pages or Netlify account using their corporate administrative email.
 3. **Official Phone & WhatsApp Numbers:**  
-   *Action:* Verify whether the current phone number (`+91 98765 43210`) in the code is the final active office SIM/WhatsApp Business number or needs replacement with a client-specific live number.
+   *Action:* Confirmed client phone and WhatsApp number (`+91 96803-95539`) integrated across sitewide components, schema, and click-to-chat links.
 4. **Official Office Address Specifics:**  
    *Action:* Confirm whether *"Main Commercial Market / Advisory Hub, Hanumangarh, Rajasthan 335512"* should be updated to a specific shop/building number.
 5. **CRM / Webhook Endpoint (Optional):**  

@@ -166,7 +166,7 @@ async function runTests() {
   const pageText = await page.evaluate(() => document.body.innerText);
   assert(pageText.includes('Main Commercial Market') && pageText.includes('Hanumangarh, Rajasthan 335512'), 'Displays verified Hanumangarh physical address');
   assert(pageText.includes('Monday – Saturday: 9:30 AM – 6:30 PM IST'), 'Displays office counseling hours');
-  assert(pageText.includes('info@visaconvention.com'), 'Displays official electronic mail');
+  assert(pageText.includes('visaconvention064@gmail.com'), 'Displays official electronic mail');
   assert(pageText.includes('Initial Inquiry Privacy Guarantee'), 'Displays strict initial inquiry privacy guarantee');
   assert(pageText.includes('never request passport scans'), 'Explicitly notes no passport scans requested on web form');
 
@@ -178,7 +178,7 @@ async function runTests() {
   assert(waBtn !== null, 'Contact page contains direct WhatsApp channel link');
 
   const waHref = await page.$eval('#contact-whatsapp-link', el => el.getAttribute('href'));
-  assert(waHref.includes('wa.me/919876543210'), 'WhatsApp URL contains approved business phone number', waHref);
+  assert(waHref.includes('wa.me/919680395539'), 'WhatsApp URL contains approved business phone number', waHref);
   assert(waHref.includes('text='), 'WhatsApp URL contains prefilled context parameter', waHref);
 
   const floatingBtn = await page.$('#floating-whatsapp-btn');

@@ -11,11 +11,11 @@ export const siteConfig = {
   country: 'India',
   
   // Primary contact channels (Approved Hanumangarh advisory line & WhatsApp)
-  phone: '+91 98765 43210',
-  whatsappNumber: '919876543210',
-  whatsappDisplay: '+91 98765 43210',
-  email: 'info@visaconvention.com',
-  admissionsEmail: 'admissions@visaconvention.com',
+  phone: '+91 96803-95539',
+  whatsappNumber: '919680395539',
+  whatsappDisplay: '+91 96803-95539',
+  email: 'visaconvention064@gmail.com',
+  admissionsEmail: 'visaconvention064@gmail.com',
   officeAddress: 'Main Commercial Market / Advisory Hub, Hanumangarh, Rajasthan 335512, India',
   googleMapsUrl: 'https://maps.google.com/?q=Hanumangarh,+Rajasthan+335512',
   businessHours: 'Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)',

@@ -199,12 +199,12 @@ When business telephone numbers, office hours, or physical addresses change:
 export const SITE_CONFIG = {
   name: "Visa Convention",
   legalName: "Visa Convention Overseas Consultants",
-  telephone: "+91 98765 43210",
-  telephoneRaw: "+919876543210",
-  whatsappNumber: "+91 98765 43210",
-  whatsappNumberRaw: "919876543210",
-  email: "info@visaconvention.com",
-  admissionsEmail: "admissions@visaconvention.com",
+  telephone: "+91 96803-95539",
+  telephoneRaw: "+919680395539",
+  whatsappNumber: "+91 96803-95539",
+  whatsappNumberRaw: "919680395539",
+  email: "visaconvention064@gmail.com",
+  admissionsEmail: "visaconvention064@gmail.com",
   officeHours: "Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)",
   address: {
     street: "Main Commercial Market / Advisory Hub",
