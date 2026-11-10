@@ -9,7 +9,7 @@ const DIST_DIR = path.resolve('dist');
 const COUNTRIES_FILE = path.resolve('client-content/countries/countries.json');
 const UNIVERSITIES_FILE = path.resolve('client-content/universities/universities.json');
 const LEADS_FILE = path.resolve('client-content/leads/enquiries.json');
-const PORT = 4328;
+let PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 0;
 
 console.log('================================================================');
 console.log('   VISA CONVENTION - INDEPENDENT END-TO-END AUDIT SUITE         ');
@@ -113,6 +113,7 @@ function startServer() {
     });
 
     server.listen(PORT, () => {
+      PORT = server.address().port;
       console.log(`Local test server listening on http://localhost:${PORT}`);
       resolve(server);
     });
