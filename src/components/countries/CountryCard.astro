@@ -11,43 +11,15 @@ const { country, class: className = '', showImage = true } = Astro.props;
 
 // Friendly flag representation using flagCode or fallback
 const flagCode = country.flagCode || country.isoCode || 'GL';
-const imagePath = `/assets/images/destinations/${country.slug}.jpg`;
 
-// Set of verified destination photography assets available
-const DESTINATIONS_WITH_PHOTOS = new Set([
-  'canada',
-  'united-kingdom',
-  'australia',
-  'usa',
-  'germany',
-  'ireland',
-]);
+// Use the centralized cardImage from the data layer (set via countries.json → countries.ts)
+const hasImage = showImage && Boolean(country.cardImage);
+const imageSrc = country.cardImage || '';
+const altText = country.cardImageAlt || `${country.name} study destination`;
+const objectPosition = country.imageObjectPosition || 'center';
 
-const hasImage = showImage && DESTINATIONS_WITH_PHOTOS.has(country.slug);
-
-// Specific alt texts for recognizable photography
-const ALT_TEXTS: Record<string, string> = {
-  'usa': 'New York City skyline, United States',
-  'canada': 'Vancouver cityscape and university faculties, Canada',
-  'united-kingdom': 'London historic skyline and universities, United Kingdom',
-  'australia': 'Sydney Harbour and higher education institutions, Australia',
-  'germany': 'Historic architecture and premier universities, Germany',
-  'ireland': 'Dublin cityscape and technology education hub, Ireland',
-};
-
-const altText = ALT_TEXTS[country.slug] || `${country.name} study destination scenery and universities`;
-
-// Complete, polished descriptions without truncation or ellipses
-const POLISHED_DESCRIPTIONS: Record<string, string> = {
-  'canada': 'World-class research universities, diverse academic communities, and structured post-study work pathways.',
-  'united-kingdom': 'Historic global institutions, intensive degree programs, and comprehensive graduate career opportunities.',
-  'australia': 'Top-ranked international universities, exceptional student support, and generous post-study work rights.',
-  'usa': 'The world’s largest higher education network, renowned faculties, and extensive academic specializations.',
-  'germany': 'Tuition-free public universities, premier engineering curricula, and strong post-graduation employment options.',
-  'ireland': 'European technology and research hub offering world-recognized degrees in an English-speaking environment.',
-};
-
-const cardDescription = POLISHED_DESCRIPTIONS[country.slug] || country.shortDescription || country.shortSummary;
+// Use the country's own shortDescription from the data layer
+const cardDescription = country.shortDescription || country.shortSummary;
 ---
 
 <div
@@ -60,11 +32,12 @@ const cardDescription = POLISHED_DESCRIPTIONS[country.slug] || country.shortDesc
   {hasImage && (
     <div class="relative h-44 sm:h-48 w-full overflow-hidden bg-brand-bg border-b border-brand-border">
       <img
-        src={imagePath}
+        src={imageSrc}
         alt={altText}
         width="600"
         height="338"
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        style={`object-position: ${objectPosition};`}
         loading="lazy"
       />
     </div>

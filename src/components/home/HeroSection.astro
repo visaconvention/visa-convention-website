@@ -14,32 +14,32 @@ interface Props {
 const {
   eyebrow = 'VISA CONVENTION · HANUMANGARH',
   headline = 'Study Abroad, Visa & Travel Services',
-  subheadline = 'Explore study destinations, discover universities, and receive guidance from our team in Hanumangarh.',
+  subheadline = 'Explore study destinations, discover universities, and get guidance for your international plans.',
   primaryCtaText = 'Explore Services',
   primaryCtaHref = '#services',
-  secondaryCtaText = 'Book Consultation',
+  secondaryCtaText = 'Contact Us',
   secondaryCtaHref = '/contact/',
   imageSrc = '/assets/images/hero-education.jpg',
   imageAlt = 'Students studying at an international university campus',
 } = Astro.props;
 ---
 
-<section class="bg-white border-b border-brand-border py-8 sm:py-10 lg:py-12">
+<section class="bg-white border-b border-brand-border py-10 sm:py-14 lg:py-16">
   <div class="site-container">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center text-left">
       <!-- Left Column: Copy & Actions (58% on desktop) -->
       <div class="lg:col-span-7 space-y-5">
         <div>
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-bg text-brand-navy border border-brand-border mb-3">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-bg text-brand-navy border border-brand-border mb-4">
             <span class="w-2 h-2 rounded-full bg-brand-red"></span>
             {eyebrow}
           </span>
-          <h1 class="text-3xl sm:text-4xl lg:text-[2.85rem] font-black text-brand-navy tracking-tight leading-[1.08] text-balance">
+          <h1 class="text-[2.6rem] sm:text-[3.1rem] lg:text-[3.4rem] font-black text-brand-navy tracking-tight leading-[1.06] text-balance">
             {headline}
           </h1>
         </div>
 
-        <p class="text-base sm:text-lg text-brand-muted leading-relaxed max-w-[52ch] font-normal">
+        <p class="text-lg sm:text-xl text-brand-muted leading-relaxed max-w-[50ch] font-normal">
           {subheadline}
         </p>
 
@@ -47,7 +47,7 @@ const {
         <div class="flex flex-wrap items-center gap-3.5 pt-1">
           <a
             href={primaryCtaHref}
-            class="btn-primary text-center px-6 py-3 text-sm min-h-[48px]"
+            class="btn-primary text-center px-7 py-3.5 text-sm min-h-[52px]"
           >
             <span>{primaryCtaText}</span>
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,7 +56,7 @@ const {
           </a>
           <a
             href={secondaryCtaHref}
-            class="btn-outline text-center px-6 py-3 text-sm min-h-[48px]"
+            class="btn-outline text-center px-7 py-3.5 text-sm min-h-[52px]"
           >
             <span>{secondaryCtaText}</span>
           </a>
@@ -70,8 +70,8 @@ const {
             src={imageSrc}
             alt={imageAlt}
             width="600"
-            height="340"
-            class="w-full h-[220px] sm:h-[270px] lg:h-[300px] object-cover"
+            height="400"
+            class="w-full h-[240px] sm:h-[300px] lg:h-[380px] object-cover"
             loading="eager"
             fetchpriority="high"
           />

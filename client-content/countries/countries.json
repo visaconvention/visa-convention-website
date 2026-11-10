@@ -116,7 +116,10 @@
           "url": "https://www.educanada.ca"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/canada.jpg",
+      "cardImageAlt": "Vancouver cityscape with mountains and university campuses, Canada",
+      "imageObjectPosition": "center"
     },
     {
       "id": "country-uk",
@@ -228,7 +231,10 @@
           "url": "https://study-uk.britishcouncil.org"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/united-kingdom.jpg",
+      "cardImageAlt": "London historic skyline featuring the Thames and landmark universities, United Kingdom",
+      "imageObjectPosition": "center"
     },
     {
       "id": "country-australia",
@@ -338,7 +344,10 @@
           "url": "https://www.studyaustralia.gov.au"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/australia.jpg",
+      "cardImageAlt": "Sydney Harbour with Opera House and world-class universities, Australia",
+      "imageObjectPosition": "center"
     },
     {
       "id": "country-usa",
@@ -442,7 +451,10 @@
           "url": "https://studyinthestates.dhs.gov"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/usa.jpg",
+      "cardImageAlt": "New York City skyline featuring One World Trade Center, United States",
+      "imageObjectPosition": "center 50%"
     },
     {
       "id": "country-germany",
@@ -550,7 +562,10 @@
           "url": "https://india.diplo.de"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/germany.jpg",
+      "cardImageAlt": "Historic German architecture and premier research university campus, Germany",
+      "imageObjectPosition": "center"
     },
     {
       "id": "country-ireland",
@@ -656,7 +671,10 @@
           "url": "https://www.educationinireland.com"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/ireland.jpg",
+      "cardImageAlt": "Dublin cityscape and technology education hub, Ireland",
+      "imageObjectPosition": "center"
     },
     {
       "id": "country-france",

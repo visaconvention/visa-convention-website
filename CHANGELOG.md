@@ -6,6 +6,45 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.11.0] - 2026-11-10 — Centralized Country Image Registry, Real NYC Skyline for USA, Premium Hero Upgrade
+
+### Added
+- **Centralized Country Image Registry (data-driven):**
+  - Added `cardImage`, `cardImageAlt`, and `imageObjectPosition` fields to the `Country` TypeScript type (`src/types/index.ts`).
+  - Added `cardImage`, `cardImageAlt`, `imageObjectPosition` mapping in `normalizeCountry()` (`src/data/countries.ts`).
+  - Populated `client-content/countries/countries.json` with canonical image metadata for all 6 photographed destinations via `scripts/add-card-images.mjs`.
+  - One authoritative image source per country — same record used by cards, directory, related cards, and future components.
+- **Real NYC Skyline for United States:**
+  - Replaced the abstract multicolored USA placeholder (`usa.jpg`, 83KB) with an AI-generated photorealistic New York City skyline featuring One World Trade Center, daytime, wide-angle composition.
+  - Optimized to 112KB via `sharp` (resize 1200×675, quality 82, mozjpeg).
+  - Alt text: `"New York City skyline featuring One World Trade Center, United States"`.
+  - `imageObjectPosition: 'center 50%'` for optimal card cropping.
+
+### Changed
+- **`CountryCard.astro` — Data-Driven Images:**
+  - Removed all hardcoded `DESTINATIONS_WITH_PHOTOS` Set, `ALT_TEXTS` Map, `POLISHED_DESCRIPTIONS` Map, and static `imagePath` construction.
+  - Now reads `country.cardImage`, `country.cardImageAlt`, and `country.imageObjectPosition` directly from the normalized data layer.
+  - Cards with no `cardImage` fall back gracefully to the ISO code flag display (unchanged behavior for the 30+ countries without photos).
+  - Descriptions now read from `country.shortDescription` from the JSON data — no component-level overrides.
+- **`HeroSection.astro` — Premium Visual Upgrade:**
+  - H1 font size: `text-[2.6rem] sm:text-[3.1rem] lg:text-[3.4rem]` — measured **54.4px at 1366px** (target: 52–62px ✅).
+  - Hero content height: **511px at 1366px** (target: 450–520px ✅).
+  - Section padding: `py-10 sm:py-14 lg:py-16` (up from `py-8 sm:py-10 lg:py-12`).
+  - Description copy size: `text-lg sm:text-xl` (up from `text-base sm:text-lg`).
+  - Buttons: `min-h-[52px] px-7 py-3.5` (up from `min-h-[48px] px-6 py-3`).
+  - Image height: `h-[240px] sm:h-[300px] lg:h-[380px]` (up from `h-[220px] sm:h-[270px] lg:h-[300px]`).
+  - Description copy updated to: `"Explore study destinations, discover universities, and get guidance for your international plans."`
+  - Secondary CTA changed from `"Book Consultation"` → `"Contact Us"`.
+- **`src/pages/index.astro`:** Updated HeroSection props to pass updated subheadline and CTA text.
+
+### Verified
+- Build: **64 static routes, 4.12s** — zero errors.
+- Tests: **216/216 passing** (all 6 suites: country-engine 21/21, university-engine 40/40, credibility-engine 34/34, contact-engine 31/31, seo-a11y 51/51, e2e-comprehensive 39/39).
+- Zero horizontal overflow across all tested viewports.
+- Screenshots captured: homepage fold (1440px, 1366px, 390px mobile), countries directory, USA country detail page.
+
+---
+
 ## [1.10.0] - 2026-11-10 — Ruthless Homepage Design & Proportion Audit & Global 1160px Alignment
 ### Changed
 - **Unified 1160px Design System Container (`global.css`):**

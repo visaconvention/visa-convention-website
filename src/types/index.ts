@@ -84,6 +84,9 @@ export interface Country {
   flagCode: string;                                    // Two-letter ISO country code, e.g., "CA"
   continent: Continent;                                // Region
   heroImage: string;                                   // Curated landscape photograph path
+  cardImage?: string;                                  // Canonical card/directory photograph path
+  cardImageAlt?: string;                               // Descriptive alt text for card image
+  imageObjectPosition?: string;                        // CSS object-position for card image cropping
   shortDescription: string;                            // 1-2 sentence overview
   introduction: string;                                // Full introduction narrative
   whyStudyHere: string[];                              // Core reasons/benefits to consider
