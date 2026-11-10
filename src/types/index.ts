@@ -9,7 +9,7 @@ export type Continent = 'North America' | 'Europe' | 'Asia' | 'Oceania' | 'South
 
 export type StudyLevel = 'Bachelors' | 'Masters' | 'Doctorate' | 'Diploma' | 'MBBS' | 'Foundation';
 
-export type UniversityRelationship = 'listed_for_guidance' | 'verified_partner';
+export type UniversityRelationship = 'listed_for_guidance';
 
 export type ServiceCategory = 
   | 'study-visa'
@@ -141,7 +141,7 @@ export interface University {
   tuitionInformation?: string;                         // Advisory tuition range
   scholarshipInformation?: string;                     // Institutional grants or awards
   featured: boolean;                                   // Featured on homepage or top directory picks
-  relationshipStatus: UniversityRelationship;          // STRICT: "listed_for_guidance" (default) vs "verified_partner"
+  relationshipStatus: UniversityRelationship;          // STRICT: "listed_for_guidance" (independent advisory)
   logoAsset?: string;                                  // University crest/logo asset path
   coverImage?: string;                                 // Campus photograph path
   sourceLinks?: Array<{ label: string; url: string }> | string[]; // Official reference sources

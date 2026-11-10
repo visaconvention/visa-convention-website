@@ -32,10 +32,6 @@ const relatedInCountry = getUniversitiesByCountrySlug(university.countrySlug)
   .filter((u) => u.id !== university.id)
   .slice(0, 3);
 
-const relationshipLabel = university.relationshipStatus === 'verified_partner'
-  ? 'Verified Partner Institution'
-  : 'Listed for Admissions Guidance';
-
 // Schema.org Structured Data
 const jsonLd = {
   "@context": "https://schema.org",
@@ -86,15 +82,7 @@ const jsonLd = {
             {university.institutionType || 'Accredited University'}
           </span>
 
-          <span 
-            class={`px-3 py-1 text-xs font-bold rounded-md ${
-              university.relationshipStatus === 'verified_partner'
-                ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
-                : 'bg-blue-50 text-brand-blue border border-blue-200'
-            }`}
-          >
-            {relationshipLabel}
-          </span>
+
 
           {university.worldRanking && (
             <span class="px-3 py-1 text-xs font-bold rounded-md bg-amber-50 text-amber-900 border border-amber-200">
@@ -304,7 +292,7 @@ const jsonLd = {
 
           <!-- Disclaimer Tag -->
           <div class="mt-6 pt-4 border-t border-brand-border/70 text-[11px] text-brand-muted leading-relaxed">
-            <strong class="font-bold text-brand-navy">Integrity Disclaimer:</strong> {university.relationshipStatus === 'verified_partner' ? 'Visa Convention holds formal recruitment representation with this institution.' : 'Visa Convention provides independent advisory and application facilitation for this institution. Listing does not imply an exclusive contractual endorsement.'}
+            <strong class="font-bold text-brand-navy">Integrity Disclaimer:</strong> Visa Convention is an independent consultancy providing university application guidance and visa documentation assistance. Listing of this institution does not imply an official partnership, affiliation, institutional agreement, or endorsement.
           </div>
         </div>
       </div>

@@ -41,7 +41,7 @@ export const siteConfig = {
   // Disclaimers
   disclaimers: {
     statutory: 'Visa Convention provides professional educational advisory, documentation support, and travel coordination. Visa approval is the sole legal prerogative of respective government embassies, consulates, and high commissions. No visa outcome is or can be guaranteed.',
-    universities: 'Universities listed on this portal are institutions for which guidance, profile alignment, and application facilitation are provided. Inclusion does not imply direct partnership or exclusive agency representation unless explicitly designated.',
+    universities: 'Visa Convention is an independent consultancy providing university application guidance and visa documentation assistance. Listing or mention of institutions does not imply formal partnership, affiliation, institutional agreement, or official endorsement.',
     flights: 'Flight reservation assistance facilitates genuine carrier itineraries. No fraudulent PNRs or fabricated tickets are produced under any circumstance.',
   },
 
@@ -78,7 +78,6 @@ export const siteConfig = {
       children: [
         { label: 'Our Story & Office', href: '/about/', description: 'Hanumangarh advisory center & counseling ethics' },
         { label: 'Verified Outcomes', href: '/success-stories/', description: 'Authentic student outcomes & privacy protection' },
-        { label: 'Institutional Partnerships', href: '/partnerships/', description: 'B2B collaboration & university frameworks' },
       ],
     },
     {
