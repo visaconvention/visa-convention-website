@@ -1,13 +1,11 @@
 ---
 import { siteConfig } from '../../data/site-config';
-import { getFeaturedCountries } from '../../data/countries';
 
 interface Props {
   currentPath?: string;
 }
 
 const { currentPath = '/' } = Astro.props;
-const featuredCountries = getFeaturedCountries();
 ---
 
 <!-- Mobile Menu Drawer Backdrop & Content -->
@@ -25,7 +23,10 @@ const featuredCountries = getFeaturedCountries();
         <div class="w-8 h-8 rounded-lg bg-brand-navy text-white flex items-center justify-center font-bold text-sm">
           VC
         </div>
-        <span class="font-bold text-brand-navy text-base">Visa Convention</span>
+        <div>
+          <span class="block font-bold text-brand-navy text-sm leading-none">Visa Convention</span>
+          <span class="block text-[10px] text-brand-red font-semibold uppercase tracking-wider mt-0.5">Hanumangarh • Global</span>
+        </div>
       </div>
       <button
         id="close-mobile-menu-btn"
@@ -39,89 +40,88 @@ const featuredCountries = getFeaturedCountries();
       </button>
     </div>
 
-    <!-- Navigation Links -->
-    <div class="p-5 space-y-2 flex-1">
+    <!-- Navigation Groups -->
+    <div class="p-5 space-y-4 flex-1">
       {siteConfig.nav.map((item) => {
         const hasChildren = item.children && item.children.length > 0;
-        const isStudyAbroad = item.href === '/study-abroad/';
-        const active = currentPath === item.href;
+        const active = currentPath === item.href || (hasChildren && item.children?.some(c => c.href === currentPath));
 
         if (hasChildren) {
           return (
-            <div class="py-1">
-              <div class="text-xs font-bold uppercase tracking-wider text-brand-muted mb-2 px-3">
-                {item.label}
-              </div>
-              <div class="space-y-1 pl-2">
-                {item.children?.map((child) => (
-                  <a
-                    href={child.href}
-                    class="block px-3 py-2 text-sm font-semibold rounded-lg text-brand-navy hover:bg-brand-bg hover:text-brand-blue transition-colors"
-                  >
-                    {child.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          );
-        }
-
-        if (isStudyAbroad) {
-          return (
-            <div class="py-1">
-              <a
-                href="/study-abroad/"
-                class={`block px-3 py-2.5 text-base font-bold rounded-lg transition-colors ${
-                  active ? 'bg-brand-bg text-brand-blue' : 'text-brand-navy hover:bg-brand-bg hover:text-brand-blue'
-                }`}
-              >
-                Study Abroad (35+ Countries)
-              </a>
-              <div class="space-y-1 pl-3 mt-1">
-                {featuredCountries.slice(0, 4).map((country) => (
-                  <a
-                    href={`/study-abroad/${country.slug}/`}
-                    class="block px-3 py-1.5 text-xs font-semibold rounded-md text-brand-muted hover:text-brand-navy hover:bg-brand-bg transition-colors"
-                  >
-                    {country.name}
-                  </a>
-                ))}
-                <a
-                  href="/study-abroad/"
-                  class="block px-3 py-1.5 text-xs font-bold text-brand-red hover:underline"
-                >
-                  Explore All 35+ Destinations →
+            <div class="pb-2 border-b border-brand-border/60">
+              <div class="flex items-center justify-between py-1 px-1">
+                <span class="text-xs font-extrabold uppercase tracking-wider text-brand-navy">
+                  {item.label}
+                </span>
+                <a href={item.href} class="text-[11px] font-bold text-brand-blue hover:underline">
+                  Overview →
                 </a>
+              </div>
+              <div class="space-y-1 mt-1 pl-1">
+                {item.children?.map((child) => {
+                  const isChildActive = currentPath === child.href;
+                  return (
+                    <a
+                      href={child.href}
+                      class={`block px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-colors ${
+                        isChildActive
+                          ? 'bg-brand-bg text-brand-blue font-bold'
+                          : 'text-slate-700 hover:bg-brand-bg hover:text-brand-navy'
+                      }`}
+                    >
+                      {child.label}
+                    </a>
+                  );
+                })}
               </div>
             </div>
           );
         }
 
         return (
-          <a
-            href={item.href}
-            class={`block px-3 py-2.5 text-base font-semibold rounded-lg transition-colors ${
-              active
-                ? 'bg-brand-bg text-brand-blue font-bold'
-                : 'text-brand-navy hover:bg-brand-bg hover:text-brand-blue'
-            }`}
-          >
-            {item.label}
-          </a>
+          <div class="pb-1 border-b border-brand-border/60">
+            <a
+              href={item.href}
+              class={`block px-2 py-2 text-sm font-bold rounded-lg transition-colors ${
+                active
+                  ? 'bg-brand-bg text-brand-blue'
+                  : 'text-brand-navy hover:bg-brand-bg hover:text-brand-blue'
+              }`}
+            >
+              {item.label}
+            </a>
+          </div>
         );
       })}
     </div>
 
-    <!-- Bottom Actions -->
+    <!-- Bottom Actions & Direct Contacts -->
     <div class="p-5 border-t border-brand-border bg-brand-bg/50 space-y-3">
+      <div class="grid grid-cols-2 gap-2 text-xs font-bold text-center">
+        <a
+          href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`}
+          class="p-2.5 rounded-xl bg-white border border-brand-border text-brand-navy hover:bg-slate-50 transition-colors flex items-center justify-center gap-1.5"
+        >
+          <span>📞 Call Us</span>
+        </a>
+        <a
+          href={`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent('Hello Visa Convention, I would like to inquire about your services.')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-2.5 rounded-xl bg-[#25D366] text-white hover:bg-[#20ba5a] transition-colors flex items-center justify-center gap-1.5"
+        >
+          <span>💬 WhatsApp</span>
+        </a>
+      </div>
+
       <a
         href="/contact/"
         class="block w-full py-3 px-4 text-center rounded-xl bg-brand-red text-white font-bold text-sm hover:bg-brand-red-hover transition-colors shadow-sm"
       >
         Book Free Consultation
       </a>
-      <p class="text-center text-xs text-brand-muted">
-        Hanumangarh, Rajasthan • Global Services
+      <p class="text-center text-[11px] text-brand-muted">
+        Shop No.115, Durga Market, Hanumangarh Junction
       </p>
     </div>
   </div>

@@ -135,18 +135,26 @@ const dataAttrs = showFiltersDataAttrs ? {
 
     <div class="flex items-center gap-3 ml-auto">
       {university.hasDetailedProfile ? (
-        <a
-          href={`/universities/${university.slug}/`}
-          class="font-bold text-brand-blue hover:text-brand-navy transition-colors inline-flex items-center gap-1 group/link"
-        >
-          <span>View Profile</span>
-          <svg class="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
+        <div class="flex items-center gap-2.5">
+          <a
+            href={`/contact/?service=study-visa&country=${university.countrySlug}&university=${encodeURIComponent(university.name)}`}
+            class="text-[11px] font-bold text-brand-red hover:underline"
+          >
+            Enquire
+          </a>
+          <a
+            href={`/universities/${university.slug}/`}
+            class="font-bold text-brand-blue hover:text-brand-navy transition-colors inline-flex items-center gap-1 group/link"
+          >
+            <span>View Profile</span>
+            <svg class="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       ) : (
         <a
-          href={`/contact/?service=study-visa&country=${university.countrySlug}&institution=${encodeURIComponent(university.name)}`}
+          href={`/contact/?service=study-visa&country=${university.countrySlug}&university=${encodeURIComponent(university.name)}`}
           class="font-semibold text-brand-red hover:text-red-700 transition-colors inline-flex items-center gap-1 group/btn"
         >
           <span>Enquire for Admission</span>

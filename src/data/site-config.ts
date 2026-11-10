@@ -45,26 +45,45 @@ export const siteConfig = {
     flights: 'Flight reservation assistance facilitates genuine carrier itineraries. No fraudulent PNRs or fabricated tickets are produced under any circumstance.',
   },
 
-  // Sitewide navigation structure
+  // Sitewide navigation structure (Grouped by visitor intent)
   nav: [
-    { label: 'Home', href: '/' },
     {
-      label: 'Services',
-      href: '/services/',
+      label: 'Study Abroad',
+      href: '/study-abroad/',
       children: [
-        { label: 'Study Visa', href: '/services/study-visa/', description: 'Comprehensive guidance for 35+ countries' },
+        { label: 'Explore 35+ Countries', href: '/study-abroad/', description: 'Discover international study destinations' },
+        { label: 'Find Universities', href: '/universities/', description: 'Search 1,000+ accredited institutions' },
+        { label: 'Study Visa Assistance', href: '/services/study-visa/', description: 'Comprehensive admissions & visa filing' },
         { label: 'MBBS Abroad', href: '/services/mbbs/', description: 'WHO & NMC recognized medical faculties' },
         { label: 'PhD Abroad', href: '/services/phd/', description: 'Doctoral research and funded proposals' },
-        { label: 'Tourist Visa', href: '/services/tourist-visa/', description: 'Visitor visas, itineraries & appointment prep' },
-        { label: 'Work Visa', href: '/services/work-visa/', description: 'Work permit documentation & compliance' },
-        { label: 'Flight Reservation', href: '/services/flight-booking/', description: 'Airline bookings & genuine visa itineraries' },
       ],
     },
-    { label: 'Study Abroad', href: '/study-abroad/' },
-    { label: 'Universities', href: '/universities/' },
-    { label: 'About Us', href: '/about/' },
-    { label: 'Success Stories', href: '/success-stories/' },
-    { label: 'Partnerships', href: '/partnerships/' },
-    { label: 'Contact', href: '/contact/' },
+    {
+      label: 'Visa Services',
+      href: '/services/',
+      children: [
+        { label: 'Tourist & Visitor Visa', href: '/services/tourist-visa/', description: 'Visitor visas, itineraries & appointment prep' },
+        { label: 'Work Visa Support', href: '/services/work-visa/', description: 'Employer documentation & regulatory guidance' },
+        { label: 'Additional Services', href: '/services/additional-services/', description: 'SOP review, apostille & pre-departure briefs' },
+        { label: 'All Services Overview', href: '/services/', description: 'Comparative matrix of all 7 service verticals' },
+      ],
+    },
+    {
+      label: 'Flight Booking',
+      href: '/services/flight-booking/',
+    },
+    {
+      label: 'About',
+      href: '/about/',
+      children: [
+        { label: 'Our Story & Office', href: '/about/', description: 'Hanumangarh advisory center & counseling ethics' },
+        { label: 'Verified Outcomes', href: '/success-stories/', description: 'Authentic student outcomes & privacy protection' },
+        { label: 'Institutional Partnerships', href: '/partnerships/', description: 'B2B collaboration & university frameworks' },
+      ],
+    },
+    {
+      label: 'Contact',
+      href: '/contact/',
+    },
   ] as NavItem[],
 };

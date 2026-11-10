@@ -9,44 +9,44 @@ interface Props {
 }
 
 const {
-  headline = 'Your Global Journey Begins with Confidence.',
-  subheadline = 'Visa Convention delivers ethical, expert counseling for study abroad, MBBS & PhD admissions, tourist & work visas, and international flight assistance from Hanumangarh, Rajasthan.',
-  primaryCtaText = 'Get Expert Guidance',
+  headline = 'Study Abroad, Visa & Travel Assistance — Made Clear.',
+  subheadline = 'Explore verified university options, understand the visa process, and connect directly with the Visa Convention counseling team based in Hanumangarh, Rajasthan.',
+  primaryCtaText = 'Get Guidance',
   primaryCtaHref = '/contact/',
-  secondaryCtaText = 'Explore Services',
+  secondaryCtaText = 'Our Services',
   secondaryCtaHref = '#services',
 } = Astro.props;
 ---
 
-<section class="relative overflow-hidden bg-gradient-to-b from-white via-brand-bg/40 to-brand-bg pt-14 pb-20 sm:pt-20 sm:pb-28 border-b border-brand-border">
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-brand-bg/40 to-brand-bg pt-12 pb-16 sm:pt-16 sm:pb-24 border-b border-brand-border">
   <!-- Subtle decorative radial background pattern -->
   <div class="absolute inset-0 opacity-[0.035] pointer-events-none" style="background-image: radial-gradient(#102A53 1px, transparent 1px); background-size: 28px 28px;" aria-hidden="true"></div>
 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div class="text-center max-w-4xl mx-auto">
       <!-- Eyebrow Pill Badge -->
-      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white text-brand-navy border border-brand-border mb-6 shadow-subtle">
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white text-brand-navy border border-brand-border mb-6 shadow-2xs">
         <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse" aria-hidden="true"></span>
         <span class="text-xs font-bold tracking-wider uppercase">
-          Hanumangarh, Rajasthan • Premier International Advisory
+          Based in Hanumangarh, Rajasthan • Transparent International Advisory
         </span>
       </div>
 
       <!-- Main Headline -->
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-navy tracking-tight leading-[1.12] mb-6">
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-brand-navy tracking-tight leading-[1.15] mb-5">
         {headline}
       </h1>
 
       <!-- Subheadline Description -->
-      <p class="text-lg sm:text-xl text-brand-muted max-w-3xl mx-auto leading-relaxed mb-10 font-normal">
+      <p class="text-base sm:text-lg lg:text-xl text-brand-muted max-w-3xl mx-auto leading-relaxed mb-8 font-normal">
         {subheadline}
       </p>
 
       <!-- Primary Action Buttons -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-12">
         <a
           href={primaryCtaHref}
-          class="btn-primary w-full sm:w-auto"
+          class="btn-primary w-full sm:w-auto text-center"
         >
           <span>{primaryCtaText}</span>
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -55,29 +55,68 @@ const {
         </a>
         <a
           href={secondaryCtaHref}
-          class="btn-outline w-full sm:w-auto"
+          class="btn-outline w-full sm:w-auto text-center"
         >
           <span>{secondaryCtaText}</span>
         </a>
       </div>
 
-      <!-- Quick Trust Indicators -->
-      <div class="mt-14 pt-8 border-t border-brand-border/80 grid grid-cols-2 sm:grid-cols-4 gap-6 text-left sm:text-center">
-        <div class="p-2">
-          <strong class="block text-brand-navy font-extrabold text-base sm:text-lg">35+ Countries</strong>
-          <span class="text-xs text-brand-subtle">Global Study Network</span>
-        </div>
-        <div class="p-2">
-          <strong class="block text-brand-navy font-extrabold text-base sm:text-lg">Honest Advisory</strong>
-          <span class="text-xs text-brand-subtle">Zero Inflated Claims</span>
-        </div>
-        <div class="p-2">
-          <strong class="block text-brand-navy font-extrabold text-base sm:text-lg">Direct Counseling</strong>
-          <span class="text-xs text-brand-subtle">Personalized Dossier Prep</span>
-        </div>
-        <div class="p-2">
-          <strong class="block text-brand-navy font-extrabold text-base sm:text-lg">Flight Assistance</strong>
-          <span class="text-xs text-brand-subtle">Verified Student Routes</span>
+      <!-- Immediate 3-Pathway Visitor Direction -->
+      <div class="pt-8 border-t border-brand-border/80">
+        <span class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-4">
+          What do you need help with today?
+        </span>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+          <!-- Pathway 1: Study Abroad -->
+          <a
+            href="/study-abroad/"
+            class="p-5 rounded-2xl bg-white border border-brand-border hover:border-brand-navy hover:shadow-md transition-all group"
+          >
+            <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-bold text-lg mb-3 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+              🎓
+            </div>
+            <h3 class="font-bold text-brand-navy text-base group-hover:text-brand-blue flex items-center justify-between">
+              <span>Study Abroad</span>
+              <span class="text-xs text-brand-muted group-hover:translate-x-1 transition-transform">→</span>
+            </h3>
+            <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+              Explore 35+ countries, MBBS, PhD & 1,000+ accredited universities.
+            </p>
+          </a>
+
+          <!-- Pathway 2: Visa Services -->
+          <a
+            href="/services/"
+            class="p-5 rounded-2xl bg-white border border-brand-border hover:border-brand-navy hover:shadow-md transition-all group"
+          >
+            <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-bold text-lg mb-3 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+              🛂
+            </div>
+            <h3 class="font-bold text-brand-navy text-base group-hover:text-brand-blue flex items-center justify-between">
+              <span>Visa Services</span>
+              <span class="text-xs text-brand-muted group-hover:translate-x-1 transition-transform">→</span>
+            </h3>
+            <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+              Tourist visa itineraries, work permits & consular document audits.
+            </p>
+          </a>
+
+          <!-- Pathway 3: Flight Booking -->
+          <a
+            href="/services/flight-booking/"
+            class="p-5 rounded-2xl bg-white border border-brand-border hover:border-brand-navy hover:shadow-md transition-all group"
+          >
+            <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-bold text-lg mb-3 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+              ✈️
+            </div>
+            <h3 class="font-bold text-brand-navy text-base group-hover:text-brand-blue flex items-center justify-between">
+              <span>Flight Booking</span>
+              <span class="text-xs text-brand-muted group-hover:translate-x-1 transition-transform">→</span>
+            </h3>
+            <p class="text-xs text-brand-muted mt-1 leading-relaxed">
+              Genuine carrier reservations, GDS visa holds & student baggage savings.
+            </p>
+          </a>
         </div>
       </div>
     </div>

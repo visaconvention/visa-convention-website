@@ -68,6 +68,9 @@ const totalCountriesCount = countriesWithCounts.length;
 
       <!-- University Cards Grid & Pagination Area -->
       <main class="lg:col-span-3 min-w-0" id="directory-results-container">
+        <!-- Active Filter Chips -->
+        <div id="active-filters-chips" class="hidden mb-4 flex flex-wrap items-center gap-2"></div>
+
         <!-- Results Status Bar -->
         <div class="bg-slate-50 border border-brand-border rounded-xl px-4 py-3 mb-6 flex flex-wrap items-center justify-between gap-3 text-xs">
           <div class="flex items-center gap-2">
@@ -313,6 +316,103 @@ const totalCountriesCount = countriesWithCounts.length;
 
       currentPage = 1;
       applyPagination();
+      updateActiveChips();
+      updateUrlState();
+    }
+
+    function createChip(label: string, onRemove: () => void) {
+      const chip = document.createElement('span');
+      chip.className = 'inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-brand-navy text-white shadow-2xs';
+      const textSpan = document.createElement('span');
+      textSpan.textContent = label;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.textContent = '✕';
+      btn.className = 'ml-1 text-white/80 hover:text-white font-bold cursor-pointer';
+      btn.setAttribute('aria-label', `Remove ${label} filter`);
+      btn.addEventListener('click', onRemove);
+      chip.appendChild(textSpan);
+      chip.appendChild(btn);
+      return chip;
+    }
+
+    function updateActiveChips() {
+      const chipsBar = document.getElementById('active-filters-chips');
+      if (!chipsBar) return;
+      chipsBar.innerHTML = '';
+
+      const query = (searchInput?.value || '').trim();
+      const selectedCountry = countryFilter?.value || 'all';
+      const selectedDegree = degreeFilter?.value || 'all';
+      const selectedSubject = subjectFilter?.value || 'all';
+      const detailedOnly = detailedOnlyCheckbox?.checked;
+
+      let hasAny = false;
+
+      if (query) {
+        hasAny = true;
+        chipsBar.appendChild(createChip(`Search: "${query}"`, () => {
+          if (searchInput) searchInput.value = '';
+          filterData();
+        }));
+      }
+      if (selectedCountry !== 'all') {
+        hasAny = true;
+        const countryText = countryFilter?.selectedOptions[0]?.text.split('(')[0].trim() || selectedCountry;
+        chipsBar.appendChild(createChip(`Country: ${countryText}`, () => {
+          if (countryFilter) countryFilter.value = 'all';
+          filterData();
+        }));
+      }
+      if (selectedDegree !== 'all') {
+        hasAny = true;
+        chipsBar.appendChild(createChip(`Level: ${selectedDegree}`, () => {
+          if (degreeFilter) degreeFilter.value = 'all';
+          filterData();
+        }));
+      }
+      if (selectedSubject !== 'all') {
+        hasAny = true;
+        chipsBar.appendChild(createChip(`Discipline: ${selectedSubject}`, () => {
+          if (subjectFilter) subjectFilter.value = 'all';
+          filterData();
+        }));
+      }
+      if (detailedOnly) {
+        hasAny = true;
+        chipsBar.appendChild(createChip('Curated Only', () => {
+          if (detailedOnlyCheckbox) detailedOnlyCheckbox.checked = false;
+          filterData();
+        }));
+      }
+
+      if (hasAny) {
+        const clearAll = document.createElement('button');
+        clearAll.type = 'button';
+        clearAll.textContent = 'Clear All Filters';
+        clearAll.className = 'text-xs text-brand-red font-bold hover:underline px-2 py-1 cursor-pointer';
+        clearAll.addEventListener('click', () => {
+          if (resetBtn) resetBtn.click();
+        });
+        chipsBar.appendChild(clearAll);
+        chipsBar.classList.remove('hidden');
+      } else {
+        chipsBar.classList.add('hidden');
+      }
+    }
+
+    function updateUrlState() {
+      const params = new URLSearchParams();
+      const query = (searchInput?.value || '').trim();
+      const selectedCountry = countryFilter?.value || 'all';
+      const selectedDegree = degreeFilter?.value || 'all';
+
+      if (query) params.set('q', query);
+      if (selectedCountry !== 'all') params.set('country', selectedCountry);
+      if (selectedDegree !== 'all') params.set('level', selectedDegree);
+
+      const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+      window.history.replaceState({}, '', newUrl);
     }
 
     function scrollToTop() {

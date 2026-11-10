@@ -305,8 +305,8 @@ const hasScholarshipInfo = Boolean(
                 Universities Guided in {country.name}
               </h2>
             </div>
-            <a href="/universities/" class="text-xs font-bold text-brand-red hover:underline hidden sm:inline-block">
-              Browse Directory →
+            <a href={`/universities/?country=${country.slug}`} class="text-xs font-bold text-brand-red hover:underline inline-flex items-center gap-1">
+              <span>Filter Directory to {country.name} →</span>
             </a>
           </div>
 
@@ -315,10 +315,21 @@ const hasScholarshipInfo = Boolean(
           </p>
 
           {universities.length > 0 ? (
-            <div class="grid grid-cols-1 gap-4">
-              {universities.map((uni) => (
-                <UniversityCard university={uni} />
-              ))}
+            <div class="space-y-4">
+              <div class="grid grid-cols-1 gap-4">
+                {universities.map((uni) => (
+                  <UniversityCard university={uni} />
+                ))}
+              </div>
+              <div class="p-4 rounded-xl bg-brand-bg border border-brand-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+                <span class="text-brand-muted">Looking for more options in {country.name}?</span>
+                <a
+                  href={`/universities/?country=${country.slug}`}
+                  class="font-bold text-brand-navy hover:text-brand-red inline-flex items-center gap-1.5"
+                >
+                  <span>Search all {country.name} universities in full catalog →</span>
+                </a>
+              </div>
             </div>
           ) : (
             <div class="p-6 rounded-2xl bg-white border border-brand-border text-xs sm:text-sm text-brand-muted space-y-2">

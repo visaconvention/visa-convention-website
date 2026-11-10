@@ -82,6 +82,30 @@ const serviceOptions = [
     </div>
   </div>
 
+  <!-- Enquiry Context Banner (Pre-selection confirmation) -->
+  <div id="enquiry-context-banner" class="hidden mb-6 p-4 rounded-2xl bg-brand-bg border border-brand-blue/30 text-xs text-brand-navy flex items-center justify-between gap-3">
+    <div class="flex items-center gap-2.5">
+      <span class="w-6 h-6 rounded-lg bg-brand-blue text-white flex items-center justify-center font-bold text-xs flex-shrink-0">
+        ✓
+      </span>
+      <div>
+        <span class="font-bold block text-brand-navy" id="context-banner-text">
+          Pre-selected Inquiry Context
+        </span>
+        <span class="text-[11px] text-brand-muted">
+          Your selected pathway has been automatically applied below.
+        </span>
+      </div>
+    </div>
+    <button
+      type="button"
+      id="clear-context-btn"
+      class="text-[11px] font-bold text-brand-red hover:underline flex-shrink-0"
+    >
+      Clear Pre-selection
+    </button>
+  </div>
+
   <form id="visa-enquiry-form" class="space-y-5" method="POST" action="/api/enquiry" novalidate>
     <!-- Invisible Honeypot Field for Bot Spam Mitigation -->
     <div class="hidden" aria-hidden="true">
@@ -439,6 +463,9 @@ const serviceOptions = [
     const paramService = urlParams.get('service');
     const paramCountry = urlParams.get('country');
     const paramUni = urlParams.get('university') || urlParams.get('institution');
+    const contextBanner = document.getElementById('enquiry-context-banner');
+    const contextBannerText = document.getElementById('context-banner-text');
+    const clearContextBtn = document.getElementById('clear-context-btn');
 
     if (paramService && serviceSelect) {
       serviceSelect.value = paramService;
@@ -449,6 +476,23 @@ const serviceOptions = [
     if (paramUni && universityInput) {
       universityInput.value = paramUni;
     }
+
+    if ((paramService || paramCountry || paramUni) && contextBanner && contextBannerText) {
+      const parts = [];
+      if (paramService) parts.push(paramService.replace(/-/g, ' ').toUpperCase());
+      if (paramCountry) parts.push(paramCountry.toUpperCase());
+      if (paramUni) parts.push(paramUni);
+      contextBannerText.textContent = `Enquiring for: ${parts.join(' • ')}`;
+      contextBanner.classList.remove('hidden');
+    }
+
+    clearContextBtn?.addEventListener('click', () => {
+      if (serviceSelect) serviceSelect.value = '';
+      if (countrySelect) countrySelect.value = '';
+      if (universityInput) universityInput.value = '';
+      contextBanner?.classList.add('hidden');
+      syncServiceMode();
+    });
 
     // Toggle business vs standard candidate fields
     function syncServiceMode() {

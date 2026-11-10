@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.3.0] - 2026-11-10 — Comprehensive UX, IA & Conversion Optimization Redesign
+### Changed
+- **Global Navigation Hierarchy (5 Intent-Driven Categories):**
+  - Consolidated header navigation from 8 cluttered links down to 5 distinct categories: *Study Abroad*, *Visa Services*, *Flight Booking*, *About*, and *Contact*.
+  - Redesigned `DesktopNavigation.astro` with rich dual-column mega-menus for Study Abroad and Visa Services.
+  - Redesigned `MobileNavigation.astro` into clean, expandable sections with direct Call/WhatsApp action buttons.
+- **Homepage First Screen & Cognitive Load Reduction:**
+  - Redesigned `HeroSection.astro` with concise, plain-language proposition: *"Study Abroad, Visa & Travel Assistance — Made Clear."*
+  - Added immediate **3-Pathway Selector** (*Study Abroad*, *Visa Services*, *Flight Booking*) directly within the hero for instant 5-second self-segmentation.
+  - Streamlined homepage from 14 sections down to 8 high-converting, focused sections.
+- **University Discovery Usability (1,000+ Records):**
+  - Added dynamic active filter chips (`#active-filters-chips`) with 1-click removal and "Clear All" functionality.
+  - Added automatic URL search parameter reading (`?country=...`, `?q=...`, `?level=...`) and seamless `history.replaceState` updates.
+  - Enabled direct enquiry actions on all cards pre-filling target university and destination country.
+- **Country Page to University Linkage:**
+  - Connected country page university CTAs directly to `/universities/?country=[slug]`, automatically filtering the 1,000+ catalog to that destination.
+- **Zero-Friction Context-Aware Enquiries:**
+  - Added visual **Enquiry Context Confirmation Banner** in `EnquiryForm.astro` that greets visitors with pre-filled details when navigating from university or country profiles.
+
+---
+
 ## [1.2.0] - 2026-11-10 — Official Physical Office Address Integration
 ### Changed
 - **Physical Headquarters & Office Address Updated Sitewide:**
