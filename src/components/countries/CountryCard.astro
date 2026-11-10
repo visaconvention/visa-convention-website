@@ -24,43 +24,57 @@ const DESTINATIONS_WITH_PHOTOS = new Set([
 ]);
 
 const hasImage = showImage && DESTINATIONS_WITH_PHOTOS.has(country.slug);
+
+// Specific alt texts for recognizable photography
+const ALT_TEXTS: Record<string, string> = {
+  'usa': 'New York City skyline, United States',
+  'canada': 'Vancouver cityscape and university faculties, Canada',
+  'united-kingdom': 'London historic skyline and universities, United Kingdom',
+  'australia': 'Sydney Harbour and higher education institutions, Australia',
+  'germany': 'Historic architecture and premier universities, Germany',
+  'ireland': 'Dublin cityscape and technology education hub, Ireland',
+};
+
+const altText = ALT_TEXTS[country.slug] || `${country.name} study destination scenery and universities`;
+
+// Complete, polished descriptions without truncation or ellipses
+const POLISHED_DESCRIPTIONS: Record<string, string> = {
+  'canada': 'World-class research universities, diverse academic communities, and structured post-study work pathways.',
+  'united-kingdom': 'Historic global institutions, intensive degree programs, and comprehensive graduate career opportunities.',
+  'australia': 'Top-ranked international universities, exceptional student support, and generous post-study work rights.',
+  'usa': 'The world’s largest higher education network, renowned faculties, and extensive academic specializations.',
+  'germany': 'Tuition-free public universities, premier engineering curricula, and strong post-graduation employment options.',
+  'ireland': 'European technology and research hub offering world-recognized degrees in an English-speaking environment.',
+};
+
+const cardDescription = POLISHED_DESCRIPTIONS[country.slug] || country.shortDescription || country.shortSummary;
 ---
 
 <div
-  class={`card-premium overflow-hidden flex flex-col justify-between group country-card h-full min-w-0 ${className}`}
+  class={`card-premium overflow-hidden flex flex-col justify-between group country-card h-full min-w-0 rounded-2xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 ${className}`}
   data-country-card
   data-country-name={country.name.toLowerCase()}
   data-continent={country.continent.toLowerCase()}
   data-featured={country.featured ? 'true' : 'false'}
 >
   {hasImage && (
-    <div class="relative h-44 w-full overflow-hidden bg-brand-bg border-b border-brand-border">
+    <div class="relative h-44 sm:h-48 w-full overflow-hidden bg-brand-bg border-b border-brand-border">
       <img
         src={imagePath}
-        alt={`${country.name} study destination scenery and universities`}
-        width="400"
-        height="220"
+        alt={altText}
+        width="600"
+        height="338"
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         loading="lazy"
       />
-      <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-md text-xs font-bold text-brand-navy shadow-xs flex items-center gap-1.5">
-        <span>{flagCode}</span>
-        <span class="text-3xs uppercase tracking-wider text-brand-muted">{country.continent}</span>
-      </div>
-      {country.featured && (
-        <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full text-3xs font-bold uppercase tracking-wider bg-brand-red text-white shadow-xs">
-          Featured
-        </span>
-      )}
     </div>
   )}
 
   <!-- Card Body Area -->
-  <div class="p-6 sm:p-7 text-left">
-    {!hasImage && (
-      <div class="flex items-center justify-between mb-4">
-        <div class="flex items-center gap-3">
-          <!-- Country Flag / ISO Badge -->
+  <div class="p-6 text-left flex-1 flex flex-col justify-between">
+    <div>
+      {!hasImage && (
+        <div class="flex items-center gap-3 mb-4">
           <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-extrabold text-xs border border-brand-border shadow-2xs group-hover:bg-brand-navy group-hover:text-white transition-colors">
             {flagCode}
           </div>
@@ -71,68 +85,30 @@ const hasImage = showImage && DESTINATIONS_WITH_PHOTOS.has(country.slug);
             <span class="text-xs text-brand-subtle mt-1 block text-left">{country.continent}</span>
           </div>
         </div>
+      )}
 
-        {country.featured && (
-          <span class="px-2.5 py-1 rounded-full text-3xs font-bold uppercase tracking-wider bg-brand-red/10 text-brand-red border border-brand-red/20">
-            Featured
-          </span>
-        )}
-      </div>
-    )}
-
-    {hasImage && (
-      <div class="mb-3">
-        <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-tight text-left">
+      {hasImage && (
+        <h3 class="text-xl sm:text-2xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-tight mb-2.5 text-left">
           {country.name}
         </h3>
-      </div>
-    )}
+      )}
 
-    <p class="text-xs sm:text-sm text-brand-muted line-clamp-2 mb-5 leading-relaxed font-normal text-left">
-      {country.shortDescription || country.shortSummary}
-    </p>
-
-    <!-- Key Metrics Grid -->
-    <div class="bg-brand-bg/80 rounded-xl p-3.5 grid grid-cols-2 gap-3 text-xs mb-5 border border-brand-border/60 text-left">
-      <div>
-        <span class="block text-3xs uppercase font-bold text-brand-subtle mb-0.5">Tuition Est.</span>
-        <span class="font-bold text-brand-navy truncate block">{country.estimatedTuitionRange.split('–')[0]}</span>
-      </div>
-      <div>
-        <span class="block text-3xs uppercase font-bold text-brand-subtle mb-0.5">Primary Intake</span>
-        <span class="font-bold text-brand-navy truncate block">{country.intakes[0] || 'Flexible'}</span>
-      </div>
+      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal text-left">
+        {cardDescription}
+      </p>
     </div>
 
-    <!-- Highlights -->
-    <ul class="space-y-2 text-xs text-brand-text mb-2 text-left">
-      {country.whyStudyHere.slice(0, 2).map((highlight) => (
-        <li class="flex items-start gap-2">
-          <span class="text-brand-red font-black leading-none mt-0.5">•</span>
-          <span class="line-clamp-1 leading-snug">{highlight}</span>
-        </li>
-      ))}
-    </ul>
-  </div>
-
-  <!-- Bottom CTA Row (Aligned to bottom across all cards) -->
-  <div class="p-4 sm:px-6 bg-slate-50/70 border-t border-brand-border flex items-center justify-between text-xs font-bold mt-auto">
-    <a
-      href={`/universities/?country=${country.slug}`}
-      class="text-xs font-bold text-brand-blue hover:text-brand-red transition-colors inline-flex items-center gap-1"
-      title={`Search universities in ${country.name}`}
-    >
-      <span>Explore Universities</span>
-      <span class="text-3xs">→</span>
-    </a>
-    <a
-      href={`/study-abroad/${country.slug}/`}
-      class="inline-flex items-center gap-1.5 text-brand-navy group-hover:text-brand-red transition-colors"
-    >
-      <span>Country Guide</span>
-      <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-      </svg>
-    </a>
+    <!-- Bottom Action Row: One clear primary link -->
+    <div class="pt-5 mt-4 border-t border-brand-border/70 flex items-center justify-between text-xs font-bold">
+      <a
+        href={`/study-abroad/${country.slug}/`}
+        class="inline-flex items-center gap-1.5 text-brand-navy group-hover:text-brand-red font-bold text-xs sm:text-sm transition-colors"
+      >
+        <span>Explore {country.name}</span>
+        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
   </div>
 </div>

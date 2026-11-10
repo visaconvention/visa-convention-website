@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.8.0] - 2026-11-10 — Destination Card Simplification & NYC Skyline Integration
+### Changed
+- **USA Destination Imagery Replacement (`public/assets/images/destinations/usa.jpg`):**
+  - Replaced the abstract multicolored placeholder with an authentic photograph of the New York City skyline across the East River.
+  - Sized and optimized for a 16:9 aspect ratio with `object-fit: cover` and explicit accessibility alt text: `"New York City skyline, United States"`.
+- **Destination Card Streamlining & De-cluttering (`src/components/countries/CountryCard.astro`):**
+  - Removed all repeated red `FEATURED` badge overlays.
+  - Removed redundant country-code and continent badge pills (`IE EUROPE`, `GB EUROPE`, `US NORTH AMERICA`).
+  - Removed prominent tuition estimate and primary intake boxes from the preview cards, keeping all verified detailed data on dedicated country pages.
+  - Rewrote truncated descriptions into complete, short sentences without ellipses.
+  - Streamlined card actions down to a single unambiguous primary action: `Explore [Country]` (e.g. `Explore United States`, `Explore Canada`, `Explore United Kingdom`) linking directly to the respective country guide.
+  - Reduced overall card height to ~320–340px for a photography-led presentation.
+- **University Directory Shortcut Banner (`src/pages/index.astro`):**
+  - Added a dedicated full-width directory discovery shortcut directly beneath the 6 destination cards: *"Looking for a specific university? Search our comprehensive directory of 1,000+ accredited institutions..."* with a direct `"Find Universities →"` action.
+- **Verification & Testing:**
+  - 100% pass rate across all 6 test suites (**216 / 216 tests passed**).
+  - Clean static build with 64 static routes compiled in 5.71s.
+  - Captured targeted screenshots: `usa-skyline-card.png`, `destinations-streamlined-desktop.png`, `home-desktop-final.png`, `home-mobile-final.png`.
+
+---
+
 ## [1.7.0] - 2026-11-10 — Premium Homepage Redesign & Multi-Viewport Optimization
 ### Changed
 - **Header & Navigation Layout Optimization (`Header.astro`, `DesktopNavigation.astro`):**
