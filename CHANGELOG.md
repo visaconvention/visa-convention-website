@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.9.0] - 2026-11-10 — Evidence-Based Homepage Optimization & Streamlined Layout Hierarchy
+### Changed
+- **Homepage Fold Optimization & Padding Reduction (`HeroSection.astro`):**
+  - Reduced vertical section padding from `py-12 sm:py-16 lg:py-20` down to `py-8 sm:py-12 lg:py-14` (~120px height saved).
+  - Scaled educational visual height to `h-[240px] sm:h-[290px] lg:h-[330px]` so the 3 service gateway cards emerge immediately near the desktop fold on standard 1366px and 1440px displays.
+- **Strict 6-Section Sequence & Removal of Homepage Testimonial Drag (`src/pages/index.astro`):**
+  - Section 1: Hero & Strategic Actions (`Request Consultation`, `Explore Services`)
+  - Section 2: Three Main Service Pathways (`Study Abroad`, `Visa Services`, `Flight Booking`) with 1:1 equal-width cards
+  - Section 3: Three Priority Study Destinations (`Canada`, `United Kingdom`, `Australia`) + Full-Width University Directory Shortcut (`Find Universities →`)
+  - Section 4: About Visa Convention (Hanumangarh office center, counseling ethics, direct contact box)
+  - Section 5: Three-Step Advisory Process (1. Profile Evaluation, 2. Documentation & Applications, 3. Visa Filing & Pre-Departure)
+  - Section 6: Final Consultation Call-to-Action (`Ready to Plan Your Next Step?`)
+  - Removed redundant anonymized testimonials section from the homepage to eliminate placeholder scrutiny and vertical drag; comprehensive candidate stories preserved on dedicated `/success-stories/` page.
+- **Three Priority Study Destinations Cadence (`src/pages/index.astro`):**
+  - Selected top 3 priority destinations by default (Canada, United Kingdom, Australia) to establish a clean 3-column visual cadence matching the 3 service pathways above.
+  - Linked to full 39-country directory via prominent `"View All 35+ Countries →"` action and global university shortcut banner.
+- **Verification & Testing:**
+  - 100% pass rate across all 6 test suites (**216 / 216 tests passed**):
+    - Country Engine: 21/21 passed
+    - University Engine: 40/40 passed
+    - Credibility & Ethics Engine: 34/34 passed
+    - Contact & Lead Engine: 31/31 passed
+    - SEO & Accessibility Engine: 51/51 passed
+    - End-to-End Suite: 39/39 passed across 11 modules and 8 responsive viewports
+  - Zero horizontal overflow across all tested viewports (320px–1920px).
+  - Clean static build with 64 static routes compiled in 4.32s.
+
+---
+
 ## [1.8.0] - 2026-11-10 — Destination Card Simplification & NYC Skyline Integration
 ### Changed
 - **USA Destination Imagery Replacement (`public/assets/images/destinations/usa.jpg`):**

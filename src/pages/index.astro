@@ -7,8 +7,8 @@ import ConsultationCTA from '../components/common/ConsultationCTA.astro';
 import { getFeaturedCountries } from '../data/countries';
 import { siteConfig } from '../data/site-config';
 
-// 1. Featured Data
-const featuredCountries = getFeaturedCountries().slice(0, 6);
+// Priority Destinations (3 by default for balanced 3-column desktop layout)
+const priorityCountries = getFeaturedCountries().slice(0, 3);
 ---
 
 <BaseLayout
@@ -31,9 +31,9 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
   />
 
   <!-- ========================================================================= -->
-  <!-- SECTION 2: SERVICE DISCOVERY (HOW CAN WE HELP YOU?) -->
+  <!-- SECTION 2: THREE MAIN SERVICE PATHWAYS (HOW CAN WE HELP YOU?) -->
   <!-- ========================================================================= -->
-  <section id="services" class="py-14 sm:py-18 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="services" class="py-12 sm:py-16 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeading
       title="How Can We Help You?"
       description="Three primary pathways for study abroad aspirants, visa applicants, and travelers."
@@ -175,11 +175,11 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 3: FEATURED STUDY DESTINATIONS & DIRECTORY GATEWAY -->
+  <!-- SECTION 3: FEATURED STUDY DESTINATIONS & UNIVERSITY SHORTCUT -->
   <!-- ========================================================================= -->
-  <section class="py-14 sm:py-18 bg-white border-y border-brand-border">
+  <section class="py-12 sm:py-16 bg-white border-y border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 text-left">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 text-left">
         <div>
           <span class="badge-pill mb-3">
             Study Abroad
@@ -187,28 +187,28 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
           <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight text-balance">
             Featured Study Destinations
           </h2>
-          <p class="mt-3 text-sm sm:text-base text-brand-muted max-w-[62ch]">
+          <p class="mt-2 text-sm sm:text-base text-brand-muted max-w-[62ch]">
             Compare admissions, living environments, and academic faculties across premier global destinations.
           </p>
         </div>
         <div class="mt-4 sm:mt-0 flex flex-wrap gap-3">
-          <a href="/study-abroad/" class="btn-outline">
+          <a href="/study-abroad/" class="btn-outline text-xs">
             <span>Explore All 35+ Destinations</span>
           </a>
         </div>
       </div>
 
-      <!-- 6 Featured Countries Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch mb-10">
-        {featuredCountries.map((country) => (
+      <!-- 3 Priority Destinations Grid (Equal 3-column row) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch mb-8">
+        {priorityCountries.map((country) => (
           <CountryCard country={country} />
         ))}
       </div>
 
       <!-- University Directory Shortcut Banner -->
-      <div class="bg-brand-bg rounded-2xl p-6 sm:p-8 border border-brand-border flex flex-col md:flex-row items-center justify-between gap-6 text-left">
+      <div class="bg-brand-bg rounded-2xl p-6 sm:p-7 border border-brand-border flex flex-col md:flex-row items-center justify-between gap-5 text-left">
         <div class="space-y-1">
-          <h3 class="text-lg sm:text-xl font-bold text-brand-navy">
+          <h3 class="text-base sm:text-lg font-bold text-brand-navy">
             Looking for a specific university?
           </h3>
           <p class="text-xs sm:text-sm text-brand-muted max-w-xl">
@@ -216,7 +216,7 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
           </p>
         </div>
         <div class="flex items-center gap-3 w-full md:w-auto shrink-0">
-          <a href="/universities/" class="btn-primary w-full md:w-auto text-center text-xs py-3 px-6">
+          <a href="/universities/" class="btn-primary w-full md:w-auto text-center text-xs py-2.5 px-5">
             <span>Find Universities</span>
             <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -230,8 +230,8 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
   <!-- ========================================================================= -->
   <!-- SECTION 4: ABOUT VISA CONVENTION -->
   <!-- ========================================================================= -->
-  <section class="py-14 sm:py-18 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+  <section class="py-12 sm:py-16 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
       <div class="lg:col-span-7 space-y-4 text-left">
         <span class="badge-pill">About Visa Convention</span>
         <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight text-balance">
@@ -254,7 +254,7 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
       </div>
 
       <div class="lg:col-span-5">
-        <div class="bg-brand-bg rounded-3xl p-7 border border-brand-border space-y-4 text-left">
+        <div class="bg-brand-bg rounded-3xl p-6 sm:p-7 border border-brand-border space-y-4 text-left">
           <h3 class="text-base font-bold text-brand-navy">Consultation Center</h3>
           <p class="text-xs text-brand-muted leading-relaxed font-normal">
             {siteConfig.officeAddress}
@@ -277,7 +277,7 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
   <!-- ========================================================================= -->
   <!-- SECTION 5: THREE-STEP GUIDANCE PROCESS -->
   <!-- ========================================================================= -->
-  <section class="py-14 sm:py-18 bg-white border-y border-brand-border">
+  <section class="py-12 sm:py-16 bg-white border-y border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
       <SectionHeading
         title="Our Simple Process"
@@ -286,12 +286,12 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
         <!-- Step 1 -->
-        <div class="card-premium p-8 text-left relative group flex flex-col justify-between h-full">
+        <div class="card-premium p-7 sm:p-8 text-left relative group flex flex-col justify-between h-full">
           <div>
             <div class="w-10 h-10 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-base mb-5">
               1
             </div>
-            <h3 class="text-lg font-bold text-brand-navy mb-2.5 leading-snug">Profile Evaluation & Course Shortlisting</h3>
+            <h3 class="text-lg font-bold text-brand-navy mb-2.5 leading-snug">Profile Evaluation & Options</h3>
             <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
               We review your academic background, test scores, and career goals to identify matching courses and destination countries.
             </p>
@@ -299,12 +299,12 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
         </div>
 
         <!-- Step 2 -->
-        <div class="card-premium p-8 text-left relative group flex flex-col justify-between h-full">
+        <div class="card-premium p-7 sm:p-8 text-left relative group flex flex-col justify-between h-full">
           <div>
             <div class="w-10 h-10 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-base mb-5">
               2
             </div>
-            <h3 class="text-lg font-bold text-brand-navy mb-2.5 leading-snug">Documentation & University Applications</h3>
+            <h3 class="text-lg font-bold text-brand-navy mb-2.5 leading-snug">Documentation & Applications</h3>
             <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
               We help organize your Statement of Purpose, coordinate university submissions, and track conditional or unconditional offers.
             </p>
@@ -312,7 +312,7 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
         </div>
 
         <!-- Step 3 -->
-        <div class="card-premium p-8 text-left relative group flex flex-col justify-between h-full">
+        <div class="card-premium p-7 sm:p-8 text-left relative group flex flex-col justify-between h-full">
           <div>
             <div class="w-10 h-10 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-base mb-5">
               3
@@ -328,63 +328,9 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 6: CLIENT EXPERIENCES (AUTHENTIC ANONYMIZED OUTCOMES) -->
+  <!-- SECTION 6: FINAL CONSULTATION CTA -->
   <!-- ========================================================================= -->
-  <section class="py-14 sm:py-18 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
-      <div class="text-left">
-        <span class="badge-pill mb-3">Client Experiences</span>
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight text-balance">
-          Recent Candidate Outcomes
-        </h2>
-        <p class="mt-2 text-sm text-brand-muted max-w-[62ch]">
-          Genuine candidate experiences processed through our Hanumangarh counseling center.
-        </p>
-      </div>
-      <a href="/success-stories/" class="mt-4 sm:mt-0 text-xs font-bold text-brand-navy hover:text-brand-red transition-colors self-start sm:self-auto">
-        <span>View All Stories →</span>
-      </a>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-      <!-- Story 1 -->
-      <div class="card-premium p-7 text-left flex flex-col justify-between h-full">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between text-xs">
-            <span class="font-bold text-brand-navy">Candidate: M. S.</span>
-            <span class="text-brand-blue font-semibold">Canada • UBC</span>
-          </div>
-          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal italic">
-            "What impressed my family was their honesty about immigration policies. When others made empty promises, Visa Convention explained the actual Post-Graduation Work Permit rules and financial criteria."
-          </p>
-        </div>
-        <div class="pt-4 border-t border-brand-border/70 text-3xs text-brand-muted mt-4">
-          Outcome: Canada Study Permit (SDS Stream) • Sovereign consular discretion
-        </div>
-      </div>
-
-      <!-- Story 2 -->
-      <div class="card-premium p-7 text-left flex flex-col justify-between h-full">
-        <div class="space-y-3">
-          <div class="flex items-center justify-between text-xs">
-            <span class="font-bold text-brand-navy">Candidate: K. S.</span>
-            <span class="text-brand-blue font-semibold">UK • University of Manchester</span>
-          </div>
-          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal italic">
-            "I had study gaps that other operators told me to hide with fake certificates. Visa Convention strictly refused any fake documentation and drafted an honest SOP explaining my prep period. My visa was granted smoothly."
-          </p>
-        </div>
-        <div class="pt-4 border-t border-brand-border/70 text-3xs text-brand-muted mt-4">
-          Outcome: UK Student Visa • Sovereign consular discretion
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 7: FINAL CONSULTATION CTA -->
-  <!-- ========================================================================= -->
-  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     <ConsultationCTA
       title="Ready to Plan Your Next Step?"
       subtitle="Speak directly with our counseling team in Hanumangarh or submit an initial assessment request online."
