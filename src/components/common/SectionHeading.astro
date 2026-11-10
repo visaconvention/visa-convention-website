@@ -5,6 +5,7 @@ interface Props {
   description?: string;
   align?: 'left' | 'center';
   class?: string;
+  as?: 'h1' | 'h2' | 'h3';
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   description,
   align = 'center',
   class: className = '',
+  as: HeadingTag = 'h2',
 } = Astro.props;
 
 const alignmentClasses = align === 'center' ? 'text-center mx-auto' : 'text-left';
@@ -24,9 +26,9 @@ const alignmentClasses = align === 'center' ? 'text-center mx-auto' : 'text-left
       {badge}
     </span>
   )}
-  <h2 class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight">
+  <HeadingTag class="text-3xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight">
     {title}
-  </h2>
+  </HeadingTag>
   {description && (
     <p class="mt-4 text-base sm:text-lg text-brand-muted leading-relaxed">
       {description}

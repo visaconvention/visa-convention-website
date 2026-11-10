@@ -1,5 +1,6 @@
 ---
 import type { BreadcrumbItem } from '../../types';
+import { getBreadcrumbSchema } from '../../utils/seo';
 
 interface Props {
   items: BreadcrumbItem[];
@@ -7,7 +8,13 @@ interface Props {
 }
 
 const { items, class: className = '' } = Astro.props;
+
+// Generate Schema.org BreadcrumbList JSON-LD
+const breadcrumbSchema = getBreadcrumbSchema(items);
 ---
+
+<!-- Schema.org BreadcrumbList Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
 <nav aria-label="Breadcrumb" class={`py-4 text-sm ${className}`}>
   <ol class="flex flex-wrap items-center gap-2 text-brand-muted">

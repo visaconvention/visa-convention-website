@@ -17,12 +17,20 @@ interface Props {
 const {
   title = `${siteConfig.name} — Official Global Visa & Study Abroad Consultancy`,
   description = siteConfig.shortDescription,
-  canonicalUrl = Astro.url.href,
+  canonicalUrl,
   ogImage = '/assets/brand/og-image.jpg',
   schema,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
+const cleanCanonical = canonicalUrl 
+  ? canonicalUrl.split('?')[0] 
+  : `${siteConfig.domain.replace(/\/$/, '')}${currentPath.endsWith('/') ? currentPath : currentPath + '/'}`;
+
+const fullOgImage = ogImage.startsWith('http') 
+  ? ogImage 
+  : `${siteConfig.domain.replace(/\/$/, '')}${ogImage.startsWith('/') ? ogImage : '/' + ogImage}`;
+
 const localBusinessSchema = getLocalBusinessSchema();
 ---
 
@@ -33,12 +41,14 @@ const localBusinessSchema = getLocalBusinessSchema();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#102A53" />
+    <meta name="robots" content="index, follow" />
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonicalUrl} />
+    <link rel="canonical" href={cleanCanonical} />
 
     <!-- Google Fonts Preconnect & Font Loading (Plus Jakarta Sans & JetBrains Mono) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -47,18 +57,21 @@ const localBusinessSchema = getLocalBusinessSchema();
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:url" content={cleanCanonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={fullOgImage} />
     <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="en_GB" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:url" content={cleanCanonical} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={ogImage} />
+    <meta property="twitter:image" content={fullOgImage} />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />

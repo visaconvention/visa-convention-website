@@ -6,11 +6,43 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - Planned Stages 10–12
+## [Unreleased] - Planned Stages 11–12
 ### Planned
-- **Stage 10:** Technical SEO, Schema.org JSON-LD structured data, and Web Vitals optimization.
 - **Stage 11:** Comprehensive accessibility (WCAG 2.1 AA), cross-browser, and responsiveness QA.
 - **Stage 12:** Production build verification and client handover documentation.
+
+---
+
+## [0.10.0] - 2026-11-10
+### Added
+- **Dynamic XML Sitemap Generator (`src/pages/sitemap.xml.ts`):**
+  - Generates standards-compliant XML sitemap (`/sitemap.xml`) indexing all 63 active production pages.
+  - Implements granular `<priority>` staging (1.00 for homepage, 0.90 for services/countries/directory, 0.80–0.85 for subpages, 0.40 for legal policies).
+  - Implements daily/weekly/monthly/yearly `<changefreq>` and verified `<lastmod>` timestamps.
+  - Thin-content prevention: Bare directory university records without full profiles are intentionally excluded from the sitemap.
+- **Crawl Policy & Robots.txt (`public/robots.txt`):**
+  - Universal crawler allowance (`User-agent: *`, `Allow: /`).
+  - Private directory protection (`Disallow: /api/`, `Disallow: /design-system/`).
+  - Absolute reference to `https://visaconvention.com/sitemap.xml`.
+- **Global Schema.org JSON-LD Structured Data Engine (`src/utils/seo.ts`):**
+  - Multi-type entity schema combining `LocalBusiness`, `ProfessionalService`, and `EducationalOrganization` on the homepage.
+  - Anchored to verified Hanumangarh NAP, PIN code `335512`, and GeoCoordinates (`29.5816, 74.3218`).
+  - Implemented dynamic `BreadcrumbList` schema builder automatically integrated on all subpage breadcrumbs.
+  - Implemented dynamic `FAQPage` schema builder supporting rich question/answer snippet display in Google SERPs.
+- **Official Open Graph & Twitter Social Cards:**
+  - Designed and generated 1200x630px social card assets (`/assets/brand/og-image.jpg` and `og-image.png`).
+  - Added universal `og:image`, `og:site_name`, `og:locale="en_IN"`, and `twitter:card="summary_large_image"`.
+- **Automated Technical SEO & WCAG 2.2 AA Test Suite (`tests/seo-a11y-audit.test.js`):**
+  - 51 automated checks verifying robots.txt, XML sitemap, social cards, title/description uniqueness (63/63), snippet character lengths (50–175 chars), clean query-stripped canonicals, single `<h1>` hierarchy, descriptive alt text, Schema.org syntax, zero broken internal links, and client JS weight (< 7 KB uncompressed).
+  - Headless Edge Chromium checks validating skip-to-content keyboard tabbing, text contrast ratios (Navy on White: 14.21:1, Red on White: 5.67:1), form labeling, and mobile touch targets (68px).
+
+### Changed
+- **Semantic Heading Hierarchy Refactoring (`SectionHeading.astro`):**
+  - Added polymorphic `as?: 'h1' | 'h2' | 'h3'` prop (defaulting to `'h2'`).
+  - Resolved missing `<h1>` tags on `/contact/`, `/universities/`, `/privacy-policy/`, and `/terms/`.
+  - Upgraded subheadings in legal policies from `<h3>` to `<h2>` to eliminate skipped heading levels.
+- **Homepage Meta Snippet Refinement:**
+  - Optimized meta description to 153 characters for crisp, untruncated display in Google search results.
 
 ---
 

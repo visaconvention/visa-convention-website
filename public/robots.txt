@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /design-system/
+
+# Sitemaps
+Sitemap: https://visaconvention.com/sitemap.xml
