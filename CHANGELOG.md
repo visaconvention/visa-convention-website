@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.6.0] - 2026-11-10 — Sitewide Top Utility Bar Removal & Clean Header Transition
+### Removed
+- **Dark Navy Top Utility Bar (`src/components/layout/Header.astro`):**
+  - Completely removed the dark navy horizontal information bar from every page across the entire website.
+  - Removed all components of the utility bar: Hanumangarh location badge, service categories list, business hours, and duplicate "Contact Office / Book Consultation" links.
+  - Eliminated the bar at the component template level (rather than hiding with CSS), preventing unnecessary DOM nodes and paint overhead.
+- **Hero Eyebrow Label (`src/components/home/HeroSection.astro`):**
+  - Removed promotional eyebrow label and pill badge (`Based in Hanumangarh, Rajasthan • Transparent International Advisory`) from the homepage hero.
+  - Re-verified that the oversized "Verified Office" card on the right remains completely removed.
+
+### Changed
+- **Sticky Header Alignment & Spacing:**
+  - Main white navigation header (`<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-border">`) is now the immediate first visible element at the top of every page sitewide.
+  - Maintained exact 80px (`h-20`) navigation bar height housing the brand logo motif, Study Abroad mega-menu dropdown, Visa Services dropdown, Flight Booking link, About dropdown, Contact link, red Book Consultation CTA button, and responsive mobile hamburger trigger.
+  - Adjusted homepage hero top padding (`pt-10 sm:pt-14`) so content begins directly underneath the clean white header with zero leftover whitespace, gaps, or layout shift.
+- **Anchor-Link Scrolling & Offsets (`src/styles/global.css`):**
+  - Configured `scroll-padding-top: 5rem;` on `html` so that deep anchor links (such as `#services`, `#enquiry`, `#process`, etc.) cleanly offset to leave the 80px sticky header unobstructed.
+
+### Verified & Retained
+- **Integrity of Core Information:**
+  - Full official contact details, physical office street address, telephone number, email, and business operating hours (Mon – Sat: 9:30 AM – 6:30 PM IST) remain completely intact on the `/contact/` and `/about/` pages and in the footer.
+- **Responsive Navigation:**
+  - Desktop, tablet (1024px/768px), and mobile (320px–430px) screen layouts verified with zero horizontal overflow (`scrollWidth <= viewportWidth`).
+- **Automated Verification:**
+  - All 6 automated test suites passed (223/223 tests passing).
+  - Clean static build: 64 static HTML pages compiled in 5.2s.
+
+---
+
 ## [1.5.0] - 2026-11-10 — Website Cleanup & Streamlined Redesign
 ### Changed
 - **Hero Section Streamlining (`HeroSection.astro`):**
