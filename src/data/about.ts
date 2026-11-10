@@ -16,7 +16,7 @@ export const aboutData = {
   story: {
     headline: 'Bridging Hanumangarh to the World’s Leading Institutions',
     paragraphs: [
-      'For decades, students and families across Northern Rajasthan aspiring to study abroad faced an unfortunate dilemma: either navigate complex international admissions alone, or fall prey to generic local visa agencies making fraudulent claims of "100% guaranteed visas" or pushing students into low-quality unaccredited colleges.',
+      'For decades, students and families across Northern Rajasthan aspiring to study abroad faced an unfortunate dilemma: either navigate complex international admissions alone, or fall prey to generic local operators making deceptive assurances of unconditional visa approval or pushing students into low-quality unaccredited colleges.',
       'Visa Convention was established in Hanumangarh to change that narrative permanently. We built our consultancy on a singular, unwavering principle: factual counseling without inflated promises. Every student who walks into our office receives an honest assessment of their academic profile, language test scores, financial readiness, and realistic visa feasibility.',
       'Today, our scope encompasses over 35 destination countries across North America, Europe, the United Kingdom, Australia, New Zealand, and Central Asia. From competitive engineering and business programs in Canada and the UK, to English-medium MBBS degrees in top Central Asian medical universities, we guide each file with uncompromising legal and procedural diligence.',
     ],

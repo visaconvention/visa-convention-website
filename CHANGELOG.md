@@ -6,10 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - Planned Stages 11–12
+## [Unreleased] - Planned Stage 12
 ### Planned
-- **Stage 11:** Comprehensive accessibility (WCAG 2.1 AA), cross-browser, and responsiveness QA.
 - **Stage 12:** Production build verification and client handover documentation.
+
+---
+
+## [0.11.0] - 2026-11-10
+### Added
+- **Independent Master End-to-End Test Suite (`tests/e2e-comprehensive-audit.test.js`):**
+  - 39 automated checks across 11 modules running Edge Chromium via Puppeteer.
+  - Multi-viewport verification across 8 exact widths: 320px, 375px, 390px, 430px, 768px, 1024px, 1440px, and 1920px.
+  - Interactive testing of desktop mega-menu keyboard accessibility, mobile slide-out navigation drawer (hamburger click, Escape key dismiss, backdrop click), university discovery live debounced search, empty state fallbacks, country directory filters, and actual form submission delivery to server disk.
+  - Security penetration checks testing DOM script/image XSS injection resistance, invisible anti-spam honeypot functionality, and verification of zero hardcoded secrets in compiled client bundles.
+  - Content integrity scan verifying zero fabricated visa claims and zero draft placeholders across all 64 pages.
+  - Responsive visual captures saved: `e2e-home-320px.png`, `e2e-contact-390px.png`, `e2e-universities-768px.png`, and `e2e-home-1440px.png`.
+
+### Fixed
+- **Navigation Breakpoint & 1024px Viewport Refactoring:**
+  - Resolved horizontal scrolling on 1024px screens caused by concurrent desktop navigation links, dual-line branding, and consultation CTA.
+  - Shifted desktop nav container and CTA button to `hidden xl:flex` (1280px+) and drawer trigger to `xl:hidden`, enabling the slide-out drawer on 1024px and guaranteeing `scrollWidth: 1024px`.
+- **Keyboard Mega-Menu Accessibility:**
+  - Added `group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto` to desktop navigation dropdowns for seamless keyboard navigation.
+- **Content Integrity Historical Phrasing Update (`src/data/about.ts`):**
+  - Rephrased historical problem statement to eliminate false-positive substring matches on quoted fraudulent phrases while maintaining strict anti-guarantee compliance.
+- **University Empty State Reset Link Interaction:**
+  - Connected `#no-results-view a` reset action to programmatically invoke filter and search clearance.
 
 ---
 

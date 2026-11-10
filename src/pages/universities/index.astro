@@ -347,6 +347,12 @@ const totalCountriesCount = countriesWithCounts.length;
       }
     });
 
+    const emptyResetLink = noResults?.querySelector('a');
+    emptyResetLink?.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (resetBtn) resetBtn.click();
+    });
+
     resetBtn?.addEventListener('click', () => {
       if (searchInput) searchInput.value = '';
       if (countryFilter) countryFilter.value = 'all';

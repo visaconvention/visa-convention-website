@@ -15,7 +15,7 @@ function isActive(href: string) {
 }
 ---
 
-<nav aria-label="Main Navigation" class="hidden lg:flex items-center gap-1 xl:gap-2">
+<nav aria-label="Main Navigation" class="hidden xl:flex items-center gap-1 xl:gap-2">
   {siteConfig.nav.map((item) => {
     const hasChildren = item.children && item.children.length > 0;
     const isStudyAbroad = item.href === '/study-abroad/';
@@ -41,7 +41,7 @@ function isActive(href: string) {
           </button>
 
           <!-- Refined Mega-Menu Dropdown -->
-          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[560px] opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[560px] opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto transition-all duration-200 z-50">
             <div class="bg-white rounded-2xl shadow-2xl border border-brand-border p-6 grid grid-cols-2 gap-3 ring-1 ring-black/5">
               <div class="col-span-2 pb-3 mb-1 border-b border-brand-border flex items-center justify-between">
                 <div>
@@ -112,7 +112,7 @@ function isActive(href: string) {
           </button>
 
           <!-- Compact Destinations Dropdown (Organized by Featured + All Countries Link) -->
-          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[480px] opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[480px] opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto transition-all duration-200 z-50">
             <div class="bg-white rounded-2xl shadow-2xl border border-brand-border p-6 ring-1 ring-black/5">
               <div class="pb-3 mb-3 border-b border-brand-border flex items-center justify-between">
                 <div>
