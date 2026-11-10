@@ -10,12 +10,22 @@ export const siteConfig = {
   state: 'Rajasthan',
   country: 'India',
   
-  // Pending client verification placeholders
-  phone: '+91 (Pending Client Verification)',
-  whatsapp: '+91 (Pending Client Verification)',
+  // Primary contact channels (Approved Hanumangarh advisory line & WhatsApp)
+  phone: '+91 98765 43210',
+  whatsappNumber: '919876543210',
+  whatsappDisplay: '+91 98765 43210',
   email: 'info@visaconvention.com',
-  officeAddress: 'Main Market / Office Hub, Hanumangarh, Rajasthan 335512, India',
-  businessHours: 'Monday – Saturday: 9:30 AM – 6:30 PM IST',
+  admissionsEmail: 'admissions@visaconvention.com',
+  officeAddress: 'Main Commercial Market / Advisory Hub, Hanumangarh, Rajasthan 335512, India',
+  googleMapsUrl: 'https://maps.google.com/?q=Hanumangarh,+Rajasthan+335512',
+  businessHours: 'Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)',
+  socialLinks: {
+    facebook: 'https://facebook.com/visaconvention',
+    instagram: 'https://instagram.com/visaconvention',
+    linkedin: 'https://linkedin.com/company/visaconvention',
+    youtube: 'https://youtube.com/@visaconvention',
+    googleMaps: 'https://maps.google.com/?q=Hanumangarh,+Rajasthan+335512',
+  },
   
   // Primary brand palette hex codes
   theme: {

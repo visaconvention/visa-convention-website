@@ -1,10 +1,11 @@
 ---
-import { servicesData } from '../../data/services';
 import { countriesData } from '../../data/countries';
+import { siteConfig } from '../../data/site-config';
 
 interface Props {
   selectedService?: string;
   selectedCountry?: string;
+  selectedUniversity?: string;
   title?: string;
   subtitle?: string;
   class?: string;
@@ -13,13 +14,26 @@ interface Props {
 const {
   selectedService = '',
   selectedCountry = '',
+  selectedUniversity = '',
   title = 'Request a Confidential Assessment',
   subtitle = 'Fill in your details and an advisor will evaluate your profile and contact you directly.',
   class: className = '',
 } = Astro.props;
+
+// Service options matching exact specification
+const serviceOptions = [
+  { id: 'study-visa', label: 'Study Visa' },
+  { id: 'mbbs', label: 'MBBS Abroad' },
+  { id: 'phd', label: 'PhD Abroad' },
+  { id: 'tourist-visa', label: 'Tourist / Visitor Visa' },
+  { id: 'work-visa', label: 'Work Visa Documentation' },
+  { id: 'flight-booking', label: 'Air Ticket / Flight Reservation' },
+  { id: 'additional-services', label: 'Additional Services (Forex / Insurance)' },
+  { id: 'business-partnership', label: 'Business Partnership (B2B)' },
+];
 ---
 
-<div class={`bg-white rounded-3xl p-7 sm:p-10 border border-brand-border shadow-card ${className}`}>
+<div class={`bg-white rounded-3xl p-7 sm:p-10 border border-brand-border shadow-card ${className}`} id="enquiry-card-container">
   <div class="mb-8">
     <span class="badge-pill mb-3">
       Advisory Evaluation
@@ -32,139 +46,317 @@ const {
     </p>
   </div>
 
+  <!-- Screen Reader Live Announcer for Accessibility -->
+  <div role="alert" aria-live="polite" class="sr-only" id="form-error-announcer"></div>
+
+  <!-- Submission Error Alert Banner (Shown when delivery fails) -->
+  <div id="enquiry-delivery-error" class="hidden mb-6 p-4 rounded-2xl bg-red-50 border border-red-200 text-xs text-red-900 leading-relaxed space-y-2">
+    <div class="flex items-center gap-2 font-bold text-red-800">
+      <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+      </svg>
+      <span id="delivery-error-headline">Inquiry Transmission Error</span>
+    </div>
+    <p id="delivery-error-message">
+      We could not deliver your assessment request. Please check your internet connection, or connect with our counselors directly via WhatsApp or Telephone.
+    </p>
+    <div class="pt-1 flex flex-wrap gap-2">
+      <a
+        id="error-fallback-whatsapp"
+        href={`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent('Hello Visa Convention, I was attempting to submit an enquiry on your website and would like counseling guidance.')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-600 text-white font-bold text-[11px] hover:bg-emerald-700"
+      >
+        <span>Message on WhatsApp</span>
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+      <a
+        href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`}
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-red-300 text-red-900 font-bold text-[11px] hover:bg-red-100"
+      >
+        <span>Call {siteConfig.phone}</span>
+      </a>
+    </div>
+  </div>
+
   <form id="visa-enquiry-form" class="space-y-5" method="POST" action="/api/enquiry" novalidate>
     <!-- Invisible Honeypot Field for Bot Spam Mitigation -->
     <div class="hidden" aria-hidden="true">
-      <label for="form-bot-trap">Leave this field blank</label>
+      <label for="form-bot-trap">Do not fill this field</label>
       <input type="text" id="form-bot-trap" name="website_url_check" tabindex="-1" autocomplete="off" />
     </div>
 
     <!-- Hidden timestamp field -->
     <input type="hidden" id="form-render-timestamp" name="render_timestamp" value="" />
 
-    <!-- Full Name -->
+    <!-- Service Selection (Always Visible at Top) -->
     <div>
-      <label for="form-full-name" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
-        Full Name <span class="text-brand-red">*</span>
+      <label for="form-service" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+        Interested Service <span class="text-brand-red">*</span>
       </label>
-      <input
-        type="text"
-        id="form-full-name"
-        name="full_name"
+      <select
+        id="form-service"
+        name="service_category"
         required
-        placeholder="e.g. Rahul Sharma"
-        class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
-      />
+        aria-required="true"
+        aria-invalid="false"
+        aria-describedby="form-service-error"
+        class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+      >
+        <option value="">Select a Service Category...</option>
+        {serviceOptions.map((s) => (
+          <option value={s.id} selected={s.id === selectedService}>
+            {s.label}
+          </option>
+        ))}
+      </select>
+      <p id="form-service-error" class="hidden text-xs text-brand-red font-medium mt-1 flex items-center gap-1">
+        <span>Please select a service category.</span>
+      </p>
     </div>
 
-    <!-- Phone & Email Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <!-- DYNAMIC SECTION 1: Standard Individual Candidate Fields -->
+    <div id="standard-candidate-fields" class="space-y-4">
+      <!-- Full Name -->
       <div>
-        <label for="form-phone" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
-          Phone / WhatsApp <span class="text-brand-red">*</span>
+        <label for="form-full-name" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Full Name <span class="text-brand-red">*</span>
         </label>
         <input
-          type="tel"
-          id="form-phone"
-          name="phone"
+          type="text"
+          id="form-full-name"
+          name="full_name"
           required
-          placeholder="e.g. +91 98765 43210"
+          aria-required="true"
+          aria-invalid="false"
+          aria-describedby="form-name-error"
+          placeholder="e.g. Rahul Sharma"
           class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
         />
+        <p id="form-name-error" class="hidden text-xs text-brand-red font-medium mt-1">
+          Please enter your full name.
+        </p>
       </div>
 
+      <!-- Phone & Email Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="form-phone" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+            Phone / WhatsApp Number <span class="text-brand-red">*</span>
+          </label>
+          <input
+            type="tel"
+            id="form-phone"
+            name="phone"
+            required
+            aria-required="true"
+            aria-invalid="false"
+            aria-describedby="form-phone-error"
+            placeholder="e.g. +91 98765 43210"
+            class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+          />
+          <p id="form-phone-error" class="hidden text-xs text-brand-red font-medium mt-1">
+            Please enter a valid phone number.
+          </p>
+        </div>
+
+        <div>
+          <label for="form-email" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+            Email Address <span class="text-brand-red">*</span>
+          </label>
+          <input
+            type="email"
+            id="form-email"
+            name="email"
+            required
+            aria-required="true"
+            aria-invalid="false"
+            aria-describedby="form-email-error"
+            placeholder="e.g. rahul@example.com"
+            class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+          />
+          <p id="form-email-error" class="hidden text-xs text-brand-red font-medium mt-1">
+            Please enter a valid email address.
+          </p>
+        </div>
+      </div>
+
+      <!-- Preferred Country & University of Interest Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="form-country" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+            Preferred Destination Country (Optional)
+          </label>
+          <select
+            id="form-country"
+            name="target_country"
+            class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+          >
+            <option value="">Select Country...</option>
+            {countriesData.map((c) => (
+              <option value={c.slug} selected={c.slug === selectedCountry}>
+                {c.name}
+              </option>
+            ))}
+            <option value="other">Other Global Destination</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="form-university" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+            University / College of Interest (Optional)
+          </label>
+          <input
+            type="text"
+            id="form-university"
+            name="target_university"
+            value={selectedUniversity}
+            placeholder="e.g. University of Toronto"
+            class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+          />
+        </div>
+      </div>
+
+      <!-- Message / Academic Background -->
       <div>
-        <label for="form-email" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
-          Email Address <span class="text-brand-red">*</span>
+        <label for="form-message" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Academic Background or Message (Optional)
         </label>
-        <input
-          type="email"
-          id="form-email"
-          name="email"
-          required
-          placeholder="e.g. rahul@example.com"
-          class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
-        />
+        <textarea
+          id="form-message"
+          name="notes"
+          rows="3"
+          placeholder="Mention your highest education, percentage, IELTS/PTE status, or questions..."
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all resize-y"
+        ></textarea>
       </div>
     </div>
 
-    <!-- Service Category & Target Destination -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div>
-        <label for="form-service" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
-          Service Category <span class="text-brand-red">*</span>
-        </label>
-        <select
-          id="form-service"
-          name="service_category"
-          required
-          class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
-        >
-          <option value="">Select a Service</option>
-          {servicesData.map((s) => (
-            <option value={s.slug} selected={s.slug === selectedService}>
-              {s.title}
-            </option>
-          ))}
-        </select>
+    <!-- DYNAMIC SECTION 2: Business Partnership Fields (Visible when Business Partnership is selected) -->
+    <div id="business-partnership-fields" class="hidden space-y-4 pt-1 border-t border-brand-border/60">
+      <div class="p-3.5 rounded-xl bg-blue-50 border border-blue-200 text-xs text-blue-900 leading-relaxed">
+        <strong>B2B Inquiry Mode:</strong> Please provide your organization details. Our Hanumangarh leadership team will review your proposal under mutual non-disclosure.
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="form-business-org" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+            Organization Name <span class="text-brand-red">*</span>
+          </label>
+          <input
+            type="text"
+            id="form-business-org"
+            name="business_org_name"
+            placeholder="e.g. Global Pathways Academy"
+            class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+          />
+          <p id="form-business-org-error" class="hidden text-xs text-brand-red font-medium mt-1">
+            Please enter your organization name.
+          </p>
+        </div>
+
+        <div>
+          <label for="form-business-contact" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+            Contact Person & Designation <span class="text-brand-red">*</span>
+          </label>
+          <input
+            type="text"
+            id="form-business-contact"
+            name="business_contact_name"
+            placeholder="e.g. Priya Verma (Director)"
+            class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+          />
+          <p id="form-business-contact-error" class="hidden text-xs text-brand-red font-medium mt-1">
+            Please enter contact person name.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="form-business-email" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+            Business Email <span class="text-brand-red">*</span>
+          </label>
+          <input
+            type="email"
+            id="form-business-email"
+            name="business_email"
+            placeholder="official@organization.com"
+            class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+          />
+          <p id="form-business-email-error" class="hidden text-xs text-brand-red font-medium mt-1">
+            Please enter valid business email.
+          </p>
+        </div>
+
+        <div>
+          <label for="form-business-phone" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+            Business Telephone / WhatsApp <span class="text-brand-red">*</span>
+          </label>
+          <input
+            type="tel"
+            id="form-business-phone"
+            name="business_phone"
+            placeholder="+91 98765 43210"
+            class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+          />
+          <p id="form-business-phone-error" class="hidden text-xs text-brand-red font-medium mt-1">
+            Please enter business phone number.
+          </p>
+        </div>
       </div>
 
       <div>
-        <label for="form-country" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
-          Target Country
+        <label for="form-business-scope" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Nature of Proposed Collaboration <span class="text-brand-red">*</span>
         </label>
-        <select
-          id="form-country"
-          name="target_country"
-          class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
-        >
-          <option value="">Select Country (Optional)</option>
-          {countriesData.map((c) => (
-            <option value={c.slug} selected={c.slug === selectedCountry}>
-              {c.name}
-            </option>
-          ))}
-          <option value="other">Other Global Destination</option>
-        </select>
+        <textarea
+          id="form-business-scope"
+          name="business_scope"
+          rows="3"
+          placeholder="Describe your student volume, regional presence, and desired partnership terms..."
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all resize-y"
+        ></textarea>
+        <p id="form-business-scope-error" class="hidden text-xs text-brand-red font-medium mt-1">
+          Please describe proposed collaboration nature.
+        </p>
       </div>
     </div>
 
-    <!-- Academic Background / Notes -->
-    <div>
-      <label for="form-message" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
-        Academic Background / Details (Optional)
-      </label>
-      <textarea
-        id="form-message"
-        name="notes"
-        rows="3"
-        placeholder="Highest qualification, percentage, or specific travel plans..."
-        class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all resize-none"
-      ></textarea>
-    </div>
-
-    <!-- Consent Checkbox -->
+    <!-- Mandatory Consent Checkbox -->
     <div class="flex items-start gap-3 pt-2">
       <input
         type="checkbox"
         id="form-consent"
         name="privacy_consent"
         required
-        class="mt-1 w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-gray-300"
+        aria-required="true"
+        aria-invalid="false"
+        aria-describedby="form-consent-error"
+        class="mt-1 w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-gray-300 cursor-pointer"
       />
-      <label for="form-consent" class="text-xs text-brand-muted leading-relaxed">
-        I agree to be contacted by Visa Convention regarding my inquiry. My details will be handled confidentially under the Privacy Policy.
-      </label>
+      <div>
+        <label for="form-consent" class="text-xs text-brand-muted leading-relaxed cursor-pointer select-none">
+          I consent to being contacted by Visa Convention regarding my inquiry. My details will be handled confidentially under the Privacy Policy. <span class="text-brand-red">*</span>
+        </label>
+        <p id="form-consent-error" class="hidden text-xs text-brand-red font-medium mt-0.5">
+          Consent is required to proceed.
+        </p>
+      </div>
     </div>
 
-    <!-- Submit Button & Disclaimer -->
+    <!-- Submit Action -->
     <div class="pt-2">
       <button
         type="submit"
-        class="btn-primary w-full text-base"
+        id="enquiry-submit-btn"
+        class="btn-primary w-full text-base py-4 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
       >
-        <span>Submit Assessment Request</span>
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <span id="submit-btn-text">Submit Assessment Request</span>
+        <svg id="submit-btn-arrow" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
       </button>
@@ -173,15 +365,302 @@ const {
       </p>
     </div>
   </form>
+
+  <!-- Success Confirmation View -->
+  <div id="enquiry-success-view" class="hidden p-8 rounded-3xl bg-emerald-50 border border-emerald-200 text-center space-y-4">
+    <div class="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
+      <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    <span class="inline-block px-3 py-1 text-[11px] font-bold uppercase tracking-wider rounded-md bg-emerald-200 text-emerald-900" id="success-ref-badge">
+      Reference ID: VC-2026-PENDING
+    </span>
+    <h4 class="text-2xl font-bold text-emerald-950">
+      Assessment Request Delivered
+    </h4>
+    <p class="text-xs sm:text-sm text-emerald-900 max-w-md mx-auto leading-relaxed" id="success-summary-text">
+      Thank you! Your assessment request has reached our Hanumangarh advisory team. A specialized counselor will evaluate your profile and contact you within 24 business hours.
+    </p>
+
+    <div class="pt-2 border-t border-emerald-200 max-w-sm mx-auto flex items-center justify-center gap-4 text-xs font-semibold text-emerald-950">
+      <button
+        type="button"
+        id="submit-another-btn"
+        class="text-brand-blue hover:underline cursor-pointer py-1"
+      >
+        ← Submit Another Request
+      </button>
+      <span>•</span>
+      <a
+        href={`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent('Hello Visa Convention, I just submitted an inquiry on your website and would like to confirm my consultation.')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-emerald-800 hover:text-emerald-950 hover:underline py-1 flex items-center gap-1"
+      >
+        <span>Confirm on WhatsApp</span>
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    </div>
+  </div>
 </div>
 
 <script>
-  function setupFormTimestamp() {
+  import { trackEnquirySubmission, trackServiceSelect, trackCountrySelect, trackUniversitySelect } from '../../utils/analytics';
+
+  function setupEnquiryForm() {
+    const form = document.getElementById('visa-enquiry-form') as HTMLFormElement | null;
+    const serviceSelect = document.getElementById('form-service') as HTMLSelectElement | null;
+    const countrySelect = document.getElementById('form-country') as HTMLSelectElement | null;
+    const universityInput = document.getElementById('form-university') as HTMLInputElement | null;
+    const standardFields = document.getElementById('standard-candidate-fields');
+    const businessFields = document.getElementById('business-partnership-fields');
     const timestampField = document.getElementById('form-render-timestamp') as HTMLInputElement | null;
+    const submitBtn = document.getElementById('enquiry-submit-btn') as HTMLButtonElement | null;
+    const submitText = document.getElementById('submit-btn-text');
+    const errorBanner = document.getElementById('enquiry-delivery-error');
+    const errorMessage = document.getElementById('delivery-error-message');
+    const successView = document.getElementById('enquiry-success-view');
+    const successBadge = document.getElementById('success-ref-badge');
+    const submitAnotherBtn = document.getElementById('submit-another-btn');
+    const announcer = document.getElementById('form-error-announcer');
+
+    if (!form) return;
+
+    // Stamp load timestamp
     if (timestampField) {
       timestampField.value = Date.now().toString();
     }
+
+    // Initialize from URL parameters if present
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramService = urlParams.get('service');
+    const paramCountry = urlParams.get('country');
+    const paramUni = urlParams.get('university') || urlParams.get('institution');
+
+    if (paramService && serviceSelect) {
+      serviceSelect.value = paramService;
+    }
+    if (paramCountry && countrySelect) {
+      countrySelect.value = paramCountry;
+    }
+    if (paramUni && universityInput) {
+      universityInput.value = paramUni;
+    }
+
+    // Toggle business vs standard candidate fields
+    function syncServiceMode() {
+      const isBusiness = serviceSelect?.value === 'business-partnership';
+      if (businessFields && standardFields) {
+        businessFields.classList.toggle('hidden', !isBusiness);
+        standardFields.classList.toggle('hidden', isBusiness);
+      }
+      if (serviceSelect?.value) {
+        trackServiceSelect(serviceSelect.value);
+      }
+    }
+
+    serviceSelect?.addEventListener('change', syncServiceMode);
+    countrySelect?.addEventListener('change', () => {
+      if (countrySelect.value) trackCountrySelect(countrySelect.value);
+    });
+    universityInput?.addEventListener('blur', () => {
+      if (universityInput.value.trim()) trackUniversitySelect(universityInput.value.trim());
+    });
+
+    // Run initial sync
+    syncServiceMode();
+
+    // Reset another request
+    submitAnotherBtn?.addEventListener('click', () => {
+      form.reset();
+      form.classList.remove('hidden');
+      if (successView) successView.classList.add('hidden');
+      if (errorBanner) errorBanner.classList.add('hidden');
+      if (timestampField) timestampField.value = Date.now().toString();
+      syncServiceMode();
+    });
+
+    // Form submission controller
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (errorBanner) errorBanner.classList.add('hidden');
+
+      const isBusiness = serviceSelect?.value === 'business-partnership';
+      let hasErrors = false;
+
+      // Helper to set field error state
+      function setFieldError(fieldId: string, errorId: string, isError: boolean) {
+        const input = document.getElementById(fieldId) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+        const errEl = document.getElementById(errorId);
+        if (input) {
+          input.setAttribute('aria-invalid', isError ? 'true' : 'false');
+          if (isError) {
+            input.classList.add('border-red-400', 'bg-red-50/30');
+          } else {
+            input.classList.remove('border-red-400', 'bg-red-50/30');
+          }
+        }
+        if (errEl) {
+          errEl.classList.toggle('hidden', !isError);
+        }
+        if (isError) hasErrors = true;
+      }
+
+      // 1. Service check
+      setFieldError('form-service', 'form-service-error', !serviceSelect?.value);
+
+      // 2. Conditional field checks
+      let payload: Record<string, any> = {};
+
+      if (isBusiness) {
+        const org = (document.getElementById('form-business-org') as HTMLInputElement)?.value.trim();
+        const contact = (document.getElementById('form-business-contact') as HTMLInputElement)?.value.trim();
+        const email = (document.getElementById('form-business-email') as HTMLInputElement)?.value.trim();
+        const phone = (document.getElementById('form-business-phone') as HTMLInputElement)?.value.trim();
+        const scope = (document.getElementById('form-business-scope') as HTMLTextAreaElement)?.value.trim();
+
+        setFieldError('form-business-org', 'form-business-org-error', !org);
+        setFieldError('form-business-contact', 'form-business-contact-error', !contact);
+        setFieldError('form-business-email', 'form-business-email-error', !email || !email.includes('@'));
+        setFieldError('form-business-phone', 'form-business-phone-error', !phone || phone.length < 8);
+        setFieldError('form-business-scope', 'form-business-scope-error', !scope);
+
+        payload = {
+          service: 'business-partnership',
+          submissionType: 'business',
+          organizationName: org,
+          contactPerson: contact,
+          email,
+          phone,
+          proposedScope: scope,
+        };
+      } else {
+        const name = (document.getElementById('form-full-name') as HTMLInputElement)?.value.trim();
+        const phone = (document.getElementById('form-phone') as HTMLInputElement)?.value.trim();
+        const email = (document.getElementById('form-email') as HTMLInputElement)?.value.trim();
+        const country = (document.getElementById('form-country') as HTMLSelectElement)?.value;
+        const university = (document.getElementById('form-university') as HTMLInputElement)?.value.trim();
+        const notes = (document.getElementById('form-message') as HTMLTextAreaElement)?.value.trim();
+
+        setFieldError('form-full-name', 'form-name-error', !name);
+        setFieldError('form-phone', 'form-phone-error', !phone || phone.length < 8);
+        setFieldError('form-email', 'form-email-error', !email || !email.includes('@'));
+
+        payload = {
+          service: serviceSelect?.value || 'general',
+          submissionType: 'student',
+          fullName: name,
+          phone,
+          email,
+          targetCountry: country || undefined,
+          targetUniversity: university || undefined,
+          notes: notes || undefined,
+        };
+      }
+
+      // 3. Consent check
+      const consent = (document.getElementById('form-consent') as HTMLInputElement)?.checked;
+      setFieldError('form-consent', 'form-consent-error', !consent);
+
+      if (hasErrors) {
+        if (announcer) {
+          announcer.textContent = 'Please correct the highlighted errors before submitting.';
+        }
+        return;
+      }
+
+      // 4. Honeypot check (Bot protection)
+      const botCheck = (document.getElementById('form-bot-trap') as HTMLInputElement)?.value;
+      if (botCheck) {
+        console.warn('Bot submission blocked.');
+        return;
+      }
+
+      // 5. Rate limit check (Max 3 per 10 mins per session)
+      const rateLimitKey = 'vc_enquiry_count';
+      const currentCount = parseInt(sessionStorage.getItem(rateLimitKey) || '0', 10);
+      if (currentCount >= 5) {
+        if (errorBanner && errorMessage) {
+          errorBanner.classList.remove('hidden');
+          errorMessage.textContent = 'Submission limit reached for this session. Please call or message our Hanumangarh office directly.';
+        }
+        return;
+      }
+
+      // 6. Disable button & show spinner
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        if (submitText) submitText.textContent = 'Transmitting to Advisory Desk...';
+      }
+
+      try {
+        const renderTime = parseInt(timestampField?.value || '0', 10);
+        const elapsedMs = Date.now() - renderTime;
+
+        const response = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            ...payload,
+            elapsedMs,
+            submittedAt: new Date().toISOString(),
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Server returned HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+          throw new Error(data.message || 'Delivery rejected by server.');
+        }
+
+        // Increment rate limit count
+        sessionStorage.setItem(rateLimitKey, String(currentCount + 1));
+
+        // Track analytics
+        trackEnquirySubmission({
+          service: payload.service,
+          country: payload.targetCountry,
+          university: payload.targetUniversity,
+          submissionType: payload.submissionType,
+        });
+
+        // Show success
+        form.classList.add('hidden');
+        if (successView) {
+          successView.classList.remove('hidden');
+          if (successBadge) {
+            successBadge.textContent = `Reference ID: ${data.leadId || 'VC-' + Date.now().toString().slice(-6)}`;
+          }
+          successView.focus();
+        }
+      } catch (err: any) {
+        console.error('Submission delivery failure:', err);
+        // CRITICAL INTEGRITY: Do not claim success if delivery fails!
+        if (errorBanner && errorMessage) {
+          errorBanner.classList.remove('hidden');
+          errorMessage.textContent = `Unable to deliver submission (${err.message || 'Network/Server connection failed'}). Please connect with our Hanumangarh counseling desk directly via WhatsApp or Telephone.`;
+        }
+        if (announcer) {
+          announcer.textContent = 'Inquiry delivery failed. Please message on WhatsApp or call our office.';
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          if (submitText) submitText.textContent = 'Submit Assessment Request';
+        }
+      }
+    });
   }
-  setupFormTimestamp();
-  document.addEventListener('astro:page-load', setupFormTimestamp);
+
+  setupEnquiryForm();
+  document.addEventListener('astro:page-load', setupEnquiryForm);
 </script>

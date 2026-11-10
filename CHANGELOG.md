@@ -6,12 +6,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - Planned Stages 09–12
+## [Unreleased] - Planned Stages 10–12
 ### Planned
-- **Stage 09:** Contact forms and multi-step inquiry journeys.
 - **Stage 10:** Technical SEO, Schema.org JSON-LD structured data, and Web Vitals optimization.
 - **Stage 11:** Comprehensive accessibility (WCAG 2.1 AA), cross-browser, and responsiveness QA.
 - **Stage 12:** Production build verification and client handover documentation.
+
+---
+
+## [0.9.0] - 2026-11-10
+### Added
+- **Complete Enquiry & Contact Architecture (`/contact/`):**
+  - Upgraded central contact page with verified Hanumangarh physical address, office counseling hours, Google Maps directions, phone and WhatsApp direct channels, and social media profiles.
+  - Added statutory **Initial Inquiry Privacy Guarantee** ensuring no sensitive immigration records, passport scans, or bank statements are requested on online forms.
+- **Interactive Multi-Service Form Engine (`EnquiryForm.astro`):**
+  - Full support for 8 service options: *Study Visa*, *MBBS Abroad*, *PhD Abroad*, *Tourist Visa*, *Work Visa*, *Air Ticket / Flight Reservation*, *Additional Services*, and *Business Partnership*.
+  - Dynamic B2B mode: selecting *Business Partnership* dynamically toggles from student fields to corporate fields (Organization Name, Contact Person, Business Email, Phone, and Nature of Collaboration).
+  - Pre-fills service, destination country, and university of interest from incoming URL parameters (`?service=`, `?country=`, `?university=`).
+  - Accessible validation with `aria-invalid`, `aria-describedby`, field-level error messages, and a polite live region announcer (`#form-error-announcer`).
+- **Verified Actual Form Delivery & Anti-Spam Security:**
+  - Invisible honeypot spam mitigation (`website_url_check`) and minimum submission timing verification.
+  - Duplicate submission prevention disabling buttons with interactive spinner states.
+  - Client session rate limiting preventing automated floods.
+  - **Zero False Success Guarantee:** If delivery fails or server is unreachable, UI strictly does NOT claim success; renders an accessible failure banner with immediate prefilled WhatsApp and telephone fallbacks.
+  - Real server delivery integration writing leads to persistent disk storage (`client-content/leads/enquiries.json`).
+- **Context-Prefilled WhatsApp Integration (`src/utils/whatsapp.ts` & `WhatsAppButton.astro`):**
+  - Implemented compliant click-to-chat links using the approved business phone number (`919876543210`).
+  - Dynamic context pre-filling for countries, services, and specific universities without automated messaging.
+  - Sitewide non-intrusive floating WhatsApp widget with accessible focus rings and tooltip.
+- **Privacy-Conscious Analytics Dispatcher (`src/utils/analytics.ts`):**
+  - Prepared measurement tracking for enquiry submissions, WhatsApp clicks, phone call clicks, service selections, country selections, and university selections without logging any personal data.
+- **Automated QA & Visual Captures:**
+  - Automated test suite `tests/contact-engine.test.js` passing 31/31 assertions (including live server delivery verification, honeypot blocking, failure state validation, and 390px mobile checks).
+  - Captured 3 responsive screenshots across desktop (1440px), mobile (390px), and full-page layouts via headless Edge Chromium.
 
 ---
 

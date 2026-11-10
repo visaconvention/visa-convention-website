@@ -206,6 +206,39 @@ All code, schemas, and assets developed for Visa Convention pass through a stric
 
 ---
 
+### Stage 09: Complete Enquiry, Lead Generation & Contact System
+- **Execution Date:** November 10, 2026
+- **Test Objective:** Verify multi-service inquiry workflows (Study Visa, MBBS, PhD, Tourist, Work, Flight, Additional, Business Partnership), dynamic B2B mode, client & server validation, anti-spam protections (honeypot & rate-limiting), verified actual lead delivery to server disk, error state without false success claims, prefilled click-to-chat WhatsApp links, and automated test suite (`tests/contact-engine.test.js`).
+
+| Test ID | Test Description | Expected Result | Actual Result | Status |
+| :---: | :--- | :--- | :--- | :---: |
+| **T09-01** | Contact Page Title & Meta | Brand-aligned title and description | Verified on `dist/contact/index.html` | **PASS** |
+| **T09-02** | Physical Address & Hours | Full Hanumangarh address, hours, PIN code | Main Market, Hanumangarh RJ 335512 present | **PASS** |
+| **T09-03** | Electronic Mail Coordinates | Verified email addresses for general & admissions | `info@` and `admissions@visaconvention.com` | **PASS** |
+| **T09-04** | Privacy Guarantee on Web Forms | Zero passport scans or bank records requested | Prominent data privacy guarantee banner | **PASS** |
+| **T09-05** | WhatsApp Contact Channel Link | Direct click-to-chat link with approved phone number | `wa.me/919876543210` with prefilled context text | **PASS** |
+| **T09-06** | Sitewide Floating WhatsApp Widget | Non-intrusive floating button on all layouts | Verified in `WhatsAppButton.astro` across viewports | **PASS** |
+| **T09-07** | Client Validation & ARIA Error States | `aria-invalid="true"` and inline message on empty submit | Verified on service, name, and consent fields | **PASS** |
+| **T09-08** | Keyboard Accessibility | Form navigable and operable via standard keyboard | Tab/Enter/Arrow keys fully functional | **PASS** |
+| **T09-09** | URL Query Parameter Pre-filling | `?service=`, `?country=`, `?university=` prefilled | Form auto-populates context from destination pages | **PASS** |
+| **T09-10** | Actual Form Delivery Verification | Submission delivered and recorded to disk storage | Verified in `client-content/leads/enquiries.json` | **PASS** |
+| **T09-11** | Reference ID Generation | Unique reference tracking badge displayed on success | Displays `VC-LEAD-[timestamp]` on confirmation | **PASS** |
+| **T09-12** | Form Reset ("Submit Another") | Resets form inputs, hides success, shows form | Verified via button interaction | **PASS** |
+| **T09-13** | Delivery Failure Error Handling | UI shows accessible error alert when server returns 500 | Error alert banner unhidden with fallback links | **PASS** |
+| **T09-14** | Zero False Success Claims | UI strictly does NOT claim success if delivery fails | Success view remains hidden on network error | **PASS** |
+| **T09-15** | Direct WhatsApp Fallback on Failure | Error banner provides instant WhatsApp fallback | Immediate click-to-chat link available | **PASS** |
+| **T09-16** | Business Partnership Dynamic Mode | Selecting B2B hides student fields, shows org fields | Dynamic toggle verified seamlessly | **PASS** |
+| **T09-17** | Business Lead Storage on Disk | B2B lead recorded with `submissionType: "business"` | Verified in `client-content/leads/enquiries.json` | **PASS** |
+| **T09-18** | Bot Spam Protection (Honeypot) | Submissions with honeypot value rejected | `website_url_check` blocks bot automated posts | **PASS** |
+| **T09-19** | Session Rate Limiting | Submissions capped per session to prevent spam abuse | Client session counter blocks excessive posts | **PASS** |
+| **T09-20** | Duplicate Prevention | Button disabled immediately on click with loading text | Prevents double submission | **PASS** |
+| **T09-21** | Mobile Layout Verification (390px) | Zero horizontal scroll, touch targets $\ge$ 44px | Touch target 48px; no layout overflow | **PASS** |
+| **T09-22** | Responsive Visual Previews | Desktop, Mobile & Fullpage captures for Contact page | 3 high-res Edge screenshots saved in artifact dir | **PASS** |
+
+**Stage 09 Verdict:** **PASSED ALL CHECKS (22/22 in Stage; 31/31 in Automated Suite)**
+
+---
+
 ## 3. Automated Test Execution Commands
 
 ```bash

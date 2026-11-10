@@ -96,9 +96,9 @@ flowchart TD
 - **Status:** **COMPLETE / PRESENTED FOR REVIEW**
 
 ### Stage 09: Contact Forms & Lead Generation Journeys
-- **Objectives:** Build accessible, spam-protected inquiry forms for general contact, visa assessments, and flight reservation assistance.
-- **Deliverables:** `/contact/`, `EnquiryForm.astro`, honeypot spam traps, accessible form validation, WhatsApp direct connect floating widget.
-- **Status:** **PLANNED**
+- **Objectives:** Implement the complete enquiry and contact system with multi-channel routing, service-specific workflows (Study Visa, MBBS, PhD, Tourist, Work, Flight, Additional, Business Partnership), dynamic B2B mode, client & server validation, anti-spam rate limiting, verified actual form delivery, accessible error states, prefilled click-to-chat WhatsApp links, and privacy-conscious analytics.
+- **Deliverables:** Upgraded `/contact/` route, `EnquiryForm.astro`, `WhatsAppButton.astro` sitewide floating widget, `src/utils/whatsapp.ts`, `src/utils/analytics.ts`, server delivery storage (`client-content/leads/enquiries.json`), automated QA test suite `tests/contact-engine.test.js` (31/31 passing), and responsive desktop/mobile screenshots.
+- **Status:** **COMPLETE / PRESENTED FOR REVIEW**
 
 ### Stage 10: Technical SEO, Accessibility & Performance Tuning
 - **Objectives:** Complete technical SEO audit, Schema.org JSON-LD (LocalBusiness, EducationalOrganization, FAQPage, BreadcrumbList), sitemap generation, OpenGraph/Twitter social cards, Core Web Vitals optimization.
@@ -127,7 +127,10 @@ flowchart TD
 | **04** | Homepage Implementation | 14 sections, 6 services, destinations, unis, responsive | **REVIEW READY** |
 | **05** | Service Pages (7 Categories & Hub) | 8 dedicated service routes, rich data, matrix, disclaimers | **COMPLETE** |
 | **06** | Scalable Country Engine (35+ Countries) | Single dynamic template, 36 DB destinations, live search | **COMPLETE** |
-| **07** | University Directory & Profiles | Searchable university database & dynamic profile pages | **QUEUED** |
+| **07** | University Directory & Profiles | Searchable university database & dynamic profile pages | **COMPLETE** |
+| **08** | Trust, About, Success Stories | About Us, Verified Case Studies, B2B Partnerships | **COMPLETE** |
+| **09** | Contact Forms & Lead Generation | Dynamic forms, WhatsApp prefill, actual delivery to disk | **COMPLETE** |
+| **10** | Technical SEO, Accessibility & Performance | Schema.org JSON-LD, sitemaps, Lighthouse audit | **PLANNED** |
 | **08** | About, Trust, Stories & Partnerships | Corporate credibility and verified background pages | **QUEUED** |
 | **09** | Contact Forms & Inquiry Journeys | Multi-channel contact and validated inquiry forms | **QUEUED** |
 | **10** | Technical SEO & Performance Tuning | Schema.org, sitemap, OpenGraph, Web Vitals 95+ | **QUEUED** |

@@ -1,0 +1,29 @@
+[
+  {
+    "leadId": "VC-LEAD-796644",
+    "service": "study-visa",
+    "submissionType": "student",
+    "fullName": "Test Candidate (Automated)",
+    "phone": "+91 98765 12345",
+    "email": "candidate.qa@visaconvention.test",
+    "targetCountry": "canada",
+    "targetUniversity": "University of Toronto",
+    "notes": "Completed B.Tech Computer Science with 8.2 CGPA; seeking Fall 2026 Masters admissions.",
+    "elapsedMs": 2495,
+    "submittedAt": "2026-11-10T04:26:36.619Z",
+    "receivedAt": "2026-11-10T04:26:36.645Z"
+  },
+  {
+    "leadId": "VC-LEAD-799327",
+    "service": "business-partnership",
+    "submissionType": "business",
+    "organizationName": "Northern Rajasthan Language Academy",
+    "contactPerson": "Vikas Choudhary (Managing Director)",
+    "email": "director@nr-academy.com",
+    "phone": "+91 94140 12345",
+    "proposedScope": "Seeking ethical referral partnership for 60+ IELTS students per year.",
+    "elapsedMs": 2018,
+    "submittedAt": "2026-11-10T04:26:39.328Z",
+    "receivedAt": "2026-11-10T04:26:39.329Z"
+  }
+]

@@ -1,0 +1,54 @@
+---
+import { buildWhatsAppLink } from '../../utils/whatsapp';
+
+interface Props {
+  service?: string;
+  country?: string;
+  university?: string;
+  class?: string;
+}
+
+const { service, country, university, class: className = '' } = Astro.props;
+
+const whatsAppUrl = buildWhatsAppLink({ service, country, university });
+---
+
+<aside 
+  class={`fixed bottom-6 right-6 z-40 pointer-events-auto ${className}`}
+  aria-label="WhatsApp direct messaging option"
+>
+  <a
+    href={whatsAppUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    id="floating-whatsapp-btn"
+    class="group flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-emerald-300/60 active:scale-95"
+    aria-label="Connect with Visa Convention on WhatsApp (opens in new tab)"
+  >
+    <!-- WhatsApp Official Icon -->
+    <svg class="w-6 h-6 flex-shrink-0 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.06-1.579-.319-.945-.379-1.597-.991-2.228-1.621-.631-.63-1.243-1.282-1.622-2.227-.379-.945-.364-1.267-.319-1.579.05-.333.419-1.026.824-1.17.405-.145.74-.084.975.25.234.334.795 1.706.795 1.706s.069.172.016.326c-.053.154-.15.252-.279.39-.129.138-.28.32-.401.442-.144.143-.298.297-.13.585.167.288.74 1.218 1.589 1.975 1.092.973 1.996 1.267 2.284 1.41.288.143.456.126.626-.067.17-.193.729-.847.923-1.137.194-.29.387-.243.649-.145.262.098 1.666.786 1.954.93.288.144.48.216.55.337.07.121.07.701-.219 1.106zM12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5.003L2 22l5.127-1.319C8.563 21.528 10.229 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.636 0-3.155-.494-4.425-1.341l-.317-.213-3.044.783.811-2.966-.234-.338C3.896 14.806 3.4 13.435 3.4 12 3.4 7.258 7.258 3.4 12 3.4c4.742 0 8.6 3.858 8.6 8.6 0 4.742-3.858 8.6-8.6 8.6z" />
+    </svg>
+
+    <div class="hidden sm:flex flex-col text-left pr-1">
+      <span class="text-[10px] font-medium leading-none text-emerald-100 uppercase tracking-wider">Direct Chat</span>
+      <span class="text-xs font-bold leading-tight">WhatsApp Us</span>
+    </div>
+  </a>
+</aside>
+
+<script>
+  import { trackWhatsAppClick } from '../../utils/analytics';
+
+  function setupFloatingWhatsApp() {
+    const btn = document.getElementById('floating-whatsapp-btn');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        trackWhatsAppClick({ location: 'floating_widget' });
+      });
+    }
+  }
+
+  setupFloatingWhatsApp();
+  document.addEventListener('astro:page-load', setupFloatingWhatsApp);
+</script>
