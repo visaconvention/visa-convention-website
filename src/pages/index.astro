@@ -2,15 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/home/HeroSection.astro';
 import SectionHeading from '../components/common/SectionHeading.astro';
-import ServiceCard from '../components/services/ServiceCard.astro';
 import CountryCard from '../components/countries/CountryCard.astro';
 import ConsultationCTA from '../components/common/ConsultationCTA.astro';
-import { getHomepageServices } from '../data/services';
 import { getFeaturedCountries } from '../data/countries';
 import { siteConfig } from '../data/site-config';
 
 // 1. Featured Data
-const homepageServices = getHomepageServices();
 const featuredCountries = getFeaturedCountries().slice(0, 6);
 ---
 
@@ -19,38 +16,157 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
   description="Explore universities abroad, learn about our visa services, and speak directly with the Visa Convention counseling team in Hanumangarh, Rajasthan."
 >
   <!-- ========================================================================= -->
-  <!-- SECTION 1: HERO & IMMEDIATE 3-PATHWAY SELECTOR -->
+  <!-- SECTION 1: HERO (TWO-COLUMN WITH AUTHENTIC EDUCATIONAL VISUAL) -->
   <!-- ========================================================================= -->
   <HeroSection
-    headline="Study Abroad, Visa & Travel Services"
-    subheadline="Explore universities abroad, learn about our visa services, and speak directly with our team about your plans."
-    primaryCtaText="Contact Us"
-    primaryCtaHref="/contact/"
-    secondaryCtaText="Explore Services"
-    secondaryCtaHref="#services"
+    eyebrow="VISA CONVENTION · HANUMANGARH"
+    headline="Your Plans Abroad Start Here."
+    subheadline="Explore study destinations, find universities, and get assistance with visas and travel."
+    primaryCtaText="Explore Services"
+    primaryCtaHref="#services"
+    secondaryCtaText="Contact Our Team"
+    secondaryCtaHref="/contact/"
+    imageSrc="/assets/images/hero-education.jpg"
+    imageAlt="Students studying at an international university campus"
   />
 
   <!-- ========================================================================= -->
-  <!-- SECTION 2: FIND YOUR SERVICE (OUR SIX CORE VERTICALS) -->
+  <!-- SECTION 2: SERVICE DISCOVERY (HOW CAN WE HELP YOU?) -->
   <!-- ========================================================================= -->
   <section id="services" class="py-14 sm:py-18 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
     <SectionHeading
-      title="Our Services"
-      description="Guidance for international education, visitor visas, work documentation, and airline reservations."
+      title="How Can We Help You?"
+      description="Three primary pathways for study abroad aspirants, visa applicants, and travelers."
     />
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-      {homepageServices.map((service) => (
-        <ServiceCard service={service} />
-      ))}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+      <!-- Card 1: Study Abroad -->
+      <div class="card-premium p-7 sm:p-8 rounded-2xl flex flex-col justify-between h-full group hover:border-brand-navy hover:shadow-md transition-all text-left">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-brand-bg text-brand-navy border border-brand-border flex items-center justify-center text-xl mb-5 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+            🎓
+          </div>
+          <h3 class="text-xl font-bold text-brand-navy mb-2.5">
+            Study Abroad
+          </h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal mb-5">
+            Comprehensive university exploration, admissions counseling, MBBS faculties, and doctoral research guidance across 35+ countries.
+          </p>
+          <div class="space-y-2 mb-6 text-xs text-brand-text">
+            <div class="flex items-center gap-2">
+              <span class="text-brand-red font-bold">✓</span>
+              <span>Study Visa & Admissions</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-brand-red font-bold">✓</span>
+              <span>MBBS & PhD Programs</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-brand-red font-bold">✓</span>
+              <span>35+ Countries & 1,000+ Universities</span>
+            </div>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-brand-border mt-auto">
+          <a
+            href="/study-abroad/"
+            class="btn-primary w-full text-center text-xs py-3"
+          >
+            <span>Explore Study Abroad</span>
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2: Visa Services -->
+      <div class="card-premium p-7 sm:p-8 rounded-2xl flex flex-col justify-between h-full group hover:border-brand-navy hover:shadow-md transition-all text-left">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-brand-bg text-brand-navy border border-brand-border flex items-center justify-center text-xl mb-5 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+            🛂
+          </div>
+          <h3 class="text-xl font-bold text-brand-navy mb-2.5">
+            Visa Services
+          </h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal mb-5">
+            Structured documentation support, file audits, visitor itineraries, and work permit application preparation with sovereign consular compliance.
+          </p>
+          <div class="space-y-2 mb-6 text-xs text-brand-text">
+            <div class="flex items-center gap-2">
+              <span class="text-brand-red font-bold">✓</span>
+              <span>Tourist & Visitor Visas</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-brand-red font-bold">✓</span>
+              <span>Work Visa Support</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-brand-red font-bold">✓</span>
+              <span>Consular Document Audits</span>
+            </div>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-brand-border mt-auto">
+          <a
+            href="/services/"
+            class="btn-primary w-full text-center text-xs py-3"
+          >
+            <span>View Visa Services</span>
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3: Flight Booking -->
+      <div class="card-premium p-7 sm:p-8 rounded-2xl flex flex-col justify-between h-full group hover:border-brand-navy hover:shadow-md transition-all text-left">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-brand-bg text-brand-navy border border-brand-border flex items-center justify-center text-xl mb-5 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+            ✈️
+          </div>
+          <h3 class="text-xl font-bold text-brand-navy mb-2.5">
+            Flight Booking
+          </h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal mb-5">
+            Airline flight reservations, legitimate carrier itinerary holds for visa filing, and student baggage allowance assistance.
+          </p>
+          <div class="space-y-2 mb-6 text-xs text-brand-text">
+            <div class="flex items-center gap-2">
+              <span class="text-brand-red font-bold">✓</span>
+              <span>Legitimate Flight Tickets</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-brand-red font-bold">✓</span>
+              <span>Carrier Itinerary Holds</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-brand-red font-bold">✓</span>
+              <span>Student Baggage Guidance</span>
+            </div>
+          </div>
+        </div>
+        <div class="pt-4 border-t border-brand-border mt-auto">
+          <a
+            href="/services/flight-booking/"
+            class="btn-primary w-full text-center text-xs py-3"
+          >
+            <span>Enquire About Flights</span>
+            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
 
-    <div class="mt-10 text-center">
+    <div class="mt-8 text-center">
       <a
         href="/services/"
-        class="inline-flex items-center gap-2 text-sm font-bold text-brand-navy hover:text-brand-red transition-colors"
+        class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-brand-navy hover:text-brand-red transition-colors"
       >
-        <span>View All Service Specifications</span>
+        <span>View all service specifications & advisory tracks</span>
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
@@ -59,7 +175,7 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 3: STUDY DESTINATIONS & UNIVERSITIES -->
+  <!-- SECTION 3: EXPLORE STUDY DESTINATIONS -->
   <!-- ========================================================================= -->
   <section class="py-14 sm:py-18 bg-white border-y border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,18 +185,18 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
             Study Abroad
           </span>
           <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight text-balance">
-            Featured Study Destinations
+            Explore Study Destinations
           </h2>
           <p class="mt-3 text-sm sm:text-base text-brand-muted max-w-[62ch]">
-            Compare admissions, work rights, and living costs across 35+ countries guided by our advisory.
+            Compare admissions, living costs, and university options across premier global destinations.
           </p>
         </div>
         <div class="mt-4 sm:mt-0 flex flex-wrap gap-3">
           <a href="/study-abroad/" class="btn-outline">
-            <span>All 35+ Destinations</span>
+            <span>View All Destinations</span>
           </a>
           <a href="/universities/" class="btn-primary">
-            <span>University Directory</span>
+            <span>Find Universities</span>
           </a>
         </div>
       </div>
@@ -156,7 +272,7 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
           </div>
           <div class="pt-2">
             <a href="/contact/" class="btn-primary w-full text-center text-xs">
-              <span>Book In-Person Consultation</span>
+              <span>Request Consultation</span>
             </a>
           </div>
         </div>
@@ -165,13 +281,13 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 5: HOW WE HELP (3 PLAIN-LANGUAGE STEPS) -->
+  <!-- SECTION 5: THREE-STEP PROCESS -->
   <!-- ========================================================================= -->
   <section class="py-14 sm:py-18 bg-white border-y border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
       <SectionHeading
-        title="How We Help You"
-        description="A structured, step-by-step process designed to simplify admissions and documentation."
+        title="Our Simple Process"
+        description="Three client-guided steps designed to simplify admissions, documentation, and departure."
       />
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
@@ -181,9 +297,9 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
             <div class="w-10 h-10 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-base mb-5">
               1
             </div>
-            <h3 class="text-lg font-bold text-brand-navy mb-2.5 leading-snug">Profile Evaluation & Options</h3>
+            <h3 class="text-lg font-bold text-brand-navy mb-2.5 leading-snug">Profile Evaluation & Course Shortlisting</h3>
             <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
-              We review your academic background, test scores, and goals to identify matching courses and destination countries.
+              We review your academic background, test scores, and career goals to identify matching courses and destination countries.
             </p>
           </div>
         </div>
@@ -194,9 +310,9 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
             <div class="w-10 h-10 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-base mb-5">
               2
             </div>
-            <h3 class="text-lg font-bold text-brand-navy mb-2.5 leading-snug">Application & Acceptance</h3>
+            <h3 class="text-lg font-bold text-brand-navy mb-2.5 leading-snug">Documentation & University Applications</h3>
             <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
-              We help prepare your Statement of Purpose, coordinate university submissions, and track conditional or unconditional offers.
+              We help organize your Statement of Purpose, coordinate university submissions, and track conditional or unconditional offers.
             </p>
           </div>
         </div>
@@ -209,7 +325,7 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
             </div>
             <h3 class="text-lg font-bold text-brand-navy mb-2.5 leading-snug">Visa Filing & Travel Preparation</h3>
             <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
-              We audit financial records, organize embassy forms, conduct interview preparation, and arrange flight bookings.
+              We audit financial records, organize embassy forms, conduct interview preparation, and arrange legitimate flight reservations.
             </p>
           </div>
         </div>
@@ -218,7 +334,7 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 6: CLIENT EXPERIENCES (AUTHENTIC CASE STUDIES) -->
+  <!-- SECTION 6: CLIENT EXPERIENCES (AUTHENTIC ANONYMIZED OUTCOMES) -->
   <!-- ========================================================================= -->
   <section class="py-14 sm:py-18 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
@@ -272,13 +388,13 @@ const featuredCountries = getFeaturedCountries().slice(0, 6);
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 7: FINAL CONTACT CTA -->
+  <!-- SECTION 7: FINAL CONSULTATION CTA -->
   <!-- ========================================================================= -->
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pb-16">
     <ConsultationCTA
       title="Ready to Plan Your Next Step?"
-      subtitle="Speak directly with our team in Hanumangarh or submit an initial assessment request online."
-      primaryBtnText="Contact Our Office"
+      subtitle="Speak directly with our counseling team in Hanumangarh or submit an initial assessment request online."
+      primaryBtnText="Request Consultation"
       primaryBtnHref="/contact/"
       secondaryBtnText="Explore Study Countries"
       secondaryBtnHref="/study-abroad/"

@@ -4,12 +4,26 @@ import type { Country } from '../../types';
 interface Props {
   country: Country;
   class?: string;
+  showImage?: boolean;
 }
 
-const { country, class: className = '' } = Astro.props;
+const { country, class: className = '', showImage = true } = Astro.props;
 
 // Friendly flag representation using flagCode or fallback
 const flagCode = country.flagCode || country.isoCode || 'GL';
+const imagePath = `/assets/images/destinations/${country.slug}.jpg`;
+
+// Set of verified destination photography assets available
+const DESTINATIONS_WITH_PHOTOS = new Set([
+  'canada',
+  'united-kingdom',
+  'australia',
+  'usa',
+  'germany',
+  'ireland',
+]);
+
+const hasImage = showImage && DESTINATIONS_WITH_PHOTOS.has(country.slug);
 ---
 
 <div
@@ -19,28 +33,60 @@ const flagCode = country.flagCode || country.isoCode || 'GL';
   data-continent={country.continent.toLowerCase()}
   data-featured={country.featured ? 'true' : 'false'}
 >
-  <!-- Card Header Area -->
-  <div class="p-6 sm:p-7 text-left">
-    <div class="flex items-center justify-between mb-4">
-      <div class="flex items-center gap-3">
-        <!-- Country Flag / ISO Badge -->
-        <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-extrabold text-xs border border-brand-border shadow-2xs group-hover:bg-brand-navy group-hover:text-white transition-colors">
-          {flagCode}
-        </div>
-        <div>
-          <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-none text-left">
-            {country.name}
-          </h3>
-          <span class="text-xs text-brand-subtle mt-1 block text-left">{country.continent}</span>
-        </div>
+  {hasImage && (
+    <div class="relative h-44 w-full overflow-hidden bg-brand-bg border-b border-brand-border">
+      <img
+        src={imagePath}
+        alt={`${country.name} study destination scenery and universities`}
+        width="400"
+        height="220"
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+      />
+      <div class="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-md text-xs font-bold text-brand-navy shadow-xs flex items-center gap-1.5">
+        <span>{flagCode}</span>
+        <span class="text-3xs uppercase tracking-wider text-brand-muted">{country.continent}</span>
       </div>
-
       {country.featured && (
-        <span class="px-2.5 py-1 rounded-full text-3xs font-bold uppercase tracking-wider bg-brand-red/10 text-brand-red border border-brand-red/20">
+        <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full text-3xs font-bold uppercase tracking-wider bg-brand-red text-white shadow-xs">
           Featured
         </span>
       )}
     </div>
+  )}
+
+  <!-- Card Body Area -->
+  <div class="p-6 sm:p-7 text-left">
+    {!hasImage && (
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <!-- Country Flag / ISO Badge -->
+          <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-extrabold text-xs border border-brand-border shadow-2xs group-hover:bg-brand-navy group-hover:text-white transition-colors">
+            {flagCode}
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-none text-left">
+              {country.name}
+            </h3>
+            <span class="text-xs text-brand-subtle mt-1 block text-left">{country.continent}</span>
+          </div>
+        </div>
+
+        {country.featured && (
+          <span class="px-2.5 py-1 rounded-full text-3xs font-bold uppercase tracking-wider bg-brand-red/10 text-brand-red border border-brand-red/20">
+            Featured
+          </span>
+        )}
+      </div>
+    )}
+
+    {hasImage && (
+      <div class="mb-3">
+        <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-tight text-left">
+          {country.name}
+        </h3>
+      </div>
+    )}
 
     <p class="text-xs sm:text-sm text-brand-muted line-clamp-2 mb-5 leading-relaxed font-normal text-left">
       {country.shortDescription || country.shortSummary}
@@ -72,17 +118,18 @@ const flagCode = country.flagCode || country.isoCode || 'GL';
   <!-- Bottom CTA Row (Aligned to bottom across all cards) -->
   <div class="p-4 sm:px-6 bg-slate-50/70 border-t border-brand-border flex items-center justify-between text-xs font-bold mt-auto">
     <a
-      href={`/contact/?country=${country.slug}`}
-      class="text-3xs font-semibold text-brand-muted hover:text-brand-red transition-colors"
-      title={`Request consultation for ${country.name}`}
+      href={`/universities/?country=${country.slug}`}
+      class="text-xs font-bold text-brand-blue hover:text-brand-red transition-colors inline-flex items-center gap-1"
+      title={`Search universities in ${country.name}`}
     >
-      Enquire Direct
+      <span>Explore Universities</span>
+      <span class="text-3xs">→</span>
     </a>
     <a
       href={`/study-abroad/${country.slug}/`}
       class="inline-flex items-center gap-1.5 text-brand-navy group-hover:text-brand-red transition-colors"
     >
-      <span>Explore Guide</span>
+      <span>Country Guide</span>
       <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
       </svg>

@@ -1,119 +1,81 @@
 ---
 interface Props {
+  eyebrow?: string;
   headline?: string;
   subheadline?: string;
   primaryCtaText?: string;
   primaryCtaHref?: string;
   secondaryCtaText?: string;
   secondaryCtaHref?: string;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
 const {
-  headline = 'Study Abroad, Visa & Travel Services',
-  subheadline = 'Explore universities abroad, learn about our visa services, and speak directly with our team about your plans.',
-  primaryCtaText = 'Contact Us',
-  primaryCtaHref = '/contact/',
-  secondaryCtaText = 'Explore Services',
-  secondaryCtaHref = '#services',
+  eyebrow = 'VISA CONVENTION · HANUMANGARH',
+  headline = 'Your Plans Abroad Start Here.',
+  subheadline = 'Explore study destinations, find universities, and get assistance with visas and travel.',
+  primaryCtaText = 'Explore Services',
+  primaryCtaHref = '#services',
+  secondaryCtaText = 'Contact Our Team',
+  secondaryCtaHref = '/contact/',
+  imageSrc = '/assets/images/hero-education.jpg',
+  imageAlt = 'Students studying at an international university campus',
 } = Astro.props;
 ---
 
-<section class="bg-white border-b border-brand-border pt-10 pb-16 sm:pt-14 sm:pb-20">
+<section class="bg-white border-b border-brand-border py-12 sm:py-16 lg:py-20">
   <div class="site-container">
-    <!-- Clean, Text-Led Hero Area (Left-aligned, balanced negative space) -->
-    <div class="max-w-3xl mb-12 text-left">
-      <!-- Main Headline (Left-aligned, clean, bold, text-balance) -->
-      <h1 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-black text-brand-navy tracking-tight leading-[1.15] mb-5 text-balance">
-        {headline}
-      </h1>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center text-left">
+      <!-- Left Column: Copy & Actions (~58% on desktop) -->
+      <div class="lg:col-span-7 space-y-6">
+        <div>
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-bg text-brand-navy border border-brand-border mb-4">
+            <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+            {eyebrow}
+          </span>
+          <h1 class="text-3xl sm:text-5xl lg:text-[3.25rem] font-black text-brand-navy tracking-tight leading-[1.15] text-balance">
+            {headline}
+          </h1>
+        </div>
 
-      <!-- Description Paragraph -->
-      <p class="text-base sm:text-lg text-brand-muted leading-relaxed mb-8 max-w-[58ch] font-normal">
-        {subheadline}
-      </p>
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed max-w-[54ch] font-normal">
+          {subheadline}
+        </p>
 
-      <!-- Primary Action Buttons (Sharing exact left margin) -->
-      <div class="flex flex-wrap items-center gap-3.5">
-        <a
-          href={primaryCtaHref}
-          class="btn-primary text-center"
-        >
-          <span>{primaryCtaText}</span>
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </a>
-        <a
-          href={secondaryCtaHref}
-          class="btn-outline text-center"
-        >
-          <span>{secondaryCtaText}</span>
-        </a>
+        <!-- Primary Action Buttons -->
+        <div class="flex flex-wrap items-center gap-3.5 pt-2">
+          <a
+            href={primaryCtaHref}
+            class="btn-primary text-center px-6 py-3.5 text-sm"
+          >
+            <span>{primaryCtaText}</span>
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+          <a
+            href={secondaryCtaHref}
+            class="btn-outline text-center px-6 py-3.5 text-sm"
+          >
+            <span>{secondaryCtaText}</span>
+          </a>
+        </div>
       </div>
-    </div>
 
-    <!-- Immediate 3-Pathway Visitor Direction -->
-    <div class="pt-8 border-t border-brand-border">
-      <span class="block text-xs font-bold uppercase tracking-wider text-brand-muted mb-4 text-left">
-        Find Your Service
-      </span>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 text-left">
-        <!-- Pathway 1: Study Abroad -->
-        <a
-          href="/study-abroad/"
-          class="p-6 rounded-2xl bg-brand-bg/50 border border-brand-border hover:border-brand-navy hover:bg-white hover:shadow-md transition-all group flex flex-col justify-between"
-        >
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-white border border-brand-border text-brand-navy flex items-center justify-center font-bold text-lg mb-3 group-hover:bg-brand-navy group-hover:text-white transition-colors">
-              🎓
-            </div>
-            <h3 class="font-bold text-brand-navy text-base group-hover:text-brand-blue flex items-center justify-between">
-              <span>Study Abroad</span>
-              <span class="text-xs text-brand-muted group-hover:translate-x-1 transition-transform">→</span>
-            </h3>
-            <p class="text-xs text-brand-muted mt-1 leading-relaxed font-normal">
-              Explore 35+ destination countries, MBBS, PhD & 1,000+ university options.
-            </p>
-          </div>
-        </a>
-
-        <!-- Pathway 2: Visa Services -->
-        <a
-          href="/services/"
-          class="p-6 rounded-2xl bg-brand-bg/50 border border-brand-border hover:border-brand-navy hover:bg-white hover:shadow-md transition-all group flex flex-col justify-between"
-        >
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-white border border-brand-border text-brand-navy flex items-center justify-center font-bold text-lg mb-3 group-hover:bg-brand-navy group-hover:text-white transition-colors">
-              🛂
-            </div>
-            <h3 class="font-bold text-brand-navy text-base group-hover:text-brand-blue flex items-center justify-between">
-              <span>Visa Services</span>
-              <span class="text-xs text-brand-muted group-hover:translate-x-1 transition-transform">→</span>
-            </h3>
-            <p class="text-xs text-brand-muted mt-1 leading-relaxed font-normal">
-              Tourist visa itineraries, work permits & consular file audits.
-            </p>
-          </div>
-        </a>
-
-        <!-- Pathway 3: Flight Booking -->
-        <a
-          href="/services/flight-booking/"
-          class="p-6 rounded-2xl bg-brand-bg/50 border border-brand-border hover:border-brand-navy hover:bg-white hover:shadow-md transition-all group flex flex-col justify-between"
-        >
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-white border border-brand-border text-brand-navy flex items-center justify-center font-bold text-lg mb-3 group-hover:bg-brand-navy group-hover:text-white transition-colors">
-              ✈️
-            </div>
-            <h3 class="font-bold text-brand-navy text-base group-hover:text-brand-blue relative flex items-center justify-center text-center">
-              <span>Flight Booking</span>
-              <span class="text-xs text-brand-muted group-hover:translate-x-1 transition-transform absolute right-0">→</span>
-            </h3>
-            <p class="text-xs text-brand-muted mt-1 leading-relaxed font-normal">
-              Airline ticket reservations, GDS itinerary holds & student baggage savings.
-            </p>
-          </div>
-        </a>
+      <!-- Right Column: Authentic Educational Visual (~42% on desktop) -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-brand-border shadow-lg bg-brand-bg">
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            width="600"
+            height="450"
+            class="w-full h-[300px] sm:h-[360px] lg:h-[400px] object-cover"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
       </div>
     </div>
   </div>

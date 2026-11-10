@@ -15,7 +15,7 @@ function isActive(href: string) {
 }
 ---
 
-<nav aria-label="Main Navigation" class="hidden xl:flex items-center gap-1 xl:gap-2">
+<nav aria-label="Main Navigation" class="hidden xl:flex items-center gap-1 xl:gap-1.5 shrink-0">
   {siteConfig.nav.map((item) => {
     const hasChildren = item.children && item.children.length > 0;
     const isStudyAbroad = item.label === 'Study Abroad';
@@ -26,18 +26,18 @@ function isActive(href: string) {
     // 1. Study Abroad Rich Mega-Menu Dropdown
     if (isStudyAbroad && hasChildren) {
       return (
-        <div class="relative group">
+        <div class="relative group shrink-0">
           <button
             type="button"
-            class={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 ${
+            class={`flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all duration-150 ${
               active
                 ? 'text-brand-navy bg-brand-bg font-bold shadow-2xs'
                 : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/60'
             }`}
             aria-expanded="false"
           >
-            <span>{item.label}</span>
-            <svg class="w-4 h-4 text-brand-subtle group-hover:rotate-180 group-hover:text-brand-blue transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <span class="whitespace-nowrap">{item.label}</span>
+            <svg class="w-3.5 h-3.5 text-brand-subtle group-hover:rotate-180 group-hover:text-brand-blue transition-transform duration-200 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
@@ -124,18 +124,18 @@ function isActive(href: string) {
     // 2. Visa Services Dropdown
     if (isVisaServices && hasChildren) {
       return (
-        <div class="relative group">
+        <div class="relative group shrink-0">
           <button
             type="button"
-            class={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 ${
+            class={`flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all duration-150 ${
               active
                 ? 'text-brand-navy bg-brand-bg font-bold shadow-2xs'
                 : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/60'
             }`}
             aria-expanded="false"
           >
-            <span>{item.label}</span>
-            <svg class="w-4 h-4 text-brand-subtle group-hover:rotate-180 group-hover:text-brand-blue transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <span class="whitespace-nowrap">{item.label}</span>
+            <svg class="w-3.5 h-3.5 text-brand-subtle group-hover:rotate-180 group-hover:text-brand-blue transition-transform duration-200 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
@@ -195,18 +195,18 @@ function isActive(href: string) {
     // 3. About Dropdown
     if (isAbout && hasChildren) {
       return (
-        <div class="relative group">
+        <div class="relative group shrink-0">
           <button
             type="button"
-            class={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 ${
+            class={`flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all duration-150 ${
               active
                 ? 'text-brand-navy bg-brand-bg font-bold shadow-2xs'
                 : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/60'
             }`}
             aria-expanded="false"
           >
-            <span>{item.label}</span>
-            <svg class="w-4 h-4 text-brand-subtle group-hover:rotate-180 group-hover:text-brand-blue transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <span class="whitespace-nowrap">{item.label}</span>
+            <svg class="w-3.5 h-3.5 text-brand-subtle group-hover:rotate-180 group-hover:text-brand-blue transition-transform duration-200 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
@@ -262,13 +262,13 @@ function isActive(href: string) {
     return (
       <a
         href={item.href}
-        class={`px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 ${
+        class={`px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap shrink-0 transition-all duration-150 ${
           active
             ? 'text-brand-navy bg-brand-bg font-bold shadow-2xs'
             : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/60'
         }`}
       >
-        {item.label}
+        <span class="whitespace-nowrap">{item.label}</span>
       </a>
     );
   })}

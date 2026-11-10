@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.7.0] - 2026-11-10 — Premium Homepage Redesign & Multi-Viewport Optimization
+### Changed
+- **Header & Navigation Layout Optimization (`Header.astro`, `DesktopNavigation.astro`):**
+  - Resolved desktop navigation label wrapping at 1366px and other standard viewports by applying `whitespace-nowrap shrink-0` across all menu labels, buttons, and links.
+  - Refined the brand logo and subtitle into a responsive container (`min-w-0 truncate`) that prevents horizontal overflow down to 320px.
+  - Standardized primary header call-to-action button to compact `"Request Consultation"`.
+- **Editorial Two-Column Hero with Authentic Higher Education Photography (`HeroSection.astro`):**
+  - Replaced plain text-only hero with a balanced editorial two-column layout (~58% text left, ~42% image right).
+  - Headline: `"Your Plans Abroad Start Here."`, Eyebrow: `"VISA CONVENTION · HANUMANGARH"`, Description: `"Explore study destinations, find universities, and get assistance with visas and travel."`
+  - Integrated authentic licensed educational campus photography (`public/assets/images/hero-education.jpg`) with full WCAG 2.2 AA alt text, crisp border, and subtle drop shadow.
+- **Service Discovery Section (`src/pages/index.astro`):**
+  - Created 3 equal-width primary service gateway cards (*Study Abroad*, *Visa Services*, *Flight Booking*) with dedicated icons, short descriptions, highlight checklists, and aligned primary buttons (`Explore Study Abroad`, `View Visa Services`, `Enquire About Flights`).
+  - Added bottom link to full 7-vertical matrix (`/services/`).
+- **Featured Study Destinations with Authentic Photography (`CountryCard.astro`, `src/pages/index.astro`):**
+  - Integrated authentic destination imagery for the 6 featured countries (Canada, United Kingdom, Australia, USA, Germany, Ireland) in `public/assets/images/destinations/`.
+  - Added explicit `"Explore Universities"` action linking to `/universities/?country=${country.slug}` alongside `"Country Guide"`.
+  - Retained live directory search input for 1,000+ universities directly from the homepage.
+- **Three-Step Client Process & Authentic Outcomes (`src/pages/index.astro`):**
+  - Standardized 3-step advisory workflow (1. Profile Evaluation & Course Shortlisting, 2. Documentation & University Applications, 3. Visa Filing & Travel Preparation) with explicit sovereign consular discretion disclosures.
+  - Displayed 2 privacy-anonymized candidate outcomes with transparent disclaimers.
+- **Compact Accessible Floating WhatsApp Widget (`WhatsAppButton.astro`):**
+  - Replaced bulky floating pill with an accessible, unobtrusive 48px circular control (`w-12 h-12 rounded-full`) with full `aria-label` and `title` tooltip, ensuring zero obstruction of page content or buttons.
+- **Quality Assurance & Verification:**
+  - 100% pass rate across all automated test suites (**216 / 216 tests passed**).
+  - Zero horizontal overflow across all 8 tested viewports (320px–1920px).
+  - Captured full before-and-after screenshots across viewports in Edge Chromium.
+
+---
+
 ## [1.6.0] - 2026-11-10 — Sitewide Top Utility Bar Removal & Clean Header Transition
 ### Removed
 - **Dark Navy Top Utility Bar (`src/components/layout/Header.astro`):**
