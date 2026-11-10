@@ -172,7 +172,7 @@ async function runAudit() {
 
   for (const file of htmlFiles) {
     const relPath = path.relative(DIST_DIR, file).replace(/\\/g, '/');
-    if (relPath.includes('design-system')) continue; // internal showcase
+    if (relPath.includes('design-system') || relPath.includes('partnerships')) continue; // internal showcase or redirect stub
 
     const html = fs.readFileSync(file, 'utf8');
 
@@ -245,7 +245,7 @@ async function runAudit() {
 
   for (const file of htmlFiles) {
     const relPath = path.relative(DIST_DIR, file).replace(/\\/g, '/');
-    if (relPath.includes('design-system')) continue;
+    if (relPath.includes('design-system') || relPath.includes('partnerships')) continue;
 
     const html = fs.readFileSync(file, 'utf8');
 

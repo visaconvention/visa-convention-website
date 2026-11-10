@@ -12,6 +12,8 @@ interface Props {
   canonicalUrl?: string;
   ogImage?: string;
   schema?: object;
+  noindex?: boolean;
+  metaRefresh?: string;
 }
 
 const {
@@ -20,6 +22,8 @@ const {
   canonicalUrl,
   ogImage = '/assets/brand/og-image.jpg',
   schema,
+  noindex = false,
+  metaRefresh,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -42,7 +46,14 @@ const localBusinessSchema = getLocalBusinessSchema();
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#102A53" />
-    <meta name="robots" content="index, follow" />
+    {noindex ? (
+      <meta name="robots" content="noindex, follow" />
+    ) : (
+      <meta name="robots" content="index, follow" />
+    )}
+    {metaRefresh && (
+      <meta http-equiv="refresh" content={metaRefresh} />
+    )}
 
     <!-- Primary Meta Tags -->
     <title>{title}</title>

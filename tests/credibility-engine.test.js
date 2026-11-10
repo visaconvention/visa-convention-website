@@ -69,30 +69,21 @@ assert(storiesHtml.includes('In-Person Video Testimonials'), 'Includes authentic
 assert(!storiesHtml.includes('iframe src="https://www.youtube.com/embed/fake'), 'Zero fabricated stock video embeds');
 
 // ----------------------------------------------------
-// TEST GROUP 3: Partnerships Page Verification (/partnerships/)
+// TEST GROUP 3: Partnerships Route Redirect Verification (/partnerships/ -> /about/)
 // ----------------------------------------------------
-console.log('\n--- TEST GROUP 3: Business Partnerships Page Verification (/partnerships/) ---');
+console.log('\n--- TEST GROUP 3: Partnerships Route Redirect Verification (/partnerships/ -> /about/) ---');
 const partHtmlPath = path.join(DIST_DIR, 'partnerships', 'index.html');
 assert(fs.existsSync(partHtmlPath), 'dist/partnerships/index.html exists');
 
 const partHtml = fs.readFileSync(partHtmlPath, 'utf8');
 
-assert(partHtml.includes('Ethical Partnerships for Global Education'), 'Includes B2B partnership positioning headline');
-assert(partHtml.includes('Our Institutional Partnership Standards'), 'Includes institutional compliance standards section');
-assert(partHtml.includes('For International Universities &amp; Colleges') || partHtml.includes('For International Universities & Colleges'), 'Includes Higher Education Providers track');
-assert(partHtml.includes('For Regional Coaching Centers &amp; Language Academies') || partHtml.includes('For Regional Coaching Centers & Language Academies'), 'Includes Coaching & Language Academies referral track');
-assert(partHtml.includes('For Associate Consultants &amp; Sub-Agents') || partHtml.includes('For Associate Consultants & Sub-Agents'), 'Includes Sub-Agent & Associate track');
-assert(partHtml.includes('For Travel Agents &amp; Corporate Partners') || partHtml.includes('For Travel Agents & Corporate Partners'), 'Includes Travel Logistics & Flight partner track');
+assert(partHtml.includes('http-equiv="refresh"') && partHtml.includes('/about/'), 'Redirects /partnerships/ to /about/ via meta-refresh');
+assert(partHtml.includes('noindex'), 'Redirect page includes noindex directive to prevent search engine indexing of obsolete route');
+assert(partHtml.includes('https://visaconvention.com/about/'), 'Canonical points cleanly to /about/');
 
-// Strict prompt rule: "If there are no authorized partner logos or formal relationships, omit the logo section"
-assert(partHtml.includes('Institutional Representation &amp; Logo Policy') || partHtml.includes('Institutional Representation & Logo Policy'), 'Includes official partner logo disclosure policy');
+// Strict non-affiliation check: Zero unauthorized partner logos or claims
 assert(!partHtml.includes('<img src="/assets/partners/fake-logo') && !partHtml.includes('partner-logo-grid'), 'Strict compliance: Zero unauthorized partner logos displayed');
-
-// Partnership Enquiry Form
-assert(partHtml.includes('partnership-enquiry-form'), 'Includes dedicated partnership enquiry form');
-assert(partHtml.includes('partner-org-name') && partHtml.includes('partner-org-type'), 'Form contains organization name and category fields');
-assert(partHtml.includes('partner-contact-name') && partHtml.includes('partner-email') && partHtml.includes('partner-phone'), 'Form contains complete B2B contact fields');
-assert(partHtml.includes('partner_bot_check') || partHtml.includes('form-partner-bot-trap'), 'Form includes invisible honeypot spam protection');
+assert(!partHtml.includes('For International Universities'), 'Zero university partnership representation claims');
 
 // ----------------------------------------------------
 // TEST GROUP 4: Cross-Page Navigation & Link Integrity
