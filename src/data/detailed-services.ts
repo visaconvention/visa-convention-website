@@ -123,6 +123,8 @@ export const detailedServicesData: Record<string, DetailedService> = {
     metaDescription: 'Direct admission guidance for MBBS abroad in Uzbekistan, Kazakhstan, Russia, and Kyrgyzstan. Affordable fees, Indian food facilities, and FMGE/NExT screening support.',
     heroCtaText: 'Check MBBS Eligibility & Fees',
     heroCtaHref: '#enquiry',
+    heroImage: '/assets/images/mbbs-education.jpg',
+    heroImageAlt: 'International medical student training in modern university medical faculty',
     assistanceIncludes: [
       {
         title: 'Affordable Government Tuition Fees',
@@ -262,6 +264,8 @@ export const detailedServicesData: Record<string, DetailedService> = {
     metaDescription: 'Expert guidance for doctoral scholars applying to funded PhD programs abroad. Supervisor matching, research proposals, teaching assistantships, and visa dossiers.',
     heroCtaText: 'Request PhD Profile Review',
     heroCtaHref: '#enquiry',
+    heroImage: '/assets/images/phd-research.jpg',
+    heroImageAlt: 'Doctoral research scholar conducting dissertation research in an academic university library',
     assistanceIncludes: [
       {
         title: 'Research Proposal Structuring',

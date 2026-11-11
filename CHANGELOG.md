@@ -6,6 +6,45 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.17.0] - 2026-11-11 — Flight Booking Integration & Website-Wide Photography Upgrade
+
+### Added
+- **Dedicated Flight Booking & Reservation Assistance Page (`src/pages/services/flight-booking.astro`):**
+  - Redesigned as a bespoke, conversion-optimized service page with compact photographic hero featuring authentic commercial aviation photography (`/assets/images/flight-hero-aviation.jpg`).
+  - Clear three-option service distinction:
+    1. **Confirmed Flight Ticket Enquiry:** Direct e-ticketing post-visa grant with student baggage codes.
+    2. **Flight Reservation Assistance (for Visa Applications):** Genuine verifiable GDS airline reservation holds for embassy dossiers.
+    3. **Travel Itinerary Assistance:** Proposed route scheduling and transit optimization without upfront booking hold.
+  - Prominent consular advisory citation (U.S. Department of State, UKVI, and European consulates advising applicants against non-refundable ticket purchases prior to visa issuance) and explicit zero fake PNR / dummy ticket disclaimer.
+  - Supporting guidance column (~35% width) detailing the 4-step workflow, 40kg–46kg student luggage allowance optimization (British Airways, Air India, Emirates, Qatar Airways, Lufthansa, Virgin Atlantic), tariff transparency, and direct WhatsApp / phone contact desk.
+  - Interactive FAQ accordion with Schema.org `FAQPage` JSON-LD structured data.
+- **Interactive Flight Enquiry Form (`src/components/forms/FlightEnquiryForm.astro`):**
+  - Responsive two-column form (~65% width) with segmented journey type toggle (`Round-Trip` vs. `One-Way`).
+  - Dynamic conditional return date field (automatically disabled and tucked when `One-Way` is selected; client-side date comparison ensuring return date is on or after departure date).
+  - Validated origin and destination city/airport inputs.
+  - Passenger count and cabin class selectors with specialized `Student (Baggage Allowance Request)` passenger profile.
+  - Strict privacy protection: Zero initial passport bio-data collection on web forms (collected later only through secure direct channel if proceeding to ticket issuance).
+  - Anti-spam honeypot (`airline_preference_hp`) and session rate limiting.
+  - Verified confirmation view with unique reference ID (`VC-FLT-XXXXXX`) and direct prefilled WhatsApp confirmation link.
+- **Serverless Endpoint Flight Handling (`api/enquiry.js`):**
+  - Extended production serverless function to support `submissionType === 'flight'` with strict server-side validation, date logic, input sanitization, and persistent storage.
+- **Website-Wide Photography & Image Governance System:**
+  - Created `IMAGE_AUDIT.md` comprehensive forensic inventory documenting every image asset, purpose, dimensions, license, alt text, and status across all pages.
+  - Added authentic medical education photograph (`/assets/images/mbbs-education.jpg`) to MBBS Abroad page (`src/pages/services/mbbs.astro`).
+  - Added authentic doctoral research scholar photograph (`/assets/images/phd-research.jpg`) to PhD Abroad page (`src/pages/services/phd.astro`).
+  - Updated `ServiceLayout.astro` with conditional editorial split layout for services with hero photography.
+  - Normalized `src/data/country-registry.ts` and `src/types/index.ts` to directly provide `countryId`, `countryName`, `slug`, `primaryImage`, `altText`, `sourceUrl`, `license`, `objectPosition`, and `approvalStatus` for all 51 countries.
+- **Automated QA Suite (`tests/flight-booking-and-images.test.js`):**
+  - 28 automated checks verifying metadata, DOM integrity, form toggling, client-side validation, serverless dispatch, persistent storage, and image asset resolution.
+
+### Verified
+- Automated test suites: **235 / 235 tests passing (100%)** across all 7 QA suites.
+- Static compilation: **64 static routes compiled cleanly in 3.69s**.
+- Responsive layout verification: **Zero horizontal overflow across all 9 viewports** (320px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px, 1920px).
+- Captured before/after screenshots and responsive audit logs in artifact directory.
+
+---
+
 ## [1.16.0] - 2026-11-11 — Premium International Homepage Redesign & Landmark Architecture
 
 ### Changed

@@ -1,0 +1,761 @@
+---
+import { siteConfig } from '../../data/site-config';
+
+interface Props {
+  defaultService?: 'confirmed-ticket' | 'reservation-hold' | 'travel-itinerary';
+  class?: string;
+}
+
+const {
+  defaultService = 'reservation-hold',
+  class: className = '',
+} = Astro.props;
+
+// Service selection options matching client poster & official travel guidelines
+const travelServices = [
+  {
+    id: 'reservation-hold',
+    title: 'Flight Reservation Assistance',
+    subtitle: 'Verifiable GDS airline reservation hold for embassy / visa application dossiers',
+    badge: 'Visa Dossier',
+  },
+  {
+    id: 'confirmed-ticket',
+    title: 'Confirmed Flight Ticket Enquiry',
+    subtitle: 'Direct issuance of confirmed e-tickets after visa grant with student baggage codes',
+    badge: 'Post-Visa Grant',
+  },
+  {
+    id: 'travel-itinerary',
+    title: 'Travel Itinerary Assistance',
+    subtitle: 'Proposed route schedule & transit optimization without upfront booking hold',
+    badge: 'Route Planning',
+  },
+];
+---
+
+<div class={`bg-white rounded-3xl p-6 sm:p-10 border border-brand-border shadow-card ${className}`} id="flight-form-card">
+  <div class="mb-8">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="w-2.5 h-2.5 rounded-full bg-brand-red"></span>
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Travel Coordination Desk</span>
+    </div>
+    <h2 class="text-2xl sm:text-3xl font-black text-brand-navy tracking-tight mb-2 leading-tight">
+      Request Flight & Reservation Assistance
+    </h2>
+    <p class="text-sm text-brand-muted leading-relaxed font-normal">
+      Tell us where and when you plan to travel. Our team will review carrier schedules, student baggage allowances, and legitimate reservation hold options.
+    </p>
+  </div>
+
+  <!-- Screen Reader Live Announcer for Accessibility -->
+  <div role="alert" aria-live="polite" class="sr-only" id="flight-form-error-announcer"></div>
+
+  <!-- Error Banner (Shown if delivery fails) -->
+  <div id="flight-delivery-error" class="hidden mb-6 p-4 rounded-2xl bg-red-50 border border-red-200 text-xs text-red-900 leading-relaxed space-y-2">
+    <div class="flex items-center gap-2 font-bold text-red-950">
+      <svg class="w-4 h-4 text-red-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+      </svg>
+      <span>Transmission Notice</span>
+    </div>
+    <p id="flight-delivery-error-message">
+      We were unable to transmit your travel request. Please connect directly with our travel desk via WhatsApp or telephone.
+    </p>
+    <div class="pt-2 flex items-center gap-4 font-semibold">
+      <a
+        href={`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent('Hello Visa Convention Travel Desk, I was attempting to submit a flight assistance request and would like direct guidance.')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-brand-blue hover:underline flex items-center gap-1"
+      >
+        <span>Message Travel Desk on WhatsApp</span>
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+      <span>•</span>
+      <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} class="text-brand-navy hover:underline">
+        Call {siteConfig.phone}
+      </a>
+    </div>
+  </div>
+
+  <!-- Interactive Form Element -->
+  <form id="flight-assistance-form" class="space-y-6" method="POST" action="/api/enquiry" novalidate>
+    <!-- Hidden Security & Anti-Spam Fields -->
+    <input type="text" name="airline_preference_hp" id="flight-bot-trap" class="hidden" tabindex="-1" autocomplete="off" />
+    <input type="hidden" name="form_timestamp" id="flight-render-timestamp" value="" />
+    <input type="hidden" name="submissionType" value="flight" />
+
+    <!-- 1. SERVICE OPTION SELECTION (Radio Cards) -->
+    <div>
+      <label class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-2.5">
+        Select Travel Service Required <span class="text-brand-red">*</span>
+      </label>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" role="radiogroup" aria-labelledby="service-selection-label">
+        {travelServices.map((srv) => (
+          <label
+            class={`relative flex flex-col justify-between p-4 rounded-xl border cursor-pointer transition-all ${
+              srv.id === defaultService
+                ? 'border-brand-blue bg-blue-50/40 shadow-2xs ring-1 ring-brand-blue/30'
+                : 'border-brand-border bg-white hover:border-brand-navy/40'
+            }`}
+            data-service-card
+          >
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="inline-block px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-wider rounded bg-brand-bg text-brand-blue border border-brand-blue/20">
+                {srv.badge}
+              </span>
+              <input
+                type="radio"
+                name="service"
+                value={srv.id}
+                checked={srv.id === defaultService}
+                class="mt-0.5 text-brand-blue focus:ring-brand-blue cursor-pointer"
+              />
+            </div>
+            <div>
+              <span class="block text-sm font-bold text-brand-navy leading-snug mb-1">
+                {srv.title}
+              </span>
+              <span class="block text-[11px] text-brand-muted leading-tight">
+                {srv.subtitle}
+              </span>
+            </div>
+          </label>
+        ))}
+      </div>
+      <p id="flight-service-error" class="hidden text-xs text-brand-red font-medium mt-1.5">
+        Please select a travel service option.
+      </p>
+    </div>
+
+    <!-- 2. TRIP TYPE TOGGLE -->
+    <div class="bg-brand-bg/70 p-3.5 rounded-2xl border border-brand-border flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <span class="text-xs font-bold text-brand-navy uppercase tracking-wider">
+        Journey Type <span class="text-brand-red">*</span>
+      </span>
+      <div class="inline-flex rounded-xl bg-white p-1 border border-brand-border shadow-2xs" role="radiogroup">
+        <label class="cursor-pointer px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 bg-brand-navy text-white shadow-2xs" id="trip-round-label">
+          <input type="radio" name="tripType" value="round-trip" checked class="sr-only" id="trip-round-input" />
+          <span>Round-Trip</span>
+        </label>
+        <label class="cursor-pointer px-4 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 text-brand-muted hover:text-brand-navy" id="trip-oneway-label">
+          <input type="radio" name="tripType" value="one-way" class="sr-only" id="trip-oneway-input" />
+          <span>One-Way</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 3. ROUTE: DEPARTURE & DESTINATION -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="flight-departure-city" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Departure City / Airport <span class="text-brand-red">*</span>
+        </label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-brand-muted">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="flight-departure-city"
+            name="departureCity"
+            placeholder="e.g. Delhi (DEL), Amritsar (ATQ), Jaipur"
+            class="w-full pl-10 pr-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[46px]"
+          />
+        </div>
+        <p id="flight-departure-city-error" class="hidden text-xs text-brand-red font-medium mt-1">
+          Please enter departure city or airport.
+        </p>
+      </div>
+
+      <div>
+        <label for="flight-destination-city" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Destination City / Airport <span class="text-brand-red">*</span>
+        </label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-brand-muted">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="flight-destination-city"
+            name="destinationCity"
+            placeholder="e.g. Toronto (YYZ), London (LHR), Melbourne"
+            class="w-full pl-10 pr-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[46px]"
+          />
+        </div>
+        <p id="flight-destination-city-error" class="hidden text-xs text-brand-red font-medium mt-1">
+          Please enter destination city or airport.
+        </p>
+      </div>
+    </div>
+
+    <!-- 4. TRAVEL DATES (Departure & Conditional Return) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="flight-departure-date" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Intended Departure Date <span class="text-brand-red">*</span>
+        </label>
+        <input
+          type="date"
+          id="flight-departure-date"
+          name="departureDate"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[46px]"
+        />
+        <p id="flight-departure-date-error" class="hidden text-xs text-brand-red font-medium mt-1">
+          Please select a valid future departure date.
+        </p>
+      </div>
+
+      <div id="return-date-container">
+        <label for="flight-return-date" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Intended Return Date <span class="text-brand-red" id="return-required-star">*</span>
+          <span class="text-[10px] text-brand-subtle font-normal lowercase" id="return-date-helper">(round-trip)</span>
+        </label>
+        <input
+          type="date"
+          id="flight-return-date"
+          name="returnDate"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[46px]"
+        />
+        <p id="flight-return-date-error" class="hidden text-xs text-brand-red font-medium mt-1">
+          Return date must be on or after departure date.
+        </p>
+      </div>
+    </div>
+
+    <!-- 5. PASSENGER & CABIN PREFERENCES -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div>
+        <label for="flight-passengers" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Passengers
+        </label>
+        <input
+          type="number"
+          id="flight-passengers"
+          name="passengers"
+          min="1"
+          max="9"
+          value="1"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[46px]"
+        />
+      </div>
+
+      <div>
+        <label for="flight-travel-class" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Cabin Class
+        </label>
+        <select
+          id="flight-travel-class"
+          name="travelClass"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[46px]"
+        >
+          <option value="economy">Economy (Best Value)</option>
+          <option value="premium-economy">Premium Economy</option>
+          <option value="business">Business Class</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="flight-passenger-category" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Passenger Profile
+        </label>
+        <select
+          id="flight-passenger-category"
+          name="passengerCategory"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[46px]"
+        >
+          <option value="student">Student (Baggage Allowance Request)</option>
+          <option value="tourist">Tourist / Visitor</option>
+          <option value="work">Employment / Work Permit</option>
+          <option value="family">Family / Group Travel</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 6. CONTACT DETAILS (Name, Phone, Email) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <label for="flight-full-name" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Full Passenger / Contact Name <span class="text-brand-red">*</span>
+        </label>
+        <input
+          type="text"
+          id="flight-full-name"
+          name="fullName"
+          placeholder="e.g. Manpreet Singh"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[46px]"
+        />
+        <p id="flight-full-name-error" class="hidden text-xs text-brand-red font-medium mt-1">
+          Please enter contact name.
+        </p>
+      </div>
+
+      <div>
+        <label for="flight-phone" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Mobile Number / WhatsApp <span class="text-brand-red">*</span>
+        </label>
+        <input
+          type="tel"
+          id="flight-phone"
+          name="phone"
+          placeholder="+91 94144 04040"
+          class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[46px]"
+        />
+        <p id="flight-phone-error" class="hidden text-xs text-brand-red font-medium mt-1">
+          Please enter valid mobile number with country code.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <label for="flight-email" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+        Email Address <span class="text-brand-subtle font-normal lowercase">(optional if phone provided)</span>
+      </label>
+      <input
+        type="email"
+        id="flight-email"
+        name="email"
+        placeholder="applicant@example.com"
+        class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[46px]"
+      />
+      <p id="flight-email-error" class="hidden text-xs text-brand-red font-medium mt-1">
+        Please enter a valid email address.
+      </p>
+    </div>
+
+    <!-- 7. SPECIAL REQUIREMENTS & STUDENT BAGGAGE NOTES -->
+    <div>
+      <label for="flight-special-notes" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+        Special Routing, Student Baggage, or Flexibility Notes
+      </label>
+      <textarea
+        id="flight-special-notes"
+        name="specialNotes"
+        rows="2"
+        placeholder="e.g., Dates flexible by ±2 days; require 40kg–46kg student luggage allowance; holding conditional offer letter from UK university..."
+        class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all resize-y text-xs sm:text-sm"
+      ></textarea>
+    </div>
+
+    <!-- 8. PRIVACY & STATUTORY CONSENT -->
+    <div class="p-4 rounded-2xl bg-brand-bg/80 border border-brand-border space-y-3">
+      <div class="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="flight-consent"
+          name="privacy_consent"
+          required
+          class="mt-1 w-4 h-4 rounded text-brand-blue focus:ring-brand-blue border-gray-300 cursor-pointer"
+        />
+        <div>
+          <label for="flight-consent" class="text-xs text-brand-muted leading-relaxed cursor-pointer select-none">
+            I consent to being contacted by Visa Convention regarding this flight assistance request. I understand that reservations provided for visa applications are legitimate airline hold bookings and that no passport numbers are stored on public web forms. <span class="text-brand-red">*</span>
+          </label>
+          <p id="flight-consent-error" class="hidden text-xs text-brand-red font-medium mt-0.5">
+            Consent is required to proceed.
+          </p>
+        </div>
+      </div>
+      <div class="text-[11px] text-brand-subtle flex items-center gap-1.5 pt-1 border-t border-brand-border/60">
+        <svg class="w-3.5 h-3.5 text-brand-blue shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+        <span>Data Security: Passport bio-pages are requested only when proceeding to confirmed ticket issuance via our secure offline channel.</span>
+      </div>
+    </div>
+
+    <!-- 9. SUBMIT ACTION -->
+    <div>
+      <button
+        type="submit"
+        id="flight-submit-btn"
+        class="btn-primary w-full text-base py-4 shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+      >
+        <span id="flight-submit-text">Request Flight Assistance</span>
+        <svg id="flight-submit-arrow" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </button>
+      <p class="text-center text-[11px] text-brand-subtle mt-3">
+        Zero fake PNRs • Legitimate GDS Reservations • Direct Airline Tariffs
+      </p>
+    </div>
+  </form>
+
+  <!-- SUCCESS CONFIRMATION VIEW -->
+  <div id="flight-success-view" class="hidden p-8 rounded-3xl bg-emerald-50 border border-emerald-200 text-center space-y-4">
+    <div class="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
+      <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    <span class="inline-block px-3 py-1 text-[11px] font-bold uppercase tracking-wider rounded-md bg-emerald-200 text-emerald-900" id="flight-success-ref-badge">
+      Reference ID: VC-FLT-PENDING
+    </span>
+    <h3 class="text-2xl font-bold text-emerald-950">
+      Flight Assistance Request Received
+    </h3>
+    <p class="text-xs sm:text-sm text-emerald-900 max-w-md mx-auto leading-relaxed" id="flight-success-summary-text">
+      Thank you! Our travel coordination desk in Hanumangarh has received your route details. A travel advisor will check carrier schedules and contact you with verified options within 2–4 business hours.
+    </p>
+
+    <div class="p-4 rounded-xl bg-white border border-emerald-200 text-left text-xs text-brand-navy max-w-md mx-auto space-y-1.5 shadow-2xs" id="flight-success-details-box">
+      <div class="flex justify-between">
+        <span class="text-brand-muted">Route Requested:</span>
+        <span class="font-bold" id="success-route-display">—</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="text-brand-muted">Travel Date:</span>
+        <span class="font-bold" id="success-date-display">—</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="text-brand-muted">Service Type:</span>
+        <span class="font-bold" id="success-service-display">—</span>
+      </div>
+    </div>
+
+    <div class="pt-2 border-t border-emerald-200 max-w-sm mx-auto flex items-center justify-center gap-4 text-xs font-semibold text-emerald-950">
+      <button
+        type="button"
+        id="flight-submit-another-btn"
+        class="text-brand-blue hover:underline cursor-pointer py-1"
+      >
+        ← Submit Another Request
+      </button>
+      <span>•</span>
+      <a
+        id="flight-success-whatsapp-link"
+        href={`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent('Hello Visa Convention, I just submitted a flight assistance request on your website and would like to confirm options.')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-emerald-800 hover:text-emerald-950 hover:underline py-1 flex items-center gap-1"
+      >
+        <span>Confirm on WhatsApp</span>
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupFlightForm() {
+    const form = document.getElementById('flight-assistance-form') as HTMLFormElement | null;
+    const timestampField = document.getElementById('flight-render-timestamp') as HTMLInputElement | null;
+    const submitBtn = document.getElementById('flight-submit-btn') as HTMLButtonElement | null;
+    const submitText = document.getElementById('flight-submit-text');
+    const errorBanner = document.getElementById('flight-delivery-error');
+    const errorMessage = document.getElementById('flight-delivery-error-message');
+    const successView = document.getElementById('flight-success-view');
+    const successBadge = document.getElementById('flight-success-ref-badge');
+    const submitAnotherBtn = document.getElementById('flight-submit-another-btn');
+    const announcer = document.getElementById('flight-form-error-announcer');
+
+    // Trip type elements
+    const tripRoundInput = document.getElementById('trip-round-input') as HTMLInputElement | null;
+    const tripOnewayInput = document.getElementById('trip-oneway-input') as HTMLInputElement | null;
+    const tripRoundLabel = document.getElementById('trip-round-label');
+    const tripOnewayLabel = document.getElementById('trip-oneway-label');
+    const returnDateContainer = document.getElementById('return-date-container');
+    const returnDateInput = document.getElementById('flight-return-date') as HTMLInputElement | null;
+    const returnRequiredStar = document.getElementById('return-required-star');
+    const returnDateHelper = document.getElementById('return-date-helper');
+
+    // Departure date input
+    const departureDateInput = document.getElementById('flight-departure-date') as HTMLInputElement | null;
+
+    if (!form) return;
+
+    // Stamp render timestamp
+    if (timestampField) {
+      timestampField.value = Date.now().toString();
+    }
+
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    if (departureDateInput) {
+      departureDateInput.min = today;
+    }
+    if (returnDateInput) {
+      returnDateInput.min = today;
+    }
+
+    // When departure date changes, update return date minimum
+    departureDateInput?.addEventListener('change', () => {
+      if (departureDateInput.value && returnDateInput) {
+        returnDateInput.min = departureDateInput.value;
+        if (returnDateInput.value && returnDateInput.value < departureDateInput.value) {
+          returnDateInput.value = departureDateInput.value;
+        }
+      }
+    });
+
+    // Handle Trip Type Toggle
+    function updateTripTypeUI(isRoundTrip: boolean) {
+      if (isRoundTrip) {
+        tripRoundLabel?.classList.add('bg-brand-navy', 'text-white', 'shadow-2xs');
+        tripRoundLabel?.classList.remove('text-brand-muted');
+        tripOnewayLabel?.classList.remove('bg-brand-navy', 'text-white', 'shadow-2xs');
+        tripOnewayLabel?.classList.add('text-brand-muted');
+
+        if (returnDateContainer) {
+          returnDateContainer.classList.remove('opacity-40', 'pointer-events-none');
+        }
+        if (returnDateInput) {
+          returnDateInput.disabled = false;
+        }
+        if (returnRequiredStar) returnRequiredStar.classList.remove('hidden');
+        if (returnDateHelper) returnDateHelper.textContent = '(round-trip)';
+      } else {
+        tripOnewayLabel?.classList.add('bg-brand-navy', 'text-white', 'shadow-2xs');
+        tripOnewayLabel?.classList.remove('text-brand-muted');
+        tripRoundLabel?.classList.remove('bg-brand-navy', 'text-white', 'shadow-2xs');
+        tripRoundLabel?.classList.add('text-brand-muted');
+
+        if (returnDateContainer) {
+          returnDateContainer.classList.add('opacity-40', 'pointer-events-none');
+        }
+        if (returnDateInput) {
+          returnDateInput.disabled = true;
+          returnDateInput.value = '';
+        }
+        if (returnRequiredStar) returnRequiredStar.classList.add('hidden');
+        if (returnDateHelper) returnDateHelper.textContent = '(not applicable for one-way)';
+      }
+    }
+
+    tripRoundInput?.addEventListener('change', () => updateTripTypeUI(true));
+    tripOnewayInput?.addEventListener('change', () => updateTripTypeUI(false));
+
+    // Handle Service Radio Card Visual Selection
+    const serviceRadios = form.querySelectorAll<HTMLInputElement>('input[name="service"]');
+    serviceRadios.forEach((radio) => {
+      radio.addEventListener('change', () => {
+        const cards = form.querySelectorAll('[data-service-card]');
+        cards.forEach((card) => {
+          card.classList.remove('border-brand-blue', 'bg-blue-50/40', 'shadow-2xs', 'ring-1', 'ring-brand-blue/30');
+          card.classList.add('border-brand-border', 'bg-white');
+        });
+        const parentCard = radio.closest('[data-service-card]');
+        if (parentCard) {
+          parentCard.classList.remove('border-brand-border', 'bg-white');
+          parentCard.classList.add('border-brand-blue', 'bg-blue-50/40', 'shadow-2xs', 'ring-1', 'ring-brand-blue/30');
+        }
+      });
+    });
+
+    // Helper for validation styling
+    function setFieldError(fieldId: string, errorId: string, isError: boolean) {
+      const input = document.getElementById(fieldId) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+      const errEl = document.getElementById(errorId);
+      if (input) {
+        input.setAttribute('aria-invalid', isError ? 'true' : 'false');
+        if (isError) {
+          input.classList.add('border-red-400', 'bg-red-50/30');
+        } else {
+          input.classList.remove('border-red-400', 'bg-red-50/30');
+        }
+      }
+      if (errEl) {
+        errEl.classList.toggle('hidden', !isError);
+      }
+      return isError;
+    }
+
+    // Form Submission Controller
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (errorBanner) errorBanner.classList.add('hidden');
+
+      let hasErrors = false;
+
+      // 1. Service check
+      const selectedService = form.querySelector<HTMLInputElement>('input[name="service"]:checked')?.value;
+      if (setFieldError('flight-service-error', 'flight-service-error', !selectedService)) {
+        hasErrors = true;
+      }
+
+      // 2. Route inputs
+      const departureCity = (document.getElementById('flight-departure-city') as HTMLInputElement)?.value.trim();
+      const destinationCity = (document.getElementById('flight-destination-city') as HTMLInputElement)?.value.trim();
+      if (setFieldError('flight-departure-city', 'flight-departure-city-error', !departureCity)) hasErrors = true;
+      if (setFieldError('flight-destination-city', 'flight-destination-city-error', !destinationCity)) hasErrors = true;
+
+      // 3. Departure Date
+      const departureDate = (document.getElementById('flight-departure-date') as HTMLInputElement)?.value;
+      if (setFieldError('flight-departure-date', 'flight-departure-date-error', !departureDate)) hasErrors = true;
+
+      // 4. Return Date (only if Round-Trip)
+      const isRoundTrip = tripRoundInput?.checked ?? true;
+      const returnDate = (document.getElementById('flight-return-date') as HTMLInputElement)?.value;
+      if (isRoundTrip) {
+        const returnInvalid = !returnDate || (departureDate && returnDate < departureDate);
+        if (setFieldError('flight-return-date', 'flight-return-date-error', returnInvalid)) hasErrors = true;
+      }
+
+      // 5. Contact Inputs
+      const fullName = (document.getElementById('flight-full-name') as HTMLInputElement)?.value.trim();
+      const phone = (document.getElementById('flight-phone') as HTMLInputElement)?.value.trim();
+      const email = (document.getElementById('flight-email') as HTMLInputElement)?.value.trim();
+      if (setFieldError('flight-full-name', 'flight-full-name-error', !fullName)) hasErrors = true;
+      if (setFieldError('flight-phone', 'flight-phone-error', !phone || phone.length < 8)) hasErrors = true;
+
+      // Email check (only if supplied)
+      if (email && (!email.includes('@') || !email.includes('.'))) {
+        if (setFieldError('flight-email', 'flight-email-error', true)) hasErrors = true;
+      } else {
+        setFieldError('flight-email', 'flight-email-error', false);
+      }
+
+      // 6. Privacy Consent
+      const consent = (document.getElementById('flight-consent') as HTMLInputElement)?.checked;
+      if (setFieldError('flight-consent', 'flight-consent-error', !consent)) hasErrors = true;
+
+      if (hasErrors) {
+        if (announcer) {
+          announcer.textContent = 'Please correct the highlighted travel booking errors before submitting.';
+        }
+        return;
+      }
+
+      // 7. Bot Honeypot Check
+      const botCheck = (document.getElementById('flight-bot-trap') as HTMLInputElement)?.value;
+      if (botCheck) {
+        console.warn('Bot submission blocked.');
+        return;
+      }
+
+      // 8. Session Rate Limiting (Max 5 per 10 mins per session)
+      const rateLimitKey = 'vc_flight_enquiry_count';
+      const currentCount = parseInt(sessionStorage.getItem(rateLimitKey) || '0', 10);
+      if (currentCount >= 5) {
+        if (errorBanner && errorMessage) {
+          errorBanner.classList.remove('hidden');
+          errorMessage.textContent = 'Flight enquiry limit reached for this session. Please contact our Hanumangarh travel desk directly.';
+        }
+        return;
+      }
+
+      // 9. Build Payload
+      const passengers = parseInt((document.getElementById('flight-passengers') as HTMLInputElement)?.value || '1', 10);
+      const travelClass = (document.getElementById('flight-travel-class') as HTMLSelectElement)?.value || 'economy';
+      const passengerCategory = (document.getElementById('flight-passenger-category') as HTMLSelectElement)?.value || 'student';
+      const specialNotes = (document.getElementById('flight-special-notes') as HTMLTextAreaElement)?.value.trim();
+
+      const payload = {
+        submissionType: 'flight',
+        service: selectedService,
+        tripType: isRoundTrip ? 'round-trip' : 'one-way',
+        departureCity,
+        destinationCity,
+        departureDate,
+        returnDate: isRoundTrip ? returnDate : undefined,
+        passengers,
+        travelClass,
+        passengerCategory,
+        fullName,
+        phone,
+        email: email || undefined,
+        specialNotes: specialNotes || undefined,
+        submittedAt: new Date().toISOString(),
+      };
+
+      // 10. Disable submit button & show loading state
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        if (submitText) submitText.textContent = 'Verifying Airline Schedules...';
+      }
+
+      try {
+        const response = await fetch('/api/enquiry', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Server returned HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (!data.success) {
+          throw new Error(data.message || 'Transmission rejected by server.');
+        }
+
+        // Increment rate limit count
+        sessionStorage.setItem(rateLimitKey, String(currentCount + 1));
+
+        // Update Success View
+        form.classList.add('hidden');
+        if (successView) {
+          successView.classList.remove('hidden');
+          if (successBadge) {
+            successBadge.textContent = `Reference ID: ${data.leadId || 'VC-FLT-' + Date.now().toString().slice(-6)}`;
+          }
+
+          const routeDisplay = document.getElementById('success-route-display');
+          const dateDisplay = document.getElementById('success-date-display');
+          const serviceDisplay = document.getElementById('success-service-display');
+
+          if (routeDisplay) routeDisplay.textContent = `${departureCity} → ${destinationCity} (${isRoundTrip ? 'Round-Trip' : 'One-Way'})`;
+          if (dateDisplay) dateDisplay.textContent = `${departureDate}${isRoundTrip && returnDate ? ' to ' + returnDate : ''}`;
+          if (serviceDisplay) {
+            const labelMap: Record<string, string> = {
+              'reservation-hold': 'Flight Reservation Hold (Visa File)',
+              'confirmed-ticket': 'Confirmed Ticket Enquiry',
+              'travel-itinerary': 'Travel Itinerary Assistance',
+            };
+            serviceDisplay.textContent = labelMap[selectedService || ''] || selectedService || 'Flight Assistance';
+          }
+
+          const waLink = document.getElementById('flight-success-whatsapp-link') as HTMLAnchorElement | null;
+          if (waLink) {
+            const waMsg = `Hello Visa Convention Travel Desk, I just submitted flight assistance request ${data.leadId || ''} (${departureCity} to ${destinationCity} on ${departureDate}). Could you please share the available airline schedules and baggage options?`;
+            waLink.href = `https://wa.me/919414404040?text=${encodeURIComponent(waMsg)}`;
+          }
+
+          successView.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      } catch (err: any) {
+        console.error('Flight enquiry transmission error:', err);
+        if (errorBanner && errorMessage) {
+          errorBanner.classList.remove('hidden');
+          errorMessage.textContent = `Unable to transmit flight request (${err.message || 'Connection error'}). Please message our Hanumangarh travel desk on WhatsApp or call us directly.`;
+        }
+        if (announcer) {
+          announcer.textContent = 'Flight enquiry submission failed. Please call or message on WhatsApp.';
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          if (submitText) submitText.textContent = 'Request Flight Assistance';
+        }
+      }
+    });
+
+    // Reset button
+    submitAnotherBtn?.addEventListener('click', () => {
+      form.reset();
+      form.classList.remove('hidden');
+      successView?.classList.add('hidden');
+      updateTripTypeUI(true);
+      if (timestampField) timestampField.value = Date.now().toString();
+    });
+  }
+
+  setupFlightForm();
+  document.addEventListener('astro:page-load', setupFlightForm);
+</script>

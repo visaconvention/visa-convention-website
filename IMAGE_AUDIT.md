@@ -1,0 +1,98 @@
+# Visa Convention — Comprehensive Website Image Inventory & Audit (IMAGE_AUDIT.md)
+
+**Project:** Visa Convention — Official Commercial Website  
+**Date:** November 11, 2026  
+**Auditor:** Principal Full-Stack Architect & UI/UX Design Director  
+**Governance:** AGENTS.md Section 3 (Strict Content Rules) & Phase 6/7/8 Visual Mandate  
+
+---
+
+## 1. Executive Summary & Photography Policy
+
+Visa Convention maintains a strict, zero-fabrication visual policy:
+1. **Authenticity Over Clutter:** Every image on the website must serve a clear purpose—identifying a destination, illustrating an actual service, or grounding the real business. No images are placed merely to fill whitespace.
+2. **Strict Editorial Aesthetics:** Only natural lighting, authentic architectural/landscape photography, and restrained color grading are permitted. Prohibited anti-patterns:
+   - No cartoon airplanes or clip-art globes
+   - No fake airline boarding passes, simulated tickets, or fabricated PNRs
+   - No generic corporate stock smiles passed off as Visa Convention employees
+   - No copyrighted university logos used without explicit authorization
+3. **Single Source of Truth:** Destination country photographs are governed by [`src/data/country-registry.ts`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/data/country-registry.ts). The same approved primary image is used across the homepage, study abroad directory, country profiles, tourist visa, and work visa, with responsive cropping where appropriate.
+4. **Accessible Fallbacks:** If an approved photograph has not been verified for a destination, the system renders an accessible, high-contrast ISO country code badge (`flagCode`) rather than silently inserting an unrelated or unverified placeholder.
+
+---
+
+## 2. Complete Asset Inventory
+
+| Asset Name | Current Source / Path | Target Page & Section | Subject / What It Shows | Dimensions | Size | License & Provenance | Alt Text & Accessibility | Status |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **`hero-landmarks.jpg`** | `/assets/images/hero-landmarks.jpg` | Homepage Hero (`HeroSection.astro`) | Four world landmarks (Statue of Liberty, Big Ben, Eiffel Tower, Sydney Opera House) under golden-hour twilight | 1536 × 1024 | 722 KB | Sourced Architectural Editorial Composite | *"World iconic landmarks including the Statue of Liberty, Big Ben, Eiffel Tower, and Sydney Opera House"* | ✅ Active & Approved |
+| **`flight-hero-aviation.jpg`** | `/assets/images/flight-hero-aviation.jpg` | Flight Booking Hero (`flight-booking.astro`) | Modern commercial passenger jet airliner wing cruising gracefully above sunset golden-hour clouds | 1536 × 1024 | 655 KB | Sourced Commercial Aviation Asset | *"Commercial passenger jetliner wing soaring above sunset clouds"* | ✅ Active & Approved |
+| **`mbbs-education.jpg`** | `/assets/images/mbbs-education.jpg` | MBBS Abroad Page (`mbbs.astro`) | Focused international medical students in white coats in a university clinical skills laboratory | 1200 × 800 | 99 KB | Unsplash Commercial License (`photo-1576091160399-112ba8d25d1d`) | *"International medical student training in modern university medical faculty"* | ✅ Active & Approved |
+| **`phd-research.jpg`** | `/assets/images/phd-research.jpg` | PhD Abroad Page (`phd.astro`) | Doctoral research scholar studying at desk with laptop and research journals in a grand university library | 1536 × 1024 | 802 KB | Sourced Academic Editorial Asset | *"Doctoral research scholar conducting dissertation research in an academic university library"* | ✅ Active & Approved |
+| **`hero-education.jpg`** | `/assets/images/hero-education.jpg` | Auxiliary / General Education Archive | University students walking across campus lawn | 1200 × 800 | 203 KB | Unsplash Commercial License | *"Students walking on an international university campus"* | 📦 Archived / Secondary |
+| **`canada.jpg`** | `/assets/images/destinations/canada.jpg` | Homepage, Country Directory, Canada Profile | Downtown Toronto skyline, CN Tower, and Lake Ontario | 1200 × 800 | 80 KB | Unsplash Commercial License (`photo-1517935703635-2717090c2210`) | *"Downtown Toronto skyline and Lake Ontario, Canada"* | ✅ Active & Approved |
+| **`united-kingdom.jpg`** | `/assets/images/destinations/united-kingdom.jpg` | Homepage, Country Directory, UK Profile | Palace of Westminster and Big Ben over River Thames, London | 1200 × 800 | 71 KB | Unsplash Commercial License (`photo-1513635269975-59663e0ac1ad`) | *"Palace of Westminster and Big Ben clock tower over River Thames, London, United Kingdom"* | ✅ Active & Approved |
+| **`australia.jpg`** | `/assets/images/destinations/australia.jpg` | Homepage, Country Directory, Australia Profile | Sydney Opera House and harbor under clear blue skies | 1200 × 800 | 31 KB | Unsplash Commercial License (`photo-1506973035872-a4ec16b8e8d9`) | *"Sydney Opera House and harbor under blue skies, Sydney, Australia"* | ✅ Active & Approved |
+| **`usa.jpg`** | `/assets/images/destinations/usa.jpg` | Homepage, Country Directory, USA Profile | Lower Manhattan skyline featuring One World Trade Center, New York City | 1200 × 800 | 112 KB | Unsplash Commercial License (`photo-1485871981521-5b1fd3805eee`) | *"Lower Manhattan skyline and One World Trade Center, New York City, USA"* | ✅ Active & Approved |
+| **`germany.jpg`** | `/assets/images/destinations/germany.jpg` | Homepage, Country Directory, Germany Profile | Historic Berlin Cathedral and Spree River, Berlin | 1200 × 800 | 74 KB | Unsplash Commercial License (`photo-1467269204594-9661b134dd2b`) | *"Historic Berlin Cathedral and Spree River, Berlin, Germany"* | ✅ Active & Approved |
+| **`ireland.jpg`** | `/assets/images/destinations/ireland.jpg` | Homepage, Country Directory, Ireland Profile | Cliffs of Moher and Atlantic coastline, Ireland | 1200 × 800 | 68 KB | Unsplash Commercial License (`photo-1590089415225-401ed6f9db8e`) | *"Cliffs of Moher and Atlantic coastline, Ireland"* | ✅ Active & Approved |
+
+---
+
+## 3. Page-by-Page Audit & Strategy
+
+### 3.1 Homepage (`/`)
+- **Hero Section:** Employs `hero-landmarks.jpg` in a calibrated 2-column editorial grid (~55% copy, ~45% visual). Sized appropriately at `clamp(380px, 32vw, 480px)` height to prevent pushing service pathways below the fold.
+- **Service Pathways:** Uses SVG iconography and structured pathway cards. Zero stock clutter.
+- **Featured Destinations:** Renders 6 priority countries (Canada, UK, Australia, USA, Germany, Ireland) utilizing verified local assets from `public/assets/images/destinations/`.
+- **Directory Banner & About:** Clean typography, statistics counter, and physical Hanumangarh center credentials.
+
+### 3.2 Flight Booking & Reservation Assistance (`/services/flight-booking/`)
+- **Hero Section:** Features `flight-hero-aviation.jpg` in a clean, modern aviation composition.
+- **Core Visual Function:** Replaces client promotional banner with a high-conversion, interactive booking and reservation enquiry form.
+- **Service Differentiation Panel:** Explains the distinct differences between:
+  1. Confirmed Flight Ticket Enquiry
+  2. Flight Reservation Assistance (for Visa Dossiers)
+  3. Travel Itinerary Assistance
+- **Strict Integrity Rule:** Zero fake boarding passes, zero simulated PNR codes, and zero deceptive "dummy ticket" graphics.
+
+### 3.3 Study Abroad Directory (`/study-abroad/`)
+- **Card Display:** Top featured countries display approved landmark photography. The remaining 30 destinations display clean, high-contrast ISO country badges (`flagCode`) with continent labels.
+- **Search & Filters:** Real-time continent filters and text search. Cards maintain a uniform 48px header or 180px image height.
+
+### 3.4 MBBS Abroad (`/services/mbbs/`)
+- **Hero / Header:** Incorporates `mbbs-education.jpg` illustrating an authentic university medical simulation lab.
+- **Faculty Listings:** Structured tables detailing curriculum, clinical training hospitals, and National Medical Commission (NMC) compliance.
+
+### 3.5 PhD Abroad (`/services/phd/`)
+- **Hero / Header:** Incorporates `phd-research.jpg` illustrating a doctoral research scholar in an academic graduate library.
+- **Advisory Scope:** Research proposal formulation, supervisor matching, and funding fellowship pathways.
+
+### 3.6 Tourist Visa (`/services/tourist-visa/`)
+- **Hero & Content:** Editorial travel advisory layout covering 27 destinations (16 Schengen, 10 Direct Consular, 1 UAE).
+- **Interactive Destination Grid:** Uses high-contrast ISO flag markers, stream labels, and prefilled consultation triggers.
+
+### 3.7 Work Visa (`/services/work-visa/`)
+- **Hero & Content:** Professional compliance layout covering 14 countries across the Gulf, Europe, and Asia-Pacific.
+- **Occupational Focus Areas:** Features 12 occupational sectors clearly categorized as advisory focus areas with statutory Indian Emigration Act, 1983 disclosures.
+
+### 3.8 About Us (`/about/`) & Contact (`/contact/`)
+- **Current State:** Clean typographic presentation, Hanumangarh physical consultation address, verified social handles (Instagram, YouTube), and operating hours.
+- **Pending Client Items:** Awaiting client-supplied, verified photographs of the actual Hanumangarh office exterior/interior and counseling staff. No generic stock photos are substituted.
+
+---
+
+## 4. Centralized Country Registry Integration
+
+All 51 countries in [`src/data/country-registry.ts`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/data/country-registry.ts) are strictly indexed with:
+- `countryId` (string)
+- `countryName` (string)
+- `slug` (string)
+- `primaryImage` (string)
+- `altText` (string)
+- `sourceUrl` (string)
+- `license` (string)
+- `objectPosition` (string)
+- `approvalStatus` (`'approved' | 'pending' | 'draft'`)
+
+This guarantees that whenever a country card is rendered anywhere across the site, it pulls from the single canonical registry.

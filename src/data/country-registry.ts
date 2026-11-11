@@ -12,7 +12,7 @@ import type { CountryRegistryEntry } from '../types';
  * - Every published country links to approved, authentic destination photography or fallback.
  * - Sourced licensed photographs are tracked with provenance, license and objectPosition.
  */
-export const countryRegistry: CountryRegistryEntry[] = [
+const rawCountryRegistry: CountryRegistryEntry[] = [
   // ----------------------------------------------------
   // Flagship Study & Global Destinations (Verified Images)
   // ----------------------------------------------------
@@ -886,6 +886,22 @@ export const countryRegistry: CountryRegistryEntry[] = [
     notes: 'Internal draft record.',
   },
 ];
+
+/**
+ * Normalized Canonical Country Registry
+ * Guarantees direct access to: countryId, countryName, slug, primaryImage, altText, sourceUrl, license, objectPosition, approvalStatus
+ */
+export const countryRegistry: CountryRegistryEntry[] = rawCountryRegistry.map((c) => ({
+  ...c,
+  countryId: c.countryId || c.id,
+  countryName: c.countryName || c.name,
+  primaryImage: c.primaryImage || c.image.src,
+  altText: c.altText || c.image.alt,
+  sourceUrl: c.sourceUrl || c.image.sourceUrl,
+  license: c.license || c.image.license,
+  objectPosition: c.objectPosition || c.image.objectPosition || 'center',
+  approvalStatus: (c.approvalStatus || (c.image.approved ? 'approved' : 'draft')) as 'approved' | 'pending' | 'draft',
+}));
 
 /**
  * Registry Helper Functions

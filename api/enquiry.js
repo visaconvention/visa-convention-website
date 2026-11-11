@@ -54,6 +54,33 @@ export default async function handler(req, res) {
           message: 'Missing required business inquiry fields.',
         });
       }
+    } else if (submissionType === 'flight') {
+      const name = sanitize(data.fullName);
+      const phone = sanitize(data.phone);
+      const service = sanitize(data.service);
+      const departureCity = sanitize(data.departureCity);
+      const destinationCity = sanitize(data.destinationCity);
+      const departureDate = sanitize(data.departureDate);
+      const tripType = sanitize(data.tripType) || 'round-trip';
+
+      if (!name || !phone || !service || !departureCity || !destinationCity || !departureDate) {
+        return res.status(422).json({
+          success: false,
+          message: 'Missing required flight booking fields (name, phone, service, origin, destination, departure date).',
+        });
+      }
+
+      // Date validation: Return date must not be before departure date for round trips
+      if (tripType === 'round-trip' && data.returnDate) {
+        const depTime = new Date(departureDate).getTime();
+        const retTime = new Date(sanitize(data.returnDate)).getTime();
+        if (retTime < depTime) {
+          return res.status(422).json({
+            success: false,
+            message: 'Return date cannot be earlier than departure date.',
+          });
+        }
+      }
     } else {
       const name = sanitize(data.fullName);
       const phone = sanitize(data.phone);
@@ -69,7 +96,8 @@ export default async function handler(req, res) {
     }
 
     // 3. Generate unique verifiable reference ID
-    const leadId = `VC-LEAD-${Date.now().toString().slice(-6)}`;
+    const leadPrefix = submissionType === 'flight' ? 'VC-FLT' : submissionType === 'business' ? 'VC-B2B' : 'VC-LEAD';
+    const leadId = `${leadPrefix}-${Date.now().toString().slice(-6)}`;
     const timestamp = new Date().toISOString();
 
     const sanitizedLead = {
@@ -85,6 +113,16 @@ export default async function handler(req, res) {
       targetUniversity: sanitize(data.targetUniversity),
       proposedScope: sanitize(data.proposedScope),
       notes: sanitize(data.notes),
+      // Flight-specific fields
+      departureCity: sanitize(data.departureCity),
+      destinationCity: sanitize(data.destinationCity),
+      departureDate: sanitize(data.departureDate),
+      returnDate: sanitize(data.returnDate),
+      tripType: sanitize(data.tripType),
+      passengers: data.passengers ? Math.min(Math.max(parseInt(data.passengers, 10) || 1, 1), 9) : 1,
+      travelClass: sanitize(data.travelClass),
+      passengerCategory: sanitize(data.passengerCategory),
+      specialNotes: sanitize(data.specialNotes),
       receivedAt: timestamp,
     };
 

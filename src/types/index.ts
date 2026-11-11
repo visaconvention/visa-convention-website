@@ -178,6 +178,8 @@ export interface DetailedService {
   metaDescription: string;
   heroCtaText: string;
   heroCtaHref: string;
+  heroImage?: string;
+  heroImageAlt?: string;
   assistanceIncludes: Array<{
     title: string;
     description: string;
@@ -365,11 +367,19 @@ export interface CountryImage {
  */
 export interface CountryRegistryEntry {
   id: string;
+  countryId?: string;
   name: string;
+  countryName?: string;
   slug: string;
   isoCode: string;
   continent: Continent | string;
   image: CountryImage;
+  primaryImage?: string;
+  altText?: string;
+  sourceUrl?: string;
+  license?: string;
+  objectPosition?: string;
+  approvalStatus?: 'approved' | 'pending' | 'draft';
   services: {
     study: boolean;
     tourist: boolean;
