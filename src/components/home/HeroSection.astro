@@ -3,6 +3,7 @@ interface Props {
   eyebrow?: string;
   headline?: string;
   subheadline?: string;
+  description?: string;
   primaryCtaText?: string;
   primaryCtaHref?: string;
   secondaryCtaText?: string;
@@ -12,9 +13,10 @@ interface Props {
 }
 
 const {
-  eyebrow = 'Hanumangarh, Rajasthan',
-  headline = 'Study Abroad, Visa & Travel Services',
-  subheadline = 'Explore international study destinations, visa assistance and travel services with Visa Convention.',
+  eyebrow = 'Hanumangarh, Rajasthan • Global Consultation Desk',
+  headline = 'Explore the World with Visa Convention',
+  subheadline = 'Study Abroad, Visa & Travel Services',
+  description = 'Explore international study destinations, visa assistance and travel services with the Visa Convention team.',
   primaryCtaText = 'Explore Services',
   primaryCtaHref = '#services',
   secondaryCtaText = 'Contact Us',
@@ -26,45 +28,48 @@ const {
 
 <!--
   Hero Section — Visa Convention
-  Layout: Custom two-column grid (text | image)
+  Layout: Custom two-column grid (text ~52% | image ~48%)
+  Atmosphere: Sky Blue light gradient (#EAF4FF) fading to white
   Desktop targets (1366px):
-    Hero height  : ~475px (tighter padding, larger image)
-    Image width  : ~505px (pinned via max-w on right col)
-    Image height : ~430px (aspect-ratio 6/5)
-    Text column  : ~610px
+    Hero height  : ~460–490px content-led
+    Image width  : ~510px (pinned via max-w on right col)
+    Image height : ~425px (aspect-ratio 6/5)
+    Text column  : ~590–610px
     Gap          : ~40px (clamp 32–48px)
   Mobile: single column, text first, image ~260px tall
 -->
-<section class="bg-white border-b border-brand-border py-5 sm:py-7 lg:py-[27px]">
+<section class="bg-gradient-to-b from-[#EAF4FF] via-[#F5F8FC] to-white border-b border-brand-border py-6 sm:py-8 lg:py-10">
   <div class="site-container">
-    <!--
-      Custom grid: text column grows freely, image column
-      is capped at 505px so it never overwhelms the layout.
-      Gap: clamp(32px, 3vw, 48px) → ~40px at 1366px.
-    -->
     <div class="hero-grid">
 
-      <!-- ── Left: Copy & CTAs ───────────────────────────────────── -->
+      <!-- ── Left: Copy & CTAs (~52%) ───────────────────────────────────── -->
       <div class="hero-content space-y-4 sm:space-y-5">
 
-        <!-- Location label — understated, not a repeated logo -->
-        <p class="text-xs font-semibold uppercase tracking-widest text-brand-subtle">
-          {eyebrow}
-        </p>
+        <!-- Location label & trust tag -->
+        <div class="flex items-center gap-2">
+          <span class="inline-block px-3 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-white text-brand-navy border border-brand-border shadow-2xs">
+            {eyebrow}
+          </span>
+        </div>
 
-        <h1 class="text-[1.95rem] min-[420px]:text-[2.2rem] sm:text-[2.9rem] lg:text-[3.4rem] font-black text-brand-navy tracking-tight leading-[1.06] text-balance">
-          {headline}
-        </h1>
+        <div>
+          <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-blue mb-2">
+            {subheadline}
+          </p>
+          <h1 class="text-[2rem] min-[420px]:text-[2.3rem] sm:text-[2.9rem] lg:text-[3.35rem] font-black text-brand-navy tracking-tight leading-[1.08] text-balance">
+            Explore the World with <span class="text-brand-red">Visa Convention</span>
+          </h1>
+        </div>
 
-        <p class="text-base sm:text-[1.1rem] text-brand-muted leading-relaxed max-w-[50ch] font-normal">
-          {subheadline}
+        <p class="text-base sm:text-[1.08rem] text-brand-muted leading-relaxed max-w-[52ch] font-normal">
+          {description}
         </p>
 
         <!-- CTAs -->
         <div class="flex flex-wrap items-center gap-3.5 pt-1">
           <a
             href={primaryCtaHref}
-            class="btn-primary text-center px-7 py-3.5 text-sm min-h-[52px]"
+            class="btn-primary text-center px-7 py-3.5 text-sm min-h-[50px] shadow-sm hover:shadow-md transition-all flex items-center gap-2"
           >
             <span>{primaryCtaText}</span>
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -73,21 +78,15 @@ const {
           </a>
           <a
             href={secondaryCtaHref}
-            class="btn-outline text-center px-7 py-3.5 text-sm min-h-[52px]"
+            class="btn-outline text-center px-7 py-3.5 text-sm min-h-[50px] bg-white hover:bg-brand-bg transition-all"
           >
             <span>{secondaryCtaText}</span>
           </a>
         </div>
       </div>
 
-      <!-- ── Right: Hero Image ───────────────────────────────────── -->
+      <!-- ── Right: Four-Landmark Hero Visual (~48%) ───────────────────── -->
       <div class="hero-image-wrap">
-        <!--
-          Wrapper enforces 6:5 aspect-ratio at all sizes.
-          On desktop the column is capped at 505px so the image
-          naturally fills to ~505 × 421px (6:5 ≈ 420–440px tall).
-          On mobile the wrapper height is clamped to 260px.
-        -->
         <div class="hero-image-frame">
           <img
             src={imageSrc}
@@ -99,6 +98,12 @@ const {
             fetchpriority="high"
             decoding="async"
           />
+          <!-- Subtle editorial caption badge -->
+          <div class="absolute bottom-3 left-3 right-3 text-left pointer-events-none">
+            <span class="inline-block px-2.5 py-1 rounded-md bg-brand-navy/85 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-xs border border-white/20">
+              New York • London • Paris • Sydney
+            </span>
+          </div>
         </div>
       </div>
 
@@ -112,14 +117,14 @@ const {
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
-    gap: clamp(1.75rem, 3vw, 2.5rem);  /* 28–40px */
+    gap: clamp(1.75rem, 3vw, 2.5rem);
   }
 
   @media (min-width: 1024px) {
     .hero-grid {
-      /* Text column fills remaining space (~55%); image column capped at ~520px (~45%) */
-      grid-template-columns: 1fr minmax(0, 520px);
-      gap: clamp(2rem, 3.5vw, 3rem);  /* 32–48px → ~40px at 1366px */
+      /* Text column fills ~52%; image column capped at ~510px (~48%) */
+      grid-template-columns: 1fr minmax(0, 510px);
+      gap: clamp(2rem, 3.5vw, 3rem);
     }
   }
 
@@ -144,24 +149,21 @@ const {
     position: relative;
     width: 100%;
     overflow: hidden;
-    border-radius: 1rem;           /* 16px — matches rest of design system */
+    border-radius: 1.25rem;       /* 20px refined corner */
     border: 1px solid var(--color-brand-border);
     background-color: var(--color-brand-bg);
-    /* 6:5 aspect ratio on desktop — yields ~421px tall at 505px wide */
+    box-shadow: 0 4px 20px -2px rgba(16, 42, 83, 0.08);
     aspect-ratio: 6 / 5;
   }
 
-  /* On narrow mobile, flatten to a fixed sensible height */
   @media (max-width: 1023px) {
     .hero-image-frame {
-      /* Let aspect-ratio drive at sm/md; cap height on smallest screens */
-      max-height: 300px;
+      max-height: 320px;
     }
   }
 
   @media (max-width: 479px) {
     .hero-image-frame {
-      /* On 320–430px: comfortable crop, not too tall */
       max-height: 260px;
     }
   }
@@ -171,7 +173,6 @@ const {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center center;   /* centers international landmarks */
-    /* Prevent layout shift: intrinsic size declared on <img> element */
+    object-position: center center;
   }
 </style>

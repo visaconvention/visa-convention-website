@@ -778,7 +778,10 @@
           "url": "https://france-visas.gouv.fr"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/france.jpg",
+      "cardImageAlt": "Eiffel Tower and Paris cityscape, France",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-new-zealand",
@@ -883,7 +886,10 @@
           "url": "https://www.studywithnewzealand.govt.nz"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/new-zealand.jpg",
+      "cardImageAlt": "Milford Sound fjord landscape, New Zealand",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-uzbekistan",
@@ -982,7 +988,10 @@
           "url": "https://www.wdoms.org"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/uzbekistan.jpg",
+      "cardImageAlt": "Registan Square madrasahs in Samarkand, Uzbekistan",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-kazakhstan",
@@ -1076,7 +1085,10 @@
           "url": "https://www.wdoms.org"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/kazakhstan.jpg",
+      "cardImageAlt": "Almaty mountain landscape and cityscape, Kazakhstan",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-kyrgyzstan",
@@ -1257,7 +1269,10 @@
           "url": "https://studyinrussia.ru"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/russia.jpg",
+      "cardImageAlt": "Red Square historic architectural heritage in Moscow, Russia",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-italy",
@@ -1356,7 +1371,10 @@
           "url": "https://ambnuovadelhi.esteri.it"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/italy.jpg",
+      "cardImageAlt": "Colosseum historic landmark in Rome, Italy",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-spain",
@@ -1456,7 +1474,10 @@
           "url": "https://www.exteriores.gob.es/Consulados/mumbai"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/spain.jpg",
+      "cardImageAlt": "Plaza de Espana architectural landmark in Seville, Spain",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-netherlands",
@@ -1556,7 +1577,10 @@
           "url": "https://ind.nl/en"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/netherlands.jpg",
+      "cardImageAlt": "Amsterdam canal houses and bridge, Netherlands",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-finland",
@@ -1850,7 +1874,10 @@
           "url": "https://www.sem.admin.ch"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/switzerland.jpg",
+      "cardImageAlt": "Swiss Alps mountain landscape in Zermatt, Switzerland",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-singapore",
@@ -1946,7 +1973,10 @@
           "url": "https://www.ica.gov.sg/reside/STP/apply"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/singapore.jpg",
+      "cardImageAlt": "Marina Bay Sands and downtown skyline, Singapore",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-austria",
@@ -2045,7 +2075,10 @@
           "url": "https://www.studyinaustria.at"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/austria.jpg",
+      "cardImageAlt": "Vienna historic cathedral and architecture, Austria",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-belgium",
@@ -3431,7 +3464,10 @@
           "url": "https://www.studyinjapan.go.jp"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/japan.jpg",
+      "cardImageAlt": "Mount Fuji and cherry blossoms over Tokyo, Japan",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-south-korea",
@@ -3530,7 +3566,10 @@
           "url": "https://www.studyinkorea.go.kr"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/south-korea.jpg",
+      "cardImageAlt": "Gyeongbokgung Palace architecture in Seoul, South Korea",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-mauritius",
