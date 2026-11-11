@@ -1096,7 +1096,7 @@
       "slug": "kyrgyzstan",
       "flagCode": "KG",
       "continent": "Asia",
-      "heroImage": "/assets/images/destinations/kyrgyzstan-hero.webp",
+      "heroImage": "/assets/images/destinations/kyrgyzstan.jpg",
       "shortDescription": "Established medical faculties training Indian doctors for over 30 years, low tuition fees, and direct flights from India.",
       "introduction": "Kyrgyzstan has been a trusted medical education hub for Indian students for over three decades. State universities such as Osh State University feature experienced English-speaking faculty, modern anatomical laboratories, established Indian student messes, and transparent tuition structures.",
       "whyStudyHere": [
@@ -1176,7 +1176,10 @@
           "url": "https://www.wdoms.org"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/kyrgyzstan.jpg",
+      "cardImageAlt": "Tian Shan mountain peaks and alpine river valley in Ala-Archa, Kyrgyzstan",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-russia",
@@ -1588,7 +1591,7 @@
       "slug": "finland",
       "flagCode": "FI",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/finland-hero.webp",
+      "heroImage": "/assets/images/destinations/finland.jpg",
       "shortDescription": "World's happiest country, premier innovation ecosystem (Nokia), 2-year post-study work visa, and PR pathways.",
       "introduction": "Ranked as the world's happiest country for seven consecutive years, Finland offers an outstanding higher education system. With universities of applied sciences and research institutions focusing on green technology, ICT, and forestry sciences, Finland provides a 2-year post-study residence permit and clear pathways to permanent residency.",
       "whyStudyHere": [
@@ -1679,7 +1682,10 @@
           "url": "https://migri.fi/en/studying-in-finland"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/finland.jpg",
+      "cardImageAlt": "Neoclassical Helsinki Cathedral standing above Senate Square in Finland",
+      "imageObjectPosition": "center 30%"
     },
     {
       "id": "country-sweden",
@@ -1687,7 +1693,7 @@
       "slug": "sweden",
       "flagCode": "SE",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/sweden-hero.webp",
+      "heroImage": "/assets/images/destinations/sweden.jpg",
       "shortDescription": "Home of the Nobel Prize, sustainability and innovation leaders (Spotify, Volvo, IKEA), and 1-year job search visa.",
       "introduction": "Sweden is an innovation powerhouse, celebrated for progressive research, environmental sustainability, and egalitarian workplace culture. Home to the Nobel Prize and global industry pioneers like Spotify, Ericsson, Volvo, and IKEA, Sweden offers over 1,000 master’s programs taught entirely in English.",
       "whyStudyHere": [
@@ -1777,7 +1783,10 @@
           "url": "https://www.migrationsverket.se"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/sweden.jpg",
+      "cardImageAlt": "Gamla Stan historic waterfront and colourful buildings in Stockholm, Sweden",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-switzerland",
@@ -2086,7 +2095,7 @@
       "slug": "belgium",
       "flagCode": "BE",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/belgium-hero.webp",
+      "heroImage": "/assets/images/destinations/belgium.jpg",
       "shortDescription": "Heart of the European Union, home to historic KU Leuven (consistently ranked Europe's most innovative university), and bilingual education.",
       "introduction": "Belgium is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -2177,7 +2186,10 @@
           "url": "https://www.studyinbelgium.be"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/belgium.jpg",
+      "cardImageAlt": "Grand Place gilded baroque guildhalls and square in Brussels, Belgium",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-denmark",
@@ -2185,7 +2197,7 @@
       "slug": "denmark",
       "flagCode": "DK",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/denmark-hero.webp",
+      "heroImage": "/assets/images/destinations/denmark.jpg",
       "shortDescription": "Progressive Scandinavian teaching, world-leading green technology research, and high quality of life in Copenhagen.",
       "introduction": "Denmark is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -2276,7 +2288,10 @@
           "url": "https://studyindenmark.dk"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/denmark.jpg",
+      "cardImageAlt": "Colourful 17th-century townhouses along Nyhavn canal in Copenhagen, Denmark",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-czech-republic",
@@ -2284,7 +2299,7 @@
       "slug": "czech-republic",
       "flagCode": "CZ",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/czech-republic-hero.webp",
+      "heroImage": "/assets/images/destinations/czech-republic.jpg",
       "shortDescription": "Historic Charles University (founded 1348), economical living costs, rich engineering traditions, and vibrant student life in Prague.",
       "introduction": "Czech Republic is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -2375,7 +2390,10 @@
           "url": "https://www.studyin.cz"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/czech-republic.jpg",
+      "cardImageAlt": "Charles Bridge and Prague Castle across the Vltava River in Prague, Czech Republic",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-hungary",
@@ -2383,7 +2401,7 @@
       "slug": "hungary",
       "flagCode": "HU",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/hungary-hero.webp",
+      "heroImage": "/assets/images/destinations/hungary.jpg",
       "shortDescription": "Stipendium Hungaricum scholarship opportunities, historical medical academies (Semmelweis), and affordable student living in Budapest.",
       "introduction": "Hungary is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -2474,7 +2492,10 @@
           "url": "https://studyinhungary.hu"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/hungary.jpg",
+      "cardImageAlt": "Gothic revival Hungarian Parliament Building along the Danube River in Budapest",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-poland",
@@ -2482,7 +2503,7 @@
       "slug": "poland",
       "flagCode": "PL",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/poland-hero.webp",
+      "heroImage": "/assets/images/destinations/poland.jpg",
       "shortDescription": "Rapidly expanding economy, top technical universities (Warsaw, Krakow), low tuition fees, and rich academic heritage.",
       "introduction": "Poland is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -2573,7 +2594,10 @@
           "url": "https://study.gov.pl"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/poland.jpg",
+      "cardImageAlt": "Warsaw Old Town Market Square with ornate historic merchant houses in Poland",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-portugal",
@@ -2581,7 +2605,7 @@
       "slug": "portugal",
       "flagCode": "PT",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/portugal-hero.webp",
+      "heroImage": "/assets/images/destinations/portugal.jpg",
       "shortDescription": "Sunny Atlantic climate, historic University of Coimbra, welcoming culture, and accessible European residency pathways.",
       "introduction": "Portugal is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -2672,7 +2696,10 @@
           "url": "https://www.studyinportugal.edu.pt"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/portugal.jpg",
+      "cardImageAlt": "Ribeira waterfront and historic Dom Luis I Bridge in Porto, Portugal",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-greece",
@@ -2680,7 +2707,7 @@
       "slug": "greece",
       "flagCode": "GR",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/greece-hero.webp",
+      "heroImage": "/assets/images/destinations/greece.jpg",
       "shortDescription": "Birthplace of philosophy and democratic thought, English-medium programs, Mediterranean lifestyle, and low tuition fees.",
       "introduction": "Greece is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -2771,7 +2798,10 @@
           "url": "https://studyingreece.edu.gr"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/greece.jpg",
+      "cardImageAlt": "Parthenon temple atop the ancient Acropolis in Athens, Greece",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-cyprus",
@@ -2779,7 +2809,7 @@
       "slug": "cyprus",
       "flagCode": "CY",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/cyprus-hero.webp",
+      "heroImage": "/assets/images/destinations/cyprus.jpg",
       "shortDescription": "English-speaking Mediterranean island, straightforward admission processing, affordable fees, and modern university campuses.",
       "introduction": "Cyprus is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -2870,7 +2900,10 @@
           "url": "https://www.highereducation.ac.cy"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/cyprus.jpg",
+      "cardImageAlt": "Mediterranean coastal cliffs and turquoise waters in Cyprus",
+      "imageObjectPosition": "center 40%"
     },
     {
       "id": "country-malta",
@@ -2878,7 +2911,7 @@
       "slug": "malta",
       "flagCode": "MT",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/malta-hero.webp",
+      "heroImage": "/assets/images/destinations/malta.jpg",
       "shortDescription": "Official English-speaking EU island nation, British academic heritage, thriving gaming and finance sectors, and Schengen access.",
       "introduction": "Malta is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -2969,7 +3002,10 @@
           "url": "https://education.gov.mt"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/malta.jpg",
+      "cardImageAlt": "Historic Grand Harbour and Valletta baroque fortifications in Malta",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-latvia",
@@ -2977,7 +3013,7 @@
       "slug": "latvia",
       "flagCode": "LV",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/latvia-hero.webp",
+      "heroImage": "/assets/images/destinations/latvia.jpg",
       "shortDescription": "Baltic technology and aviation hub, affordable European education, English-taught engineering programs, and doctoral opportunities.",
       "introduction": "Latvia is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -3068,7 +3104,10 @@
           "url": "https://www.studyinlatvia.lv"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/latvia.jpg",
+      "cardImageAlt": "Gothic House of the Black Heads and historic Old Town square in Riga, Latvia",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-romania",
@@ -3076,7 +3115,7 @@
       "slug": "romania",
       "flagCode": "RO",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/romania-hero.webp",
+      "heroImage": "/assets/images/destinations/romania.jpg",
       "shortDescription": "European IT and medical education hub, high-speed internet infrastructure, low cost of living, and English-taught faculties.",
       "introduction": "Romania is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -3167,7 +3206,10 @@
           "url": "https://studyinromania.gov.ro"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/romania.jpg",
+      "cardImageAlt": "Neo-Renaissance Peleș Castle nestled in the Carpathian Mountains of Romania",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-croatia",
@@ -3175,7 +3217,7 @@
       "slug": "croatia",
       "flagCode": "HR",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/croatia-hero.webp",
+      "heroImage": "/assets/images/destinations/croatia.jpg",
       "shortDescription": "Newest Schengen member state, scenic Adriatic coastline, University of Zagreb research programs, and European degree recognition.",
       "introduction": "Croatia is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -3266,7 +3308,10 @@
           "url": "https://www.studyincroatia.hr"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/croatia.jpg",
+      "cardImageAlt": "Dubrovnik historic walled city overlooking the Adriatic Sea in Croatia",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-georgia",
@@ -3274,7 +3319,7 @@
       "slug": "georgia",
       "flagCode": "GE",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/georgia-hero.webp",
+      "heroImage": "/assets/images/destinations/georgia.jpg",
       "shortDescription": "Popular destination for English-medium MBBS and aviation degrees, high hospitality standards, and straightforward visa processing.",
       "introduction": "Georgia is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -3365,7 +3410,10 @@
           "url": "https://geoconsul.gov.ge"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/georgia.jpg",
+      "cardImageAlt": "Historic Tbilisi Old Town with cliffside houses and Narikala Fortress in Georgia",
+      "imageObjectPosition": "center 35%"
     },
     {
       "id": "country-japan",
@@ -3577,7 +3625,7 @@
       "slug": "mauritius",
       "flagCode": "MU",
       "continent": "Africa",
-      "heroImage": "/assets/images/destinations/mauritius-hero.webp",
+      "heroImage": "/assets/images/destinations/mauritius.jpg",
       "shortDescription": "Bilingual tropical island nation, branch campuses of British and Australian universities, visa-free access, and financial hub.",
       "introduction": "Mauritius is an established destination for international higher education, offering accredited degree programs across Europe and Asia with globally recognized academic standards, modern campus infrastructure, and supportive student welfare frameworks.",
       "whyStudyHere": [
@@ -3668,7 +3716,10 @@
           "url": "https://education.govmu.org"
         }
       ],
-      "lastReviewed": "2026-11-09"
+      "lastReviewed": "2026-11-09",
+      "cardImage": "/assets/images/destinations/mauritius.jpg",
+      "cardImageAlt": "UNESCO World Heritage Le Morne Brabant mountain rising above the Indian Ocean lagoon in Mauritius",
+      "imageObjectPosition": "center 40%"
     },
     {
       "id": "country-moldova",
@@ -3676,7 +3727,7 @@
       "slug": "moldova",
       "flagCode": "MD",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/moldova-hero.webp",
+      "heroImage": "/assets/images/destinations/moldova.jpg",
       "shortDescription": "Eastern European hub for affordable medical and technical higher education recognized globally.",
       "introduction": "Moldova offers recognized medical and technical degree programs with English-language instruction, established hospital clinical networks, and economical tuition structures for international students.",
       "whyStudyHere": [
@@ -3758,7 +3809,9 @@
           "url": "https://mec.gov.md/en"
         }
       ],
-      "lastReviewed": "2026-11-10"
+      "lastReviewed": "2026-11-10",
+      "cardImage": "/assets/images/destinations/moldova.jpg",
+      "cardImageAlt": "Moldova destination landmark"
     },
     {
       "id": "country-lithuania",
@@ -3766,7 +3819,7 @@
       "slug": "lithuania",
       "flagCode": "LT",
       "continent": "Europe",
-      "heroImage": "/assets/images/destinations/lithuania-hero.webp",
+      "heroImage": "/assets/images/destinations/lithuania.jpg",
       "shortDescription": "Baltic innovation center offering premier English-taught degrees, medical schools, and funded doctoral research positions.",
       "introduction": "Lithuania is an advanced European Union and Schengen member state offering high-standard higher education across world-ranked research universities, medical academies, and technical institutions.",
       "whyStudyHere": [
@@ -3861,7 +3914,9 @@
           "url": "https://www.migracija.lt"
         }
       ],
-      "lastReviewed": "2026-11-10"
+      "lastReviewed": "2026-11-10",
+      "cardImage": "/assets/images/destinations/lithuania.jpg",
+      "cardImageAlt": "Lithuania destination landmark"
     },
     {
       "id": "country-azerbaijan",
@@ -3869,7 +3924,7 @@
       "slug": "azerbaijan",
       "flagCode": "AZ",
       "continent": "Asia",
-      "heroImage": "/assets/images/destinations/azerbaijan-hero.webp",
+      "heroImage": "/assets/images/destinations/azerbaijan.jpg",
       "shortDescription": "Emerging destination for English-taught medical education, modern Caspian campus facilities, and economical living.",
       "introduction": "Azerbaijan is an emerging center for international higher education, offering English-medium degree programs in medicine, petroleum engineering, and international business.",
       "whyStudyHere": [
@@ -3950,7 +4005,9 @@
           "url": "https://edu.gov.az/en"
         }
       ],
-      "lastReviewed": "2026-11-10"
+      "lastReviewed": "2026-11-10",
+      "cardImage": "/assets/images/destinations/azerbaijan.jpg",
+      "cardImageAlt": "Azerbaijan destination landmark"
     }
   ]
 }

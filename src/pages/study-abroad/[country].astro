@@ -110,6 +110,11 @@ const hasScholarshipInfo = Boolean(
   (typeof country.scholarshipInformation === 'object' && country.scholarshipInformation !== null && country.scholarshipInformation.available) ||
   scholarshipOverview.length > 0
 );
+
+// Primary destination photograph
+const heroImageSrc = country.cardImage || country.heroImage || `/assets/images/destinations/${country.slug}.jpg`;
+const heroImageAlt = country.cardImageAlt || `${country.name} study destination and landmark`;
+const objectPos = country.imageObjectPosition || 'center 35%';
 ---
 
 <BaseLayout
@@ -131,65 +136,82 @@ const hasScholarshipInfo = Boolean(
   <!-- 2. Hero Section -->
   <section class="py-12 sm:py-16 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl text-left">
-        <!-- Badges Bar -->
-        <div class="flex flex-wrap items-center gap-3 mb-4">
-          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-navy text-white shadow-2xs">
-            <span>{flagCode}</span>
-            <span>•</span>
-            <span>{country.continent}</span>
-          </span>
-          {country.featured && (
-            <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-brand-red/10 text-brand-red border border-brand-red/20">
-              Featured Destination
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div class="lg:col-span-7 text-left">
+          <!-- Badges Bar -->
+          <div class="flex flex-wrap items-center gap-3 mb-4">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-navy text-white shadow-2xs">
+              <span>{flagCode}</span>
+              <span>•</span>
+              <span>{country.continent}</span>
             </span>
-          )}
-          <span class="text-xs text-brand-muted font-medium">
-            Last Reviewed: {country.lastReviewed}
-          </span>
+            {country.featured && (
+              <span class="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-brand-red/10 text-brand-red border border-brand-red/20">
+                Featured Destination
+              </span>
+            )}
+            <span class="text-xs text-brand-muted font-medium">
+              Last Reviewed: {country.lastReviewed}
+            </span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4">
+            Study in {country.name}
+          </h1>
+          <p class="text-base sm:text-lg text-brand-muted leading-relaxed mb-6 font-normal">
+            {country.shortDescription || country.shortSummary}
+          </p>
+
+          <!-- Fast Facts Bar -->
+          <div class="pt-5 border-t border-brand-border grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs mb-8">
+            <div>
+              <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Capital City</span>
+              <span class="font-bold text-brand-navy text-sm">{country.capital || 'Major Metros'}</span>
+            </div>
+            <div>
+              <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Currency</span>
+              <span class="font-bold text-brand-navy text-sm">{country.currency || 'National Currency'}</span>
+            </div>
+            <div>
+              <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Tuition Est.</span>
+              <span class="font-bold text-brand-navy text-sm truncate block">{country.estimatedTuitionRange.split('–')[0]}</span>
+            </div>
+            <div>
+              <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Primary Intake</span>
+              <span class="font-bold text-brand-navy text-sm truncate block">{intakePeriods[0] || 'Flexible'}</span>
+            </div>
+          </div>
+
+          <!-- Action CTAs -->
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#enquiry" class="btn-primary inline-flex items-center gap-2">
+              <span>Book Free Assessment for {country.name}</span>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+              </svg>
+            </a>
+            <a href="#universities" class="btn-secondary inline-flex items-center gap-2">
+              <span>Explore Guided Universities</span>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-4">
-          Study in {country.name}
-        </h1>
-        <p class="text-base sm:text-lg text-brand-muted leading-relaxed mb-6 font-normal">
-          {country.shortDescription || country.shortSummary}
-        </p>
-
-        <!-- Fast Facts Bar -->
-        <div class="pt-5 border-t border-brand-border grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs mb-8">
-          <div>
-            <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Capital City</span>
-            <span class="font-bold text-brand-navy text-sm">{country.capital || 'Major Metros'}</span>
+        <!-- Destination Landmark Photographic Visual -->
+        <div class="lg:col-span-5 w-full">
+          <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-brand-border shadow-card bg-white">
+            <img
+              src={heroImageSrc}
+              alt={heroImageAlt}
+              width="800"
+              height="600"
+              class="w-full h-full object-cover"
+              style={`object-position: ${objectPos};`}
+              loading="eager"
+            />
           </div>
-          <div>
-            <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Currency</span>
-            <span class="font-bold text-brand-navy text-sm">{country.currency || 'National Currency'}</span>
-          </div>
-          <div>
-            <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Tuition Est.</span>
-            <span class="font-bold text-brand-navy text-sm truncate block">{country.estimatedTuitionRange.split('–')[0]}</span>
-          </div>
-          <div>
-            <span class="block uppercase font-bold text-brand-subtle text-3xs mb-0.5">Primary Intake</span>
-            <span class="font-bold text-brand-navy text-sm truncate block">{intakePeriods[0] || 'Flexible'}</span>
-          </div>
-        </div>
-
-        <!-- Action CTAs -->
-        <div class="flex flex-wrap items-center gap-4">
-          <a href="#enquiry" class="btn-primary inline-flex items-center gap-2">
-            <span>Book Free Assessment for {country.name}</span>
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-            </svg>
-          </a>
-          <a href="#universities" class="btn-secondary inline-flex items-center gap-2">
-            <span>Explore Guided Universities</span>
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-          </a>
         </div>
       </div>
     </div>

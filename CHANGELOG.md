@@ -6,6 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.19.0] - 2026-11-12 — Study Abroad Country Image Upgrade (100% Photographic Coverage)
+
+### Added
+- **100% Photographic Coverage for Study Abroad Country Directory (`src/pages/study-abroad/index.astro`):**
+  - Upgraded all 36 published study destination cards from generic placeholders/text badges to authentic, geographically verified, high-resolution 16:9 local destination photographs.
+  - Sourced and installed 17 new high-resolution local destination images in `public/assets/images/destinations/`: Belgium, Portugal, Greece, Malta, Cyprus, Croatia, Finland, Sweden, Denmark, Poland, Czech Republic, Hungary, Latvia, Romania, Kyrgyzstan, Georgia, and Mauritius.
+  - Sourced and installed 14 remaining canonical country destination images (Norway, Iceland, Slovenia, Slovakia, Bahrain, Oman, Kuwait, Saudi Arabia, China, Brazil, Israel, Lithuania, Moldova, Azerbaijan), bringing the total canonical country photography library to 51 out of 51 destinations.
+- **Two-Column Country Profile Hero Visual Architecture (`src/pages/study-abroad/[country].astro`):**
+  - Enhanced all 36 individual country profile pages with a responsive 2-column layout on desktop (7 cols editorial text, 5 cols framed 4:3 landmark photograph with 20px rounded corners and subtle shadow).
+  - Single-source-of-truth reuse: each country page automatically renders the identical primary landmark photograph established in `countries.json` and `country-registry.ts`.
+- **Quality Assurance & Verification Deliverables:**
+  - `STUDY_ABROAD_IMAGE_UPGRADE_REPORT.md`: Comprehensive audit report covering all 36 published countries, asset paths, sizes, alt text, and viewport verification.
+  - Updated `IMAGE_INVENTORY.md` to reflect 59 total sourced on-disk assets including all 51 canonical countries.
+  - Updated `COUNTRY_IMAGE_MANIFEST.csv` with full 51-country records.
+  - Automated headless screenshots captured across viewports: `study-abroad-directory-desktop-1366px.png`, `study-abroad-directory-mobile-390px.png`, `study-abroad-country-profile-desktop.png`, `study-abroad-country-profile-mobile.png`.
+
+### Verified
+- Automated test suites: **235 / 235 checks passing (100%)** across all 7 QA suites.
+- Destination card audit: **36/36 cards with verified images**, **0 placeholders remaining**.
+- Horizontal overflow: **0px overflow** across desktop (1366px) and mobile (390px).
+- Static build: **64 static routes compiled cleanly in 5.66s**.
+
+---
+
 ## [1.18.0] - 2026-11-12 — Complete Visual Redesign, Sky Blue Hero & 3×2 Service Architecture
 
 ### Added
