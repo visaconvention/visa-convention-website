@@ -7,8 +7,8 @@ import ConsultationCTA from '../components/common/ConsultationCTA.astro';
 import { getFeaturedCountries } from '../data/countries';
 import { siteConfig } from '../data/site-config';
 
-// Priority Destinations (3 by default for balanced 3-column desktop layout)
-const priorityCountries = getFeaturedCountries().slice(0, 3);
+// Priority Destinations (6 featured countries with verified destination photographs)
+const priorityCountries = getFeaturedCountries().slice(0, 6);
 ---
 
 <BaseLayout
@@ -16,49 +16,78 @@ const priorityCountries = getFeaturedCountries().slice(0, 3);
   description="Explore universities abroad, learn about our visa services, and speak directly with the Visa Convention counseling team in Hanumangarh, Rajasthan."
 >
   <!-- ========================================================================= -->
-  <!-- SECTION 1: HERO (TWO-COLUMN WITH AUTHENTIC EDUCATIONAL VISUAL) -->
+  <!-- SECTION 1: HERO (TWO-COLUMN WITH INTERNATIONAL LANDMARKS VISUAL) -->
   <!-- ========================================================================= -->
   <HeroSection
     eyebrow="Hanumangarh, Rajasthan"
     headline="Study Abroad, Visa & Travel Services"
-    subheadline="Explore study destinations, discover universities, and get guidance for your international plans."
+    subheadline="Explore international study destinations, visa assistance and travel services with Visa Convention."
     primaryCtaText="Explore Services"
     primaryCtaHref="#services"
     secondaryCtaText="Contact Us"
     secondaryCtaHref="/contact/"
-    imageSrc="/assets/images/hero-education.jpg"
-    imageAlt="Students studying at an international university campus"
+    imageSrc="/assets/images/hero-landmarks.jpg"
+    imageAlt="World iconic landmarks including the Statue of Liberty, Big Ben, Eiffel Tower, and Sydney Opera House"
   />
 
   <!-- ========================================================================= -->
-  <!-- SECTION 2: THREE MAIN SERVICE PATHWAYS (HOW CAN WE HELP YOU?) -->
+  <!-- SECTION 2: THREE MAIN SERVICE PATHWAYS (INCORPORATING ALL 6 OFFERINGS) -->
   <!-- ========================================================================= -->
   <section id="services" class="py-10 sm:py-14 site-container">
     <SectionHeading
       title="How Can We Help You?"
-      description="Three primary pathways for study abroad aspirants, visa applicants, and travelers."
+      description="Three primary pathways providing direct access to all six educational and travel services."
     />
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 items-stretch">
-      <!-- Card 1: Study Abroad -->
+      <!-- Pathway 1: Study Abroad -->
       <div class="card-premium p-6 rounded-2xl flex flex-col justify-between group hover:border-brand-navy hover:shadow-md transition-all text-left h-full">
         <div>
-          <div class="w-9 h-9 rounded-lg bg-brand-bg text-brand-navy border border-brand-border flex items-center justify-center text-lg mb-3.5 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy border border-brand-border flex items-center justify-center text-lg mb-4 group-hover:bg-brand-navy group-hover:text-white transition-colors">
             🎓
           </div>
-          <h3 class="text-lg sm:text-xl font-bold text-brand-navy mb-2 group-hover:text-brand-blue transition-colors">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-brand-blue block mb-1">
+            Global Education
+          </span>
+          <h3 class="text-xl font-bold text-brand-navy mb-2 group-hover:text-brand-blue transition-colors">
             Study Abroad
           </h3>
-          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal mb-4">
-            University admissions, MBBS faculties, doctoral research, and student visa application guidance across 35+ countries.
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal mb-5">
+            Admissions guidance for 35+ countries, degree shortlisting, doctoral fellowships, and NMC-compliant medical faculties.
           </p>
+
+          <!-- Direct Sub-Service Links -->
+          <div class="space-y-2 mb-6">
+            <a
+              href="/services/study-visa/"
+              class="flex items-center justify-between p-2.5 rounded-xl bg-brand-bg/60 hover:bg-brand-bg border border-brand-border/70 text-xs font-semibold text-brand-navy group/link transition-colors"
+            >
+              <span>Study Visa Guidance</span>
+              <span class="text-brand-blue text-[11px] group-hover/link:translate-x-0.5 transition-transform">→</span>
+            </a>
+            <a
+              href="/services/mbbs/"
+              class="flex items-center justify-between p-2.5 rounded-xl bg-brand-bg/60 hover:bg-brand-bg border border-brand-border/70 text-xs font-semibold text-brand-navy group/link transition-colors"
+            >
+              <span>MBBS Abroad (NMC-Compliant)</span>
+              <span class="text-brand-blue text-[11px] group-hover/link:translate-x-0.5 transition-transform">→</span>
+            </a>
+            <a
+              href="/services/phd/"
+              class="flex items-center justify-between p-2.5 rounded-xl bg-brand-bg/60 hover:bg-brand-bg border border-brand-border/70 text-xs font-semibold text-brand-navy group/link transition-colors"
+            >
+              <span>PhD Research Fellowships</span>
+              <span class="text-brand-blue text-[11px] group-hover/link:translate-x-0.5 transition-transform">→</span>
+            </a>
+          </div>
         </div>
-        <div class="pt-3.5 border-t border-brand-border/70 mt-auto">
+
+        <div class="pt-4 border-t border-brand-border/70 mt-auto">
           <a
             href="/study-abroad/"
             class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors"
           >
-            <span>Explore Study Abroad</span>
+            <span>Explore 35+ Destinations</span>
             <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
@@ -66,25 +95,47 @@ const priorityCountries = getFeaturedCountries().slice(0, 3);
         </div>
       </div>
 
-      <!-- Card 2: Visa Services -->
+      <!-- Pathway 2: Visa Services -->
       <div class="card-premium p-6 rounded-2xl flex flex-col justify-between group hover:border-brand-navy hover:shadow-md transition-all text-left h-full">
         <div>
-          <div class="w-9 h-9 rounded-lg bg-brand-bg text-brand-navy border border-brand-border flex items-center justify-center text-lg mb-3.5 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy border border-brand-border flex items-center justify-center text-lg mb-4 group-hover:bg-brand-navy group-hover:text-white transition-colors">
             🛂
           </div>
-          <h3 class="text-lg sm:text-xl font-bold text-brand-navy mb-2 group-hover:text-brand-blue transition-colors">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-brand-red block mb-1">
+            Consular & Work Compliance
+          </span>
+          <h3 class="text-xl font-bold text-brand-navy mb-2 group-hover:text-brand-blue transition-colors">
             Visa Services
           </h3>
-          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal mb-4">
-            Tourist and visitor visa documentation, file audits, work permit support, and consular compliance guidance.
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal mb-5">
+            Consular file preparation, tailored applicant profiles, verifiable itineraries, and administrative work permit support.
           </p>
+
+          <!-- Direct Sub-Service Links -->
+          <div class="space-y-2 mb-6">
+            <a
+              href="/services/tourist-visa/"
+              class="flex items-center justify-between p-2.5 rounded-xl bg-brand-bg/60 hover:bg-brand-bg border border-brand-border/70 text-xs font-semibold text-brand-navy group/link transition-colors"
+            >
+              <span>Tourist & Visitor Visas (27 Countries)</span>
+              <span class="text-brand-blue text-[11px] group-hover/link:translate-x-0.5 transition-transform">→</span>
+            </a>
+            <a
+              href="/services/work-visa/"
+              class="flex items-center justify-between p-2.5 rounded-xl bg-brand-bg/60 hover:bg-brand-bg border border-brand-border/70 text-xs font-semibold text-brand-navy group/link transition-colors"
+            >
+              <span>Work Visa & Permits (14 Countries)</span>
+              <span class="text-brand-blue text-[11px] group-hover/link:translate-x-0.5 transition-transform">→</span>
+            </a>
+          </div>
         </div>
-        <div class="pt-3.5 border-t border-brand-border/70 mt-auto">
+
+        <div class="pt-4 border-t border-brand-border/70 mt-auto">
           <a
             href="/services/"
             class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors"
           >
-            <span>View Visa Services</span>
+            <span>View All Visa Pathways</span>
             <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
@@ -92,43 +143,53 @@ const priorityCountries = getFeaturedCountries().slice(0, 3);
         </div>
       </div>
 
-      <!-- Card 3: Flight Booking -->
+      <!-- Pathway 3: Travel Services -->
       <div class="card-premium p-6 rounded-2xl flex flex-col justify-between group hover:border-brand-navy hover:shadow-md transition-all text-left h-full">
         <div>
-          <div class="w-9 h-9 rounded-lg bg-brand-bg text-brand-navy border border-brand-border flex items-center justify-center text-lg mb-3.5 group-hover:bg-brand-navy group-hover:text-white transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy border border-brand-border flex items-center justify-center text-lg mb-4 group-hover:bg-brand-navy group-hover:text-white transition-colors">
             ✈️
           </div>
-          <h3 class="text-lg sm:text-xl font-bold text-brand-navy mb-2 group-hover:text-brand-blue transition-colors">
-            Flight Booking
+          <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 block mb-1">
+            Aviation & Travel Coordination
+          </span>
+          <h3 class="text-xl font-bold text-brand-navy mb-2 group-hover:text-brand-blue transition-colors">
+            Travel Services
           </h3>
-          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal mb-4">
-            Legitimate airline ticket reservations, carrier itinerary holds for visa filing, and student baggage allowance assistance.
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal mb-5">
+            Authorized airline ticket reservations, embassy reservation holds, student baggage discounts, and travel insurance coordination.
           </p>
+
+          <!-- Direct Sub-Service Links -->
+          <div class="space-y-2 mb-6">
+            <a
+              href="/services/flight-booking/"
+              class="flex items-center justify-between p-2.5 rounded-xl bg-brand-bg/60 hover:bg-brand-bg border border-brand-border/70 text-xs font-semibold text-brand-navy group/link transition-colors"
+            >
+              <span>Flight Reservations & Student Baggage</span>
+              <span class="text-brand-blue text-[11px] group-hover/link:translate-x-0.5 transition-transform">→</span>
+            </a>
+            <a
+              href="/services/additional-services/"
+              class="flex items-center justify-between p-2.5 rounded-xl bg-brand-bg/60 hover:bg-brand-bg border border-brand-border/70 text-xs font-semibold text-brand-navy group/link transition-colors"
+            >
+              <span>Additional Services (Forex & Insurance)</span>
+              <span class="text-brand-blue text-[11px] group-hover/link:translate-x-0.5 transition-transform">→</span>
+            </a>
+          </div>
         </div>
-        <div class="pt-3.5 border-t border-brand-border/70 mt-auto">
+
+        <div class="pt-4 border-t border-brand-border/70 mt-auto">
           <a
             href="/services/flight-booking/"
             class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors"
           >
-            <span>Enquire About Flights</span>
+            <span>Enquire About Travel Services</span>
             <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </a>
         </div>
       </div>
-    </div>
-
-    <div class="mt-7 text-center">
-      <a
-        href="/services/"
-        class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-brand-navy hover:text-brand-red transition-colors"
-      >
-        <span>Need MBBS, PhD, tourist, or work visa assistance? View All 7 Service Pathways</span>
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </a>
     </div>
   </section>
 

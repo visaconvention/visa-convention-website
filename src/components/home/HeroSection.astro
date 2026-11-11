@@ -14,13 +14,13 @@ interface Props {
 const {
   eyebrow = 'Hanumangarh, Rajasthan',
   headline = 'Study Abroad, Visa & Travel Services',
-  subheadline = 'Explore study destinations, discover universities, and get guidance for your international plans.',
+  subheadline = 'Explore international study destinations, visa assistance and travel services with Visa Convention.',
   primaryCtaText = 'Explore Services',
   primaryCtaHref = '#services',
   secondaryCtaText = 'Contact Us',
   secondaryCtaHref = '/contact/',
-  imageSrc = '/assets/images/hero-education.jpg',
-  imageAlt = 'Students studying at an international university campus',
+  imageSrc = '/assets/images/hero-landmarks.jpg',
+  imageAlt = 'World iconic landmarks including the Statue of Liberty, Big Ben, Eiffel Tower, and Sydney Opera House',
 } = Astro.props;
 ---
 
@@ -117,9 +117,9 @@ const {
 
   @media (min-width: 1024px) {
     .hero-grid {
-      /* Text column fills remaining space; image column capped at 505px */
-      grid-template-columns: 1fr minmax(0, 505px);
-      gap: clamp(2rem, 3vw, 3rem);  /* 32–48px → ~40px at 1366px */
+      /* Text column fills remaining space (~55%); image column capped at ~520px (~45%) */
+      grid-template-columns: 1fr minmax(0, 520px);
+      gap: clamp(2rem, 3.5vw, 3rem);  /* 32–48px → ~40px at 1366px */
     }
   }
 
@@ -171,7 +171,7 @@ const {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 30%;   /* keeps graduates/caps prominent */
+    object-position: center center;   /* centers international landmarks */
     /* Prevent layout shift: intrinsic size declared on <img> element */
   }
 </style>

