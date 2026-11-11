@@ -1,11 +1,14 @@
 ---
 import { countriesData } from '../../data/countries';
+import { countryRegistry } from '../../data/country-registry';
 import { siteConfig } from '../../data/site-config';
 
 interface Props {
   selectedService?: string;
   selectedCountry?: string;
   selectedUniversity?: string;
+  selectedCategory?: string;
+  selectedOccupation?: string;
   title?: string;
   subtitle?: string;
   class?: string;
@@ -15,6 +18,8 @@ const {
   selectedService = '',
   selectedCountry = '',
   selectedUniversity = '',
+  selectedCategory = '',
+  selectedOccupation = '',
   title = 'Request a Confidential Assessment',
   subtitle = 'Fill in your details and an advisor will evaluate your profile and contact you directly.',
   class: className = '',
@@ -31,6 +36,11 @@ const serviceOptions = [
   { id: 'additional-services', label: 'Additional Services (Forex / Insurance)' },
   { id: 'business-partnership', label: 'Business & Institutional Inquiry (B2B)' },
 ];
+
+// Combine and deduplicate country registry list for the dropdown
+const allDropdownCountries = countryRegistry && countryRegistry.length > 0
+  ? [...countryRegistry].sort((a, b) => a.name.localeCompare(b.name))
+  : countriesData;
 ---
 
 <div class={`bg-white rounded-3xl p-7 sm:p-10 border border-brand-border shadow-card ${className}`} id="enquiry-card-container">
@@ -220,7 +230,7 @@ const serviceOptions = [
             class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
           >
             <option value="">Select Country...</option>
-            {countriesData.map((c) => (
+            {allDropdownCountries.map((c) => (
               <option value={c.slug} selected={c.slug === selectedCountry}>
                 {c.name}
               </option>
@@ -463,6 +473,9 @@ const serviceOptions = [
     const paramService = urlParams.get('service');
     const paramCountry = urlParams.get('country');
     const paramUni = urlParams.get('university') || urlParams.get('institution');
+    const paramCategory = urlParams.get('category');
+    const paramOccupation = urlParams.get('occupation');
+    const messageField = document.getElementById('form-message') as HTMLTextAreaElement | null;
     const contextBanner = document.getElementById('enquiry-context-banner');
     const contextBannerText = document.getElementById('context-banner-text');
     const clearContextBtn = document.getElementById('clear-context-btn');
@@ -477,11 +490,20 @@ const serviceOptions = [
       universityInput.value = paramUni;
     }
 
-    if ((paramService || paramCountry || paramUni) && contextBanner && contextBannerText) {
+    if (paramCategory && messageField && !messageField.value.trim()) {
+      messageField.value = `Applicant Category: ${paramCategory.replace(/-/g, ' ')}\n`;
+    }
+    if (paramOccupation && messageField && !messageField.value.trim()) {
+      messageField.value = `Occupational Focus: ${paramOccupation.replace(/-/g, ' ')}\n`;
+    }
+
+    if ((paramService || paramCountry || paramUni || paramCategory || paramOccupation) && contextBanner && contextBannerText) {
       const parts = [];
       if (paramService) parts.push(paramService.replace(/-/g, ' ').toUpperCase());
       if (paramCountry) parts.push(paramCountry.toUpperCase());
       if (paramUni) parts.push(paramUni);
+      if (paramCategory) parts.push(`PROFILE: ${paramCategory.replace(/-/g, ' ').toUpperCase()}`);
+      if (paramOccupation) parts.push(`OCCUPATION: ${paramOccupation.replace(/-/g, ' ').toUpperCase()}`);
       contextBannerText.textContent = `Enquiring for: ${parts.join(' • ')}`;
       contextBanner.classList.remove('hidden');
     }

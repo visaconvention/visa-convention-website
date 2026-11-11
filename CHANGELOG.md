@@ -6,7 +6,47 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [1.14.0] - 2026-11-11 — Official Social Media Channels Integration & Verification
+## [1.15.0] - 2026-11-11 — Tourist & Work Visa Services Architecture & Complete Client Expansion
+
+### Added
+- **Structured Service Data Models:**
+  - `src/data/tourist-visa-data.ts`: Structured dataset with 27 supported destinations (10 direct consular, 16 Schengen, 1 UAE), 6 applicant categories with 4-part evidence requirements, UAE preparation panel, and EU Visa Code €30,000 insurance rules.
+  - `src/data/work-visa-data.ts`: Structured dataset with 14 distinct countries (5 Gulf, 7 Europe, 2 Other), 12 occupational focus areas, 6 critical employment contract evaluation factors, and Emigration Act, 1983 statutory recruitment disclosures.
+  - `src/data/country-registry.ts`: Canonical registry reconciling 51 destination countries across Study Abroad, Tourist Visa, and Work Visa services with licensing metadata and image provenance.
+- **Dedicated Interactive Tourist Visa Landing Page (`src/pages/services/tourist-visa.astro`):**
+  - Live destination search and grouping filters (Schengen, Direct Consular, UAE).
+  - Interactive applicant category switcher (Employed, Self-Employed, Farmer, Student, Family-Sponsored, Invited by Resident).
+  - Specialized guidance cards for UAE (Dubai & Abu Dhabi) and Schengen Article 15 medical insurance.
+  - One-click context population that pre-selects destination and applicant category in the assessment form.
+- **Dedicated Interactive Work Visa Landing Page (`src/pages/services/work-visa.astro`):**
+  - High-visibility Statutory Regulatory Disclosure citing the Emigration Act, 1983 and Ministry of External Affairs rules (documentation only, zero job recruitment or placement fees).
+  - Regional destination classification (Gulf, Europe, Other) with Dubai and Abu Dhabi unified under UAE.
+  - 12 occupational focus areas designated as career areas, strictly avoiding live vacancy claims.
+  - Protective 6-factor foreign employment contract evaluation guide.
+  - One-click context population into the assessment form.
+- **Form Context Enhancement (`src/components/forms/EnquiryForm.astro`):**
+  - Integrated `allDropdownCountries` resolving against `countryRegistry` for 51 countries.
+  - Enhanced URL and client-side prefilling for `category` and `occupation` with dynamic context banner display.
+- **QA & Verification Battery:**
+  - Created `tests/tourist-work-services.test.js` (30 automated tests).
+  - Created `scripts/verify-country-registry.mjs` (canonical country image & data validation).
+  - Created `scripts/capture-expanded-services-screenshots.mjs` capturing 10 desktop and mobile screenshots.
+
+### Changed
+- Calibrated meta descriptions for `/services/tourist-visa/` and `/services/work-visa/` to fit within 50–175 character SEO bounds.
+
+### Compliance & Governance
+- Zero unsupported visa success rates or guarantees published.
+- Zero fake job vacancies or unverified salary promises.
+- Mandatory €30,000 EU Visa Code insurance requirement cited (correcting poster's US$50k figure).
+- Unified UAE entry handling Dubai and Abu Dhabi as emirates rather than separate nations.
+
+### Verified
+- Automated test suites: **246 / 246 tests passing (100%)** across all 7 QA suites.
+- Static compilation: **64 static routes compiled cleanly in 5.12s**.
+- Zero horizontal overflow across all 8 mobile, tablet, and desktop viewports.
+
+---
 
 ### Added
 - **Centralized Social Media Configuration (`src/data/site-config.ts`):**

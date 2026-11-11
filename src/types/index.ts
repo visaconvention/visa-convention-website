@@ -344,3 +344,99 @@ export interface InquiryPayload {
   honeypot?: string;               // Must be empty
   timestamp: number;
 }
+
+/**
+ * Country Image Metadata
+ * Strict licensing, provenance and approved asset tracking.
+ */
+export interface CountryImage {
+  src: string;
+  alt: string;
+  objectPosition?: string;
+  sourceUrl?: string;
+  photographer?: string;
+  license: string;
+  approved: boolean;
+}
+
+/**
+ * Canonical Country Registry Entry
+ * Unified model bridging Study Abroad, Tourist Visa, and Work Visa pathways.
+ */
+export interface CountryRegistryEntry {
+  id: string;
+  name: string;
+  slug: string;
+  isoCode: string;
+  continent: Continent | string;
+  image: CountryImage;
+  services: {
+    study: boolean;
+    tourist: boolean;
+    work: boolean;
+  };
+  isSchengen?: boolean;
+  locations?: string[];
+  notes?: string;
+}
+
+/**
+ * Tourist Visa Applicant Category
+ * Vetted preparation checklist tailored by client economic profile.
+ */
+export interface ApplicantCategory {
+  id: 'employed' | 'self-employed' | 'farmer' | 'student' | 'family-sponsored' | 'invited-by-resident';
+  title: string;
+  shortLabel: string;
+  description: string;
+  icon: string;
+  documentGuidance: Array<{
+    title: string;
+    detail: string;
+    conditionalNotice?: string;
+  }>;
+  officialNote: string;
+}
+
+/**
+ * Tourist Visa Destination
+ */
+export interface TouristDestination {
+  id: string;
+  name: string;
+  slug: string;
+  group: 'individual' | 'schengen' | 'uae';
+  flagCode: string;
+  visaStream: string;
+  stayDuration: string;
+  keyRequirementsOverview: string;
+  highlightNotice?: string;
+}
+
+/**
+ * Work Visa Occupational Focus Area
+ * Clearly designated as experience categories, not live job vacancies.
+ */
+export interface WorkOccupation {
+  id: string;
+  title: string;
+  sector: 'Trades & Construction' | 'Logistics & Warehousing' | 'Security & Facilities' | 'Technical & Equipment';
+  description: string;
+  sampleRoles: string[];
+  documentReadiness: string[];
+}
+
+/**
+ * Work Visa Destination Country
+ */
+export interface WorkDestination {
+  id: string;
+  country: string;
+  slug: string;
+  region: 'Gulf' | 'Europe' | 'Other';
+  flagCode: string;
+  locations?: string[];
+  permitAuthority: string;
+  advisoryNote: string;
+}
+
