@@ -12,7 +12,7 @@ interface Props {
 }
 
 const {
-  eyebrow = 'VISA CONVENTION · HANUMANGARH',
+  eyebrow = 'Hanumangarh, Rajasthan',
   headline = 'Study Abroad, Visa & Travel Services',
   subheadline = 'Explore study destinations, discover universities, and get guidance for your international plans.',
   primaryCtaText = 'Explore Services',
@@ -24,33 +24,50 @@ const {
 } = Astro.props;
 ---
 
-<section class="bg-white border-b border-brand-border py-10 sm:py-14 lg:py-16">
+<!--
+  Hero Section — Visa Convention
+  Layout: Custom two-column grid (text | image)
+  Desktop targets (1366px):
+    Hero height  : ~475px (tighter padding, larger image)
+    Image width  : ~505px (pinned via max-w on right col)
+    Image height : ~430px (aspect-ratio 6/5)
+    Text column  : ~610px
+    Gap          : ~40px (clamp 32–48px)
+  Mobile: single column, text first, image ~260px tall
+-->
+<section class="bg-white border-b border-brand-border py-5 sm:py-7 lg:py-[27px]">
   <div class="site-container">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center text-left">
-      <!-- Left Column: Copy & Actions (58% on desktop) -->
-      <div class="lg:col-span-7 space-y-5">
-        <div>
-          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-brand-bg text-brand-navy border border-brand-border mb-4">
-            <span class="w-2 h-2 rounded-full bg-brand-red"></span>
-            {eyebrow}
-          </span>
-          <h1 class="text-[2.6rem] sm:text-[3.1rem] lg:text-[3.4rem] font-black text-brand-navy tracking-tight leading-[1.06] text-balance">
-            {headline}
-          </h1>
-        </div>
+    <!--
+      Custom grid: text column grows freely, image column
+      is capped at 505px so it never overwhelms the layout.
+      Gap: clamp(32px, 3vw, 48px) → ~40px at 1366px.
+    -->
+    <div class="hero-grid">
 
-        <p class="text-lg sm:text-xl text-brand-muted leading-relaxed max-w-[50ch] font-normal">
+      <!-- ── Left: Copy & CTAs ───────────────────────────────────── -->
+      <div class="hero-content space-y-4 sm:space-y-5">
+
+        <!-- Location label — understated, not a repeated logo -->
+        <p class="text-xs font-semibold uppercase tracking-widest text-brand-subtle">
+          {eyebrow}
+        </p>
+
+        <h1 class="text-[1.95rem] min-[420px]:text-[2.2rem] sm:text-[2.9rem] lg:text-[3.4rem] font-black text-brand-navy tracking-tight leading-[1.06] text-balance">
+          {headline}
+        </h1>
+
+        <p class="text-base sm:text-[1.1rem] text-brand-muted leading-relaxed max-w-[50ch] font-normal">
           {subheadline}
         </p>
 
-        <!-- Primary Action Buttons -->
+        <!-- CTAs -->
         <div class="flex flex-wrap items-center gap-3.5 pt-1">
           <a
             href={primaryCtaHref}
             class="btn-primary text-center px-7 py-3.5 text-sm min-h-[52px]"
           >
             <span>{primaryCtaText}</span>
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
             </svg>
           </a>
@@ -63,20 +80,98 @@ const {
         </div>
       </div>
 
-      <!-- Right Column: Authentic Educational Visual (42% on desktop) -->
-      <div class="lg:col-span-5 relative">
-        <div class="relative overflow-hidden rounded-2xl border border-brand-border shadow-sm bg-brand-bg">
+      <!-- ── Right: Hero Image ───────────────────────────────────── -->
+      <div class="hero-image-wrap">
+        <!--
+          Wrapper enforces 6:5 aspect-ratio at all sizes.
+          On desktop the column is capped at 505px so the image
+          naturally fills to ~505 × 421px (6:5 ≈ 420–440px tall).
+          On mobile the wrapper height is clamped to 260px.
+        -->
+        <div class="hero-image-frame">
           <img
             src={imageSrc}
             alt={imageAlt}
-            width="600"
-            height="400"
-            class="w-full h-[240px] sm:h-[300px] lg:h-[380px] object-cover"
+            width="700"
+            height="583"
+            class="hero-image"
             loading="eager"
             fetchpriority="high"
+            decoding="async"
           />
         </div>
       </div>
+
     </div>
   </div>
 </section>
+
+<style>
+  /* ── Hero Grid ──────────────────────────────────────────────────── */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: clamp(1.75rem, 3vw, 2.5rem);  /* 28–40px */
+  }
+
+  @media (min-width: 1024px) {
+    .hero-grid {
+      /* Text column fills remaining space; image column capped at 505px */
+      grid-template-columns: 1fr minmax(0, 505px);
+      gap: clamp(2rem, 3vw, 3rem);  /* 32–48px → ~40px at 1366px */
+    }
+  }
+
+  /* ── Content Column ─────────────────────────────────────────────── */
+  .hero-content {
+    min-width: 0;
+    text-align: left;
+  }
+
+  /* ── Image Frame ────────────────────────────────────────────────── */
+  .hero-image-wrap {
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-image-wrap {
+      justify-self: end;
+    }
+  }
+
+  .hero-image-frame {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 1rem;           /* 16px — matches rest of design system */
+    border: 1px solid var(--color-brand-border);
+    background-color: var(--color-brand-bg);
+    /* 6:5 aspect ratio on desktop — yields ~421px tall at 505px wide */
+    aspect-ratio: 6 / 5;
+  }
+
+  /* On narrow mobile, flatten to a fixed sensible height */
+  @media (max-width: 1023px) {
+    .hero-image-frame {
+      /* Let aspect-ratio drive at sm/md; cap height on smallest screens */
+      max-height: 300px;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .hero-image-frame {
+      /* On 320–430px: comfortable crop, not too tall */
+      max-height: 260px;
+    }
+  }
+
+  .hero-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;   /* keeps graduates/caps prominent */
+    /* Prevent layout shift: intrinsic size declared on <img> element */
+  }
+</style>

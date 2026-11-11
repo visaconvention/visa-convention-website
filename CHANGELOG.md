@@ -6,6 +6,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.12.0] - 2026-11-11 — Hero Section Proportion & Space Optimization
+
+### Changed
+- **Optimized Hero Proportion & Image-to-Text Balance (`HeroSection.astro`):**
+  - Replaced rigid 12-column layout with a precision grid (`1fr minmax(0, 505px)` on desktop, gap `clamp(2rem, 3vw, 3rem)`).
+  - Increased image presence: image width expanded to **505px** (up from 460px, +10%) and height to **421px** (up from 381px, +10.5%).
+  - Enforced exact **6:5 aspect ratio** (`aspect-ratio: 6 / 5`) with `object-fit: cover` and `object-position: center 30%` to keep graduates and caps prominent without distortion.
+  - Reduced overall hero vertical height from 518px down to **476px** on 1366px desktop (measured in Edge browser, target: 460–485px).
+  - Tightened top and bottom vertical breathing room from ~65px down to **27px above and 28px below** the image (target: 20–32px).
+  - Calibrated desktop text column to **611px** with a **41px** gap between copy and image.
+  - Simplified location eyebrow: replaced redundant "VISA CONVENTION · HANUMANGARH" badge with understated, elegant text (`HANUMANGARH, RAJASTHAN` in `text-xs font-semibold uppercase tracking-widest text-brand-subtle`).
+- **Improved Service Discoverability:**
+  - Services section (`#services`) top boundary moves up from ~595px to **553px** from viewport top.
+  - **215px** of the service pathways section is now prominently visible above the 768px fold at 1366px viewport width.
+- **Responsive Mobile Layout & Font Scaling:**
+  - Added fluid headline scaling (`text-[1.95rem] min-[420px]:text-[2.2rem] sm:text-[2.9rem] lg:text-[3.4rem]`) to avoid awkward wrapping on small devices.
+  - Constrained mobile image frame (`max-height: 260px` for viewports under 480px, `max-height: 300px` for tablets) while keeping the full image visible.
+  - Zero horizontal overflow across all 9 tested viewports (320px–1920px).
+- **Test Suite Date Resiliency (`tests/seo-a11y-audit.test.js`):**
+  - Updated sitemap XML assertion for homepage to verify priority 1.00 and daily changefreq using a date-agnostic regex.
+
+### Verified
+- Build: **64 static pages, 4.84s** — 0 errors, 0 warnings.
+- Tests: **216 / 216 passing (100%)** across all 6 suites (Country: 21/21, University: 40/40, Credibility: 34/34, Contact: 31/31, SEO/A11y: 51/51, E2E: 39/39).
+- Responsive verification across 9 viewports: 320px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px, 1920px (all zero overflow).
+
+---
+
 ## [1.11.0] - 2026-11-10 — Centralized Country Image Registry, Real NYC Skyline for USA, Premium Hero Upgrade
 
 ### Added

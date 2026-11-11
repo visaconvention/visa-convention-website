@@ -143,8 +143,10 @@ async function runAudit() {
     assert(changefreqMatches.length === locMatches.length, 'Every sitemap entry has valid <changefreq>');
     assert(priorityMatches.length === locMatches.length, 'Every sitemap entry has valid <priority>');
 
-    // Check homepage has priority 1.00
-    assert(sitemapContent.includes('<loc>https://visaconvention.com/</loc>\n    <lastmod>2026-11-10</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>1.00</priority>'), 'Homepage has priority 1.00 and daily changefreq');
+    // Check homepage has priority 1.00 and daily changefreq
+    // Use a date-agnostic check so this doesn't fail after a rebuild on a new day
+    const homepageEntry = sitemapContent.match(/<loc>https:\/\/visaconvention\.com\/<\/loc>\s*<lastmod>[^<]+<\/lastmod>\s*<changefreq>daily<\/changefreq>\s*<priority>1\.00<\/priority>/);
+    assert(homepageEntry !== null, 'Homepage has priority 1.00 and daily changefreq');
   }
 
   // =========================================================================
