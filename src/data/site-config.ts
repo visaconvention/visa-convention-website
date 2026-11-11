@@ -20,12 +20,30 @@ export const siteConfig = {
   googleMapsUrl: 'https://maps.google.com/?q=Shop+No.115,+Durga+Market,+Street+No.04,+behind+Bus+Stand,+Durga+Colony,+Junction,+Hanumangarh,+Rajasthan+335512',
   businessHours: 'Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)',
   socialLinks: {
-    facebook: 'https://facebook.com/visaconvention',
-    instagram: 'https://instagram.com/visaconvention',
-    linkedin: 'https://linkedin.com/company/visaconvention',
-    youtube: 'https://youtube.com/@visaconvention',
+    instagram: 'https://www.instagram.com/visaconvention/',
+    youtube: 'https://www.youtube.com/@VisaConvention',
+    // Candidate URL: https://www.facebook.com/visaconvention/
+    // Verification Status: PENDING CLIENT CONFIRMATION (Left unpublished per audit instructions)
+    facebook: '',
+    facebookCandidate: 'https://www.facebook.com/visaconvention/',
     googleMaps: 'https://maps.google.com/?q=Shop+No.115,+Durga+Market,+Street+No.04,+behind+Bus+Stand,+Durga+Colony,+Junction,+Hanumangarh,+Rajasthan+335512',
   },
+
+  // Verified, active social channels for public UI rendering across footer & contact
+  publishedSocials: [
+    {
+      id: 'instagram',
+      name: 'Instagram',
+      url: 'https://www.instagram.com/visaconvention/',
+      ariaLabel: 'Follow Visa Convention on Instagram (opens in a new tab)',
+    },
+    {
+      id: 'youtube',
+      name: 'YouTube',
+      url: 'https://www.youtube.com/@VisaConvention',
+      ariaLabel: 'Subscribe to Visa Convention on YouTube (opens in a new tab)',
+    },
+  ],
   
   // Primary brand palette hex codes
   theme: {

@@ -52,12 +52,10 @@ export function getLocalBusinessSchema() {
       'Air Ticket Reservation & Flight Booking',
     ],
     sameAs: [
-      siteConfig.socialLinks.facebook,
       siteConfig.socialLinks.instagram,
-      siteConfig.socialLinks.linkedin,
       siteConfig.socialLinks.youtube,
       siteConfig.socialLinks.googleMaps,
-    ],
+    ].filter(Boolean),
   };
 }
 

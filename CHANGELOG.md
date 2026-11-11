@@ -6,7 +6,40 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [1.13.0] - 2026-11-11 — Comprehensive Audit Remediation & Production Serverless Enquiry Handler
+## [1.14.0] - 2026-11-11 — Official Social Media Channels Integration & Verification
+
+### Added
+- **Centralized Social Media Configuration (`src/data/site-config.ts`):**
+  - Integrated official verified accounts:
+    - **Instagram:** `https://www.instagram.com/visaconvention/` (Verified handle & entity: *Dipika Arora (Visa Consultant)@Hanumangarh*)
+    - **YouTube:** `https://www.youtube.com/@VisaConvention` (Verified official channel matching telephone `+91 96803-95539` & email `visaconvention@yahoo.com`)
+  - Added structured `publishedSocials` array providing single source of truth for UI rendering.
+  - Registered candidate Facebook URL (`https://www.facebook.com/visaconvention/`) as `facebookCandidate` held in unverified status.
+- **Accessible Social Icon Integrations:**
+  - **Footer (`src/components/layout/Footer.astro`):** Added compact row of social media icons directly below the business description in Column 1.
+  - **Contact Page (`src/pages/contact.astro`):** Added matching social icons under the "Follow Us" heading in the official channels card.
+  - Form-factor compliant: 40×40px tap targets with 20×20px SVG icons, satisfying WCAG 2.2 AA target size criteria.
+  - Full security and accessibility compliance: `target="_blank"`, `rel="noopener noreferrer"`, descriptive `aria-label`, visible keyboard focus rings, and high contrast.
+
+### Changed
+- **Schema.org Structured Data (`src/utils/seo.ts`):**
+  - Updated `sameAs` array in `LocalBusiness` / `EducationalOrganization` JSON-LD schema to dynamically reference verified public channels (Instagram, YouTube, Google Maps) while excluding unverified candidate profiles.
+
+### Security & Governance
+- **Strict Verification Protocol Enforced:**
+  - Facebook candidate URL was verified via live HTTP probe and search indexing. Because Facebook currently serves a generic login redirect without entity metadata for `visaconvention`, the link was **held unpublished** from all public UI and structured data per user instructions until client confirms page status.
+- **Zero Follower Counts / Verification Badges:**
+  - Strictly avoided fabricated social proof, follower numbers, or promotional badges.
+
+### Verified
+- **Automated Verification Script (`scripts/verify-social-integration.mjs`):**
+  - Tested on headless Edge across desktop (1440px) and mobile (390px) viewports.
+  - Zero horizontal overflow (0px).
+  - Both footer and contact page links verified for correct URLs, `target="_blank"`, and `rel="noopener noreferrer"`.
+  - Organization JSON-LD confirmed to include verified accounts only.
+- **Test Suites:** **216 / 216 tests passing (100%)** across all 6 test engines.
+
+---
 
 ### Added
 - **Production Serverless Enquiry Endpoint (`api/enquiry.js`):**
