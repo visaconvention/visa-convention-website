@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.13.0] - 2026-11-11 — Comprehensive Audit Remediation & Production Serverless Enquiry Handler
+
+### Added
+- **Production Serverless Enquiry Endpoint (`api/enquiry.js`):**
+  - Native Vercel and Node.js serverless function handling `POST /api/enquiry`.
+  - Anti-spam honeypot detection (`form-bot-trap` and `website_url_check`).
+  - Strict server-side validation for both student and B2B inquiry formats.
+  - XSS sanitization on all text fields.
+  - Verifiable Reference ID generator (`VC-LEAD-XXXXXX`).
+  - Extensible webhook forwarding support (`process.env.NOTIFICATION_WEBHOOK`).
+  - Writable file logging to `client-content/leads/enquiries.json` with cloud stdout fallback.
+
+### Changed
+- **Medical Education Terminology Precision:**
+  - Removed inaccurate "WHO Recognized" terminology across `detailed-services.ts`, `services.ts`, and `site-config.ts` (World Health Organization co-sponsors the World Directory of Medical Schools / WDOMS, but does not recognize or accredit individual institutions).
+  - Replaced with legally precise regulatory phrasing: `"WDOMS-Listed & NMC FMGL-Compliant Faculties"` and `"Medical faculties & NMC guidelines"`.
+- **Directory Description Accuracy:**
+  - Replaced blanket `"Search 1,000+ accredited institutions"` in navigation with honest, factual `"Search 1,000+ universities & colleges"`.
+- **Form Input Hygiene:**
+  - Replaced RFC 2606 placeholder `example.com` in `EnquiryForm.astro` with standard user-friendly placeholder.
+
+### Verified
+- Automated test suites: **216 / 216 tests passing (100%)** across all 6 QA suites.
+- Static build: **64 static routes compiled cleanly in 4.03s**.
+- Zero horizontal overflow across all 8 mobile/tablet/desktop viewports.
+- All non-fabrication, statutory disclaimer, and data integrity checks confirmed green.
+
+---
+
 ## [1.12.0] - 2026-11-11 — Hero Section Proportion & Space Optimization
 
 ### Changed

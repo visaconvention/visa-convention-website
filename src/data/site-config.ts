@@ -52,9 +52,9 @@ export const siteConfig = {
       href: '/study-abroad/',
       children: [
         { label: 'Explore 35+ Countries', href: '/study-abroad/', description: 'Discover international study destinations' },
-        { label: 'Find Universities', href: '/universities/', description: 'Search 1,000+ accredited institutions' },
+        { label: 'Find Universities', href: '/universities/', description: 'Search 1,000+ universities & colleges' },
         { label: 'Study Visa Assistance', href: '/services/study-visa/', description: 'Comprehensive admissions & visa filing' },
-        { label: 'MBBS Abroad', href: '/services/mbbs/', description: 'WHO & NMC recognized medical faculties' },
+        { label: 'MBBS Abroad', href: '/services/mbbs/', description: 'WDOMS-listed faculties & NMC guidance' },
         { label: 'PhD Abroad', href: '/services/phd/', description: 'Doctoral research and funded proposals' },
       ],
     },

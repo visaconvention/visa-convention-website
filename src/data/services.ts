@@ -50,7 +50,7 @@ export const servicesData: Service[] = [
     id: 'mbbs',
     slug: 'mbbs',
     title: 'MBBS Abroad Admissions',
-    subtitle: 'Accredited Medical Degrees in NMC & WHO Recognized International Faculties',
+    subtitle: 'International Medical Degrees in WDOMS-Listed & NMC FMGL-Compliant Faculties',
     shortDescription: 'Guidance for medical aspirants seeking English-medium MBBS degrees abroad with transparent fee structures and global clinical recognition.',
     iconName: 'Stethoscope',
     targetAudience: [
