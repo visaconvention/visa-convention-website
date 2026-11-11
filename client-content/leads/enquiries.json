@@ -1,1 +1,21 @@
-[]
+[
+  {
+    "leadId": "VC-FLT-218459",
+    "submissionType": "flight",
+    "service": "reservation-hold",
+    "tripType": "round-trip",
+    "departureCity": "Delhi (DEL)",
+    "destinationCity": "Toronto Pearson (YYZ)",
+    "departureDate": "2026-12-11",
+    "returnDate": "2027-01-10",
+    "passengers": 1,
+    "travelClass": "economy",
+    "passengerCategory": "student",
+    "fullName": "Gurpreet Singh",
+    "phone": "+91 94144 04040",
+    "email": "gurpreet.travel@example.com",
+    "specialNotes": "International student, University of Toronto offer holder; require 46kg student baggage.",
+    "submittedAt": "2026-11-11T18:53:38.457Z",
+    "receivedAt": "2026-11-11T18:53:38.459Z"
+  }
+]

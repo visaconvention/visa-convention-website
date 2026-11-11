@@ -6,6 +6,43 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.18.0] - 2026-11-12 — Complete Visual Redesign, Sky Blue Hero & 3×2 Service Architecture
+
+### Added
+- **International Landmark Composite Hero Section (`src/components/home/HeroSection.astro`):**
+  - Integrated composite landmark photograph featuring four global icons: Statue of Liberty (USA), Big Ben / Westminster (UK), Eiffel Tower (France), and Sydney Opera House (Australia) (`/assets/images/hero-landmarks.jpg`).
+  - Redesigned hero background with an atmospheric Sky Blue to pure white gradient (`bg-gradient-to-b from-[#EAF4FF] via-[#F5F8FC] to-white border-b border-brand-border`).
+  - Updated hero headline: `Explore the World with <span class="text-brand-red">Visa Convention</span>` with uppercase Travel Blue supporting line: `Study Abroad, Visa & Travel Services`.
+  - Balanced 52:48 content-to-image ratio (`1fr minmax(0, 510px)`) with content-led height (440–500px on desktop), preventing below-the-fold displacement.
+- **3×2 Photographic Service Discovery Grid (`src/pages/index.astro`):**
+  - Balanced 6-card layout mapping to client's core offerings: Study Visa, MBBS & PhD Abroad, Tourist Visa, Work Visa, Flight Booking, and Find Universities.
+  - Sourced and installed 6 local high-resolution service header images (160px height) in `public/assets/images/services/`.
+  - Pinned bottom action links (`Explore Study Visa →`, `Explore Programmes →`, `Tourist Visa Assistance →`, `Work Visa Assistance →`, `Request Flight Assistance →`, `Find Universities →`).
+- **Alternating Homepage Section Cadence:**
+  - Established deliberate visual rhythm: Sky Blue Hero -> Crisp White Services -> Soft Blue (`#F5F8FC`) Featured Destinations -> Crisp White About Us -> Soft Blue Process -> Deep Navy CTA Banner.
+- **Complete Destination Photography Coverage:**
+  - Sourced and installed 20 verified local destination assets in `public/assets/images/destinations/` covering all top destinations.
+  - Built `COUNTRY_IMAGE_MANIFEST.csv` and `IMAGE_INVENTORY.md` covering all 51 canonical countries with exact image paths, subjects, sources, licenses, and alt text.
+  - Synchronized `client-content/countries/countries.json` with card images and alt tags.
+- **Audits & Quality Assurance Deliverables:**
+  - `VISUAL_AUDIT.md`: Forensic inspection across all 64 routes with empty visual area mapping.
+  - `IMAGE_INVENTORY.md`: Comprehensive photographic registry with dimensions, licenses, and alt text.
+  - `COUNTRY_IMAGE_MANIFEST.csv`: 51-country canonical manifest.
+  - `HOMEPAGE_REDESIGN_REPORT.md`: Comprehensive visual redesign documentation and architectural specifications.
+  - `FUNCTIONAL_TEST_REPORT.md`: Full verification report of all 7 test suites (235/235 checks passing).
+  - `RESPONSIVE_QA_REPORT.md`: Multi-viewport audit across 9 standard viewports (320px–1920px) with 0px overflow.
+
+### Changed
+- **CSS Footprint Optimization (`src/styles/global.css`):**
+  - Removed unused `.page-hero` BEM classes and obsolete tokens, reducing compiled CSS from 77.5 KB to 74.7 KB (< 75 KB budget).
+
+### Verified
+- Automated test suites: **235 / 235 checks passing (100%)** across 7 test suites.
+- Multi-viewport reflow: **0px horizontal overflow across all 9 viewports** (320px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px, 1920px).
+- Static build: **64 static routes compiled cleanly in 4.90s**.
+
+---
+
 ## [1.17.0] - 2026-11-11 — Flight Booking Integration & Website-Wide Photography Upgrade
 
 ### Added
