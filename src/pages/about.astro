@@ -3,12 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/common/SectionHeading.astro';
 import Breadcrumbs from '../components/common/Breadcrumbs.astro';
 import ConsultationCTA from '../components/common/ConsultationCTA.astro';
-import ServiceCard from '../components/services/ServiceCard.astro';
 import { aboutData } from '../data/about';
-import { servicesData } from '../data/services';
 import { siteConfig } from '../data/site-config';
 
-const { hero, story, missionPhilosophy, directorsMessage, teamMembers, physicalOffice, verifiedMilestones } = aboutData;
+const { hero, story, directorsMessage, teamMembers, physicalOffice, verifiedMilestones } = aboutData;
 ---
 
 <BaseLayout
@@ -106,37 +104,6 @@ const { hero, story, missionPhilosophy, directorsMessage, teamMembers, physicalO
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Mission & Working Philosophy -->
-  <section class="py-16 sm:py-20 bg-brand-bg border-y border-brand-border">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <SectionHeading
-        badge="Operating Philosophy"
-        title="Our Mission & Ethical Standards"
-        description={missionPhilosophy.mission}
-      />
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
-        {missionPhilosophy.pillars.map((pillar) => (
-          <div class="bg-white rounded-2xl p-6 sm:p-7 border border-brand-border shadow-xs flex flex-col justify-between">
-            <div>
-              <div class="w-10 h-10 rounded-xl bg-brand-bg border border-brand-blue/20 text-brand-blue flex items-center justify-center font-bold mb-4">
-                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 class="text-lg font-bold text-brand-navy mb-2.5">
-                {pillar.title}
-              </h3>
-              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
-                {pillar.description}
-              </p>
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   </section>
@@ -343,35 +310,6 @@ const { hero, story, missionPhilosophy, directorsMessage, teamMembers, physicalO
           </p>
         </div>
       ))}
-    </div>
-  </section>
-
-  <!-- Six Core Services Summary -->
-  <section class="py-16 sm:py-20 bg-brand-bg border-t border-brand-border">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between mb-10">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-brand-blue">Our Service Spectrum</span>
-          <h2 class="text-2xl sm:text-3xl font-bold text-brand-navy mt-1">
-            End-to-End International Guidance
-          </h2>
-        </div>
-        <a
-          href="/services/"
-          class="text-xs font-bold text-brand-blue hover:text-brand-navy hover:underline hidden sm:inline-flex items-center gap-1"
-        >
-          <span>View Detailed Service Matrix</span>
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-          </svg>
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {servicesData.slice(0, 6).map((service) => (
-          <ServiceCard service={service} />
-        ))}
-      </div>
     </div>
   </section>
 

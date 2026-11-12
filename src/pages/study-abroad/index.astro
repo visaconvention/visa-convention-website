@@ -114,15 +114,12 @@ const faqSchema = getFaqSchema(studyAbroadFaqs);
   <!-- Destination Grid & Results Area -->
   <section class="py-12 sm:py-16 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Results Header -->
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-8 border-b border-brand-border gap-2">
+    <div class="pb-6 mb-8 border-b border-brand-border">
       <div class="text-left">
         <h2 class="text-xl font-bold text-brand-navy">Available Destinations</h2>
         <p class="text-xs text-brand-muted">
           Showing <span id="visible-count" class="font-bold text-brand-navy">{countries.length}</span> destinations matching criteria
         </p>
-      </div>
-      <div class="text-xs text-brand-muted text-left sm:text-right">
-        Total database coverage: <strong class="text-brand-navy">{countries.length} Countries</strong>
       </div>
     </div>
 

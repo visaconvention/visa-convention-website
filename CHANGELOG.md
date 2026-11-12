@@ -6,6 +6,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.27.0] - 2026-11-12 — Comprehensive Website Simplification Audit & Subpage Optimization
+
+### Removed & Streamlined
+- **Flight Booking (`src/pages/services/flight-booking.astro` & `FlightEnquiryForm.astro`):**
+  - Removed 3 "Key Guarantees" cards and secondary anchor button from the hero, elevating direct request initiation.
+  - Excised Section 2's 3 comparison cards which duplicated the interactive radio options within `FlightEnquiryForm`.
+  - Relocated the Consular Advisory & Document Integrity Policy notice directly above `FlightEnquiryForm` as the prominent compliance guarantee.
+  - Streamlined side column by removing the generic 4-step workflow card; preserved high-value 40kg–46kg student baggage privilege card, carrier fare rules, and direct WhatsApp links.
+  - Standardized radio option titles in `FlightEnquiryForm.astro` (`Flight Reservation Hold`, `Confirmed Flight Ticket`, `Travel Itinerary Assistance`).
+- **Global University Directory (`src/pages/universities/index.astro`):**
+  - Excised decorative 4-box "Quick Stats Bar" (`Universities Listed`, `Destination Countries`, `Accredited Programs`, `Independent Visa Advisory Support`).
+  - Elevated search input and faceted filter sidebar directly above the fold on desktop and mobile viewports.
+- **Study Abroad Directory (`src/pages/study-abroad/index.astro`):**
+  - Removed redundant `Total database coverage: 36 Countries` banner text.
+  - Kept dynamic matching destination count announcer and instant continent filter pills.
+- **Country Detail Pages (`src/pages/study-abroad/[country].astro`):**
+  - Removed stacked duplicate bottom `ConsultationCTA` banner and cleaned unused component import.
+  - Page now concludes cleanly with FAQs and related destinations, leveraging the sticky right-column `EnquiryForm`.
+- **Tourist Visa (`src/pages/services/tourist-visa.astro`):**
+  - Replaced Section 04's repetitive sales CTA banner and "Book Consultation" button with an understated statutory advisory note.
+- **Work Visa (`src/pages/services/work-visa.astro`):**
+  - Replaced Section 04's repetitive promotional banner and duplicate "Verify Offer Letter" button with a professional document verification standard disclosure.
+- **About Us (`src/pages/about.astro`):**
+  - Removed generic mission statement pillar cards ("Our Mission & Ethical Standards").
+  - Removed duplicate Six Core Services Summary (`ServiceCard` grid) and cleaned unused imports (`ServiceCard`, `servicesData`).
+  - Preserved authentic business origin story, directorship message, specialized counseling roster, Hanumangarh physical center showcase, and "Measurable Institutional Scale" operational metrics.
+
+### Verified
+- **Astro Static Diagnostics:** `npm run check` passed with **0 errors and 0 warnings** across all 111 files.
+- **Static Production Build:** `npm run build` compiled all **64 static routes cleanly in 3.74s**.
+- **Automated Regression Test Suites:** **318 / 318 tests passed (100% pass rate)** across 9 comprehensive test suites:
+  - `country-engine.test.js`: 21/21 passed
+  - `tourist-work-services.test.js`: 30/30 passed
+  - `flight-booking-and-images.test.js`: 28/28 passed
+  - `university-engine.test.js`: 40/40 passed
+  - `credibility-engine.test.js`: 34/34 passed
+  - `contact-engine.test.js`: 31/31 passed
+  - `seo-a11y-audit.test.js`: 51/51 passed
+  - `e2e-comprehensive-audit.test.js`: 39/39 passed
+  - `verify-simplified-homepage.js`: 44/44 passed
+- **Visual Capture Inventory:** All 18 baseline (`before-*`) and 18 post-audit (`after-*`) full-page and viewport screenshots verified in conversation artifacts directory.
+
+---
+
 ## [1.26.0] - 2026-11-12 — Homepage Consultation CTA Restoration & "How It Works" Sentence Removal
 
 ### Removed & Streamlined

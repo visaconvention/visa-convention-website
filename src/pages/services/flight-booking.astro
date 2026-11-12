@@ -39,31 +39,6 @@ const flightFaqs = [
 ];
 
 const faqSchema = getFaqSchema(flightFaqs);
-
-// Service comparison points
-const serviceComparison = [
-  {
-    type: 'Confirmed Flight Ticket',
-    purpose: 'Post-visa grant or visa-free travel',
-    status: 'Fully paid & issued',
-    pnrType: 'Live, ticketed e-ticket',
-    bestFor: 'Travelers with approved visas ready to fly',
-  },
-  {
-    type: 'Flight Reservation Hold',
-    purpose: 'Visa application dossier evidence',
-    status: 'Temporary GDS airline hold',
-    pnrType: 'Verifiable airline booking code',
-    bestFor: 'Visa applicants fulfilling consular travel evidence',
-  },
-  {
-    type: 'Travel Itinerary Assistance',
-    purpose: 'Trip planning & transit scheduling',
-    status: 'Proposed routing schedule',
-    pnrType: 'Illustrative travel plan',
-    bestFor: 'Vacation planners and preliminary schedule review',
-  },
-];
 ---
 
 <BaseLayout
@@ -107,34 +82,12 @@ const serviceComparison = [
             Share your travel plans with Visa Convention. Our team can review your request and explain the available ticketing and reservation options.
           </p>
 
-          <!-- Key Guarantees Bar -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
-            <div class="p-3.5 rounded-xl bg-white border border-brand-border shadow-2xs">
-              <span class="block text-xs font-bold text-brand-navy mb-0.5">Verifiable Holds</span>
-              <span class="block text-[11px] text-brand-muted">Legitimate GDS reservation codes for embassy dossiers</span>
-            </div>
-            <div class="p-3.5 rounded-xl bg-white border border-brand-border shadow-2xs">
-              <span class="block text-xs font-bold text-brand-navy mb-0.5">Student Baggage</span>
-              <span class="block text-[11px] text-brand-muted">40kg–46kg student tariff code coordination</span>
-            </div>
-            <div class="p-3.5 rounded-xl bg-white border border-brand-border shadow-2xs">
-              <span class="block text-xs font-bold text-brand-navy mb-0.5">Zero Fake PNRs</span>
-              <span class="block text-[11px] text-brand-muted">Strict compliance with foreign consulate advisories</span>
-            </div>
-          </div>
-
           <!-- Hero Action CTAs -->
           <div class="flex flex-wrap items-center gap-4">
             <a href="#flight-enquiry-section" class="btn-primary inline-flex items-center gap-2">
               <span>Request Flight Assistance</span>
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
-              </svg>
-            </a>
-            <a href="#service-differences" class="btn-secondary inline-flex items-center gap-2">
-              <span>Compare Tickets vs. Holds</span>
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </a>
           </div>
@@ -168,210 +121,34 @@ const serviceComparison = [
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 2: SERVICE PATHWAYS DIFFERENTIATION PANEL (CLARITY OVER HYPE) -->
-  <!-- ========================================================================= -->
-  <section id="service-differences" class="py-12 bg-white border-b border-brand-border">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-left">
-      <div class="max-w-3xl mb-8">
-        <span class="inline-block px-3 py-1 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-navy border border-brand-border mb-3">
-          Travel Service Clarity
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight mb-2">
-          Understanding Flight Tickets vs. Reservation Holds
-        </h2>
-        <p class="text-sm sm:text-base text-brand-muted leading-relaxed">
-          A proposed travel itinerary, a genuine temporary flight reservation, and an issued confirmed flight ticket are not interchangeable. Learn which option fits your immigration stage.
-        </p>
-      </div>
-
-      <!-- 3 Service Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <!-- Option 1: Confirmed Ticket -->
-        <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-2xs hover:border-brand-navy/50 transition-all flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md bg-emerald-100 text-emerald-900 border border-emerald-200">
-                Post-Visa Approval
-              </span>
-              <span class="text-xs font-bold text-brand-muted">Option 01</span>
-            </div>
-            <h3 class="text-lg font-bold text-brand-navy mb-2">
-              Confirmed Flight Ticket
-            </h3>
-            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
-              A fully paid, issued electronic airline ticket with live e-ticket numbers (e.g. 13-digit carrier ticket numbers).
-            </p>
-            <ul class="space-y-2 text-xs text-brand-navy/90 mb-6">
-              <li class="flex items-start gap-2">
-                <span class="text-emerald-600 font-bold">✓</span>
-                <span>Includes student baggage codes (40kg–46kg)</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-emerald-600 font-bold">✓</span>
-                <span>Seat assignments and special meal requests</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-emerald-600 font-bold">✓</span>
-                <span>Subject to airline cancellation / date-change tariffs</span>
-              </li>
-            </ul>
-          </div>
-          <div class="pt-4 border-t border-brand-border/70 text-xs font-semibold text-brand-muted">
-            Recommended when your visa is approved.
-          </div>
-        </div>
-
-        <!-- Option 2: Flight Reservation Hold -->
-        <div class="p-6 rounded-2xl bg-blue-50/30 border border-brand-blue/30 shadow-2xs hover:border-brand-blue transition-all flex flex-col justify-between ring-1 ring-brand-blue/20">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md bg-brand-bg text-brand-blue border border-brand-blue/30">
-                Visa Application Dossier
-              </span>
-              <span class="text-xs font-bold text-brand-blue">Option 02</span>
-            </div>
-            <h3 class="text-lg font-bold text-brand-navy mb-2">
-              Flight Reservation Hold
-            </h3>
-            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
-              A genuine, verifiable temporary airline reservation generated through Global Distribution Systems (GDS) with an active booking code (PNR).
-            </p>
-            <ul class="space-y-2 text-xs text-brand-navy/90 mb-6">
-              <li class="flex items-start gap-2">
-                <span class="text-brand-blue font-bold">✓</span>
-                <span>Fulfills embassy round-trip proof requirements</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-brand-blue font-bold">✓</span>
-                <span>Avoids risking full airfare before visa outcome</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-brand-blue font-bold">✓</span>
-                <span>Subject strictly to carrier hold validity rules</span>
-              </li>
-            </ul>
-          </div>
-          <div class="pt-4 border-t border-brand-border/70 text-xs font-semibold text-brand-blue">
-            Recommended during visa application filing.
-          </div>
-        </div>
-
-        <!-- Option 3: Travel Itinerary Assistance -->
-        <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-2xs hover:border-brand-navy/50 transition-all flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider rounded-md bg-brand-bg text-brand-navy border border-brand-border">
-                Route Planning
-              </span>
-              <span class="text-xs font-bold text-brand-muted">Option 03</span>
-            </div>
-            <h3 class="text-lg font-bold text-brand-navy mb-2">
-              Travel Itinerary Assistance
-            </h3>
-            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
-              A detailed proposed route schedule mapping connection times, airport terminal transfers, and layover visa prerequisites.
-            </p>
-            <ul class="space-y-2 text-xs text-brand-navy/90 mb-6">
-              <li class="flex items-start gap-2">
-                <span class="text-brand-navy font-bold">✓</span>
-                <span>Optimal transit corridors (avoiding complex transit visas)</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-brand-navy font-bold">✓</span>
-                <span>Flight timing and stopover comparison</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-brand-navy font-bold">✓</span>
-                <span>Scheduling blueprint for tourist cover letters</span>
-              </li>
-            </ul>
-          </div>
-          <div class="pt-4 border-t border-brand-border/70 text-xs font-semibold text-brand-muted">
-            Recommended for vacation & budget planning.
-          </div>
-        </div>
-      </div>
-
-      <!-- Statutory Consular Integrity Notice -->
-      <div class="p-5 rounded-2xl bg-amber-50/70 border border-amber-200 text-xs text-amber-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div class="flex items-start gap-3">
-          <svg class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-          </svg>
-          <div>
-            <span class="font-bold block text-sm mb-0.5">Consular Advisory & Document Integrity Policy</span>
-            <p class="text-xs leading-relaxed text-amber-900">
-              The U.S. Department of State, UKVI, and European consulates explicitly recommend that visa applicants do not purchase non-refundable tickets prior to visa issuance. Visa Convention strictly refuses to create or distribute fake tickets, invented PNRs, or fabricated boarding passes. All reservations provided are legitimate, verifiable airline hold bookings.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 3: INTERACTIVE ENQUIRY FORM & SUPPORTING GUIDANCE (65% / 35%) -->
+  <!-- SECTION 2: INTERACTIVE ENQUIRY FORM & SUPPORTING GUIDANCE (65% / 35%) -->
   <!-- ========================================================================= -->
   <section id="flight-enquiry-section" class="py-12 sm:py-16 bg-brand-bg/50">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
         <!-- Left: Dedicated Flight Enquiry Form (approx. 65% width) -->
-        <div class="lg:col-span-8">
+        <div class="lg:col-span-8 space-y-6">
+          <!-- Consular Advisory & Document Integrity Policy -->
+          <div class="p-5 rounded-2xl bg-amber-50/70 border border-amber-200 text-xs text-amber-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+              <div>
+                <span class="font-bold block text-sm mb-0.5">Consular Advisory & Document Integrity Policy</span>
+                <p class="text-xs leading-relaxed text-amber-900">
+                  The U.S. Department of State, UKVI, and European consulates explicitly recommend that visa applicants do not purchase non-refundable tickets prior to visa issuance. Visa Convention strictly refuses to create or distribute fake tickets, invented PNRs, or fabricated boarding passes. All reservations provided are legitimate, verifiable airline hold bookings.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <FlightEnquiryForm />
         </div>
 
         <!-- Right: Supporting Information & Practical Desk Rules (approx. 35% width) -->
         <div class="lg:col-span-4 space-y-6 text-left">
-          <!-- Card 1: 4-Step Process -->
-          <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-2xs">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="w-2.5 h-2.5 rounded-full bg-brand-navy"></span>
-              <span class="text-xs font-bold uppercase tracking-wider text-brand-navy">How We Coordinate</span>
-            </div>
-            <h3 class="text-base font-bold text-brand-navy mb-4">
-              4-Step Travel Desk Workflow
-            </h3>
-            <ol class="space-y-4 text-xs text-brand-muted">
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-brand-bg text-brand-navy font-bold flex items-center justify-center shrink-0 border border-brand-border text-[11px]">
-                  01
-                </span>
-                <div>
-                  <span class="font-bold text-brand-navy block">Submit Your Route</span>
-                  <span>Share departure, destination, intended travel dates, and passenger profile.</span>
-                </div>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-brand-bg text-brand-navy font-bold flex items-center justify-center shrink-0 border border-brand-border text-[11px]">
-                  02
-                </span>
-                <div>
-                  <span class="font-bold text-brand-navy block">Carrier & Fare Comparison</span>
-                  <span>Our desk checks major global carriers for optimal student tariffs and luggage rules.</span>
-                </div>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-brand-bg text-brand-navy font-bold flex items-center justify-center shrink-0 border border-brand-border text-[11px]">
-                  03
-                </span>
-                <div>
-                  <span class="font-bold text-brand-navy block">Transparent Option Briefing</span>
-                  <span>We share verified schedules via WhatsApp or email with exact layovers and fare conditions.</span>
-                </div>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-brand-bg text-brand-navy font-bold flex items-center justify-center shrink-0 border border-brand-border text-[11px]">
-                  04
-                </span>
-                <div>
-                  <span class="font-bold text-brand-navy block">GDS Hold or E-Ticket</span>
-                  <span>Receive your legitimate airline reservation hold receipt or confirmed e-ticket.</span>
-                </div>
-              </li>
-            </ol>
-          </div>
-
-          <!-- Card 2: Student Baggage Optimization -->
+          <!-- Card 1: Student Baggage Optimization -->
           <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-2xs">
             <span class="inline-block px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-brand-bg text-brand-blue border border-brand-blue/20 mb-2">
               Student Privilege
