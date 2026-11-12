@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.21.0] - 2026-11-12 — Distinct Find Universities Campus Architecture Visual Upgrade
+
+### Changed
+- **Homepage Service Card 6 ("Find Universities") Image Replacement:**
+  - Replaced `/assets/images/services/service-universities.jpg` with a distinct, authentic high-resolution photograph of international college students walking outside campus academic building architecture in natural daylight (Pexels license `photo-7972526` by George Pak).
+  - Maintained Card 1 ("Study Visa") image (`/assets/images/services/service-study-visa.jpg`) 100% untouched.
+  - Sized and optimized to exact matching aspect ratio (1200 × 800, 3:2 ratio, 219 KB, progressive JPEG) for sharp rendering and fast TTFB.
+  - Updated accessible `alt` text to *"International college students walking outside campus academic building in natural daylight"*, strictly adhering to WCAG 2.2 AA and ensuring zero implied partnership with the depicted institution.
+  - Preserved identical card geometry: `h-40 sm:h-44`, `object-cover`, 20px rounded corners (`rounded-2xl`), hover scale zoom (`group-hover:scale-105`), and university directory routing (`/universities/`).
+
+### Verified
+- Automated test suites: **235 / 235 checks passing (100%)** across all 7 QA suites.
+- Desktop and mobile rendering verification via headless Chromium: confirmed Card 1 and Card 6 use visually and binary-distinct photographs with 0px horizontal overflow across viewports.
+- Static build: **64 static routes compiled cleanly in 5.43s**.
+
+---
+
 ## [1.20.0] - 2026-11-12 — Homepage Content & Space Optimization (Zero Repetition)
 
 ### Changed
