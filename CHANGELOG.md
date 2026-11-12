@@ -6,6 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.25.0] - 2026-11-12 — Homepage Hero Location Badge Removal & Headline Elevation
+
+### Removed
+- **Homepage Hero Location Pill Badge (`src/components/home/HeroSection.astro`):**
+  - Completely excised the pill-shaped badge displaying `"HANUMANGARH, RAJASTHAN • GLOBAL CONSULTATION DESK"` and its container from the hero component.
+  - Removed `eyebrow` property from `Props` and destructuring.
+  - Eliminated unused container margins and padding, allowing the left text column to lead directly with the uppercase subheadline and bold headline.
+  - Maintained zero artificial replacements (no placeholder badges, slogans, or decorative elements).
+
+### Enhanced
+- **Visual Balance & Content Hierarchy:**
+  - Elevated the main headline (*"Explore the World with Visa Convention"*) as the undisputed primary visual focal point.
+  - Maintained left-aligned typography hierarchy:
+    1. Subheadline (`text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-blue mb-2.5`): *"STUDY ABROAD, VISA & TRAVEL SERVICES"*
+    2. Headline (`text-[2rem] sm:text-[2.9rem] lg:text-[3.35rem] font-black text-brand-navy`): *"Explore the World with Visa Convention"*
+    3. Supporting Description: *"Structured guidance for university admissions, consular visa files, and flight reservations from our Hanumangarh counseling office."*
+    4. Dual Primary CTAs: *"Explore Services"* (`#services`) and *"Contact Us"* (`/contact/`)
+  - Preserved vertical alignment (`align-items: center`) between the text column (~52%) and the 6:5 landmark image frame (~48%).
+
+### Preserved
+- Full physical Hanumangarh office address, Google Maps directions, phone, and business hours strictly preserved on `/contact/` and the global `Footer.astro`.
+- All brand tokens, landmark photography, buttons, and responsive behavior preserved.
+
+### Verified
+- Automated test suites: **271 / 271 checks passed (100%)** across all QA suites.
+- Static build: **64 static routes compiled cleanly in 9.22s**.
+- Responsive layout: **0px horizontal overflow verified across 9 viewports** (320px–1920px).
+- Captured full-page desktop (1366px), tablet (768px), and mobile (390px, 320px) evidence screenshots.
+
+---
+
 ## [1.24.0] - 2026-11-12 — Complete Homepage Simplification & About Section Removal
 
 ### Removed & Streamlined

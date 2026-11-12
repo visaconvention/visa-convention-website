@@ -599,7 +599,7 @@ const travelServices = [
       const isRoundTrip = tripRoundInput?.checked ?? true;
       const returnDate = (document.getElementById('flight-return-date') as HTMLInputElement)?.value;
       if (isRoundTrip) {
-        const returnInvalid = !returnDate || (departureDate && returnDate < departureDate);
+        const returnInvalid = !returnDate || Boolean(departureDate && returnDate < departureDate);
         if (setFieldError('flight-return-date', 'flight-return-date-error', returnInvalid)) hasErrors = true;
       }
 

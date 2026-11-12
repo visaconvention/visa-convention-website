@@ -94,6 +94,8 @@ async function run() {
     const bodyText = await page.evaluate(() => document.body.innerText);
     assert(!bodyText.includes('Advising Students & Travelers from Hanumangarh'), 'About Visa Convention heading removed from homepage DOM');
     assert(!bodyText.includes('ABOUT VISA CONVENTION'), 'About Visa Convention badge removed from homepage DOM');
+    assert(!bodyText.includes('GLOBAL CONSULTATION DESK'), 'Hero location badge (Global Consultation Desk) completely removed from hero DOM');
+    assert(!bodyText.includes('HANUMANGARH, RAJASTHAN • GLOBAL CONSULTATION DESK'), 'Pill-shaped label container completely removed from hero');
     assert(!bodyText.includes('Read More About Our Team & Ethics'), 'Read More link removed from homepage DOM');
     assert(!bodyText.includes('Featured Study Destinations'), 'Featured Study Destinations absent from homepage DOM');
     assert(!bodyText.includes('Ready to Plan Your Next Step?'), 'Redundant promotional CTA banner removed from homepage DOM');
