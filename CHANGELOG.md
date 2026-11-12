@@ -6,6 +6,45 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.23.0] - 2026-11-12 — Homepage Streamlining & Duplicate Section Removal
+
+### Removed
+- **"Featured Study Destinations" Section on Homepage (`src/pages/index.astro`):**
+  - Completely removed the redundant Section 3 from the homepage component tree (section badge, "Featured Study Destinations" heading, description, 6 country cards, and duplicate "Explore All 35+ Destinations" / "Find Universities" action buttons).
+  - Eliminated duplicate discovery journeys and trimmed ~600px of excessive vertical scroll depth from the homepage.
+  - Pruned unused legacy CSS helper classes (`.section-heading-centered`, `.section-heading-left`, `.card-grid`, `.info-card`, `.info-card__action`) from `src/styles/global.css`, reducing uncompressed global CSS to 74.3 KB (well within the 75 KB budget).
+
+### Changed
+- **Homepage Service Card Routing & Labels (`src/pages/index.astro`):**
+  - Updated Card 1 in the 6-service grid: titled "Study Abroad", routing directly to `/study-abroad/` with action label "Explore Study Abroad".
+  - Maintained Card 6 as "Find Universities", routing directly to `/universities/` with action label "Search 1,000+ Institutions".
+  - Streamlined homepage narrative to a focused 5-section sequence:
+    1. Hero Section (Brand introduction & quick discovery)
+    2. Comprehensive Services Grid (6 core cards: Study Abroad, Tourist Visa, Work Visa, Flight Booking, MBBS Abroad, Find Universities)
+    3. About Visa Convention (Hanumangarh office identity, mission, and transparent compliance standards)
+    4. Three-Step Guidance Process (Profile assessment, application drafting, post-arrival advisory)
+    5. Final Consultation CTA (Immediate enquiry intake)
+  - Seamless background rhythm: Section 2 (`bg-white border-b`) transitions naturally into Section 3 (About on clean off-white `#F5F8FC`), followed by Section 4 (`bg-white border-y`).
+
+### Preserved (Strict Scope Boundaries)
+- **Zero Impact on Dedicated Study Abroad & University Discovery Engines:**
+  - Preserved `/study-abroad/` route with full interactive 36-country directory, regional filters, and search.
+  - Preserved individual country profile pages (`src/pages/study-abroad/[country].astro`), country data registries (`countries.json`, `country-registry.ts`), and high-resolution destination photography (`public/assets/images/destinations/`).
+  - Preserved `/universities/` route and all 1,022 university listings.
+  - Preserved `CountryCard.astro` component for dedicated directory pages.
+
+### Verified
+- Automated test suites: **235 / 235 checks passing (100%)** across all 7 test suites (`seo-a11y-audit.test.js`, `flight-booking-and-images.test.js`, `tourist-work-services.test.js`, `country-engine.test.js`, `credibility-engine.test.js`, `university-engine.test.js`, `contact-engine.test.js`).
+- Static build: **64 static routes compiled cleanly in 9.53s**.
+- Visual & DOM verification:
+  - Verified absence of "Featured Study Destinations" section on homepage (`false`).
+  - Verified Card 1 routes directly to `/study-abroad/`.
+  - Verified Card 6 routes directly to `/universities/`.
+  - Verified 0px horizontal overflow on 390px mobile viewport (`false`).
+  - Captured full-page desktop (`homepage-no-featured-desktop.png`) and mobile (`homepage-no-featured-mobile.png`) screenshots.
+
+---
+
 ## [1.22.0] - 2026-11-12 — Comprehensive 12-Stage Website Quality & Visual Architecture Upgrade
 
 ### Added
