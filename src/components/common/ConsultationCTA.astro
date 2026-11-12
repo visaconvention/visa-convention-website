@@ -18,6 +18,8 @@ const {
   secondaryBtnHref = '/study-abroad/',
   class: className = '',
 } = Astro.props;
+
+const isExternal = secondaryBtnHref.startsWith('http');
 ---
 
 <section class={`relative overflow-hidden bg-brand-navy text-white rounded-2xl p-6 sm:p-8 lg:p-10 shadow-md ${className}`}>
@@ -45,9 +47,16 @@ const {
       </a>
       <a
         href={secondaryBtnHref}
-        class="w-full sm:w-auto px-6 py-3 rounded-xl bg-white/10 text-white font-bold text-sm hover:bg-white/20 border border-white/30 transition-all duration-150 text-center min-h-[46px] flex items-center justify-center"
+        target={isExternal ? '_blank' : undefined}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
+        class="w-full sm:w-auto px-6 py-3 rounded-xl bg-white/10 text-white font-bold text-sm hover:bg-white/20 border border-white/30 transition-all duration-150 text-center min-h-[46px] flex items-center justify-center gap-2"
       >
-        {secondaryBtnText}
+        {isExternal && (
+          <svg class="w-4 h-4 fill-current text-emerald-400" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.698.057-2.18-.555-1.776-.732-2.909-2.535-2.997-2.653-.088-.118-.718-.957-.718-1.823 0-.866.452-1.292.613-1.468.161-.176.353-.221.471-.221.118 0 .235.001.338.006.109.005.253-.041.396.302.147.353.501 1.222.545 1.31.044.088.073.191.015.308-.059.117-.088.19-.176.293-.088.103-.186.23-.265.309-.091.09-.187.189-.081.371.106.182.471.777 1.01 1.258.694.619 1.28.811 1.462.902.182.091.289.076.396-.046.107-.123.456-.532.578-.714.122-.182.245-.152.41-.091.166.061 1.054.497 1.236.588.182.091.303.136.348.212.044.076.044.441-.1.846z"/>
+          </svg>
+        )}
+        <span>{secondaryBtnText}</span>
       </a>
     </div>
 

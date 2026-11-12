@@ -6,6 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.20.0] - 2026-11-12 — Homepage Content & Space Optimization (Zero Repetition)
+
+### Changed
+- **Eliminated Repetitive Phrasing & Slogans:**
+  - Removed 9× repeated instances of the verb *"Explore"* across homepage headings, card titles, descriptions, and CTA links.
+  - Refactored hero description from generic *"Explore international study destinations..."* to location-anchored *"Structured guidance for university admissions, consular visa files, and flight reservations from our Hanumangarh counseling office."*
+  - Renamed Services Section H2 to *"Services & Areas of Guidance"* and Card 6 to *"Find Universities"*.
+- **Eliminated Redundant Discovery Journey & DOM Syntax Cleanup:**
+  - Removed redundant trailing university discovery banner in Section 3, saving ~180px of vertical scroll depth.
+  - Integrated dual compact actions into Section 3 header: `Explore All 35+ Destinations` and `Find Universities`.
+  - Fixed orphaned closing tags (`</div></div></div></section>`) in `src/pages/index.astro`.
+- **Streamlined About Section Copy (`src/pages/index.astro`):**
+  - Replaced mechanical re-listing of 4 services with authentic company identity, regional roots, and ethical counseling standards.
+- **Universal Three-Step Process Architecture:**
+  - Broadened Section 5 (How It Works) from study-abroad-only terminology to 3 universal client consultation steps: 1. *Profile & Eligibility Evaluation*, 2. *Documentation & Application Filing*, 3. *Consular Briefing & Departure Support*.
+- **Enhanced Final Conversion CTA:**
+  - Replaced reverse funnel link with direct **"Chat on WhatsApp"** prefilled contact channel alongside the primary consultation form.
+
+### Added
+- **Forensic Content Audit & Space Reports:**
+  - `HOMEPAGE_CONTENT_AUDIT.md`: Forensic section-by-section audit table identifying duplicates and rationale.
+  - `HOMEPAGE_SPACE_OPTIMIZATION_REPORT.md`: Comprehensive optimization report with 9-viewport reflow matrix and test results.
+  - Automated viewport evaluation script: `scripts/capture-homepage-optimization-viewports.mjs`.
+
+### Verified
+- Automated test suites: **235 / 235 checks passing (100%)** across all 7 QA suites.
+- 9-viewport responsive audit: **0px horizontal overflow across all 9 viewports** (320px–1920px).
+- Static build: **64 static routes compiled cleanly in 7.54s**.
+
+---
+
 ## [1.19.0] - 2026-11-12 — Study Abroad Country Image Upgrade (100% Photographic Coverage)
 
 ### Added
