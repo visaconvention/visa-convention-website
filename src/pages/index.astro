@@ -2,8 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/home/HeroSection.astro';
 import SectionHeading from '../components/common/SectionHeading.astro';
-import ConsultationCTA from '../components/common/ConsultationCTA.astro';
-import { siteConfig } from '../data/site-config';
 ---
 
 <BaseLayout
@@ -11,10 +9,9 @@ import { siteConfig } from '../data/site-config';
   description="Explore universities abroad, learn about our visa services, and speak directly with the Visa Convention counseling team in Hanumangarh, Rajasthan."
 >
   <!-- ========================================================================= -->
-  <!-- SECTION 1: HERO (TWO-COLUMN WITH INTERNATIONAL LANDMARKS VISUAL) -->
+  <!-- SECTION 1: HERO (PREMIUM INTERNATIONAL-LANDMARK VISUAL) -->
   <!-- ========================================================================= -->
   <HeroSection
-    eyebrow="Hanumangarh, Rajasthan • Global Consultation Desk"
     headline="Explore the World with Visa Convention"
     subheadline="Study Abroad, Visa & Travel Services"
     description="Structured guidance for university admissions, consular visa files, and flight reservations from our Hanumangarh counseling office."
@@ -29,11 +26,11 @@ import { siteConfig } from '../data/site-config';
   <!-- ========================================================================= -->
   <!-- SECTION 2: SIX CORE SERVICE CATEGORIES (3x2 PHOTOGRAPHIC DISCOVERY GRID) -->
   <!-- ========================================================================= -->
-  <section id="services" class="py-12 sm:py-16 bg-white border-b border-brand-border">
+  <section id="services" class="py-12 sm:py-16 bg-brand-bg">
     <div class="site-container">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 text-left">
         <div>
-          <span class="inline-block px-3.5 py-1 mb-2.5 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
+          <span class="inline-block px-3.5 py-1 mb-2.5 text-xs font-bold tracking-wider uppercase rounded-full bg-white text-brand-blue border border-brand-blue/20 shadow-2xs">
             Our Services
           </span>
           <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight text-balance">
@@ -44,7 +41,7 @@ import { siteConfig } from '../data/site-config';
           </p>
         </div>
         <div class="mt-4 sm:mt-0">
-          <a href="/services/" class="btn-outline text-xs inline-flex items-center gap-1.5">
+          <a href="/services/" class="btn-outline text-xs inline-flex items-center gap-1.5 bg-white">
             <span>View All Services Directory</span>
             <span class="text-brand-blue">→</span>
           </a>
@@ -92,37 +89,37 @@ import { siteConfig } from '../data/site-config';
           </div>
         </div>
 
-        <!-- Card 2: MBBS / PhD Abroad -->
+        <!-- Card 2: Find Universities -->
         <div class="card-premium overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 flex flex-col justify-between group text-left">
           <div>
             <div class="relative h-40 sm:h-44 w-full overflow-hidden bg-brand-bg border-b border-brand-border">
               <img
-                src="/assets/images/mbbs-education.jpg"
-                alt="International medical students training in university clinical laboratory"
+                src="/assets/images/services/service-universities.jpg"
+                alt="International college students walking outside campus academic building in natural daylight"
                 width="600"
                 height="340"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
-              <span class="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-brand-red/90 text-white backdrop-blur-xs border border-white/20">
-                Medical & Doctoral
+              <span class="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-brand-navy/90 text-white backdrop-blur-xs border border-white/20">
+                University Directory
               </span>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
-                MBBS / PhD Abroad
+                Find Universities
               </h3>
               <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
-                Recognized medical faculties in Europe & Central Asia, alongside doctoral research proposals and supervisor outreach.
+                Search over 1,000+ higher education institutions across North America, the UK, Europe, Australia, and Asia.
               </p>
             </div>
           </div>
           <div class="px-6 pb-6 pt-2 mt-auto border-t border-brand-border/60">
             <a
-              href="/services/mbbs/"
+              href="/universities/"
               class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors"
             >
-              <span>Explore Programmes</span>
+              <span>Search 1,000+ Institutions</span>
               <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
@@ -206,7 +203,45 @@ import { siteConfig } from '../data/site-config';
           </div>
         </div>
 
-        <!-- Card 5: Flight Booking -->
+        <!-- Card 5: MBBS / PhD Abroad -->
+        <div class="card-premium overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 flex flex-col justify-between group text-left">
+          <div>
+            <div class="relative h-40 sm:h-44 w-full overflow-hidden bg-brand-bg border-b border-brand-border">
+              <img
+                src="/assets/images/mbbs-education.jpg"
+                alt="International medical students training in university clinical laboratory"
+                width="600"
+                height="340"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+              <span class="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-brand-red/90 text-white backdrop-blur-xs border border-white/20">
+                Medical & Doctoral
+              </span>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
+                MBBS / PhD Abroad
+              </h3>
+              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                Recognized medical faculties in Europe & Central Asia, alongside doctoral research proposals and supervisor outreach.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 mt-auto border-t border-brand-border/60">
+            <a
+              href="/services/mbbs/"
+              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors"
+            >
+              <span>Explore Programmes</span>
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 6: Flight Booking -->
         <div class="card-premium overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 flex flex-col justify-between group text-left">
           <div>
             <div class="relative h-40 sm:h-44 w-full overflow-hidden bg-brand-bg border-b border-brand-border">
@@ -244,99 +279,14 @@ import { siteConfig } from '../data/site-config';
           </div>
         </div>
 
-        <!-- Card 6: Find Universities -->
-        <div class="card-premium overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 flex flex-col justify-between group text-left">
-          <div>
-            <div class="relative h-40 sm:h-44 w-full overflow-hidden bg-brand-bg border-b border-brand-border">
-              <img
-                src="/assets/images/services/service-universities.jpg"
-                alt="International college students walking outside campus academic building in natural daylight"
-                width="600"
-                height="340"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-              />
-              <span class="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-brand-navy/90 text-white backdrop-blur-xs border border-white/20">
-                University Directory
-              </span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
-                Find Universities
-              </h3>
-              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
-                Search over 1,000+ higher education institutions across North America, the UK, Europe, Australia, and Asia.
-              </p>
-            </div>
-          </div>
-          <div class="px-6 pb-6 pt-2 mt-auto border-t border-brand-border/60">
-            <a
-              href="/universities/"
-              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors"
-            >
-              <span>Search 1,000+ Institutions</span>
-              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 3: ABOUT VISA CONVENTION -->
+  <!-- SECTION 3: THREE-STEP GUIDANCE PROCESS -->
   <!-- ========================================================================= -->
-  <section class="py-12 sm:py-16 site-container">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-      <div class="lg:col-span-7 space-y-4 text-left">
-        <span class="badge-pill">About Visa Convention</span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight leading-tight text-balance">
-          Advising Students & Travelers from Hanumangarh
-        </h2>
-        <p class="text-sm sm:text-base text-brand-muted leading-relaxed font-normal">
-          Founded in Hanumangarh, Rajasthan, Visa Convention is an independent consultancy dedicated to transparent, ethical guidance for students and travelers across Northern India.
-        </p>
-        <p class="text-sm sm:text-base text-brand-muted leading-relaxed font-normal">
-          We conduct careful document audits, explain host-nation immigration requirements clearly, and assist with legitimate applications without misleading promises.
-        </p>
-        <div class="pt-2">
-          <a href="/about/" class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy hover:text-brand-red transition-colors">
-            <span>Read More About Our Team & Ethics</span>
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <div class="lg:col-span-5">
-        <div class="bg-brand-bg rounded-2xl p-6 border border-brand-border space-y-3.5 text-left shadow-2xs">
-          <h3 class="text-base font-bold text-brand-navy">Consultation Center</h3>
-          <p class="text-xs text-brand-muted leading-relaxed font-normal">
-            {siteConfig.officeAddress}
-          </p>
-          <div class="text-xs text-brand-navy space-y-1.5 pt-2 border-t border-brand-border/80">
-            <p><strong>Hours:</strong> {siteConfig.businessHours}</p>
-            <p><strong>Phone:</strong> <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} class="text-brand-blue font-bold hover:underline">{siteConfig.phone}</a></p>
-            <p><strong>Email:</strong> <a href={`mailto:${siteConfig.email}`} class="text-brand-blue font-bold hover:underline">{siteConfig.email}</a></p>
-          </div>
-          <div class="pt-2">
-            <a href="/contact/" class="btn-primary w-full text-center text-xs py-2.5">
-              <span>Request Consultation</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 4: THREE-STEP GUIDANCE PROCESS -->
-  <!-- ========================================================================= -->
-  <section class="py-12 sm:py-16 bg-white border-y border-brand-border">
+  <section class="py-12 sm:py-16 bg-white border-t border-brand-border">
     <div class="site-container">
       <SectionHeading
         badge="Our Consultation Process"
@@ -346,7 +296,7 @@ import { siteConfig } from '../data/site-config';
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mt-8">
         <!-- Step 1 -->
-        <div class="card-premium p-6 rounded-2xl text-left relative group flex flex-col justify-between h-full">
+        <div class="card-premium p-6 rounded-2xl text-left relative group flex flex-col justify-between h-full bg-brand-bg border border-brand-border/80">
           <div>
             <div class="w-9 h-9 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-sm mb-4 shadow-2xs">
               1
@@ -359,7 +309,7 @@ import { siteConfig } from '../data/site-config';
         </div>
 
         <!-- Step 2 -->
-        <div class="card-premium p-6 rounded-2xl text-left relative group flex flex-col justify-between h-full">
+        <div class="card-premium p-6 rounded-2xl text-left relative group flex flex-col justify-between h-full bg-brand-bg border border-brand-border/80">
           <div>
             <div class="w-9 h-9 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-sm mb-4 shadow-2xs">
               2
@@ -372,7 +322,7 @@ import { siteConfig } from '../data/site-config';
         </div>
 
         <!-- Step 3 -->
-        <div class="card-premium p-6 rounded-2xl text-left relative group flex flex-col justify-between h-full">
+        <div class="card-premium p-6 rounded-2xl text-left relative group flex flex-col justify-between h-full bg-brand-bg border border-brand-border/80">
           <div>
             <div class="w-9 h-9 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-sm mb-4 shadow-2xs">
               3
@@ -390,18 +340,4 @@ import { siteConfig } from '../data/site-config';
       </p>
     </div>
   </section>
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 5: FINAL CONSULTATION CTA -->
-  <!-- ========================================================================= -->
-  <div class="site-container py-12 sm:py-16">
-    <ConsultationCTA
-      title="Ready to Plan Your Next Step?"
-      subtitle="Speak directly with our counseling team in Hanumangarh or submit an initial assessment request online."
-      primaryBtnText="Request Consultation"
-      primaryBtnHref="/contact/"
-      secondaryBtnText="Chat on WhatsApp"
-      secondaryBtnHref={siteConfig.whatsappUrl}
-    />
-  </div>
 </BaseLayout>

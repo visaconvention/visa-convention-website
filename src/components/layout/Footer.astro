@@ -77,6 +77,9 @@ const currentYear = new Date().getFullYear();
         <div class="space-y-2 leading-relaxed">
           <p>{siteConfig.officeAddress}</p>
           <p>
+            Hours: {siteConfig.businessHours}
+          </p>
+          <p>
             Phone / WhatsApp: <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} class="text-white hover:underline font-semibold">{siteConfig.phone}</a>
           </p>
           <p>

@@ -6,6 +6,42 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.24.0] - 2026-11-12 — Complete Homepage Simplification & About Section Removal
+
+### Removed & Streamlined
+- **Homepage (`src/pages/index.astro`):**
+  - **Completely removed "About Visa Convention" section:** Excised the section badge, "Advising Students & Travelers from Hanumangarh" heading, two introductory paragraphs, "Read More About Our Team & Ethics" link, "Consultation Center" card, office address, business hours, phone/email, and duplicate "Request Consultation" button.
+  - **Removed redundant bottom ConsultationCTA banner:** Eliminated promotional marketing banner to maintain a compact, high-polish consultancy aesthetic.
+  - **Streamlined homepage narrative into a focused 4-part structure:**
+    1. Main Navigation Header (Sticky header with "Request Consultation" button to `/contact/`)
+    2. Premium International-Landmark Hero (Strong headline, world landmarks visual, and direct dual CTAs)
+    3. Six Core Service Cards (3x2 grid: Study Abroad, Find Universities, Tourist Visa, Work Visa, MBBS / PhD Abroad, Flight Booking) on clean off-white `#F5F8FC`
+    4. Compact Three-Step Guidance Process ("How It Works" structured evaluation steps + statutory embassy disclaimer) on pure white `#FFFFFF`
+    5. Compact Footer (`bg-brand-navy` with compact business identity, quick links, statutory notice, and essential contact access)
+
+### Preserved & Enhanced
+- **Genuine Business Information Preserved on Dedicated Pages & Footer:**
+  - Dedicated `/about/` page retains complete company origin, founding story, leadership, team, and local Hanumangarh center.
+  - Dedicated `/contact/` page retains physical address, interactive form, phone, WhatsApp, and Google Maps directions.
+  - Enhanced `src/components/layout/Footer.astro` to include compact business hours (`Hours: Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)`) alongside address, phone, and email.
+- **Service Cards Perfected:**
+  - Preserved all 6 advertised services with distinct, high-resolution photography:
+    - Card 1: Study Abroad (`service-study-visa.jpg`) -> `/study-abroad/`
+    - Card 2: Find Universities (`service-universities.jpg`) -> `/universities/`
+    - Card 3: Tourist Visa (`service-tourist-visa.jpg`) -> `/services/tourist-visa/`
+    - Card 4: Work Visa (`service-work-visa.jpg`) -> `/services/work-visa/`
+    - Card 5: MBBS / PhD Abroad (`mbbs-education.jpg`) -> `/services/mbbs/`
+    - Card 6: Flight Booking (`flight-hero-aviation.jpg`) -> `/services/flight-booking/`
+  - Equal-height card structures with pinned bottom actions and consistent typography.
+
+### Verified
+- Automated test suites: **269 / 269 tests passed (100%)** across 8 test suites.
+- Static build: **64 static routes compiled cleanly in 6.24s** with zero errors or warnings.
+- Responsive layout: **0px horizontal overflow verified across 9 viewports** (320px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px, 1920px).
+- Captured high-resolution full-page evidence screenshots at 1366px desktop, 768px tablet, 390px mobile, and 320px small mobile.
+
+---
+
 ## [1.23.0] - 2026-11-12 — Homepage Streamlining & Duplicate Section Removal
 
 ### Removed
