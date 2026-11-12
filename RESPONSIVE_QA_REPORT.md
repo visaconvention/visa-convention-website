@@ -2,7 +2,7 @@
 
 **Date:** 12 November 2026  
 **Project:** Visa Convention Official Website  
-**Branch / Version:** v1.18.0  
+**Branch / Version:** v1.21.0  
 **Test Harness:** Headless Edge Chromium via Puppeteer Core (`scripts/capture-visual-upgrade-viewports.mjs`)  
 **Status:** 100% PASS (Zero Horizontal Overflow, Full WCAG 2.2 AA Reflow)
 

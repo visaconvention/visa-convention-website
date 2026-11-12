@@ -13,6 +13,8 @@ export const detailedServicesData: Record<string, DetailedService> = {
     metaDescription: 'Expert study visa counseling, university admissions, scholarship guidance, and visa dossier preparation for Canada, UK, Australia, USA, Germany, and 30+ destinations.',
     heroCtaText: 'Book Free Study Visa Assessment',
     heroCtaHref: '#enquiry',
+    heroImage: '/assets/images/services/service-study-visa.jpg',
+    heroImageAlt: 'International university students walking through campus green',
     assistanceIncludes: [
       {
         title: 'One-on-One Academic Assessment',

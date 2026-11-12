@@ -6,6 +6,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.22.0] - 2026-11-12 — Comprehensive 12-Stage Website Quality & Visual Architecture Upgrade
+
+### Added
+- **Master Deliverables Documentation:**
+  - `COMPLETE_WEBSITE_AUDIT.md`: 12-stage forensic assessment covering architecture, route discovery, current-state defect resolutions, and verified compliance outcomes.
+  - `VISUAL_DESIGN_AUDIT.md`: Comprehensive visual design system specifications covering brand palette, typographic scale, 1160px container standards, card anatomy, and visual anti-pattern enforcement.
+  - `CONTENT_ACCURACY_REPORT.md`: Exhaustive copy audit detailing zero fabrication, non-guarantee disclosures, statutory citations (*Emigration Act, 1983*), flight ticket integrity, and university counseling scope.
+  - `PERFORMANCE_AND_SEO_REPORT.md`: Technical quality verification covering Core Web Vitals, 19.4 KB client JS and 74.7 KB CSS budgets, Schema.org validation, WCAG 2.2 AA contrast, and touch target compliance.
+
+### Changed
+- **Visual Design Tokens & Color System (`src/styles/global.css`):**
+  - Officially registered Travel Blue (`#1769B3`) and Sky Blue (`#EAF4FF`) in `@theme` alongside Brand Navy (`#102A53`), Signature Red (`#C91D32`), and Clean Off-White (`#F5F8FC`).
+- **Comprehensive Service Hero Photography Upgrades:**
+  - `src/data/detailed-services.ts`: Equipped Study Visa service with authentic campus lawn hero photography (`service-study-visa.jpg`).
+  - `src/pages/services/tourist-visa.astro`: Upgraded hero to balanced 12-column grid featuring scenic destination travel photography (`service-tourist-visa.jpg`).
+  - `src/pages/services/work-visa.astro`: Upgraded hero to balanced 12-column grid featuring skilled technical workplace photography (`service-work-visa.jpg`).
+  - `IMAGE_INVENTORY.md`: Fully reconciled catalog tracking all 92 image assets, 51 canonical countries, and 6 core service hero visual treatments.
+- **Updated Quality Assurance Documentation:**
+  - Updated `FUNCTIONAL_TEST_REPORT.md` and `RESPONSIVE_QA_REPORT.md` to reflect v1.22.0 status.
+
+### Verified
+- Automated test suites: **235 / 235 checks passing (100%)** across all 7 QA suites.
+- Static build: **64 static routes compiled cleanly in 8.46s** with zero warnings or errors.
+- Responsive reflow: **0px horizontal overflow across all 9 standard viewports** (320px–1920px).
+
+---
+
 ## [1.21.0] - 2026-11-12 — Distinct Find Universities Campus Architecture Visual Upgrade
 
 ### Changed

@@ -2,7 +2,7 @@
 
 **Date:** 12 November 2026  
 **Project:** Visa Convention Official Website  
-**Branch / Version:** v1.18.0  
+**Branch / Version:** v1.21.0  
 **Status:** 100% PASS (235/235 Automated Checks)
 
 ---
