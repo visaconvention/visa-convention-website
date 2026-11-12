@@ -6,6 +6,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.26.0] - 2026-11-12 — Homepage Consultation CTA Restoration & "How It Works" Sentence Removal
+
+### Removed & Streamlined
+- **Homepage "How It Works" Section (`src/pages/index.astro`):**
+  - Completely excised the introductory description sentence: `"Three clear steps from your initial profile evaluation to departure preparation."`.
+  - Removed redundant `mt-8` margin from the 3-step grid container, allowing the section heading's bottom margin (`mb-7 sm:mb-9`) to cleanly define the spacing.
+  - Kept the `"How It Works"` section heading and `"Our Consultation Process"` badge untouched.
+  - Preserved all 3 process cards, numbered badges (1, 2, 3), step titles, descriptions, and the sovereign consular authority disclaimer at the bottom.
+
+### Restored & Styled
+- **Final Consultation CTA Section (`src/pages/index.astro` & `src/components/common/ConsultationCTA.astro`):**
+  - Re-introduced the dedicated final consultation call-to-action section positioned immediately after the 3-step process and immediately before the global footer.
+  - Applied requested visual styling:
+    - Deep navy background (`#102A53` / `bg-brand-navy`) with subtle background glow accents
+    - Rounded corners (`16px` / `rounded-[16px]`)
+    - Centered content layout (`max-w-2xl mx-auto text-center`)
+    - Small label: `"PERSONALIZED GUIDANCE"`
+    - Prominent white heading: `"Ready to Plan Your Next Step?"`
+    - Supporting description: `"Speak with our team about your study abroad, visa or travel requirements."`
+    - Primary CTA: Red button (`bg-brand-red`) labeled `"Request Consultation"` linking to `/contact/`
+    - Secondary CTA: Outlined button (`bg-white/10 text-white border border-white/30`) with emerald SVG icon labeled `"Chat on WhatsApp"` linking to official business WhatsApp (`+91 96803 95539`)
+    - Informational disclaimer: `"Visa decisions are made by the relevant government authorities."`
+    - Fully responsive: side-by-side buttons on desktop, vertically stacked with touch targets >= 48px on mobile.
+
+### Verified
+- Automated test suites: **44/44 tests passed** in `tests/verify-simplified-homepage.js`.
+- Regression test suites: **100% pass rate** across `seo-a11y-audit.test.js` (51/51), `country-engine.test.js` (21/21), `credibility-engine.test.js` (34/34), `university-engine.test.js` (40/40), `tourist-work-services.test.js` (30/30), `flight-booking-and-images.test.js` (28/28).
+- Static build: **64 static routes compiled cleanly in 3.94s**.
+- Responsive layout: **0px horizontal overflow verified across all 9 viewports** (320px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px, 1920px).
+- Captured full-page desktop (1366px), tablet (768px), and mobile (390px, 320px) evidence screenshots.
+
+---
+
 ## [1.25.0] - 2026-11-12 — Homepage Hero Location Badge Removal & Headline Elevation
 
 ### Removed

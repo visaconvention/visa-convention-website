@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/home/HeroSection.astro';
 import SectionHeading from '../components/common/SectionHeading.astro';
+import ConsultationCTA from '../components/common/ConsultationCTA.astro';
 ---
 
 <BaseLayout
@@ -291,10 +292,9 @@ import SectionHeading from '../components/common/SectionHeading.astro';
       <SectionHeading
         badge="Our Consultation Process"
         title="How It Works"
-        description="Three clear steps from your initial profile evaluation to departure preparation."
       />
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mt-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
         <!-- Step 1 -->
         <div class="card-premium p-6 rounded-2xl text-left relative group flex flex-col justify-between h-full bg-brand-bg border border-brand-border/80">
           <div>
@@ -340,4 +340,19 @@ import SectionHeading from '../components/common/SectionHeading.astro';
       </p>
     </div>
   </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION 4: FINAL CONSULTATION CTA (IMMEDIATELY BEFORE FOOTER) -->
+  <!-- ========================================================================= -->
+  <div class="site-container py-12 sm:py-16">
+    <ConsultationCTA
+      badge="PERSONALIZED GUIDANCE"
+      title="Ready to Plan Your Next Step?"
+      subtitle="Speak with our team about your study abroad, visa or travel requirements."
+      primaryBtnText="Request Consultation"
+      primaryBtnHref="/contact/"
+      secondaryBtnText="Chat on WhatsApp"
+      disclaimer="Visa decisions are made by the relevant government authorities."
+    />
+  </div>
 </BaseLayout>

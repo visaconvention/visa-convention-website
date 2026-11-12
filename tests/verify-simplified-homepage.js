@@ -98,7 +98,6 @@ async function run() {
     assert(!bodyText.includes('HANUMANGARH, RAJASTHAN • GLOBAL CONSULTATION DESK'), 'Pill-shaped label container completely removed from hero');
     assert(!bodyText.includes('Read More About Our Team & Ethics'), 'Read More link removed from homepage DOM');
     assert(!bodyText.includes('Featured Study Destinations'), 'Featured Study Destinations absent from homepage DOM');
-    assert(!bodyText.includes('Ready to Plan Your Next Step?'), 'Redundant promotional CTA banner removed from homepage DOM');
 
     console.log('\n--- TEST GROUP 2: Service Cards Presence & Navigation Integrity ---');
     const serviceCards = await page.evaluate(() => {
@@ -148,10 +147,39 @@ async function run() {
       return html.includes('How It Works') && html.includes('Our Consultation Process');
     });
     assert(hasProcess, 'Homepage includes compact How It Works process section');
+    const hasIntroSentence = bodyText.includes('Three clear steps from your initial profile evaluation to departure preparation.');
+    assert(!hasIntroSentence, 'Introductory sentence "Three clear steps..." removed from How It Works section');
     const hasDisclaimer = bodyText.includes('Visa issuance decisions remain under the sole prerogative of sovereign embassies and consulates');
     assert(hasDisclaimer, 'Homepage displays mandatory non-guarantee statutory disclaimer');
 
-    console.log('\n--- TEST GROUP 4: Navigation, Consultation & Trust Signals ---');
+    console.log('\n--- TEST GROUP 4: Restored Final Consultation CTA Section ---');
+    const ctaData = await page.evaluate(() => {
+      const cta = document.querySelector('section.bg-brand-navy');
+      if (!cta) return null;
+      const text = cta.innerText;
+      const primaryLink = cta.querySelector('a[href="/contact/"]');
+      const whatsappLink = cta.querySelector('a[href*="wa.me"]');
+      return {
+        hasBadge: text.includes('PERSONALIZED GUIDANCE'),
+        hasTitle: text.includes('Ready to Plan Your Next Step?'),
+        hasSubtitle: text.includes('Speak with our team about your study abroad, visa or travel requirements.'),
+        hasDisclaimer: text.includes('Visa decisions are made by the relevant government authorities.'),
+        primaryText: primaryLink ? primaryLink.textContent.trim() : null,
+        whatsappHref: whatsappLink ? whatsappLink.getAttribute('href') : null,
+        whatsappText: whatsappLink ? whatsappLink.textContent.trim() : null,
+      };
+    });
+
+    assert(ctaData !== null, 'Consultation CTA section exists immediately before footer');
+    assert(ctaData?.hasBadge, 'Consultation CTA displays "PERSONALIZED GUIDANCE" badge');
+    assert(ctaData?.hasTitle, 'Consultation CTA displays "Ready to Plan Your Next Step?" title');
+    assert(ctaData?.hasSubtitle, 'Consultation CTA displays correct description copy');
+    assert(ctaData?.hasDisclaimer, 'Consultation CTA displays government authority visa decision disclaimer');
+    assert(ctaData?.primaryText === 'Request Consultation', 'Primary button displays "Request Consultation" linking to /contact/');
+    assert(ctaData?.whatsappHref?.includes('919680395539'), 'WhatsApp button connects to official business number (+91 96803 95539)');
+    assert(ctaData?.whatsappText === 'Chat on WhatsApp', 'Secondary button displays "Chat on WhatsApp"');
+
+    console.log('\n--- TEST GROUP 5: Navigation, Consultation & Trust Signals ---');
     const headerCta = await page.$('header a[href="/contact/"]');
     assert(headerCta !== null, 'Header contains functional Request Consultation button to /contact/');
 
