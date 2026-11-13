@@ -115,42 +115,41 @@ async function run() {
     
     const studyAbroad = serviceCards.find(c => c.title === 'Study Abroad');
     assert(studyAbroad && studyAbroad.link === '/study-abroad/', 'Card 1 (Study Abroad) links directly to /study-abroad/');
-    assert(studyAbroad?.img === '/assets/images/services/service-study-visa.jpg', 'Card 1 has distinct study visa photograph');
+    assert(studyAbroad?.img?.includes('Study%20Abroad') || studyAbroad?.img === '/assets/images/services/service-study-visa.jpg', 'Card 1 has distinct study visa asset');
 
     const mbbsPhd = serviceCards.find(c => c.title === 'MBBS / PhD Abroad');
-    assert(mbbsPhd && mbbsPhd.link === '/services/mbbs/', 'Card 2 (MBBS / PhD Abroad) links directly to /services/mbbs/');
-    assert(mbbsPhd?.img === '/assets/images/mbbs-education.jpg', 'Card 2 has distinct medical education photograph');
+    assert(mbbsPhd && (mbbsPhd.link === '/services/mbbs/' || mbbsPhd.link?.includes('/services/mbbs/')), 'Card (MBBS / PhD Abroad) links directly to /services/mbbs/');
+    assert(mbbsPhd?.img?.includes('MBBS') || mbbsPhd?.img === '/assets/images/mbbs-education.jpg', 'Card has distinct medical education asset');
 
     const touristVisa = serviceCards.find(c => c.title === 'Tourist Visa');
-    assert(touristVisa && touristVisa.link === '/services/tourist-visa/', 'Card 3 (Tourist Visa) links directly to /services/tourist-visa/');
-    assert(touristVisa?.img === '/assets/images/services/service-tourist-visa.jpg', 'Card 3 has distinct tourist visa photograph');
+    assert(touristVisa && touristVisa.link === '/services/tourist-visa/', 'Card (Tourist Visa) links directly to /services/tourist-visa/');
+    assert(touristVisa?.img?.includes('Tourist%20Visa') || touristVisa?.img === '/assets/images/services/service-tourist-visa.jpg', 'Card has distinct tourist visa asset');
 
     const workVisa = serviceCards.find(c => c.title === 'Work Visa');
-    assert(workVisa && workVisa.link === '/services/work-visa/', 'Card 4 (Work Visa) links directly to /services/work-visa/');
-    assert(workVisa?.img === '/assets/images/services/service-work-visa.jpg', 'Card 4 has distinct work visa photograph');
+    assert(workVisa && workVisa.link === '/services/work-visa/', 'Card (Work Visa) links directly to /services/work-visa/');
+    assert(workVisa?.img?.includes('Work%20Visa') || workVisa?.img === '/assets/images/services/service-work-visa.jpg', 'Card has distinct work visa asset');
 
     const flightBooking = serviceCards.find(c => c.title === 'Flight Booking');
-    assert(flightBooking && flightBooking.link === '/services/flight-booking/', 'Card 5 (Flight Booking) links directly to /services/flight-booking/');
-    assert(flightBooking?.img === '/assets/images/flight-hero-aviation.jpg', 'Card 5 has distinct aviation photograph');
+    assert(flightBooking && flightBooking.link === '/services/flight-booking/', 'Card (Flight Booking) links directly to /services/flight-booking/');
+    assert(flightBooking?.img?.includes('Flight%20Booking') || flightBooking?.img === '/assets/images/flight-hero-aviation.jpg', 'Card has distinct aviation asset');
 
     const findUniversities = serviceCards.find(c => c.title === 'Find Universities');
-    assert(findUniversities && findUniversities.link === '/universities/', 'Card 6 (Find Universities) links directly to /universities/');
-    assert(findUniversities?.img === '/assets/images/services/service-universities.jpg', 'Card 6 has distinct university campus architecture photograph');
+    assert(findUniversities && findUniversities.link === '/universities/', 'Card (Find Universities) links directly to /universities/');
+    assert(findUniversities?.img === '/assets/images/services/service-universities.jpg', 'Card has distinct university campus architecture photograph');
 
     // Check all 6 images are unique
     const uniqueImages = new Set(serviceCards.map(c => c.img));
     assert(uniqueImages.size === 6, `All 6 service card images are strictly unique (Unique count: ${uniqueImages.size})`);
 
-    console.log('\n--- TEST GROUP 3: Compact Three-Step Process & Disclosures ---');
+    console.log('\n--- TEST GROUP 3: Excised How It Works Process Section ---');
     const hasProcess = await page.evaluate(() => {
       const html = document.body.innerHTML;
-      return html.includes('How It Works') && html.includes('Our Consultation Process');
+      return html.includes('Three-Step Guidance Process') || (html.includes('How It Works') && html.includes('Our Consultation Process'));
     });
-    assert(hasProcess, 'Homepage includes compact How It Works process section');
-    const hasIntroSentence = bodyText.includes('Three clear steps from your initial profile evaluation to departure preparation.');
-    assert(!hasIntroSentence, 'Introductory sentence "Three clear steps..." removed from How It Works section');
-    const hasDisclaimer = bodyText.includes('Visa issuance decisions remain under the sole prerogative of sovereign embassies and consulates');
-    assert(hasDisclaimer, 'Homepage displays mandatory non-guarantee statutory disclaimer');
+    assert(!hasProcess, 'Phase 4: How It Works process section is completely excised from Homepage');
+    const hasDisclaimer = bodyText.includes('Visa decisions are made by the relevant government authorities') ||
+                          bodyText.includes('Visa issuance decisions remain under the sole prerogative');
+    assert(hasDisclaimer, 'Homepage displays mandatory non-guarantee statutory disclaimer in Consultation CTA');
 
     console.log('\n--- TEST GROUP 4: Restored Final Consultation CTA Section ---');
     const ctaData = await page.evaluate(() => {

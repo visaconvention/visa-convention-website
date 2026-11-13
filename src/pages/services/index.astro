@@ -141,6 +141,18 @@ const comparisonMatrix = [
         {educationServices.map((service) => (
           <div class="card-premium p-7 sm:p-8 flex flex-col justify-between group">
             <div>
+              {service.heroImage && (
+                <div class="relative aspect-video w-full overflow-hidden rounded-xl mb-5 border border-brand-border bg-brand-bg">
+                  <img
+                    src={service.heroImage}
+                    alt={service.heroImageAlt || service.title}
+                    width="1672"
+                    height="941"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              )}
               <div class="flex items-center justify-between mb-4">
                 <span class="px-2.5 py-1 text-3xs font-bold uppercase tracking-wider rounded-md bg-brand-bg text-brand-blue border border-brand-blue/20">
                   {service.badge}
@@ -200,6 +212,18 @@ const comparisonMatrix = [
         {travelServices.map((service) => (
           <div class="card-premium p-7 sm:p-8 flex flex-col justify-between group">
             <div>
+              {service.heroImage && (
+                <div class="relative aspect-video w-full overflow-hidden rounded-xl mb-5 border border-brand-border bg-brand-bg">
+                  <img
+                    src={service.heroImage}
+                    alt={service.heroImageAlt || service.title}
+                    width="1672"
+                    height="941"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              )}
               <div class="flex items-center justify-between mb-4">
                 <span class="px-2.5 py-1 text-3xs font-bold uppercase tracking-wider rounded-md bg-brand-bg text-brand-red border border-brand-red/20">
                   {service.badge}
@@ -259,6 +283,18 @@ const comparisonMatrix = [
         {professionalServices.map((service) => (
           <div class="card-premium p-7 sm:p-8 flex flex-col justify-between group">
             <div>
+              {service.heroImage && (
+                <div class="relative aspect-video w-full overflow-hidden rounded-xl mb-5 border border-brand-border bg-brand-bg">
+                  <img
+                    src={service.heroImage}
+                    alt={service.heroImageAlt || service.title}
+                    width="1672"
+                    height="941"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              )}
               <div class="flex items-center justify-between mb-4">
                 <span class="px-2.5 py-1 text-3xs font-bold uppercase tracking-wider rounded-md bg-brand-bg text-emerald-700 border border-emerald-300">
                   {service.badge}

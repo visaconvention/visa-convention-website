@@ -1,6 +1,6 @@
 [
   {
-    "leadId": "VC-LEAD-829022",
+    "leadId": "VC-LEAD-218779",
     "service": "study-visa",
     "submissionType": "student",
     "fullName": "Test Candidate (Automated)",
@@ -9,12 +9,12 @@
     "targetCountry": "canada",
     "targetUniversity": "University of Toronto",
     "notes": "Completed B.Tech Computer Science with 8.2 CGPA; seeking Fall 2026 Masters admissions.",
-    "elapsedMs": 2645,
-    "submittedAt": "2026-11-13T03:50:29.020Z",
-    "receivedAt": "2026-11-13T03:50:29.023Z"
+    "elapsedMs": 2451,
+    "submittedAt": "2026-11-13T04:30:18.776Z",
+    "receivedAt": "2026-11-13T04:30:18.779Z"
   },
   {
-    "leadId": "VC-LEAD-831653",
+    "leadId": "VC-LEAD-221042",
     "service": "business-partnership",
     "submissionType": "business",
     "organizationName": "Northern Rajasthan Language Academy",
@@ -22,8 +22,8 @@
     "email": "director@nr-academy.com",
     "phone": "+91 94140 12345",
     "proposedScope": "Seeking ethical referral partnership for 60+ IELTS students per year.",
-    "elapsedMs": 1902,
-    "submittedAt": "2026-11-13T03:50:31.651Z",
-    "receivedAt": "2026-11-13T03:50:31.655Z"
+    "elapsedMs": 1635,
+    "submittedAt": "2026-11-13T04:30:21.041Z",
+    "receivedAt": "2026-11-13T04:30:21.043Z"
   }
 ]

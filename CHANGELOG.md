@@ -6,6 +6,36 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.29.0] - 2026-11-13 — Final Client-Approved Visual Asset Integration & Bit-for-Bit Verification
+
+### Added & Verified
+- **Client Original Artwork Integration (`public/assets/images/services/`):**
+  - Read directly from local system source (`C:\Users\ACER\Downloads\`) and verified all 6 client-approved visual assets exist.
+  - Copied bit-for-bit to website project assets directory (`public/assets/images/services/`) preserving exact original contents, filenames, and aspect ratios.
+  - Cryptographic SHA-256 verification confirmed 100% byte-for-byte integrity against source downloads:
+    - `Study Abroad_ Your Global Future.png` (2,763,792 bytes, SHA-256: `31F275A30DE6B8C49DC1D4C3E0F2F2442A90FA1EAF83462336BE1CE28B63B524`)
+    - `Vibrant Tourist Visa Travel Poster.png` (2,154,055 bytes, SHA-256: `967DABCD0B84D6ABB68EC0AF8F312776660433E738329FE7DBFAFE28A9832EE4`)
+    - `Global Work Visa Opportunities.png` (2,269,568 bytes, SHA-256: `3266DABA0520F6B40E4F449750B849D7BFFE90D582A4D9261822A25B441F2CDE`)
+    - `MBBS & PhD Courses Abroad.png` (2,346,741 bytes, SHA-256: `E4D68BCC1C16FA172D339D30227D09C3ED26D15C9D3FD7DC376FB8E41FCD5A7D`)
+    - `Flight Booking and Dummy Tickets.png` (2,083,029 bytes, SHA-256: `B87019B5256E98580672B830A2CFC819F49A93902F4C01428E35667CC53B6D81`)
+    - `Additional Visa Services Guide.png` (2,347,240 bytes, SHA-256: `2C09B8812E7EC77C6ACC41E653B77D0B013A172E92BCA24E18E3DA27950C7057`)
+
+### Enhanced & Integrated
+- **Service Components & Routing Updates:**
+  - `src/pages/index.astro`: Updated all service cards with client-approved visuals, calibrated container to `aspect-video` (16:9) to preserve 100% of the artwork without distortion or cropping.
+  - `src/data/detailed-services.ts`: Referenced project web-relative assets across all 7 practice areas (`study-visa`, `mbbs`, `phd`, `tourist-visa`, `work-visa`, `flight-booking`, `additional-services`).
+  - `src/layouts/ServiceLayout.astro`: Refined service hero image container to `aspect-video` for 16:9 poster display.
+  - `src/pages/services/tourist-visa.astro`: Integrated `Vibrant Tourist Visa Travel Poster.png` with `aspect-video` responsive hero container.
+  - `src/pages/services/work-visa.astro`: Integrated `Global Work Visa Opportunities.png` with `aspect-video` responsive hero container.
+  - `src/pages/services/flight-booking.astro`: Integrated `Flight Booking and Dummy Tickets.png` with `aspect-video` responsive hero container.
+  - `src/pages/services/index.astro`: Integrated client-approved visual cards across all 3 practice groups (Education, Travel, Auxiliary).
+  - `IMAGE_AUDIT.md`: Added Section 2.1 documenting client asset provenance, dimensions, hashes, and deployment status.
+- **Verification & QA:**
+  - Created `tests/verify-client-approved-images.js` executing 87 automated assertions covering file existence, hash integrity, desktop & mobile DOM visibility, responsive scaling, and zero horizontal overflow.
+  - Captured 8 desktop & mobile verification screenshots in artifact storage.
+
+---
+
 ## [1.28.0] - 2026-11-13 — Master Mobile-First Optimization, Study in Europe Priority & Homepage Polish
 
 ### Added & Enhanced

@@ -13,8 +13,8 @@ export const detailedServicesData: Record<string, DetailedService> = {
     metaDescription: 'Expert study visa counseling, university admissions, scholarship guidance, and visa dossier preparation for Canada, UK, Australia, USA, Germany, and 30+ destinations.',
     heroCtaText: 'Book Free Study Visa Assessment',
     heroCtaHref: '#enquiry',
-    heroImage: '/assets/images/services/service-study-visa.jpg',
-    heroImageAlt: 'International university students walking through campus green',
+    heroImage: '/assets/images/services/Study%20Abroad_%20Your%20Global%20Future.png',
+    heroImageAlt: 'Visa Convention Study Abroad — Your Global Future Educational Guidance',
     assistanceIncludes: [
       {
         title: 'One-on-One Academic Assessment',
@@ -125,8 +125,8 @@ export const detailedServicesData: Record<string, DetailedService> = {
     metaDescription: 'Direct admission guidance for MBBS abroad in Uzbekistan, Kazakhstan, Russia, and Kyrgyzstan. Affordable fees, Indian food facilities, and FMGE/NExT screening support.',
     heroCtaText: 'Check MBBS Eligibility & Fees',
     heroCtaHref: '#enquiry',
-    heroImage: '/assets/images/mbbs-education.jpg',
-    heroImageAlt: 'International medical student training in modern university medical faculty',
+    heroImage: '/assets/images/services/MBBS%20&%20PhD%20Courses%20Abroad.png',
+    heroImageAlt: 'Visa Convention MBBS & PhD Courses Abroad Educational Guidance',
     assistanceIncludes: [
       {
         title: 'Affordable Government Tuition Fees',
@@ -266,8 +266,8 @@ export const detailedServicesData: Record<string, DetailedService> = {
     metaDescription: 'Expert guidance for doctoral scholars applying to funded PhD programs abroad. Supervisor matching, research proposals, teaching assistantships, and visa dossiers.',
     heroCtaText: 'Request PhD Profile Review',
     heroCtaHref: '#enquiry',
-    heroImage: '/assets/images/phd-research.jpg',
-    heroImageAlt: 'Doctoral research scholar conducting dissertation research in an academic university library',
+    heroImage: '/assets/images/services/MBBS%20&%20PhD%20Courses%20Abroad.png',
+    heroImageAlt: 'Visa Convention MBBS & PhD Courses Abroad Educational Guidance',
     assistanceIncludes: [
       {
         title: 'Research Proposal Structuring',
@@ -366,6 +366,8 @@ export const detailedServicesData: Record<string, DetailedService> = {
     metaDescription: 'Complete documentation guidance for Schengen, UK, USA B1/B2, Canada, and Australia tourist visas. Detailed day-wise travel itineraries and appointment scheduling.',
     heroCtaText: 'Start Tourist Visa Assessment',
     heroCtaHref: '#enquiry',
+    heroImage: '/assets/images/services/Vibrant%20Tourist%20Visa%20Travel%20Poster.png',
+    heroImageAlt: 'Visa Convention Tourist Visa Travel Guidance',
     assistanceIncludes: [
       {
         title: 'Consulate Requirement Audit',
@@ -451,6 +453,8 @@ export const detailedServicesData: Record<string, DetailedService> = {
     metaDescription: 'Regulatory documentation assistance for UK Skilled Worker, Canada Work Permits, Australia TSS, and European Blue Cards. Strict compliance: document filing only.',
     heroCtaText: 'Verify Work Permit Eligibility',
     heroCtaHref: '#enquiry',
+    heroImage: '/assets/images/services/Global%20Work%20Visa%20Opportunities.png',
+    heroImageAlt: 'Visa Convention Global Work Visa Opportunities Guidance',
     assistanceIncludes: [
       {
         title: 'Sponsorship Review & Compliance',
@@ -529,6 +533,8 @@ export const detailedServicesData: Record<string, DetailedService> = {
     metaDescription: 'Legitimate international flight booking assistance for students and travelers. Student discounts, 40kg baggage allowances, and genuine embassy reservation holds.',
     heroCtaText: 'Inquire for Flight Itineraries',
     heroCtaHref: '#enquiry',
+    heroImage: '/assets/images/services/Flight%20Booking%20and%20Dummy%20Tickets.png',
+    heroImageAlt: 'Visa Convention Flight Booking and Reservation Assistance',
     assistanceIncludes: [
       {
         title: 'Student Baggage Optimization',
@@ -606,6 +612,8 @@ export const detailedServicesData: Record<string, DetailedService> = {
     metaDescription: 'Value-added travel and international student support services from Visa Convention in Hanumangarh. Student forex cards, travel insurance, and pre-departure briefings.',
     heroCtaText: 'Inquire for Support Services',
     heroCtaHref: '#enquiry',
+    heroImage: '/assets/images/services/Additional%20Visa%20Services%20Guide.png',
+    heroImageAlt: 'Visa Convention Additional Travel and Student Support Services Guide',
     assistanceIncludes: [
       {
         title: 'Student Forex Cards',
