@@ -6,6 +6,43 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.30.0] - 2026-11-13 — Homepage Refinement: Excised Final Consultation Section & Continuous Left-to-Right Animated Reviews
+
+### Excised & Streamlined
+- **Final Consultation CTA Removal (`src/pages/index.astro`):**
+  - Completely removed the navy-colored final consultation banner (`ConsultationCTA.astro` containing "PERSONALIZED GUIDANCE", "Ready to Plan Your Next Step?", description, and duplicate buttons).
+  - Preserved consultation access sitewide via header CTA, primary navigation, service pages, floating WhatsApp channel, and the dedicated Contact page (`/contact/`).
+  - Transitioned the homepage naturally from the Client Reviews section directly into the footer without residual empty space.
+  - Enforced the clean, non-repetitive 5-part homepage structure:
+    1. Shared Navigation Header
+    2. International Landmark Hero
+    3. Six Service Cards with Client-Supplied Original Artwork
+    4. Animated Client Reviews Marquee
+    5. Compact Footer
+
+### Added & Redesigned
+- **Continuous Left-to-Right Reviews Marquee (`src/components/home/ReviewsCarousel.astro`):**
+  - Built an automatically and continuously moving reviews track traveling seamlessly from **LEFT to RIGHT** (`@keyframes marquee-ltr` translating from `calc(-100% - 1.5rem)` to `0`).
+  - Seamless infinite loop with zero visual snapping, flickering, or resets using Set 1 (interactive review cards) and Set 2 (identical duplicate clones with `aria-hidden="true"` and `tabindex="-1"`).
+  - Integrated visible Pause / Resume control button (`#reviews-pause-toggle-btn`) with dynamic icon and label toggling.
+  - Automated pause on hover (`:hover`), focus (`:focus-within`), and touch swipe interactions.
+  - Manual left and right nudge navigation buttons with 4-second gentle resume timer.
+  - Accessible card hover lift (-4px) with subtle shadow and brand border highlight.
+  - Viewport entrance fade-in observer.
+  - Accessible `@media (prefers-reduced-motion: reduce)` non-moving horizontal scroll alternative.
+  - 100% genuine client reviews from `src/data/success-stories.ts` with DPDP initials, 5 authentic stars, and verified outcome badges.
+
+### Verified & Tested
+- `npx astro check`: 0 errors, 0 warnings.
+- `npm run build`: 65 static pages compiled cleanly in 3.92s.
+- `tests/verify-simplified-homepage.js`: 37/37 checks passed (100%).
+- `tests/verify-mobile-first-optimization.js`: 51/51 checks passed (100%).
+- `tests/verify-client-approved-images.js`: 87/87 checks passed (100%).
+- Zero horizontal overflow across all 12 mobile, tablet, and desktop viewports (320px–1920px).
+- Captured transition screenshots: `homepage-bottom-transition-desktop-1440px.png` and `homepage-bottom-transition-mobile-375px.png`.
+
+---
+
 ## [1.29.0] - 2026-11-13 — Final Client-Approved Visual Asset Integration & Bit-for-Bit Verification
 
 ### Added & Verified

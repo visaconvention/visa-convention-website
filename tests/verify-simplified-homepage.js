@@ -3,7 +3,10 @@ import http from 'http';
 import fs from 'fs';
 import path from 'path';
 
-const ARTIFACTS_DIR = 'C:\\Users\\ACER\\.gemini\\antigravity\\brain\\7ca130ef-5e70-4578-88a2-0879acc42caa';
+const ARTIFACTS_DIR = 'C:\\Users\\ACER\\.gemini\\antigravity\\brain\\5db0c23b-424d-42d8-acd3-62fb5a754759\\screenshots';
+if (!fs.existsSync(ARTIFACTS_DIR)) {
+  fs.mkdirSync(ARTIFACTS_DIR, { recursive: true });
+}
 const EDGE_PATH = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
 const DIST_DIR = path.resolve('dist');
 const PORT = 4329;
@@ -147,36 +150,29 @@ async function run() {
       return html.includes('Three-Step Guidance Process') || (html.includes('How It Works') && html.includes('Our Consultation Process'));
     });
     assert(!hasProcess, 'Phase 4: How It Works process section is completely excised from Homepage');
-    const hasDisclaimer = bodyText.includes('Visa decisions are made by the relevant government authorities') ||
-                          bodyText.includes('Visa issuance decisions remain under the sole prerogative');
-    assert(hasDisclaimer, 'Homepage displays mandatory non-guarantee statutory disclaimer in Consultation CTA');
+    const hasDisclaimer = bodyText.includes('Visa issuance decisions remain the sole prerogative') ||
+                          bodyText.includes('Visa decisions are made by the relevant government authorities');
+    assert(hasDisclaimer, 'Homepage displays mandatory non-guarantee statutory disclaimer in reviews section notice');
 
-    console.log('\n--- TEST GROUP 4: Restored Final Consultation CTA Section ---');
-    const ctaData = await page.evaluate(() => {
-      const cta = document.querySelector('section.bg-brand-navy');
-      if (!cta) return null;
-      const text = cta.innerText;
-      const primaryLink = cta.querySelector('a[href="/contact/"]');
-      const whatsappLink = cta.querySelector('a[href*="wa.me"]');
-      return {
-        hasBadge: text.includes('PERSONALIZED GUIDANCE'),
-        hasTitle: text.includes('Ready to Plan Your Next Step?'),
-        hasSubtitle: text.includes('Speak with our team about your study abroad, visa or travel requirements.'),
-        hasDisclaimer: text.includes('Visa decisions are made by the relevant government authorities.'),
-        primaryText: primaryLink ? primaryLink.textContent.trim() : null,
-        whatsappHref: whatsappLink ? whatsappLink.getAttribute('href') : null,
-        whatsappText: whatsappLink ? whatsappLink.textContent.trim() : null,
-      };
+    console.log('\n--- TEST GROUP 4: Verification of Removed Final Consultation Section (Change 1) ---');
+    const ctaBannerPresent = await page.evaluate(() => {
+      const h2s = Array.from(document.querySelectorAll('h2')).map(h => h.innerText.trim());
+      const hasPlanHeading = h2s.some(t => t.includes('Ready to Plan Your Next Step?'));
+      const hasPersonalizedBadge = document.body.innerText.includes('PERSONALIZED GUIDANCE');
+      const consultationSection = document.querySelector('section.bg-brand-navy:has(a[href="/contact/"])');
+      return Boolean(hasPlanHeading || hasPersonalizedBadge || consultationSection);
     });
 
-    assert(ctaData !== null, 'Consultation CTA section exists immediately before footer');
-    assert(ctaData?.hasBadge, 'Consultation CTA displays "PERSONALIZED GUIDANCE" badge');
-    assert(ctaData?.hasTitle, 'Consultation CTA displays "Ready to Plan Your Next Step?" title');
-    assert(ctaData?.hasSubtitle, 'Consultation CTA displays correct description copy');
-    assert(ctaData?.hasDisclaimer, 'Consultation CTA displays government authority visa decision disclaimer');
-    assert(ctaData?.primaryText === 'Request Consultation', 'Primary button displays "Request Consultation" linking to /contact/');
-    assert(ctaData?.whatsappHref?.includes('919680395539'), 'WhatsApp button connects to official business number (+91 96803 95539)');
-    assert(ctaData?.whatsappText === 'Chat on WhatsApp', 'Secondary button displays "Chat on WhatsApp"');
+    assert(!ctaBannerPresent, 'Change 1: Final Consultation section banner is completely excised from Homepage');
+
+    const reviewsPrecedesFooter = await page.evaluate(() => {
+      const reviews = document.getElementById('reviews-section');
+      const footer = document.querySelector('footer');
+      if (!reviews || !footer) return false;
+      // footer should come after reviews
+      return reviews.compareDocumentPosition(footer) & Node.DOCUMENT_POSITION_FOLLOWING;
+    });
+    assert(Boolean(reviewsPrecedesFooter), 'Reviews section transitions cleanly into footer without extra banners');
 
     console.log('\n--- TEST GROUP 5: Navigation, Consultation & Trust Signals ---');
     const headerCta = await page.$('header a[href="/contact/"]');

@@ -135,29 +135,31 @@ async function runTests() {
     const homepageAnalysis = await page.evaluate(() => {
       const pageText = document.body.innerText;
       const hasHowItWorks = pageText.includes('How It Works') || pageText.includes('Three-Step Guidance Process');
-      const hasWhatOurClientsSay = pageText.includes('What Our Clients Say');
+      const hasReviewsSection = document.getElementById('reviews-section') !== null;
       const hasServicesGrid = document.getElementById('services') !== null;
       const hasHero = document.querySelector('h1') !== null;
       const h1Text = document.querySelector('h1')?.innerText || '';
       const ctaHeading = Array.from(document.querySelectorAll('h2')).find(h => h.innerText.includes('Ready to Plan Your Next Step?'));
+      const hasPersonalizedGuidance = pageText.includes('PERSONALIZED GUIDANCE');
       const serviceCards = document.querySelectorAll('#services .card-premium');
 
       return {
         hasHowItWorks,
-        hasWhatOurClientsSay,
+        hasReviewsSection,
         hasServicesGrid,
         hasHero,
         h1Text,
         hasCtaHeading: Boolean(ctaHeading),
+        hasPersonalizedGuidance,
         serviceCardsCount: serviceCards.length,
       };
     });
 
     assert(!homepageAnalysis.hasHowItWorks, 'Phase 4: "How It Works" section is completely removed from Homepage');
-    assert(homepageAnalysis.hasWhatOurClientsSay, 'Phase 6: "What Our Clients Say" review section is present on Homepage');
+    assert(homepageAnalysis.hasReviewsSection, 'Change 2: Verified Client Reviews section is present on Homepage');
     assert(homepageAnalysis.hasServicesGrid, 'Phase 5: Six core services grid is present');
     assert(homepageAnalysis.serviceCardsCount === 6, `Phase 5: Exactly 6 service discovery cards found (Found: ${homepageAnalysis.serviceCardsCount})`);
-    assert(homepageAnalysis.hasCtaHeading, 'Phase 10: "Ready to Plan Your Next Step?" CTA section is present');
+    assert(!homepageAnalysis.hasCtaHeading && !homepageAnalysis.hasPersonalizedGuidance, 'Change 1: Navy final consultation CTA banner completely excised from Homepage');
     assert(homepageAnalysis.hasHero, 'Phase 1.4: Premium Landmark Hero is present');
 
     console.log('\n--- 3. VERIFYING SERVICE CARDS SEPARATE ACCESS (MBBS & PHD) & DISTINCT IMAGES ---');
@@ -190,56 +192,93 @@ async function runTests() {
       JSON.stringify(mbbsPhdCard?.links)
     );
 
-    console.log('\n--- 4. VERIFYING ANIMATED CLIENT REVIEWS CAROUSEL ---');
-    const carouselState = await page.evaluate(() => {
-      const track = document.getElementById('reviews-carousel-track');
-      const prevBtn = document.getElementById('review-prev-btn');
-      const nextBtn = document.getElementById('review-next-btn');
-      const slides = document.querySelectorAll('.review-slide');
-      const dots = document.querySelectorAll('.review-dot');
-      const counter = document.getElementById('review-current-index');
+    console.log('\n--- 4. VERIFYING AUTOMATIC CONTINUOUS REVIEWS MARQUEE (CHANGE 2) ---');
+    const marqueeState = await page.evaluate(() => {
+      const viewport = document.getElementById('reviews-marquee-viewport');
+      const wrapper = document.getElementById('reviews-marquee-wrapper');
+      const primaryGroup = document.getElementById('marquee-group-primary');
+      const cloneGroup = document.getElementById('marquee-group-clone');
+      const pauseBtn = document.getElementById('reviews-pause-toggle-btn');
+      const pauseLabel = document.getElementById('reviews-pause-label');
+      const nudgeLeft = document.getElementById('reviews-nudge-left-btn');
+      const nudgeRight = document.getElementById('reviews-nudge-right-btn');
+
+      const primaryCards = primaryGroup ? Array.from(primaryGroup.querySelectorAll('.review-card')) : [];
+      const cloneCards = cloneGroup ? Array.from(cloneGroup.querySelectorAll('.review-card')) : [];
+
+      const cardData = primaryCards.map(c => ({
+        stars: c.querySelectorAll('svg.fill-current').length,
+        hasQuote: Boolean(c.querySelector('p')?.innerText.includes('"')),
+        hasVerified: Boolean(c.innerText.includes('Verified')),
+        hasCountry: Boolean(c.querySelector('.rounded-full')?.innerText),
+        hasCandidateInitials: Boolean(c.querySelector('.font-bold.text-brand-navy')?.innerText),
+      }));
 
       return {
-        hasTrack: Boolean(track),
-        hasPrevBtn: Boolean(prevBtn),
-        hasNextBtn: Boolean(nextBtn),
-        slidesCount: slides.length,
-        dotsCount: dots.length,
-        initialCounter: counter?.innerText,
-        initialTransform: track?.style.transform,
+        hasViewport: Boolean(viewport),
+        hasWrapper: Boolean(wrapper),
+        isPausedInitial: wrapper?.getAttribute('data-paused') === 'true',
+        primaryCount: primaryCards.length,
+        cloneCount: cloneCards.length,
+        cloneAriaHidden: cloneGroup?.getAttribute('aria-hidden') === 'true',
+        hasPauseBtn: Boolean(pauseBtn),
+        pauseLabelText: pauseLabel?.innerText.trim(),
+        hasNudgeLeft: Boolean(nudgeLeft),
+        hasNudgeRight: Boolean(nudgeRight),
+        allCardsHave5Stars: cardData.every(c => c.stars === 5),
+        allCardsHaveQuotes: cardData.every(c => c.hasQuote),
+        allCardsHaveVerified: cardData.every(c => c.hasVerified),
       };
     });
 
-    assert(carouselState.hasTrack, 'Review carousel track exists');
-    assert(carouselState.slidesCount === 6, `Review carousel contains 6 genuine client stories (Found: ${carouselState.slidesCount})`);
-    assert(carouselState.dotsCount === 6, `Review carousel has 6 navigation indicator dots`);
+    assert(marqueeState.hasViewport && marqueeState.hasWrapper, 'Continuous reviews marquee viewport & wrapper exist');
+    assert(marqueeState.primaryCount === 6, `Primary marquee group contains 6 genuine client review cards (Found: ${marqueeState.primaryCount})`);
+    assert(marqueeState.cloneCount === 6, `Clone marquee group contains 6 identical clone cards for seamless infinite loop (Found: ${marqueeState.cloneCount})`);
+    assert(marqueeState.cloneAriaHidden, 'Clone group is strictly hidden from screen readers (aria-hidden="true")');
+    assert(marqueeState.allCardsHave5Stars, 'All genuine review cards display 5 authentic rating stars');
+    assert(marqueeState.allCardsHaveQuotes, 'All review cards contain genuine client quotation text');
+    assert(marqueeState.allCardsHaveVerified, 'All review cards display verified outcome badge');
+    assert(marqueeState.hasPauseBtn, 'Visible Pause/Resume control button exists');
+    assert(marqueeState.pauseLabelText === 'Pause', 'Pause button initially displays "Pause"');
+    assert(!marqueeState.isPausedInitial, 'Continuous marquee starts in active playing state');
 
-    // Test clicking Next button
-    await page.click('#review-next-btn');
-    await new Promise(r => setTimeout(r, 400)); // wait for 350ms transition
+    // Test Clicking Pause/Resume Button
+    await page.click('#reviews-pause-toggle-btn');
+    await new Promise(r => setTimeout(r, 200));
 
-    const afterNextState = await page.evaluate(() => {
-      const track = document.getElementById('reviews-carousel-track');
-      const counter = document.getElementById('review-current-index');
+    const pausedState = await page.evaluate(() => {
+      const wrapper = document.getElementById('reviews-marquee-wrapper');
+      const pauseLabel = document.getElementById('reviews-pause-label');
+      const pauseBtn = document.getElementById('reviews-pause-toggle-btn');
       return {
-        counter: counter?.innerText,
-        transform: track?.style.transform,
+        dataPaused: wrapper?.getAttribute('data-paused'),
+        label: pauseLabel?.innerText.trim(),
+        ariaPressed: pauseBtn?.getAttribute('aria-pressed'),
       };
     });
 
-    assert(afterNextState.counter === '2', `Carousel transitioned to slide 2 (Counter: ${afterNextState.counter})`);
-    assert(afterNextState.transform !== carouselState.initialTransform, `Carousel track transform updated smoothly: ${afterNextState.transform}`);
+    assert(pausedState.dataPaused === 'true', 'Clicking Pause button sets data-paused="true" on marquee wrapper');
+    assert(pausedState.label === 'Resume', `Pause button updates text to "Resume" (Actual: "${pausedState.label}")`);
+    assert(pausedState.ariaPressed === 'true', 'Pause button sets aria-pressed="true"');
 
-    // Test clicking Prev button
-    await page.click('#review-prev-btn');
-    await new Promise(r => setTimeout(r, 400));
+    // Test Clicking Resume
+    await page.click('#reviews-pause-toggle-btn');
+    await new Promise(r => setTimeout(r, 200));
 
-    const afterPrevState = await page.evaluate(() => {
-      const counter = document.getElementById('review-current-index');
-      return counter?.innerText;
+    const resumedState = await page.evaluate(() => {
+      const wrapper = document.getElementById('reviews-marquee-wrapper');
+      const pauseLabel = document.getElementById('reviews-pause-label');
+      return {
+        dataPaused: wrapper?.getAttribute('data-paused'),
+        label: pauseLabel?.innerText.trim(),
+      };
     });
 
-    assert(afterPrevState === '1', `Carousel returned to slide 1 on Prev click (Counter: ${afterPrevState})`);
+    assert(resumedState.dataPaused === 'false', 'Clicking Resume re-engages marquee motion');
+    assert(resumedState.label === 'Pause', 'Pause button updates text back to "Pause"');
+
+    // Test Nudge Buttons
+    assert(marqueeState.hasNudgeLeft && marqueeState.hasNudgeRight, 'Manual left and right nudge navigation buttons exist');
 
     console.log('\n--- 5. VERIFYING GLOBAL NAVIGATION & "STUDY IN EUROPE" FOCUS ---');
     // Check desktop navigation at 1440px
@@ -319,8 +358,6 @@ async function runTests() {
     const whatsappCheck = await page.evaluate(() => {
       const btn = document.getElementById('floating-whatsapp-btn');
       const rect = btn?.getBoundingClientRect();
-      const ctaBtn = document.querySelector('.site-container a[href="/contact/"]');
-      const ctaRect = ctaBtn?.getBoundingClientRect();
 
       return {
         exists: Boolean(btn),

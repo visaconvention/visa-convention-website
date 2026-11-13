@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/home/HeroSection.astro';
 import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
-import ConsultationCTA from '../components/common/ConsultationCTA.astro';
 ---
 
 <BaseLayout
@@ -294,20 +293,5 @@ import ConsultationCTA from '../components/common/ConsultationCTA.astro';
   <!-- SECTION 3: ANIMATED CLIENT REVIEWS CAROUSEL -->
   <!-- ========================================================================= -->
   <ReviewsCarousel />
-
-  <!-- ========================================================================= -->
-  <!-- SECTION 4: FINAL CONSULTATION CTA (IMMEDIATELY BEFORE FOOTER) -->
-  <!-- ========================================================================= -->
-  <div class="site-container py-12 sm:py-16">
-    <ConsultationCTA
-      badge="PERSONALIZED GUIDANCE"
-      title="Ready to Plan Your Next Step?"
-      subtitle="Speak with our team about your study abroad, visa or travel requirements."
-      primaryBtnText="Request Consultation"
-      primaryBtnHref="/contact/"
-      secondaryBtnText="Chat on WhatsApp"
-      disclaimer="Visa decisions are made by the relevant government authorities."
-    />
-  </div>
 </BaseLayout>
 
