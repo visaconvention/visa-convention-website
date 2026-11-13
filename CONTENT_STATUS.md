@@ -96,8 +96,8 @@ The workspace audit identified **33 client data workbooks** located in `../data/
 | **MBBS / PhD Abroad** | Draft prepared | NMC / WHO compliance notices; eligibility exam disclaimers | **DRAFT READY** |
 | **Tourist Visa** | Draft prepared | Document preparation disclaimer; no interview guarantees | **DRAFT READY** |
 | **Work Visa** | Draft prepared | Employer sponsorship disclaimer; strictly non-job-brokerage | **DRAFT READY** |
-| **Flight Reservation** | Draft prepared | Assistance & booking coordination only; no fake PNRs | **DRAFT READY** |
-| **Additional Services** | Placeholder | Specific client services to be defined | **AWAITING CLIENT** |
+| **Flight Reservation** | Verified | Assistance & booking coordination only; legitimate GDS holds; no fake PNRs | **CONFIRMED** |
+| **Additional Services** | Verified | Passport application, MEA Apostille/attestation, PCC, translations, ITR & company registration assistance (Client supplied poster) | **CONFIRMED** |
 
 ---
 

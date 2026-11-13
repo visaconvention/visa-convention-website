@@ -136,9 +136,9 @@ async function run() {
     assert(flightBooking && flightBooking.link === '/services/flight-booking/', 'Card (Flight Booking) links directly to /services/flight-booking/');
     assert(flightBooking?.img?.includes('Flight%20Booking') || flightBooking?.img === '/assets/images/flight-hero-aviation.jpg', 'Card has distinct aviation asset');
 
-    const findUniversities = serviceCards.find(c => c.title === 'Find Universities');
-    assert(findUniversities && findUniversities.link === '/universities/', 'Card (Find Universities) links directly to /universities/');
-    assert(findUniversities?.img === '/assets/images/services/service-universities.jpg', 'Card has distinct university campus architecture photograph');
+    const additionalServices = serviceCards.find(c => c.title === 'Additional Services');
+    assert(additionalServices && additionalServices.link === '/services/additional-services/', 'Card 2 (Additional Services) links directly to /services/additional-services/');
+    assert(additionalServices?.img?.includes('Additional%20Visa%20Services%20Guide.png'), 'Card 2 has approved Additional Visa Services Guide client poster image');
 
     // Check all 6 images are unique
     const uniqueImages = new Set(serviceCards.map(c => c.img));

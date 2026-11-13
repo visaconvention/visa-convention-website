@@ -44,23 +44,15 @@ const { currentPath = '/' } = Astro.props;
     <div class="p-5 space-y-4 flex-1">
       {siteConfig.nav.map((item) => {
         const hasChildren = item.children && item.children.length > 0;
-        const isEurope = item.label === 'Study in Europe';
         const active = currentPath === item.href || (hasChildren && item.children?.some(c => c.href === currentPath));
 
         if (hasChildren) {
           return (
-            <div class={`pb-2.5 border-b border-brand-border/60 ${isEurope ? 'bg-brand-blue-light/40 -mx-3 p-3 rounded-xl border border-brand-blue/20' : ''}`}>
+            <div class="pb-2.5 border-b border-brand-border/60">
               <div class="flex items-center justify-between py-1 px-1">
-                <div class="flex items-center gap-1.5">
-                  <span class={`text-xs font-black uppercase tracking-wider ${isEurope ? 'text-brand-blue' : 'text-brand-navy'}`}>
-                    {item.label}
-                  </span>
-                  {isEurope && (
-                    <span class="px-1.5 py-0.2 text-[9px] font-black uppercase tracking-wider bg-brand-red text-white rounded">
-                      Focus
-                    </span>
-                  )}
-                </div>
+                <span class="text-xs font-black uppercase tracking-wider text-brand-navy">
+                  {item.label}
+                </span>
                 <a href={item.href} class="text-[11px] font-bold text-brand-blue hover:underline py-1 px-1.5">
                   Overview →
                 </a>

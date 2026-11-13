@@ -178,12 +178,12 @@ async function runTests() {
     });
 
     const studyAbroadCard = serviceDetails.find(c => c.title === 'Study Abroad');
-    const findUniCard = serviceDetails.find(c => c.title === 'Find Universities');
+    const additionalServicesCard = serviceDetails.find(c => c.title === 'Additional Services');
     const mbbsPhdCard = serviceDetails.find(c => c.title.includes('MBBS / PhD'));
 
-    assert(studyAbroadCard && findUniCard && studyAbroadCard.img !== findUniCard.img,
-      'Phase 5 & 8: Study Abroad and Find Universities have distinct photography',
-      `Study: ${studyAbroadCard?.img}, Uni: ${findUniCard?.img}`
+    assert(studyAbroadCard && additionalServicesCard && additionalServicesCard.img?.includes('Additional%20Visa%20Services%20Guide.png'),
+      'Card 2 has approved Additional Visa Services Guide client poster image',
+      `Study: ${studyAbroadCard?.img}, Additional: ${additionalServicesCard?.img}`
     );
 
     const hasMbbsLink = mbbsPhdCard?.links.some(l => l.href.includes('/services/mbbs/'));
@@ -280,22 +280,51 @@ async function runTests() {
     // Test Nudge Buttons
     assert(marqueeState.hasNudgeLeft && marqueeState.hasNudgeRight, 'Manual left and right nudge navigation buttons exist');
 
-    console.log('\n--- 5. VERIFYING GLOBAL NAVIGATION & "STUDY IN EUROPE" FOCUS ---');
+    // Test CRITICAL REQUIREMENT: Reviews must NOT stop simply because user scrolls page
+    console.log('\n--- 4B. VERIFYING REVIEWS AUTO-SCROLL DURING PAGE SCROLLING ---');
+    await page.evaluate(() => {
+      window.scrollBy({ top: 300, behavior: 'instant' });
+    });
+    await new Promise(r => setTimeout(r, 50));
+
+    const scrollState = await page.evaluate(() => {
+      const wrapper = document.getElementById('reviews-marquee-wrapper');
+      const primaryGroup = document.getElementById('marquee-group-primary');
+      const isPageScrolling = wrapper?.classList.contains('is-page-scrolling');
+      const playState = primaryGroup ? window.getComputedStyle(primaryGroup).animationPlayState : null;
+      return { isPageScrolling, playState };
+    });
+
+    assert(scrollState.isPageScrolling, 'Page scroll triggers .is-page-scrolling active class on marquee wrapper');
+    assert(scrollState.playState === 'running', 'Marquee motion continues uninterrupted (animation-play-state: running) during page scroll');
+
+    console.log('\n--- 5. VERIFYING REMOVAL OF "STUDY IN EUROPE FOCUS" NAVIGATION ITEM (CHANGE 1) ---');
     // Check desktop navigation at 1440px
     await page.setViewport({ width: 1440, height: 900 });
     await page.goto(`http://localhost:${PORT}/`, { waitUntil: 'networkidle0' });
 
-    const desktopNavItems = await page.evaluate(() => {
+    const desktopNavAnalysis = await page.evaluate(() => {
       const navLinks = Array.from(document.querySelectorAll('nav[aria-label="Main Navigation"] > *'));
-      return navLinks.map(el => el.innerText.trim().split('\n')[0]);
+      const textItems = navLinks.map(el => el.innerText.trim().replace(/\n+/g, ' '));
+      const hasEuropeFocusItem = textItems.some(t => t.toLowerCase().includes('study in europe') && t.toLowerCase().includes('focus'));
+      const hasTopLevelEurope = textItems.some(t => t.startsWith('Study in Europe'));
+      const hasFocusBadge = Array.from(document.querySelectorAll('nav[aria-label="Main Navigation"] span')).some(s => s.innerText.trim().toLowerCase() === 'focus');
+
+      return {
+        textItems,
+        hasEuropeFocusItem,
+        hasTopLevelEurope,
+        hasFocusBadge,
+      };
     });
 
-    assert(desktopNavItems.some(item => item.includes('Study in Europe')),
-      'Phase 2: "Study in Europe" is primary vertical in Desktop Nav',
-      JSON.stringify(desktopNavItems)
-    );
+    assert(!desktopNavAnalysis.hasEuropeFocusItem, 'Change 1: "Study in Europe" with red "FOCUS" badge is completely removed from Desktop Nav');
+    assert(!desktopNavAnalysis.hasTopLevelEurope, 'Change 1: "Study in Europe" is not a separate top-level nav item with dropdown');
+    assert(!desktopNavAnalysis.hasFocusBadge, 'Change 1: No red FOCUS badge exists anywhere in Desktop Navigation');
+    assert(desktopNavAnalysis.textItems.some(t => t.includes('Study Abroad')), 'Desktop Nav maintains Study Abroad vertical');
+    assert(desktopNavAnalysis.textItems.some(t => t.includes('Visa Services')), 'Desktop Nav maintains Visa Services vertical');
 
-    // Check dedicated /study-in-europe/ page
+    // Check dedicated /study-in-europe/ page remains functional via internal linking
     await page.goto(`http://localhost:${PORT}/study-in-europe/`, { waitUntil: 'networkidle0' });
     const europePageAnalysis = await page.evaluate(() => {
       const h1 = document.querySelector('h1')?.innerText || '';
@@ -324,7 +353,7 @@ async function runTests() {
     });
     assert(!europeMobileOverflow, 'Study in Europe has zero horizontal overflow at 375px mobile');
 
-    console.log('\n--- 6. VERIFYING MOBILE NAVIGATION DRAWER & CTA ACCESSIBILITY ---');
+    console.log('\n--- 6. VERIFYING MOBILE NAVIGATION DRAWER & REMOVAL OF FOCUS BADGE ---');
     await page.goto(`http://localhost:${PORT}/`, { waitUntil: 'networkidle0' });
     
     // Open mobile menu
@@ -334,14 +363,18 @@ async function runTests() {
     const mobileMenuOpen = await page.evaluate(() => {
       const drawer = document.getElementById('mobile-menu-drawer');
       const drawerText = (drawer?.innerText || '').toLowerCase();
-      const hasEurope = drawerText.includes('study in europe');
+      const hasFocusBadge = Array.from(drawer?.querySelectorAll('span') || []).some(s => s.innerText.trim().toLowerCase() === 'focus');
+      const hasStudyAbroad = drawerText.includes('study abroad');
+      const hasEuropeChild = drawerText.includes('study in europe');
       const hasRequestCta = drawerText.includes('request consultation');
       const isVisible = drawer && !drawer.classList.contains('hidden');
-      return { isVisible, hasEurope, hasRequestCta };
+      return { isVisible, hasFocusBadge, hasStudyAbroad, hasEuropeChild, hasRequestCta };
     });
 
     assert(mobileMenuOpen.isVisible, 'Mobile navigation drawer opens on hamburger button tap');
-    assert(mobileMenuOpen.hasEurope, 'Mobile drawer prominently includes "Study in Europe"');
+    assert(!mobileMenuOpen.hasFocusBadge, 'Change 1: Red FOCUS badge is completely absent from mobile drawer');
+    assert(mobileMenuOpen.hasStudyAbroad, 'Mobile drawer includes Study Abroad group');
+    assert(mobileMenuOpen.hasEuropeChild, 'Mobile drawer naturally includes Study in Europe under Study Abroad');
     assert(mobileMenuOpen.hasRequestCta, 'Mobile drawer primary button is "Request Consultation"');
 
     // Close mobile menu

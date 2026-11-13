@@ -6,6 +6,75 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.32.0] - 2026-11-13 — Homepage Card Replacement: "Additional Services" with Original Client Poster & Confirmed Scope
+
+### Changed & Replaced
+- **Homepage Card 2 Replacement (`src/pages/index.astro`):**
+  - Replaced the previous generic "Find Universities" service card on the homepage with an **"Additional Services"** card.
+  - Card Title: `Additional Services`
+  - Card Description: `Passport applications, document attestation, PCC, translations, and other documentation assistance.`
+  - Primary CTA: `Explore Additional Services →` linking directly to `/services/additional-services/`.
+  - Visual Asset: Client-supplied original poster `Additional Visa Services Guide.png` (`/assets/images/services/Additional%20Visa%20Services%20Guide.png`) rendered with responsive 16:9 (`aspect-video`) proportions, `object-cover`, zero cropping of embedded artwork, and consistent card dimensions matching all 5 neighboring cards.
+- **Find Universities Directory Preserved Unbroken:**
+  - Preserved the full institutional directory and search functionality at `/universities/`.
+  - Maintained direct access in both desktop mega-menu (`Study Abroad → Find Universities` and bottom bar) and mobile drawer (`Study Abroad → Find Universities`).
+- **Additional Services Scope Alignment (`src/data/detailed-services.ts`):**
+  - Aligned `/services/additional-services/` with confirmed client documentation services:
+    1. Passport Application Assistance (New applications, renewal, reissue, Tatkaal file compilation).
+    2. MEA Apostille & Attestation Coordination (State HRD, Home Dept, and MEA Apostille attestation).
+    3. Police Clearance Certificate (PCC) Support (Passport Office PCC and local police clearance appointments).
+    4. Certified Document Translations (Certified translation of academic transcripts and legal records).
+    5. Income Tax Return (ITR) & Financial Documentation Support (ITR computation files and financial viability documentation).
+    6. Company Registration Documentation (Partnership deeds, Certificate of Incorporation filing for entrepreneur visas).
+  - Prominently incorporated statutory disclaimers: Visa Convention provides administrative documentation facilitation and consular compilation; final issuance of passports, police clearance, and apostille stamps remains under exclusive statutory authority of respective government agencies (MEA, RPO, Police Authorities).
+
+### Verified & Hardened
+- `npx astro check`: 0 errors, 0 warnings across 115 files.
+- `npm run build`: 65 static pages compiled cleanly in 4.92s.
+- `tests/verify-client-approved-images.js`: 87/87 checks passed (100%), verified bit-for-bit SHA-256 integrity against `Downloads/`, verified responsive loading across mobile & desktop with zero distortion.
+- `tests/verify-simplified-homepage.js`: 37/37 checks passed (100%).
+- `tests/verify-mobile-first-optimization.js`: 59/59 checks passed (100%).
+- Captured verification screenshots:
+  - `services-cards-full-desktop-1440px.png` (Desktop 6 service cards grid)
+  - `homepage-additional-services-card-mobile-375px.png` (Mobile card rendering)
+  - `additional-services-page-desktop-1440px.png` (Dedicated Additional Services page hero)
+  - `study-abroad-nav-dropdown-find-universities.png` (Find Universities in Study Abroad nav menu)
+
+---
+
+## [1.31.0] - 2026-11-13 — Excised "Study in Europe FOCUS" Nav Item & Uninterrupted Auto-Scroll Review Marquee
+
+### Excised & Cleaned (Change 1)
+- **Complete Removal of "Study in Europe FOCUS" Nav Item:**
+  - Removed top-level `"Study in Europe"` navigation item with red `"FOCUS"` badge and dropdown arrow from `src/components/layout/DesktopNavigation.astro` (lines 27-152) and `src/data/site-config.ts`.
+  - Removed conditional `isEurope` highlight container, red `"Focus"` badge, and separate focus styling from `src/components/layout/MobileNavigation.astro`.
+  - Rebalanced desktop navigation layout to a clean 5-vertical structure (`Study Abroad`, `Visa Services`, `Flights`, `About`, `Contact`), expanding available horizontal spacing without crowding.
+  - Preserved natural accessibility to European higher education: European destinations and the `/study-in-europe/` guide are integrated naturally as standard child links within `Study Abroad` without promotional bias badges.
+  - Removed promotional "European Focus Highlight Banner" from `src/pages/study-abroad/index.astro`.
+  - Updated homepage hero primary CTA in `src/pages/index.astro` and `src/components/home/HeroSection.astro` to `"Explore Study Abroad"` (`/study-abroad/`).
+  - Updated `src/pages/study-in-europe/index.astro` header badge from `"⭐ Primary Study Abroad Focus"` to `"European University Admissions"`.
+
+### Enhanced & Hardened (Change 2, 3, 4)
+- **Uninterrupted Left-to-Right Review Auto-Scroll:**
+  - Hardened CSS and JavaScript in `src/components/home/ReviewsCarousel.astro` to guarantee reviews **NEVER pause or freeze during vertical page scrolling**.
+  - Added `.marquee-track-wrapper.is-page-scrolling .marquee-group { animation-play-state: running !important; }` override triggered by passive scroll listeners.
+  - Restricted hover-pause strictly to `@media (hover: hover) and (pointer: fine)` when the page is stationary, ensuring touch screens and mobile thumb scrolling never pause horizontal motion.
+  - Touch gestures explicitly distinguish between vertical page scroll (motion continues uninterrupted) and deliberate horizontal swipe (nudges track smoothly).
+  - Maintained consistent card dimensions (`w-[285px] sm:w-[340px] md:w-[380px]`, `h-[370px] sm:h-[390px]`), clean white surface, 5-star ratings, DPDP candidate initials, and verified outcome badges.
+
+### Verified & Tested (Change 5)
+- `npx astro check`: 0 errors, 0 warnings across 115 files.
+- `npm run build`: 65 static pages compiled cleanly in 6.65s.
+- `tests/verify-mobile-first-optimization.js`: 59/59 checks passed (100%).
+- `tests/verify-simplified-homepage.js`: 37/37 checks passed (100%).
+- Captured verification screenshots:
+  - `nav-desktop-rebalanced-1440px.png`
+  - `nav-mobile-drawer-clean-375px.png`
+  - `reviews-autoscroll-desktop-1440px.png`
+  - `reviews-autoscroll-mobile-375px.png`
+
+---
+
 ## [1.30.0] - 2026-11-13 — Homepage Refinement: Excised Final Consultation Section & Continuous Left-to-Right Animated Reviews
 
 ### Excised & Streamlined

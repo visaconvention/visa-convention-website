@@ -66,23 +66,11 @@ export const siteConfig = {
   // Sitewide navigation structure (Grouped by visitor intent)
   nav: [
     {
-      label: 'Study in Europe',
-      href: '/study-in-europe/',
-      children: [
-        { label: 'Europe Overview (25 Nations)', href: '/study-in-europe/', description: 'Comprehensive guide to European education' },
-        { label: 'Germany Study & APS', href: '/study-abroad/germany/', description: 'Tuition-free public universities & APS verification' },
-        { label: 'United Kingdom', href: '/study-abroad/united-kingdom/', description: 'Russell Group universities & Graduate Route' },
-        { label: 'Ireland Higher Education', href: '/study-abroad/ireland/', description: 'Tech hub degrees & 2-year post-study work' },
-        { label: 'France Admissions', href: '/study-abroad/france/', description: 'Grandes Écoles & state university pathways' },
-        { label: 'Italy & Southern Europe', href: '/study-abroad/italy/', description: 'Affordable regional tuition & architecture' },
-        { label: 'MBBS in Europe', href: '/services/mbbs/', description: 'NMC FMGL-compliant English-medium faculties' },
-      ],
-    },
-    {
       label: 'Study Abroad',
       href: '/study-abroad/',
       children: [
         { label: 'Explore 35+ Countries', href: '/study-abroad/', description: 'Discover international study destinations' },
+        { label: 'Study in Europe', href: '/study-in-europe/', description: 'European public universities, APS & Schengen mobility' },
         { label: 'Find Universities', href: '/universities/', description: 'Search 1,000+ universities & colleges' },
         { label: 'Study Visa Assistance', href: '/services/study-visa/', description: 'Comprehensive admissions & visa filing' },
         { label: 'MBBS Abroad', href: '/services/mbbs/', description: 'WDOMS-listed faculties & NMC guidance' },
