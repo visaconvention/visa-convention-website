@@ -6,6 +6,48 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.36.0] - 2026-11-14 — Compact Navy Footer & Business Hours Removal
+
+### Summary
+- **Business Hours Removed from Shared Footer (`src/components/layout/Footer.astro`):**
+  - Completely excised the business hours text (`Hours: Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)`) from the shared footer.
+  - Removed associated label, wrapper, and spacing.
+  - Preserved business hours on the dedicated Contact page (`/contact/`) under "Counseling & Desk Hours" where still operationally relevant.
+- **Footer Height Visibly Reduced by 22% (Desktop) and 17% (Mobile):**
+  - Desktop height reduced from **392px down to 305px** (-87px).
+  - Mobile height reduced from **862px down to 716px** (-146px).
+  - Reduced outer top/bottom padding to `pt-7 pb-6 sm:pt-8 sm:pb-6` (32px top, 24px bottom, precisely meeting the 28–36px desktop target).
+  - Reduced column gaps to `gap-6 lg:gap-8` (24–32px target).
+  - Reduced middle border bottom spacing from `pb-8` to `pb-5` (20px).
+  - Reduced statutory notice padding to `py-3` (24px total).
+  - Tightened bottom row to `pt-4`.
+  - Refined social media icons from `w-10 h-10` to `w-8 h-8` with `w-4 h-4` SVGs for a cleaner, corporate aesthetic.
+- **Essential Information Preserved:**
+  - Visa Convention identity, logo mark, and Hanumangarh subtitle.
+  - Short business description.
+  - Quick Links (Study Abroad, Visa Services, University Directory, About Us, Contact).
+  - Physical office address (Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512).
+  - Direct Phone/WhatsApp (`tel:+919680395539`) and primary inquiry email (`mailto:visaconvention064@gmail.com`).
+  - Verified social media channels (Instagram, YouTube).
+  - Full statutory non-guarantee notice.
+  - Copyright statement and legal links (Privacy Policy, Terms of Service, Contact).
+- **Mobile-First WhatsApp Button Clearance:**
+  - Added dedicated right-side clearance (`mr-14 sm:mr-18 lg:mr-0`) on the legal links row.
+  - Verified that the floating WhatsApp button (`fixed bottom-4 right-4 sm:bottom-6 sm:right-6`) never overlaps any interactive footer links across all viewports.
+- **QA Verification & Testing:**
+  - `tests/verify-compact-footer.js`: 44/44 checks passed (100%) across 9 viewports (320px, 360px, 390px, 430px, 768px, 1024px, 1366px, 1440px, 1920px).
+  - `tests/verify-simplified-homepage.js`: 43/43 checks passed (100%).
+  - `tests/verify-card-rearrangement.js`: 54/54 checks passed (100%).
+  - `npx astro check`: 0 errors, 0 warnings across 125 files.
+  - `npm run build`: 65 static pages compiled in 5.07s.
+  - Captured evidence screenshots:
+    - `compact-footer-desktop-1440px.png`
+    - `compact-footer-tablet-768px.png`
+    - `compact-footer-mobile-390px.png`
+    - `compact-footer-mobile-320px.png`
+
+---
+
 ## [1.35.0] - 2026-11-13 — Tourist Visa FAQ & Consultation Shared 2-Column Responsive Layout
 
 ### Summary
