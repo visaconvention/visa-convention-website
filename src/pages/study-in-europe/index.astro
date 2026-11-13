@@ -1,0 +1,375 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import CountryCard from '../../components/countries/CountryCard.astro';
+import FAQAccordion from '../../components/common/FAQAccordion.astro';
+import ConsultationCTA from '../../components/common/ConsultationCTA.astro';
+import { getPublishedCountries } from '../../data/countries';
+import { getFaqSchema } from '../../utils/seo';
+
+// Filter published European countries
+const allCountries = getPublishedCountries();
+const europeCountries = allCountries.filter(
+  (c) => c.continent.toLowerCase() === 'europe'
+);
+
+const europeFaqs = [
+  {
+    question: 'Why is Europe Visa Convention’s primary study abroad focus?',
+    answer: 'Europe offers an unparalleled combination of world-class academic institutions, highly subsidized or tuition-free public higher education (notably in Germany), extensive English-taught degree portfolios, clear post-study work regulations, and Schengen mobility across 29 member nations.',
+  },
+  {
+    question: 'Can international students study in Europe in English?',
+    answer: 'Yes. Thousands of accredited Bachelor’s and Master’s programs across Germany, the Netherlands, Ireland, France, the Nordic nations, Italy, and Central Europe are taught entirely in English. In the United Kingdom and Ireland, English is the native medium of instruction.',
+  },
+  {
+    question: 'What is the German APS verification and why is it mandatory?',
+    answer: 'The Akademische Prüfstelle (APS) is a verification certificate issued by the German Embassy in New Delhi. It authenticates Indian academic transcripts before students can apply to German universities or book national student visa appointments. Visa Convention guides students through APS dossier compilation step by step.',
+  },
+  {
+    question: 'What is a Blocked Account (Sperrkonto) for European student visas?',
+    answer: 'Countries like Germany require non-EU students to deposit minimum living expenses (e.g. €11,904/year as per latest federal regulations) into an escrow blocked account to prove financial self-sufficiency. Funds are released in monthly stipends after arrival.',
+  },
+  {
+    question: 'What post-study work rights are available in major European destinations?',
+    answer: 'The United Kingdom provides the 2-Year Graduate Route permit; Germany offers an 18-month job-seeker residence permit; Ireland grants a 2-year Third Level Graduate Scheme (Stamp 1G) for Master’s graduates; and France offers a 1 to 2-year post-study authorization (APS).',
+  },
+  {
+    question: 'Does Visa Convention guarantee European visa issuance?',
+    answer: 'No. Visa issuance decisions are the sovereign and exclusive prerogative of the respective national embassies and consulates. Visa Convention provides meticulous, verified application guidance and mock consular interview preparation, but does not make false guarantee claims.',
+  },
+];
+
+const faqSchema = getFaqSchema(europeFaqs);
+---
+
+<BaseLayout
+  title="Study in Europe — European University Admissions & Student Visas | Visa Convention"
+  description="Explore higher education across 25 European countries. Independent advisory for public universities in Germany, UK, Ireland, France, Italy, and NMC-compliant medical programs."
+  schema={faqSchema}
+>
+  <!-- Breadcrumbs -->
+  <div class="site-container pt-6">
+    <Breadcrumbs
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'Study in Europe', href: '/study-in-europe/', current: true },
+      ]}
+    />
+  </div>
+
+  <!-- Hero Header Section -->
+  <section class="py-10 sm:py-16 bg-gradient-to-b from-[#EAF4FF] via-white to-brand-bg border-b border-brand-border">
+    <div class="site-container">
+      <div class="max-w-3xl text-left">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 mb-4 text-xs font-bold tracking-wider uppercase rounded-full bg-white text-brand-blue border border-brand-blue/20 shadow-2xs">
+          <span>⭐ Primary Study Abroad Focus</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-[1.1] mb-4 text-balance">
+          Study in Europe: <span class="text-brand-red">25 Supported Nations</span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-brand-muted leading-relaxed mb-8 max-w-[64ch]">
+          Europe represents Visa Convention's core educational advisory focus. From tuition-free public universities in Germany to world-renowned research institutions in the United Kingdom, Ireland, and accredited medical faculties across Europe.
+        </p>
+
+        <!-- Key Pillars Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-2">
+          <div class="bg-white rounded-xl p-3.5 sm:p-4 border border-brand-border shadow-2xs">
+            <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-muted">Destinations</span>
+            <span class="text-lg sm:text-xl font-black text-brand-navy">25 Nations</span>
+          </div>
+          <div class="bg-white rounded-xl p-3.5 sm:p-4 border border-brand-border shadow-2xs">
+            <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-muted">Tuition</span>
+            <span class="text-lg sm:text-xl font-black text-brand-navy">Zero / Low Fee</span>
+          </div>
+          <div class="bg-white rounded-xl p-3.5 sm:p-4 border border-brand-border shadow-2xs">
+            <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-muted">Work Rights</span>
+            <span class="text-lg sm:text-xl font-black text-brand-navy">18–24 Mo PSW</span>
+          </div>
+          <div class="bg-white rounded-xl p-3.5 sm:p-4 border border-brand-border shadow-2xs">
+            <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-muted">Mobility</span>
+            <span class="text-lg sm:text-xl font-black text-brand-navy">29 Schengen</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Educational Pathways in Europe -->
+  <section class="py-12 sm:py-16 bg-white border-b border-brand-border">
+    <div class="site-container">
+      <div class="text-left mb-8">
+        <span class="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
+          European Degree Verticals
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight">
+          Structured European Study Pathways
+        </h2>
+        <p class="mt-2 text-sm sm:text-base text-brand-muted max-w-2xl">
+          Choose from recognized academic streams tailored to your academic background, budget, and long-term career aspirations.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Pathway 1: Tuition-Free & Public Universities -->
+        <div class="card-premium p-6 rounded-2xl bg-brand-bg border border-brand-border flex flex-col justify-between text-left">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brand-navy text-white flex items-center justify-center font-bold text-lg mb-4">
+              🏛️
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy mb-2">Tuition-Free Public Higher Ed</h3>
+            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+              Public universities in Germany and regional programs in Austria, France, and Italy provide world-class technical education with nominal semester fees.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-brand-border/60">
+            <a href="/study-abroad/germany/" class="text-xs font-bold text-brand-red hover:underline">
+              Explore Germany Guide →
+            </a>
+          </div>
+        </div>
+
+        <!-- Pathway 2: English-Taught Degrees -->
+        <div class="card-premium p-6 rounded-2xl bg-brand-bg border border-brand-border flex flex-col justify-between text-left">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brand-blue text-white flex items-center justify-center font-bold text-lg mb-4">
+              🇬🇧
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy mb-2">UK & Anglophone Degrees</h3>
+            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+              Russell Group institutions in the United Kingdom and technological universities in Ireland offer 1-year Master’s and 3-year Bachelor’s degrees.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-brand-border/60">
+            <a href="/study-abroad/united-kingdom/" class="text-xs font-bold text-brand-red hover:underline">
+              Explore UK Admissions →
+            </a>
+          </div>
+        </div>
+
+        <!-- Pathway 3: Medical & MBBS Abroad -->
+        <div class="card-premium p-6 rounded-2xl bg-brand-bg border border-brand-border flex flex-col justify-between text-left">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brand-red text-white flex items-center justify-center font-bold text-lg mb-4">
+              🩺
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy mb-2">MBBS & Medical Faculties</h3>
+            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+              WDOMS-listed, NMC FMGL 2021-compliant medical universities in Central and Eastern Europe with English-medium clinical training.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-brand-border/60">
+            <a href="/services/mbbs/" class="text-xs font-bold text-brand-red hover:underline">
+              Explore Medical Programs →
+            </a>
+          </div>
+        </div>
+
+        <!-- Pathway 4: Doctoral & Funded Research -->
+        <div class="card-premium p-6 rounded-2xl bg-brand-bg border border-brand-border flex flex-col justify-between text-left">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-brand-navy-light text-white flex items-center justify-center font-bold text-lg mb-4">
+              🔬
+            </div>
+            <h3 class="text-lg font-bold text-brand-navy mb-2">Doctoral (PhD) Research</h3>
+            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+              Guidance on research proposals, faculty supervisor outreach, and funded research assistantships across European universities.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-brand-border/60">
+            <a href="/services/phd/" class="text-xs font-bold text-brand-red hover:underline">
+              Explore PhD Advisory →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- European Destination Directory -->
+  <section class="py-12 sm:py-16 bg-brand-bg" id="destinations">
+    <div class="site-container">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 text-left">
+        <div>
+          <span class="inline-block px-3.5 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-white text-brand-blue border border-brand-blue/20">
+            Destination Directory
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-navy tracking-tight">
+            Supported European Nations ({europeCountries.length})
+          </h2>
+          <p class="mt-2 text-sm sm:text-base text-brand-muted max-w-2xl">
+            Select any destination to review verified admissions prerequisites, tuition ranges, visa steps, and living costs.
+          </p>
+        </div>
+
+        <div class="mt-4 sm:mt-0">
+          <a
+            href="/universities/?region=europe"
+            class="btn-primary text-xs inline-flex items-center gap-1.5"
+          >
+            <span>Search European Universities</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Search Bar -->
+      <div class="mb-8 max-w-md">
+        <label for="europe-search-input" class="sr-only">Search European countries</label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-brand-muted">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <input
+            type="text"
+            id="europe-search-input"
+            placeholder="Search European destinations (e.g. Germany, UK, France)..."
+            class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-brand-border bg-white text-xs sm:text-sm text-brand-navy placeholder:text-brand-muted focus:outline-none focus:ring-2 focus:ring-brand-blue shadow-2xs"
+          />
+        </div>
+      </div>
+
+      <!-- Country Cards Grid -->
+      <div id="europe-countries-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        {europeCountries.map((country) => (
+          <div class="europe-card-item" data-country-name={country.name.toLowerCase()}>
+            <CountryCard country={country} />
+          </div>
+        ))}
+      </div>
+
+      <div id="no-europe-results" class="hidden py-12 text-center bg-white rounded-2xl border border-brand-border p-8 mt-6">
+        <p class="text-base font-bold text-brand-navy">No European country found matching your search.</p>
+        <p class="text-xs text-brand-muted mt-1">Try another search term or explore all destinations in our main directory.</p>
+        <a href="/study-abroad/" class="mt-4 inline-block btn-outline text-xs bg-white">
+          View All 35+ Global Destinations
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- European Visa & Procedural Compliance Info -->
+  <section class="py-12 sm:py-16 bg-white border-t border-brand-border">
+    <div class="site-container">
+      <div class="max-w-3xl text-left mb-8">
+        <span class="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-navy border border-brand-border">
+          Procedural Rigor
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight">
+          European Visa Compliance & Mandatory Clearances
+        </h2>
+        <p class="mt-2 text-sm sm:text-base text-brand-muted">
+          European consulates enforce rigorous authentication procedures. Our Hanumangarh team ensures every record complies with official host-country mandates.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-brand-bg rounded-2xl p-6 border border-brand-border/80 text-left">
+          <div class="w-8 h-8 rounded-lg bg-brand-navy text-white flex items-center justify-center font-bold text-xs mb-3">
+            🇩🇪
+          </div>
+          <h3 class="text-base font-bold text-brand-navy mb-2">German APS & Blocked Account</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+            Mandatory transcript evaluation via the Akademische Prüfstelle in New Delhi and authorized Sperrkonto deposit setup prior to embassy filing.
+          </p>
+        </div>
+
+        <div class="bg-brand-bg rounded-2xl p-6 border border-brand-border/80 text-left">
+          <div class="w-8 h-8 rounded-lg bg-brand-navy text-white flex items-center justify-center font-bold text-xs mb-3">
+            🇬🇧
+          </div>
+          <h3 class="text-base font-bold text-brand-navy mb-2">UK CAS & Financial Vetting</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+            Strict verification of Confirmation of Acceptance for Studies (CAS) issuance and UKVI 28-day consecutive bank balance compliance.
+          </p>
+        </div>
+
+        <div class="bg-brand-bg rounded-2xl p-6 border border-brand-border/80 text-left">
+          <div class="w-8 h-8 rounded-lg bg-brand-navy text-white flex items-center justify-center font-bold text-xs mb-3">
+            🇪🇺
+          </div>
+          <h3 class="text-base font-bold text-brand-navy mb-2">Schengen Long-Stay (Type D)</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+            Apostille authentication of academic credentials, medical insurance coverage, and accommodation proof for EU national student visas.
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-6 text-center text-xs text-brand-muted">
+        Statutory Notice: Visa decisions are the sole prerogative of sovereign embassies and immigration authorities. Visa Convention provides counseling without guaranteeing visa outcomes.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQs Section -->
+  <section class="py-12 sm:py-16 bg-brand-bg border-t border-brand-border">
+    <div class="site-container">
+      <div class="max-w-3xl text-left mb-8">
+        <span class="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-white text-brand-blue border border-brand-blue/20">
+          Frequently Asked Questions
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight">
+          Common Questions About Studying in Europe
+        </h2>
+      </div>
+
+      <div class="max-w-3xl">
+        <FAQAccordion faqs={europeFaqs} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Final Consultation CTA -->
+  <div class="site-container py-12 sm:py-16">
+    <ConsultationCTA
+      badge="EUROPE ADMISSION COUNSELING"
+      title="Ready to Plan Your European Education?"
+      subtitle="Speak with our Hanumangarh counseling desk to evaluate your academic profile against European university criteria."
+      primaryBtnText="Request Consultation"
+      primaryBtnHref="/contact/"
+      secondaryBtnText="Chat on WhatsApp"
+      disclaimer="Visa decisions are made solely by sovereign consulates and national embassies."
+    />
+  </div>
+
+  <!-- Client-side Search Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('europe-search-input') as HTMLInputElement | null;
+      const cards = document.querySelectorAll('.europe-card-item');
+      const noResults = document.getElementById('no-europe-results');
+      const grid = document.getElementById('europe-countries-grid');
+
+      if (searchInput && cards.length) {
+        searchInput.addEventListener('input', (e) => {
+          const query = (e.target as HTMLInputElement).value.trim().toLowerCase();
+          let visible = 0;
+
+          cards.forEach((card) => {
+            const name = card.getAttribute('data-country-name') || '';
+            if (!query || name.includes(query)) {
+              (card as HTMLElement).style.display = '';
+              visible++;
+            } else {
+              (card as HTMLElement).style.display = 'none';
+            }
+          });
+
+          if (noResults && grid) {
+            if (visible === 0) {
+              noResults.classList.remove('hidden');
+              grid.classList.add('hidden');
+            } else {
+              noResults.classList.add('hidden');
+              grid.classList.remove('hidden');
+            }
+          }
+        });
+      }
+    });
+  </script>
+</BaseLayout>

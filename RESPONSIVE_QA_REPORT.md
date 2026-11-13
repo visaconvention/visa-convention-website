@@ -1,34 +1,39 @@
-# Visa Convention — Comprehensive Responsive QA & Viewport Audit Report
+# Visa Convention — Comprehensive Mobile-First Responsive QA & Viewport Audit Report
 
-**Date:** 12 November 2026  
+**Date:** 13 November 2026  
 **Project:** Visa Convention Official Website  
-**Branch / Version:** v1.21.0  
-**Test Harness:** Headless Edge Chromium via Puppeteer Core (`scripts/capture-visual-upgrade-viewports.mjs`)  
-**Status:** 100% PASS (Zero Horizontal Overflow, Full WCAG 2.2 AA Reflow)
+**Branch / Version:** v1.28.0 (Master Mobile-First Optimization & Study in Europe Release)  
+**Test Harness:** Headless Edge Chromium via Puppeteer Core (`tests/verify-mobile-first-optimization.js`)  
+**Status:** 100% PASS (Zero Horizontal Overflow, Full 14-Viewport Conformance, WCAG 2.2 AA Reflow)
 
 ---
 
 ## 1. Executive Summary
 
-A comprehensive multi-viewport responsive quality assurance audit was conducted across the redesigned Visa Convention homepage and key service entrypoints. Using automated headless browser evaluation, all 9 industry-standard viewport resolutions were tested for layout integrity, touch target compliance, typography scaling, image reflow, and horizontal overflow anomalies.
+A comprehensive multi-viewport responsive quality assurance audit was conducted across the Visa Convention website, prioritizing mobile devices first, followed by tablets, laptops, and desktop monitors. Using automated headless browser evaluation, all 14 requested CSS viewport widths were tested for layout integrity, touch target compliance, typography scaling, image reflow, form usability, and horizontal overflow.
 
-**Core Audit Finding:** Across all 9 viewport widths (from 320px ultra-compact mobile to 1920px Full HD desktop), the page strictly maintained **0px horizontal overflow** (`scrollWidth === clientWidth`). All interactive buttons and form inputs comply with the WCAG 2.2 AA minimum touch target sizing (`>= 44px`, implemented at `48px`).
+**Core Audit Finding:** Across all 14 viewport widths (from 320px ultra-compact mobile to 1920px Full HD desktop), the website strictly maintained **0px horizontal overflow** (`scrollWidth === clientWidth`). All interactive buttons and form inputs comply with the WCAG 2.2 AA minimum touch target sizing (`>= 44px`, implemented at `48px`). All mobile form inputs declare `font-size: 16px`, eliminating unwanted iOS Safari auto-zoom shifts.
 
 ---
 
-## 2. Nine-Viewport Test Matrix
+## 2. Fourteen-Viewport Test Matrix
 
 | Viewport Width | Device Category | Representative Device | Horizontal Overflow | Layout Grid State | Touch Targets | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **320px** | Ultra-Compact Mobile | iPhone SE (1st Gen) | **0px** (`320px`) | Single-column stack | ≥ 48px | **PASS** |
-| **375px** | Small Mobile | iPhone 12/13 Mini | **0px** (`375px`) | Single-column stack | ≥ 48px | **PASS** |
-| **390px** | Standard Mobile | iPhone 14 / 15 / 16 | **0px** (`390px`) | Single-column stack | ≥ 48px | **PASS** |
-| **430px** | Large Mobile | iPhone 15/16 Pro Max | **0px** (`430px`) | Single-column stack | ≥ 48px | **PASS** |
-| **768px** | Tablet Portrait | iPad Mini / Air | **0px** (`768px`) | 2-column service grid | ≥ 48px | **PASS** |
-| **1024px** | Tablet Landscape / Laptop | iPad Pro / Small Laptop | **0px** (`1024px`) | 3-column service grid | ≥ 48px | **PASS** |
-| **1366px** | Standard Desktop | HD Laptop Display | **0px** (`1366px`) | 3-column service grid | ≥ 48px | **PASS** |
-| **1440px** | MacBook / QHD Laptop | MacBook Pro 14" | **0px** (`1440px`) | 3-column service grid | ≥ 48px | **PASS** |
-| **1920px** | Full HD Desktop | 24–27" External Monitor| **0px** (`1920px`) | 3-column, 1200px container | ≥ 48px | **PASS** |
+| **320px** | Ultra-Compact Mobile | iPhone SE (1st Gen) / Galaxy A03 | **0px** (`320px`) | Single-column stack, 16px page margins | ≥ 48px | **PASS** |
+| **360px** | Standard Android Mobile | Samsung Galaxy S9 / S10 | **0px** (`360px`) | Single-column stack, 16px page margins | ≥ 48px | **PASS** |
+| **375px** | Compact iPhone | iPhone SE (2nd/3rd Gen) / iPhone X | **0px** (`375px`) | Single-column stack, 16px page margins | ≥ 48px | **PASS** |
+| **390px** | Modern iPhone | iPhone 12 / 13 / 14 | **0px** (`390px`) | Single-column stack, 16px page margins | ≥ 48px | **PASS** |
+| **393px** | Modern Android | Google Pixel 7 / Pixel 8 | **0px** (`393px`) | Single-column stack, 16px page margins | ≥ 48px | **PASS** |
+| **412px** | Large Android Phone | Galaxy S20–S24 / Pixel 8 Pro | **0px** (`412px`) | Single-column stack, 16px page margins | ≥ 48px | **PASS** |
+| **430px** | Extra-Large Smartphone | iPhone 14/15/16 Pro Max | **0px** (`430px`) | Single-column stack, 16px page margins | ≥ 48px | **PASS** |
+| **768px** | Tablet Portrait | iPad Mini / Air | **0px** (`768px`) | 2-column service grid, 2-card carousel | ≥ 48px | **PASS** |
+| **820px** | Tablet Medium | iPad Air 10.9" | **0px** (`820px`) | 2-column service grid, 2-card carousel | ≥ 48px | **PASS** |
+| **1024px** | Tablet Landscape / Laptop | iPad Pro / Small Laptop | **0px** (`1024px`) | 3-column service grid, 3-card carousel | ≥ 48px | **PASS** |
+| **1280px** | Standard Desktop | 13" MacBook / Desktop | **0px** (`1280px`) | 3-column service grid, full mega-menu | ≥ 48px | **PASS** |
+| **1366px** | Standard HD Laptop | 15.6" HD Laptop Display | **0px** (`1366px`) | 3-column service grid, full mega-menu | ≥ 48px | **PASS** |
+| **1440px** | MacBook / QHD Laptop | MacBook Pro 14" / QHD | **0px** (`1440px`) | 3-column service grid, 1160px container | ≥ 48px | **PASS** |
+| **1920px** | Full HD Desktop Monitor | 24–27" External Monitor | **0px** (`1920px`) | 3-column service grid, 1160px container | ≥ 48px | **PASS** |
 
 ---
 
@@ -37,7 +42,27 @@ A comprehensive multi-viewport responsive quality assurance audit was conducted 
 ```mermaid
 flowchart TD
     subgraph Mobile ["Mobile (< 640px)"]
-        M1["Hero: 1-Column Stack (Text Top, Image Bottom)"]
+        M1["Hero: 1-Column Stack (Text First, Image Second, ~260px Height)"]
+        M2["Services: 1-Column Stack (Full Width Cards, min 44px tap targets)"]
+        M3["Reviews: 1-Card Carousel with Touch-Swipe & Arrow Nav"]
+        M4["CTA: Full-Width Stacked Primary & Secondary Buttons"]
+        M5["Header: Compact Bar with Logo, Hamburger & WhatsApp Floating Icon"]
+    end
+    subgraph Tablet ["Tablet (640px – 1023px)"]
+        T1["Hero: 1-Column Stack with Max Image Height 320px"]
+        T2["Services: 2-Column Balanced Grid"]
+        T3["Reviews: 2-Card Visible Carousel with Indicator Dots"]
+        T4["CTA: Inline Flex with 1rem Gap"]
+        T5["Header: Hamburger Drawer with Full Hierarchy"]
+    end
+    subgraph Desktop ["Desktop (≥ 1024px / ≥ 1280px)"]
+        D1["Hero: 2-Column 52:48 Split (Text Left, Image Right)"]
+        D2["Services: 3-Column 2-Row Grid with Hover Elevation"]
+        D3["Reviews: 3-Card Visible Carousel with Smooth 350ms Transitions"]
+        D4["CTA: Centered Balanced Action Unit"]
+        D5["Header: Full Horizontal Navigation with 'Study in Europe' Mega-Menu"]
+    end
+```
         M2["Services: 1-Column Stack (Full Width Cards)"]
         M3["Actions: Full Width Stacked Buttons"]
     end

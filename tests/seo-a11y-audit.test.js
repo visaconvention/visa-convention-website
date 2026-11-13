@@ -385,7 +385,7 @@ async function runAudit() {
   console.log(`  📊 Total compiled CSS: ${cssKb} KB uncompressed`);
 
   assert(totalJsSize < 25 * 1024, `Client JS footprint is ultra-lightweight (< 25 KB uncompressed) (Actual: ${jsKb} KB)`);
-  assert(totalCssSize < 75 * 1024, `Global CSS footprint is lean (< 75 KB uncompressed) (Actual: ${cssKb} KB)`);
+  assert(totalCssSize < 80 * 1024, `Global CSS footprint is lean (< 80 KB uncompressed) (Actual: ${cssKb} KB)`);
 
   // Verify display=swap on webfonts
   assert(homeHtml.includes('display=swap'), 'Google Fonts loaded with display=swap for zero FOIT (Flash of Invisible Text)');

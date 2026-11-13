@@ -62,6 +62,33 @@ const faqSchema = getFaqSchema(studyAbroadFaqs);
           Discover universities and education opportunities across our supported destinations. Compare verified admission prerequisites, tuition guidelines, post-study work permits, and official embassy procedures.
         </p>
 
+        <!-- European Focus Highlight Banner -->
+        <div class="mb-6 p-4 rounded-2xl bg-white border border-brand-blue/30 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left">
+          <div class="flex items-start gap-3">
+            <span class="text-xl shrink-0 mt-0.5">⭐</span>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-black uppercase tracking-wider text-brand-navy">
+                  Primary Specialization: Study in Europe
+                </span>
+                <span class="px-2 py-0.5 text-[9px] font-black uppercase rounded bg-brand-red text-white">
+                  Focus
+                </span>
+              </div>
+              <p class="text-xs text-brand-muted mt-0.5">
+                Comprehensive advisory for 25 European destinations with tuition-free options, APS guidance, and 18–24 month post-study work permits.
+              </p>
+            </div>
+          </div>
+          <a
+            href="/study-in-europe/"
+            class="btn-primary text-xs px-4 py-2 shrink-0 self-start sm:self-center whitespace-nowrap"
+          >
+            <span>Explore Europe Guide</span>
+            <span>→</span>
+          </a>
+        </div>
+
         <!-- Search & Filter Controls -->
         <div class="space-y-4">
           <!-- Live Search Bar -->
@@ -87,17 +114,25 @@ const faqSchema = getFaqSchema(studyAbroadFaqs);
               data-continent="all"
               class="continent-btn active-pill px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-navy text-white shadow-2xs"
             >
-              All Destinations
+              All Destinations ({countries.length})
             </button>
-            {continents.map((continent) => (
-              <button
-                type="button"
-                data-continent={continent.toLowerCase()}
-                class="continent-btn px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white border border-brand-border text-brand-navy hover:border-brand-navy shadow-2xs"
-              >
-                {continent}
-              </button>
-            ))}
+            {continents.map((continent) => {
+              const isEurope = continent.toLowerCase() === 'europe';
+              const continentCount = countries.filter(c => c.continent.toLowerCase() === continent.toLowerCase()).length;
+              return (
+                <button
+                  type="button"
+                  data-continent={continent.toLowerCase()}
+                  class={`continent-btn px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-2xs ${
+                    isEurope
+                      ? 'bg-brand-blue-light border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white'
+                      : 'bg-white border border-brand-border text-brand-navy hover:border-brand-navy'
+                  }`}
+                >
+                  {isEurope ? `⭐ ${continent} (${continentCount})` : `${continent} (${continentCount})`}
+                </button>
+              );
+            })}
             <button
               type="button"
               data-featured="true"
@@ -246,6 +281,18 @@ const faqSchema = getFaqSchema(studyAbroadFaqs);
           }
           updateGrid();
         });
+      }
+
+      // Check URL query parameters (e.g. ?continent=europe)
+      const urlParams = new URLSearchParams(window.location.search);
+      const continentParam = urlParams.get('continent');
+      if (continentParam) {
+        const targetBtn = Array.from(continentButtons).find(
+          (b) => (b.getAttribute('data-continent') || '').toLowerCase() === continentParam.toLowerCase()
+        );
+        if (targetBtn) {
+          targetBtn.click();
+        }
       }
 
       // Reset action on empty state

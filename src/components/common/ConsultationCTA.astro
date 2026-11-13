@@ -32,7 +32,7 @@ const resolvedSecondaryHref = secondaryBtnHref || buildWhatsAppLink({
 const isExternal = resolvedSecondaryHref.startsWith('http');
 ---
 
-<section class={`relative overflow-hidden bg-brand-navy text-white rounded-[16px] p-8 sm:p-10 lg:p-12 shadow-md ${className}`}>
+<section class={`relative overflow-hidden bg-brand-navy text-white rounded-2xl p-6 sm:p-10 lg:p-12 shadow-md ${className}`}>
   <!-- Decorative background subtle glow -->
   <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-brand-blue/20 blur-3xl pointer-events-none" aria-hidden="true"></div>
   <div class="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-brand-red/10 blur-3xl pointer-events-none" aria-hidden="true"></div>

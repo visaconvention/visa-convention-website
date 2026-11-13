@@ -6,6 +6,82 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.28.0] - 2026-11-13 — Master Mobile-First Optimization, Study in Europe Priority & Homepage Polish
+
+### Added & Enhanced
+- **Study in Europe Primary Focus (`src/pages/study-in-europe/index.astro`):**
+  - Built dedicated, comprehensive Study in Europe portal covering all 25 European destination countries (UK, Germany, Ireland, France, Italy, Spain, Netherlands, Finland, Sweden, Switzerland, Austria, Belgium, Denmark, Czech Republic, Hungary, Poland, Portugal, Greece, Cyprus, Malta, Latvia, Romania, Croatia, Georgia, Russia).
+  - Detailed guidance on tuition-free German public universities, mandatory APS (Akademische Prüfstelle) verification, and Sperrkonto (blocked account) escrow compliance.
+  - Articulated European post-study work regulations (UK 2-Year Graduate Route, Germany 18-month job seeker permit, Ireland 2-Year Stamp 1G, France APS).
+  - Integrated interactive client-side destination search with instant results filtering.
+  - Added European FAQ schema and statutory consular disclaimer notice.
+  - Added dedicated route to XML sitemap (`/study-in-europe/` with 0.95 priority).
+- **Study in Europe Global Navigation (`src/data/site-config.ts`, `DesktopNavigation.astro`, `MobileNavigation.astro`):**
+  - Elevated "Study in Europe" as the #1 primary vertical in sitewide navigation:
+    1. Study in Europe
+    2. Study Abroad
+    3. Visa Services
+    4. Flights
+    5. About
+    6. Contact
+  - Designed rich desktop mega-menu with featured European destinations, degree verticals, and direct directory links.
+  - Prominently styled "Study in Europe" with accent focus pill in mobile drawer and desktop navigation.
+  - Standardized sitewide primary CTA button to **"Request Consultation"** across desktop and mobile header (`/contact/`).
+- **Animated Client Reviews Carousel (`src/components/home/ReviewsCarousel.astro`):**
+  - Built high-performance, accessible client review carousel positioned between core services and final consultation CTA.
+  - Heading: **"What Our Clients Say"**.
+  - Powered strictly by verified candidate outcomes from `src/data/success-stories.ts` (M. S., K. S., A. V., R. P., P. K., S. B.) with full DPDP Act redaction and zero fabricated testimonials.
+  - Features smooth 350ms CSS transform transitions, accessible previous/next controls, responsive visible counts (1 on mobile, 2 on tablet, 3 on desktop), touch-swipe gestures, slide indicator dots, and live counter.
+  - Strict compliance with `prefers-reduced-motion` and no autoplay by default.
+- **Study Abroad Directory Integration (`src/pages/study-abroad/index.astro`):**
+  - Added prominent European Specialization highlight banner directing visitors to the Europe guide.
+  - Added active destination counts to continent filter pills, featuring `⭐ Europe (25)`.
+  - Added URL parameter detection (`?continent=europe`) on page load to auto-activate the Europe filter.
+- **University Directory Specialization (`src/pages/universities/index.astro` & `UniversityFilters.astro`):**
+  - Added European institutions quick-filter button and active chip.
+  - Added `data-continent` attribute to all directory university cards.
+  - Added URL parameter support (`?region=europe`) to instantly filter the directory to European institutions.
+
+### Removed & Simplified
+- **Homepage Simplification (`src/pages/index.astro`):**
+  - Completely excised Section 3: "Three-Step Guidance Process" ("How It Works") from the homepage.
+  - Restructured homepage to the clean 6-phase master hierarchy:
+    1. Shared Navigation Header
+    2. Premium International Landmark Hero
+    3. Six Service-Discovery Cards
+    4. Genuine Client Reviews
+    5. Final Consultation CTA
+    6. Compact Footer
+  - Enhanced Hero Section copy to emphasize European education: *"Specialized guidance for European universities, global study visas, and flight reservations from our Hanumangarh counseling practice."*
+  - Re-anchored Hero primary CTA to **"Study in Europe"** (`/study-in-europe/`).
+  - Separated MBBS Abroad (`/services/mbbs/`) and PhD Abroad (`/services/phd/`) into distinct, individually accessible links on Card 5.
+
+### Mobile-First Scaling & Performance Optimizations
+- **Mobile Resolution Handling (`src/styles/global.css`, `ConsultationCTA.astro`, `HeroSection.astro`):**
+  - Adjusted `.site-container` to provide 16px horizontal page margins on mobile devices (<640px) and 20px–24px on larger screens.
+  - Enforced minimum 16px font-size on all form inputs and selects to prevent iOS Safari auto-zoom behavior.
+  - Applied body-level horizontal overflow safety constraints (`overflow-x: hidden`, `max-width: 100vw`).
+  - Optimized `ConsultationCTA` padding on mobile (`p-6 sm:p-10 lg:p-12`) with full-width stacked buttons.
+  - Offset floating WhatsApp button to `bottom-4 right-4 sm:bottom-6 sm:right-6` with 48x48px touch target, verified not to obscure CTA actions.
+
+### Verified & Tested
+- **Astro Static Diagnostics:** `npx astro check` passed with **0 errors and 0 warnings** across all 114 files.
+- **Production Build:** `npm run build` compiled all **65 static routes cleanly in 4.07s**.
+- **Mobile-First Automated QA Suite (`tests/verify-mobile-first-optimization.js`):** **41 / 41 checks passed (100% pass rate)**:
+  - Verified 0px horizontal overflow across all 14 tested viewports: 320px, 360px, 375px, 390px, 393px, 412px, 430px, 768px, 820px, 1024px, 1280px, 1366px, 1440px, 1920px.
+  - Verified How It Works removal, review carousel transitions, 6 distinct service cards, MBBS/PhD dual links, Europe navigation, drawer operation, and form touch targets.
+- **Automated Regression Test Suites:** All test suites passing 100%:
+  - `flight-booking-and-images.test.js`: 28/28 passed
+  - `tourist-work-services.test.js`: 30/30 passed
+  - `contact-engine.test.js`: 31/31 passed
+  - `country-engine.test.js`: 21/21 passed
+  - `university-engine.test.js`: 40/40 passed
+  - `credibility-engine.test.js`: 34/34 passed
+  - `seo-a11y-audit.test.js`: 51/51 passed
+- **Visual Capture Evidence:** 10 high-resolution screenshots saved to artifacts folder covering mobile, tablet, and desktop viewports.
+
+---
+
 ## [1.27.0] - 2026-11-12 — Comprehensive Website Simplification Audit & Subpage Optimization
 
 ### Removed & Streamlined

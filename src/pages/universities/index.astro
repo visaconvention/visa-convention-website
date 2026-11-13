@@ -8,6 +8,7 @@ import UniversityFilters from '../../components/universities/UniversityFilters.a
 import EmptyState from '../../components/common/EmptyState.astro';
 import ConsultationCTA from '../../components/common/ConsultationCTA.astro';
 import { getAllUniversities, getDistinctCountries } from '../../data/universities';
+import { getCountryBySlug } from '../../data/countries';
 
 const universities = getAllUniversities();
 const countriesWithCounts = getDistinctCountries();
@@ -71,20 +72,25 @@ const totalCountriesCount = countriesWithCounts.length;
 
         <!-- Cards Container -->
         <div id="university-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {universities.map((uni) => (
-            <div
-              class="university-item"
-              data-name={uni.name.toLowerCase()}
-              data-country-slug={uni.countrySlug.toLowerCase()}
-              data-country-name={uni.countryName.toLowerCase()}
-              data-city={(uni.city || '').toLowerCase()}
-              data-levels={uni.studyLevels.join(' ').toLowerCase()}
-              data-subjects={uni.subjectAreas.join(' ').toLowerCase()}
-              data-detailed={uni.hasDetailedProfile ? 'true' : 'false'}
-            >
-              <UniversityCard university={uni} />
-            </div>
-          ))}
+          {universities.map((uni) => {
+            const country = getCountryBySlug(uni.countrySlug);
+            const continent = (country?.continent || '').toLowerCase();
+            return (
+              <div
+                class="university-item"
+                data-name={uni.name.toLowerCase()}
+                data-country-slug={uni.countrySlug.toLowerCase()}
+                data-country-name={uni.countryName.toLowerCase()}
+                data-continent={continent}
+                data-city={(uni.city || '').toLowerCase()}
+                data-levels={uni.studyLevels.join(' ').toLowerCase()}
+                data-subjects={uni.subjectAreas.join(' ').toLowerCase()}
+                data-detailed={uni.hasDetailedProfile ? 'true' : 'false'}
+              >
+                <UniversityCard university={uni} />
+              </div>
+            );
+          })}
         </div>
 
         <!-- No Results Fallback -->
@@ -147,6 +153,7 @@ const totalCountriesCount = countriesWithCounts.length;
     const degreeFilter = document.getElementById('filter-degree') as HTMLSelectElement | null;
     const subjectFilter = document.getElementById('filter-subject') as HTMLSelectElement | null;
     const detailedOnlyCheckbox = document.getElementById('filter-detailed-only') as HTMLInputElement | null;
+    const europeBtn = document.getElementById('filter-europe-btn');
     const resetBtn = document.getElementById('reset-filters-btn');
     
     const items = Array.from(document.querySelectorAll<HTMLElement>('.university-item'));
@@ -170,6 +177,20 @@ const totalCountriesCount = countriesWithCounts.length;
     const initialCountry = urlParams.get('country');
     const initialQuery = urlParams.get('q') || urlParams.get('search');
     const initialDegree = urlParams.get('level');
+    const initialRegion = urlParams.get('region') || urlParams.get('continent');
+    let europeOnly = initialRegion?.toLowerCase() === 'europe';
+
+    function updateEuropeBtnStyle() {
+      if (!europeBtn) return;
+      if (europeOnly) {
+        europeBtn.classList.remove('bg-brand-blue-light/50', 'text-brand-navy', 'border-brand-blue/30');
+        europeBtn.classList.add('bg-brand-navy', 'text-white', 'border-brand-navy');
+      } else {
+        europeBtn.classList.add('bg-brand-blue-light/50', 'text-brand-navy', 'border-brand-blue/30');
+        europeBtn.classList.remove('bg-brand-navy', 'text-white', 'border-brand-navy');
+      }
+    }
+    updateEuropeBtnStyle();
 
     if (initialCountry && countryFilter) {
       countryFilter.value = initialCountry.toLowerCase();
@@ -292,7 +313,10 @@ const totalCountriesCount = countriesWithCounts.length;
         // Detailed only check
         const matchesDetailed = !detailedOnly || isDetailed;
 
-        return matchesQuery && matchesCountry && matchesDegree && matchesSubject && matchesDetailed;
+        // Europe specialization check
+        const matchesRegion = !europeOnly || (item.dataset.continent === 'europe');
+
+        return matchesQuery && matchesCountry && matchesDegree && matchesSubject && matchesDetailed && matchesRegion;
       });
 
       currentPage = 1;
@@ -366,6 +390,14 @@ const totalCountriesCount = countriesWithCounts.length;
           filterData();
         }));
       }
+      if (europeOnly) {
+        hasAny = true;
+        chipsBar.appendChild(createChip('⭐ European Institutions Only', () => {
+          europeOnly = false;
+          updateEuropeBtnStyle();
+          filterData();
+        }));
+      }
 
       if (hasAny) {
         const clearAll = document.createElement('button');
@@ -391,6 +423,7 @@ const totalCountriesCount = countriesWithCounts.length;
       if (query) params.set('q', query);
       if (selectedCountry !== 'all') params.set('country', selectedCountry);
       if (selectedDegree !== 'all') params.set('level', selectedDegree);
+      if (europeOnly) params.set('region', 'europe');
 
       const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
       window.history.replaceState({}, '', newUrl);
@@ -410,6 +443,11 @@ const totalCountriesCount = countriesWithCounts.length;
     degreeFilter?.addEventListener('change', filterData);
     subjectFilter?.addEventListener('change', filterData);
     detailedOnlyCheckbox?.addEventListener('change', filterData);
+    europeBtn?.addEventListener('click', () => {
+      europeOnly = !europeOnly;
+      updateEuropeBtnStyle();
+      filterData();
+    });
 
     prevBtn?.addEventListener('click', () => {
       if (currentPage > 1) {
@@ -440,6 +478,8 @@ const totalCountriesCount = countriesWithCounts.length;
       if (degreeFilter) degreeFilter.value = 'all';
       if (subjectFilter) subjectFilter.value = 'all';
       if (detailedOnlyCheckbox) detailedOnlyCheckbox.checked = false;
+      europeOnly = false;
+      updateEuropeBtnStyle();
       filterData();
     });
 

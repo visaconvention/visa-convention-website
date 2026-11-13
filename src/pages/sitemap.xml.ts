@@ -19,6 +19,7 @@ export const GET: APIRoute = async () => {
 
   const staticUrls: SitemapUrl[] = [
     { loc: `${baseUrl}/`, changefreq: 'daily', priority: 1.0, lastmod: today },
+    { loc: `${baseUrl}/study-in-europe/`, changefreq: 'weekly', priority: 0.95, lastmod: today },
     { loc: `${baseUrl}/about/`, changefreq: 'monthly', priority: 0.85, lastmod: today },
     { loc: `${baseUrl}/services/`, changefreq: 'weekly', priority: 0.9, lastmod: today },
     { loc: `${baseUrl}/services/study-visa/`, changefreq: 'weekly', priority: 0.9, lastmod: today },

@@ -44,16 +44,24 @@ const { currentPath = '/' } = Astro.props;
     <div class="p-5 space-y-4 flex-1">
       {siteConfig.nav.map((item) => {
         const hasChildren = item.children && item.children.length > 0;
+        const isEurope = item.label === 'Study in Europe';
         const active = currentPath === item.href || (hasChildren && item.children?.some(c => c.href === currentPath));
 
         if (hasChildren) {
           return (
-            <div class="pb-2 border-b border-brand-border/60">
+            <div class={`pb-2.5 border-b border-brand-border/60 ${isEurope ? 'bg-brand-blue-light/40 -mx-3 p-3 rounded-xl border border-brand-blue/20' : ''}`}>
               <div class="flex items-center justify-between py-1 px-1">
-                <span class="text-xs font-extrabold uppercase tracking-wider text-brand-navy">
-                  {item.label}
-                </span>
-                <a href={item.href} class="text-[11px] font-bold text-brand-blue hover:underline">
+                <div class="flex items-center gap-1.5">
+                  <span class={`text-xs font-black uppercase tracking-wider ${isEurope ? 'text-brand-blue' : 'text-brand-navy'}`}>
+                    {item.label}
+                  </span>
+                  {isEurope && (
+                    <span class="px-1.5 py-0.2 text-[9px] font-black uppercase tracking-wider bg-brand-red text-white rounded">
+                      Focus
+                    </span>
+                  )}
+                </div>
+                <a href={item.href} class="text-[11px] font-bold text-brand-blue hover:underline py-1 px-1.5">
                   Overview →
                 </a>
               </div>
@@ -63,9 +71,9 @@ const { currentPath = '/' } = Astro.props;
                   return (
                     <a
                       href={child.href}
-                      class={`block px-3 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-colors ${
+                      class={`block px-3 py-2.5 text-xs sm:text-sm font-semibold rounded-lg transition-colors min-h-[44px] flex items-center ${
                         isChildActive
-                          ? 'bg-brand-bg text-brand-blue font-bold'
+                          ? 'bg-brand-navy text-white font-bold'
                           : 'text-slate-700 hover:bg-brand-bg hover:text-brand-navy'
                       }`}
                     >
@@ -82,9 +90,9 @@ const { currentPath = '/' } = Astro.props;
           <div class="pb-1 border-b border-brand-border/60">
             <a
               href={item.href}
-              class={`block px-2 py-2 text-sm font-bold rounded-lg transition-colors ${
+              class={`block px-3 py-3 text-sm font-bold rounded-lg transition-colors min-h-[44px] flex items-center ${
                 active
-                  ? 'bg-brand-bg text-brand-blue'
+                  ? 'bg-brand-navy text-white'
                   : 'text-brand-navy hover:bg-brand-bg hover:text-brand-blue'
               }`}
             >
@@ -100,7 +108,7 @@ const { currentPath = '/' } = Astro.props;
       <div class="grid grid-cols-2 gap-2 text-xs font-bold text-center">
         <a
           href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`}
-          class="p-2.5 rounded-xl bg-white border border-brand-border text-brand-navy hover:bg-slate-50 transition-colors flex items-center justify-center gap-1.5"
+          class="p-3 rounded-xl bg-white border border-brand-border text-brand-navy hover:bg-slate-50 transition-colors flex items-center justify-center gap-1.5 min-h-[44px]"
         >
           <span>📞 Call Us</span>
         </a>
@@ -108,7 +116,7 @@ const { currentPath = '/' } = Astro.props;
           href={`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent('Hello Visa Convention, I would like to inquire about your services.')}`}
           target="_blank"
           rel="noopener noreferrer"
-          class="p-2.5 rounded-xl bg-[#25D366] text-white hover:bg-[#20ba5a] transition-colors flex items-center justify-center gap-1.5"
+          class="p-3 rounded-xl bg-[#25D366] text-white hover:bg-[#20ba5a] transition-colors flex items-center justify-center gap-1.5 min-h-[44px]"
         >
           <span>💬 WhatsApp</span>
         </a>
@@ -116,9 +124,9 @@ const { currentPath = '/' } = Astro.props;
 
       <a
         href="/contact/"
-        class="block w-full py-3 px-4 text-center rounded-xl bg-brand-red text-white font-bold text-sm hover:bg-brand-red-hover transition-colors shadow-sm"
+        class="block w-full py-3.5 px-4 text-center rounded-xl bg-brand-red text-white font-bold text-sm hover:bg-brand-red-hover transition-colors shadow-sm min-h-[48px] flex items-center justify-center"
       >
-        Book Free Consultation
+        Request Consultation
       </a>
       <p class="text-center text-[11px] text-brand-muted">
         Shop No.115, Durga Market, Hanumangarh Junction
