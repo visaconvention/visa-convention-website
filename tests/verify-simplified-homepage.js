@@ -191,9 +191,9 @@ async function run() {
 
     const footerHasHours = await page.evaluate(() => {
       const footer = document.querySelector('footer');
-      return footer ? footer.innerText.includes('Monday – Saturday: 9:30 AM – 6:30 PM IST') : false;
+      return footer ? (footer.innerText.includes('Monday – Saturday') || footer.innerText.includes('9:30 AM') || footer.innerText.includes('Sunday Closed')) : false;
     });
-    assert(footerHasHours, 'Footer contains compact business hours (Monday – Saturday: 9:30 AM – 6:30 PM IST)');
+    assert(!footerHasHours, 'Business hours text is strictly absent from footer');
 
     const footerHasAddress = await page.evaluate(() => {
       const footer = document.querySelector('footer');

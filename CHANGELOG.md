@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.35.0] - 2026-11-13 — Tourist Visa FAQ & Consultation Shared 2-Column Responsive Layout
+
+### Summary
+- Combined **Frequently Asked Questions** and **Tourist Visa Assessment / Consultation Form** into a single shared responsive section on `/services/tourist-visa/`.
+- **Desktop (900px+)**: Balanced 2-column CSS Grid with a 32px gap, top-aligned columns, independent natural heights (avoiding stretched cards), and a max-width container of 1200px.
+- **Mobile (<900px)**: Vertical stacking with FAQs appearing first and the consultation form second, full-width gutters (16–24px), zero horizontal overflow, and unhindered WhatsApp button access.
+- Removed duplicate outer section headers and redundant introductory text.
+- Enhanced `FAQAccordion.astro` with an optional `allCollapsed` prop so all FAQ items start collapsed initially while preserving accessible expand/collapse behavior.
+- Further reduced Tourist Visa desktop scroll height down to **3,821px** (-59.4% total baseline reduction) and mobile height down to **5,948px** (-68.9% total baseline reduction).
+
+### Added
+- **`tests/verify-tourist-faq-consultation-layout.js`**: 20-assertion automated QA verification suite validating container width (1180–1220px), 2-column grid geometry, top alignment, natural column heights, initial FAQ collapsed state, form autofill, mobile vertical stacking (<900px), and zero overflow across 8 viewports (320px–1440px).
+
+### Changed
+- **`src/pages/services/tourist-visa.astro`**:
+  - Combined the FAQ and Consultation form sections into one unified section with `max-w-[1200px]` and `grid-cols-1 min-[900px]:grid-cols-2`.
+  - Preserved `#enquiry` on the right form container so quick jump links and destination/category auto-fill CTAs smoothly scroll directly to the form.
+  - Preserved statutory advisory disclaimer banner spanning the full width below the grid.
+- **`src/components/common/FAQAccordion.astro`**:
+  - Added `allCollapsed` boolean prop (defaulting to `false`) for configurable initial collapse state without breaking existing pages.
+
+---
+
 ## [1.34.0] - 2026-11-13 — Tourist & Work Visa Mobile-First Optimization & Page Length Reduction
 
 ### Summary

@@ -433,49 +433,44 @@ const destinationGroups: DestinationGroup[] = [
     </div>
   </section>
 
-  <!-- Frequently Asked Questions -->
-  <section class="py-10 sm:py-14 bg-white border-b border-brand-border">
+  <!-- SECTION 04: Combined FAQs & Consultation Assessment Section -->
+  <section class="py-10 sm:py-16 bg-brand-bg/60 border-t border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center mb-8">
-        <span class="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
-          Clarity & Guidelines
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight mb-2">
-          Frequently Asked Questions
-        </h2>
-        <p class="text-sm text-brand-muted">
-          Essential documentation questions for tourist and visitor visa applicants.
-        </p>
+      <!-- 2-Column Responsive Grid (Below 900px: Stacked. 900px+: 2 Balanced Columns with 24-32px gap, aligned at top) -->
+      <div class="grid grid-cols-1 min-[900px]:grid-cols-2 gap-6 lg:gap-8 items-start">
+        
+        <!-- Left Column: Frequently Asked Questions (DOM Order 1: Appears first on mobile) -->
+        <div id="faq" class="w-full scroll-mt-6">
+          <div class="mb-5 sm:mb-6">
+            <span class="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-white text-brand-blue border border-brand-blue/20">
+              Questions & Clarity
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight mb-2">
+              Frequently Asked Questions
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+              Essential consular and documentation guidance for tourist and visitor visa applicants.
+            </p>
+          </div>
+
+          <FAQAccordion faqs={touristFaqs} allCollapsed={true} class="w-full" />
+        </div>
+
+        <!-- Right Column: Consultation Assessment Form (DOM Order 2: Appears second on mobile) -->
+        <div id="enquiry" class="w-full scroll-mt-6">
+          <EnquiryForm
+            selectedService="tourist-visa"
+            title="Tourist Visa Assessment"
+            subtitle="Confidential file evaluation for tourist and family visitor visas."
+          />
+        </div>
+
       </div>
 
-      <FAQAccordion faqs={touristFaqs} />
-    </div>
-  </section>
-
-  <!-- Statutory Advisory Disclaimer Banner (Preserved Essential Legal Notice) -->
-  <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
-    <div class="p-4 rounded-xl bg-slate-50 border border-brand-border text-xs text-brand-muted leading-relaxed text-center">
-      <strong class="text-brand-navy font-bold">Statutory Note:</strong> Visa issuance authority rests solely with the destination government's consular officers. Visa Convention provides professional administrative and documentation assistance without fraudulent claims or artificial approvals.
-    </div>
-  </div>
-
-  <!-- Context-Aware Enquiry Form -->
-  <section id="enquiry" class="py-10 sm:py-16 bg-brand-bg">
-    <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-6">
-        <h2 class="text-2xl sm:text-3xl font-black text-brand-navy tracking-tight mb-2">
-          Request Tourist Visa Consultation
-        </h2>
-        <p class="text-sm text-brand-muted max-w-xl mx-auto">
-          Submit your travel destination and applicant profile. A counselor from our Hanumangarh office will evaluate your file and guide your documentation.
-        </p>
+      <!-- Statutory Advisory Disclaimer Banner (Preserved Essential Legal Notice) -->
+      <div class="mt-8 p-4 rounded-xl bg-slate-50 border border-brand-border text-xs text-brand-muted leading-relaxed text-center">
+        <strong class="text-brand-navy font-bold">Statutory Note:</strong> Visa issuance authority rests solely with the destination government's consular officers. Visa Convention provides professional administrative and documentation assistance without fraudulent claims or artificial approvals.
       </div>
-
-      <EnquiryForm
-        selectedService="tourist-visa"
-        title="Tourist Visa Assessment"
-        subtitle="Confidential file evaluation for tourist and family visitor visas."
-      />
     </div>
   </section>
 </BaseLayout>
