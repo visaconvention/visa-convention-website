@@ -6,6 +6,80 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.34.0] - 2026-11-13 — Tourist & Work Visa Mobile-First Optimization & Page Length Reduction
+
+### Summary
+- Drastically reduced page length on both **Tourist Visa** and **Work Visa** service pages by **62% to 65% on mobile** and **41% to 49% on desktop**.
+- Replaced oversized destination cards with a shared, accessible, searchable accordion component (`DestinationAccordion.astro`), maintaining collapsed rows at 48–56px touch target height.
+- Deleted redundant documentation scope sections (`#how-we-assist`) from both pages' component trees while preserving essential statutory disclaimers.
+- Replaced oversized tourist applicant guidance cards with a compact, accessible 6-category tabbed checklist that automatically pre-fills the inquiry form upon category selection.
+- Converted UAE and Schengen guidance into mutually exclusive, collapsed framework accordions.
+- Replaced 12 oversized work visa occupation cards with a compact 12-occupation accordion (`OccupationAccordion.astro`), auto-populating the enquiry form upon selection.
+- Converted the 6-factor foreign employment contract evaluation into a compact collapsed drawer.
+- Zero horizontal overflow across all 11 audited viewports (320px to 1440px).
+
+### Added
+- **`src/components/services/DestinationAccordion.astro`**: Shared, mobile-first accordion component supporting searchable destination lists with group nesting (Schengen, Other International, UAE for Tourist Visa; Gulf, Europe, Other for Work Visa), auto-expanding search matching, single-country detail expansion within groups, and one-click form prefilling.
+- **`src/components/services/OccupationAccordion.astro`**: Compact 12-occupation accordion component with 48–52px rows, expandable prerequisite documentation and sample roles, and automatic enquiry form autofill.
+- **`tests/verify-tourist-work-optimization.js`**: 41-assertion automated end-to-end QA verification test verifying section deletions, destination integrity, form prefill, mutual exclusion frameworks, responsive viewports, and page length reduction thresholds.
+
+### Changed
+- **`src/pages/services/tourist-visa.astro`**:
+  - Completely deleted redundant Section 04: "How Visa Convention Assists Your Filing" (`#how-we-assist`).
+  - Replaced 27 large destination cards with `<DestinationAccordion />`.
+  - Replaced oversized document guidance cards with a compact 6-category checklist (`#category-panel-*`), automatically populating the enquiry form upon tab selection.
+  - Converted "Special Destination Frameworks" to two mutually exclusive collapsed dropdowns (`UAE Tourist Visa Requirements` and `Schengen Visa Requirements`).
+  - Added single statutory disclaimer and single clarification notice.
+- **`src/pages/services/work-visa.astro`**:
+  - Completely deleted redundant Section 04: "Our Scope of Documentation Assistance" (`#how-we-assist`).
+  - Replaced 14 large destination cards with `<DestinationAccordion />`.
+  - Replaced 12 oversized occupation cards with `<OccupationAccordion />`.
+  - Replaced 6 oversized contract evaluation cards with a compact collapsed drawer.
+  - Preserved statutory Emigration Act, 1983 disclosure banner and document verification standards.
+
+---
+
+## [1.33.0] - 2026-11-13 — Homepage Service Cards Rearrangement (3x2 Desktop & Logical Mobile Stack)
+
+### Changed & Rearranged
+- **Homepage Service Cards Component Array Reordered (`src/pages/index.astro`):**
+  - Reordered the 6 service cards in the actual DOM/component array (not through CSS order hacks):
+    1. **Study Abroad** (Row 1 Left on Desktop; Position 1 on Mobile)
+    2. **MBBS / PhD Abroad** (Row 1 Middle on Desktop; Position 2 on Mobile)
+    3. **Work Visa** (Row 1 Right on Desktop; Position 3 on Mobile)
+    4. **Tourist Visa** (Row 2 Left on Desktop; Position 4 on Mobile)
+    5. **Flight Booking** (Row 2 Middle on Desktop; Position 5 on Mobile)
+    6. **Additional Services** (Row 2 Right on Desktop; Position 6 on Mobile)
+  - Desktop 3-column layout maintains exact requested 3x2 geometry:
+    - Row 1: Study Abroad (left) | MBBS & PhD (middle) | Work Visa (right)
+    - Row 2: Tourist Visa (left) | Flight Booking (middle) | Additional Services (right)
+  - Mobile reading order on smartphones stacks cards in exact 1-to-6 sequence for intuitive keyboard navigation, screen-reader accessibility, and visual thumb scrolling.
+  - Tablets scale seamlessly to 2 columns without breaking card geometry or alignment.
+- **Preserved Assets & Content Integrity:**
+  - Preserved each card's exact original client-supplied poster image without cropping, distortion, or alteration:
+    - Study Abroad: `Study Abroad_ Your Global Future.png`
+    - MBBS & PhD: `MBBS & PhD Courses Abroad.png`
+    - Work Visa: `Global Work Visa Opportunities.png`
+    - Tourist Visa: `Vibrant Tourist Visa Travel Poster.png`
+    - Flight Booking: `Flight Booking and Dummy Tickets.png`
+    - Additional Services: `Additional Visa Services Guide.png`
+  - All existing card titles, descriptions, destination counts, tags, links, and CTAs remained exactly preserved.
+  - Aligned all bottom action buttons (`mt-auto` and consistent min-height `44px`).
+
+### Verified & Hardened
+- `tests/verify-card-rearrangement.js`: 54/54 checks passed (100%), verifying DOM reading order, 3x2 desktop geometry (1440px & 1366px), 8 responsive viewports (320px–1440px), zero horizontal overflow, and link destinations.
+- `tests/verify-simplified-homepage.js`: 43/43 checks passed (100%).
+- `tests/verify-mobile-first-optimization.js`: 65/65 checks passed (100%).
+- `tests/verify-client-approved-images.js`: 87/87 checks passed (100%).
+- `npm run build`: 65 static pages compiled in 4.19s with 0 errors.
+- Visual verification screenshots captured:
+  - `rearranged-services-desktop-1440px.png`
+  - `rearranged-services-tablet-768px.png`
+  - `rearranged-services-mobile-390px.png`
+  - `rearranged-services-mobile-320px.png`
+
+---
+
 ## [1.32.0] - 2026-11-13 — Homepage Card Replacement: "Additional Services" with Original Client Poster & Confirmed Scope
 
 ### Changed & Replaced

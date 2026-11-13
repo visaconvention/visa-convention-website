@@ -1,29 +1,21 @@
 [
   {
-    "leadId": "VC-LEAD-218779",
-    "service": "study-visa",
-    "submissionType": "student",
-    "fullName": "Test Candidate (Automated)",
-    "phone": "+91 98765 12345",
-    "email": "candidate.qa@visaconvention.test",
-    "targetCountry": "canada",
-    "targetUniversity": "University of Toronto",
-    "notes": "Completed B.Tech Computer Science with 8.2 CGPA; seeking Fall 2026 Masters admissions.",
-    "elapsedMs": 2451,
-    "submittedAt": "2026-11-13T04:30:18.776Z",
-    "receivedAt": "2026-11-13T04:30:18.779Z"
-  },
-  {
-    "leadId": "VC-LEAD-221042",
-    "service": "business-partnership",
-    "submissionType": "business",
-    "organizationName": "Northern Rajasthan Language Academy",
-    "contactPerson": "Vikas Choudhary (Managing Director)",
-    "email": "director@nr-academy.com",
-    "phone": "+91 94140 12345",
-    "proposedScope": "Seeking ethical referral partnership for 60+ IELTS students per year.",
-    "elapsedMs": 1635,
-    "submittedAt": "2026-11-13T04:30:21.041Z",
-    "receivedAt": "2026-11-13T04:30:21.043Z"
+    "leadId": "VC-FLT-295239",
+    "submissionType": "flight",
+    "service": "reservation-hold",
+    "tripType": "round-trip",
+    "departureCity": "Delhi (DEL)",
+    "destinationCity": "Toronto Pearson (YYZ)",
+    "departureDate": "2026-12-13",
+    "returnDate": "2027-01-12",
+    "passengers": 1,
+    "travelClass": "economy",
+    "passengerCategory": "student",
+    "fullName": "Gurpreet Singh",
+    "phone": "+91 94144 04040",
+    "email": "gurpreet.travel@example.com",
+    "specialNotes": "International student, University of Toronto offer holder; require 46kg student baggage.",
+    "submittedAt": "2026-11-13T16:28:15.238Z",
+    "receivedAt": "2026-11-13T16:28:15.240Z"
   }
 ]

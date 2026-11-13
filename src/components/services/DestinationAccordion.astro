@@ -1,0 +1,443 @@
+---
+/**
+ * Shared Destination Accordion Component
+ * Reused across Tourist Visa and Work Visa pages.
+ * 
+ * Behavior:
+ * - Groups and country details collapsed by default.
+ * - Collapsed rows show only country name + chevron (48-56px touch target).
+ * - Expand to reveal concise, approved details and enquiry action.
+ * - Only one country detail expanded at a time within its group.
+ * - Search automatically reveals matching countries and expands their parent group.
+ * - Selecting a country automatically populates the existing enquiry form.
+ * - Zero photographs, flags, badges, or decorative elements in collapsed state.
+ * - WCAG 2.1 AA accessible (aria-expanded, aria-controls, focus rings).
+ */
+
+export interface DestinationItem {
+  id: string;
+  name: string;
+  slug: string;
+  streamOrAuthorityLabel: string;
+  streamOrAuthorityValue: string;
+  secondaryLabel?: string;
+  secondaryValue?: string;
+  overview: string;
+  notice?: string;
+}
+
+export interface DestinationGroup {
+  id: string;
+  name: string;
+  count: number;
+  items: DestinationItem[];
+}
+
+interface Props {
+  groups: DestinationGroup[];
+  searchPlaceholder?: string;
+  serviceType: 'tourist' | 'work';
+  searchInputId?: string;
+}
+
+const {
+  groups,
+  searchPlaceholder = 'Search destination country (e.g. Canada, Germany, UAE, UK)...',
+  serviceType,
+  searchInputId = 'destination-search-input',
+} = Astro.props;
+
+const totalDestinations = groups.reduce((acc, g) => acc + g.items.length, 0);
+---
+
+<div class="destination-accordion-container w-full" data-service-type={serviceType}>
+  <!-- Live Search Bar -->
+  <div class="mb-6">
+    <div class="relative">
+      <input
+        type="text"
+        id={searchInputId}
+        placeholder={searchPlaceholder}
+        class="dest-search-input w-full pl-10 pr-10 py-3 rounded-xl bg-white border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue shadow-2xs transition-all"
+        aria-label="Search destination countries"
+      />
+      <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-brand-subtle">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+      <button
+        type="button"
+        class="dest-search-clear hidden absolute inset-y-0 right-0 pr-3.5 flex items-center text-brand-subtle hover:text-brand-navy"
+        aria-label="Clear search query"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="mt-2.5 flex items-center justify-between text-xs text-brand-muted px-1">
+      <span class="dest-count-announcer" aria-live="polite">
+        Showing all {totalDestinations} destinations (grouped)
+      </span>
+      <span class="hidden sm:inline text-brand-subtle">
+        Tap a country to expand details & apply to form
+      </span>
+    </div>
+  </div>
+
+  <!-- Groups Accordion List -->
+  <div class="space-y-3 dest-groups-wrapper" role="region" aria-label="Destination Countries by Category">
+    {groups.map((group) => (
+      <div
+        class="dest-group-block rounded-2xl border border-brand-border bg-white overflow-hidden shadow-2xs transition-all"
+        data-group-id={group.id}
+        data-group-name={group.name.toLowerCase()}
+      >
+        <!-- Group Header Toggle Button -->
+        <button
+          type="button"
+          class="dest-group-toggle w-full min-h-[50px] px-4 sm:px-5 py-3 bg-brand-bg/60 hover:bg-brand-bg text-left flex items-center justify-between gap-3 border-b border-transparent transition-colors focus-visible:outline-2 focus-visible:outline-brand-blue"
+          aria-expanded="false"
+          aria-controls={`dest-group-panel-${group.id}`}
+        >
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="text-sm sm:text-base font-bold text-brand-navy tracking-tight truncate">
+              {group.name}
+            </span>
+            <span class="dest-group-count px-2 py-0.5 rounded-full text-xs font-semibold bg-white border border-brand-border text-brand-muted flex-shrink-0">
+              {group.items.length}
+            </span>
+          </div>
+
+          <svg
+            class="dest-group-chevron w-4 h-4 text-brand-navy transition-transform duration-200 flex-shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- Group Panel: Country Items (Collapsed by default) -->
+        <div
+          id={`dest-group-panel-${group.id}`}
+          class="dest-group-panel hidden divide-y divide-brand-border/60"
+        >
+          {group.items.map((item) => (
+            <div
+              class="dest-country-item"
+              data-country-name={item.name.toLowerCase()}
+              data-country-slug={item.slug}
+              data-group-id={group.id}
+            >
+              <!-- Country Row Button: ONLY Country Name + Chevron (48-56px high) -->
+              <button
+                type="button"
+                class="dest-country-toggle w-full min-h-[48px] sm:min-h-[52px] px-4 sm:px-5 py-3 text-left flex items-center justify-between gap-3 hover:bg-brand-bg/40 transition-colors focus-visible:outline-2 focus-visible:outline-brand-blue"
+                aria-expanded="false"
+                aria-controls={`country-details-${item.id}`}
+              >
+                <span class="text-sm sm:text-[15px] font-semibold text-brand-navy">
+                  {item.name}
+                </span>
+
+                <svg
+                  class="dest-country-chevron w-4 h-4 text-brand-muted transition-transform duration-200 flex-shrink-0"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <!-- Country Details Drawer (Collapsed by default) -->
+              <div
+                id={`country-details-${item.id}`}
+                class="dest-country-details hidden px-4 sm:px-5 pb-4 pt-2 bg-brand-bg/25 border-t border-brand-border/40"
+              >
+                <div class="space-y-2 text-xs text-brand-muted mb-3.5">
+                  <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+                    <span class="font-bold text-brand-navy flex-shrink-0">
+                      {item.streamOrAuthorityLabel}:
+                    </span>
+                    <span class="text-brand-navy font-medium">
+                      {item.streamOrAuthorityValue}
+                    </span>
+                  </div>
+
+                  {item.secondaryLabel && item.secondaryValue && (
+                    <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+                      <span class="font-bold text-brand-navy flex-shrink-0">
+                        {item.secondaryLabel}:
+                      </span>
+                      <span>{item.secondaryValue}</span>
+                    </div>
+                  )}
+
+                  <p class="text-xs text-brand-muted leading-relaxed pt-0.5">
+                    {item.overview}
+                  </p>
+
+                  {item.notice && (
+                    <div class="text-[11px] p-2.5 rounded-lg bg-blue-50/80 border border-blue-100 text-brand-blue leading-normal">
+                      <strong>Note:</strong> {item.notice}
+                    </div>
+                  )}
+                </div>
+
+                <!-- One-Click Selection Action Button -->
+                <div>
+                  <button
+                    type="button"
+                    class="dest-select-btn inline-flex items-center justify-center gap-1.5 w-full sm:w-auto px-4 py-2 rounded-xl bg-brand-navy hover:bg-brand-blue text-white text-xs font-bold transition-all shadow-2xs"
+                    data-slug={item.slug}
+                    data-name={item.name}
+                    data-service={serviceType}
+                  >
+                    <span>Select {item.name} & Apply to Form</span>
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Empty Search Result State -->
+  <div class="dest-empty-state hidden text-center py-10 px-4 bg-brand-bg/60 rounded-2xl border border-brand-border mt-4">
+    <p class="text-sm font-bold text-brand-navy mb-1">No destinations found matching your search</p>
+    <p class="text-xs text-brand-muted mb-3">Try searching for a different destination or reset the search query.</p>
+    <button
+      type="button"
+      class="dest-reset-search-btn px-3.5 py-1.5 rounded-lg bg-white border border-brand-border text-xs font-bold text-brand-navy hover:border-brand-navy transition-colors"
+    >
+      Clear Search
+    </button>
+  </div>
+</div>
+
+<script>
+  // Shared Destination Accordion Interaction Script
+  function initDestinationAccordions() {
+    const containers = document.querySelectorAll('.destination-accordion-container');
+
+    containers.forEach((container) => {
+      // Prevent multiple attachments
+      if (container.hasAttribute('data-initialized')) return;
+      container.setAttribute('data-initialized', 'true');
+
+      const searchInput = container.querySelector('.dest-search-input') as HTMLInputElement | null;
+      const searchClear = container.querySelector('.dest-search-clear') as HTMLButtonElement | null;
+      const countAnnouncer = container.querySelector('.dest-count-announcer');
+      const emptyState = container.querySelector('.dest-empty-state');
+      const resetSearchBtn = container.querySelector('.dest-reset-search-btn');
+
+      const groupBlocks = container.querySelectorAll('.dest-group-block');
+      const countryItems = container.querySelectorAll('.dest-country-item');
+      const selectBtns = container.querySelectorAll('.dest-select-btn');
+
+      const totalItems = countryItems.length;
+
+      // 1. Group Accordion Expand / Collapse
+      groupBlocks.forEach((block) => {
+        const groupToggle = block.querySelector('.dest-group-toggle') as HTMLButtonElement | null;
+        const groupPanel = block.querySelector('.dest-group-panel') as HTMLElement | null;
+        const groupChevron = block.querySelector('.dest-group-chevron') as HTMLElement | null;
+
+        if (!groupToggle || !groupPanel) return;
+
+        groupToggle.addEventListener('click', () => {
+          const isExpanded = groupToggle.getAttribute('aria-expanded') === 'true';
+          const nextState = !isExpanded;
+
+          groupToggle.setAttribute('aria-expanded', String(nextState));
+          groupPanel.classList.toggle('hidden', !nextState);
+          groupToggle.classList.toggle('border-b-brand-border', nextState);
+          groupToggle.classList.toggle('border-transparent', !nextState);
+
+          if (groupChevron) {
+            groupChevron.classList.toggle('rotate-180', nextState);
+          }
+        });
+      });
+
+      // 2. Country Accordion: Expand details (ONLY ONE expanded at a time within its group)
+      countryItems.forEach((item) => {
+        const countryToggle = item.querySelector('.dest-country-toggle') as HTMLButtonElement | null;
+        const countryDetails = item.querySelector('.dest-country-details') as HTMLElement | null;
+        const countryChevron = item.querySelector('.dest-country-chevron') as HTMLElement | null;
+
+        if (!countryToggle || !countryDetails) return;
+
+        countryToggle.addEventListener('click', () => {
+          const isExpanded = countryToggle.getAttribute('aria-expanded') === 'true';
+
+          // If opening this country, collapse all other countries within this parent group
+          if (!isExpanded) {
+            const parentGroup = item.closest('.dest-group-block');
+            if (parentGroup) {
+              const otherCountries = parentGroup.querySelectorAll('.dest-country-item');
+              otherCountries.forEach((other) => {
+                if (other === item) return;
+                const otherToggle = other.querySelector('.dest-country-toggle') as HTMLButtonElement | null;
+                const otherDetails = other.querySelector('.dest-country-details') as HTMLElement | null;
+                const otherChevron = other.querySelector('.dest-country-chevron') as HTMLElement | null;
+
+                if (otherToggle && otherDetails) {
+                  otherToggle.setAttribute('aria-expanded', 'false');
+                  otherDetails.classList.add('hidden');
+                  if (otherChevron) otherChevron.classList.remove('rotate-180');
+                }
+              });
+            }
+          }
+
+          // Toggle current
+          const nextState = !isExpanded;
+          countryToggle.setAttribute('aria-expanded', String(nextState));
+          countryDetails.classList.toggle('hidden', !nextState);
+          if (countryChevron) {
+            countryChevron.classList.toggle('rotate-180', nextState);
+          }
+        });
+      });
+
+      // 3. Search & Auto-Reveal Matching Countries
+      function applySearch(query: string) {
+        const cleanQuery = query.toLowerCase().trim();
+        let totalMatches = 0;
+
+        if (searchClear) {
+          searchClear.classList.toggle('hidden', cleanQuery.length === 0);
+        }
+
+        groupBlocks.forEach((block) => {
+          const groupPanel = block.querySelector('.dest-group-panel') as HTMLElement | null;
+          const groupToggle = block.querySelector('.dest-group-toggle') as HTMLButtonElement | null;
+          const groupChevron = block.querySelector('.dest-group-chevron') as HTMLElement | null;
+          const countBadge = block.querySelector('.dest-group-count') as HTMLElement | null;
+
+          const itemsInGroup = block.querySelectorAll('.dest-country-item');
+          let groupMatches = 0;
+
+          itemsInGroup.forEach((country) => {
+            const name = country.getAttribute('data-country-name') || '';
+            const matches = !cleanQuery || name.includes(cleanQuery);
+
+            country.classList.toggle('hidden', !matches);
+            if (matches) groupMatches++;
+          });
+
+          // If searching with active query
+          if (cleanQuery.length > 0) {
+            if (groupMatches > 0) {
+              block.classList.remove('hidden');
+              // Automatically expand group to reveal matching countries
+              if (groupPanel) groupPanel.classList.remove('hidden');
+              if (groupToggle) {
+                groupToggle.setAttribute('aria-expanded', 'true');
+                groupToggle.classList.add('border-b-brand-border');
+                groupToggle.classList.remove('border-transparent');
+              }
+              if (groupChevron) groupChevron.classList.add('rotate-180');
+              if (countBadge) countBadge.textContent = `${groupMatches} match${groupMatches === 1 ? '' : 'es'}`;
+            } else {
+              block.classList.add('hidden');
+            }
+          } else {
+            // When query is empty, restore original collapsed state
+            block.classList.remove('hidden');
+            if (groupPanel) groupPanel.classList.add('hidden');
+            if (groupToggle) {
+              groupToggle.setAttribute('aria-expanded', 'false');
+              groupToggle.classList.remove('border-b-brand-border');
+              groupToggle.classList.add('border-transparent');
+            }
+            if (groupChevron) groupChevron.classList.remove('rotate-180');
+            if (countBadge) countBadge.textContent = String(itemsInGroup.length);
+          }
+
+          totalMatches += groupMatches;
+        });
+
+        // Update empty state & count announcer
+        if (emptyState) {
+          emptyState.classList.toggle('hidden', cleanQuery.length === 0 || totalMatches > 0);
+        }
+
+        if (countAnnouncer) {
+          if (cleanQuery.length > 0) {
+            countAnnouncer.textContent = `Found ${totalMatches} matching destination${totalMatches === 1 ? '' : 's'}`;
+          } else {
+            countAnnouncer.textContent = `Showing all ${totalItems} destinations (grouped)`;
+          }
+        }
+      }
+
+      searchInput?.addEventListener('input', (e) => {
+        applySearch((e.target as HTMLInputElement).value);
+      });
+
+      searchClear?.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.value = '';
+          applySearch('');
+          searchInput.focus();
+        }
+      });
+
+      resetSearchBtn?.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.value = '';
+          applySearch('');
+          searchInput.focus();
+        }
+      });
+
+      // 4. Select Country -> Autofill existing Enquiry Form & Smooth Scroll
+      selectBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const slug = btn.getAttribute('data-slug') || '';
+          const name = btn.getAttribute('data-name') || '';
+          const service = btn.getAttribute('data-service') || 'tourist';
+
+          const countrySelect = document.getElementById('form-country') as HTMLSelectElement | null;
+          const contextBanner = document.getElementById('enquiry-context-banner');
+          const contextBannerText = document.getElementById('context-banner-text');
+
+          if (countrySelect && slug) {
+            countrySelect.value = slug;
+            // Trigger change event for any listeners
+            countrySelect.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+
+          if (contextBanner && contextBannerText) {
+            const serviceLabel = service === 'work' ? 'WORK VISA' : 'TOURIST VISA';
+            contextBannerText.textContent = `Enquiring for: ${serviceLabel} • ${name.toUpperCase()}`;
+            contextBanner.classList.remove('hidden');
+          }
+
+          // Smooth scroll to enquiry form
+          const enquirySection = document.getElementById('enquiry');
+          if (enquirySection) {
+            enquirySection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    });
+  }
+
+  // Initialize on initial load and view transitions
+  document.addEventListener('DOMContentLoaded', initDestinationAccordions);
+</script>

@@ -181,8 +181,16 @@ async function runTests() {
     const additionalServicesCard = serviceDetails.find(c => c.title === 'Additional Services');
     const mbbsPhdCard = serviceDetails.find(c => c.title.includes('MBBS / PhD'));
 
+    // Verify exact component array order
+    assert(serviceDetails[0]?.title === 'Study Abroad', `Reading order Card 1 is Study Abroad (Actual: ${serviceDetails[0]?.title})`);
+    assert(serviceDetails[1]?.title.includes('MBBS / PhD'), `Reading order Card 2 is MBBS & PhD (Actual: ${serviceDetails[1]?.title})`);
+    assert(serviceDetails[2]?.title === 'Work Visa', `Reading order Card 3 is Work Visa (Actual: ${serviceDetails[2]?.title})`);
+    assert(serviceDetails[3]?.title === 'Tourist Visa', `Reading order Card 4 is Tourist Visa (Actual: ${serviceDetails[3]?.title})`);
+    assert(serviceDetails[4]?.title === 'Flight Booking', `Reading order Card 5 is Flight Booking (Actual: ${serviceDetails[4]?.title})`);
+    assert(serviceDetails[5]?.title === 'Additional Services', `Reading order Card 6 is Additional Services (Actual: ${serviceDetails[5]?.title})`);
+
     assert(studyAbroadCard && additionalServicesCard && additionalServicesCard.img?.includes('Additional%20Visa%20Services%20Guide.png'),
-      'Card 2 has approved Additional Visa Services Guide client poster image',
+      'Card 6 has approved Additional Visa Services Guide client poster image',
       `Study: ${studyAbroadCard?.img}, Additional: ${additionalServicesCard?.img}`
     );
 

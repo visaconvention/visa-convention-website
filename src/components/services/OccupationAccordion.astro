@@ -1,0 +1,184 @@
+---
+import type { WorkOccupation } from '../../types';
+
+interface Props {
+  occupations: WorkOccupation[];
+}
+
+const { occupations } = Astro.props;
+---
+
+<div class="occupation-accordion-root w-full">
+  <!-- Disclaimer Notice Banner -->
+  <div class="mb-4 p-3 rounded-xl bg-amber-50/80 border border-amber-200/80 text-xs text-amber-900 flex items-start gap-2">
+    <svg class="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <p class="leading-relaxed">
+      <strong>Administrative Guidance Notice:</strong> These 12 occupational profiles represent documentation categories supported by Visa Convention for candidates holding verified employer sponsorship. They are not live job vacancies or guaranteed placements.
+    </p>
+  </div>
+
+  <!-- Compact Accordion List (12 Occupations) -->
+  <div class="rounded-2xl border border-brand-border bg-white overflow-hidden shadow-2xs divide-y divide-brand-border/60" role="region" aria-label="Occupational Focus Areas">
+    {occupations.map((occ) => (
+      <div class="occ-item" data-occ-id={occ.id} data-occ-title={occ.title}>
+        <!-- Row Button: 48-56px high, shows Occupation Name + Sector Badge + Chevron -->
+        <button
+          type="button"
+          class="occ-toggle w-full min-h-[48px] sm:min-h-[52px] px-4 sm:px-5 py-3 text-left flex items-center justify-between gap-3 hover:bg-brand-bg/40 transition-colors focus-visible:outline-2 focus-visible:outline-brand-blue"
+          aria-expanded="false"
+          aria-controls={`occ-details-${occ.id}`}
+        >
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="text-sm sm:text-[15px] font-semibold text-brand-navy truncate">
+              {occ.title}
+            </span>
+            <span class="text-[10px] font-medium px-2 py-0.5 rounded-md bg-brand-bg text-brand-muted border border-brand-border/60 flex-shrink-0">
+              {occ.sector}
+            </span>
+          </div>
+
+          <svg
+            class="occ-chevron w-4 h-4 text-brand-muted transition-transform duration-200 flex-shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- Expanded Details Drawer (Collapsed by default) -->
+        <div
+          id={`occ-details-${occ.id}`}
+          class="occ-details hidden px-4 sm:px-5 pb-4 pt-2 bg-brand-bg/25 border-t border-brand-border/40"
+        >
+          <p class="text-xs text-brand-muted leading-relaxed mb-3">
+            {occ.description}
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <!-- Sample Roles -->
+            <div class="p-3 rounded-xl bg-white border border-brand-border/80">
+              <span class="text-[11px] font-bold text-brand-navy block mb-1.5 uppercase tracking-wider">
+                Sample Roles:
+              </span>
+              <div class="flex flex-wrap gap-1.5">
+                {occ.sampleRoles.map((role) => (
+                  <span class="text-[11px] bg-brand-bg px-2 py-0.5 rounded-md text-brand-navy border border-brand-border/50">
+                    {role}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Document Readiness -->
+            <div class="p-3 rounded-xl bg-white border border-brand-border/80">
+              <span class="text-[11px] font-bold text-brand-navy block mb-1.5 uppercase tracking-wider">
+                Prerequisite Documentation:
+              </span>
+              <ul class="text-[11px] text-brand-muted space-y-1">
+                {occ.documentReadiness.map((doc) => (
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-brand-blue font-bold">✓</span>
+                    <span>{doc}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <!-- Select & Apply Action Button -->
+          <div>
+            <button
+              type="button"
+              class="occ-select-btn inline-flex items-center justify-center gap-1.5 w-full sm:w-auto px-4 py-2 rounded-xl bg-brand-navy hover:bg-brand-blue text-white text-xs font-bold transition-all shadow-2xs"
+              data-occ-id={occ.id}
+              data-occ-title={occ.title}
+            >
+              <span>Select {occ.title} & Apply to Form</span>
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  function initOccupationAccordion() {
+    const root = document.querySelector('.occupation-accordion-root');
+    if (!root || root.hasAttribute('data-initialized')) return;
+    root.setAttribute('data-initialized', 'true');
+
+    const items = root.querySelectorAll('.occ-item');
+    const selectBtns = root.querySelectorAll('.occ-select-btn');
+
+    items.forEach((item) => {
+      const toggle = item.querySelector('.occ-toggle') as HTMLButtonElement | null;
+      const details = item.querySelector('.occ-details') as HTMLElement | null;
+      const chevron = item.querySelector('.occ-chevron') as HTMLElement | null;
+
+      if (!toggle || !details) return;
+
+      toggle.addEventListener('click', () => {
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+        // Collapse all other occupations
+        if (!isExpanded) {
+          items.forEach((other) => {
+            if (other === item) return;
+            const otherToggle = other.querySelector('.occ-toggle') as HTMLButtonElement | null;
+            const otherDetails = other.querySelector('.occ-details') as HTMLElement | null;
+            const otherChevron = other.querySelector('.occ-chevron') as HTMLElement | null;
+
+            if (otherToggle && otherDetails) {
+              otherToggle.setAttribute('aria-expanded', 'false');
+              otherDetails.classList.add('hidden');
+              if (otherChevron) otherChevron.classList.remove('rotate-180');
+            }
+          });
+        }
+
+        const nextState = !isExpanded;
+        toggle.setAttribute('aria-expanded', String(nextState));
+        details.classList.toggle('hidden', !nextState);
+        if (chevron) chevron.classList.toggle('rotate-180', nextState);
+      });
+    });
+
+    // Populate Enquiry Form
+    selectBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const title = btn.getAttribute('data-occ-title') || '';
+        const messageField = document.getElementById('form-message') as HTMLTextAreaElement | null;
+        const contextBanner = document.getElementById('enquiry-context-banner');
+        const contextBannerText = document.getElementById('context-banner-text');
+
+        if (title && messageField) {
+          const prefix = `[Work Visa Occupation: ${title}] `;
+          if (!messageField.value.includes(prefix)) {
+            messageField.value = prefix + messageField.value.replace(/\[Work Visa Occupation:.*?\]\s*/g, '');
+          }
+        }
+
+        if (contextBanner && contextBannerText) {
+          contextBannerText.textContent = `Enquiring for: WORK VISA • ${title.toUpperCase()}`;
+          contextBanner.classList.remove('hidden');
+        }
+
+        const enquirySection = document.getElementById('enquiry');
+        if (enquirySection) {
+          enquirySection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initOccupationAccordion);
+</script>

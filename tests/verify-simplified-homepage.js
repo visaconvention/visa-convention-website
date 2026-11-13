@@ -116,29 +116,37 @@ async function run() {
 
     assert(serviceCards.length === 6, `Homepage contains exactly 6 service cards (Actual: ${serviceCards.length})`);
     
+    // Assert exact order in component array
+    assert(serviceCards[0].title === 'Study Abroad', `Card 1 is Study Abroad (Actual: ${serviceCards[0].title})`);
+    assert(serviceCards[1].title.includes('MBBS / PhD'), `Card 2 is MBBS / PhD (Actual: ${serviceCards[1].title})`);
+    assert(serviceCards[2].title === 'Work Visa', `Card 3 is Work Visa (Actual: ${serviceCards[2].title})`);
+    assert(serviceCards[3].title === 'Tourist Visa', `Card 4 is Tourist Visa (Actual: ${serviceCards[3].title})`);
+    assert(serviceCards[4].title === 'Flight Booking', `Card 5 is Flight Booking (Actual: ${serviceCards[4].title})`);
+    assert(serviceCards[5].title === 'Additional Services', `Card 6 is Additional Services (Actual: ${serviceCards[5].title})`);
+
     const studyAbroad = serviceCards.find(c => c.title === 'Study Abroad');
     assert(studyAbroad && studyAbroad.link === '/study-abroad/', 'Card 1 (Study Abroad) links directly to /study-abroad/');
     assert(studyAbroad?.img?.includes('Study%20Abroad') || studyAbroad?.img === '/assets/images/services/service-study-visa.jpg', 'Card 1 has distinct study visa asset');
 
-    const mbbsPhd = serviceCards.find(c => c.title === 'MBBS / PhD Abroad');
-    assert(mbbsPhd && (mbbsPhd.link === '/services/mbbs/' || mbbsPhd.link?.includes('/services/mbbs/')), 'Card (MBBS / PhD Abroad) links directly to /services/mbbs/');
-    assert(mbbsPhd?.img?.includes('MBBS') || mbbsPhd?.img === '/assets/images/mbbs-education.jpg', 'Card has distinct medical education asset');
-
-    const touristVisa = serviceCards.find(c => c.title === 'Tourist Visa');
-    assert(touristVisa && touristVisa.link === '/services/tourist-visa/', 'Card (Tourist Visa) links directly to /services/tourist-visa/');
-    assert(touristVisa?.img?.includes('Tourist%20Visa') || touristVisa?.img === '/assets/images/services/service-tourist-visa.jpg', 'Card has distinct tourist visa asset');
+    const mbbsPhd = serviceCards.find(c => c.title.includes('MBBS / PhD'));
+    assert(mbbsPhd && (mbbsPhd.link === '/services/mbbs/' || mbbsPhd.link?.includes('/services/mbbs/')), 'Card 2 (MBBS / PhD Abroad) links directly to /services/mbbs/');
+    assert(mbbsPhd?.img?.includes('MBBS') || mbbsPhd?.img === '/assets/images/mbbs-education.jpg', 'Card 2 has distinct medical education asset');
 
     const workVisa = serviceCards.find(c => c.title === 'Work Visa');
-    assert(workVisa && workVisa.link === '/services/work-visa/', 'Card (Work Visa) links directly to /services/work-visa/');
-    assert(workVisa?.img?.includes('Work%20Visa') || workVisa?.img === '/assets/images/services/service-work-visa.jpg', 'Card has distinct work visa asset');
+    assert(workVisa && workVisa.link === '/services/work-visa/', 'Card 3 (Work Visa) links directly to /services/work-visa/');
+    assert(workVisa?.img?.includes('Work%20Visa') || workVisa?.img === '/assets/images/services/service-work-visa.jpg', 'Card 3 has distinct work visa asset');
+
+    const touristVisa = serviceCards.find(c => c.title === 'Tourist Visa');
+    assert(touristVisa && touristVisa.link === '/services/tourist-visa/', 'Card 4 (Tourist Visa) links directly to /services/tourist-visa/');
+    assert(touristVisa?.img?.includes('Tourist%20Visa') || touristVisa?.img === '/assets/images/services/service-tourist-visa.jpg', 'Card 4 has distinct tourist visa asset');
 
     const flightBooking = serviceCards.find(c => c.title === 'Flight Booking');
-    assert(flightBooking && flightBooking.link === '/services/flight-booking/', 'Card (Flight Booking) links directly to /services/flight-booking/');
-    assert(flightBooking?.img?.includes('Flight%20Booking') || flightBooking?.img === '/assets/images/flight-hero-aviation.jpg', 'Card has distinct aviation asset');
+    assert(flightBooking && flightBooking.link === '/services/flight-booking/', 'Card 5 (Flight Booking) links directly to /services/flight-booking/');
+    assert(flightBooking?.img?.includes('Flight%20Booking') || flightBooking?.img === '/assets/images/flight-hero-aviation.jpg', 'Card 5 has distinct aviation asset');
 
     const additionalServices = serviceCards.find(c => c.title === 'Additional Services');
-    assert(additionalServices && additionalServices.link === '/services/additional-services/', 'Card 2 (Additional Services) links directly to /services/additional-services/');
-    assert(additionalServices?.img?.includes('Additional%20Visa%20Services%20Guide.png'), 'Card 2 has approved Additional Visa Services Guide client poster image');
+    assert(additionalServices && additionalServices.link === '/services/additional-services/', 'Card 6 (Additional Services) links directly to /services/additional-services/');
+    assert(additionalServices?.img?.includes('Additional%20Visa%20Services%20Guide.png'), 'Card 6 has approved Additional Visa Services Guide client poster image');
 
     // Check all 6 images are unique
     const uniqueImages = new Set(serviceCards.map(c => c.img));
