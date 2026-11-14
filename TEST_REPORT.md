@@ -420,7 +420,9 @@ node tests/e2e-comprehensive-audit.test.js
 | **Optimization** | `verify-compact-footer.js` | 44 | 0 | **100% PASS** |
 | **Optimization** | `verify-visa-services-nav.js` | 26 | 0 | **100% PASS** |
 | **Optimization** | `verify-floating-whatsapp-enhancement.js` | 65 | 0 | **100% PASS** |
-| **Cumulative** | **Entire Test Suite** | **692** | **0** | **100% PASS (692/692)** |
+| **Optimization** | `verify-centered-hero-redesign.js` | 48 | 0 | **100% PASS** |
+| **Optimization** | `verify-mbbs-phd-nav-optimization.js` | 65 | 0 | **100% PASS** |
+| **Cumulative** | **Entire Test Suite** | **805** | **0** | **100% PASS (805/805)** |
 
 # Preview static production build locally
 npx astro preview --port 4321

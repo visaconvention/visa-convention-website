@@ -9,6 +9,7 @@ interface Props {
   selectedUniversity?: string;
   selectedCategory?: string;
   selectedOccupation?: string;
+  allowedCountries?: string[];
   title?: string;
   subtitle?: string;
   class?: string;
@@ -20,6 +21,7 @@ const {
   selectedUniversity = '',
   selectedCategory = '',
   selectedOccupation = '',
+  allowedCountries,
   title = 'Request a Confidential Assessment',
   subtitle = 'Fill in your details and an advisor will evaluate your profile and contact you directly.',
   class: className = '',
@@ -41,6 +43,10 @@ const serviceOptions = [
 const allDropdownCountries = countryRegistry && countryRegistry.length > 0
   ? [...countryRegistry].sort((a, b) => a.name.localeCompare(b.name))
   : countriesData;
+
+const dropdownCountries = allowedCountries && allowedCountries.length > 0
+  ? allDropdownCountries.filter((c) => allowedCountries.includes(c.slug))
+  : allDropdownCountries;
 ---
 
 <div class={`bg-white rounded-3xl p-7 sm:p-10 border border-brand-border shadow-card ${className}`} id="enquiry-card-container">
@@ -230,12 +236,12 @@ const allDropdownCountries = countryRegistry && countryRegistry.length > 0
             class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
           >
             <option value="">Select Country...</option>
-            {allDropdownCountries.map((c) => (
+            {dropdownCountries.map((c) => (
               <option value={c.slug} selected={c.slug === selectedCountry}>
                 {c.name}
               </option>
             ))}
-            <option value="other">Other Global Destination</option>
+            {!allowedCountries && <option value="other">Other Global Destination</option>}
           </select>
         </div>
 

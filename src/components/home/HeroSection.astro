@@ -7,166 +7,72 @@ interface Props {
   primaryCtaHref?: string;
   secondaryCtaText?: string;
   secondaryCtaHref?: string;
-  imageSrc?: string;
-  imageAlt?: string;
 }
 
 const {
   headline = 'Explore the World with Visa Convention',
-  subheadline = 'Study Abroad, Visa & Travel Services',
-  description = 'Structured guidance for university admissions, consular visa files, and flight reservations from our Hanumangarh counseling office.',
+  subheadline = 'STUDY ABROAD, VISA & TRAVEL SERVICES',
+  description = 'Structured guidance for university admissions across 35+ countries, consular visa dossiers, and flight reservations from our Hanumangarh counseling practice.',
   primaryCtaText = 'Explore Study Abroad',
   primaryCtaHref = '/study-abroad/',
   secondaryCtaText = 'Explore Services',
   secondaryCtaHref = '#services',
-  imageSrc = '/assets/images/hero-landmarks.jpg',
-  imageAlt = 'World iconic landmarks including the Statue of Liberty, Big Ben, Eiffel Tower, and Sydney Opera House',
 } = Astro.props;
 ---
 
 <!--
   Hero Section — Visa Convention
-  Layout: Custom two-column grid (text ~52% | image ~48%)
-  Mobile Priority: Headline -> Supporting Text -> CTAs -> Landmark Image
-  Desktop targets (1366px):
-    Hero height  : ~460–490px content-led
-    Image width  : ~510px (pinned via max-w on right col)
-    Image height : ~425px (aspect-ratio 6/5)
-    Text column  : ~590–610px
-    Gap          : ~40px (clamp 32–48px)
-  Mobile: single column, text first, image ~240–260px tall
+  Layout: Centered, high-authority typographic composition
+  Design: Full-width responsive centered layout, zero external images
+  Desktop target height: ~380–460px content-driven
 -->
-<section class="bg-gradient-to-b from-[#EAF4FF] via-[#F5F8FC] to-white border-b border-brand-border py-6 sm:py-8 lg:py-10">
+<section class="hero-centered-section bg-gradient-to-b from-[#EAF4FF] via-[#F5F8FC] to-white border-b border-brand-border py-8 sm:py-9 lg:py-10">
   <div class="site-container">
-    <div class="hero-grid">
+    <div class="max-w-[920px] mx-auto text-center px-3 sm:px-4">
 
-      <!-- ── Left: Copy & CTAs (~52%) ───────────────────────────────────── -->
-      <div class="hero-content space-y-4 sm:space-y-5">
-        <div>
-          <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-brand-blue mb-2.5">
-            {subheadline}
-          </p>
-          <h1 class="text-[1.85rem] min-[390px]:text-[2.15rem] sm:text-[2.85rem] lg:text-[3.35rem] font-black text-brand-navy tracking-tight leading-[1.1] text-balance">
-            {headline === 'Explore the World with Visa Convention' ? (
-              <>Explore the World with <span class="text-brand-red">Visa Convention</span></>
-            ) : (
-              headline
-            )}
-          </h1>
-        </div>
+      <!-- Eyebrow / Small Heading -->
+      <p class="text-xs sm:text-sm md:text-[15px] font-bold uppercase tracking-wider md:tracking-widest text-brand-blue mb-2.5 sm:mb-3">
+        {subheadline}
+      </p>
 
-        <p class="text-sm sm:text-base lg:text-[1.08rem] text-brand-muted leading-relaxed max-w-[52ch] font-normal">
-          {description}
-        </p>
+      <!-- Main Headline H1 -->
+      <h1 class="text-[2.15rem] min-[390px]:text-[2.45rem] sm:text-5xl md:text-6xl lg:text-[66px] xl:text-[70px] font-black text-brand-navy tracking-tight leading-[1.08] sm:leading-[1.1] text-balance mb-3.5 sm:mb-4">
+        {headline === 'Explore the World with Visa Convention' ? (
+          <>
+            Explore the World
+            <span class="block sm:inline"> </span>
+            <br class="hidden sm:inline" />
+            with <span class="text-brand-red">Visa Convention</span>
+          </>
+        ) : (
+          headline
+        )}
+      </h1>
 
-        <!-- CTAs -->
-        <div class="flex flex-col min-[480px]:flex-row items-stretch min-[480px]:items-center gap-3 pt-1">
-          <a
-            href={primaryCtaHref}
-            class="btn-primary text-center px-6 py-3.5 text-sm min-h-[48px] w-full min-[480px]:w-auto shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2"
-          >
-            <span>{primaryCtaText}</span>
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-          <a
-            href={secondaryCtaHref}
-            class="btn-outline text-center px-6 py-3.5 text-sm min-h-[48px] w-full min-[480px]:w-auto bg-white hover:bg-brand-bg transition-all flex items-center justify-center"
-          >
-            <span>{secondaryCtaText}</span>
-          </a>
-        </div>
-      </div>
+      <!-- Supporting Description -->
+      <p class="text-[15px] sm:text-base md:text-[19px] lg:text-[20px] text-brand-muted leading-relaxed font-normal max-w-[700px] mx-auto text-balance mb-5 sm:mb-6">
+        {description}
+      </p>
 
-      <!-- ── Right: Four-Landmark Hero Visual (~48%) ───────────────────── -->
-      <div class="hero-image-wrap">
-        <div class="hero-image-frame">
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            width="700"
-            height="583"
-            class="hero-image"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-          <!-- Subtle editorial caption badge -->
-          <div class="absolute bottom-3 left-3 right-3 text-left pointer-events-none">
-            <span class="inline-block px-2.5 py-1 rounded-md bg-brand-navy/85 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-xs border border-white/20">
-              New York • London • Paris • Sydney
-            </span>
-          </div>
-        </div>
+      <!-- Centered CTAs -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto">
+        <a
+          href={primaryCtaHref}
+          class="btn-primary text-center px-6 py-3.5 sm:px-7 sm:py-3.5 text-sm sm:text-base min-h-[48px] w-full sm:w-auto shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 rounded-xl"
+        >
+          <span>{primaryCtaText}</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+        <a
+          href={secondaryCtaHref}
+          class="btn-outline text-center px-6 py-3.5 sm:px-7 sm:py-3.5 text-sm sm:text-base min-h-[48px] w-full sm:w-auto bg-white hover:bg-brand-bg transition-all flex items-center justify-center rounded-xl"
+        >
+          <span>{secondaryCtaText}</span>
+        </a>
       </div>
 
     </div>
   </div>
 </section>
-
-<style>
-  /* ── Hero Grid ──────────────────────────────────────────────────── */
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    gap: clamp(1.75rem, 3vw, 2.5rem);
-  }
-
-  @media (min-width: 1024px) {
-    .hero-grid {
-      /* Text column fills ~52%; image column capped at ~510px (~48%) */
-      grid-template-columns: 1fr minmax(0, 510px);
-      gap: clamp(2rem, 3.5vw, 3rem);
-    }
-  }
-
-  /* ── Content Column ─────────────────────────────────────────────── */
-  .hero-content {
-    min-width: 0;
-    text-align: left;
-  }
-
-  /* ── Image Frame ────────────────────────────────────────────────── */
-  .hero-image-wrap {
-    width: 100%;
-  }
-
-  @media (min-width: 1024px) {
-    .hero-image-wrap {
-      justify-self: end;
-    }
-  }
-
-  .hero-image-frame {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 1.25rem;       /* 20px refined corner */
-    border: 1px solid var(--color-brand-border);
-    background-color: var(--color-brand-bg);
-    box-shadow: 0 4px 20px -2px rgba(16, 42, 83, 0.08);
-    aspect-ratio: 6 / 5;
-  }
-
-  @media (max-width: 1023px) {
-    .hero-image-frame {
-      max-height: 320px;
-    }
-  }
-
-  @media (max-width: 479px) {
-    .hero-image-frame {
-      max-height: 260px;
-    }
-  }
-
-  .hero-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-  }
-</style>

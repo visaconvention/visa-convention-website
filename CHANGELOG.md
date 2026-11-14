@@ -6,6 +6,107 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.41.0] - 2026-11-14 — Navigation, MBBS Abroad & PhD Abroad Optimization
+
+### Summary
+- **Study Abroad Dropdown Optimization (`src/data/site-config.ts`):**
+  - Removed "Find Universities" menu item, including its description ("Search 1,000+ universities & colleges"), icon, link, and spacing from the shared navigation configuration.
+  - Automatically reflected in both desktop navigation (`DesktopNavigation.astro`) and mobile drawer (`MobileNavigation.astro`).
+  - Preserved remaining 5 core verticals: `Explore 35+ Countries`, `Study in Europe`, `Study Visa Assistance`, `MBBS Abroad`, and `PhD Abroad`.
+  - Maintained the bottom footer link `Search 1,000+ Universities →` (`/universities/`) as the sole dedicated university discovery shortcut in this dropdown.
+  - Rebalanced menu spacing and verified that the full directory at `/universities/` remains 100% accessible.
+- **MBBS Abroad Page Overhaul (`src/pages/services/mbbs.astro`):**
+  - Completely excised promotional bloat:
+    - Deleted "Step-by-Step Application Process" (5 steps).
+    - Deleted "Why Consult Visa Convention" (3 promotional cards).
+    - Deleted "Important Conditions & Disclaimers" oversized panel.
+    - Deleted orphaned "CLARITY" labels and unused wrappers.
+  - Preserved essential regulatory information concisely:
+    - High-visibility NMC FMGL Regulations, 2021 compliance notice (54-month course + 12-month internship at same faculty, 100% English medium, mandatory NEET-UG qualification, NExT / FMGE screening).
+    - Non-partnership statutory integrity notice (fees paid directly to university bank accounts; no official affiliation implied).
+  - Preserved all 34 approved university records in "Universities for Application Guidance".
+  - Implemented responsive CSS Grid matching exact container widths:
+    - `≥1440px`: 4 columns
+    - `1024–1439px`: 3 columns
+    - `600–1023px`: 2 columns
+    - `<600px`: 1 column
+    - Gaps: 14–16px (`gap-3.5 sm:gap-4`) with compact padding and clean card borders.
+  - Each tile displays full university name (never truncated), location (country and city), essential details/notes, and "Request Guidance →" action.
+  - Clicking any university tile pre-populates `#form-university` and `#form-country` in the consultation form and scrolls smoothly to `#enquiry`.
+  - Preserved authentic client hero image `/assets/images/services/MBBS%20&%20PhD%20Courses%20Abroad.png`.
+- **PhD Abroad Page Restructuring (`src/pages/services/phd.astro`):**
+  - Completely excised promotional bloat:
+    - Deleted "What Our Guidance Includes".
+    - Deleted "Step-by-Step Application Process".
+    - Deleted "Why Consult Visa Convention".
+    - Deleted "Important Conditions & Disclaimers".
+    - Deleted "Frequently Asked Questions".
+  - Restricted PhD content strictly to **3 countries and 7 approved universities**:
+    - **Latvia (2):** Riga Technical University, Turība University.
+    - **Lithuania (3):** Vilnius University (VU), Kaunas University of Technology (KTU), Vilnius Gediminas Technical University (Vilnius Tech).
+    - **Portugal (2):** University of Lisbon, University of Porto.
+  - Applied restrictions across all PhD-specific elements without modifying shared datasets used by other services.
+  - Implemented streamlined 5-stage page structure:
+    1. PhD Hero with original client image, concise introduction, and statutory advisory notice.
+    2. Three compact country selectors (interactive filter tabs for All, Latvia, Lithuania, Portugal).
+    3. Country-filtered list of the 7 approved universities.
+    4. Dedicated enquiry form with country dropdown restricted exclusively to Latvia, Lithuania, Portugal via `allowedCountries` prop on `EnquiryForm.astro`.
+    5. Automatic pre-population: clicking any university card populates `#form-university` and `#form-country` and reveals the pre-selection context banner.
+- **QA Verification & Testing (`tests/verify-mbbs-phd-nav-optimization.js`):**
+  - 65/65 checks passed (100%).
+  - Multi-viewport horizontal overflow audit verified at 320, 360, 375, 390, 430, 768, 1024, 1366, 1440px with zero overflow.
+  - Static production build `npm run build` compiled 65 pages in 6.42s with 0 errors.
+  - Captured evidence screenshots:
+    - `mbbs-desktop-1440px.png`
+    - `mbbs-mobile-390px.png`
+    - `phd-desktop-1440px.png`
+    - `phd-mobile-390px.png`
+    - `study-abroad-nav-desktop-1440px.png`
+
+---
+
+
+
+### Summary
+- **Complete Removal of Hero Landmark Picture:**
+  - Excised the right-side landmark image (`/assets/images/hero-landmarks.jpg`), image frame, wrapper, and caption overlay (`NEW YORK • LONDON • PARIS • SYDNEY`).
+  - Completely replaced the two-column grid (`.hero-grid`) with a clean, centered, full-width typographic layout.
+  - Removed unused image props (`imageSrc`, `imageAlt`) from `src/components/home/HeroSection.astro` and invocation in `src/pages/index.astro`.
+- **Centered, High-Authority Content Hierarchy:**
+  - **Eyebrow / Small Heading:** Center-aligned `STUDY ABROAD, VISA & TRAVEL SERVICES` with `uppercase tracking-wider md:tracking-widest text-brand-blue` (`14–15px`).
+  - **Main Headline (H1):** Centered `Explore the World with Visa Convention` with `Visa Convention` highlighted in Signature Red (`#C91D32`).
+    - Scaled to fluid responsive sizing: `text-[2.15rem] min-[390px]:text-[2.45rem] sm:text-5xl md:text-6xl lg:text-[66px] xl:text-[70px]`.
+    - Tight line-height: `1.08–1.10`.
+    - Natural responsive break on desktop (`<br class="hidden sm:inline" />`) and fluid wrapping on mobile with `text-balance`.
+  - **Supporting Description:** Centered supporting copy (`19–20px` desktop, `15–16px` mobile) with `max-w-[700px] mx-auto text-balance text-brand-muted`.
+  - **Centered Action CTAs:**
+    - Primary CTA: `Explore Study Abroad` (`/study-abroad/`) with right arrow icon (`btn-primary`).
+    - Secondary CTA: `Explore Services` (`#services`) (`btn-outline`).
+    - Centered side-by-side on desktop and tablets (`flex-row justify-center`); stacked full-width on mobile (`flex-col items-center`).
+- **Proportions & Content-Driven Desktop Height:**
+  - Content container bounded to `max-w-[920px] mx-auto text-center px-3 sm:px-4`.
+  - Refined vertical padding to `py-8 sm:py-9 lg:py-10`.
+  - Desktop hero section height measured at **454px**, cleanly within the recommended **380–460px** target.
+  - Seamless, natural visual handoff into the colorful 6-service photographic grid below.
+- **QA Verification & Testing:**
+  - `tests/verify-centered-hero-redesign.js`: 48 / 48 checks passed (100%).
+  - `tests/verify-simplified-homepage.js`: 43 / 43 checks passed (100%).
+  - `tests/verify-card-rearrangement.js`: 54 / 54 checks passed (100%).
+  - `tests/verify-floating-whatsapp-enhancement.js`: 65 / 65 checks passed (100%).
+  - `tests/verify-compact-footer.js`: 44 / 44 checks passed (100%).
+  - `tests/verify-visa-services-nav.js`: 26 / 26 checks passed (100%).
+  - `npx astro check`: 0 errors, 0 warnings across 130 files.
+  - `npm run build`: 65 static pages compiled in 6.77s.
+  - Before-and-after visual evidence screenshots captured:
+    - `hero-before-desktop-1440px.png`
+    - `hero-before-mobile-375px.png`
+    - `hero-after-desktop-1440px.png`
+    - `hero-after-desktop-1366px.png`
+    - `hero-after-mobile-375px.png`
+    - `hero-after-mobile-320px.png`
+
+---
+
 ## [1.39.0] - 2026-11-14 — Floating WhatsApp Pill Button & Attention Interaction Enhancement
 
 ### Summary
