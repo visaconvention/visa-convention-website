@@ -413,7 +413,14 @@ node tests/e2e-comprehensive-audit.test.js
 | **Optimization** | `tourist-work-services.test.js` | 30 | 0 | **100% PASS** |
 | **Optimization** | `verify-tourist-work-optimization.js` | 41 | 0 | **100% PASS** |
 | **Optimization** | `verify-tourist-faq-consultation-layout.js` | 20 | 0 | **100% PASS** |
-| **Cumulative** | **Entire Test Suite** | **308** | **0** | **100% PASS (308/308)** |
+| **Optimization** | `verify-homepage-service-cards-optimization.js` | 87 | 0 | **100% PASS** |
+| **Optimization** | `verify-card-rearrangement.js` | 54 | 0 | **100% PASS** |
+| **Optimization** | `verify-simplified-homepage.js` | 43 | 0 | **100% PASS** |
+| **Optimization** | `verify-mobile-first-optimization.js` | 65 | 0 | **100% PASS** |
+| **Optimization** | `verify-compact-footer.js` | 44 | 0 | **100% PASS** |
+| **Optimization** | `verify-visa-services-nav.js` | 26 | 0 | **100% PASS** |
+| **Optimization** | `verify-floating-whatsapp-enhancement.js` | 65 | 0 | **100% PASS** |
+| **Cumulative** | **Entire Test Suite** | **692** | **0** | **100% PASS (692/692)** |
 
 # Preview static production build locally
 npx astro preview --port 4321

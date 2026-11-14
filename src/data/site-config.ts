@@ -83,8 +83,7 @@ export const siteConfig = {
       children: [
         { label: 'Tourist & Visitor Visa', href: '/services/tourist-visa/', description: 'Visitor visas, itineraries & appointment prep' },
         { label: 'Work Visa Support', href: '/services/work-visa/', description: 'Employer documentation & regulatory guidance' },
-        { label: 'Additional Services', href: '/services/additional-services/', description: 'SOP review, apostille & pre-departure briefs' },
-        { label: 'All Services Overview', href: '/services/', description: 'Comparative matrix of all 7 service verticals' },
+        { label: 'Additional Services', href: '/services/additional-services/', description: 'Passport assistance, apostille, PCC & translations' },
       ],
     },
     {

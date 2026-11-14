@@ -6,6 +6,146 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.39.0] - 2026-11-14 — Floating WhatsApp Pill Button & Attention Interaction Enhancement
+
+### Summary
+- **Pill-Shaped Button Redesign (`src/components/common/WhatsAppButton.astro`):**
+  - Converted the circular floating button into a prominent, recognizable pill-shaped CTA.
+  - Official WhatsApp SVG icon preserved with recognized vibrant green background (`bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da850]`).
+  - **Desktop Label:** "Chat on WhatsApp" (rendered from `sm` breakpoint up).
+  - **Mobile Label:** "WhatsApp Chat" (rendered on mobile viewports).
+  - High-contrast white typography with subtle drop shadow and pill rounded corners (`rounded-full`).
+  - Elevated subtle box shadows (`shadow-lg hover:shadow-xl`).
+  - Direct connection preserved to official Visa Convention phone number: **+91 96803 95539** (`https://wa.me/919680395539?...`).
+- **Attention Animation System:**
+  - **A. Subtle Pulse:**
+    - Outer glow ring (`#wa-pulse-ring`) with gentle scale (`1` to `1.3`) and fade (`0.65` to `0`).
+    - Triggered ~1.8 seconds after page load.
+    - Repeats restrained single pulse every ~18 seconds without continuous jarring scaling or flashing.
+  - **B. Occasional Contact Prompt Tooltip:**
+    - Small contextual tooltip above the button: `"Need help? Chat with us!"`.
+    - Downward pointer caret directed at the WhatsApp button.
+    - Includes accessible dismiss button (`×`).
+    - Appears ~2.6 seconds after initial page load and automatically dismisses after ~4 seconds.
+    - Capped at maximum 2–3 appearances per browsing session using `sessionStorage` (`vc_wa_prompt_count`).
+    - Permanently silenced for the session if user interacts with (clicks) the button or dismisses the prompt (`vc_wa_interacted`).
+  - **C. Desktop Hover & Keyboard Accessibility:**
+    - Smooth 200ms elevation transition (`hover:-translate-y-0.5`).
+    - Visible high-contrast keyboard focus ring (`focus-visible:ring-3 focus-visible:ring-[#25D366] focus-visible:ring-offset-2`).
+- **Mobile-First & Layout Safe Clearance:**
+  - Inset safe-area handling: `padding-bottom: env(safe-area-inset-bottom, 0px)` and `padding-right: env(safe-area-inset-right, 0px)`.
+  - Rebalanced footer legal links row margin (`mr-36 sm:mr-44 lg:mr-0` in `src/components/layout/Footer.astro`) ensuring zero overlap between footer interactive links and the floating pill button at any scroll depth.
+  - Full respect for `prefers-reduced-motion: reduce`: completely disables pulse ring animations and button transforms.
+  - Maintains touch target >= 44×44px (measured 144×44px on mobile, 182×44px on desktop).
+  - Zero horizontal overflow across all 9 viewports (320px, 360px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px).
+- **QA Verification & Testing:**
+  - `tests/verify-floating-whatsapp-enhancement.js`: 65 / 65 checks passed (100%).
+  - `tests/verify-compact-footer.js`: 44 / 44 checks passed (100%).
+  - `tests/verify-visa-services-nav.js`: 26 / 26 checks passed (100%).
+  - `tests/verify-card-rearrangement.js`: 54 / 54 checks passed (100%).
+  - `tests/verify-simplified-homepage.js`: 43 / 43 checks passed (100%).
+  - `npx astro check`: 0 errors, 0 warnings across 128 files.
+  - `npm run build`: 65 static pages compiled in 9.19s.
+  - Visual evidence screenshots captured:
+    - `whatsapp-enhanced-desktop-1440px.png`
+    - `whatsapp-enhanced-mobile-375px.png`
+    - `whatsapp-enhanced-mobile-320px.png`
+
+---
+
+## [1.38.0] - 2026-11-14 — Homepage Service Cards Image Replacement, Badge Removal & Full-Card Clickability
+
+### Summary
+- **Replacement of All Six Homepage Service Card Images (`C:\Users\ACER\Desktop\Visa MASTER\images\`):**
+  - Mapped and copied all 6 client-supplied poster images directly into project assets (`public/assets/images/services/`):
+    1. **Study Abroad:** `Study Abroad_ Your Global Future.png` (1672×941)
+    2. **MBBS / PhD Abroad:** `MBBS & PhD Courses Abroad.png` (1670×813)
+    3. **Work Visa:** `Global Work Visa Opportunities.png` (1672×828)
+    4. **Tourist Visa:** `Vibrant Tourist Visa Travel Poster.png` (1672×835)
+    5. **Flight Booking:** `Flight Booking and Dummy Tickets.png` (1672×788)
+    6. **Additional Services:** `Additional Visa Services Guide.png` (1672×941)
+  - Applied `object-fit: contain` on all card images within their `aspect-video` containers with `bg-brand-bg` background, completely eliminating any clipping of poster typography or edges.
+  - Image files verified to exist in both `public/` and `dist/` directories; referenced exclusively via project-relative URLs (`/assets/images/services/...`).
+- **Complete Removal of Top-Left Category Badge Overlays:**
+  - Removed all 6 website-generated badge overlays from the DOM and component tree:
+    - `HIGHER EDUCATION`
+    - `MEDICAL & DOCTORAL`
+    - `ADMINISTRATIVE COMPLIANCE`
+    - `VISITOR VISAS`
+    - `AVIATION DESK`
+    - `DOCUMENTATION SUPPORT`
+  - Zero overlay badge components or sibling tags remain in DOM; card visuals now display cleanly without artificial overlays.
+- **Full-Card Surface Clickability (Stretched-Link Pattern):**
+  - Implemented the accessible stretched-link pattern (`after:absolute after:inset-0 after:z-10`) across cards:
+    - Entire surface (image container, title, description, whitespace, CTA) is fully clickable.
+    - Card 1 clicks to `/study-abroad/`.
+    - Card 3 clicks to `/services/work-visa/`.
+    - Card 4 clicks to `/services/tourist-visa/`.
+    - Card 5 clicks to `/services/flight-booking/`.
+    - Card 6 clicks to `/services/additional-services/`.
+  - **MBBS / PhD Exception Handled:**
+    - Card 2 title link acts as stretched link (`after:absolute after:inset-0 after:z-10`), navigating clicks on the image, title, description, and whitespace to `/services/mbbs/`.
+    - Bottom sub-link container elevated to `relative z-20`, providing independent accessible links for both `MBBS Abroad` (`/services/mbbs/`) and `PhD Abroad` (`/services/phd/`).
+  - Zero invalid nested anchors (`<a>` inside `<a>`) in DOM.
+- **Enhanced Visual Interactions:**
+  - Added subtle hover elevation and transitions: `hover:shadow-lg`, `hover:border-brand-navy`, `hover:-translate-y-1`, `duration-200`.
+  - Pointer cursor (`cursor-pointer`) across the entire card surface.
+  - Visible keyboard focus rings (`focus-visible:outline-2 focus-visible:outline-brand-blue`).
+  - Preserved strictly approved 3×2 grid order:
+    - **Row 1:** Study Abroad | MBBS / PhD Abroad | Work Visa
+    - **Row 2:** Tourist Visa | Flight Booking | Additional Services
+- **QA Verification & Testing:**
+  - `tests/verify-homepage-service-cards-optimization.js`: 87/87 checks passed (100%).
+  - `tests/verify-card-rearrangement.js`: 54/54 checks passed (100%).
+  - `tests/verify-simplified-homepage.js`: 43/43 checks passed (100%).
+  - `tests/verify-mobile-first-optimization.js`: 65/65 checks passed (100%).
+  - Total automated checks: 249/249 passed (100% pass rate).
+  - Production build: `npm run build` compiled 65 static pages in 6.15s with 0 errors.
+  - Responsive verification across 8 viewports (320px, 360px, 390px, 430px, 768px, 1024px, 1366px, 1440px) with zero horizontal overflow.
+  - Visual verification screenshots captured:
+    - `after-service-cards-desktop-1440px.png`
+    - `after-service-cards-mobile-390px.png`
+
+---
+
+
+
+### Summary
+- **Excised "All Services Overview" and "Compare Services →" from Navigation:**
+  - Removed "All Services Overview" (`href: '/services/'`, description: `Comparative matrix of all 7 service verticals`) from the shared navigation configuration (`src/data/site-config.ts`).
+  - Removed the "Compare Services →" link and its container from the desktop dropdown header (`src/components/layout/DesktopNavigation.astro`).
+  - Completely excised both items, including labels, descriptions, links, containers, and associated spacing.
+  - Automatically reflected in both desktop navigation dropdown and mobile navigation drawer.
+- **Rebalanced Desktop Dropdown Dimensions & Layout:**
+  - Rebalanced dropdown width from `w-[460px]` to a tighter, more compact `w-[420px]`.
+  - Rebalanced header layout to a clean left-aligned title (`VISA ADVISORY & COMPLIANCE`) with subtitle (`Tourist, work, and documentation assistance`) and divider border.
+  - Body cleanly houses the 3 direct visa and documentation services:
+    1. **Tourist & Visitor Visa** (`/services/tourist-visa/`)
+    2. **Work Visa Support** (`/services/work-visa/`)
+    3. **Additional Services** (`/services/additional-services/`)
+  - Retained bottom action strip: `Direct Embassy Appointment Prep` | `Book Desk Consultation →`.
+  - Dropdown dimensions measured at 420px wide × 341px tall.
+- **Mobile Drawer Architectural Fix (`src/layouts/BaseLayout.astro` & `src/components/layout/Header.astro`):**
+  - Moved `<MobileNavigation />` out of `<header>` directly under `<body>` in `BaseLayout.astro`.
+  - Eliminated CSS backdrop-filter containing block entrapment (caused by `backdrop-blur-md` on sticky header restricting fixed elements to 76px).
+  - Mobile menu drawer now flawlessly spans full viewport height (100vh) across all mobile devices.
+  - Mobile drawer displays exactly 3 child links under "Visa Services" (`Tourist & Visitor Visa`, `Work Visa Support`, `Additional Services`) with dedicated overview link.
+- **Preserved Underlying Routes & Integrity:**
+  - All underlying service routes (`/services/`, `/services/tourist-visa/`, `/services/work-visa/`, `/services/additional-services/`, `/services/flight-booking/`, `/services/mbbs/`, `/services/phd/`) remain 100% accessible, returning HTTP 200 OK.
+- **QA Verification & Testing:**
+  - `tests/verify-visa-services-nav.js`: 26/26 checks passed (100%).
+  - `tests/verify-mobile-first-optimization.js`: 65/65 checks passed (100%).
+  - `tests/verify-card-rearrangement.js`: 54/54 checks passed (100%).
+  - `tests/verify-compact-footer.js`: 44/44 checks passed (100%).
+  - `tests/verify-simplified-homepage.js`: 43/43 checks passed (100%).
+  - `npx astro check`: 0 errors, 0 warnings across 127 files.
+  - `npm run build`: 65 static pages compiled in 5.85s.
+  - Captured visual verification screenshots:
+    - `visa-services-dropdown-desktop-1440px.png`
+    - `visa-services-drawer-mobile-375px.png`
+
+---
+
 ## [1.36.0] - 2026-11-14 — Compact Navy Footer & Business Hours Removal
 
 ### Summary

@@ -52,20 +52,17 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         
         <!-- Card 1: Study Abroad -->
-        <div class="card-premium overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 flex flex-col justify-between group text-left">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer">
           <div>
-            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border">
+            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
               <img
                 src="/assets/images/services/Study%20Abroad_%20Your%20Global%20Future.png"
                 alt="Visa Convention Study Abroad — Your Global Future"
                 width="1672"
                 height="941"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
-              <span class="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-brand-navy/90 text-white backdrop-blur-xs border border-white/20">
-                Higher Education
-              </span>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
@@ -79,7 +76,7 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
           <div class="px-6 pb-6 pt-2 mt-auto border-t border-brand-border/60">
             <a
               href="/study-abroad/"
-              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px]"
+              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px] after:absolute after:inset-0 after:z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-2 rounded-xl"
             >
               <span>Explore Study Abroad</span>
               <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -90,42 +87,45 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
         </div>
 
         <!-- Card 2: MBBS / PhD Abroad (Separately Accessible) -->
-        <div class="card-premium overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 flex flex-col justify-between group text-left">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer">
           <div>
-            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border">
+            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
               <img
                 src="/assets/images/services/MBBS%20&%20PhD%20Courses%20Abroad.png"
                 alt="Visa Convention MBBS and PhD Courses Abroad"
-                width="1671"
-                height="941"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                width="1670"
+                height="813"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
-              <span class="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-brand-red/90 text-white backdrop-blur-xs border border-white/20">
-                Medical & Doctoral
-              </span>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
-                MBBS / PhD Abroad
+                <a
+                  href="/services/mbbs/"
+                  class="after:absolute after:inset-0 after:z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-2 rounded-xl"
+                  aria-label="MBBS and PhD Courses Abroad Overview"
+                >
+                  MBBS / PhD Abroad
+                </a>
               </h3>
               <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
                 Recognized medical faculties in Europe & Central Asia, alongside doctoral research proposals and supervisor outreach.
               </p>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-2 mt-auto border-t border-brand-border/60 flex items-center justify-between gap-3">
+          <div class="px-6 pb-6 pt-2 mt-auto border-t border-brand-border/60 flex items-center justify-between gap-3 relative z-20">
             <a
               href="/services/mbbs/"
-              class="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px]"
+              class="relative z-20 inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-brand-navy hover:text-brand-red transition-colors min-h-[44px] focus-visible:ring-2 focus-visible:ring-brand-blue rounded-lg px-1"
             >
               <span>MBBS Abroad</span>
               <span class="text-brand-red">→</span>
             </a>
-            <span class="text-brand-border font-light">|</span>
+            <span class="text-brand-border font-light select-none" aria-hidden="true">|</span>
             <a
               href="/services/phd/"
-              class="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px]"
+              class="relative z-20 inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-brand-navy hover:text-brand-red transition-colors min-h-[44px] focus-visible:ring-2 focus-visible:ring-brand-blue rounded-lg px-1"
             >
               <span>PhD Abroad</span>
               <span class="text-brand-red">→</span>
@@ -134,20 +134,17 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
         </div>
 
         <!-- Card 3: Work Visa -->
-        <div class="card-premium overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 flex flex-col justify-between group text-left">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer">
           <div>
-            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border">
+            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
               <img
                 src="/assets/images/services/Global%20Work%20Visa%20Opportunities.png"
                 alt="Visa Convention Global Work Visa Opportunities"
                 width="1672"
-                height="941"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                height="828"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
-              <span class="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-brand-navy/90 text-white backdrop-blur-xs border border-white/20">
-                Administrative Compliance
-              </span>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
@@ -161,7 +158,7 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
           <div class="px-6 pb-6 pt-2 mt-auto border-t border-brand-border/60">
             <a
               href="/services/work-visa/"
-              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px]"
+              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px] after:absolute after:inset-0 after:z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-2 rounded-xl"
             >
               <span>Work Visa Assistance</span>
               <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -172,20 +169,17 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
         </div>
 
         <!-- Card 4: Tourist Visa -->
-        <div class="card-premium overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 flex flex-col justify-between group text-left">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer">
           <div>
-            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border">
+            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
               <img
                 src="/assets/images/services/Vibrant%20Tourist%20Visa%20Travel%20Poster.png"
                 alt="Visa Convention Tourist Visa Travel Guidance"
                 width="1672"
-                height="941"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                height="835"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
-              <span class="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-brand-navy/90 text-white backdrop-blur-xs border border-white/20">
-                Visitor Visas
-              </span>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
@@ -199,7 +193,7 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
           <div class="px-6 pb-6 pt-2 mt-auto border-t border-brand-border/60">
             <a
               href="/services/tourist-visa/"
-              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px]"
+              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px] after:absolute after:inset-0 after:z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-2 rounded-xl"
             >
               <span>Tourist Visa Assistance</span>
               <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -210,20 +204,17 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
         </div>
 
         <!-- Card 5: Flight Booking -->
-        <div class="card-premium overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 flex flex-col justify-between group text-left">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer">
           <div>
-            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border">
+            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
               <img
                 src="/assets/images/services/Flight%20Booking%20and%20Dummy%20Tickets.png"
                 alt="Visa Convention Flight Booking and Reservation Assistance"
                 width="1672"
-                height="941"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                height="788"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
-              <span class="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-brand-blue/90 text-white backdrop-blur-xs border border-white/20">
-                Aviation Desk
-              </span>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
@@ -237,7 +228,7 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
           <div class="px-6 pb-6 pt-2 mt-auto border-t border-brand-border/60">
             <a
               href="/services/flight-booking/"
-              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px]"
+              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px] after:absolute after:inset-0 after:z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-2 rounded-xl"
             >
               <span>Request Flight Assistance</span>
               <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -248,20 +239,17 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
         </div>
 
         <!-- Card 6: Additional Services -->
-        <div class="card-premium overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 flex flex-col justify-between group text-left">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer">
           <div>
-            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border">
+            <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
               <img
                 src="/assets/images/services/Additional%20Visa%20Services%20Guide.png"
                 alt="Visa Convention Additional Services Guide — Passport Applications, MEA Apostille, PCC, and Documentation Assistance"
                 width="1672"
                 height="941"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
               />
-              <span class="absolute top-3 left-3 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider rounded-md bg-brand-navy/90 text-white backdrop-blur-xs border border-white/20">
-                Documentation Support
-              </span>
             </div>
             <div class="p-6">
               <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors mb-2">
@@ -275,7 +263,7 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
           <div class="px-6 pb-6 pt-2 mt-auto border-t border-brand-border/60">
             <a
               href="/services/additional-services/"
-              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px]"
+              class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-red transition-colors min-h-[44px] after:absolute after:inset-0 after:z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-2 rounded-xl"
             >
               <span>Explore Additional Services</span>
               <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -14,35 +14,223 @@ const whatsAppUrl = buildWhatsAppLink({ service, country, university });
 ---
 
 <aside 
-  class={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 pointer-events-auto ${className}`}
+  class={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 pointer-events-auto select-none ${className}`}
   aria-label="WhatsApp direct messaging option"
+  style="padding-bottom: env(safe-area-inset-bottom, 0px); padding-right: env(safe-area-inset-right, 0px);"
 >
+  <!-- Occasional Attention Contact Prompt Tooltip (B) -->
+  <div
+    id="wa-contact-tooltip"
+    role="status"
+    aria-live="polite"
+    class="opacity-0 translate-y-2 pointer-events-none absolute bottom-full right-0 mb-3 transition-all duration-300 ease-out z-50 flex items-center"
+  >
+    <div class="relative bg-brand-navy text-white text-xs font-semibold px-3.5 py-2 rounded-xl shadow-xl flex items-center gap-2 border border-brand-navy-light/40 whitespace-nowrap">
+      <span>Need help? Chat with us!</span>
+      <button
+        id="wa-tooltip-dismiss-btn"
+        type="button"
+        class="text-white/70 hover:text-white p-0.5 rounded-sm transition-colors focus:outline-hidden focus:ring-1 focus:ring-white ml-0.5"
+        aria-label="Dismiss help prompt"
+      >
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <!-- Downward Caret Arrow pointing toward the button -->
+      <span class="absolute -bottom-1 right-7 w-2.5 h-2.5 bg-brand-navy rotate-45 border-r border-b border-brand-navy-light/40 pointer-events-none" aria-hidden="true"></span>
+    </div>
+  </div>
+
+  <!-- Outer Subtle Pulse Glow Ring (A) -->
+  <span
+    id="wa-pulse-ring"
+    class="wa-pulse-ring absolute inset-0 rounded-full bg-[#25D366] pointer-events-none opacity-0"
+    aria-hidden="true"
+  ></span>
+
+  <!-- Floating WhatsApp Pill Button -->
   <a
     href={whatsAppUrl}
     target="_blank"
     rel="noopener noreferrer"
     id="floating-whatsapp-btn"
-    class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-md hover:shadow-lg transition-all duration-200 focus:outline-hidden focus:ring-3 focus:ring-emerald-400/70 active:scale-95"
-    aria-label="Connect with Visa Convention on WhatsApp (opens in new tab)"
-    title="Chat with Visa Convention on WhatsApp"
+    class="wa-pill-btn group relative flex items-center gap-2 px-3.5 py-2.5 sm:px-4 sm:py-2.5 rounded-full bg-[#25D366] hover:bg-[#20ba59] active:bg-[#1da850] text-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 ease-out focus:outline-hidden focus-visible:ring-3 focus-visible:ring-[#25D366] focus-visible:ring-offset-2 focus-visible:ring-offset-white min-h-[44px] min-w-[44px]"
+    aria-label="Connect with Visa Convention on WhatsApp: +91 96803 95539 (opens in new tab)"
+    title="Chat with Visa Convention on WhatsApp (+91 96803 95539)"
   >
-    <!-- WhatsApp Official Icon -->
-    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+    <!-- Official WhatsApp SVG Icon -->
+    <svg class="w-5 h-5 sm:w-5 sm:h-5 fill-current shrink-0 filter drop-shadow-xs" viewBox="0 0 24 24" aria-hidden="true">
       <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.634.06-1.579-.319-.945-.379-1.597-.991-2.228-1.621-.631-.63-1.243-1.282-1.622-2.227-.379-.945-.364-1.267-.319-1.579.05-.333.419-1.026.824-1.17.405-.145.74-.084.975.25.234.334.795 1.706.795 1.706s.069.172.016.326c-.053.154-.15.252-.279.39-.129.138-.28.32-.401.442-.144.143-.298.297-.13.585.167.288.74 1.218 1.589 1.975 1.092.973 1.996 1.267 2.284 1.41.288.143.456.126.626-.067.17-.193.729-.847.923-1.137.194-.29.387-.243.649-.145.262.098 1.666.786 1.954.93.288.144.48.216.55.337.07.121.07.701-.219 1.106zM12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5.003L2 22l5.127-1.319C8.563 21.528 10.229 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2c-1.636 0-3.155-.494-4.425-1.341l-.317-.213-3.044.783.811-2.966-.234-.338C3.896 14.806 3.4 13.435 3.4 12 3.4 7.258 7.258 3.4 12 3.4c4.742 0 8.6 3.858 8.6 8.6 0 4.742-3.858 8.6-8.6 8.6z" />
     </svg>
+
+    <!-- Desktop Label (visible on screens sm and up) -->
+    <span class="hidden sm:inline font-bold text-xs sm:text-sm tracking-tight whitespace-nowrap text-white drop-shadow-xs">
+      Chat on WhatsApp
+    </span>
+
+    <!-- Mobile Label (visible on small mobile screens) -->
+    <span class="inline sm:hidden font-bold text-xs tracking-tight whitespace-nowrap text-white drop-shadow-xs">
+      WhatsApp Chat
+    </span>
   </a>
 </aside>
+
+<style>
+  @keyframes wa-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.65;
+    }
+    50% {
+      transform: scale(1.18);
+      opacity: 0.25;
+    }
+    100% {
+      transform: scale(1.3);
+      opacity: 0;
+    }
+  }
+
+  @keyframes wa-btn-nudge {
+    0%, 100% {
+      transform: scale(1);
+    }
+    30% {
+      transform: scale(1.035);
+    }
+    60% {
+      transform: scale(1);
+    }
+  }
+
+  .wa-pulse-active {
+    animation: wa-pulse 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
+
+  .wa-btn-pulse-active {
+    animation: wa-btn-nudge 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  /* Accessibility: Respect Reduced Motion Preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .wa-pulse-ring,
+    .wa-pulse-active,
+    .wa-btn-pulse-active {
+      animation: none !important;
+      opacity: 0 !important;
+    }
+    #wa-contact-tooltip {
+      transition: none !important;
+    }
+    .wa-pill-btn {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+</style>
 
 <script>
   import { trackWhatsAppClick } from '../../utils/analytics';
 
+  let pulseInterval: ReturnType<typeof setInterval> | null = null;
+  let tooltipTimer: ReturnType<typeof setTimeout> | null = null;
+  let autoDismissTimer: ReturnType<typeof setTimeout> | null = null;
+
   function setupFloatingWhatsApp() {
+    // Clear previous timers if any (SPA page load safety)
+    if (pulseInterval) clearInterval(pulseInterval);
+    if (tooltipTimer) clearTimeout(tooltipTimer);
+    if (autoDismissTimer) clearTimeout(autoDismissTimer);
+
     const btn = document.getElementById('floating-whatsapp-btn');
-    if (btn) {
-      btn.addEventListener('click', () => {
-        trackWhatsAppClick({ location: 'floating_widget' });
+    const pulseRing = document.getElementById('wa-pulse-ring');
+    const tooltip = document.getElementById('wa-contact-tooltip');
+    const dismissBtn = document.getElementById('wa-tooltip-dismiss-btn');
+
+    if (!btn) return;
+
+    // Analytics click handler & session interaction recorder
+    btn.addEventListener('click', () => {
+      try {
+        sessionStorage.setItem('vc_wa_interacted', 'true');
+      } catch (_) {}
+      hideTooltip();
+      trackWhatsAppClick({ location: 'floating_widget' });
+    });
+
+    // Pulse animation logic (A)
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function triggerPulse() {
+      if (prefersReducedMotion || !pulseRing || !btn) return;
+      pulseRing.classList.remove('wa-pulse-active');
+      btn.classList.remove('wa-btn-pulse-active');
+      // trigger reflow
+      void pulseRing.offsetWidth;
+      pulseRing.classList.add('wa-pulse-active');
+      btn.classList.add('wa-btn-pulse-active');
+
+      setTimeout(() => {
+        pulseRing?.classList.remove('wa-pulse-active');
+        btn?.classList.remove('wa-btn-pulse-active');
+      }, 1500);
+    }
+
+    if (!prefersReducedMotion) {
+      // Initial pulse shortly after page load (~1.8s)
+      setTimeout(triggerPulse, 1800);
+      // Repeat restrained pulse every ~18 seconds
+      pulseInterval = setInterval(triggerPulse, 18000);
+    }
+
+    // Occasional Contact Prompt Tooltip logic (B)
+    function hideTooltip() {
+      if (!tooltip) return;
+      tooltip.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      tooltip.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+    }
+
+    function showTooltip() {
+      if (!tooltip) return;
+      tooltip.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+      tooltip.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+
+      // Auto-hide after approximately 4 seconds
+      autoDismissTimer = setTimeout(() => {
+        hideTooltip();
+      }, 4000);
+    }
+
+    if (dismissBtn) {
+      dismissBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        hideTooltip();
+        try {
+          sessionStorage.setItem('vc_wa_interacted', 'true');
+        } catch (_) {}
       });
     }
+
+    // Check session rules for occasional prompt
+    try {
+      const alreadyInteracted = sessionStorage.getItem('vc_wa_interacted') === 'true';
+      const promptCountStr = sessionStorage.getItem('vc_wa_prompt_count');
+      const promptCount = promptCountStr ? parseInt(promptCountStr, 10) : 0;
+
+      // Show no more than 2-3 times per browsing session
+      if (!alreadyInteracted && promptCount < 3) {
+        // Initial appearance shortly after page load (~2.6s)
+        tooltipTimer = setTimeout(() => {
+          showTooltip();
+          try {
+            sessionStorage.setItem('vc_wa_prompt_count', (promptCount + 1).toString());
+          } catch (_) {}
+        }, 2600);
+      }
+    } catch (_) {}
   }
 
   setupFloatingWhatsApp();

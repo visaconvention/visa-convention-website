@@ -1,6 +1,5 @@
 ---
 import DesktopNavigation from './DesktopNavigation.astro';
-import MobileNavigation from './MobileNavigation.astro';
 
 interface Props {
   currentPath?: string;
@@ -69,7 +68,4 @@ const { currentPath = '/' } = Astro.props;
       </div>
     </div>
   </div>
-
-  <!-- Mobile Drawer Component -->
-  <MobileNavigation currentPath={currentPath} />
 </header>
