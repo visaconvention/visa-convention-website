@@ -75,7 +75,7 @@ function startServer() {
                 return;
               }
             } else {
-              if (!data.fullName || !data.phone || !data.email || !data.service) {
+              if (!data.fullName || !data.phone || !data.service) {
                 res.writeHead(422, { 'Content-Type': 'application/json' });
                 res.end(JSON.stringify({ success: false, message: 'Missing required candidate fields.' }));
                 return;
@@ -224,8 +224,10 @@ async function runTests() {
 
   await page.select('#form-country', 'canada');
 
-  await page.focus('#form-university');
-  await page.keyboard.type('University of Toronto');
+  await page.evaluate(() => {
+    const el = document.getElementById('form-university');
+    if (el) el.value = 'University of Toronto';
+  });
 
   await page.focus('#form-message');
   await page.keyboard.type('Completed B.Tech Computer Science with 8.2 CGPA; seeking Fall 2026 Masters admissions.');

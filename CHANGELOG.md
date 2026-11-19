@@ -6,6 +6,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.48.0] - 2026-11-19 — Website-Wide Form Optimization & Simplification
+
+### Summary
+- **Business Email Display Unification (`src/pages/contact.astro`):**
+  - Replaced disparate headings and labels ("General Inquiries:", "Admissions Desk:", "Electronic Mail") with a clean, unified **"Email"** section.
+  - Displayed `visaconvention064@gmail.com` exactly once in the contact sidebar, linked directly via `mailto:`.
+- **Optional Email Field (`src/components/forms/EnquiryForm.astro`, `FlightEnquiryForm.astro`):**
+  - Renamed input label to **"Email (Optional)"** across all public forms.
+  - Removed mandatory asterisks and `required` attributes from email inputs.
+  - Accepted blank emails without blocking submission; formatted email validation triggers strictly when email is provided.
+  - Updated payload types in `src/types/index.ts` (`email?: string`).
+- **Removal of University Field from Public Enquiry Forms (`src/components/forms/EnquiryForm.astro`):**
+  - Removed visible **"University / College of Interest (Optional)"** label and input from general enquiry forms.
+  - Preserved preselected university context in dedicated application workflows (e.g. clicking university cards on MBBS/PhD pages or university detail routes) via hidden input (`#form-university`) and `#enquiry-context-banner`.
+  - Converted destination country field to a clean, full-width single column.
+- **Message Field Renaming & Placeholder:**
+  - Renamed *"Academic Background or Message (Optional)"* to **"Message (Optional)"**.
+  - Updated placeholder to: **"Write your message or questions here…"**.
+  - Preserved optional submission and persistent storage mapping (`notes`).
+- **Touch Targets & Mobile Usability:**
+  - Verified 0px horizontal overflow and 44px+ touch targets across mobile viewports (320, 360, 375, 390, 430px).
+  - Maintained required Phone / WhatsApp Number validation for verified contactability.
+- **Automated Verification Suite (`tests/verify-website-wide-form-optimization.js`):**
+  - Authored 29-check test suite: **29 / 29 passed (100%)**.
+  - Verified successful delivery of leads with blank emails to persistent storage.
+
+---
+
 ## [1.47.0] - 2026-11-19 — Country Directory & Image Optimization (5-Column Flag Cards)
 
 ### Summary

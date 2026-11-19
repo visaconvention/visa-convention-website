@@ -338,7 +338,7 @@ export interface PartnershipTrack {
 export interface InquiryPayload {
   fullName: string;
   phone: string;
-  email: string;
+  email?: string;
   serviceCategory: ServiceCategory;
   destinationCountry?: string;
   preferredIntake?: string;

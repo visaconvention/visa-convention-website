@@ -205,14 +205,13 @@ const dropdownCountries = allowedCountries && allowedCountries.length > 0
 
         <div>
           <label for="form-email" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
-            Email Address <span class="text-brand-red">*</span>
+            Email (Optional)
           </label>
           <input
             type="email"
             id="form-email"
             name="email"
-            required
-            aria-required="true"
+            aria-required="false"
             aria-invalid="false"
             aria-describedby="form-email-error"
             placeholder="e.g. rahul.sharma@gmail.com"
@@ -224,52 +223,44 @@ const dropdownCountries = allowedCountries && allowedCountries.length > 0
         </div>
       </div>
 
-      <!-- Preferred Country & University of Interest Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label for="form-country" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
-            Preferred Destination Country (Optional)
-          </label>
-          <select
-            id="form-country"
-            name="target_country"
-            class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
-          >
-            <option value="">Select Country...</option>
-            {dropdownCountries.map((c) => (
-              <option value={c.slug} selected={c.slug === selectedCountry}>
-                {c.name}
-              </option>
-            ))}
-            {!allowedCountries && <option value="other">Other Global Destination</option>}
-          </select>
-        </div>
-
-        <div>
-          <label for="form-university" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
-            University / College of Interest (Optional)
-          </label>
-          <input
-            type="text"
-            id="form-university"
-            name="target_university"
-            value={selectedUniversity}
-            placeholder="e.g. University of Toronto"
-            class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
-          />
-        </div>
+      <!-- Preferred Destination Country (Optional) -->
+      <div>
+        <label for="form-country" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
+          Preferred Destination Country (Optional)
+        </label>
+        <select
+          id="form-country"
+          name="target_country"
+          class="w-full px-4 py-3.5 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[48px]"
+        >
+          <option value="">Select Country...</option>
+          {dropdownCountries.map((c) => (
+            <option value={c.slug} selected={c.slug === selectedCountry}>
+              {c.name}
+            </option>
+          ))}
+          {!allowedCountries && <option value="other">Other Global Destination</option>}
+        </select>
       </div>
 
-      <!-- Message / Academic Background -->
+      <!-- Hidden field preserving university selection in dedicated application workflows & preselected context -->
+      <input
+        type="hidden"
+        id="form-university"
+        name="target_university"
+        value={selectedUniversity}
+      />
+
+      <!-- Message (Optional) -->
       <div>
         <label for="form-message" class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
-          Academic Background or Message (Optional)
+          Message (Optional)
         </label>
         <textarea
           id="form-message"
           name="notes"
           rows="3"
-          placeholder="Mention your highest education, percentage, IELTS/PTE status, or questions..."
+          placeholder="Write your message or questions here…"
           class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all resize-y"
         ></textarea>
       </div>
@@ -448,7 +439,7 @@ const dropdownCountries = allowedCountries && allowedCountries.length > 0
 </div>
 
 <script>
-  import { trackEnquirySubmission, trackServiceSelect, trackCountrySelect, trackUniversitySelect } from '../../utils/analytics';
+  import { trackEnquirySubmission, trackServiceSelect, trackCountrySelect } from '../../utils/analytics';
 
   function setupEnquiryForm() {
     const form = document.getElementById('visa-enquiry-form') as HTMLFormElement | null;
@@ -538,9 +529,6 @@ const dropdownCountries = allowedCountries && allowedCountries.length > 0
     countrySelect?.addEventListener('change', () => {
       if (countrySelect.value) trackCountrySelect(countrySelect.value);
     });
-    universityInput?.addEventListener('blur', () => {
-      if (universityInput.value.trim()) trackUniversitySelect(universityInput.value.trim());
-    });
 
     // Run initial sync
     syncServiceMode();
@@ -619,14 +607,17 @@ const dropdownCountries = allowedCountries && allowedCountries.length > 0
 
         setFieldError('form-full-name', 'form-name-error', !name);
         setFieldError('form-phone', 'form-phone-error', !phone || phone.length < 8);
-        setFieldError('form-email', 'form-email-error', !email || !email.includes('@'));
+
+        // Email is optional: validate format only when provided
+        const isInvalidEmail = Boolean(email) && (!email.includes('@') || !email.includes('.') || email.length < 5);
+        setFieldError('form-email', 'form-email-error', isInvalidEmail);
 
         payload = {
           service: serviceSelect?.value || 'general',
           submissionType: 'student',
           fullName: name,
           phone,
-          email,
+          email: email || undefined,
           targetCountry: country || undefined,
           targetUniversity: university || undefined,
           notes: notes || undefined,
