@@ -6,6 +6,69 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.50.0] - 2026-11-19 — Sitewide UI & Form Optimization
+
+### Summary
+- **Redundant Content & Decorative Badge Removal:**
+  - Deleted exact sentence: *"Submit your details for personalized university recommendations, transparent fee structures, and NEET eligibility guidance."* from `src/pages/services/mbbs.astro`.
+  - Excised decorative labels and non-essential badges sitewide across component templates:
+    - *"Advisory Evaluation"* removed from `src/components/forms/EnquiryForm.astro`.
+    - *"Travel Coordination Desk"* and indicator dot removed from `src/components/forms/FlightEnquiryForm.astro`.
+    - *"PERSONALIZED GUIDANCE"* default badge removed from `src/components/common/ConsultationCTA.astro`.
+    - *"Official Counseling Desk"*, *"Medical Admissions Desk"*, *"Approved Directory"*, and *"Admissions Clarity"* removed from `src/pages/services/mbbs.astro`.
+    - *"Doctoral Advisory Desk"*, *"Doctoral Research Advisory"*, *"Target Destinations"*, and *"Doctoral Clarity"* removed from `src/pages/services/phd.astro`.
+    - *"Work Permit Compliance & Procedural Advisory"* and *"Regulations & Clarity"* removed from `src/pages/services/work-visa.astro`.
+    - *"Tourist & Visitor Visa Advisory"* and *"Questions & Clarity"* removed from `src/pages/services/tourist-visa.astro`.
+    - *"Direct Advisory Access"* removed from `src/pages/contact.astro`.
+    - *"Clarity & Preparation"* removed from `src/pages/study-abroad/index.astro`.
+    - *"EUROPE ADMISSION COUNSELING"* removed from `src/pages/study-in-europe/index.astro`.
+    - *"Direct Navigation"* removed from `src/pages/services/index.astro`.
+    - *"Clarity"* FAQ badge removed from `src/layouts/ServiceLayout.astro`.
+  - Removed decorative dot wrappers and redundant badge containers from component trees, not merely with CSS.
+
+- **Compact Every Public Enquiry Form:**
+  - `src/components/forms/EnquiryForm.astro`:
+    - Container padding reduced from `p-7 sm:p-10 rounded-3xl` to `p-4 sm:p-5 lg:p-6 rounded-2xl` (16–24px padding).
+    - Compacted heading area with `mb-4 sm:mb-5`, single clear heading `{title}`.
+    - Two-column grid on desktop ($\ge 640$px), stacked single column on mobile (<640px) for compatible fields:
+      - Row 1: Interested Service (full width).
+      - Row 2: Full Name & Phone / WhatsApp (`grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5`).
+      - Row 3: Email (Optional) & Destination Country (Optional) (`grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5`).
+      - Row 4: Message (Optional) with initial textarea height 80–100px (`h-[88px] min-h-[80px] max-h-[160px] resize-y`).
+    - Standardized input heights to 44–48px (`min-h-[44px] h-[44px] sm:h-[46px]`), label gaps to 6px (`mb-1.5`), and field gaps to 12–16px (`gap-3 sm:gap-3.5`).
+    - Compacted submit button with $\ge 44$px touch target (`min-h-[44px]`).
+    - Preserved optional blank email submission, invalid format validation, required Phone / WhatsApp number, pre-selected context banner, and hidden `#form-university`.
+  - `src/components/forms/FlightEnquiryForm.astro`:
+    - Container padding reduced from `p-6 sm:p-10 rounded-3xl` to `p-4 sm:p-5 lg:p-6 rounded-2xl`.
+    - Compacted header margin to `mb-4 sm:mb-5`, radio option cards, and journey type toggle.
+    - Route, travel dates, passenger preferences, and contact details standardized with 12–16px field gaps (`gap-3 sm:gap-3.5`).
+    - Special notes initial height set to 80–100px (`h-[88px] min-h-[80px] max-h-[160px]`).
+    - Compacted submit button with $\ge 44$px touch target.
+  - `src/components/common/ConsultationCTA.astro`:
+    - Removed default `'PERSONALIZED GUIDANCE'` badge.
+    - Compacted container padding to `p-5 sm:p-8 lg:p-9 rounded-2xl`.
+    - Reduced subtitle margin from `mb-7` to `mb-5`.
+  - `src/pages/services/work-visa.astro`:
+    - Removed duplicate outer heading block `<div class="text-center mb-6">...</div>` directly above `#enquiry`.
+    - Single clear heading rendered on EnquiryForm: `Request Work Visa Documentation Guidance`.
+  - `src/pages/contact.astro`:
+    - Removed `badge="Direct Advisory Access"`.
+    - Compacted office card padding to `p-5 sm:p-6 rounded-2xl`.
+
+- **Website-Wide Layout Optimization:**
+  - Refined container padding and spacing across key landing pages and service pages.
+  - Reduced vertical page scrolling without sacrificing typography hierarchy, readability, or essential content.
+  - Preserved all approved sovereign flags, university listings, service descriptions, disclaimers, reviews, and floating WhatsApp navigation.
+
+- **Verification & QA:**
+  - Authored comprehensive verification test suite `tests/verify-sitewide-ui-form-optimization.js` covering 87 assertions.
+  - Verified zero horizontal overflow across 9 viewports: 320, 360, 375, 390, 430, 768, 1024, 1366, 1440px.
+  - Captured desktop (1440px) and mobile (375px) evidence screenshots for Contact, MBBS, Work Visa, and Flight forms.
+  - Ran full regression suites: 87/87 sitewide UI tests + 96/96 FAQ/MBBS/PhD tests + 29/29 form tests + 39/39 country directory tests = 251/251 passing automated tests.
+  - Build status: 65/65 static routes compiled cleanly with 0 TypeScript/Astro errors.
+
+---
+
 ## [1.49.0] - 2026-11-19 — Global FAQ & MBBS/PhD Directory Optimization
 
 ### Summary

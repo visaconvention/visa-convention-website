@@ -397,7 +397,7 @@ async function runQA() {
 
       const visibleCards = Array.from(document.querySelectorAll('#phd-university-grid .phd-uni-card'))
         .filter((c) => !c.classList.contains('hidden'));
-      const visibleNames = visibleCards.map((c) => c.querySelector('h4')?.innerText.trim());
+      const visibleNames = visibleCards.map((c) => (c.querySelector('h3, h4')?.innerText || c.getAttribute('data-university-name') || '').trim());
 
       const isHighlighted = btn?.classList.contains('ring-brand-blue');
       const formCountryVal = document.querySelector('#form-country')?.value;
@@ -430,7 +430,7 @@ async function runQA() {
 
       const visibleCards = Array.from(document.querySelectorAll('#phd-university-grid .phd-uni-card'))
         .filter((c) => !c.classList.contains('hidden'));
-      const visibleNames = visibleCards.map((c) => c.querySelector('h4')?.innerText.trim());
+      const visibleNames = visibleCards.map((c) => (c.querySelector('h3, h4')?.innerText || c.getAttribute('data-university-name') || '').trim());
       const formCountryVal = document.querySelector('#form-country')?.value;
 
       return {
@@ -458,7 +458,7 @@ async function runQA() {
 
       const visibleCards = Array.from(document.querySelectorAll('#phd-university-grid .phd-uni-card'))
         .filter((c) => !c.classList.contains('hidden'));
-      const visibleNames = visibleCards.map((c) => c.querySelector('h4')?.innerText.trim());
+      const visibleNames = visibleCards.map((c) => (c.querySelector('h3, h4')?.innerText || c.getAttribute('data-university-name') || '').trim());
       const formCountryVal = document.querySelector('#form-country')?.value;
 
       return {
