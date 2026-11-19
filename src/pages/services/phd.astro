@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import EnquiryForm from '../../components/forms/EnquiryForm.astro';
 import FAQAccordion from '../../components/common/FAQAccordion.astro';
+import CountryCard from '../../components/countries/CountryCard.astro';
 import { detailedServicesData } from '../../data/detailed-services';
 import { siteConfig } from '../../data/site-config';
 
@@ -173,39 +174,11 @@ const approvedUniversities = [
       <!-- Compact Flag-Based Country Cards Grid (Up to 5 columns desktop, 2-3 tablet, 2 mobile) -->
       <div class="country-directory-grid grid grid-cols-2 md:grid-cols-3 min-[1200px]:grid-cols-5 gap-3 sm:gap-4 items-stretch" id="phd-countries-grid" role="tablist" aria-label="PhD Target Countries">
         {approvedCountries.map((country) => (
-          <button
-            type="button"
-            class="phd-country-btn card-premium group country-btn h-full min-w-0 rounded-xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 cursor-pointer p-3 sm:p-3.5 text-left flex flex-col justify-between focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue min-h-[82px] sm:min-h-[88px]"
-            data-country-btn
-            data-country={country.slug}
-            data-country-name={country.name}
-            role="tab"
-            aria-selected="false"
-          >
-            <!-- Top Row: Official Flag + University Count -->
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <div class="w-8 h-6 sm:w-9 sm:h-6.5 rounded overflow-hidden shadow-2xs border border-slate-200/90 bg-slate-50 flex items-center justify-center shrink-0">
-                <img
-                  src={country.flagSvg}
-                  alt={`Flag of ${country.name}`}
-                  width="36"
-                  height="26"
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <span class="country-badge inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-brand-bg text-brand-navy border border-brand-border/60 group-hover:border-brand-navy/30 transition-colors shrink-0">
-                {country.count} <span class="hidden sm:inline sm:ml-0.5 font-normal text-brand-muted">Unis</span>
-              </span>
-            </div>
-
-            <!-- Bottom Row: Country Name -->
-            <div class="mt-auto">
-              <span class="country-name text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-tight block">
-                {country.name}
-              </span>
-            </div>
-          </button>
+          <CountryCard
+            as="button"
+            country={country}
+            class="phd-country-btn"
+          />
         ))}
       </div>
 

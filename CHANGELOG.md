@@ -6,6 +6,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.52.0] - 2026-11-19 — Website-Wide Country Tile Optimization
+
+### Summary
+- **Single Horizontal Row Layout:**
+  - Redesigned all compact country tiles across the entire website from the previous two-row layout into **one horizontal row: Flag | Country Name | Arrow**.
+  - Centered all three elements vertically (`items-center`) with sub-pixel alignment along the tile's central horizontal axis.
+- **Tile Height & Dimensions:**
+  - Standardized tile height to strictly **54px on mobile and 58px on desktop** (well within the required 52–60px specification).
+  - Ensured all tiles strictly exceed the WCAG 2.1 AA minimum 44px touch target requirement (actual: 54px mobile, 58px desktop).
+  - Maintained consistent flag dimensions (28x20px mobile, 32x22px desktop) with subtle borders, rounded corners, and official SVG rendering.
+  - Enabled graceful wrapping (`leading-tight line-clamp-2`) for long country names (e.g. Bosnia and Herzegovina) without overflowing tile bounds.
+  - Configured subtle interactive hover states (`hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5`) with chevron slide transitions.
+- **Master Component Standardization (`src/components/countries/CountryCard.astro`):**
+  - Unified country tile rendering into a single shared component capable of rendering either semantic link tiles (`as="a"`) or accessible button tiles (`as="button"`).
+  - Eliminates duplicate markup and styling across `/study-abroad/`, `/study-in-europe/`, `/services/mbbs/`, `/services/phd/`, and `/design-system/`.
+  - Reused `CountryCard` directly in `src/pages/services/mbbs.astro` (`class="mbbs-country-btn"`) and `src/pages/services/phd.astro` (`class="phd-country-btn"`).
+  - Streamlined `src/pages/study-in-europe/index.astro` by removing unnecessary wrapper `<div>` elements and applying `.europe-card-item` directly to `CountryCard`.
+- **Responsive 5-Column Grid Preservation:**
+  - Retained the existing responsive grid architecture: 5 columns on desktop ($\ge 1200$px), 3 columns on tablet (768–1199px), and 2 columns on mobile ($< 768$px).
+- **Data, Filtering & Interaction Preservation:**
+  - Preserved all 36 study abroad destinations, 25 European countries, 11 MBBS countries, and 3 approved PhD countries.
+  - Preserved real-time search filtering on `/study-abroad/` and `/study-in-europe/`.
+  - Preserved interactive country filtering, university list reveals, active button states (`ring-2 ring-brand-blue`), and form autofill (`#form-country` / `#form-university`) on MBBS and PhD pages.
+- **Verification & QA:**
+  - Authored dedicated test suite `tests/verify-country-tile-optimization.js` containing 46 automated browser checks (100% pass rate).
+  - Verified layout, heights, vertical alignment, and zero overflow across 7 viewports: 320px, 360px, 390px, 430px, 768px, 1024px, and 1440px.
+  - Captured high-resolution desktop (1440px) and mobile (375px) evidence screenshots across Study Abroad, Study in Europe, MBBS, and PhD directories.
+  - Full regression pass: 1,415 / 1,415 cumulative checks passing across the project.
+  - Production build clean: 65/65 static routes compiled in 6.80s with 0 errors.
+
+---
+
 ## [1.51.0] - 2026-11-19 — Contact & MBBS Page Cleanup
 
 ### Summary

@@ -1,55 +1,130 @@
 ---
+import type { HTMLAttributes } from 'astro/types';
 import type { Country } from '../../types';
 
-interface Props {
-  country: Country;
-  class?: string;
-  showImage?: boolean;
+export interface CountryLike {
+  name: string;
+  slug?: string;
+  flagCode?: string;
+  isoCode?: string;
+  flagSvg?: string;
+  continent?: string;
+  featured?: boolean;
+  count?: number;
 }
 
-const { country, class: className = '' } = Astro.props;
+type AriaRole = HTMLAttributes<'button'>['role'];
 
-// Friendly flag representation using flagCode or fallback
-const flagCode = country.flagCode || country.isoCode || 'GL';
+interface Props {
+  country: CountryLike & Partial<Country>;
+  as?: 'a' | 'button';
+  href?: string;
+  class?: string;
+  showImage?: boolean;
+  role?: AriaRole;
+  'aria-selected'?: string | boolean;
+  'aria-label'?: string;
+  id?: string;
+  dataAttrs?: Record<string, string>;
+}
+
+const {
+  country,
+  as = 'a',
+  href,
+  class: className = '',
+  role,
+  'aria-selected': ariaSelected,
+  'aria-label': ariaLabel,
+  id,
+  dataAttrs = {},
+} = Astro.props;
+
+// Friendly flag representation using flagSvg, flagCode, isoCode or slug fallback
+const flagCode = country.flagCode || country.isoCode || country.slug || 'GL';
 const flagSrc = country.flagSvg || `/assets/flags/${flagCode.toLowerCase()}.svg`;
+const targetHref = href || `/study-abroad/${country.slug || ''}/`;
+const label = ariaLabel || (as === 'button' ? `Select ${country.name}` : `Explore study opportunities in ${country.name}`);
+const count = 'count' in country ? (country as { count?: number }).count : undefined;
+const countryTitle = count ? `${country.name} (${count} guided universities)` : country.name;
 ---
 
-<div
-  class={`card-premium group country-card h-full min-w-0 rounded-xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 ${className}`}
-  data-country-card
-  data-country-name={country.name.toLowerCase()}
-  data-continent={country.continent.toLowerCase()}
-  data-featured={country.featured ? 'true' : 'false'}
->
-  <a
-    href={`/study-abroad/${country.slug}/`}
-    class="flex flex-col justify-between h-full p-3 sm:p-3.5 text-left focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue rounded-xl min-h-[82px] sm:min-h-[88px]"
-    aria-label={`Explore study opportunities in ${country.name}`}
+{as === 'button' ? (
+  <button
+    type="button"
+    class={`country-tile card-premium group country-btn h-[54px] sm:h-[58px] min-h-[48px] w-full min-w-0 rounded-xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 cursor-pointer px-2.5 sm:px-3 text-left flex items-center gap-2.5 sm:gap-3 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue ${className}`}
+    data-country-btn
+    data-country-name={country.name}
+    data-country-slug={country.slug}
+    data-country={country.slug}
+    role={role || 'tab'}
+    aria-selected={ariaSelected ? 'true' : 'false'}
+    aria-label={label}
+    id={id}
+    title={countryTitle}
+    {...dataAttrs}
   >
-    <!-- Top Row: Official Flag + Navigation Indicator -->
-    <div class="flex items-center justify-between gap-2 mb-2.5">
-      <div class="w-8 h-6 sm:w-9 sm:h-6.5 rounded overflow-hidden shadow-2xs border border-slate-200/90 bg-slate-50 flex items-center justify-center shrink-0">
+    <!-- 1. Flag (Fixed dimensions, 4:3 / 3:2 ratio) -->
+    <div class="w-7 h-5 sm:w-8 sm:h-5.5 rounded overflow-hidden shadow-2xs border border-slate-200/90 bg-slate-50 flex items-center justify-center shrink-0">
+      <img
+        src={flagSrc}
+        alt={`Flag of ${country.name}`}
+        width="32"
+        height="22"
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- 2. Country Name (Centered, readable, graceful wrapping) -->
+    <span class="country-name flex-1 min-w-0 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-tight line-clamp-2">
+      {country.name}
+    </span>
+
+    <!-- 3. Arrow / Navigation Action Indicator -->
+    <div class="country-arrow country-badge w-5 h-5 rounded-full bg-brand-bg flex items-center justify-center text-brand-subtle group-hover:bg-brand-navy group-hover:text-white transition-colors shrink-0">
+      <svg class="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+      </svg>
+    </div>
+  </button>
+) : (
+  <div
+    class={`country-tile card-premium group country-card h-[54px] sm:h-[58px] min-h-[48px] min-w-0 rounded-xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 ${className}`}
+    data-country-card
+    data-country-name={country.name.toLowerCase()}
+    data-continent={country.continent ? country.continent.toLowerCase() : ''}
+    data-featured={country.featured ? 'true' : 'false'}
+    id={id}
+  >
+    <a
+      href={targetHref}
+      class="flex items-center gap-2.5 sm:gap-3 h-full w-full px-2.5 sm:px-3 text-left focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue rounded-xl"
+      aria-label={label}
+    >
+      <!-- 1. Flag (Fixed dimensions, 4:3 / 3:2 ratio) -->
+      <div class="w-7 h-5 sm:w-8 sm:h-5.5 rounded overflow-hidden shadow-2xs border border-slate-200/90 bg-slate-50 flex items-center justify-center shrink-0">
         <img
           src={flagSrc}
           alt={`Flag of ${country.name}`}
-          width="36"
-          height="26"
+          width="32"
+          height="22"
           class="w-full h-full object-cover"
           loading="lazy"
         />
       </div>
-      <div class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-brand-bg flex items-center justify-center text-brand-subtle group-hover:bg-brand-navy group-hover:text-white transition-colors shrink-0">
-        <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+
+      <!-- 2. Country Name (Centered, readable, graceful wrapping) -->
+      <span class="country-name flex-1 min-w-0 text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-tight line-clamp-2">
+        {country.name}
+      </span>
+
+      <!-- 3. Arrow / Navigation Action Indicator -->
+      <div class="country-arrow country-badge w-5 h-5 rounded-full bg-brand-bg flex items-center justify-center text-brand-subtle group-hover:bg-brand-navy group-hover:text-white transition-colors shrink-0">
+        <svg class="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
         </svg>
       </div>
-    </div>
-
-    <!-- Bottom Row: Country Name -->
-    <div class="mt-auto">
-      <span class="text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-tight line-clamp-2 block">
-        {country.name}
-      </span>
-    </div>
-  </a>
-</div>
+    </a>
+  </div>
+)}
