@@ -6,6 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.51.0] - 2026-11-19 — Contact & MBBS Page Cleanup
+
+### Summary
+- **Contact Us Page Optimization (`src/pages/contact.astro`):**
+  - Completely removed the redundant paragraph: *"Visit our consultation center in Hanumangarh, Rajasthan, or submit an assessment request below. Our counseling team will evaluate your case with total confidentiality."*
+  - Removed associated spacing between the SectionHeading and the contact content grid (`class="mb-6 sm:mb-8"`, eliminated `mt-6 sm:mt-8` on the grid), establishing a clean, natural 24–32px gap.
+  - Fully preserved physical Hanumangarh center address, telephone link, direct WhatsApp chat, office hours, and the compact enquiry form.
+
+- **MBBS Abroad Page Cleanup (`src/pages/services/mbbs.astro`):**
+  - Completely removed the navy banner titled *"National Medical Commission (NMC) FMGL Compliance & Standards"*.
+  - Excised the entire component tree, including the *"WDOMS & WHO Directory Recognized"* badge, 54-month FMGL regulation copy, emerald indicator dot, navy card container, and the surrounding section wrapper (`py-8 bg-white border-b border-brand-border`).
+  - Seamlessly connected the Hero section into the Universities for Application Guidance section with 0px awkward gap or excess whitespace.
+  - Preserved the non-partnership regulatory integrity notice cleanly at the bottom of `#universities`.
+  - Preserved all 34 approved medical universities across 11 destination countries, interactive country cards, collapse toggle, FAQ accordion, and assessment enquiry form.
+
+- **Verification & QA:**
+  - Authored dedicated test suite `tests/verify-contact-mbbs-cleanup.js` with 36 automated assertions (100% pass rate).
+  - Verified 0 horizontal overflow across all 9 canonical viewports (320px–1440px).
+  - High-resolution desktop (1440px) and mobile (375px) screenshots captured for both pages.
+  - Full regression pass: 1,369 / 1,369 cumulative tests passing across the workspace.
+  - Static compilation: 65/65 static routes compiled cleanly with 0 diagnostic errors.
+
+---
+
 ## [1.50.0] - 2026-11-19 — Sitewide UI & Form Optimization
 
 ### Summary
