@@ -170,7 +170,7 @@ for (const match of hrefMatches) {
     continue;
   }
 
-  let targetPath = href.split('?')[0];
+  let targetPath = href.split('?')[0].split('#')[0];
   if (targetPath.endsWith('/')) targetPath += 'index.html';
   if (!path.extname(targetPath)) {
     if (fs.existsSync(path.join(DIST_DIR, targetPath, 'index.html'))) {

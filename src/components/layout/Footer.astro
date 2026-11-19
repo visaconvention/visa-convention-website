@@ -75,9 +75,13 @@ const currentYear = new Date().getFullYear();
           Office & Contact
         </h4>
         <div class="space-y-1.5 leading-relaxed">
-          <p>{siteConfig.officeAddress}</p>
+          <div class="text-gray-300">
+            {siteConfig.addressLines.map((line) => (
+              <span class="block">{line}</span>
+            ))}
+          </div>
           <p>
-            Phone / WhatsApp: <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} class="text-white hover:underline font-semibold">{siteConfig.phone}</a>
+            Phone / WhatsApp: <a href={siteConfig.phoneTel} class="text-white hover:underline font-semibold">{siteConfig.phone}</a>
           </p>
           <p>
             Email: <a href={`mailto:${siteConfig.email}`} class="text-white hover:underline font-semibold">{siteConfig.email}</a>

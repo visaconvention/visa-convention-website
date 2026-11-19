@@ -1,4 +1,5 @@
 import type { TeamMember } from '../types';
+import { siteConfig } from './site-config';
 
 export const aboutData = {
   hero: {
@@ -107,12 +108,13 @@ export const aboutData = {
   ] as TeamMember[],
 
   physicalOffice: {
-    city: 'Hanumangarh',
+    city: 'Hanumangarh Junction',
     state: 'Rajasthan',
     country: 'India',
     pincode: '335512',
-    address: 'Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512',
-    businessHours: 'Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)',
+    address: siteConfig.officeAddress,
+    addressLines: siteConfig.addressLines,
+    businessHours: siteConfig.businessHours,
     consultationMode: 'Walk-in appointments welcomed; scheduled consultations recommended',
     features: [
       {

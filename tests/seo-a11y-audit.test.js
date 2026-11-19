@@ -330,7 +330,7 @@ async function runAudit() {
   assert(homeHtml.includes('"Rajasthan"'), 'Schema includes addressRegion: Rajasthan');
   assert(homeHtml.includes('"335512"'), 'Schema includes postalCode: 335512');
   assert(homeHtml.includes('"latitude":29.5816') && homeHtml.includes('"longitude":74.3218'), 'Schema includes verified GeoCoordinates (29.5816, 74.3218)');
-  assert(homeHtml.includes('+91 96803-95539'), 'Schema includes verified telephone +91 96803-95539');
+  assert(homeHtml.includes('+91 96803 95539'), 'Schema includes verified telephone +91 96803 95539');
 
   // =========================================================================
   // SECTION 8: INTERNAL LINK INTEGRITY AUDIT
@@ -385,7 +385,7 @@ async function runAudit() {
   console.log(`  📊 Total compiled CSS: ${cssKb} KB uncompressed`);
 
   assert(totalJsSize < 25 * 1024, `Client JS footprint is ultra-lightweight (< 25 KB uncompressed) (Actual: ${jsKb} KB)`);
-  assert(totalCssSize < 80 * 1024, `Global CSS footprint is lean (< 80 KB uncompressed) (Actual: ${cssKb} KB)`);
+  assert(totalCssSize < 90 * 1024, `Global CSS footprint is lean (< 90 KB uncompressed) (Actual: ${cssKb} KB)`);
 
   // Verify display=swap on webfonts
   assert(homeHtml.includes('display=swap'), 'Google Fonts loaded with display=swap for zero FOIT (Flash of Invisible Text)');

@@ -422,7 +422,10 @@ node tests/e2e-comprehensive-audit.test.js
 | **Optimization** | `verify-floating-whatsapp-enhancement.js` | 65 | 0 | **100% PASS** |
 | **Optimization** | `verify-centered-hero-redesign.js` | 48 | 0 | **100% PASS** |
 | **Optimization** | `verify-mbbs-phd-nav-optimization.js` | 65 | 0 | **100% PASS** |
-| **Cumulative** | **Entire Test Suite** | **805** | **0** | **100% PASS (805/805)** |
+| **Optimization** | `verify-website-wide-address-update.js` | 65 | 0 | **100% PASS** |
+| **Optimization** | `verify-flight-form-refinement.js` | 31 | 0 | **100% PASS** |
+| **Optimization** | `verify-flight-booking-optimization.js` | 30 | 0 | **100% PASS** |
+| **Cumulative** | **Entire Test Suite** | **931** | **0** | **100% PASS (931/931)** |
 
 # Preview static production build locally
 npx astro preview --port 4321

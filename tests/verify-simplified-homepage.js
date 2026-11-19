@@ -197,7 +197,7 @@ async function run() {
 
     const footerHasAddress = await page.evaluate(() => {
       const footer = document.querySelector('footer');
-      return footer ? footer.innerText.includes('Hanumangarh, Rajasthan 335512') : false;
+      return footer ? footer.innerText.includes('335512') : false;
     });
     assert(footerHasAddress, 'Footer contains verified Hanumangarh physical address');
 

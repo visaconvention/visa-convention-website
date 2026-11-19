@@ -166,7 +166,10 @@ const faqSchema = service.faqs.length > 0 ? getFaqSchema(service.faqs) : undefin
           {detailed?.assistanceIncludes ? (
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {detailed.assistanceIncludes.map((item, idx) => (
-                <div class="p-5 rounded-xl bg-white border border-brand-border shadow-2xs hover:border-brand-blue/30 transition-colors">
+                <div
+                  id={item.id}
+                  class="p-5 rounded-xl bg-white border border-brand-border shadow-2xs hover:border-brand-blue/30 transition-all scroll-mt-28 target:border-brand-blue target:ring-2 target:ring-brand-blue/30 target:bg-blue-50/20"
+                >
                   <div class="w-7 h-7 rounded-lg bg-brand-bg text-brand-blue flex items-center justify-center font-bold text-xs mb-3">
                     0{idx + 1}
                   </div>

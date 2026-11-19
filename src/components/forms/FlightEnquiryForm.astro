@@ -307,7 +307,7 @@ const travelServices = [
           type="tel"
           id="flight-phone"
           name="phone"
-          placeholder="+91 94144 04040"
+          placeholder="+91 96803 95539"
           class="w-full px-4 py-3 rounded-xl bg-brand-bg/60 border border-brand-border text-sm text-brand-navy placeholder:text-brand-subtle/70 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all min-h-[46px]"
         />
         <p id="flight-phone-error" class="hidden text-xs text-brand-red font-medium mt-1">
@@ -554,6 +554,54 @@ const travelServices = [
       });
     });
 
+    // Auto-select service option based on URL parameters (e.g. ?service=reservation-hold or ?service=confirmed-ticket)
+    function syncServiceFromUrl() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestedService = (urlParams.get('service') || urlParams.get('type') || '').trim().toLowerCase();
+        let targetServiceId: string | null = null;
+
+        if (
+          requestedService === 'reservation-hold' ||
+          requestedService === 'dummy-tickets' ||
+          requestedService === 'dummy-ticket' ||
+          requestedService === 'dummy' ||
+          requestedService === 'hold' ||
+          requestedService === 'itinerary-assistance'
+        ) {
+          targetServiceId = 'reservation-hold';
+        } else if (
+          requestedService === 'confirmed-ticket' ||
+          requestedService === 'actual-flight-tickets' ||
+          requestedService === 'actual-flight-ticket' ||
+          requestedService === 'actual-ticket' ||
+          requestedService === 'actual' ||
+          requestedService === 'confirmed'
+        ) {
+          targetServiceId = 'confirmed-ticket';
+        } else if (
+          requestedService === 'travel-itinerary' ||
+          requestedService === 'itinerary'
+        ) {
+          targetServiceId = 'travel-itinerary';
+        }
+
+        if (targetServiceId) {
+          const targetRadio = form?.querySelector<HTMLInputElement>(`input[name="service"][value="${targetServiceId}"]`);
+          if (targetRadio && !targetRadio.checked) {
+            targetRadio.checked = true;
+            targetRadio.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+        }
+      } catch {
+        // Graceful fallback
+      }
+    }
+
+    syncServiceFromUrl();
+    window.addEventListener('popstate', syncServiceFromUrl);
+    window.addEventListener('hashchange', syncServiceFromUrl);
+
     // Helper for validation styling
     function setFieldError(fieldId: string, errorId: string, isError: boolean) {
       const input = document.getElementById(fieldId) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
@@ -724,7 +772,7 @@ const travelServices = [
           const waLink = document.getElementById('flight-success-whatsapp-link') as HTMLAnchorElement | null;
           if (waLink) {
             const waMsg = `Hello Visa Convention Travel Desk, I just submitted flight assistance request ${data.leadId || ''} (${departureCity} to ${destinationCity} on ${departureDate}). Could you please share the available airline schedules and baggage options?`;
-            waLink.href = `https://wa.me/919414404040?text=${encodeURIComponent(waMsg)}`;
+            waLink.href = `https://wa.me/919680395539?text=${encodeURIComponent(waMsg)}`;
           }
 
           successView.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

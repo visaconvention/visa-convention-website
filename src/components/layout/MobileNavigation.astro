@@ -47,13 +47,14 @@ const { currentPath = '/' } = Astro.props;
         const active = currentPath === item.href || (hasChildren && item.children?.some(c => c.href === currentPath));
 
         if (hasChildren) {
+          const isStudyAbroad = item.label === 'Study Abroad';
           return (
             <div class="pb-2.5 border-b border-brand-border/60">
-              <div class="flex items-center justify-between py-1 px-1">
+              <div class="flex items-center justify-between py-0.5 px-1">
                 <span class="text-xs font-black uppercase tracking-wider text-brand-navy">
                   {item.label}
                 </span>
-                <a href={item.href} class="text-[11px] font-bold text-brand-blue hover:underline py-1 px-1.5">
+                <a href={item.href} class="text-[11px] font-bold text-brand-blue hover:underline min-h-[44px] inline-flex items-center px-2">
                   Overview →
                 </a>
               </div>
@@ -73,6 +74,14 @@ const { currentPath = '/' } = Astro.props;
                     </a>
                   );
                 })}
+                {isStudyAbroad && (
+                  <a
+                    href="/universities/"
+                    class="block px-3 py-2.5 text-xs sm:text-sm font-bold text-brand-red hover:bg-brand-bg rounded-lg transition-colors min-h-[44px] flex items-center"
+                  >
+                    Search 1,000+ Universities →
+                  </a>
+                )}
               </div>
             </div>
           );
@@ -148,6 +157,13 @@ const { currentPath = '/' } = Astro.props;
 
     openBtn.addEventListener('click', openMenu);
     closeBtn.addEventListener('click', closeMenu);
+
+    // Close menu when clicking link inside
+    drawer.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
 
     drawer.addEventListener('click', (e) => {
       if (e.target === drawer) {

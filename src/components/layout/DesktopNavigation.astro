@@ -1,263 +1,328 @@
 ---
 import { siteConfig } from '../../data/site-config';
-import { getFeaturedCountries } from '../../data/countries';
 
 interface Props {
   currentPath?: string;
 }
 
 const { currentPath = '/' } = Astro.props;
-const featuredCountries = getFeaturedCountries();
 
 function isActive(href: string) {
   if (href === '/') return currentPath === '/';
   return currentPath.startsWith(href);
 }
+
+function slugify(text: string) {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
 ---
 
-<nav aria-label="Main Navigation" class="hidden xl:flex items-center gap-1.5 2xl:gap-2 shrink-0">
+<nav aria-label="Main Navigation" class="hidden xl:flex items-center gap-1 xl:gap-1.5 2xl:gap-2 shrink-0">
   {siteConfig.nav.map((item) => {
     const hasChildren = item.children && item.children.length > 0;
     const isStudyAbroad = item.label === 'Study Abroad';
     const isVisaServices = item.label === 'Visa Services';
+    const isFlights = item.label === 'Flights';
+    const isAdditionalServices = item.label === 'Additional Services';
     const isAbout = item.label === 'About';
-    const active = isActive(item.href);
+    const active = isActive(item.href) || (hasChildren && item.children?.some(c => isActive(c.href)));
+    const slug = slugify(item.label);
+    const btnId = `nav-btn-${slug}`;
+    const menuId = `nav-menu-${slug}`;
 
-    // 1. Study Abroad Rich Mega-Menu Dropdown
-    if (isStudyAbroad && hasChildren) {
+    // Dropdown items (Study Abroad, Visa Services, Flights, Additional Services, About)
+    if (hasChildren) {
+      // Determine panel alignment and width
+      let panelClasses = 'left-1/2 -translate-x-1/2 w-[400px]';
+      if (isStudyAbroad) {
+        panelClasses = 'left-0 w-[350px]';
+      } else if (isVisaServices) {
+        panelClasses = 'left-1/2 -translate-x-1/2 w-[380px]';
+      } else if (isFlights) {
+        panelClasses = 'left-1/2 -translate-x-1/2 w-[390px]';
+      } else if (isAdditionalServices) {
+        panelClasses = 'left-1/2 -translate-x-1/2 w-[460px]';
+      } else if (isAbout) {
+        panelClasses = 'right-0 w-[380px]';
+      }
+
       return (
-        <div class="relative group shrink-0">
+        <div class="relative group nav-dropdown-group shrink-0" data-nav-dropdown>
           <button
             type="button"
-            class={`flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all duration-150 ${
+            id={btnId}
+            class={`flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all duration-150 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue ${
               active
                 ? 'text-brand-navy bg-brand-bg font-bold shadow-2xs'
                 : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/60'
             }`}
             aria-expanded="false"
+            aria-haspopup="true"
+            aria-controls={menuId}
           >
             <span class="whitespace-nowrap">{item.label}</span>
-            <svg class="w-3.5 h-3.5 text-brand-subtle group-hover:rotate-180 group-hover:text-brand-blue transition-transform duration-200 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg
+              class="w-3.5 h-3.5 text-brand-subtle transition-transform duration-200 shrink-0 chevron-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
 
-          <!-- Study Abroad Mega-Menu -->
-          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[640px] opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto transition-all duration-200 z-50">
-            <div class="bg-white rounded-2xl shadow-2xl border border-brand-border p-6 ring-1 ring-black/5">
-              <div class="pb-3 mb-4 border-b border-brand-border flex items-center justify-between">
-                <div>
-                  <span class="text-xs font-bold uppercase tracking-wider text-brand-navy">
-                    International Education Pathways
-                  </span>
-                  <p class="text-xs text-brand-muted">
-                    Explore universities, medical faculties, and degree admissions across 35+ nations
-                  </p>
-                </div>
-                <a href="/study-abroad/" class="text-xs font-bold text-brand-red hover:underline">
-                  All 35+ Countries →
-                </a>
-              </div>
-
-              <div class="grid grid-cols-12 gap-6">
-                <!-- Left Column: Core Pathways -->
-                <div class="col-span-7 space-y-1">
-                  <div class="text-[11px] font-bold uppercase tracking-wider text-brand-muted mb-2 px-2">
-                    Guidance Verticals
-                  </div>
-                  {item.children?.map((child) => (
-                    <a
-                      href={child.href}
-                      class="flex items-start gap-2.5 p-2 rounded-xl hover:bg-brand-bg hover:border-brand-blue/30 border border-transparent transition-all group/item"
-                    >
-                      <div class="w-7 h-7 rounded-lg bg-brand-bg text-brand-navy group-hover/item:bg-brand-navy group-hover/item:text-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5 text-xs font-bold">
-                        →
-                      </div>
-                      <div>
-                        <span class="block text-xs sm:text-sm font-bold text-brand-navy group-hover/item:text-brand-blue leading-snug">
-                          {child.label}
-                        </span>
-                        {child.description && (
-                          <span class="block text-[11px] text-brand-muted line-clamp-1">
-                            {child.description}
-                          </span>
-                        )}
-                      </div>
-                    </a>
-                  ))}
-                </div>
-
-                <!-- Right Column: Top Featured Destinations -->
-                <div class="col-span-5 border-l border-brand-border/70 pl-5 space-y-2">
-                  <div class="text-[11px] font-bold uppercase tracking-wider text-brand-muted mb-2">
-                    Top Destinations
-                  </div>
-                  <div class="grid grid-cols-1 gap-1.5">
-                    {featuredCountries.slice(0, 6).map((country) => (
+          <!-- Dropdown Panel -->
+          <div
+            id={menuId}
+            role="region"
+            aria-labelledby={btnId}
+            class={`nav-dropdown-menu absolute top-full pt-2.5 opacity-0 translate-y-1 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto transition-all duration-200 z-50 ${panelClasses}`}
+          >
+            <div class="bg-white rounded-2xl shadow-xl border border-brand-border p-4 ring-1 ring-black/5 text-left">
+              
+              {/* STUDY ABROAD PANEL */}
+              {isStudyAbroad && (
+                <>
+                  <div class="space-y-1">
+                    {item.children?.map((child) => (
                       <a
-                        href={`/study-abroad/${country.slug}/`}
-                        class="flex items-center gap-2 p-1.5 rounded-lg hover:bg-brand-bg text-xs font-semibold text-brand-navy hover:text-brand-blue transition-colors group/dest"
+                        href={child.href}
+                        class="flex items-start gap-2.5 p-2 rounded-xl hover:bg-brand-bg hover:border-brand-blue/30 border border-transparent transition-all group/item focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue"
                       >
-                        <span class="w-6 h-6 rounded bg-brand-bg text-brand-navy font-black text-3xs flex items-center justify-center flex-shrink-0 group-hover/dest:bg-brand-navy group-hover/dest:text-white transition-colors">
-                          {country.flagCode}
-                        </span>
-                        <span class="truncate">{country.name}</span>
+                        <div class="w-7 h-7 rounded-lg bg-brand-bg text-brand-navy group-hover/item:bg-brand-navy group-hover/item:text-white flex items-center justify-center shrink-0 transition-colors mt-0.5 text-xs font-bold">
+                          →
+                        </div>
+                        <div class="min-w-0 flex-1">
+                          <span class="block text-xs sm:text-sm font-bold text-brand-navy group-hover/item:text-brand-blue leading-snug">
+                            {child.label}
+                          </span>
+                          {child.description && (
+                            <span class="block text-[11px] text-brand-muted leading-tight mt-0.5 truncate">
+                              {child.description}
+                            </span>
+                          )}
+                        </div>
                       </a>
                     ))}
                   </div>
-                </div>
-              </div>
 
-              <!-- Bottom Footer Bar -->
-              <div class="pt-3 mt-4 border-t border-brand-border bg-brand-bg/50 -mx-6 -mb-6 p-4 rounded-b-2xl flex items-center justify-between text-xs text-brand-muted">
-                <span>Looking for institution-specific shortlists?</span>
-                <a href="/universities/" class="font-bold text-brand-red hover:underline">
-                  Search 1,000+ Universities →
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
+                  <div class="pt-2.5 mt-2 border-t border-brand-border/70 bg-brand-bg/50 -mx-4 -mb-4 p-3 rounded-b-2xl flex items-center justify-between text-xs text-brand-muted">
+                    <span>Looking for institutions?</span>
+                    <a href="/universities/" class="font-bold text-brand-red hover:underline">
+                      Search 1,000+ Universities →
+                    </a>
+                  </div>
+                </>
+              )}
 
-    // 2. Visa Services Dropdown
-    if (isVisaServices && hasChildren) {
-      return (
-        <div class="relative group shrink-0">
-          <button
-            type="button"
-            class={`flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all duration-150 ${
-              active
-                ? 'text-brand-navy bg-brand-bg font-bold shadow-2xs'
-                : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/60'
-            }`}
-            aria-expanded="false"
-          >
-            <span class="whitespace-nowrap">{item.label}</span>
-            <svg class="w-3.5 h-3.5 text-brand-subtle group-hover:rotate-180 group-hover:text-brand-blue transition-transform duration-200 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          <!-- Visa Services Dropdown -->
-          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[420px] opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto transition-all duration-200 z-50">
-            <div class="bg-white rounded-2xl shadow-2xl border border-brand-border p-5 ring-1 ring-black/5">
-              <div class="pb-3 mb-2.5 border-b border-brand-border">
-                <span class="text-xs font-bold uppercase tracking-wider text-brand-navy">
-                  Visa Advisory & Compliance
-                </span>
-                <p class="text-xs text-brand-muted mt-0.5">
-                  Tourist, work, and documentation assistance
-                </p>
-              </div>
-
-              <div class="space-y-1">
-                {item.children?.map((child) => (
-                  <a
-                    href={child.href}
-                    class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-brand-bg hover:border-brand-blue/30 border border-transparent transition-all group/item"
-                  >
-                    <div class="w-7 h-7 rounded-lg bg-brand-bg text-brand-navy group-hover/item:bg-brand-navy group-hover/item:text-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5 text-xs font-bold">
-                      ✓
-                    </div>
+              {/* VISA SERVICES PANEL */}
+              {isVisaServices && (
+                <>
+                  <div class="pb-2.5 mb-2 border-b border-brand-border/70 flex items-center justify-between">
                     <div>
-                      <span class="block text-xs sm:text-sm font-bold text-brand-navy group-hover/item:text-brand-blue leading-snug">
-                        {child.label}
+                      <span class="text-xs font-bold uppercase tracking-wider text-brand-navy">
+                        Visa Services
                       </span>
-                      {child.description && (
-                        <span class="block text-xs text-brand-muted mt-0.5">
-                          {child.description}
-                        </span>
-                      )}
+                      <p class="text-[11px] text-brand-muted">
+                        Consular documentation & regulatory assistance
+                      </p>
                     </div>
-                  </a>
-                ))}
-              </div>
+                    <a href="/services/" class="text-xs font-bold text-brand-blue hover:text-brand-navy hover:underline">
+                      Overview →
+                    </a>
+                  </div>
 
-              <div class="pt-3 mt-3 border-t border-brand-border bg-brand-bg/50 -mx-5 -mb-5 p-3.5 rounded-b-2xl flex items-center justify-between text-xs text-brand-muted">
-                <span>Direct Embassy Appointment Prep</span>
-                <a href="/contact/" class="font-bold text-brand-red hover:underline">
-                  Book Desk Consultation →
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
+                  <div class="space-y-1">
+                    {item.children?.map((child) => (
+                      <a
+                        href={child.href}
+                        class="flex items-start gap-2.5 p-2 rounded-xl hover:bg-brand-bg hover:border-brand-blue/30 border border-transparent transition-all group/item focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue"
+                      >
+                        <div class="w-7 h-7 rounded-lg bg-brand-bg text-brand-navy group-hover/item:bg-brand-navy group-hover/item:text-white flex items-center justify-center shrink-0 transition-colors mt-0.5 text-xs font-bold">
+                          ✓
+                        </div>
+                        <div class="min-w-0 flex-1">
+                          <span class="block text-xs sm:text-sm font-bold text-brand-navy group-hover/item:text-brand-blue leading-snug">
+                            {child.label}
+                          </span>
+                          {child.description && (
+                            <span class="block text-[11px] text-brand-muted leading-tight mt-0.5 truncate">
+                              {child.description}
+                            </span>
+                          )}
+                        </div>
+                      </a>
+                    ))}
+                  </div>
 
-    // 3. About Dropdown
-    if (isAbout && hasChildren) {
-      return (
-        <div class="relative group shrink-0">
-          <button
-            type="button"
-            class={`flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all duration-150 ${
-              active
-                ? 'text-brand-navy bg-brand-bg font-bold shadow-2xs'
-                : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/60'
-            }`}
-            aria-expanded="false"
-          >
-            <span class="whitespace-nowrap">{item.label}</span>
-            <svg class="w-3.5 h-3.5 text-brand-subtle group-hover:rotate-180 group-hover:text-brand-blue transition-transform duration-200 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
+                  <div class="pt-2.5 mt-2 border-t border-brand-border/70 bg-brand-bg/50 -mx-4 -mb-4 p-3 rounded-b-2xl flex items-center justify-between text-xs text-brand-muted">
+                    <span>Direct Consular Appointment Prep</span>
+                    <a href="/contact/" class="font-bold text-brand-red hover:underline">
+                      Book Consultation →
+                    </a>
+                  </div>
+                </>
+              )}
 
-          <!-- About Dropdown -->
-          <div class="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[420px] opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto transition-all duration-200 z-50">
-            <div class="bg-white rounded-2xl shadow-2xl border border-brand-border p-6 ring-1 ring-black/5">
-              <div class="pb-3 mb-2 border-b border-brand-border">
-                <span class="text-xs font-bold uppercase tracking-wider text-brand-navy">
-                  Corporate Credibility & Team
-                </span>
-                <p class="text-xs text-brand-muted">
-                  Rooted in Hanumangarh, serving global aspirants
-                </p>
-              </div>
-
-              <div class="space-y-1">
-                {item.children?.map((child) => (
-                  <a
-                    href={child.href}
-                    class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-brand-bg hover:border-brand-blue/30 border border-transparent transition-all group/item"
-                  >
-                    <div class="w-7 h-7 rounded-lg bg-brand-bg text-brand-navy group-hover/item:bg-brand-navy group-hover/item:text-white flex items-center justify-center flex-shrink-0 transition-colors mt-0.5 text-xs font-bold">
-                      ★
-                    </div>
+              {/* FLIGHTS PANEL */}
+              {isFlights && (
+                <>
+                  <div class="pb-2.5 mb-2 border-b border-brand-border/70 flex items-center justify-between">
                     <div>
-                      <span class="block text-xs sm:text-sm font-bold text-brand-navy group-hover/item:text-brand-blue leading-snug">
-                        {child.label}
+                      <span class="text-xs font-bold uppercase tracking-wider text-brand-navy">
+                        Flight Coordination Desk
                       </span>
-                      {child.description && (
-                        <span class="block text-xs text-brand-muted mt-0.5">
-                          {child.description}
-                        </span>
-                      )}
+                      <p class="text-[11px] text-brand-muted">
+                        Verifiable reservation holds & confirmed e-tickets
+                      </p>
                     </div>
-                  </a>
-                ))}
-              </div>
+                    <a href="/services/flight-booking/" class="text-xs font-bold text-brand-blue hover:text-brand-navy hover:underline">
+                      Overview →
+                    </a>
+                  </div>
 
-              <div class="pt-3 mt-3 border-t border-brand-border bg-brand-bg/50 -mx-6 -mb-6 p-4 rounded-b-2xl flex items-center justify-between text-xs text-brand-muted">
-                <span>Shop No.115, Durga Market, Hanumangarh</span>
-                <a href="/about/" class="font-bold text-brand-red hover:underline">
-                  Visit Center →
-                </a>
-              </div>
+                  <div class="space-y-1">
+                    {item.children?.map((child) => (
+                      <a
+                        href={child.href}
+                        class="flex items-start gap-2.5 p-2 rounded-xl hover:bg-brand-bg hover:border-brand-blue/30 border border-transparent transition-all group/item focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue"
+                      >
+                        <div class="w-7 h-7 rounded-lg bg-brand-bg text-brand-navy group-hover/item:bg-brand-navy group-hover/item:text-white flex items-center justify-center shrink-0 transition-colors mt-0.5 text-xs font-bold">
+                          ✈
+                        </div>
+                        <div class="min-w-0 flex-1">
+                          <span class="block text-xs sm:text-sm font-bold text-brand-navy group-hover/item:text-brand-blue leading-snug">
+                            {child.label}
+                          </span>
+                          {child.description && (
+                            <span class="block text-[11px] text-brand-muted leading-tight mt-0.5 truncate">
+                              {child.description}
+                            </span>
+                          )}
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+
+                  <div class="pt-2.5 mt-2 border-t border-brand-border/70 bg-brand-bg/50 -mx-4 -mb-4 p-3 rounded-b-2xl flex items-center justify-between text-xs text-brand-muted">
+                    <span>Zero Fake PNRs • Legitimate GDS Holds</span>
+                    <a href="/services/flight-booking/" class="font-bold text-brand-red hover:underline">
+                      Flight Booking Desk →
+                    </a>
+                  </div>
+                </>
+              )}
+
+              {/* ADDITIONAL SERVICES PANEL */}
+              {isAdditionalServices && (
+                <>
+                  <div class="pb-2.5 mb-2 border-b border-brand-border/70 flex items-center justify-between">
+                    <div>
+                      <span class="text-xs font-bold uppercase tracking-wider text-brand-navy">
+                        Additional Services
+                      </span>
+                      <p class="text-[11px] text-brand-muted">
+                        Passport, documentation, attestation & legalizations
+                      </p>
+                    </div>
+                    <a href="/services/additional-services/" class="text-xs font-bold text-brand-blue hover:text-brand-navy hover:underline">
+                      View All →
+                    </a>
+                  </div>
+
+                  <div class="grid grid-cols-1 gap-1">
+                    {item.children?.map((child, idx) => (
+                      <a
+                        href={child.href}
+                        class="flex items-start gap-2.5 p-2 rounded-xl hover:bg-brand-bg hover:border-brand-blue/30 border border-transparent transition-all group/item focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue"
+                      >
+                        <div class="w-6 h-6 rounded-md bg-brand-bg text-brand-navy group-hover/item:bg-brand-navy group-hover/item:text-white flex items-center justify-center shrink-0 transition-colors mt-0.5 text-[11px] font-bold">
+                          0{idx + 1}
+                        </div>
+                        <div class="min-w-0 flex-1">
+                          <span class="block text-xs sm:text-sm font-bold text-brand-navy group-hover/item:text-brand-blue leading-snug">
+                            {child.label}
+                          </span>
+                          {child.description && (
+                            <span class="block text-[11px] text-brand-muted leading-tight mt-0.5 truncate">
+                              {child.description}
+                            </span>
+                          )}
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+
+                  <div class="pt-2.5 mt-2 border-t border-brand-border/70 bg-brand-bg/50 -mx-4 -mb-4 p-3 rounded-b-2xl flex items-center justify-between text-xs text-brand-muted">
+                    <span>Administrative Support from Hanumangarh</span>
+                    <a href="/services/additional-services/" class="font-bold text-brand-red hover:underline">
+                      View All Additional Services →
+                    </a>
+                  </div>
+                </>
+              )}
+
+              {/* ABOUT PANEL */}
+              {isAbout && (
+                <>
+                  <div class="pb-2.5 mb-2 border-b border-brand-border/70 flex items-center justify-between">
+                    <div>
+                      <span class="text-xs font-bold uppercase tracking-wider text-brand-navy">
+                        Corporate Credibility & Team
+                      </span>
+                      <p class="text-[11px] text-brand-muted">
+                        Rooted in Hanumangarh, serving global aspirants
+                      </p>
+                    </div>
+                    <a href="/about/" class="text-xs font-bold text-brand-blue hover:text-brand-navy hover:underline">
+                      Overview →
+                    </a>
+                  </div>
+
+                  <div class="space-y-1">
+                    {item.children?.map((child) => (
+                      <a
+                        href={child.href}
+                        class="flex items-start gap-2.5 p-2 rounded-xl hover:bg-brand-bg hover:border-brand-blue/30 border border-transparent transition-all group/item focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue"
+                      >
+                        <div class="w-7 h-7 rounded-lg bg-brand-bg text-brand-navy group-hover/item:bg-brand-navy group-hover/item:text-white flex items-center justify-center shrink-0 transition-colors mt-0.5 text-xs font-bold">
+                          ★
+                        </div>
+                        <div class="min-w-0 flex-1">
+                          <span class="block text-xs sm:text-sm font-bold text-brand-navy group-hover/item:text-brand-blue leading-snug">
+                            {child.label}
+                          </span>
+                          {child.description && (
+                            <span class="block text-[11px] text-brand-muted leading-tight mt-0.5 truncate">
+                              {child.description}
+                            </span>
+                          )}
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+
+                  <div class="pt-2.5 mt-2 border-t border-brand-border/70 bg-brand-bg/50 -mx-4 -mb-4 p-3 rounded-b-2xl flex items-center justify-between text-xs text-brand-muted">
+                    <span>Shop No.115, Durga Market, Hanumangarh Junction</span>
+                    <a href="/about/" class="font-bold text-brand-red hover:underline">
+                      Visit Center →
+                    </a>
+                  </div>
+                </>
+              )}
+
             </div>
           </div>
         </div>
       );
     }
 
-    // 4. Regular Direct Links (Flight Booking, Contact, etc.)
+    // Direct link fallback (if ever needed)
     return (
       <a
         href={item.href}
-        class={`px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap shrink-0 transition-all duration-150 ${
+        class={`px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap shrink-0 transition-all duration-150 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue ${
           active
             ? 'text-brand-navy bg-brand-bg font-bold shadow-2xs'
             : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/60'
@@ -268,3 +333,102 @@ function isActive(href: string) {
     );
   })}
 </nav>
+
+<style>
+  .nav-dropdown-group:hover .nav-dropdown-menu,
+  .nav-dropdown-group:focus-within .nav-dropdown-menu,
+  .nav-dropdown-group[data-open="true"] .nav-dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .nav-dropdown-group:hover .chevron-icon,
+  .nav-dropdown-group:focus-within .chevron-icon,
+  .nav-dropdown-group[data-open="true"] .chevron-icon {
+    transform: rotate(180deg);
+    color: var(--color-brand-blue, #2367A4);
+  }
+</style>
+
+<script>
+  function setupDesktopNavigation() {
+    const dropdownGroups = document.querySelectorAll<HTMLElement>('[data-nav-dropdown]');
+
+    function closeAllDropdowns(except?: HTMLElement) {
+      dropdownGroups.forEach((group) => {
+        if (group !== except) {
+          group.removeAttribute('data-open');
+          const btn = group.querySelector<HTMLButtonElement>('button[aria-haspopup="true"]');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    dropdownGroups.forEach((group) => {
+      const btn = group.querySelector<HTMLButtonElement>('button[aria-haspopup="true"]');
+      if (!btn) return;
+
+      // Click toggle
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = group.getAttribute('data-open') === 'true';
+        if (isOpen) {
+          group.removeAttribute('data-open');
+          btn.setAttribute('aria-expanded', 'false');
+        } else {
+          closeAllDropdowns(group);
+          group.setAttribute('data-open', 'true');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      // Hover / focus sync
+      group.addEventListener('mouseenter', () => {
+        btn.setAttribute('aria-expanded', 'true');
+      });
+
+      group.addEventListener('mouseleave', () => {
+        if (group.getAttribute('data-open') !== 'true') {
+          btn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Close when link clicked inside
+      const links = group.querySelectorAll('a');
+      links.forEach((link) => {
+        link.addEventListener('click', () => {
+          closeAllDropdowns();
+        });
+      });
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement | null;
+      if (!target?.closest('[data-nav-dropdown]')) {
+        closeAllDropdowns();
+      }
+    });
+
+    // Escape key closes open dropdown and focuses its button
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        dropdownGroups.forEach((group) => {
+          const btn = group.querySelector<HTMLButtonElement>('button[aria-haspopup="true"]');
+          if (group.getAttribute('data-open') === 'true' || group.contains(document.activeElement)) {
+            group.removeAttribute('data-open');
+            if (btn) {
+              btn.setAttribute('aria-expanded', 'false');
+              btn.focus();
+            }
+          }
+        });
+      }
+    });
+  }
+
+  setupDesktopNavigation();
+  document.addEventListener('astro:page-load', setupDesktopNavigation);
+</script>

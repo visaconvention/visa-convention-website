@@ -382,7 +382,7 @@ async function runTests() {
     assert(mobileMenuOpen.isVisible, 'Mobile navigation drawer opens on hamburger button tap');
     assert(!mobileMenuOpen.hasFocusBadge, 'Change 1: Red FOCUS badge is completely absent from mobile drawer');
     assert(mobileMenuOpen.hasStudyAbroad, 'Mobile drawer includes Study Abroad group');
-    assert(mobileMenuOpen.hasEuropeChild, 'Mobile drawer naturally includes Study in Europe under Study Abroad');
+    assert(!mobileMenuOpen.hasEuropeChild, 'Mobile drawer reflects streamlined Study Abroad navigation without Study in Europe item');
     assert(mobileMenuOpen.hasRequestCta, 'Mobile drawer primary button is "Request Consultation"');
 
     // Close mobile menu

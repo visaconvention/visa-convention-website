@@ -188,8 +188,14 @@ const { hero, story, directorsMessage, teamMembers, physicalOffice, verifiedMile
           </div>
 
           <div class="pt-4 border-t border-brand-border/70 flex items-center justify-between text-xs">
-            <span class="font-semibold text-slate-600">Specialization:</span>
-            <span class="font-bold text-brand-navy text-right">{member.specialization}</span>
+            <span class="font-semibold text-slate-600">{member.specialization}</span>
+            <a
+              href={member.department.includes('Medical') ? '/services/mbbs/' : '/services/study-visa/'}
+              class="font-bold text-brand-red hover:text-brand-navy transition-colors inline-flex items-center gap-1"
+            >
+              <span>{member.department.includes('Medical') ? 'MBBS Advisory' : 'Study Visa Guidance'}</span>
+              <span>→</span>
+            </a>
           </div>
         </div>
       ))}
@@ -221,9 +227,11 @@ const { hero, story, directorsMessage, teamMembers, physicalOffice, verifiedMile
           <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-xs space-y-4 text-xs sm:text-sm">
             <div>
               <span class="block text-brand-muted uppercase font-bold text-[10px] tracking-wider mb-1">Center Address</span>
-              <p class="font-bold text-brand-navy text-sm leading-relaxed">
-                {physicalOffice.address}
-              </p>
+              <div class="font-bold text-brand-navy text-sm leading-relaxed">
+                {siteConfig.addressLines.map((line) => (
+                  <span class="block">{line}</span>
+                ))}
+              </div>
             </div>
             <div class="pt-3 border-t border-brand-border/70">
               <span class="block text-brand-muted uppercase font-bold text-[10px] tracking-wider mb-1">Counseling Hours</span>

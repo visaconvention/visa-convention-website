@@ -6,18 +6,24 @@ export const siteConfig = {
   tagline: 'Premier Visa, Higher Education Abroad & Travel Consultancy',
   shortDescription: 'Professional study visa counseling, MBBS/PhD admissions abroad, tourist/work visa facilitation, and flight reservation assistance based in Hanumangarh, Rajasthan.',
   domain: 'https://visaconvention.com',
-  city: 'Hanumangarh',
+  city: 'Hanumangarh Junction',
   state: 'Rajasthan',
   country: 'India',
   
   // Primary contact channels (Approved Hanumangarh advisory line & WhatsApp)
-  phone: '+91 96803-95539',
+  phone: '+91 96803 95539',
+  phoneTel: 'tel:+919680395539',
   whatsappNumber: '919680395539',
-  whatsappDisplay: '+91 96803-95539',
+  whatsappDisplay: '+91 96803 95539',
   email: 'visaconvention064@gmail.com',
   admissionsEmail: 'visaconvention064@gmail.com',
-  officeAddress: 'Shop No.115, Durga Market, Street No.04, behind Bus Stand, Durga Colony, Junction, Hanumangarh, Rajasthan 335512',
-  googleMapsUrl: 'https://maps.google.com/?q=Shop+No.115,+Durga+Market,+Street+No.04,+behind+Bus+Stand,+Durga+Colony,+Junction,+Hanumangarh,+Rajasthan+335512',
+  officeAddress: 'Shop No.115, Durga Market, Street No.04, Behind Bus Stand, Durga Colony, Hanumangarh Junction, Rajasthan – 335512, India',
+  addressLines: [
+    'Shop No.115, Durga Market, Street No.04',
+    'Behind Bus Stand, Durga Colony',
+    'Hanumangarh Junction, Rajasthan – 335512, India',
+  ],
+  googleMapsUrl: 'https://maps.google.com/?q=Visa+Convention,+Shop+No.115,+Durga+Market,+Street+No.04,+Behind+Bus+Stand,+Durga+Colony,+Hanumangarh+Junction,+Rajasthan+335512',
   businessHours: 'Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)',
   socialLinks: {
     instagram: 'https://www.instagram.com/visaconvention/',
@@ -26,7 +32,7 @@ export const siteConfig = {
     // Verification Status: PENDING CLIENT CONFIRMATION (Left unpublished per audit instructions)
     facebook: '',
     facebookCandidate: 'https://www.facebook.com/visaconvention/',
-    googleMaps: 'https://maps.google.com/?q=Shop+No.115,+Durga+Market,+Street+No.04,+behind+Bus+Stand,+Durga+Colony,+Junction,+Hanumangarh,+Rajasthan+335512',
+    googleMaps: 'https://maps.google.com/?q=Visa+Convention,+Shop+No.115,+Durga+Market,+Street+No.04,+Behind+Bus+Stand,+Durga+Colony,+Hanumangarh+Junction,+Rajasthan+335512',
   },
 
   // Verified, active social channels for public UI rendering across footer & contact
@@ -70,8 +76,6 @@ export const siteConfig = {
       href: '/study-abroad/',
       children: [
         { label: 'Explore 35+ Countries', href: '/study-abroad/', description: 'Discover international study destinations' },
-        { label: 'Study in Europe', href: '/study-in-europe/', description: 'European public universities, APS & Schengen mobility' },
-        { label: 'Study Visa Assistance', href: '/services/study-visa/', description: 'Comprehensive admissions & visa filing' },
         { label: 'MBBS Abroad', href: '/services/mbbs/', description: 'WDOMS-listed faculties & NMC guidance' },
         { label: 'PhD Abroad', href: '/services/phd/', description: 'Doctoral research and funded proposals' },
       ],
@@ -82,12 +86,59 @@ export const siteConfig = {
       children: [
         { label: 'Tourist & Visitor Visa', href: '/services/tourist-visa/', description: 'Visitor visas, itineraries & appointment prep' },
         { label: 'Work Visa Support', href: '/services/work-visa/', description: 'Employer documentation & regulatory guidance' },
-        { label: 'Additional Services', href: '/services/additional-services/', description: 'Passport assistance, apostille, PCC & translations' },
       ],
     },
     {
       label: 'Flights',
       href: '/services/flight-booking/',
+      children: [
+        {
+          label: 'Dummy Tickets',
+          href: '/services/flight-booking/?service=reservation-hold#flight-enquiry-section',
+          description: 'Flight reservation / itinerary assistance for visa dossiers',
+        },
+        {
+          label: 'Actual Flight Tickets',
+          href: '/services/flight-booking/?service=confirmed-ticket#flight-enquiry-section',
+          description: 'Confirmed flight ticket enquiries with student tariffs',
+        },
+      ],
+    },
+    {
+      label: 'Additional Services',
+      href: '/services/additional-services/',
+      children: [
+        {
+          label: 'Passport Application Assistance',
+          href: '/services/additional-services/#passport-assistance',
+          description: 'Fresh passport filing, renewals & PSK appointment scheduling',
+        },
+        {
+          label: 'ITR Filing Assistance',
+          href: '/services/additional-services/#itr-filing',
+          description: 'Income tax returns & consular financial documentation',
+        },
+        {
+          label: 'Company Registration Assistance',
+          href: '/services/additional-services/#company-registration',
+          description: 'Incorporation records & GST filing for business travelers',
+        },
+        {
+          label: 'Police Clearance Certificate (PCC)',
+          href: '/services/additional-services/#pcc-assistance',
+          description: 'PCC application coordination & checklist verification',
+        },
+        {
+          label: 'Document Apostille',
+          href: '/services/additional-services/#document-apostille',
+          description: 'Ministry of External Affairs (MEA) apostille & legalizations',
+        },
+        {
+          label: 'Document Translation',
+          href: '/services/additional-services/#document-translation',
+          description: 'Certified translations for embassies & foreign universities',
+        },
+      ],
     },
     {
       label: 'About',
@@ -96,10 +147,6 @@ export const siteConfig = {
         { label: 'Our Story & Office', href: '/about/', description: 'Hanumangarh advisory center & counseling ethics' },
         { label: 'Verified Outcomes', href: '/success-stories/', description: 'Authentic student outcomes & privacy protection' },
       ],
-    },
-    {
-      label: 'Contact',
-      href: '/contact/',
     },
   ] as NavItem[],
 };

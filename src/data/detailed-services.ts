@@ -609,35 +609,41 @@ export const detailedServicesData: Record<string, DetailedService> = {
     shortDescription: 'Structured documentation assistance for international travel and study files, including passport application coordination, MEA apostille, police clearance certificates (PCC), certified translations, and administrative financial filing support.',
     badge: 'Documentation Services',
     metaTitle: 'Additional Services — Passport, Apostille, PCC & Translations | Visa Convention',
-    metaDescription: 'Administrative travel and documentation assistance from Visa Convention in Hanumangarh. Passport application filing, MEA apostille, PCC, certified translations, and ITR documentation guidance.',
+    metaDescription: 'Administrative documentation assistance in Hanumangarh: passport filing, MEA apostille, PCC support, certified translations, and ITR financial guidance.',
     heroCtaText: 'Request Documentation Assistance',
     heroCtaHref: '#enquiry',
     heroImage: '/assets/images/services/Additional%20Visa%20Services%20Guide.png',
     heroImageAlt: 'Visa Convention Additional Documentation & Visa Services Guide',
     assistanceIncludes: [
       {
+        id: 'passport-assistance',
         title: 'Passport Application Assistance',
         description: 'Complete assistance for fresh passport applications, renewals, tatkaal filings, appointment booking at Passport Seva Kendra (PSK/POPSK), and document readiness.',
       },
       {
-        title: 'Apostille & Document Attestation',
-        description: 'Guidance and administrative facilitation for Ministry of External Affairs (MEA) apostille, state education department verifications, and embassy legalizations.',
-      },
-      {
-        title: 'Police Clearance Certificate (PCC) Support',
-        description: 'Application filing, PSK appointment scheduling, and document checklist review for international travel and immigration PCC dossiers.',
-      },
-      {
-        title: 'Certified Document Translation Services',
-        description: 'Facilitating certified translation of academic records, civil certificates, and affidavits required by foreign embassies and universities.',
-      },
-      {
-        title: 'ITR Filing & Financial Documentation',
+        id: 'itr-filing',
+        title: 'ITR Filing Assistance',
         description: 'Assisting applicants with documentation of income tax returns, net worth statements, and asset records required for consular financial proof.',
       },
       {
-        title: 'Company Registration Documentation',
+        id: 'company-registration',
+        title: 'Company Registration Assistance',
         description: 'Compiling incorporation records, GST filings, and business documentation for corporate travelers and international trade visitors.',
+      },
+      {
+        id: 'pcc-assistance',
+        title: 'Police Clearance Certificate (PCC)',
+        description: 'Application filing, PSK appointment scheduling, and document checklist review for international travel and immigration PCC dossiers.',
+      },
+      {
+        id: 'document-apostille',
+        title: 'Document Apostille',
+        description: 'Guidance and administrative facilitation for Ministry of External Affairs (MEA) apostille, state education department verifications, and embassy legalizations.',
+      },
+      {
+        id: 'document-translation',
+        title: 'Document Translation',
+        description: 'Facilitating certified translation of academic records, civil certificates, and affidavits required by foreign embassies and universities.',
       },
     ],
     supportedCountries: [

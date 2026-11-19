@@ -6,6 +6,201 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.45.0] - 2026-11-19 — Global Navigation Optimization: Flights & Additional Services Dropdowns, Exact Hierarchy, and Header Streamlining
+
+### Summary
+- **Header Order & Hierarchy (`src/data/site-config.ts`, `DesktopNavigation.astro`, `MobileNavigation.astro`):**
+  - Standardized sitewide navigation order to exact required specification:
+    **Study Abroad ▼ | Visa Services ▼ | Flights ▼ | Additional Services ▼ | About ▼ | Request Consultation**
+  - Completely excised `Contact` from header navigation (both desktop navigation bar and mobile drawer navigation items).
+  - Preserved `/contact/` static page, footer contact column, click-to-call link, and interactive inquiry forms.
+  - Guaranteed desktop navigation sits on one aligned row without wrapping across standard laptop and desktop viewports (`xl:flex gap-1 xl:gap-1.5 2xl:gap-2 shrink-0 whitespace-nowrap`).
+- **Visa Services Dropdown Refinement:**
+  - Excised `Additional Services` from the Visa Services dropdown to eliminate duplication.
+  - Visa Services now contains focused core offerings: `Tourist & Visitor Visa` (`/services/tourist-visa/`) and `Work Visa Support` (`/services/work-visa/`).
+  - Preserved bottom consultation shortcut: `Book Consultation →` (`/contact/`).
+- **Standalone Flights Dropdown (`DesktopNavigation.astro`, `FlightEnquiryForm.astro`):**
+  - Introduced standalone Flights dropdown with exactly two options:
+    1. **Dummy Tickets** — `Flight reservation / itinerary assistance for visa dossiers` (`/services/flight-booking/?service=reservation-hold#flight-enquiry-section`).
+    2. **Actual Flight Tickets** — `Confirmed flight ticket enquiries with student tariffs` (`/services/flight-booking/?service=confirmed-ticket#flight-enquiry-section`).
+  - Added URL parameter pre-selection in `FlightEnquiryForm.astro`: Automatically detects `?service=reservation-hold` or `?service=confirmed-ticket`, selects the matching service radio button, updates active card border/background styling, and smoothly scrolls to `#flight-enquiry-section`.
+  - Maintained zero fabricated ticket implications and strictly preserved legitimate GDS hold disclaimers.
+- **Standalone Additional Services Dropdown (`src/data/detailed-services.ts`, `ServiceLayout.astro`):**
+  - Introduced standalone Additional Services dropdown containing the six options in exact requested order:
+    1. `Passport Application Assistance` (`/services/additional-services/#passport-assistance`)
+    2. `ITR Filing Assistance` (`/services/additional-services/#itr-filing`)
+    3. `Company Registration Assistance` (`/services/additional-services/#company-registration`)
+    4. `Police Clearance Certificate (PCC)` (`/services/additional-services/#pcc-assistance`)
+    5. `Document Apostille` (`/services/additional-services/#document-apostille`)
+    6. `Document Translation` (`/services/additional-services/#document-translation`)
+  - Updated `assistanceIncludes` in `src/data/detailed-services.ts` and `src/types/index.ts` to assign unique anchor IDs matching this order.
+  - Added `id={item.id}` and `scroll-mt-28` sticky-header offset classes to all cards on `/services/additional-services/` in `ServiceLayout.astro` with hash-target visual feedback (`target:border-brand-blue target:ring-2 target:ring-brand-blue/30`).
+  - Provided direct overview links in dropdown header (`View All →`) and bottom bar (`View All Additional Services →`).
+- **Accessibility, Keyboard Control & Responsive Drawer:**
+  - Added full keyboard accessibility to desktop dropdowns: `aria-haspopup="true"`, dynamic `aria-expanded="true/false"`, and `aria-controls`.
+  - Added `Escape` key handling to close open dropdowns and restore focus to trigger buttons.
+  - Synchronized mobile drawer navigation with matching hierarchy, comfortable tap targets (`min-h-[44px]`), and auto-closing on link selection.
+- **Verification & Multi-Viewport Testing:**
+  - Authored automated test suite `tests/verify-global-navigation-optimization.js`: **79 / 79 checks passed (100%)**.
+  - Verified 0px horizontal overflow across all 9 target viewports (320px, 360px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px).
+  - Regression verified: Full test suite passes 100% (`seo-a11y-audit.test.js` 51/51, `verify-website-wide-address-update.js` 64/64, `verify-simplified-homepage.js` 43/43, `country-engine.test.js` 21/21, `credibility-engine.test.js` 34/34, `university-engine.test.js` 40/40, `tourist-work-services.test.js` 30/30, `flight-booking-and-images.test.js` 28/28, `contact-engine.test.js` 31/31).
+  - Captured evidence screenshots for desktop header, flights dropdown, additional services dropdown, mobile drawer, and flight pre-selection view.
+
+---
+
+## [1.45.0] - 2026-11-18 — Study Abroad Navigation Dropdown Cleanup & Streamlining
+
+### Summary
+- **Complete Removal of 5 Unnecessary Dropdown Elements (`src/components/layout/DesktopNavigation.astro`):**
+  1. **"All 35+ Countries →" Red Top Link:** Excised from the dropdown component markup.
+  2. **"Study in Europe" Menu Item:** Excised menu item, description, icon, and associated margins from `siteConfig.nav`.
+  3. **"Study Visa Assistance" Menu Entry:** Removed from Study Abroad dropdown navigation hierarchy, eliminating menu clutter while preserving the core `/services/study-visa/` route.
+  4. **"Top Destinations" Right-Hand Column:** Excised the entire second column (Australia, Canada, Germany, Ireland, UK, USA shortcuts).
+  5. **Two-Column Grid & Giant Dividers:** Excised multi-column wrappers (`grid grid-cols-12`, `col-span-7`, `col-span-5`, vertical dividers, and oversized padding).
+- **Single-Column Compact Layout Redesign (`DesktopNavigation.astro`):**
+  - Converted two-column mega-menu into a compact, single-column dropdown with desktop width of 350px (strictly conforming to the 300–360px specification).
+  - Cleanly positioned directly beneath the "Study Abroad" trigger button with subtle shadow and border styling.
+  - Retained exactly 3 core vertical pathways:
+    1. **Explore 35+ Countries** (`/study-abroad/`)
+    2. **MBBS Abroad** (`/services/mbbs/`)
+    3. **PhD Abroad** (`/services/phd/`)
+  - Retained the bottom **“Search 1,000+ Universities →”** shortcut (`/universities/`) in a dedicated light-slate footer bar.
+- **Mobile Navigation Drawer Streamlining (`MobileNavigation.astro`):**
+  - Updated mobile Study Abroad accordion group to reflect the same clean single-column structure.
+  - Fully accessible touch targets with `min-h-[44px]` for all items and the "Search 1,000+ Universities →" shortcut.
+  - Zero overflow or horizontal clipping across all mobile viewports (320px–430px).
+- **Preserved Core Pages & Zero Broken Links:**
+  - Preserved the dedicated `/services/study-visa/` service route without breaking incoming links.
+  - Verified that all 36 destination country pages and all 1,022 university listings remain completely intact and unaffected.
+  - Added direct practice links from About team cards to `/services/study-visa/` and `/services/mbbs/`.
+- **Verification & QA Testing:**
+  - Automated verification suite `tests/verify-study-abroad-dropdown-cleanup.js`: **29/29 checks passed (100%)**.
+  - Verified regression test suites:
+    - `tests/verify-mbbs-phd-nav-optimization.js`: **65/65 passed (100%)**
+    - `tests/verify-mobile-first-optimization.js`: **65/65 passed (100%)**
+    - `tests/e2e-comprehensive-audit.test.js`: **39/39 passed (100%)**
+    - `tests/credibility-engine.test.js`: **34/34 passed (100%)**
+    - `tests/university-engine.test.js`: **40/40 passed (100%)**
+    - `tests/country-engine.test.js`: **21/21 passed (100%)**
+    - `tests/tourist-work-services.test.js`: **30/30 passed (100%)**
+    - `tests/flight-booking-and-images.test.js`: **28/28 passed (100%)**
+    - `tests/contact-engine.test.js`: **31/31 passed (100%)**
+    - `tests/verify-simplified-homepage.js`: **43/43 passed (100%)**
+  - Astro diagnostics check: `0 errors, 0 warnings`.
+  - Static production build: `65 page(s) built cleanly in dist/`.
+
+---
+
+## [1.44.0] - 2026-11-17 — Flight Booking Page Layout & Content Optimization
+
+### Summary
+- **Complete Removal of 5 Oversized & Redundant Informational Elements (`src/pages/services/flight-booking.astro`):**
+  1. **"40kg–46kg Student Baggage" Card:** Completely excised the entire Student Privilege card, airline benefit claims, and luggage descriptions from the component tree.
+  2. **"Consular Advisory & Document Integrity Policy" Yellow Panel:** Completely excised the yellow advisory panel (`bg-amber-50/70 border-amber-200`) across all instances on the page.
+  3. **"Fair Pricing & Tariff Transparency" Card:** Completely excised the entire tariff rules, cancellation charges, and refund explanation card from the component tree.
+  4. **"Need Urgent Itinerary Advice?" Card:** Completely excised the entire navy Direct Travel Desk card, including WhatsApp Travel Coordinator and telephone call buttons.
+  5. **Baggage FAQ & Schema Item:** Removed the specific FAQ question (`"How do international students obtain extra baggage allowances (40kg–46kg)?"`) and its answer from `flightFaqs` and Schema.org `FAQPage` JSON-LD.
+- **Layout Rebalance & Dedicated Enquiry Focus:**
+  - Excised the legacy 12-column grid (`lg:grid-cols-12`) and orphaned 4-column right-side gutter (`lg:col-span-4`).
+  - Rebalanced the Flight Enquiry section into a centered, primary-focus container (`max-w-4xl mx-auto px-4 sm:px-6 lg:px-8`).
+  - Made the interactive flight assistance form the clear centerpiece of the page: **Select Service → Enter Travel Details → Submit Enquiry**.
+  - Aligned the FAQ section below into a matching `max-w-4xl mx-auto` container with refined section padding (`py-10 sm:py-14`).
+  - Added a concise 2-line statutory booking and consular note beneath the form preserving critical anti-fraud and embassy advisory disclosures without restoring oversized visual containers.
+- **Preserved Essential Functionality & Brand Assets:**
+  - Preserved approved client-supplied hero image (`Flight Booking and Dummy Tickets.png`).
+  - Preserved all 3 core service options: Flight Reservation Hold, Confirmed Flight Ticket, Travel Itinerary Assistance.
+  - Preserved complete interactive form validation, One-Way/Round-Trip toggle, and direct submission flow.
+  - Preserved shared header, navigation, compact footer, and floating WhatsApp contact button.
+  - Standardized form contact placeholders and success WhatsApp links to official number `+91 96803 95539`.
+- **Quality Assurance & Performance Metrics:**
+  - Desktop scroll height reduced from 3,488px to 3,233px (-255px).
+  - Mobile scroll height drastically reduced from 6,102px to 4,814px (-1,288px, ~21% reduction).
+  - Zero horizontal overflow across all 8 viewports (320px, 360px, 390px, 430px, 768px, 1024px, 1366px, 1440px).
+  - Automated verification test suite `tests/verify-flight-booking-optimization.js` passed 100% (30/30 checks).
+  - Regression verified: `tests/flight-booking-and-images.test.js` (28/28 passed), `tests/verify-website-wide-address-update.js` (64/64 passed).
+
+---
+
+## [1.43.0] - 2026-11-17 — Flight Booking Form Refinement & UX Simplification
+
+### Summary
+- **Removed Consent & Data Security Panel (`src/components/forms/FlightEnquiryForm.astro`):**
+  - Completely excised the large grey container panel from the component tree.
+  - Removed contact-consent checkbox (`#flight-consent`) and lengthy legalistic declaration text.
+  - Removed statement regarding legitimate airline reservation holds from inside the form body.
+  - Removed Data Security bio-pages notice and accompanying lock icons, borders, and background spacing.
+  - Removed client-side JavaScript validation logic checking `consentInput.checked` and `#flight-consent-error`.
+- **Form Field Renaming & Optional Designation (`src/components/forms/FlightEnquiryForm.astro`):**
+  - Renamed field label from `"Special Routing, Student Baggage, or Flexibility Notes"` to `"Additional Notes (Optional)"`.
+  - Updated placeholder to `"Any additional travel preferences or requirements…"`.
+  - Preserved backend field name `name="specialNotes"` for seamless lead processing and logging.
+  - Guaranteed genuine optionality — form submits successfully whether notes are provided or left empty.
+- **Privacy Policy & Statutory Compliance:**
+  - Added a concise, elegant statutory privacy disclosure directly beneath the submit CTA:
+    `By submitting, you agree to our Privacy Policy. Personal information is processed securely for travel assistance.`
+  - Validated active hyperlink pointing to `/privacy-policy/`.
+  - Retained verified quality assurance subtext: `"Zero fake PNRs • Legitimate GDS Reservations • Direct Airline Tariffs"`.
+- **Responsive Layout & Mobile Optimization:**
+  - Tightened form card padding from `p-6 sm:p-10` to `p-5 sm:p-8 md:p-10`.
+  - Optimized vertical spacing and margins (`space-y-5 sm:space-y-6`).
+  - Passed zero horizontal overflow across 9 viewports (320px–1440px).
+- **Automated Verification:**
+  - Executed automated Puppeteer QA suite (`tests/verify-flight-form-refinement.js`) with 31/31 passed checks.
+  - Clean TypeScript compilation with `npx astro check` (0 errors, 0 warnings).
+  - Clean static build with `npm run build` (65 pages built in 3.95s).
+  - Captured evidence screenshots: `flight-form-after-desktop-1440px.png`, `flight-form-after-mobile-375px.png`, `flight-form-after-mobile-320px.png`.
+
+---
+
+## [1.42.0] - 2026-11-14 — Website-Wide Official Address & Contact Standardization
+
+### Summary
+- **Centralized Business Configuration (`src/data/site-config.ts`):**
+  - Updated official business address to:
+    ```text
+    Visa Convention
+    Shop No.115, Durga Market, Street No.04
+    Behind Bus Stand, Durga Colony
+    Hanumangarh Junction, Rajasthan – 335512, India
+    ```
+  - Added structured multi-line array `addressLines` containing natural responsive line breaks:
+    - Line 1: `Shop No.115, Durga Market, Street No.04`
+    - Line 2: `Behind Bus Stand, Durga Colony`
+    - Line 3: `Hanumangarh Junction, Rajasthan – 335512, India`
+  - Standardized official telephone to `+91 96803 95539` without unstandardized hyphens.
+  - Added dedicated `phoneTel: 'tel:+919680395539'` for consistent click-to-call links across desktop and mobile.
+  - Standardized `city: 'Hanumangarh Junction'`.
+  - Updated `googleMapsUrl` with exact geocoded search query for Hanumangarh Junction.
+  - Preserved WhatsApp direct messaging functionality (`919680395539` / `+91 96803 95539`).
+- **Comprehensive Site-Wide Component Updates:**
+  - **About Data & Page (`src/data/about.ts`, `src/pages/about.astro`):**
+    - Anchored `physicalOffice.address` and `addressLines` directly to `siteConfig`.
+    - Formatted physical center address card with natural line breaks (`siteConfig.addressLines.map`).
+  - **Contact Page (`src/pages/contact.astro`):**
+    - Updated physical office card to render structured 3-line address format with natural line breaks.
+    - Updated click-to-call link to use `siteConfig.phoneTel` (`tel:+919680395539`).
+    - Verified direct WhatsApp button (`wa.me/919680395539`) and Google Maps directions link.
+  - **Global Footer (`src/components/layout/Footer.astro`):**
+    - Updated Office & Contact column to render 3-line address with natural line breaks.
+    - Linked telephone number using `siteConfig.phoneTel`.
+  - **Navigation Dropdowns (`DesktopNavigation.astro`, `MobileNavigation.astro`):**
+    - Updated desktop About dropdown bottom bar snippet to `Shop No.115, Durga Market, Hanumangarh Junction`.
+    - Verified mobile drawer address snippet matches Hanumangarh Junction.
+  - **Interactive Forms (`EnquiryForm.astro`, `PartnershipEnquiryForm.astro`):**
+    - Updated telephone input placeholders to `+91 96803 95539`.
+  - **WhatsApp Floating Button (`WhatsAppButton.astro`):**
+    - Imported `siteConfig` to dynamically bind `aria-label` and `title` to `siteConfig.whatsappDisplay`.
+  - **Schema.org Structured Data (`src/utils/seo.ts`):**
+    - Automatically synced `PostalAddress`: `streetAddress`, `addressLocality: 'Hanumangarh Junction'`, `postalCode: '335512'`, `telephone: '+91 96803 95539'`.
+- **Quality Assurance & Verification:**
+  - Audited full codebase and production build `dist/` — zero instances of old address variations or hyphenated phone numbers remain.
+  - Executed automated verification suite `tests/verify-website-wide-address-update.js` (65/65 checks passed, 100%).
+  - Ran multi-viewport overflow tests across 8 viewports (320px to 1440px) with 0 horizontal overflows.
+  - Regression verified: MBBS & PhD optimization (65/65 passed), Homepage service cards (87/87 passed), Compact footer (44/44 passed), Corporate credibility (34/34 passed), Contact engine (33/33 passed).
+  - Production build compiled 65 static pages in 5.26s.
+
+---
+
 ## [1.41.0] - 2026-11-14 — Navigation, MBBS Abroad & PhD Abroad Optimization
 
 ### Summary

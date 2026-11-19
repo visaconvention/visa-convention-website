@@ -44,10 +44,11 @@ const whatsAppUrl = buildWhatsAppLink({
           <!-- Address -->
           <div class="space-y-1.5">
             <strong class="block text-xs font-bold uppercase tracking-wider text-brand-muted">Physical Address</strong>
-            <p class="text-sm text-brand-navy font-semibold leading-relaxed">
-              {siteConfig.officeAddress}
-            </p>
-            <span class="block text-xs text-brand-muted">District: Hanumangarh • State: Rajasthan • PIN: 335512</span>
+            <div class="text-sm text-brand-navy font-semibold leading-relaxed">
+              {siteConfig.addressLines.map((line) => (
+                <span class="block">{line}</span>
+              ))}
+            </div>
             
             <div class="pt-2">
               <a
@@ -79,7 +80,7 @@ const whatsAppUrl = buildWhatsAppLink({
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <a
-                href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`}
+                href={siteConfig.phoneTel}
                 class="flex items-center gap-2.5 p-3 rounded-xl bg-brand-bg hover:bg-slate-100 border border-brand-border text-xs font-bold text-brand-navy transition-colors"
                 id="contact-phone-link"
               >

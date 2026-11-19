@@ -4,7 +4,6 @@ import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import FAQAccordion from '../../components/common/FAQAccordion.astro';
 import FlightEnquiryForm from '../../components/forms/FlightEnquiryForm.astro';
 import { getFaqSchema } from '../../utils/seo';
-import { siteConfig } from '../../data/site-config';
 
 // SEO Metadata
 const pageTitle = 'Flight Booking & Reservation Assistance — Visa Convention';
@@ -22,11 +21,7 @@ const flightFaqs = [
   },
   {
     question: 'Does Visa Convention provide dummy tickets or fake PNR numbers?',
-    answer: 'NEVER. Creating, distributing, or submitting fake flight tickets or fabricated PNR codes is fraudulent, illegal, and will lead to immediate visa refusal and potential travel bans. Visa Convention facilitates only legitimate, authorized reservation holds through accredited airline distribution systems.',
-  },
-  {
-    question: 'How do international students obtain extra baggage allowances (40kg–46kg)?',
-    answer: 'Major international airlines (such as British Airways, Air India, Emirates, Qatar Airways, and Lufthansa) offer special student tariff codes. When booking with an official university offer letter and student visa, students receive expanded baggage allowances of 40kg to 46kg (typically 2 checked pieces of 23kg each) at standard economy prices.',
+    answer: 'NEVER. Creating, distributing, or submitting fake flight tickets or fabricated PNR codes is fraudulent, illegal, and will lead to immediate visa refusal and potential travel bans. Visa Convention strictly refuses to create or distribute fake tickets, invented PNRs, or fabricated boarding passes. All reservations provided are legitimate, verifiable airline hold bookings through accredited Global Distribution Systems (GDS).',
   },
   {
     question: 'What happens if my visa processing is delayed after holding a reservation?',
@@ -112,143 +107,37 @@ const faqSchema = getFaqSchema(flightFaqs);
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 2: INTERACTIVE ENQUIRY FORM & SUPPORTING GUIDANCE (65% / 35%) -->
+  <!-- SECTION 2: DEDICATED FLIGHT ENQUIRY FORM (CENTERED PRIMARY FOCUS) -->
   <!-- ========================================================================= -->
-  <section id="flight-enquiry-section" class="py-12 sm:py-16 bg-brand-bg/50">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-        <!-- Left: Dedicated Flight Enquiry Form (approx. 65% width) -->
-        <div class="lg:col-span-8 space-y-6">
-          <!-- Consular Advisory & Document Integrity Policy -->
-          <div class="p-5 rounded-2xl bg-amber-50/70 border border-amber-200 text-xs text-amber-950 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div class="flex items-start gap-3">
-              <svg class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-              </svg>
-              <div>
-                <span class="font-bold block text-sm mb-0.5">Consular Advisory & Document Integrity Policy</span>
-                <p class="text-xs leading-relaxed text-amber-900">
-                  The U.S. Department of State, UKVI, and European consulates explicitly recommend that visa applicants do not purchase non-refundable tickets prior to visa issuance. Visa Convention strictly refuses to create or distribute fake tickets, invented PNRs, or fabricated boarding passes. All reservations provided are legitimate, verifiable airline hold bookings.
-                </p>
-              </div>
-            </div>
-          </div>
+  <section id="flight-enquiry-section" class="py-10 sm:py-14 bg-brand-bg/50 scroll-mt-24 sm:scroll-mt-28">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <FlightEnquiryForm />
 
-          <FlightEnquiryForm />
-        </div>
-
-        <!-- Right: Supporting Information & Practical Desk Rules (approx. 35% width) -->
-        <div class="lg:col-span-4 space-y-6 text-left">
-          <!-- Card 1: Student Baggage Optimization -->
-          <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-2xs">
-            <span class="inline-block px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded bg-brand-bg text-brand-blue border border-brand-blue/20 mb-2">
-              Student Privilege
-            </span>
-            <h3 class="text-base font-bold text-brand-navy mb-2">
-              40kg–46kg Student Baggage
-            </h3>
-            <p class="text-xs text-brand-muted leading-relaxed mb-3">
-              Standard economy tickets restrict check-in baggage to 23kg (1 bag). By booking under accredited student tariff codes using your university offer letter and student visa, students receive:
-            </p>
-            <div class="space-y-1.5 text-xs text-brand-navy font-medium mb-3">
-              <div class="flex items-center gap-1.5">
-                <span class="text-brand-blue">✓</span>
-                <span>2 pieces of 23kg each (46kg total) on transatlantic carriers</span>
-              </div>
-              <div class="flex items-center gap-1.5">
-                <span class="text-brand-blue">✓</span>
-                <span>40kg total allowance on Gulf & European routes</span>
-              </div>
-              <div class="flex items-center gap-1.5">
-                <span class="text-brand-blue">✓</span>
-                <span>Zero excess luggage penalty charges at airport check-in</span>
-              </div>
-            </div>
-            <p class="text-[11px] text-brand-subtle italic">
-              Applies to Air India, British Airways, Emirates, Qatar Airways, Lufthansa & Virgin Atlantic.
-            </p>
-          </div>
-
-          <!-- Card 3: Fare Rules & Cancellation Policy -->
-          <div class="p-6 rounded-2xl bg-white border border-brand-border shadow-2xs">
-            <h3 class="text-base font-bold text-brand-navy mb-2">
-              Fair Pricing & Tariff Transparency
-            </h3>
-            <p class="text-xs text-brand-muted leading-relaxed mb-3">
-              All airline cancellations, schedule revisions, and refund amounts are governed strictly by the operating carrier's published fare rules:
-            </p>
-            <ul class="space-y-2 text-xs text-brand-muted">
-              <li class="flex items-start gap-2">
-                <span class="text-brand-navy font-bold">•</span>
-                <span><strong>Carrier Tariffs:</strong> Cancellation charges are deducted directly by the airline based on fare class (refundable vs non-refundable).</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-brand-navy font-bold">•</span>
-                <span><strong>No Hidden Agency Penalties:</strong> Visa Convention charges zero artificial cancellation fees.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-brand-navy font-bold">•</span>
-                <span><strong>Hold Expirations:</strong> Reservation holds expire automatically without financial penalties if not converted to ticketed flights.</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Card 4: Immediate Phone & WhatsApp Actions -->
-          <div class="p-6 rounded-2xl bg-brand-navy text-white shadow-md text-left">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-brand-blue block mb-1">
-              Direct Travel Desk
-            </span>
-            <h3 class="text-lg font-bold mb-2 text-white">
-              Need Urgent Itinerary Advice?
-            </h3>
-            <p class="text-xs text-white/80 leading-relaxed mb-4">
-              Speak with our senior travel coordinator in Hanumangarh for immediate flight schedules, student ticket codes, or reservation holds.
-            </p>
-            <div class="space-y-2.5">
-              <a
-                href={`https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent('Hello Visa Convention Travel Desk, I need assistance with an international flight booking or reservation hold.')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn-primary w-full text-xs py-3 bg-brand-red hover:bg-brand-red/90 text-white flex items-center justify-center gap-2"
-              >
-                <span>WhatsApp Travel Coordinator</span>
-                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </a>
-              <a
-                href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`}
-                class="w-full text-xs py-3 px-4 rounded-xl border border-white/20 text-white hover:bg-white/10 flex items-center justify-center gap-2 font-bold transition-all"
-              >
-                <span>Call {siteConfig.phone}</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Concise Booking Terms & Consular Notice -->
+      <p class="mt-6 text-center text-xs text-brand-muted max-w-2xl mx-auto leading-relaxed">
+        <strong>Booking Terms & Consular Notice:</strong> Consular authorities (including the U.S. Department of State, UKVI, and European consulates) recommend holding verifiable flight reservations before visa issuance. Visa Convention strictly refuses to create or distribute fake tickets, invented PNRs, or fabricated boarding passes. All reservations are authentic airline holds.
+      </p>
     </div>
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 4: FREQUENTLY ASKED QUESTIONS (FAQ ACCORDION) -->
+  <!-- SECTION 3: FREQUENTLY ASKED QUESTIONS (FAQ ACCORDION) -->
   <!-- ========================================================================= -->
-  <section class="py-12 sm:py-16 bg-white border-t border-brand-border">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 text-left">
-      <div class="max-w-3xl mb-8">
+  <section class="py-10 sm:py-14 bg-white border-t border-brand-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+      <div class="mb-8">
         <span class="inline-block px-3.5 py-1 mb-2.5 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
           Travel Guidance & FAQs
         </span>
-        <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-navy tracking-tight mb-2">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight mb-2">
           Frequently Asked Questions
         </h2>
         <p class="text-sm sm:text-base text-brand-muted leading-relaxed">
-          Clear, transparent answers regarding flight reservation holds, student baggage codes, and consular requirements.
+          Clear, transparent answers regarding flight reservation holds, ticketing policies, and consular requirements.
         </p>
       </div>
 
-      <div class="max-w-3xl">
-        <FAQAccordion faqs={flightFaqs} />
-      </div>
+      <FAQAccordion faqs={flightFaqs} />
     </div>
   </section>
 </BaseLayout>

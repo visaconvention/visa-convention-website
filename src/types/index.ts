@@ -181,6 +181,7 @@ export interface DetailedService {
   heroImage?: string;
   heroImageAlt?: string;
   assistanceIncludes: Array<{
+    id?: string;
     title: string;
     description: string;
   }>;
