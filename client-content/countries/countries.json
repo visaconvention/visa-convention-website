@@ -119,7 +119,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/canada.jpg",
       "cardImageAlt": "Vancouver cityscape with mountains and university campuses, Canada",
-      "imageObjectPosition": "center"
+      "imageObjectPosition": "center",
+      "flagSvg": "/assets/flags/ca.svg"
     },
     {
       "id": "country-uk",
@@ -234,7 +235,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/united-kingdom.jpg",
       "cardImageAlt": "London historic skyline featuring the Thames and landmark universities, United Kingdom",
-      "imageObjectPosition": "center"
+      "imageObjectPosition": "center",
+      "flagSvg": "/assets/flags/gb.svg"
     },
     {
       "id": "country-australia",
@@ -347,7 +349,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/australia.jpg",
       "cardImageAlt": "Sydney Harbour with Opera House and world-class universities, Australia",
-      "imageObjectPosition": "center"
+      "imageObjectPosition": "center",
+      "flagSvg": "/assets/flags/au.svg"
     },
     {
       "id": "country-usa",
@@ -454,7 +457,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/usa.jpg",
       "cardImageAlt": "New York City skyline featuring One World Trade Center, United States",
-      "imageObjectPosition": "center 50%"
+      "imageObjectPosition": "center 50%",
+      "flagSvg": "/assets/flags/us.svg"
     },
     {
       "id": "country-germany",
@@ -565,7 +569,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/germany.jpg",
       "cardImageAlt": "Historic German architecture and premier research university campus, Germany",
-      "imageObjectPosition": "center"
+      "imageObjectPosition": "center",
+      "flagSvg": "/assets/flags/de.svg"
     },
     {
       "id": "country-ireland",
@@ -674,7 +679,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/ireland.jpg",
       "cardImageAlt": "Dublin cityscape and technology education hub, Ireland",
-      "imageObjectPosition": "center"
+      "imageObjectPosition": "center",
+      "flagSvg": "/assets/flags/ie.svg"
     },
     {
       "id": "country-france",
@@ -781,7 +787,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/france.jpg",
       "cardImageAlt": "Eiffel Tower and Paris cityscape, France",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/fr.svg"
     },
     {
       "id": "country-new-zealand",
@@ -889,7 +896,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/new-zealand.jpg",
       "cardImageAlt": "Milford Sound fjord landscape, New Zealand",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/nz.svg"
     },
     {
       "id": "country-uzbekistan",
@@ -991,7 +999,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/uzbekistan.jpg",
       "cardImageAlt": "Registan Square madrasahs in Samarkand, Uzbekistan",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/uz.svg"
     },
     {
       "id": "country-kazakhstan",
@@ -1088,7 +1097,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/kazakhstan.jpg",
       "cardImageAlt": "Almaty mountain landscape and cityscape, Kazakhstan",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/kz.svg"
     },
     {
       "id": "country-kyrgyzstan",
@@ -1179,7 +1189,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/kyrgyzstan.jpg",
       "cardImageAlt": "Tian Shan mountain peaks and alpine river valley in Ala-Archa, Kyrgyzstan",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/kg.svg"
     },
     {
       "id": "country-russia",
@@ -1275,7 +1286,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/russia.jpg",
       "cardImageAlt": "Red Square historic architectural heritage in Moscow, Russia",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/ru.svg"
     },
     {
       "id": "country-italy",
@@ -1377,7 +1389,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/italy.jpg",
       "cardImageAlt": "Colosseum historic landmark in Rome, Italy",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/it.svg"
     },
     {
       "id": "country-spain",
@@ -1480,7 +1493,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/spain.jpg",
       "cardImageAlt": "Plaza de Espana architectural landmark in Seville, Spain",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/es.svg"
     },
     {
       "id": "country-netherlands",
@@ -1583,7 +1597,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/netherlands.jpg",
       "cardImageAlt": "Amsterdam canal houses and bridge, Netherlands",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/nl.svg"
     },
     {
       "id": "country-finland",
@@ -1685,7 +1700,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/finland.jpg",
       "cardImageAlt": "Neoclassical Helsinki Cathedral standing above Senate Square in Finland",
-      "imageObjectPosition": "center 30%"
+      "imageObjectPosition": "center 30%",
+      "flagSvg": "/assets/flags/fi.svg"
     },
     {
       "id": "country-sweden",
@@ -1786,7 +1802,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/sweden.jpg",
       "cardImageAlt": "Gamla Stan historic waterfront and colourful buildings in Stockholm, Sweden",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/se.svg"
     },
     {
       "id": "country-switzerland",
@@ -1886,7 +1903,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/switzerland.jpg",
       "cardImageAlt": "Swiss Alps mountain landscape in Zermatt, Switzerland",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/ch.svg"
     },
     {
       "id": "country-singapore",
@@ -1985,7 +2003,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/singapore.jpg",
       "cardImageAlt": "Marina Bay Sands and downtown skyline, Singapore",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/sg.svg"
     },
     {
       "id": "country-austria",
@@ -2087,7 +2106,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/austria.jpg",
       "cardImageAlt": "Vienna historic cathedral and architecture, Austria",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/at.svg"
     },
     {
       "id": "country-belgium",
@@ -2189,7 +2209,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/belgium.jpg",
       "cardImageAlt": "Grand Place gilded baroque guildhalls and square in Brussels, Belgium",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/be.svg"
     },
     {
       "id": "country-denmark",
@@ -2291,7 +2312,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/denmark.jpg",
       "cardImageAlt": "Colourful 17th-century townhouses along Nyhavn canal in Copenhagen, Denmark",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/dk.svg"
     },
     {
       "id": "country-czech-republic",
@@ -2393,7 +2415,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/czech-republic.jpg",
       "cardImageAlt": "Charles Bridge and Prague Castle across the Vltava River in Prague, Czech Republic",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/cz.svg"
     },
     {
       "id": "country-hungary",
@@ -2495,7 +2518,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/hungary.jpg",
       "cardImageAlt": "Gothic revival Hungarian Parliament Building along the Danube River in Budapest",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/hu.svg"
     },
     {
       "id": "country-poland",
@@ -2597,7 +2621,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/poland.jpg",
       "cardImageAlt": "Warsaw Old Town Market Square with ornate historic merchant houses in Poland",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/pl.svg"
     },
     {
       "id": "country-portugal",
@@ -2699,7 +2724,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/portugal.jpg",
       "cardImageAlt": "Ribeira waterfront and historic Dom Luis I Bridge in Porto, Portugal",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/pt.svg"
     },
     {
       "id": "country-greece",
@@ -2801,7 +2827,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/greece.jpg",
       "cardImageAlt": "Parthenon temple atop the ancient Acropolis in Athens, Greece",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/gr.svg"
     },
     {
       "id": "country-cyprus",
@@ -2903,7 +2930,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/cyprus.jpg",
       "cardImageAlt": "Mediterranean coastal cliffs and turquoise waters in Cyprus",
-      "imageObjectPosition": "center 40%"
+      "imageObjectPosition": "center 40%",
+      "flagSvg": "/assets/flags/cy.svg"
     },
     {
       "id": "country-malta",
@@ -3005,7 +3033,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/malta.jpg",
       "cardImageAlt": "Historic Grand Harbour and Valletta baroque fortifications in Malta",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/mt.svg"
     },
     {
       "id": "country-latvia",
@@ -3107,7 +3136,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/latvia.jpg",
       "cardImageAlt": "Gothic House of the Black Heads and historic Old Town square in Riga, Latvia",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/lv.svg"
     },
     {
       "id": "country-romania",
@@ -3209,7 +3239,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/romania.jpg",
       "cardImageAlt": "Neo-Renaissance Peleș Castle nestled in the Carpathian Mountains of Romania",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/ro.svg"
     },
     {
       "id": "country-croatia",
@@ -3311,7 +3342,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/croatia.jpg",
       "cardImageAlt": "Dubrovnik historic walled city overlooking the Adriatic Sea in Croatia",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/hr.svg"
     },
     {
       "id": "country-georgia",
@@ -3413,7 +3445,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/georgia.jpg",
       "cardImageAlt": "Historic Tbilisi Old Town with cliffside houses and Narikala Fortress in Georgia",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/ge.svg"
     },
     {
       "id": "country-japan",
@@ -3515,7 +3548,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/japan.jpg",
       "cardImageAlt": "Mount Fuji and cherry blossoms over Tokyo, Japan",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/jp.svg"
     },
     {
       "id": "country-south-korea",
@@ -3617,7 +3651,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/south-korea.jpg",
       "cardImageAlt": "Gyeongbokgung Palace architecture in Seoul, South Korea",
-      "imageObjectPosition": "center 35%"
+      "imageObjectPosition": "center 35%",
+      "flagSvg": "/assets/flags/kr.svg"
     },
     {
       "id": "country-mauritius",
@@ -3719,7 +3754,8 @@
       "lastReviewed": "2026-11-09",
       "cardImage": "/assets/images/destinations/mauritius.jpg",
       "cardImageAlt": "UNESCO World Heritage Le Morne Brabant mountain rising above the Indian Ocean lagoon in Mauritius",
-      "imageObjectPosition": "center 40%"
+      "imageObjectPosition": "center 40%",
+      "flagSvg": "/assets/flags/mu.svg"
     },
     {
       "id": "country-moldova",
@@ -3811,7 +3847,8 @@
       ],
       "lastReviewed": "2026-11-10",
       "cardImage": "/assets/images/destinations/moldova.jpg",
-      "cardImageAlt": "Moldova destination landmark"
+      "cardImageAlt": "Moldova destination landmark",
+      "flagSvg": "/assets/flags/md.svg"
     },
     {
       "id": "country-lithuania",
@@ -3916,7 +3953,8 @@
       ],
       "lastReviewed": "2026-11-10",
       "cardImage": "/assets/images/destinations/lithuania.jpg",
-      "cardImageAlt": "Lithuania destination landmark"
+      "cardImageAlt": "Lithuania destination landmark",
+      "flagSvg": "/assets/flags/lt.svg"
     },
     {
       "id": "country-azerbaijan",
@@ -4007,7 +4045,8 @@
       ],
       "lastReviewed": "2026-11-10",
       "cardImage": "/assets/images/destinations/azerbaijan.jpg",
-      "cardImageAlt": "Azerbaijan destination landmark"
+      "cardImageAlt": "Azerbaijan destination landmark",
+      "flagSvg": "/assets/flags/az.svg"
     }
   ]
 }

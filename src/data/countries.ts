@@ -74,7 +74,7 @@ function normalizeCountry(raw: any): Country {
     capital: raw.capital,
     currency: typeof raw.costInformation === 'object' ? raw.costInformation?.currency : undefined,
     flagEmoji: undefined,
-    flagSvg: undefined,
+    flagSvg: raw.flagSvg || `/assets/flags/${(raw.flagCode || 'ca').toLowerCase()}.svg`,
   };
 }
 
@@ -137,4 +137,12 @@ export function getRelatedCountries(currentCountry: Country, limit = 3): Country
 export function getContinents(): string[] {
   const published = getPublishedCountries();
   return Array.from(new Set(published.map((c) => c.continent)));
+}
+
+/**
+ * Returns the official SVG flag path for a given country code or fallback.
+ */
+export function getCountryFlagSvg(code?: string): string {
+  if (!code) return '/assets/flags/ca.svg';
+  return `/assets/flags/${code.toLowerCase()}.svg`;
 }

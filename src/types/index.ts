@@ -389,6 +389,7 @@ export interface CountryRegistryEntry {
   isSchengen?: boolean;
   locations?: string[];
   notes?: string;
+  flagSvg?: string;
 }
 
 /**

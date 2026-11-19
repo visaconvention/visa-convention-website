@@ -233,10 +233,10 @@ const faqSchema = getFaqSchema(europeFaqs);
         </div>
       </div>
 
-      <!-- Country Cards Grid -->
-      <div id="europe-countries-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+      <!-- Country Cards Grid (Equal Heights, 5 columns on desktop >=1200px, 3 on tablet, 2 on mobile) -->
+      <div id="europe-countries-grid" class="country-directory-grid grid grid-cols-2 md:grid-cols-3 min-[1200px]:grid-cols-5 gap-3 sm:gap-4 items-stretch">
         {europeCountries.map((country) => (
-          <div class="europe-card-item" data-country-name={country.name.toLowerCase()}>
+          <div class="europe-card-item h-full min-w-0" data-country-name={country.name.toLowerCase()}>
             <CountryCard country={country} />
           </div>
         ))}

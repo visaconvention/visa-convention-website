@@ -4,7 +4,6 @@ import SectionHeading from '../../components/common/SectionHeading.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import CountryCard from '../../components/countries/CountryCard.astro';
 import FAQAccordion from '../../components/common/FAQAccordion.astro';
-import ConsultationCTA from '../../components/common/ConsultationCTA.astro';
 import EmptyState from '../../components/common/EmptyState.astro';
 import { getPublishedCountries, getContinents } from '../../data/countries';
 import { getFaqSchema } from '../../utils/seo';
@@ -141,8 +140,8 @@ const faqSchema = getFaqSchema(studyAbroadFaqs);
       />
     </div>
 
-    <!-- Country Cards Grid (Equal Heights) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch" id="countries-grid">
+    <!-- Country Cards Grid (Equal Heights, 5 columns on desktop >=1200px, 3 on tablet, 2 on mobile) -->
+    <div class="country-directory-grid grid grid-cols-2 md:grid-cols-3 min-[1200px]:grid-cols-5 gap-3 sm:gap-4 items-stretch" id="countries-grid">
       {countries.map((country) => (
         <CountryCard country={country} />
       ))}
@@ -158,14 +157,6 @@ const faqSchema = getFaqSchema(studyAbroadFaqs);
       <div class="max-w-4xl mx-auto mt-8">
         <FAQAccordion faqs={studyAbroadFaqs} />
       </div>
-    </div>
-
-    <!-- Final Call to Action -->
-    <div class="mt-16">
-      <ConsultationCTA
-        title="Need Advice on the Best Country for Your Career & Budget?"
-        subtitle="Our experienced advisors evaluate your transcripts, backlog history, and financial goals to recommend the right destination and course."
-      />
     </div>
   </section>
 
@@ -198,9 +189,11 @@ const faqSchema = getFaqSchema(studyAbroadFaqs);
 
           if (matchesQuery && matchesContinent && matchesFeatured) {
             card.classList.remove('hidden');
+            card.style.display = '';
             visibleCount++;
           } else {
             card.classList.add('hidden');
+            card.style.display = 'none';
           }
         });
 

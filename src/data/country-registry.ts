@@ -901,6 +901,7 @@ export const countryRegistry: CountryRegistryEntry[] = rawCountryRegistry.map((c
   license: c.license || c.image.license,
   objectPosition: c.objectPosition || c.image.objectPosition || 'center',
   approvalStatus: (c.approvalStatus || (c.image.approved ? 'approved' : 'draft')) as 'approved' | 'pending' | 'draft',
+  flagSvg: `/assets/flags/${c.isoCode.toLowerCase()}.svg`,
 }));
 
 /**

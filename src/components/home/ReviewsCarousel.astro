@@ -77,7 +77,7 @@ const reviews = successStoriesData.stories;
     </div>
   </div>
 
-  <!-- Full-Bleed Continuous Left-to-Right Marquee Viewport -->
+  <!-- Full-Bleed Continuous Right-to-Left Marquee Viewport -->
   <div
     id="reviews-marquee-viewport"
     class="marquee-viewport relative w-full overflow-hidden py-4 select-none"
@@ -222,42 +222,49 @@ const reviews = successStoriesData.stories;
 
 <style>
   /* ========================================================================= */
-  /* CONTINUOUS LEFT-TO-RIGHT MARQUEE ANIMATION                                 */
+  /* CONTINUOUS RIGHT-TO-LEFT MARQUEE ANIMATION                                */
   /* ========================================================================= */
   /*
-   * Left-to-Right Translation:
-   * Moves from calc(-100% - 1.5rem) to 0.
-   * Group 2 starts at 0 at 0% keyframe.
-   * Group 1 reaches 0 at 100% keyframe.
+   * Right-to-Left Translation:
+   * Moves continuously from 0 to calc(-100% - 1.5rem).
+   * Group 1 starts at 0 at 0% keyframe.
+   * Group 1 reaches calc(-100% - 1.5rem) at 100% keyframe.
+   * Group 2 (identical clone situated 1.5rem to the right of Group 1) reaches 0 at 100% keyframe.
    * Loop wraps seamlessly with 0ms visual snap or jump.
+   *
+   * Speed calculation:
+   * Desktop (380px cards): (6 * 380 + 6 * 24) = 2424px / 85s = 28.5 px/s (target: 20–30 px/s)
+   * Tablet (340px cards): (6 * 340 + 6 * 24) = 2184px / 85s = 25.7 px/s (target: 20–30 px/s)
+   * Mobile (285px cards): (6 * 285 + 6 * 24) = 1854px / 85s = 21.8 px/s (target: 20–30 px/s)
    */
   .marquee-group {
     display: flex;
     gap: 1.5rem;
     flex-shrink: 0;
-    animation: marquee-ltr 50s linear infinite;
+    animation: marquee-rtl 85s linear infinite;
     will-change: transform;
   }
 
-  @keyframes marquee-ltr {
+  @keyframes marquee-rtl {
     0% {
-      transform: translate3d(calc(-100% - 1.5rem), 0, 0);
+      transform: translate3d(0, 0, 0);
     }
     100% {
-      transform: translate3d(0, 0, 0);
+      transform: translate3d(calc(-100% - 1.5rem), 0, 0);
     }
   }
 
   /* 
    * CRITICAL REQUIREMENT:
    * The reviews must NOT stop simply because the user scrolls the page.
-   * If the user is scrolling the homepage vertically, motion MUST continue.
+   * If the user is scrolling the homepage vertically, motion MUST continue
+   * unless the user has explicitly clicked Pause.
    */
-  .marquee-track-wrapper.is-page-scrolling .marquee-group {
+  .marquee-track-wrapper.is-page-scrolling:not([data-paused="true"]) .marquee-group {
     animation-play-state: running !important;
   }
 
-  /* Explicit Pause Button state */
+  /* Explicit Pause Button state: always pause if user toggled pause or interaction paused */
   .marquee-track-wrapper[data-paused="true"] .marquee-group {
     animation-play-state: paused !important;
   }
@@ -274,7 +281,7 @@ const reviews = successStoriesData.stories;
    * NEVER applies when the page itself is scrolling
    */
   @media (hover: hover) and (pointer: fine) {
-    .marquee-track-wrapper:not(.is-page-scrolling):hover .marquee-group {
+    .marquee-track-wrapper:not(.is-page-scrolling):not([data-paused="true"]):hover .marquee-group {
       animation-play-state: paused;
     }
   }
@@ -422,7 +429,23 @@ const reviews = successStoriesData.stories;
       }
     });
 
-    // 6. Touch swipe handling for mobile
+    // 6. Direct Card Click / Tap Pause for Reading
+    const allCards = wrapper.querySelectorAll('.review-card');
+    allCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        if (!isUserPaused) {
+          wrapper?.setAttribute('data-paused', 'true');
+          if (autoResumeTimeout) clearTimeout(autoResumeTimeout);
+          autoResumeTimeout = setTimeout(() => {
+            if (!isUserPaused) {
+              wrapper?.setAttribute('data-paused', 'false');
+            }
+          }, 4500);
+        }
+      });
+    });
+
+    // 7. Touch swipe handling for mobile
     // CRITICAL: Do NOT pause on vertical thumb scroll!
     let touchStartX = 0;
     let touchStartY = 0;
@@ -442,6 +465,8 @@ const reviews = successStoriesData.stories;
 
       if (diffX > diffY && diffX > 15) {
         isHorizontalGesture = true;
+        // Pause marquee while user actively swipes horizontally
+        wrapper?.setAttribute('data-paused', 'true');
       }
     }, { passive: true });
 
@@ -452,6 +477,13 @@ const reviews = successStoriesData.stories;
       const diffX = touchStartX - touchEndX;
       if (Math.abs(diffX) > 35) {
         handleNudge(diffX > 0 ? 'right' : 'left');
+      } else if (!isUserPaused) {
+        if (autoResumeTimeout) clearTimeout(autoResumeTimeout);
+        autoResumeTimeout = setTimeout(() => {
+          if (!isUserPaused) {
+            wrapper?.setAttribute('data-paused', 'false');
+          }
+        }, 3000);
       }
     }, { passive: true });
   }

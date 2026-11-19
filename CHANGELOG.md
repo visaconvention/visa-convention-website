@@ -6,6 +6,74 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.47.0] - 2026-11-19 — Country Directory & Image Optimization (5-Column Flag Cards)
+
+### Summary
+- **Removal of Consultation Section (`src/pages/study-abroad/index.astro`):**
+  - Completely excised the navy *"Need Advice on the Best Country for Your Career & Budget?"* banner from `/study-abroad/`.
+  - Removed "Personalized Guidance" badge, consultation and WhatsApp buttons, description, and disclaimer from the component tree.
+  - Preserved global consultation navigation links and floating WhatsApp assistance button.
+- **Redesign of Country Cards (`src/components/countries/CountryCard.astro`):**
+  - Converted oversized photo cards into compact, highly navigable flag-based destination tiles.
+  - Each card displays:
+    1. Official sovereign SVG national flag (4:3 aspect ratio, subtle border to distinguish light flags).
+    2. Bold country name (`text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-blue`).
+    3. Small circular navigation chevron indicator with hover inversion.
+  - Full-card clickable area (`<a>` fills 100% of card) meeting WCAG 2.1 AA touch target standards (82px height).
+  - Excised bulky descriptions, large photos, decorative badges, and excessive padding.
+  - Replaced 4,200px tall photo grid with a clean ~550px high tile directory, minimizing scrolling and maximizing scannability.
+- **5-Column Responsive Grid Layout:**
+  - **Large/Standard Desktop ($\ge 1200\text{px}$):** Exactly **5 columns** (`min-[1200px]:grid-cols-5` / `.country-directory-grid`).
+  - **Small Desktop/Tablet ($768\text{px}–1199\text{px}$):** Exactly **3 columns** (`md:grid-cols-3`).
+  - **Mobile ($< 768\text{px}$):** Exactly **2 columns** (`grid-cols-2`).
+  - Uniform **12–16px gaps** (`gap-3 sm:gap-4`).
+- **Sitewide SVG Flag Replacement:**
+  - Integrated 51 official sovereign SVG flags in `public/assets/flags/` (`ae.svg` through `uz.svg`).
+  - Centralized in `client-content/countries/countries.json` via `flagSvg` property and `src/data/countries.ts`.
+  - Replaced country photo banners across Explore 35+ Countries (`/study-abroad/`) and European directory (`/study-in-europe/`).
+  - Added official SVG flags to Related Destination cards and hero badges in `/study-abroad/[country].astro`.
+  - Ensured UAE flag is used for UAE/Dubai (`ae.svg`), and sovereign national flags are used for each European nation without EU flag substitution.
+- **Automated Verification Suite (`tests/verify-country-directory-optimization.js`):**
+  - 39 automated checks: **39 / 39 passed (100%)**.
+  - Verified 0px horizontal overflow across all 9 viewports (320, 360, 375, 390, 430, 768, 1024, 1366, 1440px).
+  - Verified live search and continent filtering intact.
+  - Captured high-resolution visual evidence across desktop and mobile.
+
+---
+
+## [1.46.0] - 2026-11-19 — Homepage Reviews Right-to-Left Continuous Animation Update
+
+### Summary
+- **Right-to-Left Continuous Motion (`src/components/home/ReviewsCarousel.astro`):**
+  - Updated marquee animation direction from left-to-right (`marquee-ltr`) to **right-to-left (`marquee-rtl`)**.
+  - Keyframe transformation starts at `translate3d(0, 0, 0)` at `0%` and smoothly translates continuously to `translate3d(calc(-100% - 1.5rem), 0, 0)` at `100%`.
+  - Infinite wrap is mathematically seamless: as Group 1 exits to the left, identical clone Group 2 arrives precisely at coordinate 0, looping with zero visual jumps, skips, or resets.
+- **Speed & Velocity Calibration (20–30px per second):**
+  - Calibrated animation duration to **85s**:
+    - **Desktop (1440px / 380px cards):** $2424\text{px} / 85\text{s} = 28.52\text{ px/s}$ (comfort reading pace).
+    - **Tablet (768px / 340px cards):** $2184\text{px} / 85\text{s} = 25.69\text{ px/s}$ (comfort reading pace).
+    - **Mobile (320px–390px / 285px cards):** $1854\text{px} / 85\text{s} = 21.81\text{ px/s}$ (comfort reading pace).
+- **Continuous Movement During Vertical Page Scroll:**
+  - Guaranteed motion does NOT stop when the user scrolls the page vertically (`.is-page-scrolling:not([data-paused="true"]) .marquee-group { animation-play-state: running !important; }`).
+  - Active scrolling maintains smooth animation; motion is never halted merely because the section enters or remains in viewport.
+- **Multi-Modal Pause & Resume Controls:**
+  - **Visible Toggle Control:** `#reviews-pause-toggle-btn` toggles `data-paused="true/false"`, updating button text between `"Pause"` and `"Resume"`, switching SVG icons (pause bars vs. play triangle), and managing `aria-pressed`.
+  - **Desktop Hover Pause:** Pauses animation when cursor directly hovers over review cards (`@media (hover: hover) and (pointer: fine)`).
+  - **Keyboard Focus Pause:** Pauses animation when any card or interactive element receives focus via `Tab` key (`:focus-within`). Resumes smoothly on blur without restarting animation.
+  - **Card Tap Pause:** Touching or clicking any review card pauses auto-scroll for 4.5 seconds to comfortably read the quotation.
+  - **Mobile Touch Swipe:** Detects horizontal swipe gestures, temporarily pauses motion during active interaction, and triggers smooth directional nudge with auto-resume.
+- **Accessibility & Assistive Tech Integrity:**
+  - Duplicate clone group strictly marked with `aria-hidden="true"` and `tabindex="-1"`, ensuring screen readers announce only the 6 authentic verified reviews.
+  - Respects `prefers-reduced-motion: reduce`: animation completely disabled (`animation: none !important`), clone group hidden (`display: none !important`), and wrapper switches to accessible native horizontal scrolling with scroll snap (`overflow-x: auto !important`).
+- **Floating WhatsApp Isolation:**
+  - Verified floating WhatsApp pill button (`z-40`, fixed bottom-right) remains completely non-obstructive to the reviews carousel and interactive controls.
+- **Automated Verification Suite (`tests/verify-reviews-rtl-carousel.js`):**
+  - Authored comprehensive 43-check Puppeteer test suite: **43 / 43 passed (100%)**.
+  - Multi-viewport responsive audit across 320, 360, 390, 430, 768, 1024, 1366, 1440px confirmed **0px horizontal overflow**.
+  - Generated visual evidence artifacts: `reviews-rtl-desktop-1440px.png` and `reviews-rtl-mobile-390px.png`.
+
+---
+
 ## [1.45.0] - 2026-11-19 — Global Navigation Optimization: Flights & Additional Services Dropdowns, Exact Hierarchy, and Header Streamlining
 
 ### Summary

@@ -426,7 +426,10 @@ node tests/e2e-comprehensive-audit.test.js
 | **Optimization** | `verify-flight-form-refinement.js` | 31 | 0 | **100% PASS** |
 | **Optimization** | `verify-flight-booking-optimization.js` | 30 | 0 | **100% PASS** |
 | **Optimization** | `verify-study-abroad-dropdown-cleanup.js` | 29 | 0 | **100% PASS** |
-| **Cumulative** | **Entire Test Suite** | **960** | **0** | **100% PASS (960/960)** |
+| **Optimization** | `verify-global-navigation-optimization.js` | 79 | 0 | **100% PASS** |
+| **Optimization** | `verify-reviews-rtl-carousel.js` | 43 | 0 | **100% PASS** |
+| **Optimization** | `verify-country-directory-optimization.js` | 39 | 0 | **100% PASS** |
+| **Cumulative** | **Entire Test Suite** | **1,121** | **0** | **100% PASS (1,121/1,121)** |
 
 # Preview static production build locally
 npx astro preview --port 4321

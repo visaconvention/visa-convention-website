@@ -7,81 +7,49 @@ interface Props {
   showImage?: boolean;
 }
 
-const { country, class: className = '', showImage = true } = Astro.props;
+const { country, class: className = '' } = Astro.props;
 
 // Friendly flag representation using flagCode or fallback
 const flagCode = country.flagCode || country.isoCode || 'GL';
-
-// Use the centralized cardImage from the data layer (set via countries.json → countries.ts)
-const hasImage = showImage && Boolean(country.cardImage);
-const imageSrc = country.cardImage || '';
-const altText = country.cardImageAlt || `${country.name} study destination`;
-const objectPosition = country.imageObjectPosition || 'center';
-
-// Use the country's own shortDescription from the data layer
-const cardDescription = country.shortDescription || country.shortSummary;
+const flagSrc = country.flagSvg || `/assets/flags/${flagCode.toLowerCase()}.svg`;
 ---
 
 <div
-  class={`card-premium overflow-hidden flex flex-col justify-between group country-card h-full min-w-0 rounded-2xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy transition-all duration-200 ${className}`}
+  class={`card-premium group country-card h-full min-w-0 rounded-xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 ${className}`}
   data-country-card
   data-country-name={country.name.toLowerCase()}
   data-continent={country.continent.toLowerCase()}
   data-featured={country.featured ? 'true' : 'false'}
 >
-  {hasImage && (
-    <div class="relative h-44 sm:h-48 w-full overflow-hidden bg-brand-bg border-b border-brand-border">
-      <img
-        src={imageSrc}
-        alt={altText}
-        width="600"
-        height="338"
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        style={`object-position: ${objectPosition};`}
-        loading="lazy"
-      />
-    </div>
-  )}
-
-  <!-- Card Body Area -->
-  <div class="p-6 text-left flex-1 flex flex-col justify-between">
-    <div>
-      {!hasImage && (
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-xl bg-brand-bg text-brand-navy flex items-center justify-center font-extrabold text-xs border border-brand-border shadow-2xs group-hover:bg-brand-navy group-hover:text-white transition-colors">
-            {flagCode}
-          </div>
-          <div>
-            <h3 class="text-xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-none text-left">
-              {country.name}
-            </h3>
-            <span class="text-xs text-brand-subtle mt-1 block text-left">{country.continent}</span>
-          </div>
-        </div>
-      )}
-
-      {hasImage && (
-        <h3 class="text-xl sm:text-2xl font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-tight mb-2.5 text-left">
-          {country.name}
-        </h3>
-      )}
-
-      <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal text-left">
-        {cardDescription}
-      </p>
-    </div>
-
-    <!-- Bottom Action Row: One clear primary link -->
-    <div class="pt-5 mt-4 border-t border-brand-border/70 flex items-center justify-between text-xs font-bold">
-      <a
-        href={`/study-abroad/${country.slug}/`}
-        class="inline-flex items-center gap-1.5 text-brand-navy group-hover:text-brand-red font-bold text-xs sm:text-sm transition-colors"
-      >
-        <span>Explore {country.name}</span>
-        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+  <a
+    href={`/study-abroad/${country.slug}/`}
+    class="flex flex-col justify-between h-full p-3 sm:p-3.5 text-left focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue rounded-xl min-h-[82px] sm:min-h-[88px]"
+    aria-label={`Explore study opportunities in ${country.name}`}
+  >
+    <!-- Top Row: Official Flag + Navigation Indicator -->
+    <div class="flex items-center justify-between gap-2 mb-2.5">
+      <div class="w-8 h-6 sm:w-9 sm:h-6.5 rounded overflow-hidden shadow-2xs border border-slate-200/90 bg-slate-50 flex items-center justify-center shrink-0">
+        <img
+          src={flagSrc}
+          alt={`Flag of ${country.name}`}
+          width="36"
+          height="26"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <div class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-brand-bg flex items-center justify-center text-brand-subtle group-hover:bg-brand-navy group-hover:text-white transition-colors shrink-0">
+        <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
         </svg>
-      </a>
+      </div>
     </div>
-  </div>
+
+    <!-- Bottom Row: Country Name -->
+    <div class="mt-auto">
+      <span class="text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-tight line-clamp-2 block">
+        {country.name}
+      </span>
+    </div>
+  </a>
 </div>
