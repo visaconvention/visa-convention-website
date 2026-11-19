@@ -201,12 +201,11 @@ async function runQA() {
     assert(mbbsData.firstThreeUnis[0] === 'Tashkent State Medical University (TSMU)', `Card 1 shows full university name: "${mbbsData.firstThreeUnis[0]}"`);
 
     // Verify MBBS Responsive Grid Columns across Viewports
-    console.log('\n--- 2B. VERIFYING MBBS UNIVERSITY GRID RESPONSIVENESS (1, 2, 3, 4 COLUMNS) ---');
+    console.log('\n--- 2B. VERIFYING MBBS COUNTRY CARD GRID RESPONSIVENESS (5, 3, 2 COLUMNS) ---');
     const gridBreakpoints = [
-      { name: 'Desktop ≥1440px', width: 1440, expectedCols: 4 },
-      { name: 'Desktop 1024-1439px', width: 1200, expectedCols: 3 },
-      { name: 'Tablet 600-1023px', width: 768, expectedCols: 2 },
-      { name: 'Mobile <600px', width: 390, expectedCols: 1 },
+      { name: 'Desktop ≥1200px', width: 1440, expectedCols: 5 },
+      { name: 'Tablet 768-1199px', width: 1024, expectedCols: 3 },
+      { name: 'Mobile <768px', width: 390, expectedCols: 2 },
     ];
 
     for (const bp of gridBreakpoints) {
@@ -214,16 +213,15 @@ async function runQA() {
       await page.goto(`http://localhost:${PORT}/services/mbbs/`, { waitUntil: 'networkidle0' });
 
       const cols = await page.evaluate(() => {
-        const grid = document.querySelector('#universities .grid');
+        const grid = document.querySelector('#mbbs-countries-grid');
         if (!grid) return 0;
-        const cards = Array.from(grid.querySelectorAll('.uni-card'));
+        const cards = Array.from(grid.querySelectorAll('.mbbs-country-btn'));
         if (cards.length < 2) return 1;
         const firstCardTop = cards[0].getBoundingClientRect().top;
-        // Count cards sharing the same top position
-        return cards.filter(c => Math.abs(c.getBoundingClientRect().top - firstCardTop) <= 4).length;
+        return cards.filter(c => Math.abs(c.getBoundingClientRect().top - firstCardTop) <= 6).length;
       });
 
-      assert(cols === bp.expectedCols, `MBBS Grid at ${bp.name} (${bp.width}px): Displays exactly ${bp.expectedCols} columns (Actual: ${cols})`);
+      assert(cols === bp.expectedCols, `MBBS Country Grid at ${bp.name} (${bp.width}px): Displays exactly ${bp.expectedCols} columns (Actual: ${cols})`);
     }
 
     // Test MBBS Form Auto-population on card click
@@ -232,9 +230,14 @@ async function runQA() {
     await page.goto(`http://localhost:${PORT}/services/mbbs/`, { waitUntil: 'networkidle0' });
 
     const mbbsAutofill = await page.evaluate(async () => {
-      const firstCard = document.querySelector('#universities .uni-card');
-      const uniName = firstCard?.getAttribute('data-university-name');
-      firstCard?.click();
+      // First select Uzbekistan country card to reveal universities
+      const uzbBtn = document.querySelector('.mbbs-country-btn[data-country-name="Uzbekistan"]');
+      uzbBtn?.click();
+      await new Promise(r => setTimeout(r, 200));
+
+      const firstVisibleCard = document.querySelector('#mbbs-universities-grid .uni-card:not(.hidden)');
+      const uniName = firstVisibleCard?.getAttribute('data-university-name');
+      firstVisibleCard?.click();
 
       // Give slight delay for event handler
       await new Promise(r => setTimeout(r, 200));
@@ -275,11 +278,11 @@ async function runQA() {
       const hasFaqs = pageText.includes('Frequently Asked Questions');
 
       // Check country selectors
-      const countryBtns = Array.from(document.querySelectorAll('.phd-country-filter-btn')).map(b => b.innerText.trim());
+      const countryBtns = Array.from(document.querySelectorAll('#phd-countries-grid .phd-country-btn')).map(b => b.getAttribute('data-country-name') || '');
 
       // Check universities
       const uniCards = Array.from(document.querySelectorAll('#phd-university-grid .phd-uni-card'));
-      const uniNames = uniCards.map(c => c.querySelector('h3')?.innerText?.trim() || '');
+      const uniNames = uniCards.map(c => c.querySelector('h3, h4')?.innerText?.trim() || '');
       const uniCountries = uniCards.map(c => c.getAttribute('data-country-name') || '');
 
       // Check enquiry form dropdown options
@@ -317,14 +320,14 @@ async function runQA() {
     assert(!phdData.hasStepProcess, 'PhD: "Step-by-Step Application Process" section completely removed');
     assert(!phdData.hasWhyConsult, 'PhD: "Why Consult Visa Convention" promotional cards completely removed');
     assert(!phdData.hasImportantConditions, 'PhD: "Important Conditions & Disclaimers" oversized panel completely removed');
-    assert(!phdData.hasFaqs, 'PhD: "Frequently Asked Questions" section completely removed');
+    assert(phdData.hasFaqs, 'PhD: Standardized FAQ accordion rendered with doctoral research questions');
 
-    assert(phdData.uniCount === 7, `PhD: Exactly 7 universities displayed (Actual: ${phdData.uniCount})`);
+    assert(phdData.uniCount === 7, `PhD: Exactly 7 universities in directory (Actual: ${phdData.uniCount})`);
     assert(phdData.allExpectedUnisPresent, 'PhD: All 7 approved universities present (Riga Tech, Turība, VU, KTU, Vilnius Tech, U. Lisbon, U. Porto)');
     assert(phdData.noUnapprovedUnis, 'PhD: Zero unapproved universities present');
     assert(phdData.allCountriesMatch, 'PhD: Universities restricted exclusively to Latvia, Lithuania, and Portugal');
 
-    assert(phdData.countryBtnCount === 4, `PhD: 4 filter controls present (All + 3 Countries) (Actual: ${phdData.countryBtnCount})`);
+    assert(phdData.countryBtnCount === 3, `PhD: 3 destination country cards present (Actual: ${phdData.countryBtnCount})`);
     assert(phdData.countryOptions.length === 3, `PhD enquiry form dropdown restricted to exactly 3 countries (Actual: ${phdData.countryOptions.length})`);
     assert(
       phdData.countryOptions.includes('Latvia') &&
@@ -339,12 +342,11 @@ async function runQA() {
       { country: 'latvia', expectedCount: 2, label: 'Latvia' },
       { country: 'lithuania', expectedCount: 3, label: 'Lithuania' },
       { country: 'portugal', expectedCount: 2, label: 'Portugal' },
-      { country: 'all', expectedCount: 7, label: 'All Countries' },
     ];
 
     for (const ft of filterTests) {
       const visibleCount = await page.evaluate(async (countrySlug) => {
-        const btn = document.querySelector(`.phd-country-filter-btn[data-country="${countrySlug}"]`);
+        const btn = document.querySelector(`.phd-country-btn[data-country="${countrySlug}"]`);
         btn?.click();
         await new Promise(r => setTimeout(r, 150));
         const cards = Array.from(document.querySelectorAll('#phd-university-grid .phd-uni-card'));

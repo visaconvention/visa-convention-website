@@ -6,6 +6,60 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.49.0] - 2026-11-19 — Global FAQ & MBBS/PhD Directory Optimization
+
+### Summary
+- **Website-Wide FAQ Optimization (`src/components/common/FAQAccordion.astro` & All Host Pages):**
+  - Standardized all FAQ sections across `/study-abroad/`, `/study-in-europe/`, `/study-abroad/[country]/`, `/services/tourist-visa/`, `/services/work-visa/`, `/services/flight-booking/`, `/services/study-visa/`, `/services/additional-services/`, `/services/mbbs/`, and `/services/phd/`.
+  - Excised unnecessary introductory filler descriptions beneath FAQ headings, explicitly including: *"Key information regarding international admissions, intake calendars, and immigration compliance."* (`/study-abroad/`), *"Essential consular and documentation guidance for tourist and visitor visa applicants."* (`/services/tourist-visa/`), *"Important legal and operational answers regarding work permit documentation."* (`/services/work-visa/`), and *"Clear, transparent answers regarding flight reservation holds..."* (`/services/flight-booking/`).
+  - Moved FAQ accordion cards upward to occupy the removed description space.
+  - Standardized exact 16–20px spacing between heading and first question (`mb-4 sm:mb-5`).
+  - Reduced gaps between FAQ cards to 8–10px (`space-y-2 sm:space-y-2.5`).
+  - Reduced excessive internal card padding to `px-3.5 py-3 sm:px-4 sm:py-3.5` while preserving comfortable touch targets ($\ge 44$px).
+  - Configured all questions collapsed by default (`allCollapsed = true`), verified with zero initial open details.
+  - Retained smooth, accessible expand/collapse animations with consistent 180-degree rotating chevrons (`group-open:rotate-180 transition-transform duration-200`).
+  - Preserved every existing FAQ heading, question, answer, and legal disclaimer without data loss.
+
+- **MBBS Abroad — Country-Based University Selection (`src/pages/services/mbbs.astro`):**
+  - Replaced long flat university listing with the compact, flag-based country-card design derived from Explore 35+ Countries.
+  - Dynamically derived 11 destination countries from the approved MBBS university dataset: Uzbekistan (4), Kazakhstan (5), Russia (6), Kyrgyzstan (4), Moldova (2), Latvia (1), Poland (4), Georgia (4), Portugal (2), Lithuania (1), Azerbaijan (1) = 34 universities.
+  - Responsive country grid: 5 columns on desktop ($\ge 1200$px), 3 columns on tablet (768–1199px), 2 columns on mobile ($< 768$px) using `.country-directory-grid`.
+  - Country cards display: official sovereign SVG flag (`/assets/flags/[iso].svg`), country name, and university count badge.
+  - Interactive selection:
+    - Initially displays only country cards; universities section is hidden.
+    - Clicking a country reveals its universities immediately below and highlights the selected country card (`ring-2 ring-brand-blue border-brand-navy bg-brand-bg/60`).
+    - Selecting another country seamlessly replaces the previous university list.
+    - Clicking a university card auto-fills `#form-university` and `#form-country`, shows `#enquiry-context-banner`, and smoothly scrolls to the enquiry form.
+    - Added dedicated collapse button (`#mbbs-collapse-btn`) to tuck away the university list.
+  - Added standardized FAQ accordion to MBBS page with 4 NMC/WDOMS compliance questions.
+
+- **PhD Abroad — Country-Based University Selection (`src/pages/services/phd.astro`):**
+  - Replaced legacy pill buttons with the compact, flag-based country-card design matching Explore 35+ Countries.
+  - Strictly restricted to exactly 3 countries and 7 approved universities:
+    - Latvia (2): Riga Technical University; Turība University (Flag: `lv.svg`).
+    - Lithuania (3): Vilnius University (VU); Kaunas University of Technology (KTU); Vilnius Gediminas Technical University (Vilnius Tech) (Flag: `lt.svg`).
+    - Portugal (2): University of Lisbon; University of Porto (Flag: `pt.svg`).
+  - Responsive country grid: 5-column standard layout (`.country-directory-grid`).
+  - Interactive selection:
+    - Initially displays only the 3 country cards.
+    - Clicking a country reveals only its universities immediately below and highlights the selected card.
+    - Selecting another country smoothly switches the university listing.
+    - Clicking a university card auto-populates `#form-university` and `#form-country`, shows `#enquiry-context-banner`, and smoothly scrolls to `#enquiry`.
+    - Added dedicated collapse button (`#phd-collapse-btn`).
+  - Added standardized FAQ accordion to PhD page with doctoral research questions.
+
+- **Comprehensive Verification & Testing:**
+  - Automated test suite `tests/verify-faq-and-mbbs-phd-optimization.js`: **96 / 96 checks passed (100%)**.
+  - Regression test suite `tests/verify-mbbs-phd-nav-optimization.js`: **63 / 63 checks passed (100%)**.
+  - Regression test suite `tests/verify-website-wide-form-optimization.js`: **29 / 29 checks passed (100%)**.
+  - Regression test suite `tests/verify-country-directory-optimization.js`: **39 / 39 checks passed (100%)**.
+  - Regression test suite `tests/verify-study-abroad-dropdown-cleanup.js`: **29 / 29 checks passed (100%)**.
+  - Type-check `npm run check`: **0 errors, 0 warnings**.
+  - SSG build `npm run build`: **65 / 65 static pages built successfully**.
+  - Verified 0px horizontal overflow across all 9 viewports (320px, 360px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px).
+
+---
+
 ## [1.48.0] - 2026-11-19 — Website-Wide Form Optimization & Simplification
 
 ### Summary

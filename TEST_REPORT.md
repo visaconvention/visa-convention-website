@@ -430,7 +430,8 @@ node tests/e2e-comprehensive-audit.test.js
 | **Optimization** | `verify-reviews-rtl-carousel.js` | 43 | 0 | **100% PASS** |
 | **Optimization** | `verify-country-directory-optimization.js` | 39 | 0 | **100% PASS** |
 | **Optimization** | `verify-website-wide-form-optimization.js` | 29 | 0 | **100% PASS** |
-| **Cumulative** | **Entire Test Suite** | **1,150** | **0** | **100% PASS (1,150/1,150)** |
+| **Optimization** | `verify-faq-and-mbbs-phd-optimization.js` | 96 | 0 | **100% PASS** |
+| **Cumulative** | **Entire Test Suite** | **1,246** | **0** | **100% PASS (1,246/1,246)** |
 
 # Preview static production build locally
 npx astro preview --port 4321

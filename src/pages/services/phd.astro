@@ -2,16 +2,21 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import EnquiryForm from '../../components/forms/EnquiryForm.astro';
+import FAQAccordion from '../../components/common/FAQAccordion.astro';
+import { detailedServicesData } from '../../data/detailed-services';
 import { siteConfig } from '../../data/site-config';
+
+const phdService = detailedServicesData['phd'];
+if (!phdService) throw new Error('Detailed service data not found for phd');
 
 const pageTitle = 'PhD Abroad Guidance — Latvia, Lithuania & Portugal | Visa Convention';
 const pageDescription = 'Specialized doctoral research proposal and admissions guidance for 7 approved universities in Latvia, Lithuania, and Portugal.';
 
-// Strictly approved PhD destinations (3 countries)
+// Strictly approved PhD destinations (3 countries with SVG flags)
 const approvedCountries = [
-  { slug: 'latvia', name: 'Latvia', count: 2, flag: '🇱🇻' },
-  { slug: 'lithuania', name: 'Lithuania', count: 3, flag: '🇱🇹' },
-  { slug: 'portugal', name: 'Portugal', count: 2, flag: '🇵🇹' },
+  { slug: 'latvia', name: 'Latvia', count: 2, flagSvg: '/assets/flags/lv.svg' },
+  { slug: 'lithuania', name: 'Lithuania', count: 3, flagSvg: '/assets/flags/lt.svg' },
+  { slug: 'portugal', name: 'Portugal', count: 2, flagSvg: '/assets/flags/pt.svg' },
 ] as const;
 
 // Strictly approved PhD universities (7 universities)
@@ -130,7 +135,7 @@ const approvedUniversities = [
               href="#universities"
               class="btn-secondary inline-flex items-center gap-2"
             >
-              <span>View 7 Approved Universities</span>
+              <span>Explore 3 Approved Countries ({approvedUniversities.length} Universities)</span>
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
               </svg>
@@ -155,11 +160,11 @@ const approvedUniversities = [
     </div>
   </section>
 
-  <!-- 2. Three Compact Country Selectors & 3. Filtered 7 Universities List -->
+  <!-- 2. Country-Based University Selection (Compact Flag Cards + Filtered Universities) -->
   <section id="universities" class="py-12 sm:py-16 bg-brand-bg/40 border-b border-brand-border">
     <div class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
-      <div class="mb-8">
+      <div class="mb-6 sm:mb-8">
         <div class="flex items-center gap-2 mb-2">
           <span class="w-2.5 h-2.5 rounded-full bg-brand-navy"></span>
           <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Target Destinations</span>
@@ -168,78 +173,138 @@ const approvedUniversities = [
           Approved Doctoral Universities
         </h2>
         <p class="text-xs sm:text-sm text-brand-muted mt-1">
-          Select a country to filter the approved 7 doctoral institutions or click any university to pre-fill your consultation request.
+          Select a destination country to display approved doctoral institutions across Latvia, Lithuania, and Portugal ({approvedUniversities.length} universities across 3 countries).
         </p>
       </div>
 
-      <!-- 2. Three Compact Country Selectors -->
-      <div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-8" role="tablist" aria-label="PhD Target Countries">
-        <button
-          type="button"
-          class="phd-country-filter-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-150 border bg-brand-navy text-white border-brand-navy shadow-xs"
-          data-country="all"
-          role="tab"
-          aria-selected="true"
-        >
-          <span>All Countries (7 Universities)</span>
-        </button>
-        {approvedCountries.map((c) => (
+      <!-- Compact Flag-Based Country Cards Grid (Up to 5 columns desktop, 2-3 tablet, 2 mobile) -->
+      <div class="country-directory-grid grid grid-cols-2 md:grid-cols-3 min-[1200px]:grid-cols-5 gap-3 sm:gap-4 items-stretch" id="phd-countries-grid" role="tablist" aria-label="PhD Target Countries">
+        {approvedCountries.map((country) => (
           <button
             type="button"
-            class="phd-country-filter-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-150 border bg-white text-brand-navy border-brand-border hover:border-brand-navy hover:bg-brand-bg/60"
-            data-country={c.slug}
+            class="phd-country-btn card-premium group country-btn h-full min-w-0 rounded-xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 cursor-pointer p-3 sm:p-3.5 text-left flex flex-col justify-between focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue min-h-[82px] sm:min-h-[88px]"
+            data-country-btn
+            data-country={country.slug}
+            data-country-name={country.name}
             role="tab"
             aria-selected="false"
           >
-            <span>{c.flag} {c.name} ({c.count} Universities)</span>
+            <!-- Top Row: Official Flag + University Count -->
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <div class="w-8 h-6 sm:w-9 sm:h-6.5 rounded overflow-hidden shadow-2xs border border-slate-200/90 bg-slate-50 flex items-center justify-center shrink-0">
+                <img
+                  src={country.flagSvg}
+                  alt={`Flag of ${country.name}`}
+                  width="36"
+                  height="26"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <span class="country-badge inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-brand-bg text-brand-navy border border-brand-border/60 group-hover:border-brand-navy/30 transition-colors shrink-0">
+                {country.count} <span class="hidden sm:inline sm:ml-0.5 font-normal text-brand-muted">Unis</span>
+              </span>
+            </div>
+
+            <!-- Bottom Row: Country Name -->
+            <div class="mt-auto">
+              <span class="country-name text-xs sm:text-sm font-bold text-brand-navy group-hover:text-brand-blue transition-colors leading-tight block">
+                {country.name}
+              </span>
+            </div>
           </button>
         ))}
       </div>
 
-      <!-- 3. Country-Filtered List of the Seven Approved Universities -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="phd-university-grid">
-        {approvedUniversities.map((uni, idx) => (
-          <div
-            class="phd-uni-card group relative p-5 rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer"
-            data-country={uni.countrySlug}
-            data-university-name={uni.name}
-            data-country-name={uni.country}
+      <!-- Filtered Universities Container (Initially hidden, revealed on country click) -->
+      <div id="phd-universities-section" class="mt-6 pt-6 border-t border-brand-border hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
+              <h3 class="text-base sm:text-lg font-bold text-brand-navy" id="phd-selected-country-heading">
+                Approved Doctoral Universities
+              </h3>
+            </div>
+            <p class="text-xs text-brand-muted mt-0.5" id="phd-selected-country-subheading">
+              Click any doctoral institution to pre-fill your PhD evaluation request.
+            </p>
+          </div>
+          <button
+            type="button"
+            id="phd-collapse-btn"
+            class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-muted hover:text-brand-navy self-start sm:self-auto py-1 px-2.5 rounded-lg border border-brand-border bg-white hover:bg-slate-50 transition-colors"
+            aria-label="Collapse doctoral university list"
           >
-            <div>
-              <!-- Location Pill -->
-              <div class="flex items-center justify-between gap-2 mb-3">
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-brand-bg text-brand-navy font-bold text-xs border border-brand-border/60">
-                  <span>📍</span>
-                  <span>{uni.country} • {uni.city}</span>
-                </span>
-                <span class="text-3xs font-bold text-brand-muted/70 uppercase">
-                  PhD #{idx + 1}
-                </span>
+            <span>Close List</span>
+            <span class="text-brand-red">✕</span>
+          </button>
+        </div>
+
+        <!-- University Cards Grid (Compact, responsive 1-3 columns) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4" id="phd-university-grid">
+          {approvedUniversities.map((uni, idx) => (
+            <div
+              class="phd-uni-card group relative p-4 sm:p-5 rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer hidden"
+              data-country={uni.countrySlug}
+              data-university-name={uni.name}
+              data-country-name={uni.country}
+            >
+              <div>
+                <!-- Location Pill -->
+                <div class="flex items-center justify-between gap-2 mb-2.5">
+                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-brand-bg text-brand-navy font-bold text-xs border border-brand-border/60">
+                    <span>📍</span>
+                    <span>{uni.country} • {uni.city}</span>
+                  </span>
+                  <span class="text-3xs font-bold text-brand-muted/70 uppercase">
+                    PhD #{idx + 1}
+                  </span>
+                </div>
+
+                <!-- University Name in Full -->
+                <h3 class="font-bold text-base text-brand-navy group-hover:text-brand-blue transition-colors mb-2 leading-snug break-words">
+                  {uni.name}
+                </h3>
+
+                <!-- Focus Area / Details -->
+                <p class="text-xs text-brand-muted leading-relaxed">
+                  {uni.focus}
+                </p>
               </div>
 
-              <!-- University Name in Full -->
-              <h3 class="font-bold text-base text-brand-navy group-hover:text-brand-blue transition-colors mb-2 leading-snug break-words">
-                {uni.name}
-              </h3>
-
-              <!-- Focus Area / Details -->
-              <p class="text-xs text-brand-muted leading-relaxed">
-                {uni.focus}
-              </p>
+              <!-- Action Button -->
+              <div class="mt-4 pt-3 border-t border-brand-border/60 flex items-center justify-between text-xs font-bold text-brand-navy group-hover:text-brand-red transition-colors">
+                <span>Select for Consultation</span>
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
             </div>
-
-            <!-- Action Button -->
-            <div class="mt-5 pt-3 border-t border-brand-border/60 flex items-center justify-between text-xs font-bold text-brand-navy group-hover:text-brand-red transition-colors">
-              <span>Select for Consultation</span>
-              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- 3. Frequently Asked Questions (Standardized Website-Wide Accordion) -->
+  {phdService?.faqs && phdService.faqs.length > 0 && (
+    <section class="py-10 sm:py-14 bg-white border-b border-brand-border">
+      <div class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mb-4 sm:mb-5">
+          <span class="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-brand-bg text-brand-blue border border-brand-blue/20">
+            Doctoral Clarity
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight">
+            Frequently Asked Questions
+          </h2>
+        </div>
+        <div class="max-w-3xl">
+          <FAQAccordion faqs={phdService.faqs} />
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- 4. Existing Enquiry Form with Automatic Population -->
   <section id="enquiry" class="py-12 sm:py-16 bg-white">
@@ -310,51 +375,106 @@ const approvedUniversities = [
   <!-- Interactive Client-side Script for Country Filter & Auto-population -->
   <script is:inline>
     document.addEventListener('DOMContentLoaded', () => {
-      const filterBtns = document.querySelectorAll('.phd-country-filter-btn');
-      const uniCards = document.querySelectorAll('.phd-uni-card');
+      const countryBtns = document.querySelectorAll('.phd-country-btn');
+      const unisSection = document.getElementById('phd-universities-section');
+      const headingEl = document.getElementById('phd-selected-country-heading');
+      const uniCards = document.querySelectorAll('#phd-university-grid .phd-uni-card');
+      const collapseBtn = document.getElementById('phd-collapse-btn');
       const uniInput = document.getElementById('form-university');
       const countrySelect = document.getElementById('form-country');
       const contextBanner = document.getElementById('enquiry-context-banner');
       const contextBannerText = document.getElementById('context-banner-text');
 
-      // Country Filter Logic
-      filterBtns.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const selectedCountry = btn.getAttribute('data-country') || 'all';
+      let currentSelectedCountry = null;
 
-          // Update active button classes & ARIA
-          filterBtns.forEach((b) => {
-            const isTarget = b === btn;
-            b.setAttribute('aria-selected', isTarget ? 'true' : 'false');
-            if (isTarget) {
-              b.classList.remove('bg-white', 'text-brand-navy', 'border-brand-border');
-              b.classList.add('bg-brand-navy', 'text-white', 'border-brand-navy', 'shadow-xs');
-            } else {
-              b.classList.remove('bg-brand-navy', 'text-white', 'border-brand-navy', 'shadow-xs');
-              b.classList.add('bg-white', 'text-brand-navy', 'border-brand-border');
+      function selectCountry(countrySlug, countryName, btn) {
+        currentSelectedCountry = countrySlug;
+
+        // Update button active styles & ARIA
+        countryBtns.forEach((b) => {
+          const isTarget = b === btn;
+          b.setAttribute('aria-selected', isTarget ? 'true' : 'false');
+          if (isTarget) {
+            b.classList.add('ring-2', 'ring-brand-blue', 'border-brand-navy', 'bg-brand-bg/60', 'shadow-sm');
+            b.classList.remove('bg-white');
+            const badge = b.querySelector('.country-badge');
+            if (badge) {
+              badge.classList.add('bg-brand-navy', 'text-white', 'border-brand-navy');
+              badge.classList.remove('bg-brand-bg', 'text-brand-navy');
             }
-          });
-
-          // Filter university cards
-          uniCards.forEach((card) => {
-            const cardCountry = card.getAttribute('data-country');
-            if (selectedCountry === 'all' || cardCountry === selectedCountry) {
-              card.classList.remove('hidden');
-            } else {
-              card.classList.add('hidden');
-            }
-          });
-
-          // Sync country dropdown in enquiry form if specific country selected
-          if (countrySelect && selectedCountry !== 'all') {
-            countrySelect.value = selectedCountry;
-            if (contextBanner && contextBannerText) {
-              contextBannerText.textContent = `Pre-selected Destination: ${btn.textContent.trim()}`;
-              contextBanner.classList.remove('hidden');
+          } else {
+            b.classList.remove('ring-2', 'ring-brand-blue', 'border-brand-navy', 'bg-brand-bg/60', 'shadow-sm');
+            b.classList.add('bg-white');
+            const badge = b.querySelector('.country-badge');
+            if (badge) {
+              badge.classList.remove('bg-brand-navy', 'text-white', 'border-brand-navy');
+              badge.classList.add('bg-brand-bg', 'text-brand-navy');
             }
           }
         });
+
+        // Reveal section
+        if (unisSection) {
+          unisSection.classList.remove('hidden');
+        }
+
+        // Filter cards
+        let visibleCount = 0;
+        uniCards.forEach((card) => {
+          const cardCountry = card.getAttribute('data-country');
+          if (cardCountry === countrySlug) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        // Update heading
+        if (headingEl) {
+          headingEl.textContent = `Approved Doctoral Universities in ${countryName} (${visibleCount})`;
+        }
+
+        // Sync enquiry form country dropdown
+        if (countrySelect && countrySlug) {
+          countrySelect.value = countrySlug;
+          if (contextBanner && contextBannerText) {
+            contextBannerText.textContent = `Pre-selected Destination: ${countryName}`;
+            contextBanner.classList.remove('hidden');
+          }
+        }
+      }
+
+      countryBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const countrySlug = btn.getAttribute('data-country') || '';
+          const countryName = btn.getAttribute('data-country-name') || '';
+          if (currentSelectedCountry === countrySlug && unisSection && !unisSection.classList.contains('hidden')) {
+            unisSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } else {
+            selectCountry(countrySlug, countryName, btn);
+          }
+        });
       });
+
+      if (collapseBtn) {
+        collapseBtn.addEventListener('click', () => {
+          if (unisSection) {
+            unisSection.classList.add('hidden');
+          }
+          currentSelectedCountry = null;
+          countryBtns.forEach((b) => {
+            b.setAttribute('aria-selected', 'false');
+            b.classList.remove('ring-2', 'ring-brand-blue', 'border-brand-navy', 'bg-brand-bg/60', 'shadow-sm');
+            b.classList.add('bg-white');
+            const badge = b.querySelector('.country-badge');
+            if (badge) {
+              badge.classList.remove('bg-brand-navy', 'text-white', 'border-brand-navy');
+              badge.classList.add('bg-brand-bg', 'text-brand-navy');
+            }
+          });
+        });
+      }
 
       // University Card Selection Logic
       uniCards.forEach((card) => {
