@@ -6,6 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.58.0] - 2026-11-20 — Homepage Reviews Text Excision & Layout Tightening
+
+### Summary
+- **Homepage Reviews Section Text Removal (`src/components/home/ReviewsCarousel.astro`):**
+  - Completely excised the DPDP statutory notice paragraph:
+    *"Candidate names are abbreviated to initials in strict compliance with the Digital Personal Data Protection Act. Visa issuance decisions remain the sole prerogative of sovereign host-country embassies."*
+  - Completely excised the introductory subtitle beneath the Reviews heading:
+    *"Authentic feedback from students and families across Rajasthan who processed admissions, APS verifications, and visa dossiers through Visa Convention."*
+  - Removed associated paragraph wrappers (`max-w-[70ch]`, `max-w-[64ch]`) and reserved spacing.
+- **Layout Tightening & Responsive Polish:**
+  - Tightened header bottom margin from `mb-8 sm:mb-10` to `mb-6 sm:mb-8` to eliminate empty gaps between the heading block and the marquee viewport.
+  - Adjusted the bottom navigation wrapper from `mt-6 flex-col sm:flex-row justify-between` to a compact `mt-4 sm:mt-5 flex items-center justify-center sm:justify-end text-xs`, seamlessly hosting the *"View All Verified Case Studies →"* link without dead space.
+  - Preserved the Reviews section heading (*"Real Journeys, Verified Approvals"*), verified outcome badge, all 6 genuine client testimonials, review cards, 5-star ratings, verified badges, continuous right-to-left marquee animation (`marquee-rtl`), pause/resume toggle, and directional nudge buttons.
+  - Maintained all mandatory statutory disclaimers and privacy notices in site-wide headers, footers, forms, and dedicated privacy policy pages.
+- **Verification & QA Testing:**
+  - Automated Puppeteer end-to-end verification (`tests/verify-homepage-text-removal.js`):
+    - Confirmed total absence of both specified text blocks from rendered DOM.
+    - Verified pause/resume toggle interaction and marquee functionality.
+    - Tested across 9 viewports (320, 360, 375, 390, 430, 768, 1024, 1366, 1440px) with **zero horizontal scroll / overflow** (9/9 passed).
+    - Astro diagnostics (`npm run check`): 0 errors, 0 warnings.
+    - Production build (`npm run build`): all 65 pages compiled successfully with zero errors.
+
+---
+
 ## [1.57.0] - 2026-11-20 — Master UI, Service Page & Navigation Optimization
 
 ### Summary
