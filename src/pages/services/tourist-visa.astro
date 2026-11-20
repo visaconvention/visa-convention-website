@@ -1,22 +1,17 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
-import FAQAccordion from '../../components/common/FAQAccordion.astro';
 import EnquiryForm from '../../components/forms/EnquiryForm.astro';
 import DestinationAccordion, { type DestinationGroup } from '../../components/services/DestinationAccordion.astro';
 import { 
   touristDestinations, 
   applicantCategories, 
   uaePreparationGuidance, 
-  schengenFacts, 
-  touristFaqs 
+  schengenFacts 
 } from '../../data/tourist-visa-data';
-import { getFaqSchema } from '../../utils/seo';
 
 const pageTitle = 'Tourist & Visitor Visa Assistance — Visa Convention Hanumangarh';
 const pageDescription = 'Documentation guidance for Schengen, UK, US, Canada, Australia, and UAE tourist visas. 6 applicant categories, verified itineraries, and biometric scheduling.';
-
-const faqSchema = getFaqSchema(touristFaqs);
 
 // Destination groups according to specifications: Schengen, Other International, and UAE
 const destinationGroups: DestinationGroup[] = [
@@ -80,7 +75,6 @@ const destinationGroups: DestinationGroup[] = [
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  schema={faqSchema}
 >
   <!-- Breadcrumbs -->
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
@@ -430,33 +424,14 @@ const destinationGroups: DestinationGroup[] = [
     </div>
   </section>
 
-  <!-- SECTION 04: Combined FAQs & Consultation Assessment Section -->
-  <section class="py-10 sm:py-16 bg-brand-bg/60 border-t border-brand-border">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- 2-Column Responsive Grid (Below 900px: Stacked. 900px+: 2 Balanced Columns with 24-32px gap, aligned at top) -->
-      <div class="grid grid-cols-1 min-[900px]:grid-cols-2 gap-6 lg:gap-8 items-start">
-        
-        <!-- Left Column: Frequently Asked Questions (DOM Order 1: Appears first on mobile) -->
-        <div id="faq" class="w-full scroll-mt-6">
-          <div class="mb-4 sm:mb-5">
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight">
-              Frequently Asked Questions
-            </h2>
-          </div>
-
-          <FAQAccordion faqs={touristFaqs} allCollapsed={true} class="w-full" />
-        </div>
-
-        <!-- Right Column: Consultation Assessment Form (DOM Order 2: Appears second on mobile) -->
-        <div id="enquiry" class="w-full scroll-mt-6">
-          <EnquiryForm
-            selectedService="tourist-visa"
-            title="Tourist Visa Assessment"
-            subtitle="Confidential file evaluation for tourist and family visitor visas."
-          />
-        </div>
-
-      </div>
+  <!-- SECTION 04: Consultation Assessment Section -->
+  <section id="enquiry" class="py-10 sm:py-16 bg-brand-bg/60 border-t border-brand-border">
+    <div class="max-w-[760px] mx-auto px-4 sm:px-6 lg:px-8">
+      <EnquiryForm
+        selectedService="tourist-visa"
+        title="Tourist Visa Assessment"
+        subtitle="Confidential file evaluation for tourist and family visitor visas."
+      />
 
       <!-- Statutory Advisory Disclaimer Banner (Preserved Essential Legal Notice) -->
       <div class="mt-8 p-4 rounded-xl bg-slate-50 border border-brand-border text-xs text-brand-muted leading-relaxed text-center">

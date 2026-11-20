@@ -2,51 +2,19 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import CountryCard from '../../components/countries/CountryCard.astro';
-import FAQAccordion from '../../components/common/FAQAccordion.astro';
 import ConsultationCTA from '../../components/common/ConsultationCTA.astro';
 import { getPublishedCountries } from '../../data/countries';
-import { getFaqSchema } from '../../utils/seo';
 
 // Filter published European countries
 const allCountries = getPublishedCountries();
 const europeCountries = allCountries.filter(
   (c) => c.continent.toLowerCase() === 'europe'
 );
-
-const europeFaqs = [
-  {
-    question: 'Why is Europe Visa Convention’s primary study abroad focus?',
-    answer: 'Europe offers an unparalleled combination of world-class academic institutions, highly subsidized or tuition-free public higher education (notably in Germany), extensive English-taught degree portfolios, clear post-study work regulations, and Schengen mobility across 29 member nations.',
-  },
-  {
-    question: 'Can international students study in Europe in English?',
-    answer: 'Yes. Thousands of accredited Bachelor’s and Master’s programs across Germany, the Netherlands, Ireland, France, the Nordic nations, Italy, and Central Europe are taught entirely in English. In the United Kingdom and Ireland, English is the native medium of instruction.',
-  },
-  {
-    question: 'What is the German APS verification and why is it mandatory?',
-    answer: 'The Akademische Prüfstelle (APS) is a verification certificate issued by the German Embassy in New Delhi. It authenticates Indian academic transcripts before students can apply to German universities or book national student visa appointments. Visa Convention guides students through APS dossier compilation step by step.',
-  },
-  {
-    question: 'What is a Blocked Account (Sperrkonto) for European student visas?',
-    answer: 'Countries like Germany require non-EU students to deposit minimum living expenses (e.g. €11,904/year as per latest federal regulations) into an escrow blocked account to prove financial self-sufficiency. Funds are released in monthly stipends after arrival.',
-  },
-  {
-    question: 'What post-study work rights are available in major European destinations?',
-    answer: 'The United Kingdom provides the 2-Year Graduate Route permit; Germany offers an 18-month job-seeker residence permit; Ireland grants a 2-year Third Level Graduate Scheme (Stamp 1G) for Master’s graduates; and France offers a 1 to 2-year post-study authorization (APS).',
-  },
-  {
-    question: 'Does Visa Convention guarantee European visa issuance?',
-    answer: 'No. Visa issuance decisions are the sovereign and exclusive prerogative of the respective national embassies and consulates. Visa Convention provides meticulous, verified application guidance and mock consular interview preparation, but does not make false guarantee claims.',
-  },
-];
-
-const faqSchema = getFaqSchema(europeFaqs);
 ---
 
 <BaseLayout
   title="Study in Europe — European University Admissions & Student Visas | Visa Convention"
   description="Explore higher education across 25 European countries. Independent advisory for public universities in Germany, UK, Ireland, France, Italy, and NMC-compliant medical programs."
-  schema={faqSchema}
 >
   <!-- Breadcrumbs -->
   <div class="site-container pt-6">
@@ -303,23 +271,7 @@ const faqSchema = getFaqSchema(europeFaqs);
     </div>
   </section>
 
-  <!-- FAQs Section -->
-  <section class="py-12 sm:py-16 bg-brand-bg border-t border-brand-border">
-    <div class="site-container">
-      <div class="max-w-3xl text-left mb-4 sm:mb-5">
-        <span class="inline-block px-3 py-1 mb-2 text-xs font-bold tracking-wider uppercase rounded-full bg-white text-brand-blue border border-brand-blue/20">
-          Frequently Asked Questions
-        </span>
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight">
-          Common Questions About Studying in Europe
-        </h2>
-      </div>
 
-      <div class="max-w-3xl">
-        <FAQAccordion faqs={europeFaqs} />
-      </div>
-    </div>
-  </section>
 
   <!-- Final Consultation CTA -->
   <div class="site-container py-10 sm:py-14">

@@ -75,7 +75,7 @@ export const siteConfig = {
       label: 'Study Abroad',
       href: '/study-abroad/',
       children: [
-        { label: 'Explore 35+ Countries', href: '/study-abroad/', description: 'Discover international study destinations' },
+        { label: "Bachelor's and Master's Abroad", href: '/study-abroad/', description: 'Discover international study destinations' },
         { label: 'MBBS Abroad', href: '/services/mbbs/', description: 'WDOMS-listed faculties & NMC guidance' },
         { label: 'PhD Abroad', href: '/services/phd/', description: 'Doctoral research and funded proposals' },
       ],

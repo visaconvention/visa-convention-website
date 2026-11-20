@@ -2,44 +2,16 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import CountryCard from '../../components/countries/CountryCard.astro';
-import FAQAccordion from '../../components/common/FAQAccordion.astro';
 import EmptyState from '../../components/common/EmptyState.astro';
 import { getPublishedCountries, getContinents } from '../../data/countries';
-import { getFaqSchema } from '../../utils/seo';
 
 const countries = getPublishedCountries();
 const continents = getContinents();
-
-const studyAbroadFaqs = [
-  {
-    question: 'How do I choose the right study abroad destination for my academic profile?',
-    answer: 'Selecting an optimal study abroad destination depends on your past academic performance (GPA/percentage), budget for tuition and living expenses, desired post-study stay-back work duration, and language proficiency. Our Hanumangarh counselors evaluate your transcripts against admission requirements across 35+ countries to curate a realistic shortlist.',
-  },
-  {
-    question: 'Are tuition fees paid directly to the foreign university?',
-    answer: 'Yes. Students pay their tuition fees directly to the accredited foreign university through official international wire transfer or authorized educational banking channels. Visa Convention operates transparently and never collects university tuition fees into agency accounts.',
-  },
-  {
-    question: 'Which standardized English test is most widely accepted (IELTS vs PTE vs TOEFL)?',
-    answer: 'IELTS Academic and PTE Academic are accepted almost universally across Canada, the UK, Australia, Ireland, and New Zealand. TOEFL iBT is widely accepted in the United States and Europe. In select destinations such as France or specific UK universities, medium of instruction (MOI) waivers may be eligible for applicants with high Class XII English marks.',
-  },
-  {
-    question: 'When should I begin my study abroad application process?',
-    answer: 'We strongly advise starting 8 to 12 months before your targeted intake semester. This allows sufficient time for standardized language testing, academic credential evaluations, conditional and unconditional offer processing, financial documentation setup, and embassy visa queues.',
-  },
-  {
-    question: 'Does Visa Convention guarantee visa approval?',
-    answer: 'No. Sovereign host-nation embassies and immigration authorities make all visa decisions independently. Visa Convention facilitates meticulous, honest file compilation and interview briefings, but strictly does not guarantee visa grants.',
-  },
-];
-
-const faqSchema = getFaqSchema(studyAbroadFaqs);
 ---
 
 <BaseLayout
   title="Explore Study Abroad Destinations — Visa Convention"
   description="Discover higher education opportunities across 35+ destination countries. Compare admission requirements, estimated tuition fees, work rights, and visa procedures."
-  schema={faqSchema}
 >
   <!-- Breadcrumbs -->
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
@@ -146,17 +118,7 @@ const faqSchema = getFaqSchema(studyAbroadFaqs);
       ))}
     </div>
 
-    <!-- Study Abroad FAQs Section -->
-    <div class="mt-14 pt-12 border-t border-brand-border">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-4 sm:mb-5">
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight">
-            Study Abroad Frequently Asked Questions
-          </h2>
-        </div>
-        <FAQAccordion faqs={studyAbroadFaqs} />
-      </div>
-    </div>
+
   </section>
 
   <!-- Interactive Search & Filter Client Script -->

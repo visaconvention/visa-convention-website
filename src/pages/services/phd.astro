@@ -2,7 +2,6 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import EnquiryForm from '../../components/forms/EnquiryForm.astro';
-import FAQAccordion from '../../components/common/FAQAccordion.astro';
 import CountryCard from '../../components/countries/CountryCard.astro';
 import { detailedServicesData } from '../../data/detailed-services';
 import { siteConfig } from '../../data/site-config';
@@ -253,21 +252,7 @@ const approvedUniversities = [
     </div>
   </section>
 
-  <!-- 3. Frequently Asked Questions (Standardized Website-Wide Accordion) -->
-  {phdService?.faqs && phdService.faqs.length > 0 && (
-    <section class="py-10 sm:py-14 bg-white border-b border-brand-border">
-      <div class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="max-w-3xl mb-4 sm:mb-5">
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight">
-            Frequently Asked Questions
-          </h2>
-        </div>
-        <div class="max-w-3xl">
-          <FAQAccordion faqs={phdService.faqs} />
-        </div>
-      </div>
-    </section>
-  )}
+
 
   <!-- 4. Existing Enquiry Form with Automatic Population -->
   <section id="enquiry" class="py-10 sm:py-14 bg-white">

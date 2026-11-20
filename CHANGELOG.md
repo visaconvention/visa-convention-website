@@ -6,6 +6,47 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.53.0] - 2026-11-19 — Master Website Optimization
+
+### Summary
+- **Country Pages Global Cleanup (`src/pages/study-abroad/[country].astro`):**
+  - Completely excised statistics strips (`Capital City`, `Currency`, `Tuition Est.`, `Primary Intake`, etc.) across all 36 country pages.
+  - Removed decorative badges and captions (`Featured Destination`, regional labels, `Last Reviewed`, `Overview`, `The Advantage`, and equivalents).
+  - Excised entire *"Introduction to Higher Education in [Country]"* and *"Why Choose [Country]?"* sections along with all promotional benefit cards.
+  - Positioned university discovery section (`#universities`) prominently near the top of the page, immediately below the Hero section.
+  - Implemented responsive grid layout: 3 columns on desktop ($\ge 1200$px), 2 columns on tablet (768–1199px), and 1 column on mobile ($< 768$px) with `gap-2.5 sm:gap-3 items-start`.
+  - Maintained clear heading *"Explore Universities in [Country]"* with concise advisory disclaimer.
+  - Embedded official SVG country flag directly within the primary H1 heading.
+  - Preserved essential admission criteria, tuition/living cost breakdown tables, visa requirements, official government links, consular disclaimer, and sticky enquiry form.
+- **University Directories Accordion Grid (`src/components/universities/UniversityCard.astro`):**
+  - Replaced oversized cards with compact expandable accordion tiles.
+  - **Collapsed State:** University name and chevron only; ~52–64px tall (actual: 54–60px), allowing multi-line titles to wrap gracefully.
+  - **Expanded State:** Reveals all existing details, including country/city badge, QS world ranking, institution type, tuition, description, study levels, disciplines, `Official Portal`, `Get Guidance`, and `View Profile`.
+  - **Interactive Behavior:** All cards collapsed initially; clicking a card expands its details; clicking another card auto-collapses previous card (single-open behavior per directory); keyboard accessible (`Enter` / `Space`, visible focus rings, `aria-expanded` synchronization); smooth height transition with `items-start` preventing row stretching.
+- **Study Abroad Navigation Dropdown Rename (`src/data/site-config.ts`):**
+  - Renamed Study Abroad primary link from *"Explore 35+ Countries"* to *"Bachelor's and Master's Abroad"*.
+  - Preserved description, target route `/study-abroad/`, icon, styling, and interactions.
+  - Adjusted dropdown width to 360px (`w-[360px]`) in `DesktopNavigation.astro` to ensure comfortable fit.
+- **Website-Wide FAQ Removal:**
+  - Completely removed all FAQ sections, accordion components, headings, and Schemas across the entire website: Home, Study Abroad, Study in Europe, individual country pages, MBBS, PhD, Tourist Visa, Work Visa, Flight Booking, Additional Services, About, and Contact.
+  - Excised all Schema.org `FAQPage` JSON-LD structured data (verified 0 instances across all 65 compiled pages).
+  - In `src/pages/services/tourist-visa.astro`, refactored Section 04 into a clean, centered single-column form container (`max-w-[760px] mx-auto`) preserving the statutory disclaimer.
+- **Homepage Service Cards Optimization (`src/pages/index.astro`):**
+  - Optimized all 6 cards: Study Abroad, MBBS/PhD Abroad, Work Visa, Tourist Visa, Flight Booking, Additional Services.
+  - Completely removed descriptive paragraphs (`<p>`) and associated reserved height across all 6 cards.
+  - Reduced container padding to `p-4 sm:p-5 flex flex-col justify-between flex-1 gap-2.5 sm:gap-3`.
+  - Minimized card height by ~80–100px to a uniform, balanced height of exactly 342px (0px variance across all cards).
+  - Preserved original client images (`aspect-video`), titles, links, CTAs, full-card clickability, and 3-column desktop grid.
+- **Verification & QA:**
+  - Authored comprehensive test suite `tests/verify-master-website-optimization.js`.
+  - All 65 static HTML pages compiled cleanly in Astro static build (7.88s).
+  - Zero TypeScript/Astro diagnostic errors (`astro check`: 0 errors, 0 warnings).
+  - 100% pass on all 51 checks in `tests/seo-a11y-audit.test.js` and all 29 checks in `tests/verify-study-abroad-dropdown-cleanup.js`.
+  - Verified zero horizontal overflow across 9 distinct viewports (320, 360, 375, 390, 430, 768, 1024, 1366, 1440px).
+  - Captured 7 high-resolution desktop and mobile evidence screenshots into artifact directory.
+
+---
+
 ## [1.52.0] - 2026-11-19 — Website-Wide Country Tile Optimization
 
 ### Summary

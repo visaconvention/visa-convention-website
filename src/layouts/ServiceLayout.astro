@@ -1,10 +1,8 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import Breadcrumbs from '../components/common/Breadcrumbs.astro';
-import FAQAccordion from '../components/common/FAQAccordion.astro';
 import EnquiryForm from '../components/forms/EnquiryForm.astro';
 import type { DetailedService, Service } from '../types';
-import { getFaqSchema } from '../utils/seo';
 import { siteConfig } from '../data/site-config';
 import { countriesData } from '../data/countries';
 
@@ -31,14 +29,11 @@ const pageTitle = isDetailed && detailed?.metaTitle
 const pageDescription = isDetailed && detailed?.metaDescription 
   ? detailed.metaDescription 
   : service.shortDescription;
-
-const faqSchema = service.faqs.length > 0 ? getFaqSchema(service.faqs) : undefined;
 ---
 
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  schema={faqSchema}
 >
   <!-- Breadcrumbs -->
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
@@ -426,15 +421,7 @@ const faqSchema = service.faqs.length > 0 ? getFaqSchema(service.faqs) : undefin
           </section>
         )}
 
-        <!-- SECTION 9: Frequently Asked Questions -->
-        {service.faqs.length > 0 && (
-          <section>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-4 sm:mb-5">
-              Frequently Asked Questions
-            </h2>
-            <FAQAccordion faqs={service.faqs} />
-          </section>
-        )}
+
 
       </div>
 

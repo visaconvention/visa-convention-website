@@ -321,7 +321,7 @@ async function runAudit() {
 
   assert(corruptedJsonLdCount === 0, `Zero JSON syntax errors across all embedded JSON-LD scripts (Errors: ${corruptedJsonLdCount})`);
   assert(breadcrumbSchemaCount >= 50, `Subpages embed Schema.org BreadcrumbList structured data (Count: ${breadcrumbSchemaCount})`);
-  assert(faqSchemaCount >= 5, `Pages with FAQs embed valid Schema.org FAQPage structured data (Count: ${faqSchemaCount})`);
+  assert(faqSchemaCount === 0, `Zero obsolete FAQPage Schema.org structured data after sitewide FAQ removal (Count: ${faqSchemaCount})`);
 
   // Verify Homepage LocalBusiness & Hanumangarh Grounding
   const homeHtml = fs.readFileSync(path.join(DIST_DIR, 'index.html'), 'utf8');

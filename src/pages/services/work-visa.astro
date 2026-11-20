@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
-import FAQAccordion from '../../components/common/FAQAccordion.astro';
 import EnquiryForm from '../../components/forms/EnquiryForm.astro';
 import DestinationAccordion, { type DestinationGroup } from '../../components/services/DestinationAccordion.astro';
 import OccupationAccordion from '../../components/services/OccupationAccordion.astro';
@@ -9,15 +8,11 @@ import {
   statutoryWorkDisclaimer,
   workDestinations,
   occupationalCategories,
-  employmentEvaluationFactors,
-  workFaqs 
+  employmentEvaluationFactors 
 } from '../../data/work-visa-data';
-import { getFaqSchema } from '../../utils/seo';
 
 const pageTitle = 'Work Visa & Permit Documentation Guidance — Visa Convention';
 const pageDescription = 'Regulatory visa documentation guidance for candidates holding verified foreign job offers. Gulf and European permit paperwork, PCC, and credential evaluations.';
-
-const faqSchema = getFaqSchema(workFaqs);
 
 // Destination groups according to specifications: Gulf, Europe, and Other
 const destinationGroups: DestinationGroup[] = [
@@ -74,7 +69,6 @@ const destinationGroups: DestinationGroup[] = [
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
-  schema={faqSchema}
 >
   <!-- Breadcrumbs -->
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
@@ -310,18 +304,7 @@ const destinationGroups: DestinationGroup[] = [
     </div>
   </section>
 
-  <!-- Frequently Asked Questions -->
-  <section class="py-10 sm:py-14 bg-white border-b border-brand-border">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center mb-4 sm:mb-5">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight">
-          Frequently Asked Questions
-        </h2>
-      </div>
 
-      <FAQAccordion faqs={workFaqs} />
-    </div>
-  </section>
 
   <!-- Compliance Disclosure Standard (Preserved Essential Legal Notice) -->
   <div class="max-w-[900px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">

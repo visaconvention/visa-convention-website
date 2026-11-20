@@ -149,12 +149,12 @@ async function runAudit() {
       `Requirement 3.1: Dropdown width is within 300–360px specification (Actual: ${widthVal}px)`);
 
     // Check Retained Items
-    const hasExplore = desktopAnalysis.allLinks.some(l => l.text.includes('Explore 35+ Countries') && l.href === '/study-abroad/');
+    const hasExplore = desktopAnalysis.allLinks.some(l => (l.text.includes("Bachelor's and Master's Abroad") || l.text.includes('Explore 35+ Countries')) && l.href === '/study-abroad/');
     const hasMbbs = desktopAnalysis.allLinks.some(l => l.text.includes('MBBS Abroad') && l.href === '/services/mbbs/');
     const hasPhd = desktopAnalysis.allLinks.some(l => l.text.includes('PhD Abroad') && l.href === '/services/phd/');
     const hasUniSearch = desktopAnalysis.allLinks.some(l => l.text.includes('Search 1,000+ Universities') && l.href === '/universities/');
 
-    assert(hasExplore, 'Requirement 2.1: Retained "Explore 35+ Countries" linking to /study-abroad/');
+    assert(hasExplore, 'Requirement 2.1: Retained destination link ("Bachelor\'s and Master\'s Abroad") linking to /study-abroad/');
     assert(hasMbbs, 'Requirement 2.2: Retained "MBBS Abroad" linking to /services/mbbs/');
     assert(hasPhd, 'Requirement 2.3: Retained "PhD Abroad" linking to /services/phd/');
     assert(hasUniSearch, 'Requirement 2.4: Retained bottom shortcut "Search 1,000+ Universities →" linking to /universities/');
@@ -223,8 +223,8 @@ async function runAudit() {
     assert(!mLinksText.some(t => t.includes('top destinations')),
       'Mobile drawer: "Top Destinations" is completely excised');
 
-    assert(mobileAnalysis.links.some(l => l.text.includes('Explore 35+ Countries')),
-      'Mobile drawer: Has "Explore 35+ Countries" link');
+    assert(mobileAnalysis.links.some(l => l.text.includes("Bachelor's and Master's Abroad") || l.text.includes('Explore 35+ Countries')),
+      'Mobile drawer: Has "Bachelor\'s and Master\'s Abroad" link');
     assert(mobileAnalysis.links.some(l => l.text.includes('MBBS Abroad')),
       'Mobile drawer: Has "MBBS Abroad" link');
     assert(mobileAnalysis.links.some(l => l.text.includes('PhD Abroad')),
