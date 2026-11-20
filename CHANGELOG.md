@@ -6,6 +6,91 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.56.0] - 2026-11-20 — Service Pages & Header Navigation Redesign
+
+### Summary
+- **Two-Line Header Navigation Implementation (`src/components/layout/DesktopNavigation.astro`, `src/data/site-config.ts`):**
+  - Implemented explicit two-line navigation labels for four designated navigation items on desktop ($\ge 1280$px):
+    - **Study Abroad:** Line 1: `Study`, Line 2: `Abroad ▼` (with dropdown chevron beside second line).
+    - **Tourist Visa:** Line 1: `Tourist`, Line 2: `Visa` (direct link to `/services/tourist-visa/`, zero chevron).
+    - **Work Visa:** Line 1: `Work`, Line 2: `Visa` (direct link to `/services/work-visa/`, zero chevron).
+    - **Additional Services:** Line 1: `Additional`, Line 2: `Services ▼` (with dropdown chevron beside second line).
+  - Preserved single-line structure for `Flights` and `About` (with dropdowns) and `Request Consultation` CTA button.
+  - Center-aligned both lines with compact `leading-[1.15]` line-height, consistent `min-h-[44px]` height and touch targets across all buttons and links.
+  - On mobile (`src/components/layout/MobileNavigation.astro`), preserved readable single-line menu labels with $\ge 44$px touch targets.
+- **Redundant Section Excision Across 3 Service Pages:**
+  - **MBBS Abroad (`src/pages/services/mbbs.astro`):** Completely excised *"Plan Your Medical Degree Abroad"*, including Hanumangarh Counseling Office, Direct Medical Desk, and WhatsApp Advisory block.
+  - **PhD Abroad (`src/pages/services/phd.astro`):** Completely excised *"PhD Admissions Guidance"*, including Hanumangarh Counseling Office, Direct Research Desk, and WhatsApp Advisory block.
+  - **Work Visa (`src/pages/services/work-visa.astro`):** Completely excised *"Employment Terms & Contract Evaluation"*, including *"6 Essential Contract Evaluation Criteria"*, *"Worker Protection Checklist"*, and *"Document Verification Standard"*, plus obsolete script listeners.
+  - Preserved all statutory regulatory notices (Emigration Act 1983 disclosure, WDOMS/NMC compliance notice, consular disclosures) and active WhatsApp integration.
+- **Standardized Two-Column Layout (70:30 Desktop, Stacked Mobile/Tablet):**
+  - **MBBS Abroad (`src/pages/services/mbbs.astro`):**
+    - Left Column (~70% / 8 cols): 11 MBBS country buttons (3-4 cols desktop), revealed medical university grid (34 universities), close list action, and integrity notice.
+    - Right Column (~30% / 4 cols): Sticky MBBS assessment form (`singleColumn={true}`) with interactive country/university click pre-selection.
+  - **PhD Abroad (`src/pages/services/phd.astro`):**
+    - Left Column (~70% / 8 cols): Exactly 3 approved destination countries (Latvia, Lithuania, Portugal). Universities revealed below selected country (initially collapsed). Exactly 7 approved universities correctly mapped:
+      - Latvia: *Riga Technical University*, *Turība University* (2)
+      - Lithuania: *Vilnius University (VU)*, *Kaunas University of Technology (KTU)*, *Vilnius Gediminas Technical University (Vilnius Tech)* (3)
+      - Portugal: *University of Lisbon*, *University of Porto* (2)
+    - Right Column (~30% / 4 cols): Sticky PhD Profile Assessment form (`singleColumn={true}`) restricted to the 3 approved countries.
+  - **Work Visa (`src/pages/services/work-visa.astro`):**
+    - Preserved Statutory Regulatory Disclosure Banner (Emigration Act 1983) directly below hero.
+    - Left Column (~70% / 8 cols): 14 approved destinations across Gulf, Europe, and global regions (`DestinationAccordion`) and 12 occupational categories (`OccupationAccordion`).
+    - Right Column (~30% / 4 cols): Sticky Work Visa assessment form (`singleColumn={true}`) with destination and occupation click autofill.
+- **Verification & QA Testing:**
+  - Automated Puppeteer end-to-end audit (`tests/verify-service-pages-and-nav-redesign.js`) covering:
+    - 8 target viewports: 320, 360, 390, 430, 768, 1024, 1366, 1440px with **zero horizontal scroll / overflow** on all pages.
+    - Two-column side-by-side alignment on desktop ($\ge 1100$px) and clean stacking on tablet/mobile (<1100px).
+    - Absence of all excised redundant sections.
+    - Interactive country selection, university revelation, and form autofill.
+    - Full Astro diagnostics (`npm run check`): 0 errors, 0 warnings.
+    - Production build (`npm run build`): all 65 pages generated successfully in 5.61s.
+
+---
+
+## [1.55.0] - 2026-11-20 — Bachelor's & Master's Side-by-Side Layout Optimization
+
+### Summary
+- **Desktop Two-Column Side-by-Side Layout (`src/pages/study-abroad/index.astro`):**
+  - Restructured the Bachelor's & Master's Abroad page from a vertically stacked layout into a responsive two-column grid on desktop ($\ge 1100$px):
+    - **Left Column (~70% / 8 cols):** Houses live search, continent filter pills (`All Destinations`, Europe highlight, `★ Featured Only`), dynamic matching count, and the country cards grid.
+    - **Right Column (~30% / 4 cols):** Houses the compact assessment form (`#enquiry`), sticky alongside the directory at `top-24` so counselors' assessment access remains immediate and accessible while scrolling through destination countries.
+    - **Column Alignment & Gap:** Aligned both columns at the top (`items-start`) with an exact 24px column gap (`gap-5 lg:gap-6`, conforming to the 16–24px specification).
+- **Narrower Country Grid Adaptation (`src/pages/study-abroad/index.astro`):**
+  - Adapted the country grid inside the left column to **3–4 cards per row**:
+    - Desktop 1100–1279px: 3 cards per row (`min-[1100px]:grid-cols-3`, ~225–245px tile width).
+    - Desktop $\ge 1280$px: 4 cards per row (`xl:grid-cols-4`, ~200–220px tile width).
+    - Tablet 768–1099px: 3 cards per row (`md:grid-cols-3`).
+    - Mobile < 768px: 2 cards per row (`grid-cols-2`).
+  - Preserved compact horizontal row layout (Flag | Country Name | Arrow), minimum 44px touch targets (`h-[54px] sm:h-[58px] min-h-[48px]`), graceful title wrapping, and direct navigation to destination guide pages.
+- **Compact Form Enhancement (`src/components/forms/EnquiryForm.astro`):**
+  - Added `singleColumn` boolean prop to `EnquiryForm.astro` to ensure full-width field stacking when embedded in sidebars, preventing horizontal field clipping.
+  - Compacted container padding to `p-4 sm:p-5` with minimal vertical margins.
+  - Form fields strictly match requirements:
+    1. Interested Service * — *"Bachelor's Abroad"* / *"Master's Abroad"*
+    2. Full Name *
+    3. Phone / WhatsApp Number *
+    4. Email (Optional)
+    5. Destination Country (Optional)
+    6. Message (Optional)
+  - Action Button: *"Request Consultation"* with duplicate submit prevention and error fallbacks.
+  - Excluded generic "Study Visa" and university-interest inputs.
+- **Responsive Stacking Behavior:**
+  - **Desktop ($\ge 1100$px):** Side-by-side 70:30 layout (66% : 32% ratio, 24px gap).
+  - **Tablet (768–1099px):** Stacks with country directory first, assessment form immediately after.
+  - **Mobile (<768px):** Stacks with country directory first, assessment form immediately after.
+- **Automated Verification & QA:**
+  - Type & Schema Check: 0 diagnostic errors (`npm run check`) across 144 files.
+  - Static Production Build: 65 pages compiled in 6.13s (`npm run build`).
+  - Multi-Viewport Puppeteer Test (`tests/verify-bachelors-masters-layout.js`):
+    - Tested 9 viewports: 320, 360, 390, 430, 768, 1024, 1100, 1366, 1440px.
+    - Zero horizontal overflow across all viewports.
+    - Verified dynamic search filtering ("Germany" $\rightarrow$ 1 result).
+    - Verified continent filtering ("Europe" $\rightarrow$ 25 results).
+    - All checks passed 100%.
+
+---
+
 ## [1.54.0] - 2026-11-20 — Master UI, Forms & Navigation Update
 
 ### Summary

@@ -81,12 +81,12 @@ export const siteConfig = {
       ],
     },
     {
-      label: 'Visa Services',
-      href: '/services/',
-      children: [
-        { label: 'Tourist & Visitor Visa', href: '/services/tourist-visa/', description: 'Visitor visas, itineraries & appointment prep' },
-        { label: 'Work Visa Support', href: '/services/work-visa/', description: 'Employer documentation & regulatory guidance' },
-      ],
+      label: 'Tourist Visa',
+      href: '/services/tourist-visa/',
+    },
+    {
+      label: 'Work Visa',
+      href: '/services/work-visa/',
     },
     {
       label: 'Flights',

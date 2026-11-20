@@ -15,13 +15,20 @@ function isActive(href: string) {
 function slugify(text: string) {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
+
+// Explicit two-line labels mapping per specification
+const twoLineLabels: Record<string, { line1: string; line2: string }> = {
+  'Study Abroad': { line1: 'Study', line2: 'Abroad' },
+  'Tourist Visa': { line1: 'Tourist', line2: 'Visa' },
+  'Work Visa': { line1: 'Work', line2: 'Visa' },
+  'Additional Services': { line1: 'Additional', line2: 'Services' },
+};
 ---
 
 <nav aria-label="Main Navigation" class="hidden xl:flex items-center gap-1 xl:gap-1.5 2xl:gap-2 shrink-0">
   {siteConfig.nav.map((item) => {
     const hasChildren = item.children && item.children.length > 0;
     const isStudyAbroad = item.label === 'Study Abroad';
-    const isVisaServices = item.label === 'Visa Services';
     const isFlights = item.label === 'Flights';
     const isAdditionalServices = item.label === 'Additional Services';
     const isAbout = item.label === 'About';
@@ -29,15 +36,14 @@ function slugify(text: string) {
     const slug = slugify(item.label);
     const btnId = `nav-btn-${slug}`;
     const menuId = `nav-menu-${slug}`;
+    const twoLine = twoLineLabels[item.label];
 
-    // Dropdown items (Study Abroad, Visa Services, Flights, Additional Services, About)
+    // Dropdown items (Study Abroad, Flights, Additional Services, About)
     if (hasChildren) {
       // Determine panel alignment and width
       let panelClasses = 'left-1/2 -translate-x-1/2 w-[400px]';
       if (isStudyAbroad) {
         panelClasses = 'left-0 w-[360px]';
-      } else if (isVisaServices) {
-        panelClasses = 'left-1/2 -translate-x-1/2 w-[380px]';
       } else if (isFlights) {
         panelClasses = 'left-1/2 -translate-x-1/2 w-[390px]';
       } else if (isAdditionalServices) {
@@ -51,7 +57,7 @@ function slugify(text: string) {
           <button
             type="button"
             id={btnId}
-            class={`flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap transition-all duration-150 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue ${
+            class={`min-h-[44px] px-2.5 2xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold transition-all duration-150 flex items-center justify-center text-center focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue ${
               active
                 ? 'text-brand-navy bg-brand-bg font-bold shadow-2xs'
                 : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/60'
@@ -60,16 +66,36 @@ function slugify(text: string) {
             aria-haspopup="true"
             aria-controls={menuId}
           >
-            <span class="whitespace-nowrap">{item.label}</span>
-            <svg
-              class="w-3.5 h-3.5 text-brand-subtle transition-transform duration-200 shrink-0 chevron-icon"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
+            {twoLine ? (
+              <span class="flex flex-col items-center justify-center text-center leading-[1.15]">
+                <span class="whitespace-nowrap">{twoLine.line1}</span>
+                <span class="inline-flex items-center gap-1 justify-center whitespace-nowrap">
+                  <span>{twoLine.line2}</span>
+                  <svg
+                    class="w-3.5 h-3.5 text-brand-subtle transition-transform duration-200 shrink-0 chevron-icon"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </span>
+              </span>
+            ) : (
+              <span class="inline-flex items-center gap-1 justify-center whitespace-nowrap">
+                <span>{item.label}</span>
+                <svg
+                  class="w-3.5 h-3.5 text-brand-subtle transition-transform duration-200 shrink-0 chevron-icon"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </span>
+            )}
           </button>
 
           <!-- Dropdown Panel -->
@@ -111,55 +137,6 @@ function slugify(text: string) {
                     <span>Looking for institutions?</span>
                     <a href="/universities/" class="font-bold text-brand-red hover:underline">
                       Search 1,000+ Universities →
-                    </a>
-                  </div>
-                </>
-              )}
-
-              {/* VISA SERVICES PANEL */}
-              {isVisaServices && (
-                <>
-                  <div class="pb-2.5 mb-2 border-b border-brand-border/70 flex items-center justify-between">
-                    <div>
-                      <span class="text-xs font-bold uppercase tracking-wider text-brand-navy">
-                        Visa Services
-                      </span>
-                      <p class="text-[11px] text-brand-muted">
-                        Consular documentation & regulatory assistance
-                      </p>
-                    </div>
-                    <a href="/services/" class="text-xs font-bold text-brand-blue hover:text-brand-navy hover:underline">
-                      Overview →
-                    </a>
-                  </div>
-
-                  <div class="space-y-1">
-                    {item.children?.map((child) => (
-                      <a
-                        href={child.href}
-                        class="flex items-start gap-2.5 p-2 rounded-xl hover:bg-brand-bg hover:border-brand-blue/30 border border-transparent transition-all group/item focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue"
-                      >
-                        <div class="w-7 h-7 rounded-lg bg-brand-bg text-brand-navy group-hover/item:bg-brand-navy group-hover/item:text-white flex items-center justify-center shrink-0 transition-colors mt-0.5 text-xs font-bold">
-                          ✓
-                        </div>
-                        <div class="min-w-0 flex-1">
-                          <span class="block text-xs sm:text-sm font-bold text-brand-navy group-hover/item:text-brand-blue leading-snug">
-                            {child.label}
-                          </span>
-                          {child.description && (
-                            <span class="block text-[11px] text-brand-muted leading-tight mt-0.5 truncate">
-                              {child.description}
-                            </span>
-                          )}
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-
-                  <div class="pt-2.5 mt-2 border-t border-brand-border/70 bg-brand-bg/50 -mx-4 -mb-4 p-3 rounded-b-2xl flex items-center justify-between text-xs text-brand-muted">
-                    <span>Direct Consular Appointment Prep</span>
-                    <a href="/contact/" class="font-bold text-brand-red hover:underline">
-                      Book Consultation →
                     </a>
                   </div>
                 </>
@@ -318,17 +295,24 @@ function slugify(text: string) {
       );
     }
 
-    // Direct link fallback (if ever needed)
+    // Direct link fallback (Tourist Visa, Work Visa, etc.)
     return (
       <a
         href={item.href}
-        class={`px-3 py-2 rounded-xl text-sm font-semibold whitespace-nowrap shrink-0 transition-all duration-150 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue ${
+        class={`min-h-[44px] px-2.5 2xl:px-3 py-1.5 rounded-xl text-xs xl:text-sm font-semibold shrink-0 transition-all duration-150 flex items-center justify-center text-center focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue ${
           active
             ? 'text-brand-navy bg-brand-bg font-bold shadow-2xs'
             : 'text-brand-text hover:text-brand-blue hover:bg-brand-bg/60'
         }`}
       >
-        <span class="whitespace-nowrap">{item.label}</span>
+        {twoLine ? (
+          <span class="flex flex-col items-center justify-center text-center leading-[1.15]">
+            <span class="whitespace-nowrap">{twoLine.line1}</span>
+            <span class="whitespace-nowrap">{twoLine.line2}</span>
+          </span>
+        ) : (
+          <span class="whitespace-nowrap">{item.label}</span>
+        )}
       </a>
     );
   })}

@@ -15,28 +15,36 @@ const continents = getContinents();
   description="Discover higher education opportunities across 35+ destination countries. Compare admission requirements, estimated tuition fees, work rights, and visa procedures."
 >
   <!-- Breadcrumbs -->
-  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6">
+  <div class="max-w-[1240px] xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6">
     <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Study Abroad', href: '/study-abroad/', current: true }]} />
   </div>
 
   <!-- Hero Header Section -->
-  <section class="py-8 sm:py-12 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="py-6 sm:py-8 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+    <div class="max-w-[1240px] xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl text-left">
-        <h1 class="text-3xl sm:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-3 text-balance">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-2 sm:mb-3 text-balance">
           Explore Study Destinations
         </h1>
-        <p class="text-base sm:text-lg text-brand-muted leading-relaxed mb-6 max-w-[62ch]">
+        <p class="text-sm sm:text-base text-brand-muted leading-relaxed max-w-[62ch]">
           Discover universities and education opportunities across our supported destinations. Compare verified admission prerequisites, tuition guidelines, post-study work permits, and official embassy procedures.
         </p>
+      </div>
+    </div>
+  </section>
 
+  <!-- Main Two-Column Directory & Consultation Section -->
+  <section class="py-8 sm:py-10 max-w-[1240px] xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 min-[1100px]:grid-cols-12 gap-5 lg:gap-6 items-start">
+      <!-- Left Column (~70%): Country Directory, Search, Filters & Country Flag Tiles -->
+      <div class="min-[1100px]:col-span-8 space-y-5">
         <!-- Search & Filter Controls -->
-        <div class="space-y-4">
+        <div class="space-y-3.5">
           <!-- Live Search Bar -->
-          <div class="relative max-w-xl">
+          <div class="relative w-full">
             <label for="country-search-input" class="sr-only">Search countries by name</label>
-            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-brand-muted">
-              <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-brand-muted">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
@@ -44,16 +52,16 @@ const continents = getContinents();
               type="text"
               id="country-search-input"
               placeholder="Search destination country by name (e.g. Canada, Germany, Australia)..."
-              class="w-full pl-11 pr-4 py-3 rounded-xl border border-brand-border bg-white text-sm text-brand-navy placeholder:text-brand-muted focus:outline-none focus:ring-2 focus:ring-brand-blue shadow-2xs transition-all"
+              class="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl border border-brand-border bg-white text-sm text-brand-navy placeholder:text-brand-muted focus:outline-none focus:ring-2 focus:ring-brand-blue shadow-2xs transition-all"
             />
           </div>
 
           <!-- Continent / Region Filter Pills -->
-          <div class="flex flex-wrap items-center gap-2 pt-1" id="continent-filters">
+          <div class="flex flex-wrap items-center gap-1.5 sm:gap-2" id="continent-filters">
             <button
               type="button"
               data-continent="all"
-              class="continent-btn active-pill px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-navy text-white shadow-2xs"
+              class="continent-btn active-pill px-3.5 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-navy text-white shadow-2xs cursor-pointer"
             >
               All Destinations ({countries.length})
             </button>
@@ -64,7 +72,7 @@ const continents = getContinents();
                 <button
                   type="button"
                   data-continent={continent.toLowerCase()}
-                  class={`continent-btn px-4 py-1.5 rounded-full text-xs font-bold transition-all shadow-2xs ${
+                  class={`continent-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shadow-2xs cursor-pointer ${
                     isEurope
                       ? 'bg-brand-blue-light border border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white'
                       : 'bg-white border border-brand-border text-brand-navy hover:border-brand-navy'
@@ -77,60 +85,55 @@ const continents = getContinents();
             <button
               type="button"
               data-featured="true"
-              class="featured-btn px-4 py-1.5 rounded-full text-xs font-bold transition-all bg-white border border-brand-red/40 text-brand-red hover:bg-brand-red/10 shadow-2xs"
+              class="featured-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all bg-white border border-brand-red/40 text-brand-red hover:bg-brand-red/10 shadow-2xs cursor-pointer"
             >
               ★ Featured Only
             </button>
           </div>
         </div>
+
+        <!-- Results Count Header -->
+        <div class="flex items-center justify-between pb-3 border-b border-brand-border">
+          <h2 class="text-base sm:text-lg font-bold text-brand-navy">Available Destinations</h2>
+          <p class="text-xs text-brand-muted">
+            Showing <span id="visible-count" class="font-bold text-brand-navy">{countries.length}</span> destinations matching criteria
+          </p>
+        </div>
+
+        <!-- Empty State Container (Hidden by default) -->
+        <div id="no-results-state" class="hidden my-6">
+          <EmptyState
+            title="No Destinations Found"
+            description="No study abroad destinations match your current filter criteria. Our Hanumangarh counseling team guides students for 35+ countries globally — speak directly with our counselors to explore options for unlisted pathways."
+            actionLabel="Reset Destination Filters"
+            actionHref="javascript:void(0)"
+          />
+        </div>
+
+        <!-- Country Cards Grid (3-4 cards per row on desktop, 3 on tablet, 2 on mobile) -->
+        <div class="grid grid-cols-2 md:grid-cols-3 min-[1100px]:grid-cols-3 xl:grid-cols-4 gap-2.5 sm:gap-3 items-stretch" id="countries-grid">
+          {countries.map((country) => (
+            <CountryCard country={country} />
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Destination Grid & Results Area -->
-  <section class="py-8 sm:py-12 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Results Header -->
-    <div class="pb-4 mb-6 border-b border-brand-border">
-      <div class="text-left">
-        <h2 class="text-xl font-bold text-brand-navy">Available Destinations</h2>
-        <p class="text-xs text-brand-muted">
-          Showing <span id="visible-count" class="font-bold text-brand-navy">{countries.length}</span> destinations matching criteria
-        </p>
-      </div>
+      <!-- Right Column (~30%): Compact Bachelor's / Master's Assessment Form -->
+      <aside class="min-[1100px]:col-span-4 w-full scroll-mt-24" id="enquiry">
+        <div class="min-[1100px]:sticky min-[1100px]:top-24 space-y-4">
+          <EnquiryForm
+            title="Request Bachelor's / Master's Consultation"
+            subtitle=""
+            singleColumn={true}
+            customServiceOptions={[
+              { id: 'bachelors-abroad', label: "Bachelor's Abroad" },
+              { id: 'masters-abroad', label: "Master's Abroad" },
+            ]}
+            buttonText="Request Consultation"
+          />
+        </div>
+      </aside>
     </div>
-
-    <!-- Empty State Container (Hidden by default) -->
-    <div id="no-results-state" class="hidden my-8">
-      <EmptyState
-        title="No Destinations Found"
-        description="No study abroad destinations match your current filter criteria. Our Hanumangarh counseling team guides students for 35+ countries globally — speak directly with our counselors to explore options for unlisted pathways."
-        actionLabel="Reset Destination Filters"
-        actionHref="javascript:void(0)"
-      />
-    </div>
-
-    <!-- Country Cards Grid (Equal Heights, 5 columns on desktop >=1200px, 3 on tablet, 2 on mobile) -->
-    <div class="country-directory-grid grid grid-cols-2 md:grid-cols-3 min-[1200px]:grid-cols-5 gap-3 sm:gap-4 items-stretch" id="countries-grid">
-      {countries.map((country) => (
-        <CountryCard country={country} />
-      ))}
-    </div>
-
-    <!-- Consultation Form Section -->
-    <div id="enquiry" class="mt-10 sm:mt-14 pt-8 sm:pt-10 border-t border-brand-border scroll-mt-6">
-      <div class="max-w-[760px] mx-auto">
-        <EnquiryForm
-          title="Request Bachelor's / Master's Consultation"
-          subtitle=""
-          customServiceOptions={[
-            { id: 'bachelors-abroad', label: "Bachelor's Abroad" },
-            { id: 'masters-abroad', label: "Master's Abroad" },
-          ]}
-          buttonText="Request Consultation"
-        />
-      </div>
-    </div>
-
   </section>
 
   <!-- Interactive Search & Filter Client Script -->

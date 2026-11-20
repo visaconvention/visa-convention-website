@@ -4,7 +4,6 @@ import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import EnquiryForm from '../../components/forms/EnquiryForm.astro';
 import CountryCard from '../../components/countries/CountryCard.astro';
 import { detailedServicesData } from '../../data/detailed-services';
-import { siteConfig } from '../../data/site-config';
 
 const mbbsService = detailedServicesData['mbbs'];
 if (!mbbsService) throw new Error('Detailed service data not found for mbbs');
@@ -113,178 +112,129 @@ const mbbsCountries = uniqueCountryNames.map((name) => {
     </div>
   </section>
 
-  <!-- Universities for Application Guidance Section (Country-Based Discovery) -->
-  <section id="universities" class="py-8 sm:py-12 bg-brand-bg/40 border-b border-brand-border">
-    <div class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8">
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy">
-            Universities for Application Guidance
-          </h2>
-          <p class="text-xs sm:text-sm text-brand-muted mt-1">
-            Select a destination country to display approved medical faculties across Central Asia and Europe ({universities.length} universities across {mbbsCountries.length} countries).
-          </p>
-        </div>
-        <a
-          href="/universities/"
-          class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue hover:text-brand-red transition-colors self-start sm:self-auto"
-        >
-          <span>Search Complete University Directory</span>
-          <span class="text-brand-red">→</span>
-        </a>
-      </div>
-
-      <!-- Compact Flag-Based Country Cards Grid (5 cols desktop >=1200px, 3 tablet, 2 mobile) -->
-      <div class="country-directory-grid grid grid-cols-2 md:grid-cols-3 min-[1200px]:grid-cols-5 gap-3 sm:gap-4 items-stretch" id="mbbs-countries-grid" role="tablist" aria-label="MBBS Destination Countries">
-        {mbbsCountries.map((country) => (
-          <CountryCard
-            as="button"
-            country={country}
-            class="mbbs-country-btn"
-          />
-        ))}
-      </div>
-
-      <!-- Filtered Universities Container (Initially hidden, revealed on country click) -->
-      <div id="mbbs-universities-section" class="mt-6 pt-6 border-t border-brand-border hidden">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+  <!-- Main Two-Column Directory & Assessment Section -->
+  <section id="universities" class="py-8 sm:py-10 max-w-[1240px] xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 min-[1100px]:grid-cols-12 gap-5 lg:gap-6 items-start">
+      <!-- Left Column (~70%): MBBS Destination Countries & Universities Directory -->
+      <div class="min-[1100px]:col-span-8 space-y-6">
+        <!-- Section Header -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
-              <h3 class="text-base sm:text-lg font-bold text-brand-navy" id="mbbs-selected-country-heading">
-                Guided Universities
-              </h3>
-            </div>
-            <p class="text-xs text-brand-muted mt-0.5" id="mbbs-selected-country-subheading">
-              Click any medical university to pre-fill your evaluation request.
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy">
+              Universities for Application Guidance
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-muted mt-1">
+              Select a destination country to display approved medical faculties across Central Asia and Europe ({universities.length} universities across {mbbsCountries.length} countries).
             </p>
           </div>
-          <button
-            type="button"
-            id="mbbs-collapse-btn"
-            class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-muted hover:text-brand-navy self-start sm:self-auto py-1 px-2.5 rounded-lg border border-brand-border bg-white hover:bg-slate-50 transition-colors"
-            aria-label="Collapse university list"
+          <a
+            href="/universities/"
+            class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue hover:text-brand-red transition-colors self-start sm:self-auto"
           >
-            <span>Close List</span>
-            <span class="text-brand-red">✕</span>
-          </button>
+            <span>Search Complete University Directory</span>
+            <span class="text-brand-red">→</span>
+          </a>
         </div>
 
-        <!-- University Cards Grid (Compact, responsive 1-3 columns) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4" id="mbbs-universities-grid">
-          {universities.map((uni, idx) => (
-            <div
-              class="uni-card group relative p-4 rounded-xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer hidden"
-              data-university-name={uni.name}
-              data-country-name={uni.country}
-              data-country-slug={uni.country.toLowerCase().replace(/\s+/g, '-')}
-            >
-              <div>
-                <!-- Location Badge -->
-                <div class="flex items-center justify-between gap-2 mb-2">
-                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold uppercase bg-brand-bg text-brand-navy border border-brand-border/60">
-                    <span>📍</span>
-                    <span>{uni.country}{uni.city ? ` • ${uni.city}` : ''}</span>
-                  </span>
-                  <span class="text-[10px] font-bold text-brand-muted/70">
-                    #{idx + 1}
-                  </span>
-                </div>
-
-                <!-- Full University Name -->
-                <h3 class="font-bold text-sm text-brand-navy group-hover:text-brand-blue transition-colors mb-1.5 leading-snug break-words">
-                  {uni.name}
-                </h3>
-
-                <!-- Essential Details / Notes -->
-                {uni.notes && (
-                  <p class="text-xs text-brand-muted leading-relaxed">
-                    {uni.notes}
-                  </p>
-                )}
-              </div>
-
-              <!-- Action Button -->
-              <div class="mt-3.5 pt-2.5 border-t border-brand-border/60 flex items-center justify-between text-xs font-bold text-brand-navy group-hover:text-brand-red transition-colors">
-                <span>Request Guidance</span>
-                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </div>
-            </div>
+        <!-- Compact Flag-Based Country Cards Grid (3-4 cols desktop, 3 tablet, 2 mobile) -->
+        <div class="grid grid-cols-2 md:grid-cols-3 min-[1100px]:grid-cols-3 xl:grid-cols-4 gap-2.5 sm:gap-3 items-stretch" id="mbbs-countries-grid" role="tablist" aria-label="MBBS Destination Countries">
+          {mbbsCountries.map((country) => (
+            <CountryCard
+              as="button"
+              country={country}
+              class="mbbs-country-btn"
+            />
           ))}
         </div>
-      </div>
 
-      <!-- Non-partnership integrity disclaimer -->
-      <p class="text-[11px] text-brand-muted mt-6 text-center sm:text-left leading-relaxed">
-        <strong>Integrity Notice:</strong> Visa Convention provides independent admissions guidance and visa documentation assistance. Listings do not imply formal partnership, direct affiliation, or institutional endorsement. Tuition fees are payable directly to official university bank accounts.
-      </p>
-    </div>
-  </section>
-
-
-
-  <!-- Consultation & Assessment Form Section -->
-  <section id="enquiry" class="py-8 sm:py-12 bg-white">
-    <div class="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-        <!-- Left Side: Advisory Info & Direct Channels -->
-        <div class="lg:col-span-5 space-y-6">
-          <div class="p-5 sm:p-6 rounded-2xl bg-brand-bg border border-brand-border">
-            <h2 class="text-2xl font-black text-brand-navy tracking-tight mb-2">
-              Plan Your Medical Degree Abroad
-            </h2>
-            <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mb-6">
-              Our medical admissions counselors provide transparent fee schedules, hostel inspections, and NEET qualification verification for recognized universities across Central Asia and Europe.
-            </p>
-
-            <div class="space-y-4 text-xs">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-lg bg-white border border-brand-border text-brand-navy flex items-center justify-center font-bold shrink-0">
-                  🏢
-                </div>
-                <div>
-                  <strong class="block text-brand-navy font-bold">Hanumangarh Counseling Office</strong>
-                  <span class="text-brand-muted">{siteConfig.officeAddress}</span>
-                </div>
+        <!-- Filtered Universities Container (Initially hidden, revealed on country click) -->
+        <div id="mbbs-universities-section" class="pt-5 border-t border-brand-border hidden">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
+                <h3 class="text-base sm:text-lg font-bold text-brand-navy" id="mbbs-selected-country-heading">
+                  Guided Universities
+                </h3>
               </div>
-
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-lg bg-white border border-brand-border text-brand-navy flex items-center justify-center font-bold shrink-0">
-                  📞
-                </div>
-                <div>
-                  <strong class="block text-brand-navy font-bold">Direct Medical Desk</strong>
-                  <a href={`tel:${siteConfig.phone.replace(/[^0-9+]/g, '')}`} class="text-brand-blue font-bold hover:underline">
-                    {siteConfig.phone}
-                  </a>
-                </div>
-              </div>
-
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-lg bg-white border border-brand-border text-emerald-600 flex items-center justify-center font-bold shrink-0">
-                  💬
-                </div>
-                <div>
-                  <strong class="block text-brand-navy font-bold">WhatsApp Advisory</strong>
-                  <a href={`https://wa.me/${siteConfig.whatsappNumber}`} target="_blank" rel="noopener noreferrer" class="text-emerald-700 font-bold hover:underline">
-                    Chat on WhatsApp ({siteConfig.phone})
-                  </a>
-                </div>
-              </div>
+              <p class="text-xs text-brand-muted mt-0.5" id="mbbs-selected-country-subheading">
+                Click any medical university to pre-fill your evaluation request.
+              </p>
             </div>
+            <button
+              type="button"
+              id="mbbs-collapse-btn"
+              class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-muted hover:text-brand-navy self-start sm:self-auto py-1 px-2.5 rounded-lg border border-brand-border bg-white hover:bg-slate-50 transition-colors"
+              aria-label="Collapse university list"
+            >
+              <span>Close List</span>
+              <span class="text-brand-red">✕</span>
+            </button>
+          </div>
+
+          <!-- University Cards Grid (Compact, responsive 1-2 columns) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4" id="mbbs-universities-grid">
+            {universities.map((uni, idx) => (
+              <div
+                class="uni-card group relative p-4 rounded-xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer hidden"
+                data-university-name={uni.name}
+                data-country-name={uni.country}
+                data-country-slug={uni.country.toLowerCase().replace(/\s+/g, '-')}
+              >
+                <div>
+                  <!-- Location Badge -->
+                  <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-bold uppercase bg-brand-bg text-brand-navy border border-brand-border/60">
+                      <span>📍</span>
+                      <span>{uni.country}{uni.city ? ` • ${uni.city}` : ''}</span>
+                    </span>
+                    <span class="text-[10px] font-bold text-brand-muted/70">
+                      #{idx + 1}
+                    </span>
+                  </div>
+
+                  <!-- Full University Name -->
+                  <h3 class="font-bold text-sm text-brand-navy group-hover:text-brand-blue transition-colors mb-1.5 leading-snug break-words">
+                    {uni.name}
+                  </h3>
+
+                  <!-- Essential Details / Notes -->
+                  {uni.notes && (
+                    <p class="text-xs text-brand-muted leading-relaxed">
+                      {uni.notes}
+                    </p>
+                  )}
+                </div>
+
+                <!-- Action Button -->
+                <div class="mt-3.5 pt-2.5 border-t border-brand-border/60 flex items-center justify-between text-xs font-bold text-brand-navy group-hover:text-brand-red transition-colors">
+                  <span>Request Guidance</span>
+                  <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        <!-- Right Side: Enquiry Form -->
-        <div class="lg:col-span-7">
+        <!-- Non-partnership integrity disclaimer -->
+        <p class="text-[11px] text-brand-muted pt-2 text-center sm:text-left leading-relaxed">
+          <strong>Integrity Notice:</strong> Visa Convention provides independent admissions guidance and visa documentation assistance. Listings do not imply formal partnership, direct affiliation, or institutional endorsement. Tuition fees are payable directly to official university bank accounts.
+        </p>
+      </div>
+
+      <!-- Right Column (~30%): Compact Sticky MBBS Assessment Form -->
+      <aside class="min-[1100px]:col-span-4 w-full scroll-mt-24" id="enquiry">
+        <div class="min-[1100px]:sticky min-[1100px]:top-24 space-y-4">
           <EnquiryForm
             selectedService="mbbs"
             title="Request MBBS Admission Assessment"
+            subtitle=""
+            singleColumn={true}
           />
         </div>
-      </div>
+      </aside>
     </div>
   </section>
 
