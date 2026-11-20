@@ -6,6 +6,36 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.59.0] - 2026-11-20 — Homepage Services Optimization & MBBS/PhD Split Navigation
+
+### Summary
+- **Homepage Services Section Cleanup (`src/pages/index.astro`):**
+  - Renamed section heading from *"Services & Areas of Guidance"* to **"Services"**.
+  - Completely excised the introductory subtitle:
+    *"From European university admissions and medical faculties to consular visitor visas, administrative work compliance, and flight coordination."*
+  - Completely excised the *"View All Services Directory →"* button and its wrapper containers.
+  - Eliminated leftover gaps, empty containers, and redundant padding; positioned the **Services** heading directly above the six service cards with balanced `mb-5 sm:mb-6` spacing.
+  - Preserved all six service cards, original client images, card heights (uniform 277px), titles, and responsive 3-column desktop grid.
+- **Card 2 (MBBS / PhD Abroad) Split Image Navigation (`src/pages/index.astro`):**
+  - Kept the visual artwork and card styling completely unchanged.
+  - Implemented two transparent, independently clickable regions overlaying the image:
+    - **Left 50%:** Routes to `/services/mbbs/` with accessible name **“Explore MBBS Abroad”**.
+    - **Right 50%:** Routes to `/services/phd/` with accessible name **“Explore PhD Abroad”**.
+  - Excised single-link overlay that previously directed the whole card to one page.
+  - Standardized the card title to non-clickable `<h3>MBBS / PhD Abroad</h3>` to prevent ambiguous clicks or navigation conflicts.
+  - Added visible, non-obscuring keyboard focus outlines (`focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-[-2px]`).
+  - Validated that split click regions scale with mathematical 50/50 precision across all mobile and desktop viewports.
+- **Verification & QA Testing:**
+  - Automated Puppeteer end-to-end verification (`tests/verify-homepage-services-optimization.js`):
+    - Verified "Services" heading, absence of removed description and directory button.
+    - Verified all 6 cards, uniform 277px height, and zero nested links.
+    - Tested Card 2 split halves: mouse click, touch target, and keyboard focus for both MBBS and PhD.
+    - Tested across 8 target viewports (320, 360, 390, 430, 768, 1024, 1366, 1440px) with **zero horizontal overflow** and verified 50/50 split geometry.
+    - Astro diagnostics (`npm run check`): 0 errors, 0 warnings.
+    - Production build (`npm run build`): all 65 pages compiled successfully in 9.13s with zero errors.
+
+---
+
 ## [1.58.0] - 2026-11-20 — Homepage Reviews Text Excision & Layout Tightening
 
 ### Summary

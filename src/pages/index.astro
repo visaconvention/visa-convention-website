@@ -26,22 +26,9 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
   <!-- ========================================================================= -->
   <section id="services" class="py-8 sm:py-12 bg-brand-bg">
     <div class="site-container">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 text-left">
-        <div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight text-balance">
-            Services & Areas of Guidance
-          </h2>
-          <p class="mt-2 text-sm sm:text-base text-brand-muted max-w-[64ch]">
-            From European university admissions and medical faculties to consular visitor visas, administrative work compliance, and flight coordination.
-          </p>
-        </div>
-        <div class="mt-4 sm:mt-0">
-          <a href="/services/" class="btn-outline text-xs inline-flex items-center gap-1.5 bg-white">
-            <span>View All Services Directory</span>
-            <span class="text-brand-blue">→</span>
-          </a>
-        </div>
-      </div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight mb-5 sm:mb-6 text-left">
+        Services
+      </h2>
 
       <!-- 3-Column, 2-Row Photographic Service Grid (Optimized Compact Cards) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
@@ -70,8 +57,8 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
           </div>
         </div>
 
-        <!-- Card 2: MBBS / PhD Abroad (Separately Accessible) -->
-        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col text-left cursor-pointer">
+        <!-- Card 2: MBBS / PhD Abroad (Independently Clickable Split Halves) -->
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col text-left">
           <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
             <img
               src="/assets/images/services/MBBS%20&%20PhD%20Courses%20Abroad.png"
@@ -81,24 +68,30 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
               class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
               loading="lazy"
             />
+
+            <!-- Split Image Navigation: Left 50% → MBBS Abroad -->
+            <a
+              href="/services/mbbs/"
+              class="absolute inset-y-0 left-0 w-1/2 z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-[-2px] rounded-tl-2xl cursor-pointer"
+              aria-label="Explore MBBS Abroad"
+              title="Explore MBBS Abroad"
+            >
+              <span class="sr-only">Explore MBBS Abroad</span>
+            </a>
+
+            <!-- Split Image Navigation: Right 50% → PhD Abroad -->
+            <a
+              href="/services/phd/"
+              class="absolute inset-y-0 right-0 w-1/2 z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-[-2px] rounded-tr-2xl cursor-pointer"
+              aria-label="Explore PhD Abroad"
+              title="Explore PhD Abroad"
+            >
+              <span class="sr-only">Explore PhD Abroad</span>
+            </a>
           </div>
           <div class="p-4 sm:p-5">
-            <h3 class="text-lg sm:text-xl font-bold text-brand-navy transition-colors flex items-center flex-wrap gap-1 sm:gap-1.5">
-              <a
-                href="/services/mbbs/"
-                class="hover:text-brand-red text-brand-navy transition-colors focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-2 rounded-lg py-0.5 after:absolute after:inset-0 after:z-10"
-                aria-label="MBBS Abroad Admissions Guidance"
-              >
-                MBBS
-              </a>
-              <span class="text-brand-muted/60 font-light select-none relative z-20" aria-hidden="true">/</span>
-              <a
-                href="/services/phd/"
-                class="relative z-20 hover:text-brand-red text-brand-navy transition-colors focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-2 rounded-lg py-0.5"
-                aria-label="PhD Abroad Doctoral Research Guidance"
-              >
-                PhD Abroad
-              </a>
+            <h3 class="text-lg sm:text-xl font-bold text-brand-navy">
+              MBBS / PhD Abroad
             </h3>
           </div>
         </div>
