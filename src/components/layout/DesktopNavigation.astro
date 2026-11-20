@@ -67,20 +67,20 @@ const twoLineLabels: Record<string, { line1: string; line2: string }> = {
             aria-controls={menuId}
           >
             {twoLine ? (
-              <span class="flex flex-col items-center justify-center text-center leading-[1.15]">
-                <span class="whitespace-nowrap">{twoLine.line1}</span>
-                <span class="inline-flex items-center gap-1 justify-center whitespace-nowrap">
-                  <span>{twoLine.line2}</span>
-                  <svg
-                    class="w-3.5 h-3.5 text-brand-subtle transition-transform duration-200 shrink-0 chevron-icon"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                  </svg>
+              <span class="flex items-center justify-center gap-1 sm:gap-1.5">
+                <span class="flex flex-col items-center justify-center text-center leading-[1.15]">
+                  <span class="whitespace-nowrap">{twoLine.line1}</span>
+                  <span class="whitespace-nowrap">{twoLine.line2}</span>
                 </span>
+                <svg
+                  class="w-3.5 h-3.5 text-brand-subtle transition-transform duration-200 shrink-0 chevron-icon"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
               </span>
             ) : (
               <span class="inline-flex items-center gap-1 justify-center whitespace-nowrap">

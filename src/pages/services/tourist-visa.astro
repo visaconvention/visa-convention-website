@@ -2,72 +2,25 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
 import EnquiryForm from '../../components/forms/EnquiryForm.astro';
-import DestinationAccordion, { type DestinationGroup } from '../../components/services/DestinationAccordion.astro';
-import { 
-  touristDestinations, 
-  applicantCategories 
-} from '../../data/tourist-visa-data';
+import CountryCard from '../../components/countries/CountryCard.astro';
+import EmptyState from '../../components/common/EmptyState.astro';
+import { touristDestinations } from '../../data/tourist-visa-data';
 
 const pageTitle = 'Tourist & Visitor Visa Assistance — Visa Convention Hanumangarh';
-const pageDescription = 'Documentation guidance for Schengen, UK, US, Canada, Australia, and UAE tourist visas. 6 applicant categories, verified itineraries, and biometric scheduling.';
+const pageDescription = 'Documentation guidance for Schengen, UK, US, Canada, Australia, and UAE tourist visas. Verified itineraries, consular requirements, and biometric scheduling.';
 
-// Destination groups according to specifications: Schengen, Other International, and UAE
-const destinationGroups: DestinationGroup[] = [
-  {
-    id: 'schengen',
-    name: 'Schengen Area',
-    count: touristDestinations.filter(d => d.group === 'schengen').length,
-    items: touristDestinations
-      .filter(d => d.group === 'schengen')
-      .map(d => ({
-        id: d.id,
-        name: d.name,
-        slug: d.slug,
-        streamOrAuthorityLabel: 'Visa Stream',
-        streamOrAuthorityValue: d.visaStream,
-        secondaryLabel: 'Permitted Stay',
-        secondaryValue: d.stayDuration,
-        overview: d.keyRequirementsOverview,
-        notice: d.highlightNotice,
-      })),
-  },
-  {
-    id: 'individual',
-    name: 'Other International',
-    count: touristDestinations.filter(d => d.group === 'individual').length,
-    items: touristDestinations
-      .filter(d => d.group === 'individual')
-      .map(d => ({
-        id: d.id,
-        name: d.name,
-        slug: d.slug,
-        streamOrAuthorityLabel: 'Visa Stream',
-        streamOrAuthorityValue: d.visaStream,
-        secondaryLabel: 'Permitted Stay',
-        secondaryValue: d.stayDuration,
-        overview: d.keyRequirementsOverview,
-        notice: d.highlightNotice,
-      })),
-  },
-  {
-    id: 'uae',
-    name: 'United Arab Emirates',
-    count: touristDestinations.filter(d => d.group === 'uae').length,
-    items: touristDestinations
-      .filter(d => d.group === 'uae')
-      .map(d => ({
-        id: d.id,
-        name: d.name,
-        slug: d.slug,
-        streamOrAuthorityLabel: 'Visa Stream',
-        streamOrAuthorityValue: d.visaStream,
-        secondaryLabel: 'Permitted Stay',
-        secondaryValue: d.stayDuration,
-        overview: d.keyRequirementsOverview,
-        notice: d.highlightNotice,
-      })),
-  },
-];
+// Format destination items with official flag paths for CountryCard
+const destinations = touristDestinations.map((d) => ({
+  ...d,
+  flagSvg: `/assets/flags/${(d.flagCode || d.slug).toLowerCase()}.svg`,
+}));
+
+const groupCounts = {
+  all: destinations.length,
+  schengen: destinations.filter((d) => d.group === 'schengen').length,
+  individual: destinations.filter((d) => d.group === 'individual').length,
+  uae: destinations.filter((d) => d.group === 'uae').length,
+};
 ---
 
 <BaseLayout
@@ -75,7 +28,7 @@ const destinationGroups: DestinationGroup[] = [
   description={pageDescription}
 >
   <!-- Breadcrumbs -->
-  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+  <div class="max-w-[1240px] xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
     <Breadcrumbs
       items={[
         { label: 'Home', href: '/' },
@@ -85,9 +38,9 @@ const destinationGroups: DestinationGroup[] = [
     />
   </div>
 
-  <!-- Hero Section (Preserving original client poster image) -->
+  <!-- Hero Section -->
   <section class="py-8 sm:py-12 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-[1240px] xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         <div class="lg:col-span-7 text-left">
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-navy tracking-tight leading-tight mb-3">
@@ -97,7 +50,7 @@ const destinationGroups: DestinationGroup[] = [
             Meticulous Documentation & Itinerary Planning for Global Leisure & Family Visits
           </p>
           <p class="text-sm sm:text-base text-brand-muted leading-relaxed mb-6 font-normal">
-            Explore 27 global destinations, review documentation tailored to your socioeconomic profile, and request expert filing assistance. From Schengen holidays and UK family visits to US and Canadian visitor visas, we structure consular dossiers with zero ambiguity and strict evidentiary truth.
+            Explore 27 global destinations, review documentation tailored to your travel plans, and request expert filing assistance. From Schengen holidays and UK family visits to US and Canadian visitor visas, we structure consular dossiers with zero ambiguity and strict evidentiary truth.
           </p>
 
           <!-- Streamlined Quick Jump Navigation -->
@@ -107,14 +60,7 @@ const destinationGroups: DestinationGroup[] = [
               class="px-3 py-1.5 rounded-xl bg-white border border-brand-border text-xs font-bold text-brand-navy hover:border-brand-blue hover:text-brand-blue shadow-2xs transition-all flex items-center gap-1.5"
             >
               <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
-              <span>Destinations (27)</span>
-            </a>
-            <a
-              href="#applicant-categories"
-              class="px-3 py-1.5 rounded-xl bg-white border border-brand-border text-xs font-bold text-brand-navy hover:border-brand-blue hover:text-brand-blue shadow-2xs transition-all flex items-center gap-1.5"
-            >
-              <span class="w-2 h-2 rounded-full bg-brand-red"></span>
-              <span>Applicant Profile</span>
+              <span>Destinations ({destinations.length})</span>
             </a>
             <a
               href="#enquiry"
@@ -145,215 +91,327 @@ const destinationGroups: DestinationGroup[] = [
     </div>
   </section>
 
-  <!-- SECTION 01: Choose Your Destination (Compact Searchable Accordion) -->
-  <section id="destinations" class="py-8 sm:py-10 bg-white border-b border-brand-border">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mb-6">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight mb-2">
-          Choose Your Destination
-        </h2>
-        <p class="text-sm text-brand-muted leading-relaxed">
-          Explore all 27 approved tourist destinations. Select a country to review consular requirements and automatically apply it to your assessment request.
-        </p>
-      </div>
+  <!-- Main Two-Column Directory & Assessment Section -->
+  <section class="py-8 sm:py-10 max-w-[1240px] xl:max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 min-[1100px]:grid-cols-12 gap-5 lg:gap-6 items-start">
+      <!-- Left Column (~70%): Choose Your Destination, Filters, Country Grid & Destination Info -->
+      <div class="min-[1100px]:col-span-8 space-y-5" id="destinations">
+        <!-- Section Header -->
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight mb-1.5">
+            Choose Your Destination
+          </h2>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+            Explore all {destinations.length} approved tourist destinations. Select a country to review consular requirements and automatically apply it to your assessment request.
+          </p>
+        </div>
 
-      <!-- Reusable Compact Destination Accordion -->
-      <DestinationAccordion
-        groups={destinationGroups}
-        serviceType="tourist"
-        searchPlaceholder="Search destination country (e.g. Canada, Germany, UAE, UK)..."
-        searchInputId="destination-search-input"
-      />
-
-      <!-- Consular Note -->
-      <div class="mt-6 p-3.5 rounded-xl bg-blue-50/60 border border-blue-100 text-xs text-brand-muted leading-relaxed">
-        <strong>Schengen Zone Information:</strong> Visa Convention lists 16 primary Schengen destinations based on typical applicant demand. The Schengen Area comprises 29 European states operating under a unified visa code. A visa issued by any member state permits travel throughout the entire zone within authorized validity.
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 02: Applicant Category Guidance (Compact Checklist) -->
-  <section id="applicant-categories" class="py-8 sm:py-10 bg-brand-bg/60 border-b border-brand-border">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mb-6">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight mb-2">
-          Applicant Category Guidance
-        </h2>
-        <p class="text-sm text-brand-muted leading-relaxed">
-          Select your primary occupation or status in India. The checklist updates immediately and automatically pre-fills your enquiry below.
-        </p>
-      </div>
-
-      <!-- Compact Category Tab Selector -->
-      <div
-        class="flex flex-wrap items-center gap-2 mb-6"
-        role="tablist"
-        aria-label="Applicant Categories"
-        id="tourist-category-tabs"
-      >
-        {applicantCategories.map((cat, idx) => (
-          <button
-            type="button"
-            class={`category-tab-btn min-h-[42px] px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold border transition-all ${
-              idx === 0
-                ? 'bg-brand-navy text-white border-brand-navy shadow-2xs'
-                : 'bg-white text-brand-navy border-brand-border hover:border-brand-navy'
-            }`}
-            data-category-id={cat.id}
-            data-category-label={cat.shortLabel}
-            role="tab"
-            aria-selected={idx === 0 ? 'true' : 'false'}
-            aria-controls={`category-panel-${cat.id}`}
-          >
-            {cat.shortLabel}
-          </button>
-        ))}
-      </div>
-
-      <!-- Category Panels Container -->
-      <div id="category-panels-container">
-        {applicantCategories.map((cat, idx) => (
-          <div
-            id={`category-panel-${cat.id}`}
-            class={`category-panel bg-white rounded-2xl p-5 sm:p-7 border border-brand-border shadow-2xs ${idx === 0 ? '' : 'hidden'}`}
-            role="tabpanel"
-            aria-labelledby={`tab-${cat.id}`}
-          >
-            <div class="mb-5 pb-4 border-b border-brand-border/70 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-              <div>
-                <h3 class="text-lg sm:text-xl font-bold text-brand-navy">
-                  {cat.title}
-                </h3>
-                <p class="text-xs text-brand-muted mt-0.5">
-                  {cat.description}
-                </p>
-              </div>
-              <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 self-start sm:self-auto">
-                <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>Applied to Form</span>
-              </span>
+        <!-- Search & Filter Controls -->
+        <div class="space-y-3">
+          <!-- Live Search Bar -->
+          <div class="relative w-full">
+            <label for="tourist-search-input" class="sr-only">Search destination country by name</label>
+            <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-brand-muted">
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
             </div>
-
-            <!-- Concise Document Checklist Rows (Desktop 2-column, Mobile 1-column) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
-              {cat.documentGuidance.map((doc) => (
-                <div class="flex items-start gap-2.5 py-1.5">
-                  <span class="w-5 h-5 rounded-full bg-brand-bg text-brand-blue flex items-center justify-center font-bold text-xs flex-shrink-0 mt-0.5 border border-brand-blue/20">
-                    ✓
-                  </span>
-                  <div class="min-w-0">
-                    <h4 class="text-sm font-semibold text-brand-navy leading-snug">
-                      {doc.title}
-                    </h4>
-                    <p class="text-xs text-brand-muted leading-relaxed mt-0.5">
-                      {doc.detail}
-                    </p>
-                    {doc.conditionalNotice && (
-                      <p class="text-[11px] text-brand-subtle mt-0.5">
-                        <span class="font-medium text-brand-navy">Note:</span> {doc.conditionalNotice}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <!-- Official Consistency Note -->
-            {cat.officialNote && (
-              <div class="mt-5 p-3 rounded-xl bg-amber-50/70 border border-amber-200/80 text-xs text-amber-900 leading-relaxed flex items-start gap-2">
-                <svg class="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <div>
-                  <strong>Consular Consistency:</strong> {cat.officialNote}
-                </div>
-              </div>
-            )}
+            <input
+              type="text"
+              id="tourist-search-input"
+              placeholder="Search destination country (e.g. Canada, Germany, UAE, UK)..."
+              class="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl border border-brand-border bg-white text-sm text-brand-navy placeholder:text-brand-muted focus:outline-hidden focus:ring-2 focus:ring-brand-blue shadow-2xs transition-all"
+            />
           </div>
-        ))}
+
+          <!-- Group Filter Pills -->
+          <div class="flex flex-wrap items-center gap-1.5 sm:gap-2" id="tourist-group-filters">
+            <button
+              type="button"
+              data-group="all"
+              class="tourist-group-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all bg-brand-navy text-white shadow-2xs cursor-pointer"
+            >
+              All Destinations ({groupCounts.all})
+            </button>
+            <button
+              type="button"
+              data-group="schengen"
+              class="tourist-group-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all bg-white border border-brand-border text-brand-navy hover:border-brand-navy shadow-2xs cursor-pointer"
+            >
+              Schengen Area ({groupCounts.schengen})
+            </button>
+            <button
+              type="button"
+              data-group="individual"
+              class="tourist-group-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all bg-white border border-brand-border text-brand-navy hover:border-brand-navy shadow-2xs cursor-pointer"
+            >
+              Other International ({groupCounts.individual})
+            </button>
+            <button
+              type="button"
+              data-group="uae"
+              class="tourist-group-btn px-3.5 py-1.5 rounded-full text-xs font-bold transition-all bg-white border border-brand-border text-brand-navy hover:border-brand-navy shadow-2xs cursor-pointer"
+            >
+              United Arab Emirates ({groupCounts.uae})
+            </button>
+          </div>
+        </div>
+
+        <!-- Results Count Header -->
+        <div class="flex items-center justify-between pb-2 border-b border-brand-border/70">
+          <span class="text-xs text-brand-muted">
+            Showing <strong id="tourist-visible-count" class="text-brand-navy">{destinations.length}</strong> destination(s)
+          </span>
+          <span class="text-[11px] text-brand-muted hidden sm:inline">
+            Tap a tile to reveal consular requirements & apply to form
+          </span>
+        </div>
+
+        <!-- Empty State Container -->
+        <div id="tourist-empty-state" class="hidden my-4">
+          <EmptyState
+            title="No Tourist Destinations Found"
+            description="No tourist destinations match your query. We provide documentation assistance for major destinations globally."
+            actionLabel="Reset Search"
+            actionHref="javascript:void(0)"
+          />
+        </div>
+
+        <!-- Country Cards Grid (3-4 cards per row desktop, 3 tablet, 2 mobile) -->
+        <div class="grid grid-cols-2 md:grid-cols-3 min-[1100px]:grid-cols-3 xl:grid-cols-4 gap-2.5 sm:gap-3 items-stretch" id="tourist-countries-grid">
+          {destinations.map((dest) => (
+            <div
+              class="tourist-card-wrapper"
+              data-name={dest.name.toLowerCase()}
+              data-slug={dest.slug}
+              data-group={dest.group}
+            >
+              <CountryCard
+                as="button"
+                country={{
+                  name: dest.name,
+                  slug: dest.slug,
+                  flagSvg: dest.flagSvg,
+                }}
+                class="tourist-country-btn"
+                dataAttrs={{
+                  'data-dest-slug': dest.slug,
+                  'data-dest-name': dest.name,
+                  'data-dest-group': dest.group,
+                }}
+              />
+            </div>
+          ))}
+        </div>
+
+        <!-- Interactive Destination Details Panel (Revealed on click) -->
+        <div id="tourist-details-panel" class="hidden mt-4 p-5 rounded-2xl bg-white border border-brand-border shadow-md">
+          <div class="flex items-start justify-between gap-3 pb-3 mb-3 border-b border-brand-border/70">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <img id="detail-flag" src="" alt="" class="w-8 h-5.5 rounded object-cover border border-slate-200" />
+              <div>
+                <h3 id="detail-title" class="text-base sm:text-lg font-bold text-brand-navy leading-snug"></h3>
+                <span id="detail-group" class="inline-block text-[10px] font-bold uppercase tracking-wider text-brand-blue bg-blue-50 px-2 py-0.5 rounded border border-blue-100 mt-0.5"></span>
+              </div>
+            </div>
+            <button
+              type="button"
+              id="close-details-btn"
+              class="text-xs font-bold text-brand-muted hover:text-brand-navy p-1 px-2 rounded-lg border border-brand-border hover:bg-slate-50 transition-colors"
+              aria-label="Close destination details"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-3.5">
+            <div class="p-3 rounded-xl bg-brand-bg/50 border border-brand-border/60">
+              <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-navy mb-0.5">Visa Stream:</span>
+              <span id="detail-stream" class="text-brand-navy font-semibold"></span>
+            </div>
+            <div class="p-3 rounded-xl bg-brand-bg/50 border border-brand-border/60">
+              <span class="block text-[11px] font-bold uppercase tracking-wider text-brand-navy mb-0.5">Permitted Stay:</span>
+              <span id="detail-stay" class="text-brand-navy font-semibold"></span>
+            </div>
+          </div>
+
+          <div class="space-y-2 text-xs mb-4">
+            <div>
+              <strong class="block text-brand-navy font-bold mb-1">Key Consular Requirements:</strong>
+              <p id="detail-requirements" class="text-brand-muted leading-relaxed"></p>
+            </div>
+            <div id="detail-notice-box" class="p-3 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-900 leading-relaxed text-xs">
+              <strong class="font-bold">Consular Notice:</strong> <span id="detail-notice"></span>
+            </div>
+          </div>
+
+          <div class="pt-3 border-t border-brand-border/70 flex items-center justify-between flex-wrap gap-2">
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 inline-flex items-center gap-1.5">
+              <span>✓ Pre-selected in Consultation Form</span>
+            </span>
+            <a
+              href="#enquiry"
+              class="btn-primary text-xs py-2 px-4 shadow-2xs inline-flex items-center gap-1.5"
+            >
+              <span>Proceed to Assessment</span>
+              <span>↓</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Schengen Zone Information Note -->
+        <div class="p-3.5 rounded-xl bg-blue-50/60 border border-blue-100 text-xs text-brand-muted leading-relaxed">
+          <strong>Schengen Zone Information:</strong> Visa Convention lists 16 primary Schengen destinations based on typical applicant demand. The Schengen Area comprises 29 European states operating under a unified visa code. A visa issued by any member state permits travel throughout the entire zone within authorized validity.
+        </div>
       </div>
 
-      <!-- Single Mandatory Clarification (Displayed once) -->
-      <p class="text-xs text-brand-muted text-center mt-5">
-        Document requirements vary by destination and applicant circumstances. Additional documents may be required.
-      </p>
-    </div>
-  </section>
+      <!-- Right Column (~30%): Compact Sticky Tourist Visa Assessment Form -->
+      <aside class="min-[1100px]:col-span-4 w-full scroll-mt-24" id="enquiry">
+        <div class="min-[1100px]:sticky min-[1100px]:top-24 space-y-4">
+          <EnquiryForm
+            selectedService="tourist-visa"
+            title="Tourist Visa Assessment"
+            subtitle=""
+            singleColumn={true}
+          />
 
-  <!-- SECTION 04: Consultation Assessment Section -->
-  <section id="enquiry" class="py-8 sm:py-12 bg-brand-bg/60 border-t border-brand-border">
-    <div class="max-w-[760px] mx-auto px-4 sm:px-6 lg:px-8">
-      <EnquiryForm
-        selectedService="tourist-visa"
-        title="Tourist Visa Assessment"
-        subtitle="Confidential file evaluation for tourist and family visitor visas."
-      />
-
-      <!-- Statutory Advisory Disclaimer Banner (Preserved Essential Legal Notice) -->
-      <div class="mt-8 p-4 rounded-xl bg-slate-50 border border-brand-border text-xs text-brand-muted leading-relaxed text-center">
-        <strong class="text-brand-navy font-bold">Statutory Note:</strong> Visa issuance authority rests solely with the destination government's consular officers. Visa Convention provides professional administrative and documentation assistance without fraudulent claims or artificial approvals.
-      </div>
+          <!-- Statutory Advisory Disclaimer Banner (Preserved Essential Legal Notice) -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-brand-border text-xs text-brand-muted leading-relaxed text-center">
+            <strong class="text-brand-navy font-bold">Statutory Note:</strong> Visa issuance authority rests solely with destination government consular officers. Visa Convention provides professional administrative and documentation assistance without fraudulent claims or artificial approvals.
+          </div>
+        </div>
+      </aside>
     </div>
   </section>
 </BaseLayout>
 
-<script>
-  // Tourist Visa Page Client Interactions
+<script is:inline define:vars={{ destinations }}>
   document.addEventListener('DOMContentLoaded', () => {
-    // 1. Category Tab Switcher & Automatic Form Autofill
-    const categoryBtns = document.querySelectorAll('.category-tab-btn');
-    const categoryPanels = document.querySelectorAll('.category-panel');
-    const messageField = document.getElementById('form-message') as HTMLTextAreaElement | null;
+    const searchInput = document.getElementById('tourist-search-input');
+    const groupButtons = document.querySelectorAll('.tourist-group-btn');
+    const cards = document.querySelectorAll('.tourist-card-wrapper');
+    const visibleCountEl = document.getElementById('tourist-visible-count');
+    const emptyState = document.getElementById('tourist-empty-state');
+    const countriesGrid = document.getElementById('tourist-countries-grid');
+
+    // Details Panel Elements
+    const detailsPanel = document.getElementById('tourist-details-panel');
+    const detailFlag = document.getElementById('detail-flag');
+    const detailTitle = document.getElementById('detail-title');
+    const detailGroup = document.getElementById('detail-group');
+    const detailStream = document.getElementById('detail-stream');
+    const detailStay = document.getElementById('detail-stay');
+    const detailRequirements = document.getElementById('detail-requirements');
+    const detailNoticeBox = document.getElementById('detail-notice-box');
+    const detailNotice = document.getElementById('detail-notice');
+    const closeDetailsBtn = document.getElementById('close-details-btn');
+
+    const countrySelect = document.getElementById('form-country');
     const contextBanner = document.getElementById('enquiry-context-banner');
     const contextBannerText = document.getElementById('context-banner-text');
-    const countrySelect = document.getElementById('form-country') as HTMLSelectElement | null;
 
-    function applyCategorySelection(categoryId: string, categoryLabel: string) {
-      // Toggle Tab Active State
-      categoryBtns.forEach((b) => {
-        const isMatch = b.getAttribute('data-category-id') === categoryId;
-        b.classList.toggle('bg-brand-navy', isMatch);
-        b.classList.toggle('text-white', isMatch);
-        b.classList.toggle('border-brand-navy', isMatch);
-        b.classList.toggle('shadow-2xs', isMatch);
-        b.classList.toggle('bg-white', !isMatch);
-        b.classList.toggle('text-brand-navy', !isMatch);
-        b.classList.toggle('border-brand-border', !isMatch);
-        b.setAttribute('aria-selected', String(isMatch));
-      });
+    let currentGroup = 'all';
+    let currentQuery = '';
 
-      // Toggle Panel
-      categoryPanels.forEach((panel) => {
-        const panelEl = panel as HTMLElement;
-        panelEl.classList.toggle('hidden', panelEl.id !== `category-panel-${categoryId}`);
-      });
+    function filterDestinations() {
+      let count = 0;
+      cards.forEach((card) => {
+        const name = card.getAttribute('data-name') || '';
+        const group = card.getAttribute('data-group') || '';
+        const matchesQuery = !currentQuery || name.includes(currentQuery);
+        const matchesGroup = currentGroup === 'all' || group === currentGroup;
 
-      // Automatically Populate Enquiry Form Message
-      if (messageField && categoryLabel) {
-        const prefix = `[Tourist Visa Profile: ${categoryLabel}] `;
-        if (!messageField.value.includes(prefix)) {
-          messageField.value = prefix + messageField.value.replace(/\[Tourist Visa Profile:.*?\]\s*/g, '');
+        if (matchesQuery && matchesGroup) {
+          card.classList.remove('hidden');
+          count++;
+        } else {
+          card.classList.add('hidden');
         }
-      }
+      });
 
-      // Update Context Banner
-      if (contextBanner && contextBannerText) {
-        const countryVal = countrySelect && countrySelect.value ? countrySelect.value.toUpperCase() : '';
-        const parts = ['TOURIST VISA'];
-        if (countryVal) parts.push(countryVal);
-        parts.push(categoryLabel.toUpperCase());
-        contextBannerText.textContent = `Enquiring for: ${parts.join(' • ')}`;
-        contextBanner.classList.remove('hidden');
-      }
+      if (visibleCountEl) visibleCountEl.textContent = count;
+      if (emptyState) emptyState.classList.toggle('hidden', count > 0);
+      if (countriesGrid) countriesGrid.classList.toggle('hidden', count === 0);
     }
 
-    categoryBtns.forEach((btn) => {
+    // Search input listener
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        currentQuery = e.target.value.trim().toLowerCase();
+        filterDestinations();
+      });
+    }
+
+    // Group filter buttons listener
+    groupButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const catId = btn.getAttribute('data-category-id') || 'employed';
-        const catLabel = btn.getAttribute('data-category-label') || 'Employed';
-        applyCategorySelection(catId, catLabel);
+        groupButtons.forEach((b) => {
+          b.classList.remove('bg-brand-navy', 'text-white');
+          b.classList.add('bg-white', 'text-brand-navy');
+        });
+        btn.classList.remove('bg-white', 'text-brand-navy');
+        btn.classList.add('bg-brand-navy', 'text-white');
+
+        currentGroup = btn.getAttribute('data-group') || 'all';
+        filterDestinations();
+      });
+    });
+
+    // Close details panel
+    if (closeDetailsBtn) {
+      closeDetailsBtn.addEventListener('click', () => {
+        if (detailsPanel) detailsPanel.classList.add('hidden');
+      });
+    }
+
+    // Country button click listener
+    const countryButtons = document.querySelectorAll('.tourist-country-btn');
+    countryButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const slug = btn.getAttribute('data-dest-slug');
+        const dest = destinations.find((d) => d.slug === slug);
+        if (!dest) return;
+
+        // Populate details panel
+        if (detailFlag) {
+          detailFlag.src = dest.flagSvg;
+          detailFlag.alt = `Flag of ${dest.name}`;
+        }
+        if (detailTitle) detailTitle.textContent = dest.name;
+        if (detailGroup) {
+          const groupLabels = {
+            schengen: 'Schengen Area',
+            individual: 'Other International',
+            uae: 'United Arab Emirates',
+          };
+          detailGroup.textContent = groupLabels[dest.group] || dest.group.toUpperCase();
+        }
+        if (detailStream) detailStream.textContent = dest.visaStream || 'Tourist / Visitor Visa';
+        if (detailStay) detailStay.textContent = dest.stayDuration || 'Per consular grant';
+        if (detailRequirements) detailRequirements.textContent = dest.keyRequirementsOverview || 'Standard consular documentation required.';
+
+        if (dest.highlightNotice) {
+          if (detailNotice) detailNotice.textContent = dest.highlightNotice;
+          if (detailNoticeBox) detailNoticeBox.classList.remove('hidden');
+        } else {
+          if (detailNoticeBox) detailNoticeBox.classList.add('hidden');
+        }
+
+        if (detailsPanel) {
+          detailsPanel.classList.remove('hidden');
+          detailsPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Sync with enquiry form
+        if (countrySelect && dest.slug) {
+          countrySelect.value = dest.slug;
+          countrySelect.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+        if (contextBanner && contextBannerText) {
+          contextBannerText.textContent = `Enquiring for: TOURIST VISA • ${dest.name.toUpperCase()}`;
+          contextBanner.classList.remove('hidden');
+        }
       });
     });
   });

@@ -6,6 +6,44 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.57.0] - 2026-11-20 — Master UI, Service Page & Navigation Optimization
+
+### Summary
+- **Header Alignment & Chevron Vertical Centering (`src/components/layout/DesktopNavigation.astro`):**
+  - Updated desktop navigation markup with precise flex centering: `display: flex; align-items: center; justify-content: center; gap: 4-6px; text block flex-direction: column; text-align: center; line-height: 1.1-1.2`.
+  - For `Study / Abroad` and `Additional / Services`, positioned dropdown chevrons immediately right of the complete two-line text block, vertically centered between line 1 and line 2.
+  - Retained clean single-line structure with inline chevrons for `Flights` and `About`.
+  - Kept direct links for `Tourist / Visa` (`/services/tourist-visa/`) and `Work / Visa` (`/services/work-visa/`) without dropdown indicators.
+  - Maintained 77px header height, min 44px touch targets on all items, and accessible mobile navigation drawer.
+- **Homepage Service Cards — Bottom CTA Excision (`src/pages/index.astro`):**
+  - Completely excised bottom CTA rows from all 6 service cards (`Explore Study Abroad`, `MBBS Abroad → | PhD Abroad →`, `Work Visa Assistance`, `Tourist Visa Assistance`, `Request Flight Assistance`, `Explore Additional Services`).
+  - Removed all bottom dividing rules, arrows, wrappers, and reserved whitespace.
+  - Converted card titles into full-card navigational overlays (`after:absolute after:inset-0 after:z-10`).
+  - On Card 2 (`MBBS / PhD Abroad`), implemented independent accessible title links with MBBS card-overlay and PhD relative z-20 link with zero nested anchors (`<a>` inside `<a>`).
+  - Preserved authentic client images, uniform card heights (277–281px), and responsive 3-column desktop grid.
+- **Tourist Visa — 70:30 Layout & Applicant Category Guidance Removal (`src/pages/services/tourist-visa.astro`):**
+  - Completely deleted the entire *"Applicant Category Guidance"* section (`#applicant-categories`), including category tabs, document checklists, and consular consistency boxes.
+  - Standardized to the 70:30 responsive layout (`min-[1100px]:grid-cols-12`):
+    - Left Column (~70% / 8 cols): "Choose Your Destination", live search, 4 filter pills (All, Schengen, Other International, UAE), 27 compact Flag | Country | Arrow tiles (3-4 per row desktop), expandable destination details panel, and Schengen note.
+    - Right Column (~30% / 4 cols): Sticky Tourist Visa assessment form (`singleColumn={true}`) with interactive country click pre-selection.
+- **Work Visa — Notice Excision & Compact 2-Column Occupation Grid (`src/pages/services/work-visa.astro`, `src/components/services/OccupationAccordion.astro`):**
+  - Completely excised 3 redundant notice containers:
+    1. *"Statutory Regulatory Disclosure & Advisory Scope"* (large yellow banner).
+    2. *"Single UAE Country Entry"* notice.
+    3. *"Administrative Guidance Notice"* in occupations.
+  - Positioned concise, compliant statutory notice under Emigration Act, 1983 directly below the assessment form in the right column.
+  - Re-architected 12 occupational categories into a 2-column responsive grid (`grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3 items-start`).
+  - Standardized collapsed height to 54px (within 48–56px requirement) showing Occupation Name + Chevron only (removed decorative sector badges from collapsed headers).
+  - Preserved single-item expansion, requirement drawers, and *"Select & Apply"* autofill populating `#form-message`.
+- **Verification & QA Testing:**
+  - Automated Puppeteer end-to-end verification (`tests/verify-master-ui-and-service-optimization.js`):
+    - Tested across 9 viewports: 320, 360, 375, 390, 430, 768, 1024, 1366, 1440px with **zero horizontal scroll / overflow** (27/27 checks passed).
+    - Header nav, homepage service cards, tourist visa layout, and work visa occupation grid validated with 100% test pass.
+    - Full Astro diagnostics (`npm run check`): 0 errors, 0 warnings.
+    - Static production build (`npm run build`): all 65 pages built in 4.14s.
+
+---
+
 ## [1.56.0] - 2026-11-20 — Service Pages & Header Navigation Redesign
 
 ### Summary
