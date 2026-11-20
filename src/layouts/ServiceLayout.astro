@@ -137,18 +137,14 @@ const pageDescription = isDetailed && detailed?.metaDescription
   </section>
 
   <!-- Main Content & Form Grid -->
-  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
       <!-- Left Column: Details, Destinations, Institutions, Eligibility, Compliance -->
-      <div class="lg:col-span-7 space-y-14">
+      <div class="lg:col-span-7 space-y-8 sm:space-y-10">
         
         <!-- SECTION 1: What Assistance Includes -->
         <section>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-brand-red"></span>
-            <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Scope of Work</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-4">
             What Our Guidance Includes
           </h2>
 
@@ -182,11 +178,7 @@ const pageDescription = isDetailed && detailed?.metaDescription
         <!-- SECTION 2: Supported Countries / Destination Highlights -->
         {detailed?.supportedCountries && detailed.supportedCountries.length > 0 && (
           <section>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-brand-blue"></span>
-              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Global Reach</span>
-            </div>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-4">
               Supported Countries & Key Pathways
             </h2>
             <div class="space-y-3">
@@ -225,11 +217,7 @@ const pageDescription = isDetailed && detailed?.metaDescription
         <!-- SECTION 3: Featured Institutions / Universities Guided -->
         {detailed?.featuredInstitutions && detailed.featuredInstitutions.length > 0 && (
           <section>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
-              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Higher Education</span>
-            </div>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-3">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-2">
               Universities for Application Guidance
             </h2>
             <p class="text-xs text-brand-muted mb-6 leading-relaxed">
@@ -283,11 +271,7 @@ const pageDescription = isDetailed && detailed?.metaDescription
 
         <!-- SECTION 4: Admission & Eligibility Criteria -->
         <section>
-          <div class="flex items-center gap-2 mb-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-brand-navy"></span>
-            <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Prerequisites</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-4">
             Eligibility & Documentation Criteria
           </h2>
 
@@ -355,15 +339,11 @@ const pageDescription = isDetailed && detailed?.metaDescription
 
         <!-- SECTION 6: Step-by-Step Application Roadmap -->
         <section id="process">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-brand-red"></span>
-            <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">Workflow</span>
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-4">
             Step-by-Step Application Process
           </h2>
 
-          <div class="relative pl-6 border-l-2 border-brand-border space-y-8">
+          <div class="relative pl-6 border-l-2 border-brand-border space-y-6">
             {service.stepByStepProcess.map((step) => (
               <div class="relative group">
                 <!-- Circle marker on the line -->
@@ -386,11 +366,7 @@ const pageDescription = isDetailed && detailed?.metaDescription
         <!-- SECTION 7: Why Consult Visa Convention -->
         {detailed?.whyConsultUs && (
           <section>
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-brand-blue"></span>
-              <span class="text-xs font-bold uppercase tracking-wider text-brand-muted">The Advantage</span>
-            </div>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-6">
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy mb-4">
               Why Consult Visa Convention
             </h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

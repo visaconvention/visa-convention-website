@@ -6,6 +6,46 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.54.0] - 2026-11-20 — Master UI, Forms & Navigation Update
+
+### Summary
+- **Remove Decorative Tags — Sitewide:**
+  - Audited every page and excised nonessential promotional badges, pills, and eyebrow labels:
+    - Removed `Global Educational Advisory`, `Personalized Guidance`, `Featured Destination`, `Advisory Evaluation`, `Official Counseling Desk`, `Overview`, `The Advantage`, `Our Services`, `Scope of Work`, `Global Reach`, `Higher Education`, `Prerequisites`, `Workflow`, `European University Admissions`, `European Degree Verticals`, `Destination Directory`, `Procedural Rigor`, `Evidence-Based Integrity`, `In-Person Integrity Standard`, `Verified Physical Presence`, `Alternative Options`, `Aviation & Travel Coordination`, and `Academic Directory`.
+    - Removed wrappers and reserved spacing from the component tree across `src/pages/index.astro`, `src/layouts/ServiceLayout.astro`, `src/pages/services/index.astro`, `src/pages/study-in-europe/index.astro`, `src/pages/about.astro`, `src/pages/success-stories.astro`, `src/pages/universities/index.astro`, `src/pages/universities/[university].astro`, `src/pages/services/flight-booking.astro`, and `src/components/common/ConsultationCTA.astro`.
+    - Preserved functional labels, selected states, and statutory regulatory notices (e.g. Emigration Act disclaimers, NMC compliance notes).
+- **Eliminate Excessive Whitespace — Sitewide:**
+  - Standardized section padding: desktop `py-8 sm:py-12` (reduced from `py-16 sm:py-20`), mobile `py-8 sm:py-10`.
+  - Standardized heading-to-content spacing to 12–16px and header-to-heading spacing to 20–32px.
+  - Reduced related cards and controls spacing to 8–12px.
+  - Ensured uniform mobile horizontal padding (`px-4 sm:px-6 lg:px-8`).
+- **Bachelor's & Master's Abroad — Add Enquiry Form (`src/pages/study-abroad/index.astro`):**
+  - Added dedicated compact consultation form section (`#enquiry`) immediately after `#countries-grid` before the footer.
+  - Heading: *"Request Bachelor's / Master's Consultation"*.
+  - Enhanced `EnquiryForm.astro` with `customServiceOptions` prop to restrict service selection to exactly 2 options: *"Bachelor's Abroad"* (`bachelors-abroad`) and *"Master's Abroad"* (`masters-abroad`) with NO *"Study Visa"* option.
+  - Added `buttonText` prop configured to *"Request Consultation"* on `/study-abroad/`.
+  - Fields structured: Full Name *, Phone / WhatsApp *, Email (Optional), Destination Country (Optional), Message (Optional), Button: *"Request Consultation"*.
+  - Desktop two-column / mobile stacked layout; blank optional fields accepted; email format validated only when entered; duplicate submit prevention and error fallback intact.
+- **Flights Dropdown Rename (`src/data/site-config.ts`):**
+  - Renamed *"Actual Flight Tickets"* to *"Confirmed Flight Tickets"* across desktop and mobile navigation triggers and corresponding service links (`/services/flight-booking/?service=confirmed-ticket#flight-enquiry-section`).
+  - Preserved description, icon, route, and backend compatibility. Kept *"Dummy Tickets"* unchanged.
+- **Tourist & Visitor Visa — Remove Section 03 (`src/pages/services/tourist-visa.astro`):**
+  - Completely excised Section 03 (*"Special Destination Frameworks"*), including UAE Tourist Visa Requirements and Schengen Visa Requirements accordions, contents, wrappers, and unused imports (`uaePreparationGuidance`, `schengenFacts`).
+  - Removed quick jump anchor button `#specific-guidance`.
+  - Tightened layout spacing with zero visual gaps or orphaned elements.
+- **Verification & Automated QA:**
+  - Type & Schema Check: 0 diagnostic errors (`npm run check`) across 143 files.
+  - Static Production Build: 65 pages compiled in 5.63s (`npm run build`).
+  - Automated Puppeteer Audit (`tests/verify-master-ui-forms-nav-update.js`):
+    - 0 banned decorative badges across 14 distinct routes.
+    - Verified Bachelor's & Master's form options, position, and attributes.
+    - Verified Flights navigation rename and preselection.
+    - Verified Tourist Visa Section 03 removal.
+    - Verified multi-viewport zero horizontal overflow across 9 viewports (320, 360, 375, 390, 430, 768, 1024, 1366, 1440px).
+  - Navigation Regression Test (`tests/verify-global-navigation-optimization.js`): 79/79 checks passed (100%).
+
+---
+
 ## [1.53.0] - 2026-11-19 — Master Website Optimization
 
 ### Summary

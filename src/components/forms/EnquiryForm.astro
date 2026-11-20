@@ -10,8 +10,10 @@ interface Props {
   selectedCategory?: string;
   selectedOccupation?: string;
   allowedCountries?: string[];
+  customServiceOptions?: Array<{ id: string; label: string }>;
   title?: string;
   subtitle?: string;
+  buttonText?: string;
   class?: string;
 }
 
@@ -22,22 +24,26 @@ const {
   selectedCategory = '',
   selectedOccupation = '',
   allowedCountries,
+  customServiceOptions,
   title = 'Request a Confidential Assessment',
   subtitle = 'Fill in your details and an advisor will evaluate your profile and contact you directly.',
+  buttonText = 'Submit Assessment Request',
   class: className = '',
 } = Astro.props;
 
 // Service options matching exact specification
-const serviceOptions = [
-  { id: 'study-visa', label: 'Study Visa' },
-  { id: 'mbbs', label: 'MBBS Abroad' },
-  { id: 'phd', label: 'PhD Abroad' },
-  { id: 'tourist-visa', label: 'Tourist / Visitor Visa' },
-  { id: 'work-visa', label: 'Work Visa Documentation' },
-  { id: 'flight-booking', label: 'Air Ticket / Flight Reservation' },
-  { id: 'additional-services', label: 'Additional Services (Forex / Insurance)' },
-  { id: 'business-partnership', label: 'Business & Institutional Inquiry (B2B)' },
-];
+const serviceOptions = customServiceOptions && customServiceOptions.length > 0
+  ? customServiceOptions
+  : [
+      { id: 'study-visa', label: 'Study Visa' },
+      { id: 'mbbs', label: 'MBBS Abroad' },
+      { id: 'phd', label: 'PhD Abroad' },
+      { id: 'tourist-visa', label: 'Tourist / Visitor Visa' },
+      { id: 'work-visa', label: 'Work Visa Documentation' },
+      { id: 'flight-booking', label: 'Air Ticket / Flight Reservation' },
+      { id: 'additional-services', label: 'Additional Services (Forex / Insurance)' },
+      { id: 'business-partnership', label: 'Business & Institutional Inquiry (B2B)' },
+    ];
 
 // Combine and deduplicate country registry list for the dropdown
 const allDropdownCountries = countryRegistry && countryRegistry.length > 0
@@ -54,7 +60,7 @@ const dropdownCountries = allowedCountries && allowedCountries.length > 0
     <h3 class="text-xl sm:text-2xl font-bold text-brand-navy tracking-tight mb-1.5 leading-snug">
       {title}
     </h3>
-    {subtitle && (
+    {subtitle && subtitle.trim() !== '' && (
       <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
         {subtitle}
       </p>
@@ -386,9 +392,10 @@ const dropdownCountries = allowedCountries && allowedCountries.length > 0
       <button
         type="submit"
         id="enquiry-submit-btn"
+        data-original-text={buttonText}
         class="btn-primary w-full text-sm sm:text-base py-3 sm:py-3.5 min-h-[44px] shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer"
       >
-        <span id="submit-btn-text">Submit Assessment Request</span>
+        <span id="submit-btn-text">{buttonText}</span>
         <svg id="submit-btn-arrow" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
@@ -720,7 +727,7 @@ const dropdownCountries = allowedCountries && allowedCountries.length > 0
       } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
-          if (submitText) submitText.textContent = 'Submit Assessment Request';
+          if (submitText) submitText.textContent = submitBtn.getAttribute('data-original-text') || 'Submit Assessment Request';
         }
       }
     });

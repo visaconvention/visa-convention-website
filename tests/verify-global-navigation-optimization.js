@@ -159,10 +159,10 @@ server.listen(PORT, async () => {
     assert(dummyTicketOption.href.includes('service=reservation-hold'), '"Dummy Tickets" link passes service=reservation-hold URL param');
     assert(dummyTicketOption.href.includes('#flight-enquiry-section'), '"Dummy Tickets" link anchors to #flight-enquiry-section');
 
-    const actualTicketOption = flightsDropdownData.links.find(l => l.text.includes('Actual Flight Tickets'));
-    assert(actualTicketOption !== undefined, 'Flights dropdown contains "Actual Flight Tickets" option');
-    assert(actualTicketOption.href.includes('service=confirmed-ticket'), '"Actual Flight Tickets" link passes service=confirmed-ticket URL param');
-    assert(actualTicketOption.href.includes('#flight-enquiry-section'), '"Actual Flight Tickets" link anchors to #flight-enquiry-section');
+    const actualTicketOption = flightsDropdownData.links.find(l => l.text.includes('Confirmed Flight Tickets') || l.text.includes('Actual Flight Tickets'));
+    assert(actualTicketOption !== undefined, 'Flights dropdown contains "Confirmed Flight Tickets" option');
+    assert(actualTicketOption.href.includes('service=confirmed-ticket'), '"Confirmed Flight Tickets" link passes service=confirmed-ticket URL param');
+    assert(actualTicketOption.href.includes('#flight-enquiry-section'), '"Confirmed Flight Tickets" link anchors to #flight-enquiry-section');
 
     // Test URL Parameter Pre-Selection for Dummy Tickets
     console.log('  Testing navigation with Dummy Tickets URL param...');
@@ -180,8 +180,8 @@ server.listen(PORT, async () => {
     assert(dummyRadioState.checked, 'Dummy Tickets URL param successfully pre-selects "reservation-hold" radio');
     assert(dummyRadioState.cardHasActiveBorder, 'Reservation hold card receives active highlighted border');
 
-    // Test URL Parameter Pre-Selection for Actual Flight Tickets
-    console.log('  Testing navigation with Actual Flight Tickets URL param...');
+    // Test URL Parameter Pre-Selection for Confirmed Flight Tickets
+    console.log('  Testing navigation with Confirmed Flight Tickets URL param...');
     await page.goto(`http://localhost:${PORT}/services/flight-booking/?service=confirmed-ticket#flight-enquiry-section`, { waitUntil: 'networkidle0' });
     await new Promise(r => setTimeout(r, 400));
 
@@ -338,7 +338,7 @@ server.listen(PORT, async () => {
     assert(upperText.includes('ABOUT'), 'Mobile drawer contains About section');
 
     assert(mobileMenuContent.links.some(l => l.text.includes('Dummy Tickets')), 'Mobile drawer contains Dummy Tickets link');
-    assert(mobileMenuContent.links.some(l => l.text.includes('Actual Flight Tickets')), 'Mobile drawer contains Actual Flight Tickets link');
+    assert(mobileMenuContent.links.some(l => l.text.includes('Confirmed Flight Tickets') || l.text.includes('Actual Flight Tickets')), 'Mobile drawer contains Confirmed Flight Tickets link');
     assert(mobileMenuContent.links.some(l => l.text.includes('Passport Application Assistance')), 'Mobile drawer contains Passport Application Assistance link');
     assert(mobileMenuContent.links.some(l => l.text.includes('Document Translation')), 'Mobile drawer contains Document Translation link');
 

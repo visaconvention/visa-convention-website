@@ -98,7 +98,7 @@ export const siteConfig = {
           description: 'Flight reservation / itinerary assistance for visa dossiers',
         },
         {
-          label: 'Actual Flight Tickets',
+          label: 'Confirmed Flight Tickets',
           href: '/services/flight-booking/?service=confirmed-ticket#flight-enquiry-section',
           description: 'Confirmed flight ticket enquiries with student tariffs',
         },

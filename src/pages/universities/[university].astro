@@ -65,7 +65,7 @@ const jsonLd = {
   </div>
 
   <!-- Hero Banner -->
-  <section class="py-12 sm:py-16 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+  <section class="py-8 sm:py-12 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-4xl text-left">
         <!-- Badges Row -->
@@ -131,8 +131,8 @@ const jsonLd = {
   </section>
 
   <!-- University Details & Counseling Form -->
-  <section class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+  <section class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-start">
       <!-- Left Column: Academic & Admission Breakdown -->
       <div class="lg:col-span-7 space-y-8">
         <!-- Overview & Key Info Card -->
@@ -313,12 +313,11 @@ const jsonLd = {
 
   <!-- Related Universities Section -->
   {relatedInCountry.length > 0 && (
-    <section class="py-16 bg-brand-bg border-t border-brand-border">
+    <section class="py-8 sm:py-12 bg-brand-bg border-t border-brand-border">
       <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center justify-between mb-6">
           <div class="text-left">
-            <span class="text-xs font-bold uppercase tracking-wider text-brand-blue">Alternative Options</span>
-            <h2 class="text-2xl font-bold text-brand-navy mt-1">
+            <h2 class="text-2xl font-bold text-brand-navy">
               Other Institutions in {university.countryName}
             </h2>
           </div>
@@ -343,7 +342,7 @@ const jsonLd = {
   )}
 
   <!-- Final Consultation Call -->
-  <section class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <section class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
     <ConsultationCTA
       title={`Plan Your Application to ${university.name}`}
       subtitle="Our counselors evaluate international applicant requirements, intake calendars, and student visa compliance. Schedule your personalized counseling session today."

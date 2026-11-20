@@ -5,9 +5,7 @@ import EnquiryForm from '../../components/forms/EnquiryForm.astro';
 import DestinationAccordion, { type DestinationGroup } from '../../components/services/DestinationAccordion.astro';
 import { 
   touristDestinations, 
-  applicantCategories, 
-  uaePreparationGuidance, 
-  schengenFacts 
+  applicantCategories 
 } from '../../data/tourist-visa-data';
 
 const pageTitle = 'Tourist & Visitor Visa Assistance — Visa Convention Hanumangarh';
@@ -88,7 +86,7 @@ const destinationGroups: DestinationGroup[] = [
   </div>
 
   <!-- Hero Section (Preserving original client poster image) -->
-  <section class="py-10 sm:py-14 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+  <section class="py-8 sm:py-12 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
         <div class="lg:col-span-7 text-left">
@@ -117,13 +115,6 @@ const destinationGroups: DestinationGroup[] = [
             >
               <span class="w-2 h-2 rounded-full bg-brand-red"></span>
               <span>Applicant Profile</span>
-            </a>
-            <a
-              href="#specific-guidance"
-              class="px-3 py-1.5 rounded-xl bg-white border border-brand-border text-xs font-bold text-brand-navy hover:border-brand-blue hover:text-brand-blue shadow-2xs transition-all flex items-center gap-1.5"
-            >
-              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-              <span>Special Frameworks</span>
             </a>
             <a
               href="#enquiry"
@@ -155,7 +146,7 @@ const destinationGroups: DestinationGroup[] = [
   </section>
 
   <!-- SECTION 01: Choose Your Destination (Compact Searchable Accordion) -->
-  <section id="destinations" class="py-10 sm:py-14 bg-white border-b border-brand-border">
+  <section id="destinations" class="py-8 sm:py-10 bg-white border-b border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mb-6">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight mb-2">
@@ -182,7 +173,7 @@ const destinationGroups: DestinationGroup[] = [
   </section>
 
   <!-- SECTION 02: Applicant Category Guidance (Compact Checklist) -->
-  <section id="applicant-categories" class="py-10 sm:py-14 bg-brand-bg/60 border-b border-brand-border">
+  <section id="applicant-categories" class="py-8 sm:py-10 bg-brand-bg/60 border-b border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mb-6">
         <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight mb-2">
@@ -291,141 +282,8 @@ const destinationGroups: DestinationGroup[] = [
     </div>
   </section>
 
-  <!-- SECTION 03: Special Destination Frameworks (Collapsed Dropdowns) -->
-  <section id="specific-guidance" class="py-10 sm:py-14 bg-white border-b border-brand-border">
-    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mb-6">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-brand-navy tracking-tight mb-2">
-          Special Destination Frameworks
-        </h2>
-        <p class="text-sm text-brand-muted leading-relaxed">
-          Specific statutory frameworks apply to UAE electronic permits and Schengen Area visitor visas. Expand below for verified consular guidelines.
-        </p>
-      </div>
-
-      <!-- Two Collapsed Dropdowns (Mutual Exclusion: Opening one closes the other) -->
-      <div class="space-y-3 max-w-4xl" id="special-frameworks-accordion">
-        <!-- Dropdown 1: UAE Tourist Visa Requirements -->
-        <div class="rounded-2xl border border-brand-border bg-white overflow-hidden shadow-2xs">
-          <button
-            type="button"
-            class="framework-toggle w-full min-h-[52px] px-4 sm:px-5 py-3.5 bg-brand-bg/50 hover:bg-brand-bg text-left flex items-center justify-between gap-3 transition-colors focus-visible:outline-2 focus-visible:outline-brand-blue"
-            aria-expanded="false"
-            aria-controls="framework-panel-uae"
-            data-target="framework-panel-uae"
-          >
-            <div class="flex items-center gap-2.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-              <span class="text-sm sm:text-base font-bold text-brand-navy">
-                UAE Tourist Visa Requirements
-              </span>
-            </div>
-            <svg
-              class="framework-chevron w-4 h-4 text-brand-navy transition-transform duration-200 flex-shrink-0"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          <div id="framework-panel-uae" class="framework-panel hidden px-4 sm:px-6 py-5 bg-white border-t border-brand-border/60">
-            <h3 class="text-sm sm:text-base font-bold text-brand-navy mb-2">
-              {uaePreparationGuidance.headline}
-            </h3>
-            <p class="text-xs text-brand-muted leading-relaxed mb-4">
-              {uaePreparationGuidance.overview}
-            </p>
-
-            <h4 class="text-xs font-bold uppercase tracking-wider text-brand-navy mb-2.5">
-              Client Preparation Checklist:
-            </h4>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
-              {uaePreparationGuidance.documents.map((item) => (
-                <div class="p-2.5 rounded-xl bg-brand-bg/50 border border-brand-border/70 text-xs flex items-start gap-2">
-                  <span class="text-emerald-600 font-bold">✓</span>
-                  <div>
-                    <span class="font-bold text-brand-navy">{item.name}:</span>{' '}
-                    <span class="text-brand-muted">{item.note}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div class="text-[11px] text-brand-subtle bg-amber-50/70 p-3 rounded-xl border border-amber-200/70 leading-relaxed">
-              <strong>Advisory Notice:</strong> {uaePreparationGuidance.regulatoryNotice}
-            </div>
-          </div>
-        </div>
-
-        <!-- Dropdown 2: Schengen Visa Requirements -->
-        <div class="rounded-2xl border border-brand-border bg-white overflow-hidden shadow-2xs">
-          <button
-            type="button"
-            class="framework-toggle w-full min-h-[52px] px-4 sm:px-5 py-3.5 bg-brand-bg/50 hover:bg-brand-bg text-left flex items-center justify-between gap-3 transition-colors focus-visible:outline-2 focus-visible:outline-brand-blue"
-            aria-expanded="false"
-            aria-controls="framework-panel-schengen"
-            data-target="framework-panel-schengen"
-          >
-            <div class="flex items-center gap-2.5">
-              <span class="w-2.5 h-2.5 rounded-full bg-brand-blue"></span>
-              <span class="text-sm sm:text-base font-bold text-brand-navy">
-                Schengen Visa Requirements
-              </span>
-            </div>
-            <svg
-              class="framework-chevron w-4 h-4 text-brand-navy transition-transform duration-200 flex-shrink-0"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          <div id="framework-panel-schengen" class="framework-panel hidden px-4 sm:px-6 py-5 bg-white border-t border-brand-border/60">
-            <h3 class="text-sm sm:text-base font-bold text-brand-navy mb-2">
-              {schengenFacts.coverageTitle}
-            </h3>
-
-            <div class="space-y-2.5 text-xs text-brand-muted leading-relaxed mb-4">
-              <div class="p-3 rounded-xl bg-brand-bg/50 border border-brand-border/70">
-                <h4 class="font-bold text-brand-navy mb-1 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
-                  Mandatory €30,000 Travel Medical Insurance
-                </h4>
-                <p>{schengenFacts.insuranceRule}</p>
-              </div>
-
-              <div class="p-3 rounded-xl bg-brand-bg/50 border border-brand-border/70">
-                <h4 class="font-bold text-brand-navy mb-1 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-brand-red"></span>
-                  Certified Bank Statement Periods
-                </h4>
-                <p>{schengenFacts.evidenceRule}</p>
-              </div>
-
-              <div class="p-3 rounded-xl bg-brand-bg/50 border border-brand-border/70">
-                <h4 class="font-bold text-brand-navy mb-1 flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-                  29-Nation Zone Freedom of Movement
-                </h4>
-                <p>{schengenFacts.coverageCount}</p>
-              </div>
-            </div>
-
-            <div class="text-[11px] text-brand-subtle bg-slate-50 p-3 rounded-xl border border-brand-border leading-relaxed">
-              <strong>Statutory Rule:</strong> Visa Convention facilitates diligent documentation under official consular rules. We never manufacture false employment records, bogus tax filings, or unverified reservations.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- SECTION 04: Consultation Assessment Section -->
-  <section id="enquiry" class="py-10 sm:py-16 bg-brand-bg/60 border-t border-brand-border">
+  <section id="enquiry" class="py-8 sm:py-12 bg-brand-bg/60 border-t border-brand-border">
     <div class="max-w-[760px] mx-auto px-4 sm:px-6 lg:px-8">
       <EnquiryForm
         selectedService="tourist-visa"
@@ -496,35 +354,6 @@ const destinationGroups: DestinationGroup[] = [
         const catId = btn.getAttribute('data-category-id') || 'employed';
         const catLabel = btn.getAttribute('data-category-label') || 'Employed';
         applyCategorySelection(catId, catLabel);
-      });
-    });
-
-    // 2. Special Destination Frameworks Dropdown Accordion (Mutual Exclusion)
-    const frameworkToggles = document.querySelectorAll('.framework-toggle');
-    frameworkToggles.forEach((toggle) => {
-      toggle.addEventListener('click', () => {
-        const targetId = toggle.getAttribute('data-target');
-        const targetPanel = targetId ? document.getElementById(targetId) : null;
-        const chevron = toggle.querySelector('.framework-chevron');
-        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-
-        // Close all framework panels first (mutual exclusion)
-        frameworkToggles.forEach((otherToggle) => {
-          const otherTargetId = otherToggle.getAttribute('data-target');
-          const otherPanel = otherTargetId ? document.getElementById(otherTargetId) : null;
-          const otherChevron = otherToggle.querySelector('.framework-chevron');
-
-          otherToggle.setAttribute('aria-expanded', 'false');
-          if (otherPanel) otherPanel.classList.add('hidden');
-          if (otherChevron) otherChevron.classList.remove('rotate-180');
-        });
-
-        // If it was not expanded before, expand it now
-        if (!isExpanded && targetPanel) {
-          toggle.setAttribute('aria-expanded', 'true');
-          targetPanel.classList.remove('hidden');
-          if (chevron) chevron.classList.add('rotate-180');
-        }
       });
     });
   });
