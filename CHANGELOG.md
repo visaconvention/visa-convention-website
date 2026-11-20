@@ -6,6 +6,42 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.60.0] - 2026-11-20 — Master Website Cleanup & Interactive WhatsApp Animation
+
+### Summary
+- **Tourist & Visitor Visa Cleanup (`src/pages/services/tourist-visa.astro`):**
+  - Completely excised the blue **Schengen Zone Information** notice card (explaining Schengen destinations, member states, and 90/180-day stay rules).
+  - Completely excised the grey **Statutory Note** card (disclaiming sovereign embassy authority and administrative document assistance).
+  - Preserved all 27 supported destination countries, interactive Schengen quick-filter and cards, 70:30 two-column desktop layout, destination details panel, and assessment enquiry form.
+- **Work Visa Cleanup (`src/pages/services/work-visa.astro`):**
+  - Completely excised the **Statutory Compliance Notice** card (Emigration Act 1983 notice disclaiming recruiting agency status).
+  - Preserved all 12 featured occupational categories, interactive accordion items, 70:30 two-column layout, and assessment enquiry form.
+  - Legal notices remain strictly maintained elsewhere across the site (sitewide footer disclaimer, privacy policy, and terms).
+- **Desktop & Mobile Navigation Dropdown Cleanup (`src/components/layout/DesktopNavigation.astro` & `src/components/layout/MobileNavigation.astro`):**
+  - Excised bottom decorative/informational footer rows from desktop navigation dropdowns:
+    - **Flights:** Removed *"Zero Fake PNRs • Legitimate GDS Holds"* note and *"Flight Booking Desk →"* link.
+    - **Additional Services:** Removed *"Administrative Support from Hanumangarh"* note and *"View All Additional Services →"* link.
+    - **About:** Removed *"Shop No.115, Durga Market, Hanumangarh Junction"* address and *"Visit Center →"* link.
+  - Excised physical office address string from the bottom of the mobile navigation drawer (`MobileNavigation.astro`).
+  - Preserved all core functional links: Dummy Tickets, Confirmed Flight Tickets, all 7 Additional Services items, About pages, and office address on `/contact/`.
+- **Website-Wide Interactive WhatsApp Animation (`src/components/common/WhatsAppButton.astro`):**
+  - Added periodic gentle pulse animation (`@keyframes wa-btn-pulse`) running every 18 seconds (duration 1.25s) with a subtle green glow ring (`rgba(37, 211, 102, 0.45)`).
+  - Added session-capped floating tooltip banner (*“Need help? Chat with us!”*) auto-dismissing after 4 seconds (capped at 2 triggers per session via `sessionStorage`).
+  - Implemented pause on user interaction: animation halts immediately when hovered (`:hover`), focused (`:focus-visible`), active (`:active`), or after clicking.
+  - Honors user accessibility preferences with `@media (prefers-reduced-motion: reduce)` disabling all pulses and transitions.
+  - Maintained safe touch targets (min 56px > 44px standard), iOS safe-area insets, and direct WhatsApp link `https://wa.me/919680395539`.
+- **Verification & QA Testing:**
+  - Automated Puppeteer test suite (`tests/verify-master-cleanup-and-whatsapp-animation.js`):
+    - Zero occurrence of excised notices on Tourist Visa and Work Visa pages.
+    - Zero occurrence of dropdown footer rows on desktop and mobile drawer address.
+    - Verified all retained links, occupations, and destination country tiles.
+    - Verified WhatsApp animation keyframes, box-shadow glow, touch target, and URL parameters.
+    - Multi-viewport audit across 9 viewports (320, 360, 375, 390, 430, 768, 1024, 1366, 1440px): **0 horizontal overflow** across Homepage, Tourist Visa, and Work Visa.
+  - Type & static check: `npm run check` passed with **0 errors, 0 warnings** across 149 files.
+  - Production build: `npm run build` compiled all 65 pages in 5.53s.
+
+---
+
 ## [1.59.0] - 2026-11-20 — Homepage Services Optimization & MBBS/PhD Split Navigation
 
 ### Summary
