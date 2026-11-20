@@ -29,7 +29,7 @@ const breadcrumbSchema = getBreadcrumbSchema(items);
         <li class="flex items-center gap-2">
           <span class="text-gray-400 select-none" aria-hidden="true">/</span>
           {isLast || item.current ? (
-            <span class="text-brand-navy font-semibold truncate max-w-xs sm:max-w-md" aria-current="page">
+            <span class="text-brand-navy font-semibold truncate max-w-[140px] sm:max-w-xs md:max-w-md" aria-current="page">
               {item.label}
             </span>
           ) : (

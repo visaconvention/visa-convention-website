@@ -6,6 +6,51 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.61.0] - 2026-11-20 — Global Dropdown Header Cleanup (Desktop & Mobile)
+
+### Summary
+- **Desktop Navigation Dropdowns Header Excision (`src/components/layout/DesktopNavigation.astro`):**
+  - **Flights Dropdown:**
+    - Completely excised introductory header block from the component tree:
+      - Title: `“Flight Coordination Desk”` (`FLIGHT COORDINATION DESK`)
+      - Description: `“Verifiable reservation holds & confirmed e-tickets”`
+      - Overview link: `“Overview →”` (`/services/flight-booking/`)
+      - Associated border, padding, margin, and container wrappers.
+    - Preserved exclusively **Dummy Tickets** and **Confirmed Flight Tickets** options with ✈ icons, labels, descriptions, and deep-link hrefs.
+  - **Additional Services Dropdown:**
+    - Completely excised introductory header block:
+      - Title: `“Additional Services”` (`ADDITIONAL SERVICES`)
+      - Description: `“Passport, documentation, attestation & legalizations”`
+      - View All link: `“View All →”` (`/services/additional-services/`)
+      - Associated border, padding, and container wrappers.
+    - Preserved all six verified service options with `01` through `06` badges, labels, descriptions, and direct section links.
+  - **About Dropdown:**
+    - Completely excised introductory header block:
+      - Title: `“Corporate Credibility & Team”` (`CORPORATE CREDIBILITY & TEAM`)
+      - Description: `“Rooted in Hanumangarh, serving global aspirants”`
+      - Overview link: `“Overview →”` (`/about/`)
+      - Associated border, padding, and container wrappers.
+    - Preserved all existing About menu options with ★ badges, descriptions, and links (`Our Story & Office`, `Verified Outcomes`).
+- **Compact Layout & Spacing Polish (`src/components/layout/DesktopNavigation.astro`):**
+  - Removed enclosing React/Astro fragments and moved menu items directly to the top of the card container.
+  - Refined panel internal padding from `p-4` to `p-3 sm:p-3.5` for Flights, Additional Services, and About, eliminating wasted dead space and reducing overall panel height naturally.
+- **Mobile Navigation Drawer Optimization (`src/components/layout/MobileNavigation.astro`):**
+  - Excised redundant `Overview →` links from the Flights, Additional Services, and About drawer section headers.
+  - Preserved semantic category labels (`FLIGHTS`, `ADDITIONAL SERVICES`, `ABOUT`) and all underlying child links.
+  - Left unrelated `Study Abroad` navigation group untouched with its original Overview link and universities search banner.
+- **Responsive Breadcrumb Refinement (`src/components/common/Breadcrumbs.astro`):**
+  - Constrained active breadcrumb text width on mobile screens (`max-w-[140px] sm:max-w-xs md:max-w-md`), ensuring zero horizontal overflow even on 320px ultra-compact viewports with lengthy page titles.
+- **Verification & QA Testing:**
+  - Automated Puppeteer end-to-end verification (`tests/verify-dropdown-header-cleanup.js`):
+    - Verified complete absence of all 3 header sections (titles, descriptions, overview links) on desktop.
+    - Verified retention of exactly 2 flight links, 6 additional service links, and 2 about links.
+    - Verified absence of redundant overview links on mobile drawer across all 3 groups.
+    - Multi-viewport horizontal overflow audit passed across all 8 viewports (320, 360, 390, 430, 768, 1024, 1366, 1440px) on Homepage, Flight Booking, Additional Services, and About pages.
+  - Astro diagnostics (`npm run check`): 0 errors, 0 warnings across 150 files.
+  - Production build (`npm run build`): all 65 static pages compiled successfully in 5.98s.
+
+---
+
 ## [1.60.0] - 2026-11-20 — Master Website Cleanup & Interactive WhatsApp Animation
 
 ### Summary
