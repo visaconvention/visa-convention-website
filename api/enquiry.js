@@ -81,6 +81,17 @@ export default async function handler(req, res) {
           });
         }
       }
+    } else if (submissionType === 'service' || submissionType === 'minimal') {
+      const name = sanitize(data.fullName);
+      const phone = sanitize(data.phone);
+      const service = sanitize(data.service);
+
+      if (!name || !phone || !service) {
+        return res.status(422).json({
+          success: false,
+          message: 'Missing required service enquiry fields (fullName, phone, service).',
+        });
+      }
     } else {
       const name = sanitize(data.fullName);
       const phone = sanitize(data.phone);
@@ -96,7 +107,7 @@ export default async function handler(req, res) {
     }
 
     // 3. Generate unique verifiable reference ID
-    const leadPrefix = submissionType === 'flight' ? 'VC-FLT' : submissionType === 'business' ? 'VC-B2B' : 'VC-LEAD';
+    const leadPrefix = submissionType === 'flight' ? 'VC-FLT' : submissionType === 'business' ? 'VC-B2B' : (submissionType === 'service' || submissionType === 'minimal') ? 'VC-SRV' : 'VC-LEAD';
     const leadId = `${leadPrefix}-${Date.now().toString().slice(-6)}`;
     const timestamp = new Date().toISOString();
 
@@ -112,7 +123,8 @@ export default async function handler(req, res) {
       targetCountry: sanitize(data.targetCountry),
       targetUniversity: sanitize(data.targetUniversity),
       proposedScope: sanitize(data.proposedScope),
-      notes: sanitize(data.notes),
+      notes: sanitize(data.notes) || sanitize(data.message),
+      message: sanitize(data.message) || sanitize(data.notes),
       // Flight-specific fields
       departureCity: sanitize(data.departureCity),
       destinationCity: sanitize(data.destinationCity),

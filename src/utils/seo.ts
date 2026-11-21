@@ -53,6 +53,7 @@ export function getLocalBusinessSchema() {
     ],
     sameAs: [
       siteConfig.socialLinks.instagram,
+      siteConfig.socialLinks.facebook,
       siteConfig.socialLinks.youtube,
       siteConfig.socialLinks.googleMaps,
     ].filter(Boolean),

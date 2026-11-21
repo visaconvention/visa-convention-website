@@ -2,7 +2,7 @@
 import { siteConfig } from '../../data/site-config';
 
 interface Props {
-  defaultService?: 'confirmed-ticket' | 'reservation-hold' | 'travel-itinerary';
+  defaultService?: 'confirmed-ticket' | 'reservation-hold';
   class?: string;
 }
 
@@ -24,12 +24,6 @@ const travelServices = [
     title: 'Confirmed Flight Ticket',
     subtitle: 'Direct issuance of confirmed e-tickets after visa grant with student baggage codes',
     badge: 'Post-Visa Grant',
-  },
-  {
-    id: 'travel-itinerary',
-    title: 'Travel Itinerary Assistance',
-    subtitle: 'Proposed route schedule & transit optimization without upfront booking hold',
-    badge: 'Route Planning',
   },
 ];
 ---
@@ -89,7 +83,7 @@ const travelServices = [
       <label class="block text-xs font-bold uppercase tracking-wider text-brand-navy mb-1.5">
         Select Travel Service Required <span class="text-brand-red">*</span>
       </label>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3" role="radiogroup" aria-labelledby="service-selection-label">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3" role="radiogroup" aria-labelledby="service-selection-label">
         {travelServices.map((srv) => (
           <label
             class={`relative flex flex-col justify-between p-3 rounded-xl border cursor-pointer transition-all ${
@@ -575,11 +569,6 @@ const travelServices = [
           requestedService === 'confirmed'
         ) {
           targetServiceId = 'confirmed-ticket';
-        } else if (
-          requestedService === 'travel-itinerary' ||
-          requestedService === 'itinerary'
-        ) {
-          targetServiceId = 'travel-itinerary';
         }
 
         if (targetServiceId) {
@@ -760,7 +749,6 @@ const travelServices = [
             const labelMap: Record<string, string> = {
               'reservation-hold': 'Flight Reservation Hold (Visa File)',
               'confirmed-ticket': 'Confirmed Ticket Enquiry',
-              'travel-itinerary': 'Travel Itinerary Assistance',
             };
             serviceDisplay.textContent = labelMap[selectedService || ''] || selectedService || 'Flight Assistance';
           }

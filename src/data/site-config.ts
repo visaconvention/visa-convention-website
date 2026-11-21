@@ -27,21 +27,24 @@ export const siteConfig = {
   businessHours: 'Monday – Saturday: 9:30 AM – 6:30 PM IST (Sunday Closed)',
   socialLinks: {
     instagram: 'https://www.instagram.com/visaconvention/',
+    facebook: 'https://www.facebook.com/share/19vMnsSWV6/?mibextid=wwXIfr',
     youtube: 'https://www.youtube.com/@VisaConvention',
-    // Candidate URL: https://www.facebook.com/visaconvention/
-    // Verification Status: PENDING CLIENT CONFIRMATION (Left unpublished per audit instructions)
-    facebook: '',
-    facebookCandidate: 'https://www.facebook.com/visaconvention/',
     googleMaps: 'https://maps.google.com/?q=Visa+Convention,+Shop+No.115,+Durga+Market,+Street+No.04,+Behind+Bus+Stand,+Durga+Colony,+Hanumangarh+Junction,+Rajasthan+335512',
   },
 
-  // Verified, active social channels for public UI rendering across footer & contact
+  // Verified, active social channels for public UI rendering across footer, contact & about
   publishedSocials: [
     {
       id: 'instagram',
       name: 'Instagram',
       url: 'https://www.instagram.com/visaconvention/',
       ariaLabel: 'Follow Visa Convention on Instagram (opens in a new tab)',
+    },
+    {
+      id: 'facebook',
+      name: 'Facebook',
+      url: 'https://www.facebook.com/share/19vMnsSWV6/?mibextid=wwXIfr',
+      ariaLabel: 'Connect with Visa Convention on Facebook (opens in a new tab)',
     },
     {
       id: 'youtube',
@@ -94,12 +97,12 @@ export const siteConfig = {
       children: [
         {
           label: 'Dummy Tickets',
-          href: '/services/flight-booking/?service=reservation-hold#flight-enquiry-section',
+          href: '/services/dummy-tickets/',
           description: 'Flight reservation / itinerary assistance for visa dossiers',
         },
         {
           label: 'Confirmed Flight Tickets',
-          href: '/services/flight-booking/?service=confirmed-ticket#flight-enquiry-section',
+          href: '/services/confirmed-flight-tickets/',
           description: 'Confirmed flight ticket enquiries with student tariffs',
         },
       ],
@@ -110,32 +113,32 @@ export const siteConfig = {
       children: [
         {
           label: 'Passport Application Assistance',
-          href: '/services/additional-services/#passport-assistance',
+          href: '/services/passport-assistance/',
           description: 'Fresh passport filing, renewals & PSK appointment scheduling',
         },
         {
           label: 'ITR Filing Assistance',
-          href: '/services/additional-services/#itr-filing',
+          href: '/services/itr-filing/',
           description: 'Income tax returns & consular financial documentation',
         },
         {
           label: 'Company Registration Assistance',
-          href: '/services/additional-services/#company-registration',
+          href: '/services/company-registration/',
           description: 'Incorporation records & GST filing for business travelers',
         },
         {
           label: 'Police Clearance Certificate (PCC)',
-          href: '/services/additional-services/#pcc-assistance',
+          href: '/services/pcc-assistance/',
           description: 'PCC application coordination & checklist verification',
         },
         {
           label: 'Document Apostille',
-          href: '/services/additional-services/#document-apostille',
+          href: '/services/document-apostille/',
           description: 'Ministry of External Affairs (MEA) apostille & legalizations',
         },
         {
           label: 'Document Translation',
-          href: '/services/additional-services/#document-translation',
+          href: '/services/document-translation/',
           description: 'Certified translations for embassies & foreign universities',
         },
       ],

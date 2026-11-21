@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/common/SectionHeading.astro';
 import Breadcrumbs from '../components/common/Breadcrumbs.astro';
-import ConsultationCTA from '../components/common/ConsultationCTA.astro';
 import { aboutData } from '../data/about';
 import { siteConfig } from '../data/site-config';
 
@@ -297,14 +296,4 @@ const { hero, story, directorsMessage, teamMembers, physicalOffice, verifiedMile
       ))}
     </div>
   </section>
-
-  <!-- Final Consultation CTA -->
-  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-    <ConsultationCTA
-      title="Meet Our Hanumangarh Advisory Team"
-      subtitle="Experience honest, uncompromised student visa counseling. Schedule your personal 1-on-1 session at our Hanumangarh center today."
-      primaryBtnText="Book Consultation Session"
-      primaryBtnHref="/contact/"
-    />
-  </div>
 </BaseLayout>

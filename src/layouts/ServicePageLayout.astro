@@ -1,0 +1,145 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Breadcrumbs from '../components/common/Breadcrumbs.astro';
+import MinimalServiceForm from '../components/forms/MinimalServiceForm.astro';
+
+interface Props {
+  pageTitle: string;
+  pageDescription: string;
+  heading: string;
+  tagline: string;
+  explanationHeading: string;
+  explanationParagraphs: string[];
+  useCasesHeading: string;
+  useCases: string[];
+  preFormHeading?: string;
+  preFormText?: string;
+  serviceName: string;
+  submitButtonText: string;
+  heroImage?: string;
+  heroImageAlt?: string;
+  currentPath: string;
+}
+
+const {
+  pageTitle,
+  pageDescription,
+  heading,
+  tagline,
+  explanationHeading,
+  explanationParagraphs,
+  useCasesHeading,
+  useCases,
+  preFormHeading,
+  preFormText,
+  serviceName,
+  submitButtonText,
+  heroImage,
+  heroImageAlt = heading,
+  currentPath,
+} = Astro.props;
+---
+
+<BaseLayout
+  title={`${pageTitle} — Visa Convention`}
+  description={pageDescription}
+>
+  <!-- Breadcrumbs -->
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'Services', href: '/services/' },
+        { label: heading, href: currentPath, current: true },
+      ]}
+    />
+  </div>
+
+  <!-- Main Content & Minimal Enquiry Section -->
+  <section class="py-6 sm:py-8 lg:py-10">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <!-- Left Column: Heading, Tagline, Explanation, Categories, Image -->
+        <div class="lg:col-span-7 space-y-6 text-left">
+          <!-- Page Header -->
+          <div>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-brand-navy tracking-tight leading-tight mb-2 text-balance">
+              {heading}
+            </h1>
+            <p class="text-base sm:text-lg font-bold text-brand-blue leading-snug">
+              {tagline}
+            </p>
+          </div>
+
+          <!-- Service Explanation -->
+          <div class="space-y-3">
+            <h2 class="text-lg sm:text-xl font-bold text-brand-navy tracking-tight">
+              {explanationHeading}
+            </h2>
+            {explanationParagraphs.map((para) => (
+              <p class="text-sm sm:text-base text-brand-muted leading-relaxed">
+                {para}
+              </p>
+            ))}
+          </div>
+
+          <!-- 3 Use Cases / Categories (Compact Text Items) -->
+          <div class="space-y-2.5">
+            <h2 class="text-lg sm:text-xl font-bold text-brand-navy tracking-tight">
+              {useCasesHeading}
+            </h2>
+            <div class="space-y-2">
+              {useCases.map((item) => (
+                <div class="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-brand-bg/60 border border-brand-border/80 text-sm font-bold text-brand-navy">
+                  <svg class="w-4 h-4 text-brand-blue shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Approved Service Imagery (if available) -->
+          {heroImage && (
+            <div class="pt-2">
+              <div class="relative rounded-2xl overflow-hidden border border-brand-border shadow-2xs bg-brand-bg max-w-lg aspect-[16/9]">
+                <img
+                  src={heroImage}
+                  alt={heroImageAlt}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
+        <!-- Right Column: Pre-form Intro & Compact Minimal Enquiry Form -->
+        <aside class="lg:col-span-5 w-full scroll-mt-24" id="enquiry">
+          <div class="lg:sticky lg:top-24 space-y-3">
+            {(preFormHeading || preFormText) && (
+              <div class="mb-1">
+                {preFormHeading && (
+                  <h2 class="text-lg sm:text-xl font-bold text-brand-navy tracking-tight mb-1">
+                    {preFormHeading}
+                  </h2>
+                )}
+                {preFormText && (
+                  <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                    {preFormText}
+                  </p>
+                )}
+              </div>
+            )}
+
+            <MinimalServiceForm
+              serviceName={serviceName}
+              submitButtonText={submitButtonText}
+            />
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

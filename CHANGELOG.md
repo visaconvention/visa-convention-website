@@ -6,6 +6,54 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.62.0] - 2026-11-21 — Master Service Page Redesign, Minimal Enquiry Forms & Sitewide Removals
+
+### Summary
+- **Master Service Page Redesign (8 Dedicated Pages):**
+  - Designed and deployed a unified, configurable service page template (`src/layouts/ServicePageLayout.astro`) structured as **Heading → Tagline → Service Explanation → 3 Use Cases/Categories (Compact Text Items) → Enquiry Form → Footer**:
+    1. **Dummy Tickets (`/services/dummy-tickets/`):** Exact approved content, temporary reservation explanation, 3 use cases (*Visa Application Documentation*, *Travel Planning Before Visa Approval*, *Temporary Reservation Requirements*), pre-form section, and `Request Assistance` CTA.
+    2. **Confirmed Flight Tickets (`/services/confirmed-flight-tickets/`):** Exact approved content, confirmed ticket explanation, 3 use cases (*Students Travelling Abroad*, *Tourists & Family Travelers*, *Business & Work Travelers*), pre-form section, and `Request Flight Assistance` CTA.
+    3. **Passport Application Assistance (`/services/passport-assistance/`):** Exact approved content, Passport Seva guidance, and 3 use cases (*First-Time Passport Applicants*, *Passport Renewal & Re-Issue Applicants*, *Passport Correction & Update Applicants*) with `Request Passport Assistance` CTA.
+    4. **ITR Filing Assistance (`/services/itr-filing/`):** Exact approved content, income tax return documentation guidance, and 3 use cases (*Salaried Individuals*, *Self-Employed Professionals*, *Business Owners & Freelancers*) with `Request ITR Assistance` CTA.
+    5. **Company Registration Assistance (`/services/company-registration/`):** Exact approved content, MCA incorporation guidance, and 3 use cases (*First-Time Business Owners*, *Entrepreneurs Starting Companies*, *Businesses Seeking Incorporation Guidance*) with `Request Registration Assistance` CTA.
+    6. **Police Clearance Certificate (PCC) Assistance (`/services/pcc-assistance/`):** Exact approved content, PCC application & appointment guidance, and 3 use cases (*Overseas Employment Applicants*, *Immigration & Long-Term Visa Applicants*, *Individuals Requiring Police Clearance*) with `Request PCC Assistance` CTA.
+    7. **Document Apostille Assistance (`/services/document-apostille/`):** Exact approved content, Hague Convention apostille guidance, and 3 use cases (*Students Applying Abroad*, *Overseas Employment & Immigration Applicants*, *Individuals and Businesses Requiring Document Authentication*) with `Request Apostille Assistance` CTA.
+    8. **Document Translation Assistance (`/services/document-translation/`):** Exact approved content, international translation support, and 3 use cases (*Students & University Applicants*, *Visa & Immigration Applicants*, *Individuals and Businesses Requiring Translated Documents*) with `Request Translation Assistance` CTA.
+  - Eliminated decorative badges, FAQs, duplicate headings, decorative dividers, and excessive whitespace across all 8 pages.
+  - Preserved approved visuals (`Flight Booking and Dummy Tickets.png` and `Additional Visa Services Guide.png`).
+- **Shared Minimal Enquiry Form (`src/components/forms/MinimalServiceForm.astro`):**
+  - Implemented a ultra-compact initial enquiry form containing exactly **3 visible input fields**:
+    1. `Full Name *` (Required)
+    2. `Phone / WhatsApp Number *` (Required)
+    3. `Message (Optional)` with placeholder `“Any questions or additional information?”`
+  - Required privacy consent checkbox.
+  - Hidden service-specific metadata and custom CTA button text per service.
+  - Honeypot bot protection (`website_url_check`) and render timestamp.
+  - Clean error banner with WhatsApp and telephone fallback links.
+  - Success confirmation view displaying generated reference ID (`VC-SRV-XXXXXX`) and direct WhatsApp confirmation action.
+  - Excised email, service dropdowns, travel dates, routes, passenger counts, and document uploads from initial lead capture.
+- **Backend Enquiry API Enhancement (`api/enquiry.js`):**
+  - Added support for `submissionType === 'service'`, strictly validating `fullName`, `phone`, and `service` while allowing optional `message`.
+  - Assigned dedicated reference ID prefix `VC-SRV-` for service enquiries.
+  - Preserved honeypot anti-spam rejection, disk logging, stdout logging, and notification webhooks.
+- **Page-Specific Removals & Cleanups:**
+  - **PhD Abroad (`src/pages/services/phd.astro`):** Completely excised both Advisory Notice blocks (the hero advisory notice box and the university grid advisory notice paragraph). Preserved the 3-country/7-university directory, two-column layout, and assessment form.
+  - **MBBS Abroad (`src/pages/services/mbbs.astro`):** Completely excised the "Integrity Notice" paragraph under the university directory. Preserved the country/university directory, two-column layout, and assessment form.
+  - **Flight Pages (`src/pages/services/flight-booking.astro` & `FlightEnquiryForm.astro`):** Removed the "Travel Itinerary Assistance" option card (including "ROUTE PLANNING" tag, description, and radio control) and the entire "Booking Terms & Consular Notice" section. Updated service radio grid from 3 columns to 2 balanced columns.
+  - **Our Office & Story (`src/pages/about.astro`):** Completely excised the navy "Meet Our Hanumangarh Advisory Team" banner and removed the unused `ConsultationCTA` component import.
+- **Site Navigation & Directory Updates:**
+  - Updated `src/data/site-config.ts` so Flights and Additional Services dropdown items navigate directly to their dedicated pages.
+  - Modernized `src/pages/services/additional-services.astro` into a clean overview directory linking directly to each of the 6 additional service pages.
+- **Sitewide Facebook Integration:**
+  - Added official Facebook page URL (`https://www.facebook.com/share/19vMnsSWV6/?mibextid=wwXIfr`) to `src/data/site-config.ts`, `src/utils/seo.ts` (`sameAs`), created reusable `src/components/common/SocialLinks.astro`, and updated `Footer.astro` and `contact.astro` in consistent order **Instagram | Facebook | YouTube**.
+- **Comprehensive Quality Assurance & Testing:**
+  - **Unit & Integration Verification (`tests/verify-master-service-redesign.js`):** 22/22 tests passed verifying all 8 service page files, exact approved text copy, 3 visible inputs in MinimalServiceForm, backend API response, and complete absence of specified notices from PhD, MBBS, Flights, and About.
+  - **Multi-Viewport Visual & Overflow Audit (`tests/audit-master-service-redesign-visual.js`):** Evaluated across 9 viewports (**320px, 360px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px**). 72/72 tests passed with zero horizontal overflow, zero clipping, and clean responsive stacking.
+  - **TypeScript & Astro Diagnostics (`npm run check`):** 0 errors, 0 warnings across 162 files.
+  - **Static Production Build (`npm run build`):** 73 static HTML pages compiled cleanly in 6.75s.
+
+---
+
 ## [1.61.0] - 2026-11-20 — Global Dropdown Header Cleanup (Desktop & Mobile)
 
 ### Summary

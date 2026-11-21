@@ -1,0 +1,31 @@
+---
+import ServicePageLayout from '../../layouts/ServicePageLayout.astro';
+
+const pageData = {
+  pageTitle: 'Confirmed Flight Tickets & Booking Assistance',
+  pageDescription: 'Book your flights with reliable assistance and convenient travel options. Airline-issued confirmed tickets for students, tourists, and business travelers.',
+  heading: 'Confirmed Flight Tickets & Booking Assistance',
+  tagline: 'Book Your Flights with Reliable Assistance and Convenient Travel Options',
+  explanationHeading: 'What Is a Confirmed Flight Ticket?',
+  explanationParagraphs: [
+    'A confirmed flight ticket is an airline-issued ticket obtained after completing the required booking and payment process.',
+    'It typically includes passenger details, departure and arrival airports, flight dates, booking reference (PNR), and an electronic ticket number.',
+    'Visa Convention assists travelers with exploring available flights, comparing travel options, and arranging confirmed ticket bookings according to their destinations, schedules, and preferences.',
+  ],
+  useCasesHeading: 'Who Can Benefit from This Service?',
+  useCases: [
+    'Students Travelling Abroad',
+    'Tourists & Family Travelers',
+    'Business & Work Travelers',
+  ],
+  preFormHeading: 'Ready to Book Your Flight?',
+  preFormText: 'Share your contact details through the enquiry form below, and our team will assist you with available flights, fares, baggage options, and booking arrangements.',
+  serviceName: 'Confirmed Flight Tickets',
+  submitButtonText: 'Request Flight Assistance',
+  heroImage: '/assets/images/services/Flight%20Booking%20and%20Dummy%20Tickets.png',
+  heroImageAlt: 'Visa Convention Confirmed Flight Tickets and Booking Assistance',
+  currentPath: '/services/confirmed-flight-tickets/',
+};
+---
+
+<ServicePageLayout {...pageData} />

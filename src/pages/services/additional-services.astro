@@ -1,9 +1,137 @@
 ---
-import ServiceLayout from '../../layouts/ServiceLayout.astro';
-import { detailedServicesData } from '../../data/detailed-services';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/common/Breadcrumbs.astro';
+import MinimalServiceForm from '../../components/forms/MinimalServiceForm.astro';
 
-const service = detailedServicesData['additional-services'];
-if (!service) throw new Error('Detailed service data not found for additional-services');
+const additionalServices = [
+  {
+    id: 'passport-assistance',
+    title: 'Passport Application Assistance',
+    tagline: 'Simplify Your Passport Application Process with Professional Guidance',
+    href: '/services/passport-assistance/',
+    description: 'Assistance with new passport applications, passport renewals/re-issues, and corrections or updates to existing passport details through official Passport Seva procedures.',
+  },
+  {
+    id: 'itr-filing',
+    title: 'Income Tax Return (ITR) Filing Assistance',
+    tagline: 'Simplify Your Income Tax Return Filing with Professional Guidance',
+    href: '/services/itr-filing/',
+    description: 'Assisting individuals and businesses with understanding income tax return requirements, organizing financial documents, and navigating official e-Filing processes.',
+  },
+  {
+    id: 'company-registration',
+    title: 'Company Registration Assistance',
+    tagline: 'Start Your Business with Professional Registration Guidance',
+    href: '/services/company-registration/',
+    description: 'Guidance for entrepreneurs and business owners with understanding company registration requirements, preparing documentation, and navigating the incorporation process.',
+  },
+  {
+    id: 'pcc-assistance',
+    title: 'Police Clearance Certificate (PCC) Assistance',
+    tagline: 'Simplify Your Police Clearance Certificate Application Process',
+    href: '/services/pcc-assistance/',
+    description: 'Assistance with understanding Police Clearance Certificate requirements, preparing supporting documents, and navigating the official application and appointment process.',
+  },
+  {
+    id: 'document-apostille',
+    title: 'Document Apostille Assistance',
+    tagline: 'Simplify Document Authentication for International Use',
+    href: '/services/document-apostille/',
+    description: 'Guidance on understanding apostille requirements, preparing eligible documents, and navigating authentication and submission procedures under the Hague Convention.',
+  },
+  {
+    id: 'document-translation',
+    title: 'Document Translation Assistance',
+    tagline: 'Professional Document Translation Support for International Requirements',
+    href: '/services/document-translation/',
+    description: 'Coordinating translations of academic, personal, legal, and business documents required for international applications and official consular procedures.',
+  },
+];
 ---
 
-<ServiceLayout service={service} />
+<BaseLayout
+  title="Additional Documentation & Administrative Services — Visa Convention"
+  description="Explore Visa Convention documentation assistance: Passport applications, ITR filing, Company registration, Police Clearance Certificates (PCC), Document Apostille, and Document Translation."
+>
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <Breadcrumbs
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'Services', href: '/services/' },
+        { label: 'Additional Services', href: '/services/additional-services/', current: true },
+      ]}
+    />
+  </div>
+
+  <section class="py-6 sm:py-8 lg:py-10">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <!-- Left Column: Service Directory -->
+        <div class="lg:col-span-7 space-y-6">
+          <div>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-brand-navy tracking-tight leading-tight mb-2">
+              Additional Services & Documentation Support
+            </h1>
+            <p class="text-base sm:text-lg font-bold text-brand-blue leading-snug">
+              Administrative file compilation, attestation facilitation, and consular compliance
+            </p>
+          </div>
+
+          <div class="relative rounded-2xl overflow-hidden border border-brand-border shadow-2xs bg-brand-bg max-w-lg aspect-[16/9]">
+            <img
+              src="/assets/images/services/Additional%20Visa%20Services%20Guide.png"
+              alt="Visa Convention Additional Documentation & Visa Services Guide"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Service List -->
+          <div class="space-y-3 pt-2">
+            {additionalServices.map((srv) => (
+              <div
+                id={srv.id}
+                class="scroll-mt-24 p-4 sm:p-5 rounded-xl border border-brand-border bg-white hover:border-brand-blue/40 transition-all shadow-2xs group"
+              >
+                <div class="flex items-start justify-between gap-3">
+                  <div>
+                    <h2 class="text-base sm:text-lg font-bold text-brand-navy group-hover:text-brand-blue transition-colors">
+                      <a href={srv.href} class="hover:underline flex items-center gap-1.5">
+                        <span>{srv.title}</span>
+                        <svg class="w-4 h-4 text-brand-blue group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                      </a>
+                    </h2>
+                    <p class="text-xs sm:text-sm text-brand-muted mt-1 leading-relaxed">
+                      {srv.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Right Column: Sticky Form -->
+        <aside class="lg:col-span-5 w-full scroll-mt-24" id="enquiry">
+          <div class="lg:sticky lg:top-24 space-y-3">
+            <div>
+              <h2 class="text-lg sm:text-xl font-bold text-brand-navy tracking-tight mb-1">
+                Request Documentation Assistance
+              </h2>
+              <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                Share your contact details below, and an advisor will evaluate your documentation requirements and follow up directly.
+              </p>
+            </div>
+
+            <MinimalServiceForm
+              serviceName="Additional Services"
+              submitButtonText="Request Documentation Assistance"
+            />
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
