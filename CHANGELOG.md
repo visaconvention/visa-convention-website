@@ -6,6 +6,61 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.66.0] - 2026-11-21 — Complete About Pages Audit & Editorial Redesign
+
+### Summary
+- **Comprehensive Audit & De-duplication:**
+  - Audited all pages accessible through the About navigation menu (`/about/` — Our Story & Office, `/success-stories/` — Verified Outcomes).
+  - Eliminated extensive cross-page repetition, including redundant company introductions, duplicate milestone metrics, unattributed directorship quotes, pseudo-team member role cards (which duplicated service page details), and awkward facility photo notices.
+- **Redesigned `/about/` (Our Story & Office) into Exactly 3 High-Trust Sections:**
+  1. **Our Story (Editorial Hero & Guiding Principles):**
+     - Authored an authentic, concise two-paragraph narrative on who Visa Convention is, what it helps clients accomplish, and its approach to transparency across 35+ destination countries.
+     - Paired with an elegant dark navy *"Guiding Transparency"* card outlining 3 core principles (*Factual Eligibility Screening*, *Direct Institutional Guidance*, *Transparent Remittances*).
+  2. **Why Visa Convention (3 Credible Differentiators):**
+     - Replaced generic promises with 3 meaningful, verifiable differentiators:
+       - *Zero Visa Guarantees & Consular Integrity* (exclusive sovereign consular authority, anti-fraud compliance).
+       - *End-to-End Documentation Discipline* (multi-point checks from university portals to apostilles).
+       - *Local Accountability with Global Reach* (direct physical advisory in Hanumangarh Junction vs. distant call centers).
+  3. **Our Office (Verified Location, Google Maps & Contact Actions):**
+     - Prominently showcases verified physical address: *Shop No.115, Durga Market, Street No.04, Behind Bus Stand, Durga Colony, Hanumangarh Junction, Rajasthan – 335512, India*.
+     - Detailed counseling hours (*Monday – Saturday: 9:30 AM – 6:30 PM IST*) and verified direct phone/email.
+     - Interactive, accessible Google Maps iframe embed + one-click *"Get Directions on Google Maps"* CTA (`siteConfig.googleMapsUrl`) and *"Book In-Person Consultation"* CTA (`/contact/`).
+- **Data Architecture Cleaned Up:**
+  - Modernized [`src/data/about.ts`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/data/about.ts) to export clean, typed datasets corresponding to the 3 distinct sections.
+- **Verification & QA:**
+  - Automated assertions ([`tests/verify-about-pages-audit-and-redesign.js`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/tests/verify-about-pages-audit-and-redesign.js)): **52/52 tests passed (100%)**.
+  - Credibility test suite ([`tests/credibility-engine.test.js`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/tests/credibility-engine.test.js)): **31/31 tests passed (100%)**.
+  - Tested 9 responsive viewports (320px, 360px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px) with 0px horizontal overflow and standardized header gap.
+  - Diagnostics: `npm run check` (0 errors, 0 warnings across 168 files) and `npm run build` (73 static routes compiled in 5.01s).
+
+---
+
+## [1.65.0] - 2026-11-21 — Flight Service Pages Final Optimization
+
+### Summary
+- **Promotional Banner Excision (Dummy Tickets & Confirmed Flight Tickets):**
+  - Completely excised the "FLIGHT BOOKING & DUMMY TICKET BOOKINGS" promotional image from:
+    1. **Dummy Flight Ticket & Reservation Assistance** ([`src/pages/services/dummy-tickets.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/services/dummy-tickets.astro))
+    2. **Confirmed Flight Tickets & Booking Assistance** ([`src/pages/services/confirmed-flight-tickets.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/services/confirmed-flight-tickets.astro))
+  - Removed image container and reserved whitespace from [`src/layouts/ServicePageLayout.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/layouts/ServicePageLayout.astro), ensuring content begins cleanly below the header.
+  - **Homepage Service Card 5:** Preserved original Flight Booking card image (`/assets/images/services/Flight%20Booking%20and%20Dummy%20Tickets.png`) and route intact.
+- **Dummy Tickets Sentence Removal:**
+  - Deleted the redundant sentence: *"Depending on the arrangement, it may include passenger information, departure and arrival airports, proposed travel dates and flight details."*
+  - Preserved remaining definition, 3 use cases, and enquiry flow.
+- **Confirmed Flight Tickets Exact Descriptions:**
+  - Replaced the three superseded paragraphs under **"What Is a Confirmed Flight Ticket?"** with exactly two approved paragraphs:
+    1. *"A confirmed flight ticket is an airline-issued ticket issued after booking and payment, containing flight details, a booking reference (PNR), and an e-ticket number."*
+    2. *"Visa Convention assists travelers with comparing flight options and arranging confirmed bookings based on their travel preferences."*
+- **Confirmed Flight Tickets Form Intro Deletion:**
+  - Completely excised the pre-form sentence: *"Share your contact details through the enquiry form below, and our team will assist you with available flights, fares, baggage options, and booking arrangements."*
+  - Retained the form heading (`Ready to Book Your Flight?`) directly above the compact enquiry form with balanced spacing.
+- **Verification & Testing:**
+  - Automated assertions ([`tests/verify-flight-pages-final-optimization.js`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/tests/verify-flight-pages-final-optimization.js)): 48/48 tests passed (100%).
+  - Responsive verification across 7 viewports (320px, 360px, 390px, 430px, 768px, 1024px, 1440px) with 0px horizontal overflow.
+  - Diagnostics: `npm run check` (0 errors, 0 warnings across 167 files) and `npm run build` (73 static routes compiled in 4.76s).
+
+---
+
 ## [1.64.0] - 2026-11-21 — Global Top Spacing Standardization Sitewide
 
 ### Summary

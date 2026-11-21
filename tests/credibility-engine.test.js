@@ -34,15 +34,12 @@ const aboutHtml = fs.readFileSync(aboutHtmlPath, 'utf8');
 assert(aboutHtml.includes('About Visa Convention'), 'About hero includes brand badge');
 assert(aboutHtml.includes('Integrity, Precision &amp; Truth') || aboutHtml.includes('Integrity, Precision & Truth'), 'About hero includes primary positioning headline');
 assert(aboutHtml.includes('Bridging Hanumangarh to the World’s Leading Institutions') || aboutHtml.includes('Bridging Hanumangarh to the World&#39;s Leading Institutions'), 'Includes authentic business story');
-assert(aboutHtml.includes('Message from the Directorship Desk'), 'Includes Founder / Directorship leadership message');
-assert(aboutHtml.includes('Our Specialized Counseling Practice'), 'Includes functional advisory & counseling practice breakdown');
-assert(aboutHtml.includes('Lead Education Counselor — North America &amp; UK') || aboutHtml.includes('Lead Education Counselor — North America & UK'), 'Includes North America specialized counselor role');
-assert(aboutHtml.includes('Medical Admissions Advisor — MBBS') || aboutHtml.includes('Medical Admissions Advisor — MBBS Central Asia'), 'Includes Medical Admissions counselor role');
+assert(aboutHtml.includes('Why Families Choose Visa Convention') || aboutHtml.includes('Why Visa Convention'), 'Includes Why Visa Convention section');
 assert(aboutHtml.includes('Our Physical Advisory Center in Hanumangarh'), 'Includes verified physical office section in Hanumangarh');
 assert(aboutHtml.includes('Shop No.115, Durga Market') && aboutHtml.includes('335512'), 'Includes official Hanumangarh physical address');
-assert(aboutHtml.includes('Measurable Institutional Scale'), 'Includes verified business milestones & capability metrics');
+assert(aboutHtml.includes('maps.google.com'), 'Includes verified Google Maps directions link');
 assert(aboutHtml.includes('35+') && aboutHtml.includes('1,015+'), 'Displays verified 35+ countries and 1,015+ institutions');
-assert(aboutHtml.includes('/services/study-visa/') && aboutHtml.includes('/services/mbbs/'), 'Links to core business services');
+assert(aboutHtml.includes('/contact/'), 'Links to in-person consultation booking');
 
 // Non-fabrication check
 const hasAboutPlaceholders = /\[insert/i.test(aboutHtml) || /\[placeholder/i.test(aboutHtml) || /\[todo/i.test(aboutHtml);

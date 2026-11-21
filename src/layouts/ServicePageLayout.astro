@@ -16,8 +16,6 @@ interface Props {
   preFormText?: string;
   serviceName: string;
   submitButtonText: string;
-  heroImage?: string;
-  heroImageAlt?: string;
   currentPath: string;
 }
 
@@ -34,8 +32,6 @@ const {
   preFormText,
   serviceName,
   submitButtonText,
-  heroImage,
-  heroImageAlt = heading,
   currentPath,
 } = Astro.props;
 ---
@@ -99,34 +95,20 @@ const {
               ))}
             </div>
           </div>
-
-          <!-- Approved Service Imagery (if available) -->
-          {heroImage && (
-            <div class="pt-2">
-              <div class="relative rounded-2xl overflow-hidden border border-brand-border shadow-2xs bg-brand-bg max-w-lg aspect-[16/9]">
-                <img
-                  src={heroImage}
-                  alt={heroImageAlt}
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          )}
         </div>
 
         <!-- Right Column: Pre-form Intro & Compact Minimal Enquiry Form -->
         <aside class="lg:col-span-5 w-full scroll-mt-24" id="enquiry">
           <div class="lg:sticky lg:top-24 space-y-3">
             {(preFormHeading || preFormText) && (
-              <div class="mb-1">
+              <div>
                 {preFormHeading && (
-                  <h2 class="text-lg sm:text-xl font-bold text-brand-navy tracking-tight mb-1">
+                  <h2 class="text-lg sm:text-xl font-bold text-brand-navy tracking-tight">
                     {preFormHeading}
                   </h2>
                 )}
                 {preFormText && (
-                  <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+                  <p class="text-xs sm:text-sm text-brand-muted leading-relaxed mt-1">
                     {preFormText}
                   </p>
                 )}
