@@ -6,6 +6,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.63.0] - 2026-11-21 — Additional Services Optimization & Exact Descriptions
+
+### Summary
+- **Promotional Banner Excision Across All Six Additional Services Pages:**
+  - Completely excised the oversized "ADDITIONAL SERVICES" promotional banner from:
+    1. **Passport Application Assistance** (`src/pages/services/passport-assistance.astro`)
+    2. **ITR Filing Assistance** (`src/pages/services/itr-filing.astro`)
+    3. **Company Registration Assistance** (`src/pages/services/company-registration.astro`)
+    4. **Police Clearance Certificate (PCC)** (`src/pages/services/pcc-assistance.astro`)
+    5. **Document Apostille** (`src/pages/services/document-apostille.astro`)
+    6. **Document Translation** (`src/pages/services/document-translation.astro`)
+  - Excised image props, wrappers, and reserved whitespace from the component tree. Content and headings moved upward naturally.
+  - Preserved the original Additional Services image on the **homepage service card** and all other unrelated pages.
+- **Service Descriptions Replaced with Exact Approved Copy:**
+  - Substituted the paragraphs under each page's **“What Is [Service]?”** heading with the exact single-paragraph descriptions:
+    - **Passport Application Assistance:** *"Visa Convention assists with new passport applications, renewals, re-issues, and corrections, including documentation, form completion, and appointment guidance through Passport Seva."*
+    - **ITR Filing Assistance:** *"Visa Convention assists individuals and businesses with income tax return filing, document preparation, and procedures through the official Income Tax e-Filing portal."*
+    - **Company Registration Assistance:** *"Visa Convention assists entrepreneurs and businesses with company registration, documentation, and incorporation procedures through the Ministry of Corporate Affairs."*
+    - **Police Clearance Certificate (PCC):** *"Visa Convention assists with PCC applications, required documentation, and appointment procedures for overseas employment, immigration, and other applicable purposes."*
+    - **Document Apostille:** *"Visa Convention assists with document apostille requirements, preparation, and authentication procedures for international use in countries covered by the Hague Apostille Convention."*
+    - **Document Translation:** *"Visa Convention assists with translations of academic, personal, legal, and business documents for international use, including certified translation options where available."*
+  - Completely excised superseded descriptions without appending, paraphrasing, or duplicating text.
+  - Synchronized the hub directory [`src/pages/services/additional-services.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/services/additional-services.astro) with the exact updated descriptions and removed the duplicate banner.
+- **Preserved Architecture & Lead Generation:**
+  - Preserved existing page titles, taglines, three use cases/categories, compact three-field enquiry forms (`MinimalServiceForm`), and backend submission routes.
+- **Verification & QA:**
+  - Automated assertions (`tests/verify-additional-services-optimization.js`): 8/8 tests passed.
+  - Visual QA & DOM inspection (`tests/audit-additional-services-optimization.js`): Verified banner absence and exact copy across all six pages on desktop (1366px) and mobile (375px).
+  - Diagnostics & Build: `npm run check` (0 errors, 0 warnings across 165 files) and `npm run build` (73 static HTML pages compiled in 4.97s).
+
+---
+
 ## [1.62.0] - 2026-11-21 — Master Service Page Redesign, Minimal Enquiry Forms & Sitewide Removals
 
 ### Summary
