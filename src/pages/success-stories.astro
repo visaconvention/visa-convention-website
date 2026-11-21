@@ -3,12 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/common/Breadcrumbs.astro';
 import { successStoriesData } from '../data/success-stories';
 
-const { hero, complianceNotice, categories, stories } = successStoriesData;
+const { hero, categories, stories } = successStoriesData;
 ---
 
 <BaseLayout
   title="Verified Outcomes — Visa Convention | Hanumangarh, Rajasthan"
-  description="Explore documented university admissions, consular visa grants, and authentic candidate journeys from Visa Convention's Hanumangarh advisory practice. Zero falsification, full DPDP privacy protection."
+  description="Explore documented university admissions, consular visa grants, and authentic candidate journeys from Visa Convention's Hanumangarh advisory practice."
 >
   <!-- Standardized Breadcrumbs Top Spacing -->
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 page-header-gap pb-2 sm:pb-3">
@@ -16,60 +16,33 @@ const { hero, complianceNotice, categories, stories } = successStoriesData;
   </div>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 1: HERO & PRIVACY COMPLIANCE -->
+  <!-- SECTION 1: COMPACT HERO -->
   <!-- ========================================================================= -->
-  <section class="pt-3 sm:pt-4 lg:pt-5 pb-8 sm:pb-10 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
+  <section class="pt-2 sm:pt-3 lg:pt-4 pb-6 sm:pb-8 bg-gradient-to-b from-white to-brand-bg border-b border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center space-y-4">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-brand-navy/5 border border-brand-navy/10 text-xs font-bold text-brand-navy uppercase tracking-wider">
-          {hero.badge}
-        </div>
+      <div class="max-w-3xl mx-auto text-center space-y-2">
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-brand-navy tracking-tight leading-tight text-balance">
           {hero.title}
         </h1>
-        <p class="text-base sm:text-lg text-brand-muted leading-relaxed font-normal max-w-3xl mx-auto">
+        <p class="text-sm sm:text-base text-brand-muted leading-relaxed font-normal max-w-2xl mx-auto">
           {hero.subtitle}
         </p>
-
-        <!-- Compact Zero-Fabrication & Privacy Protection Box -->
-        <div class="p-5 sm:p-6 rounded-2xl bg-white border border-brand-border shadow-xs max-w-3xl mx-auto text-left">
-          <div class="flex items-start gap-3.5">
-            <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/60 flex items-center justify-center font-bold shrink-0 mt-0.5">
-              <svg class="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
-            </div>
-            <div class="space-y-1.5 min-w-0 flex-1">
-              <h2 class="text-sm font-bold text-brand-navy">
-                {complianceNotice.title}
-              </h2>
-              <ul class="space-y-1 text-xs text-brand-muted leading-relaxed">
-                {complianceNotice.points.map((pt) => (
-                  <li class="flex items-start gap-2">
-                    <span class="text-emerald-600 font-bold">•</span>
-                    <span>{pt}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 2: DOCUMENTED OUTCOMES (FILTER & CARDS GRID) -->
+  <!-- SECTION 2: DOCUMENTED OUTCOMES GALLERY (MAIN FOCUS) -->
   <!-- ========================================================================= -->
-  <section class="py-8 sm:py-12 lg:py-16 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8" id="stories-section">
+  <section class="py-8 sm:py-10 lg:py-12 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8" id="stories-section">
     <!-- Filter Bar Header -->
-    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 pb-4 border-b border-brand-border">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mb-7 pb-4 border-b border-brand-border">
       <div>
         <h2 class="text-xl sm:text-2xl font-black text-brand-navy tracking-tight">
           Documented Case Studies
         </h2>
         <p class="text-xs sm:text-sm text-brand-muted mt-0.5">
-          Filtered by destination country, academic stream, and visa category.
+          Verified academic admissions, consular permits, and travel documentation.
         </p>
       </div>
 
@@ -92,15 +65,15 @@ const { hero, complianceNotice, categories, stories } = successStoriesData;
     </div>
 
     <!-- Stories Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7" id="stories-grid">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="stories-grid">
       {stories.map((story) => (
         <article
-          class="story-card card-premium p-6 sm:p-7 rounded-3xl border border-brand-border bg-white shadow-xs hover:border-brand-blue/30 transition-all flex flex-col justify-between"
+          class="story-card card-premium p-5 sm:p-6 rounded-2xl border border-brand-border bg-white shadow-xs hover:border-brand-blue/30 transition-all flex flex-col justify-between"
           data-story-category={story.category}
         >
           <div>
             <!-- Top Badges & Verification Status -->
-            <div class="flex items-start justify-between gap-2.5 mb-3.5">
+            <div class="flex items-start justify-between gap-2 mb-3">
               <div class="flex flex-wrap items-center gap-1.5">
                 <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-brand-navy bg-brand-bg px-2.5 py-1 rounded-md border border-brand-border">
                   {story.destinationCountry} • {story.yearGranted}
@@ -148,7 +121,7 @@ const { hero, complianceNotice, categories, stories } = successStoriesData;
           </div>
 
           <!-- Bottom Attribution: Anonymized Candidate & Category -->
-          <div class="pt-3.5 border-t border-brand-border/70 flex items-center justify-between text-xs">
+          <div class="pt-3 border-t border-brand-border/70 flex items-center justify-between text-xs">
             <div>
               <span class="font-bold text-brand-navy block text-xs">
                 Candidate: {story.candidateIdentifier}
@@ -167,21 +140,21 @@ const { hero, complianceNotice, categories, stories } = successStoriesData;
   </section>
 
   <!-- ========================================================================= -->
-  <!-- SECTION 3: SINGLE CONCISE CONTACT ACTION -->
+  <!-- SECTION 3: OPTIONAL COMPACT CTA -->
   <!-- ========================================================================= -->
-  <section class="py-8 sm:py-12 bg-brand-bg border-t border-brand-border">
+  <section class="py-8 sm:py-10 bg-brand-bg border-t border-brand-border">
     <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mx-auto text-center space-y-4">
-        <h2 class="text-2xl sm:text-3xl font-black text-brand-navy tracking-tight">
+      <div class="max-w-2xl mx-auto text-center space-y-3">
+        <h2 class="text-xl sm:text-2xl font-black text-brand-navy tracking-tight">
           Ready to Plan Your Own Journey?
         </h2>
-        <p class="text-sm sm:text-base text-brand-muted leading-relaxed font-normal">
+        <p class="text-xs sm:text-sm text-brand-muted leading-relaxed font-normal">
           Book an in-person profile evaluation at our Hanumangarh center or request structured guidance for your destination of choice.
         </p>
-        <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+        <div class="pt-1 flex flex-wrap items-center justify-center gap-3">
           <a
             href="/contact/?service=study-visa"
-            class="btn-primary inline-flex items-center gap-2"
+            class="btn-primary inline-flex items-center gap-2 text-xs sm:text-sm py-2.5 px-5"
           >
             <span>Request Profile Evaluation</span>
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -190,7 +163,7 @@ const { hero, complianceNotice, categories, stories } = successStoriesData;
           </a>
           <a
             href="/about/#office"
-            class="btn-secondary inline-flex items-center gap-2"
+            class="btn-secondary inline-flex items-center gap-2 text-xs sm:text-sm py-2.5 px-5"
           >
             <span>Visit Our Hanumangarh Office</span>
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

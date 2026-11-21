@@ -143,7 +143,9 @@ async function main() {
   });
 
   assert(metrics.isHeadingVerifiedOutcomes, `Hero Heading is strictly "Verified Outcomes" (actual: "${metrics.h1}")`);
-  assert(metrics.hasPrivacyNotice && metrics.mentionsDPDP && metrics.mentionsRedacted, 'Hero: DPDP Act compliance notice & redacted initials guarantee present');
+  assert(!metrics.hasPrivacyNotice, 'Hero: "Candidate Privacy & Data Protection Guarantee" section completely removed');
+  assert(!metrics.mentionsDPDP, 'Hero: DPDP Act statement excised from page content');
+  assert(!metrics.mentionsRedacted, 'Hero: Redacted tracking ID text excised from page content');
   assert(metrics.cardCount === 6, `Main Grid: Exactly 6 documented outcome cards rendered (actual: ${metrics.cardCount})`);
   assert(metrics.hasVerifiedBadges, 'Main Grid: All outcome cards display an authentic "Verified" status badge');
   assert(metrics.hasOutcomeTypes, 'Main Grid: Outcome cards clearly distinguish between issued permits, admissions, and grants');

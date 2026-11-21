@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.68.0] - 2026-11-21 — Verified Outcomes Privacy Section Removal & Streamlined Redesign
+
+### Summary
+- **Privacy Section Deletion:**
+  - Completely removed the bordered **"Candidate Privacy & Data Protection Guarantee"** container from [`src/pages/success-stories.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/success-stories.astro).
+  - Excised the shield icon, Digital Personal Data Protection Act statement, tracking IDs text, candidate consent statement, and consular notice disclaimer from the component markup and data model ([`src/data/success-stories.ts`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/data/success-stories.ts)).
+  - Removed reserved spacing and wrapper containers so the page content flows naturally upward below the standardized header breadcrumbs.
+  - Preserved authentic PII safeguards sitewide through anonymized candidate initials (`M. S.`, `K. S.`, `A. V.`).
+- **Compact Hero & Layout Refinement:**
+  - Streamlined Hero to strictly heading **"Verified Outcomes"** with a concise, single-sentence introduction.
+  - Eliminated decorative badges (`Documented Evidence`) and redundant spacing.
+  - Documented Outcome Gallery serves as the immediate visual centerpiece with 6 authentic case cards, distinct outcome classification pills, verified badges, and documented milestone chips.
+  - Preserved single compact consultation CTA (`/contact/?service=study-visa` and `/about/#office`).
+- **Verification & Testing:**
+  - `tests/verify-verified-outcomes-audit-and-redesign.js`: **33/33 tests passed (100%)**.
+  - `tests/credibility-engine.test.js`: **29/29 tests passed (100%)**.
+  - All 9 viewports (320px, 360px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px) pass with zero horizontal overflow and standardized header-to-content gap.
+  - Full Astro check: 0 errors, 0 warnings.
+  - Production static build: 73 static pages compiled successfully.
+
+---
+
 ## [1.67.0] - 2026-11-21 — Verified Outcomes Complete Audit & Redesign
 
 ### Summary

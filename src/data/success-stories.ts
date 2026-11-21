@@ -2,18 +2,8 @@ import type { SuccessStory } from '../types';
 
 export const successStoriesData = {
   hero: {
-    badge: 'Documented Evidence',
     title: 'Verified Outcomes',
-    subtitle: 'Documented university admissions, consular visa issuances, and academic journeys from our Hanumangarh advisory practice. Every case study represents genuine, verified paperwork processed with complete privacy protection.',
-  },
-
-  complianceNotice: {
-    title: 'Candidate Privacy & Data Protection Guarantee',
-    points: [
-      'In strict compliance with the Digital Personal Data Protection Act, candidate full names, passport numbers, and tracking IDs are permanently redacted to privacy-protected initials.',
-      'All documented outcomes represent genuine applications processed through our Hanumangarh advisory practice with documented candidate consent.',
-      'Consular Notice: Visa issuance is the sole prerogative of sovereign host-nation embassies and consulates. Past visa grants do not guarantee future visa approval.',
-    ],
+    subtitle: 'Documented admissions, consular visa issuances, and verified candidate journeys processed through our Hanumangarh advisory practice.',
   },
 
   categories: [

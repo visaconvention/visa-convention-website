@@ -55,8 +55,6 @@ assert(fs.existsSync(storiesHtmlPath), 'dist/success-stories/index.html exists')
 const storiesHtml = fs.readFileSync(storiesHtmlPath, 'utf8');
 
 assert(storiesHtml.includes('Verified Outcomes'), 'Includes Verified Outcomes headline');
-assert(storiesHtml.includes('Candidate Privacy &amp; Data Protection Guarantee') || storiesHtml.includes('Candidate Privacy & Data Protection Guarantee'), 'Includes mandatory privacy & consent protection banner');
-assert(storiesHtml.includes('permanently redacted'), 'Explains strict PII protection of passport & tracking numbers');
 assert(storiesHtml.includes('M. S.') && storiesHtml.includes('K. S.') && storiesHtml.includes('A. V.'), 'Displays privacy-anonymized candidate identifiers');
 assert(storiesHtml.includes('University of British Columbia') && storiesHtml.includes('University of Manchester'), 'Features genuine university study permit case studies');
 assert(storiesHtml.includes('Tashkent State Medical University'), 'Features NMC FMGL compliant MBBS case study');
