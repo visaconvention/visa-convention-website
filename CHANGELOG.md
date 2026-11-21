@@ -6,6 +6,61 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.64.0] - 2026-11-21 — Global Top Spacing Standardization Sitewide
+
+### Summary
+- **Root Cause Resolution for Excessive Top Whitespace:**
+  - Diagnosed cumulative padding stacking across the component tree: `Breadcrumbs.astro` had `<nav class="py-4 text-sm ...">` adding 32px of internal vertical padding, on top of page wrapper `pt-6` (24px) and following section `py-8`/`py-12` (32–48px top padding), creating up to 124px of dead blank space above headings.
+  - Excised redundant `py-4` from [`src/components/common/Breadcrumbs.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/components/common/Breadcrumbs.astro).
+  - Replaced ad-hoc nested padding across all templates and pages with a standardized, responsive CSS utility class.
+- **Centralized Design Token (`.page-header-gap`):**
+  - Added centralized `.page-header-gap` utility to [`src/styles/global.css`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/styles/global.css):
+    - **Desktop (>=1024px):** `padding-top: 1.75rem;` (28px — strictly within target 24–32px range)
+    - **Tablet (640–1023px):** `padding-top: 1.25rem;` (20px — strictly within target 20–24px range)
+    - **Mobile (<640px):** `padding-top: 1rem;` (16px — strictly within target 16–20px range)
+  - Applied cleanly without negative margins, hacky offsets, or temporary CSS patches.
+- **Sitewide Page Standardization (23 Templates & Pages):**
+  - **Shared Layouts:**
+    - [`src/layouts/ServicePageLayout.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/layouts/ServicePageLayout.astro): Standardized breadcrumb wrapper with `.page-header-gap pb-2 sm:pb-3` and section `pt-2 sm:pt-3 lg:pt-4 pb-8 sm:pb-10 lg:pb-12`.
+    - [`src/layouts/ServiceLayout.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/layouts/ServiceLayout.astro): Standardized breadcrumb wrapper with `.page-header-gap pb-2 sm:pb-3` and section `pt-3 sm:pt-4 lg:pt-5 pb-12 sm:pb-16`.
+  - **Homepage Hero Section:**
+    - [`src/components/home/HeroSection.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/components/home/HeroSection.astro): Adjusted top padding to `pt-5 sm:pt-6 lg:pt-7` (20px Mobile, 24px Tablet, 28px Desktop), achieving exact spacing parity while preserving background continuity.
+  - **Service Pages:**
+    - [`src/pages/services/additional-services.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/services/additional-services.astro): Fixed excessive whitespace, moving heading and category cards upward naturally.
+    - [`src/pages/services/flight-booking.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/services/flight-booking.astro)
+    - [`src/pages/services/mbbs.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/services/mbbs.astro)
+    - [`src/pages/services/phd.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/services/phd.astro)
+    - [`src/pages/services/tourist-visa.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/services/tourist-visa.astro)
+    - [`src/pages/services/work-visa.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/services/work-visa.astro)
+    - [`src/pages/services/index.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/services/index.astro)
+  - **Study Abroad & Universities:**
+    - [`src/pages/study-abroad/index.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/study-abroad/index.astro)
+    - [`src/pages/study-abroad/[country].astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/study-abroad/[country].astro) (all 35 country pages)
+    - [`src/pages/study-in-europe/index.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/study-in-europe/index.astro)
+    - [`src/pages/universities/index.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/universities/index.astro)
+    - [`src/pages/universities/[university].astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/universities/[university].astro)
+  - **Company & Compliance Pages:**
+    - [`src/pages/about.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/about.astro)
+    - [`src/pages/contact.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/contact.astro)
+    - [`src/pages/success-stories.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/success-stories.astro)
+    - [`src/pages/privacy-policy.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/privacy-policy.astro)
+    - [`src/pages/terms.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/terms.astro)
+    - [`src/pages/design-system.astro`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/src/pages/design-system.astro)
+- **Automated Verification & QA:**
+  - Built and executed comprehensive audit suite ([`tests/audit-global-top-spacing.js`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/tests/audit-global-top-spacing.js)).
+  - Tested 14 routes across 9 viewports (320px, 360px, 375px, 390px, 430px, 768px, 1024px, 1366px, 1440px).
+  - Results: **126/126 checks passed (100%)**.
+  - Exact measured distance:
+    - Mobile (320px–430px): 16px (Breadcrumb pages) / 20px (Homepage) [Target: 16–20px]
+    - Tablet (768px): 20px (Breadcrumb pages) / 24px (Homepage) [Target: 20–24px]
+    - Desktop (1024px–1440px): 28px (Breadcrumb pages) / 28px (Homepage) [Target: 24–32px]
+  - Horizontal overflow: 0 instances across all 9 viewports.
+  - Captured high-resolution desktop and mobile visual verification artifacts.
+  - Astro diagnostics (`npm run check`): 0 errors, 0 warnings across 166 files.
+  - Static build (`npm run build`): All 73 static pages generated successfully in 10.88s.
+
+---
+
 ## [1.63.0] - 2026-11-21 — Additional Services Optimization & Exact Descriptions
 
 ### Summary
