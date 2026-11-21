@@ -218,9 +218,9 @@ const objectPos = country.imageObjectPosition || 'center 35%';
 
   <!-- 4. Main Content & Form Grid -->
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+    <div class="grid grid-cols-1 min-[1100px]:grid-cols-12 gap-8 lg:gap-10 items-start">
       <!-- Left Column: Essential Admission, Financial & Visa Information -->
-      <div class="lg:col-span-7 space-y-10">
+      <div class="min-[1100px]:col-span-8 space-y-10">
 
         <!-- Available Study Pathways -->
         {country.studyLevels && country.studyLevels.length > 0 && (
@@ -498,13 +498,14 @@ const objectPos = country.imageObjectPosition || 'center 35%';
       </div>
 
       <!-- Right Column: Sticky Consultation Form & Office Info -->
-      <div class="lg:col-span-5" id="enquiry">
+      <div class="min-[1100px]:col-span-4" id="enquiry">
         <div class="sticky top-28 space-y-6">
           <EnquiryForm
             selectedCountry={country.slug}
             selectedService="study-visa"
             title={`Apply for ${country.name}`}
             subtitle="Submit your details for a factual eligibility evaluation by our counselors."
+            singleColumn={true}
           />
 
           <!-- Fast Regional Support Box -->

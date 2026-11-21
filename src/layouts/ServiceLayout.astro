@@ -138,9 +138,9 @@ const pageDescription = isDetailed && detailed?.metaDescription
 
   <!-- Main Content & Form Grid -->
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+    <div class="grid grid-cols-1 min-[1100px]:grid-cols-12 gap-8 lg:gap-10 items-start">
       <!-- Left Column: Details, Destinations, Institutions, Eligibility, Compliance -->
-      <div class="lg:col-span-7 space-y-8 sm:space-y-10">
+      <div class="min-[1100px]:col-span-8 space-y-8 sm:space-y-10">
         
         <!-- SECTION 1: What Assistance Includes -->
         <section>
@@ -402,12 +402,13 @@ const pageDescription = isDetailed && detailed?.metaDescription
       </div>
 
       <!-- Right Column: Sticky Consultation Form & Office Info -->
-      <div class="lg:col-span-5" id="enquiry">
+      <div class="min-[1100px]:col-span-4" id="enquiry">
         <div class="sticky top-28 space-y-6">
           <EnquiryForm
             selectedService={service.slug}
             title={`Enquire: ${service.title}`}
             subtitle="Submit your details for a factual, confidential preliminary evaluation by our counselors."
+            singleColumn={true}
           />
 
           <!-- Direct Office Contact Card -->

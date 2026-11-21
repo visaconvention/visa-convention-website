@@ -202,10 +202,10 @@ const approvedUniversities = [
           </div>
 
           <!-- University Cards Grid (Compact, responsive 1-2 columns) -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4" id="phd-university-grid">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4 items-start" id="phd-university-grid">
             {approvedUniversities.map((uni, idx) => (
               <div
-                class="phd-uni-card group relative p-4 sm:p-5 rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer hidden"
+                class="phd-uni-card group relative p-4 sm:p-5 rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between text-left cursor-pointer self-start w-full hidden"
                 data-country={uni.countrySlug}
                 data-university-name={uni.name}
                 data-country-name={uni.country}

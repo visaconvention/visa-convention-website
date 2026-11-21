@@ -70,13 +70,13 @@ const totalCountriesCount = countriesWithCounts.length;
         </div>
 
         <!-- Cards Container -->
-        <div id="university-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div id="university-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
           {universities.map((uni) => {
             const country = getCountryBySlug(uni.countrySlug);
             const continent = (country?.continent || '').toLowerCase();
             return (
               <div
-                class="university-item"
+                class="university-item self-start w-full"
                 data-name={uni.name.toLowerCase()}
                 data-country-slug={uni.countrySlug.toLowerCase()}
                 data-country-name={uni.countryName.toLowerCase()}

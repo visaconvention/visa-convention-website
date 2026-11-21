@@ -6,6 +6,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.69.0] - 2026-11-21 — Complete Website Design Audit & Polish
+
+### Summary
+- **Strict Compliance:** Design changes ONLY. Zero content, headings, paragraphs, images, countries, universities, services, form fields, menu items, links, routes, or backend functions were added, removed, reordered, or altered.
+- **Header & Navigation Visual Polish:**
+  - Standardized header consultation CTA button (`Header.astro`) to strictly 44px (`!min-h-[44px] !h-[44px]`), vertically centering with the 44px navigation items on the 38px midpoint of the 76px header.
+  - Maintained exact two-line centered labels for *Study / Abroad*, *Tourist / Visa*, *Work / Visa*, and *Additional / Services*.
+  - Vertically centered dropdown chevrons beside the full 2-line text blocks.
+  - Preserved single-line alignment for *Flights* and *About*.
+- **Standardized ~70:30 Two-Column Desktop Proportions Sitewide:**
+  - Aligned two-column service & country layouts to `min-[1100px]:grid-cols-12` (`min-[1100px]:col-span-8` left content ~67% / `min-[1100px]:col-span-4` right sticky form ~33%) across:
+    * `ServiceLayout.astro` (`/services/study-visa/`)
+    * `study-abroad/[country].astro` (all 36 destination countries)
+    * `ServicePageLayout.astro` (all 8 minimal service pages including Dummy Tickets and Confirmed Flight Tickets)
+    * `additional-services.astro` (overview directory)
+    * Existing Tourist Visa, Work Visa, MBBS, and PhD pages.
+  - Passed `singleColumn={true}` to `EnquiryForm` on all ~30% sticky sidebars for balanced vertical stacking without cramped horizontal inputs.
+- **Expanded-Card Non-Stretching Grid Behavior:**
+  - Added `items-start` and `self-start w-full` to university and occupational card grids (`UniversityCard.astro`, `universities/index.astro`, `mbbs.astro`, `phd.astro`, `OccupationAccordion.astro`).
+  - Expanding any accordion card grows downwards naturally without stretching adjacent cards in the same row.
+- **Homepage & Reviews Visual Stability:**
+  - Preserved the six-card photographic grid with equal visual weight and uniform `aspect-video` containers.
+  - Preserved MBBS/PhD card independent split clickable regions (left 50% `/services/mbbs/`, right 50% `/services/phd/`).
+  - Preserved continuous right-to-left marquee review animation with accessible pause/resume and nudge controls.
+- **Verification & QA:**
+  - Dedicated design audit test suite ([`tests/verify-website-design-polish.js`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/tests/verify-website-design-polish.js)): **41 / 41 tests passed (100%)**.
+  - Comprehensive multi-viewport testing across all **13 specified viewports** (320, 360, 375, 390, 430, 600, 768, 1024, 1100, 1280, 1366, 1440, and 1920px) with **0px horizontal overflow**.
+  - All existing core test suites pass (`credibility-engine`, `country-engine`, `university-engine`).
+  - Diagnostics: `npm run check` (0 errors, 0 warnings across 170 files) and `npm run build` (73 static routes compiled in 4.69s).
+
+---
+
 ## [1.68.0] - 2026-11-21 — Verified Outcomes Privacy Section Removal & Streamlined Redesign
 
 ### Summary
