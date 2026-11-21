@@ -11,12 +11,15 @@ const { currentPath = '/' } = Astro.props;
 <!-- Mobile Menu Drawer Backdrop & Content -->
 <div
   id="mobile-menu-drawer"
-  class="fixed inset-0 z-50 bg-brand-navy/60 backdrop-blur-xs hidden transition-opacity duration-300"
+  class="fixed inset-0 z-50 bg-brand-navy/60 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-250 ease-out"
   aria-modal="true"
   role="dialog"
   aria-label="Mobile Navigation"
 >
-  <div class="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col justify-between overflow-y-auto">
+  <div
+    id="mobile-menu-panel"
+    class="fixed inset-y-0 right-0 w-full max-w-sm bg-white shadow-2xl flex flex-col justify-between overflow-y-auto transform translate-x-full transition-transform duration-250 ease-out"
+  >
     <!-- Top Header -->
     <div class="p-5 border-b border-brand-border flex items-center justify-between">
       <div class="flex items-center gap-2">
@@ -140,18 +143,28 @@ const { currentPath = '/' } = Astro.props;
     const openBtn = document.getElementById('open-mobile-menu-btn');
     const closeBtn = document.getElementById('close-mobile-menu-btn');
     const drawer = document.getElementById('mobile-menu-drawer');
+    const panel = document.getElementById('mobile-menu-panel');
 
-    if (!openBtn || !closeBtn || !drawer) return;
+    if (!openBtn || !closeBtn || !drawer || !panel) return;
     const menuDrawer = drawer;
+    const menuPanel = panel;
 
     function openMenu() {
-      menuDrawer.classList.remove('hidden');
+      menuDrawer.classList.remove('opacity-0', 'pointer-events-none');
+      menuDrawer.classList.add('opacity-100', 'pointer-events-auto');
+      menuPanel.classList.remove('translate-x-full');
+      menuPanel.classList.add('translate-x-0');
       document.body.style.overflow = 'hidden';
+      closeBtn?.focus();
     }
 
     function closeMenu() {
-      menuDrawer.classList.add('hidden');
+      menuDrawer.classList.remove('opacity-100', 'pointer-events-auto');
+      menuDrawer.classList.add('opacity-0', 'pointer-events-none');
+      menuPanel.classList.remove('translate-x-0');
+      menuPanel.classList.add('translate-x-full');
       document.body.style.overflow = '';
+      openBtn?.focus();
     }
 
     openBtn.addEventListener('click', openMenu);
@@ -170,9 +183,36 @@ const { currentPath = '/' } = Astro.props;
       }
     });
 
+    // Keyboard navigation & focus trap
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !drawer.classList.contains('hidden')) {
+      const isDrawerOpen = menuDrawer.classList.contains('pointer-events-auto');
+      if (!isDrawerOpen) return;
+
+      if (e.key === 'Escape') {
         closeMenu();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        const focusableElements = drawer.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusableElements.length === 0) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
       }
     });
   }

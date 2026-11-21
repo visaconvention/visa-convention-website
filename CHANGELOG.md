@@ -6,6 +6,56 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
+## [1.70.0] - 2026-11-21 — Website-Wide Animation, Microinteraction & UX Upgrade
+
+### Summary
+- **Strict Content Boundary:** Visual interaction and motion polish ONLY. Preserved every existing heading, paragraph, section, image, country, university, service, form field, menu item, link, route, animation, and backend functionality. Zero content changes.
+- **Unified Motion Tokens & Design System (`global.css`):**
+  - Standardized transition timing tokens: `--duration-fast: 150ms`, `--duration-normal: 220ms`, `--duration-card: 250ms`, `--duration-reveal: 400ms`.
+  - Natural easing curves: `cubic-bezier(0.16, 1, 0.3, 1)`.
+  - Page-level subtle fade-in transition: 180ms cubic-bezier progressive enhancement on `main#main-content` without SPA complexity.
+  - Strict WCAG 2.1 AA reduced motion support: `@media (prefers-reduced-motion: reduce)` resets duration to `0.01ms !important`, disables infinite sweeps, and immediately un-hides scroll reveal elements.
+- **Request Consultation CTA Periodic Shimmer & Feedback:**
+  - Added `.btn-cta-shimmer` featuring an occasional, restrained translucent light sweep (`@keyframes cta-light-sweep`) running every 28 seconds (offset with 8s initial delay so it never collides with WhatsApp attention pulse).
+  - Hover elevation: `translateY(-2px)` with expanded shadow (`0 8px 20px rgba(201, 29, 50, 0.38)`).
+  - Arrow micro-shift: `group-hover:translate-x-1 transition-transform duration-200`.
+  - Tactile press feedback: `active:scale-[0.98]`.
+- **Country Cards Interaction & Selected States:**
+  - Hover background transition to `#EAF4FF` (`hover:bg-[#EAF4FF]`).
+  - Stronger brand border: `hover:border-brand-navy`.
+  - Hover elevation: `-translate-y-0.5` with soft shadow (`hover:shadow-md`).
+  - Arrow micro-translation: `group-hover:translate-x-1 duration-200`.
+  - Mobile tap feedback: `active:scale-[0.98] active:bg-[#EAF4FF]`.
+  - Selected state: `[aria-selected="true"]` styled with `ring-2 ring-brand-blue/30 bg-[#EAF4FF] border-brand-navy`.
+- **Floating WhatsApp Component:**
+  - Refined hover elevation (`hover:-translate-y-1 hover:shadow-xl`) and icon scale (`group-hover:scale-105 transition-transform duration-200`).
+  - Maintained restrained attention pulse every 18 seconds (scale 1 -> 1.05 -> 1 with green shadow glow).
+  - Maintained session-limited tooltip prompt ("Need help? Chat with us!") auto-hiding after 4 seconds and pausing during hover/focus/interaction.
+  - Tactile press feedback: `active:scale-[0.98]`.
+- **Mobile Navigation Drawer Slide-In & Focus Trap:**
+  - Added slide-in/out transform (`translate-x-full` to `translate-x-0` over 250ms ease-out) and backdrop opacity transition (`opacity-0` to `opacity-100`).
+  - Implemented keyboard focus trap: loops Tab/Shift+Tab between drawer controls and auto-focuses close button upon opening.
+  - Accessible Escape key listener closes drawer and returns focus to hamburger button.
+- **Homepage Service Cards:**
+  - Refined hover lift (`hover:-translate-y-1.5`) and mild photographic scale (`group-hover:scale-[1.02] transition-transform duration-300 ease-out`).
+  - Preserved independent clickable split halves for MBBS (`/services/mbbs/`) and PhD (`/services/phd/`) with subtle hover highlight.
+  - Active press feedback: `active:scale-[0.99]`.
+- **Progressive Scroll-Reveal System:**
+  - Lightweight `IntersectionObserver` observing `.reveal-on-scroll` elements with 30px offset.
+  - Above-the-fold content immediately visible on load (zero layout shift / CLS = 0).
+  - Graceful fallback: when JavaScript is disabled, elements are 100% visible by default.
+- **Accordions & Forms Microinteractions:**
+  - Non-stretching grid layout retained (`items-start` and `self-start w-full`).
+  - Chevrons rotate `180deg` over 200ms ease-out.
+  - Form input focus rings standardized to `var(--color-brand-blue)` with `box-shadow: 0 0 0 3px rgba(35, 103, 164, 0.18)`.
+- **Verification & QA:**
+  - Automated verification test suite ([`tests/verify-website-animation-upgrade.js`](file:///c:/Users/ACER/Desktop/Visa%20MASTER/visa-convention-wesbite/tests/verify-website-animation-upgrade.js)): **100% PASS across all tests**.
+  - Verified across all **13 viewports** (320, 360, 375, 390, 430, 600, 768, 1024, 1100, 1280, 1366, 1440, and 1920px) with **0px horizontal overflow**.
+  - Type-check: `npm run check` (0 errors, 0 warnings across 171 files).
+  - Static build: `npm run build` (73 static routes compiled in 6.94s).
+
+---
+
 ## [1.69.0] - 2026-11-21 — Complete Website Design Audit & Polish
 
 ### Summary

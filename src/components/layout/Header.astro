@@ -44,10 +44,10 @@ const { currentPath = '/' } = Astro.props;
       <div class="hidden xl:flex items-center gap-3 shrink-0">
         <a
           href="/contact/"
-          class="btn-primary text-xs px-4 py-2 !min-h-[44px] !h-[44px] whitespace-nowrap shadow-xs"
+          class="btn-primary btn-cta-shimmer group text-xs px-4 py-2 !min-h-[44px] !h-[44px] whitespace-nowrap shadow-xs active:scale-[0.98]"
         >
           <span>Request Consultation</span>
-          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </a>

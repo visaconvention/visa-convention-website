@@ -52,7 +52,7 @@ const countryTitle = count ? `${country.name} (${count} guided universities)` : 
 {as === 'button' ? (
   <button
     type="button"
-    class={`country-tile card-premium group country-btn h-[54px] sm:h-[58px] min-h-[48px] w-full min-w-0 rounded-xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 cursor-pointer px-2.5 sm:px-3 text-left flex items-center gap-2.5 sm:gap-3 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue ${className}`}
+    class={`country-tile card-premium group country-btn h-[54px] sm:h-[58px] min-h-[48px] w-full min-w-0 rounded-xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy hover:bg-[#EAF4FF] hover:-translate-y-0.5 active:scale-[0.98] active:bg-[#EAF4FF] transition-all duration-200 cursor-pointer px-2.5 sm:px-3 text-left flex items-center gap-2.5 sm:gap-3 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-blue ${className}`}
     data-country-btn
     data-country-name={country.name}
     data-country-slug={country.slug}
@@ -83,14 +83,14 @@ const countryTitle = count ? `${country.name} (${count} guided universities)` : 
 
     <!-- 3. Arrow / Navigation Action Indicator -->
     <div class="country-arrow country-badge w-5 h-5 rounded-full bg-brand-bg flex items-center justify-center text-brand-subtle group-hover:bg-brand-navy group-hover:text-white transition-colors shrink-0">
-      <svg class="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <svg class="w-2.5 h-2.5 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
       </svg>
     </div>
   </button>
 ) : (
   <div
-    class={`country-tile card-premium group country-card h-[54px] sm:h-[58px] min-h-[48px] min-w-0 rounded-xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy hover:-translate-y-0.5 transition-all duration-200 ${className}`}
+    class={`country-tile card-premium group country-card h-[54px] sm:h-[58px] min-h-[48px] min-w-0 rounded-xl border border-brand-border bg-white shadow-2xs hover:shadow-md hover:border-brand-navy hover:bg-[#EAF4FF] hover:-translate-y-0.5 active:scale-[0.98] active:bg-[#EAF4FF] transition-all duration-200 ${className}`}
     data-country-card
     data-country-name={country.name.toLowerCase()}
     data-continent={country.continent ? country.continent.toLowerCase() : ''}
@@ -121,7 +121,7 @@ const countryTitle = count ? `${country.name} (${count} guided universities)` : 
 
       <!-- 3. Arrow / Navigation Action Indicator -->
       <div class="country-arrow country-badge w-5 h-5 rounded-full bg-brand-bg flex items-center justify-center text-brand-subtle group-hover:bg-brand-navy group-hover:text-white transition-colors shrink-0">
-        <svg class="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <svg class="w-2.5 h-2.5 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
         </svg>
       </div>

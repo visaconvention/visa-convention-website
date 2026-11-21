@@ -26,22 +26,22 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
   <!-- ========================================================================= -->
   <section id="services" class="py-8 sm:py-12 bg-brand-bg">
     <div class="site-container">
-      <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight mb-5 sm:mb-6 text-left">
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-brand-navy tracking-tight leading-tight mb-5 sm:mb-6 text-left reveal-on-scroll">
         Services
       </h2>
 
       <!-- 3-Column, 2-Row Photographic Service Grid (Optimized Compact Cards) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch reveal-on-scroll">
         
         <!-- Card 1: Study Abroad -->
-        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col text-left cursor-pointer">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1.5 active:scale-[0.99] transition-all duration-200 flex flex-col text-left cursor-pointer">
           <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
             <img
               src="/assets/images/services/Study%20Abroad_%20Your%20Global%20Future.png"
               alt="Visa Convention Study Abroad — Your Global Future"
               width="1672"
               height="941"
-              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              class="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300 ease-out"
               loading="lazy"
             />
           </div>
@@ -58,21 +58,21 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
         </div>
 
         <!-- Card 2: MBBS / PhD Abroad (Independently Clickable Split Halves) -->
-        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col text-left">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1.5 active:scale-[0.99] transition-all duration-200 flex flex-col text-left">
           <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
             <img
               src="/assets/images/services/MBBS%20&%20PhD%20Courses%20Abroad.png"
               alt="Visa Convention MBBS and PhD Courses Abroad"
               width="1670"
               height="813"
-              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              class="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300 ease-out"
               loading="lazy"
             />
 
             <!-- Split Image Navigation: Left 50% → MBBS Abroad -->
             <a
               href="/services/mbbs/"
-              class="absolute inset-y-0 left-0 w-1/2 z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-[-2px] rounded-tl-2xl cursor-pointer"
+              class="absolute inset-y-0 left-0 w-1/2 z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-[-2px] rounded-tl-2xl cursor-pointer hover:bg-brand-navy/10 transition-colors"
               aria-label="Explore MBBS Abroad"
               title="Explore MBBS Abroad"
             >
@@ -82,7 +82,7 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
             <!-- Split Image Navigation: Right 50% → PhD Abroad -->
             <a
               href="/services/phd/"
-              class="absolute inset-y-0 right-0 w-1/2 z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-[-2px] rounded-tr-2xl cursor-pointer"
+              class="absolute inset-y-0 right-0 w-1/2 z-10 focus-visible:outline-2 focus-visible:outline-brand-blue focus-visible:outline-offset-[-2px] rounded-tr-2xl cursor-pointer hover:bg-brand-navy/10 transition-colors"
               aria-label="Explore PhD Abroad"
               title="Explore PhD Abroad"
             >
@@ -97,14 +97,14 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
         </div>
 
         <!-- Card 3: Work Visa -->
-        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col text-left cursor-pointer">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1.5 active:scale-[0.99] transition-all duration-200 flex flex-col text-left cursor-pointer">
           <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
             <img
               src="/assets/images/services/Global%20Work%20Visa%20Opportunities.png"
               alt="Visa Convention Global Work Visa Opportunities"
               width="1672"
               height="828"
-              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              class="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300 ease-out"
               loading="lazy"
             />
           </div>
@@ -121,14 +121,14 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
         </div>
 
         <!-- Card 4: Tourist Visa -->
-        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col text-left cursor-pointer">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1.5 active:scale-[0.99] transition-all duration-200 flex flex-col text-left cursor-pointer">
           <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
             <img
               src="/assets/images/services/Vibrant%20Tourist%20Visa%20Travel%20Poster.png"
               alt="Visa Convention Tourist Visa Travel Guidance"
               width="1672"
               height="835"
-              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              class="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300 ease-out"
               loading="lazy"
             />
           </div>
@@ -145,14 +145,14 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
         </div>
 
         <!-- Card 5: Flight Booking -->
-        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col text-left cursor-pointer">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1.5 active:scale-[0.99] transition-all duration-200 flex flex-col text-left cursor-pointer">
           <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
             <img
               src="/assets/images/services/Flight%20Booking%20and%20Dummy%20Tickets.png"
               alt="Visa Convention Flight Booking and Reservation Assistance"
               width="1672"
               height="788"
-              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              class="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300 ease-out"
               loading="lazy"
             />
           </div>
@@ -169,14 +169,14 @@ import ReviewsCarousel from '../components/home/ReviewsCarousel.astro';
         </div>
 
         <!-- Card 6: Additional Services -->
-        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1 transition-all duration-200 flex flex-col text-left cursor-pointer">
+        <div class="card-premium relative group overflow-hidden rounded-2xl bg-white border border-brand-border shadow-2xs hover:shadow-lg hover:border-brand-navy hover:-translate-y-1.5 active:scale-[0.99] transition-all duration-200 flex flex-col text-left cursor-pointer">
           <div class="relative aspect-video w-full overflow-hidden bg-brand-bg border-b border-brand-border flex items-center justify-center">
             <img
               src="/assets/images/services/Additional%20Visa%20Services%20Guide.png"
               alt="Visa Convention Additional Services Guide — Passport Applications, MEA Apostille, PCC, and Documentation Assistance"
               width="1672"
               height="941"
-              class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              class="w-full h-full object-contain group-hover:scale-[1.02] transition-transform duration-300 ease-out"
               loading="lazy"
             />
           </div>

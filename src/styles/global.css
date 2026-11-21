@@ -61,6 +61,20 @@ body {
   line-height: 1.6;
 }
 
+/* Page fade-in transition (subtle 180ms progressive enhancement) */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+main#main-content {
+  animation: pageFadeIn 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* Accessible visible keyboard focus rings */
 :focus-visible {
   outline: 2px solid var(--color-brand-blue);
@@ -77,6 +91,38 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  main#main-content {
+    animation: none !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .btn-cta-shimmer::after {
+    display: none !important;
+  }
+}
+
+/* Progressive Scroll-Reveal System */
+.reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+}
+
+html.js .reveal-on-scroll:not(.revealed) {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 420ms cubic-bezier(0.16, 1, 0.3, 1), transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+html.js .reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Custom Component Utilities for Design System Consistency */
@@ -93,19 +139,79 @@ body {
   line-height: 1.25rem;
   border-radius: 0.875rem;
   box-shadow: 0 2px 8px rgba(201, 29, 50, 0.25);
-  transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 180ms ease, background-color 150ms ease;
   text-align: center;
   min-height: 48px;
 }
 
 .btn-primary:hover {
   background-color: var(--color-brand-red-hover);
-  box-shadow: 0 6px 16px rgba(201, 29, 50, 0.35);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(201, 29, 50, 0.38);
+  transform: translateY(-2px);
 }
 
 .btn-primary:active {
-  transform: translateY(0);
+  transform: scale(0.98);
+}
+
+/* CTA Periodic Subtle Light Sweep (Restrained, every 28s, staggered with WhatsApp) */
+.btn-cta-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cta-shimmer::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  animation: cta-light-sweep 28s ease-in-out infinite;
+  animation-delay: 8s; /* Staggered with WhatsApp pulse (at 2s and 18s) */
+}
+
+@keyframes cta-light-sweep {
+  0% {
+    left: -60%;
+  }
+  4.5% {
+    left: 140%;
+  }
+  100% {
+    left: 140%;
+  }
+}
+
+.btn-cta-shimmer:hover::after,
+.btn-cta-shimmer:focus::after,
+.btn-cta-shimmer:active::after {
+  animation: none;
+  opacity: 0;
+}
+
+/* Form inputs & Button tactile feedback */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-brand-blue) !important;
+  box-shadow: 0 0 0 3px rgba(35, 103, 164, 0.18) !important;
+}
+
+/* Country Tile Selected & Active Microinteraction */
+.country-tile[aria-selected="true"],
+.country-btn[aria-selected="true"] {
+  border-color: var(--color-brand-navy) !important;
+  background-color: #EAF4FF !important;
+  box-shadow: 0 0 0 2px rgba(35, 103, 164, 0.3) !important;
 }
 
 .btn-secondary {
@@ -129,7 +235,11 @@ body {
 .btn-secondary:hover {
   background-color: var(--color-brand-navy-light);
   box-shadow: 0 6px 16px rgba(16, 42, 83, 0.25);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
 }
 
 .btn-outline {
@@ -154,7 +264,11 @@ body {
   background-color: var(--color-brand-bg);
   border-color: var(--color-brand-blue);
   color: var(--color-brand-blue);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+}
+
+.btn-outline:active {
+  transform: scale(0.98);
 }
 
 .card-premium {
