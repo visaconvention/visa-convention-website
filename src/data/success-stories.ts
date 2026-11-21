@@ -2,17 +2,17 @@ import type { SuccessStory } from '../types';
 
 export const successStoriesData = {
   hero: {
-    badge: 'Candidate Outcomes & Reviews',
-    title: 'Verified Journeys Built on Preparation & Truth',
-    subtitle: 'Every international admission and visa outcome achieved through Visa Convention is the result of genuine academic qualification, meticulous paperwork, and transparent consular alignment. We do not manufacture fictional testimonials or inflate statistics.',
+    badge: 'Documented Evidence',
+    title: 'Verified Outcomes',
+    subtitle: 'Documented university admissions, consular visa issuances, and academic journeys from our Hanumangarh advisory practice. Every case study represents genuine, verified paperwork processed with complete privacy protection.',
   },
 
   complianceNotice: {
     title: 'Candidate Privacy & Data Protection Guarantee',
     points: [
-      'In strict compliance with the Digital Personal Data Protection Act and international privacy standards, candidate full names, passport numbers, and embassy tracking numbers are permanently redacted.',
-      'All case studies published on this platform represent genuine applications processed through our Hanumangarh advisory practice with documented candidate consent.',
-      'Consular Notice: Past visa issuance does not guarantee future visa approval. Each visa decision is made independently by host-nation immigration authorities based on individual merit.',
+      'In strict compliance with the Digital Personal Data Protection Act, candidate full names, passport numbers, and tracking IDs are permanently redacted to privacy-protected initials.',
+      'All documented outcomes represent genuine applications processed through our Hanumangarh advisory practice with documented candidate consent.',
+      'Consular Notice: Visa issuance is the sole prerogative of sovereign host-nation embassies and consulates. Past visa grants do not guarantee future visa approval.',
     ],
   },
 
@@ -35,6 +35,7 @@ export const successStoriesData = {
       programLevel: 'Postgraduate Diploma / Masters',
       courseName: 'Data Analytics & Software Systems',
       visaCategory: 'Canada Study Permit (SDS Stream)',
+      outcomeType: 'Issued Study Permit (SDS Stream)',
       yearGranted: '2025',
       quote: 'What impressed my family most was their complete honesty about Canadian immigration policies. When other agents made empty promises about immediate PR, Visa Convention sat down with us and explained the actual Post-Graduation Work Permit rules and financial criteria. My visa was approved in 24 days without any query.',
       keyMilestones: [
@@ -55,6 +56,7 @@ export const successStoriesData = {
       programLevel: 'Bachelor of Engineering',
       courseName: 'Mechanical Engineering BEng',
       visaCategory: 'UK Student Visa (Subclass Tier 4)',
+      outcomeType: 'University Admission (CAS) & Student Visa',
       yearGranted: '2025',
       quote: 'I had two study gaps due to competitive exam preparation, which other consultancies told me would be an obstacle unless I fabricated work certificates. Visa Convention strictly refused any fake documentation. Instead, they helped me draft a truthful, detailed Statement of Purpose explaining my prep period. The University of Manchester issued my CAS, and the UKVI visa was granted smoothly.',
       keyMilestones: [
@@ -75,6 +77,7 @@ export const successStoriesData = {
       programLevel: 'Undergraduate Medical Degree',
       courseName: 'General Medicine (MD / MBBS, 5.8-Year English Medium)',
       visaCategory: 'Uzbekistan Student Permit',
+      outcomeType: 'Medical Admission (NMC Compliant) & Student Permit',
       yearGranted: '2025',
       quote: 'Finding a medical university that strictly complies with the National Medical Commission (NMC) FMGL 2021 regulations was stressful for my parents. Visa Convention verified the university’s English-medium curriculum, hospital bed count, and Indian hostel arrangements before we paid any fee. They managed our apostille, flight booking, and university registration seamlessly.',
       keyMilestones: [
@@ -95,6 +98,7 @@ export const successStoriesData = {
       programLevel: 'Master of Science',
       courseName: 'Automotive & Mechanical Systems Engineering',
       visaCategory: 'German National Student Visa (Type D)',
+      outcomeType: 'Tuition-Free Public Admission & National Visa',
       yearGranted: '2025',
       quote: 'Germany has virtually zero tuition fees at top public universities, but the APS verification and blocked account procedures are extremely demanding. The team in Hanumangarh guided my APS submission step by step and reviewed my academic credentials thoroughly. Studying at TUM was my dream, and having genuine advisors made all the difference.',
       keyMilestones: [
@@ -115,6 +119,7 @@ export const successStoriesData = {
       programLevel: 'Visitor Stream (Subclass 600)',
       courseName: 'Attending Son’s University Graduation in Melbourne',
       visaCategory: 'Australian Visitor Visa',
+      outcomeType: 'Visitor Visa Grant (Subclass 600)',
       yearGranted: '2025',
       quote: 'We needed visitor visas to attend our elder son’s university graduation in Australia. Visa Convention helped us organize our agricultural land records, income tax returns, and ties to India in complete compliance with Australian Home Affairs standards. Both my wife and I received our visas with multiple entries.',
       keyMilestones: [
@@ -135,6 +140,7 @@ export const successStoriesData = {
       programLevel: 'Doctor of Philosophy (PhD)',
       courseName: 'Environmental Informatics & Sustainable Systems',
       visaCategory: 'Ireland Employment / Research Study Permit',
+      outcomeType: 'Doctoral Fellowship & Research Study Permit',
       yearGranted: '2024',
       quote: 'Doctoral research admissions abroad require an academic mentor, not a sales agent. The counselors at Visa Convention assisted me with research proposal alignment, formatting academic references, and coordinating institutional visa sponsorship with Trinity College Dublin. Their intellectual rigor is unmatched in this region.',
       keyMilestones: [
@@ -146,11 +152,4 @@ export const successStoriesData = {
       category: 'europe',
     },
   ] as SuccessStory[],
-
-  videoTestimonials: {
-    status: 'scheduled_in_person',
-    title: 'In-Person Video Testimonials',
-    description: 'We believe in real client voices. Video interviews with students currently studying abroad and visiting our Hanumangarh center during vacations are conducted with formal consent. Video releases will be published here following editorial review.',
-    alumniNote: 'Prospective students and parents visiting our Hanumangarh office can request to be connected directly with active alumni in Canada, the UK, Germany, and Uzbekistan for unfiltered peer guidance.',
-  },
 };

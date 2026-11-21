@@ -54,7 +54,7 @@ assert(fs.existsSync(storiesHtmlPath), 'dist/success-stories/index.html exists')
 
 const storiesHtml = fs.readFileSync(storiesHtmlPath, 'utf8');
 
-assert(storiesHtml.includes('Verified Journeys Built on Preparation &amp; Truth') || storiesHtml.includes('Verified Journeys Built on Preparation & Truth'), 'Includes transparent outcomes headline');
+assert(storiesHtml.includes('Verified Outcomes'), 'Includes Verified Outcomes headline');
 assert(storiesHtml.includes('Candidate Privacy &amp; Data Protection Guarantee') || storiesHtml.includes('Candidate Privacy & Data Protection Guarantee'), 'Includes mandatory privacy & consent protection banner');
 assert(storiesHtml.includes('permanently redacted'), 'Explains strict PII protection of passport & tracking numbers');
 assert(storiesHtml.includes('M. S.') && storiesHtml.includes('K. S.') && storiesHtml.includes('A. V.'), 'Displays privacy-anonymized candidate identifiers');
@@ -62,7 +62,7 @@ assert(storiesHtml.includes('University of British Columbia') && storiesHtml.inc
 assert(storiesHtml.includes('Tashkent State Medical University'), 'Features NMC FMGL compliant MBBS case study');
 assert(storiesHtml.includes('Technical University of Munich'), 'Features tuition-free German engineering case study');
 assert(storiesHtml.includes('story-filter-container'), 'Includes interactive destination & category filter pills');
-assert(storiesHtml.includes('In-Person Video Testimonials'), 'Includes authentic in-person video testimonials status');
+assert(storiesHtml.includes('Documented Case Studies'), 'Includes Documented Case Studies section');
 assert(!storiesHtml.includes('iframe src="https://www.youtube.com/embed/fake'), 'Zero fabricated stock video embeds');
 
 // ----------------------------------------------------

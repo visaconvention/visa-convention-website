@@ -312,6 +312,7 @@ export interface SuccessStory {
   courseName: string;                  // e.g., "Data Analytics & Software Systems"
   visaCategory: string;                // e.g., "Study Permit (SDS)" or "Tier 4 Student Visa"
   yearGranted: string;                 // e.g., "2025"
+  outcomeType?: string;                // e.g., "Issued Study Permit" | "University Admission Offer & Visa" | "Visitor Visa Grant"
   quote: string;                       // Genuine client review/testimonial
   keyMilestones: string[];             // e.g., ["IELTS 7.5", "SOP Refinement", "28-day Embassy Turnaround"]
   verificationStatus: "verified" | "redacted_for_privacy" | "pending_consent";
